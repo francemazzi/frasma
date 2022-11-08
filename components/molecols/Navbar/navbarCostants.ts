@@ -1,1 +1,5 @@
-export const navBarLinks: string[] = ["Home Page", "About Us", "Contact Us"];
+export const navBarLinks: string[] = [
+  "About Me",
+  "Frasma 🔥",
+  "Contact Me 📝 ",
+];
