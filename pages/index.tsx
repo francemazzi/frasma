@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Header from "../components/molecols/sliders/Header";
+import SliderOne from "../components/molecols/sliders/Header";
 
 export default function Home() {
   return (
@@ -12,9 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex justify-center items-center h-screen bg-header-back w-full">
-        <Header label="Food on Web3 is on fire " />
-      </div>
+      <SliderOne label="Food on Web3 is on fire " />
     </div>
   );
 }

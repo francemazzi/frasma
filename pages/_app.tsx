@@ -1,13 +1,14 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Layout from "../components/organism/Layouts/Layout";
+import NavBar from "../components/molecols/Navbar/Navbar";
+import Footer from "../components/molecols/footer/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <NavBar />
+      <Component {...pageProps} />
+      <Footer />
     </>
   );
 }
