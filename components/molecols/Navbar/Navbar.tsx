@@ -21,13 +21,6 @@ const NavBar = () => {
                 currentRoute === link.href && "text-[red]"
               } hover:text-[#CDFCF6]`}
               href={link.href}
-              // href={
-              //   link === "Frasma 🔥"
-              //     ? "/"
-              //     : link === "About Me"
-              //     ? "/AboutMe"
-              //     : "/ContactMe"
-              // }
             >
               {link.name}
             </a>

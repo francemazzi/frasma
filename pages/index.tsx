@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className=" flex justify-center  items-center h-screen bg-header-back w-full">
+      <div className="flex justify-center items-center h-screen bg-header-back w-full">
         <Header label="Food on Web3 is on fire " />
       </div>
     </div>
