@@ -8,6 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: { sans: ["Poppins", "sans-serif"] },
+      backgroundImage: {
+        "header-back": "url('/public/img/slideIntro.jpg')",
+      },
     },
   },
   plugins: [],

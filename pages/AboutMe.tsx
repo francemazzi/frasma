@@ -1,5 +1,11 @@
+import Header from "../components/molecols/sliders/Header";
+
 const AboutMe = () => {
-  return <div>ABOUT US</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default AboutMe;
