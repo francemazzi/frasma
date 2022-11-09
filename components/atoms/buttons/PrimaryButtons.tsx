@@ -13,7 +13,11 @@ const PrimaryButton: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <button className="input__submit" type="submit" onClick={onClick}>
+      <button
+        className="bg-red p-[5px] m-[20px] font-semibold"
+        type="submit"
+        onClick={onClick}
+      >
         {label}
       </button>
     </>
