@@ -8,9 +8,17 @@ type prop = {
 
 const SliderOne: React.FC<prop> = ({ label }) => {
   return (
-    <div className="flex flex-col justify-center items-center bg-[url('/public/img/slideIntro.jpg')] w-full h-[90vh]  bg-no-repeat bg-cover">
-      <div className="font-bold text-black text-6xl p-[2rem]">{label}</div>
-      <PrimaryButton label="Scopri di più"></PrimaryButton>
+    <div className="w-screen h-screen relative">
+      <div className="flex flex-col justify-center items-center bg-[#141414]   bg-no-repeat bg-cover absolute top-0 left-0 right-0 bottom-0 w-screen h-screen">
+        {/* <Image
+          objectFit="cover"
+          layout="fill"
+          src="/public/img/slideIntro.jpg"
+          alt="header background"
+        /> */}
+        <div className="font-bold text-white text-6xl p-[2rem]">{label}</div>
+        <PrimaryButton label="Scopri di più"></PrimaryButton>
+      </div>
     </div>
   );
 };

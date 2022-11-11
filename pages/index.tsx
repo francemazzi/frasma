@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 import SliderOne from "../components/molecols/sliders/Header";
+import Footer from "../components/molecols/footer/Footer";
+import ShortDescription from "../components/molecols/shortDescription/ShortDescription";
 
 export default function Home() {
   return (
@@ -12,6 +14,7 @@ export default function Home() {
       </Head>
 
       <SliderOne label="Food on Web3 is on fire " />
+      <ShortDescription />
     </>
   );
 }

@@ -14,7 +14,7 @@ const PrimaryButton: React.FC<Props> = ({
   return (
     <>
       <button
-        className="bg-red p-[5px] m-[20px] font-semibold"
+        className="bg-[red] p-[10px] m-[20px] font-semibold rounded-[12px] text-white"
         type="submit"
         onClick={onClick}
       >
