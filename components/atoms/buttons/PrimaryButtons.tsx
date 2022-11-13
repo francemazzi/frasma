@@ -4,12 +4,14 @@ type Props = {
   label: string;
   onClick?: () => void;
   href?: string;
+  linkTo: string;
 };
 
 const PrimaryButton: React.FC<Props> = ({
   label,
   onClick = () => {},
   href,
+  linkTo,
 }) => {
   return (
     <>

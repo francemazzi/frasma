@@ -3,6 +3,9 @@ import Image from "next/image";
 import SliderOne from "../components/molecols/sliders/Header";
 import Footer from "../components/molecols/footer/Footer";
 import ShortDescription from "../components/molecols/shortDescription/ShortDescription";
+import ShortPresentation from "../components/molecols/shortDescription/ShortPresentation";
+import Why from "../components/molecols/sliders/Why";
+import Portofolio from "../components/molecols/portfolio/Portofolio";
 
 export default function Home() {
   return (
@@ -14,7 +17,10 @@ export default function Home() {
       </Head>
 
       <SliderOne label="Food on Web3 is on fire " />
+      <ShortPresentation />
       <ShortDescription />
+      <Why />
+      <Portofolio />
     </>
   );
 }

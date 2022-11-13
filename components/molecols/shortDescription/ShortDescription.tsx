@@ -6,25 +6,26 @@ import "swiper/css";
 
 function ShortDescription() {
   const [showGradient, setShowGradient] = useState(true);
-
-  const [width, setWidth] = React.useState(window.innerWidth);
+  // const widthWindow: number = window.innerWidth;
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" && window.innerWidth
+  );
   const breakPoint: number = 550;
-  const [isPhone, setIsPhone] = useState(false);
 
   SwiperCore.use([Mousewheel]);
-
-  const widthWindow: number = window.innerWidth;
 
   useEffect(() => {
     const changeWidth = () => setWidth(window.innerWidth);
     window.addEventListener("resize", changeWidth);
 
     return window.removeEventListener("resize", changeWidth);
-  }, []);
+  }, [width]);
 
   return (
     <Swiper
-      slidesPerView={width < breakPoint ? 3 : 5}
+      className="flex flex-row items-center"
+      slidesPerView={width < breakPoint ? 2 : 5}
+      // slidesPerView={"auto"}
       freeMode
       grabCursor
       keyboard
@@ -35,7 +36,7 @@ function ShortDescription() {
       {WORK_FLOW.map((work, i) => {
         return (
           <SwiperSlide key={i}>
-            <div className=" h-20px  p-[0.5rem] rounded-[6px] m-[2rem] text-center shadow-lg w-[10rem]">
+            <div className=" h-30px  p-[15px] rounded-[12px] m-[2rem] text-center shadow-lg w-[14rem]">
               {work.work}
             </div>
           </SwiperSlide>
