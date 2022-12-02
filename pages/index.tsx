@@ -6,6 +6,7 @@ import ShortDescription from "../components/molecols/shortDescription/ShortDescr
 import ShortPresentation from "../components/molecols/shortDescription/ShortPresentation";
 import Why from "../components/molecols/sliders/Why";
 import Portofolio from "../components/molecols/portfolio/Portofolio";
+import InputField from "../components/molecols/inputs/InputField";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <ShortDescription />
       <Why />
       <Portofolio />
+      <InputField />
     </>
   );
 }

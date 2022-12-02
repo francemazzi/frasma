@@ -26,11 +26,17 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className={`${isScrolled ? "bg-[#ffffff09]" : "bg-neutral-50"}`}>
+    <div
+      className={`${
+        isScrolled
+          ? "bg-[#ffffff09]"
+          : "bg-neutral-50 flex flex-col items-center justify-center"
+      }`}
+    >
       <div className=" py-4 px-4 flex flex-row justify-between items-center drop-shadow-lg">
         <div>
           <a
-            className={`px-5 py-2 ${
+            className={`px-5 py-2 text-[28px] ${
               currentRoute === "/" && "text-[red]"
             } text-[#000] font-bold `}
             href={"/"}
@@ -39,7 +45,7 @@ const NavBar = () => {
           </a>
         </div>
 
-        <div className="flex flex-row">
+        {/* <div className="flex flex-row">
           {NAV_LINK.map((link, i) => {
             return (
               <div key={i}>
@@ -54,7 +60,7 @@ const NavBar = () => {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );

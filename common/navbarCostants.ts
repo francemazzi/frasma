@@ -29,6 +29,11 @@ export const WORK_WHY: { title: string; description: string }[] = [
     description:
       "Inzieremo con prove di mercato per definire come posizionare al meglio la tua azienda.",
   },
+  {
+    title: "🧑🏻‍💻 Innovation",
+    description:
+      "Per sviluppare utilizzo: next.js, react, typescript, web3.js, firebase, solidity, python, GraphQL...",
+  },
 ];
 
 export const PORTFOLIO: {
@@ -53,16 +58,23 @@ export const PORTFOLIO: {
   },
   {
     img: "/img/siestabio.jpg",
-    titolo: "Ricerca di mercato",
+    titolo: "Sviluppo E-grocery",
     description:
-      "Sviluppo di una piattaforma e-grocery, premiata da Emilbanca come startup emergente. + 100 clienti raggiunti.",
+      "Startup emergente premiata da Emilbanca. + 100 clienti raggiunti.",
     site: "https://gazzettadimantova.gelocal.it/mantova/cronaca/2021/02/04/news/mantova-frutta-e-verdura-biologiche-consegnate-a-casa-o-in-azienda-1.39859212",
   },
   {
     img: "/img/hortown.jpg",
     titolo: "Sviluppo di prodotto",
     description:
-      "Sviluppo di una piattaforma Saas, in base ai bisogni dei panificatori. + 130 produttori iscritti.",
+      "Creazione di una vertical farm modulare dedicata al Future food Institute.",
     site: "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/details/experience/1847811422/multiple-media-viewer/?treasuryMediaId=1635470524493",
+  },
+  {
+    img: "/img/ValmarecchiaTeam.png",
+    titolo: "Sviluppo web",
+    description:
+      "Sviluppo di una piattaforma web per la vendita dei prodotti e la presentazione delle varietà antiche di grani.",
+    site: "https://valmarecchiabionatura.com",
   },
 ];

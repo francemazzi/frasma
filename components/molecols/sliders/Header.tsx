@@ -8,7 +8,7 @@ type prop = {
 
 const SliderOne: React.FC<prop> = ({ label }) => {
   return (
-    <div className="w-screen h-screen relative">
+    <div className="h-screen relative">
       <div className="flex flex-col justify-center items-center bg-[#141414]  absolute right-0 bottom-0 w-screen h-screen">
         <Image
           objectFit="cover"
@@ -19,7 +19,15 @@ const SliderOne: React.FC<prop> = ({ label }) => {
         />
         <div className="relative flex flex-col justify-center items-center">
           <div className="font-bold text-white text-6xl p-[2rem] ">{label}</div>
-          <PrimaryButton label="Scopri di più"></PrimaryButton>
+          <PrimaryButton
+            label="Fissa ora un incontro"
+            onClick={() => {
+              window.open(
+                "https://calendly.com/francescomazzi/15min",
+                "_blank"
+              );
+            }}
+          />
         </div>
       </div>
     </div>

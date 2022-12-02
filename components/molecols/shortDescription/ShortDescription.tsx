@@ -5,44 +5,44 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 function ShortDescription() {
-  const [showGradient, setShowGradient] = useState(true);
-  // const widthWindow: number = window.innerWidth;
-  const [width, setWidth] = useState(
-    typeof window !== "undefined" && window.innerWidth
-  );
-  const breakPoint: number = 550;
+  // const [showGradient, setShowGradient] = useState(true);
+  // // const widthWindow: number = window.innerWidth;
+  // const [width, setWidth] = useState(
+  //   typeof window !== "undefined" && window.innerWidth
+  // );
+  // const breakPoint: number = 550;
 
-  SwiperCore.use([Mousewheel]);
+  // SwiperCore.use([Mousewheel]);
 
-  useEffect(() => {
-    const changeWidth = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", changeWidth);
+  // useEffect(() => {
+  //   const changeWidth = () => setWidth(window.innerWidth);
+  //   window.addEventListener("resize", changeWidth);
 
-    return window.removeEventListener("resize", changeWidth);
-  }, [width]);
+  //   return window.removeEventListener("resize", changeWidth);
+  // }, [width]);
 
   return (
-    <Swiper
-      className="flex flex-row items-center"
-      slidesPerView={width < breakPoint ? 2 : 5}
-      // slidesPerView={"auto"}
-      freeMode
-      grabCursor
-      keyboard
-      mousewheel
-      onReachEnd={() => setShowGradient(false)}
-      onFromEdge={() => setShowGradient(true)}
+    <div
+      className="flex flex-row items-center overflow-x-scroll py-[5px]"
+      // slidesPerView={width < breakPoint ? 2 : 3}
+      // // slidesPerView={"auto"}
+      // freeMode
+      // grabCursor
+      // keyboard
+      // mousewheel
+      // onReachEnd={() => setShowGradient(false)}
+      // onFromEdge={() => setShowGradient(true)}
     >
       {WORK_FLOW.map((work, i) => {
         return (
-          <SwiperSlide key={i}>
-            <div className=" h-30px  p-[15px] rounded-[12px] m-[2rem] text-center shadow-lg w-[14rem]">
+          <div key={i}>
+            <div className="h-30px  p-[15px] rounded-[12px] m-[10px] text-center shadow-lg w-[14rem]">
               {work.work}
             </div>
-          </SwiperSlide>
+          </div>
         );
       })}
-    </Swiper>
+    </div>
   );
 }
 
