@@ -1,8 +1,11 @@
 import { title } from "process";
 
 export const NAV_LINK: { name: string; href: string }[] = [
-  { name: "About", href: "/AboutMe" },
-  { name: "Contact", href: "/ContactMe" },
+  { name: "Github 🐈‍⬛", href: "https://github.com/francemazzi" },
+  { name: "Gitlab 🧪", href: "https://gitlab.com/francesco.mazzi" },
+  // TODO -> queste pagine
+  // { name: "About", href: "/AboutMe" },
+  // { name: "Contact", href: "/ContactMe" },
 ];
 
 export const WORK_FLOW: { work: string }[] = [
