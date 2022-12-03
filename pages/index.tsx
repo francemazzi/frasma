@@ -17,7 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SliderOne label="Food on Web3 is on fire " />
+      <SliderOne label="Hai bisogno di uno sviluppatore web?" />
       <ShortPresentation />
       <ShortDescription />
       <Why />
