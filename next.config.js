@@ -19,6 +19,10 @@ const nextConfig = {
   swcMinify: true,
   assetPrefix: assetPrefix,
   basePath: basePath,
+  images: {
+    loader: "imgix",
+    path: "frama.imgix.net",
+  },
 };
 
 module.exports = nextConfig;
