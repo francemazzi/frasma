@@ -22,7 +22,7 @@ const InputField: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mb-[2rem]">
+    <div className="flex flex-col items-center justify-center my-[2rem]">
       <div className="flex flex-col items-center justify-center">
         <div className="text-[22px] font-bold">Contattami ora!</div>
         <div className="text-center p-[2rem]">
