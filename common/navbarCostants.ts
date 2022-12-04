@@ -46,35 +46,35 @@ export const PORTFOLIO: {
   site: string;
 }[] = [
   {
-    img: "/img/valbindolaImg.jpg",
+    img: "/image/valbindolaImg.jpg",
     titolo: "20000kg venduti",
     description:
       "Sviluppo di una Urban Farm verticale, progetto imprenditoriale riconosciuto dall'UniBo.",
     site: "https://www.valbindola.it/",
   },
   {
-    img: "/img/baky.png",
+    img: "/image/baky.png",
     titolo: "Lancio di Startup",
     description:
       "Sviluppo della brand Identity e piano commerciale per il cliente finale e business",
     site: "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/details/experience/",
   },
   {
-    img: "/img/siestabio.jpg",
+    img: "/image/siestabio.jpg",
     titolo: "Sviluppo E-grocery",
     description:
       "Startup emergente premiata da Emilbanca. + 100 clienti raggiunti.",
     site: "https://gazzettadimantova.gelocal.it/mantova/cronaca/2021/02/04/news/mantova-frutta-e-verdura-biologiche-consegnate-a-casa-o-in-azienda-1.39859212",
   },
   {
-    img: "/img/hortown.jpg",
+    img: "/image/hortown.jpg",
     titolo: "Sviluppo di prodotto",
     description:
       "Creazione di una vertical farm modulare dedicata al Future food Institute.",
     site: "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/details/experience/1847811422/multiple-media-viewer/?treasuryMediaId=1635470524493",
   },
   {
-    img: "/img/ValmarecchiaTeam.png",
+    img: "/image/ValmarecchiaTeam.png",
     titolo: "Sviluppo web",
     description:
       "Sviluppo di una piattaforma web per la vendita dei prodotti e la presentazione delle varietà antiche di grani.",

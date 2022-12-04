@@ -13,7 +13,7 @@ const SliderOne: React.FC<prop> = ({ label }) => {
         <Image
           objectFit="cover"
           layout="fill"
-          src="/img/slideIntro.jpg"
+          src="/image/slideIntro.jpg"
           alt="header background"
           priority
         />

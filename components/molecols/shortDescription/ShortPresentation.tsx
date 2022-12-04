@@ -21,7 +21,7 @@ function ShortPresentation() {
           <div className="rounded-[50%] h-[8rem] w-[8rem] items-center ">
             <Image
               className="rounded-[50%]"
-              src={"/img/profilo.JPG"}
+              src={"/image/profilo.JPG"}
               layout="fill"
               objectFit="cover"
               alt="francesco profilo"
