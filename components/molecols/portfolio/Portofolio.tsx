@@ -18,9 +18,9 @@ function Portofolio() {
           return (
             <div
               key={i}
-              className="flex flex-col w-[40rem] items-center rounded-[12px] shadow-lg mx-[5px] h-[40rem] lg:h-[30rem] relative "
+              className="flex flex-col w-[20rem] items-center rounded-[12px] shadow-lg mx-[5px] h-[30rem] lg:h-[30rem] relative"
             >
-              <div className="relative h-[15rem] w-full">
+              <div className="relative h-[15rem] w-[20rem]">
                 <Image
                   src={data.img}
                   alt="photo not upload"
