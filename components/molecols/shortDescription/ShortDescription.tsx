@@ -23,7 +23,7 @@ function ShortDescription() {
 
   return (
     <div
-      className="flex flex-row items-center justify-center overflow-x-scroll py-[20px]"
+      className="flex flex-row lg:items-center lg:justify-center overflow-x-scroll py-[20px]"
       // slidesPerView={width < breakPoint ? 2 : 3}
       // // slidesPerView={"auto"}
       // freeMode
