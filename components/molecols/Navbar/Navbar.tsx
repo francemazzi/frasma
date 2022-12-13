@@ -8,10 +8,10 @@ const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>();
 
   //Router modify
-  useEffect(() => {
-    const pathName = router.pathname;
-    setCurrentRoute(pathName);
-  }, []);
+  // useEffect(() => {
+  //   const pathName = router.pathname;
+  //   setCurrentRoute(pathName);
+  // }, []);
 
   //scroll menu trasnparent
   useEffect(() => {

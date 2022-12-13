@@ -13,7 +13,7 @@ function Portofolio() {
       <div className="text-[22px] text-center font-bold my-[10px]">
         La mia esperienza
       </div>
-      <div className="flex flex-row items-center md:justify-center overflow-x-scroll">
+      <div className="flex flex-row items-center overflow-x-scroll">
         {PORTFOLIO.map((data, i) => {
           return (
             <div

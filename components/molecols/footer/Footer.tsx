@@ -6,10 +6,10 @@ const Footer = () => {
   const router = useRouter();
   const [currentRoute, setCurrentRoute] = useState<string>();
 
-  useEffect(() => {
-    const pathName = router.pathname;
-    setCurrentRoute(pathName);
-  }, []);
+  // useEffect(() => {
+  //   const pathName = router.pathname;
+  //   setCurrentRoute(pathName);
+  // }, []);
   return (
     <div>
       <div className="bg-neutral-50 py-4 px-4 flex flex-row justify-between items-center drop-shadow-lg">
