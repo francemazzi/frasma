@@ -29,11 +29,11 @@ const NavBar = () => {
     <div
       className={`${
         isScrolled
-          ? "bg-[#ffffff09]"
+          ? "bg-[#ffffff05] animate-pulse "
           : "bg-neutral-50 flex flex-col items-center justify-center"
       }`}
     >
-      <div className=" py-4 px-4 flex flex-row justify-between items-center drop-shadow-lg">
+      <div className=" py-4 px-4 flex flex-row justify-between items-center drop-shadow-lg ">
         <div>
           <a
             className={`px-5 py-2 text-[28px] ${

@@ -9,7 +9,7 @@ function Portofolio() {
   const [showGradient, setShowGradient] = useState(true);
 
   return (
-    <div className="my-[30px]">
+    <div className="my-[30px] lg:my-[6rem]">
       <div className="text-[22px] text-center font-bold my-[10px]">
         La mia esperienza
       </div>

@@ -3,7 +3,7 @@ import { WORK_WHY } from "../../../common/navbarCostants";
 
 function Why() {
   return (
-    <div className="flex flex-col items-center w-screen my-[20px]">
+    <div className="flex flex-col items-center w-screen my-[20px] lg:my-[7rem]">
       <div className="text-[22px] text-center ">Perchè contattarmi?</div>
       <div className="flex flex-col justify-center items-center lg:flex-row ">
         {WORK_WHY.map((why, link) => {

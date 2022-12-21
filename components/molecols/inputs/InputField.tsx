@@ -22,14 +22,15 @@ const InputField: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center my-[2rem]">
+    <div className="flex flex-col items-center justify-center my-[2rem] lg:my-[6rem]">
       <div className="flex flex-col items-center justify-center">
-        <div className="text-[22px] font-bold">Contattami ora!</div>
-        <div className="text-center p-[2rem]">
-          Apri il mio calendaario digitale e fissa subito una call insieme a me!
+        <h1 className="text-[22px] font-bold">Contattami ora!</h1>
+        <p className="text-center p-[2rem] lg:px-[10rem]">
+          Apri il mio calendario digitale e fissa subito una call insieme a me!{" "}
+          <br />
           Io ti risponderò subito, proponendoti alcune domande per cercare di
           risolvere i tuoi problemi digitali
-        </div>
+        </p>
       </div>
       {/* TO DO */}
       {/* Collegare form email */}

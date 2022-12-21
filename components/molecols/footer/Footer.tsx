@@ -12,8 +12,8 @@ const Footer = () => {
   // }, []);
   return (
     <div>
-      <div className="bg-neutral-50 py-4 px-4 flex flex-row justify-between items-center drop-shadow-lg">
-        <div className="text-[#000] font-bold hover:text-[#CDFCF6]">
+      <div className="bg-neutral-50 py-4 px-4  drop-shadow-lg">
+        <div className="text-[#000] font-bold hover:text-[#CDFCF6] flex flex-row justify-center items-center">
           {NAV_LINK.map((link, i) => {
             return (
               <div key={i} className="text-[#000] font-bold">

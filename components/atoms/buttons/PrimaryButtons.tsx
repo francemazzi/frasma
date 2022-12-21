@@ -14,7 +14,7 @@ const PrimaryButton: React.FC<Props> = ({
   return (
     <>
       <button
-        className="bg-[red] p-[10px] m-[20px] font-semibold rounded-[12px] text-white hover:p-[8px] hover:bg-white hover:text-black"
+        className="bg-[red] p-[10px] m-[20px] font-semibold rounded-[12px] text-white hover:p-[8px]  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-slate-300 hover:text-[red] duration-300"
         type="submit"
         onClick={onClick}
       >

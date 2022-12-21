@@ -36,7 +36,7 @@ function ShortDescription() {
       {WORK_FLOW.map((work, i) => {
         return (
           <div key={i}>
-            <div className="h-30px  p-[15px] rounded-[12px] m-[10px] text-center shadow-lg w-[14rem]">
+            <div className="h-30px  p-[15px] rounded-[12px] m-[10px] text-center shadow-lg w-[14rem]  ">
               {work.work}
             </div>
           </div>
