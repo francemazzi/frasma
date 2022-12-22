@@ -3,6 +3,10 @@ import { title } from "process";
 export const NAV_LINK: { name: string; href: string }[] = [
   { name: "Github 🐈‍⬛", href: "https://github.com/francemazzi" },
   { name: "Gitlab 🧪", href: "https://gitlab.com/francesco.mazzi" },
+  {
+    name: "Linkedin 🧑🏻‍💻",
+    href: "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
+  },
   // TODO -> queste pagine
   // { name: "About", href: "/AboutMe" },
   // { name: "Contact", href: "/ContactMe" },
@@ -57,7 +61,7 @@ export const PORTFOLIO: {
     titolo: "Lancio di Startup",
     description:
       "Sviluppo della brand Identity e piano commerciale per il cliente finale e business",
-    site: "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/details/experience/",
+    site: "https://bologna.repubblica.it/cronaca/2022/07/04/news/food_delivery_i_prodotti_dei_forni_artigianali_a_domicilio_lidea_e_di_due_studenti_dellalma_mater-356510683/",
   },
   {
     img: "/image/siestabio.jpg",
@@ -71,7 +75,7 @@ export const PORTFOLIO: {
     titolo: "Sviluppo di prodotto",
     description:
       "Creazione di una vertical farm modulare dedicata al Future food Institute.",
-    site: "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/details/experience/1847811422/multiple-media-viewer/?treasuryMediaId=1635470524493",
+    site: "https://drive.google.com/file/d/1E1hMW8aibWGEf6dVqG6Vvcgvf3Rh7Pzf/view?usp=sharing",
   },
   {
     img: "/image/ValmarecchiaTeam.png",
