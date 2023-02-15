@@ -17,7 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SliderOne label="Hai bisogno di uno sviluppatore web?" />
+      <SliderOne label="Investo il mio tempo nella tua startup" />
       <ShortPresentation />
       <ShortDescription />
       <Why />
