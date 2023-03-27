@@ -34,12 +34,12 @@ function ShortPresentation() {
             <div className="mb-[10px]">
               <div className="font-bold text-[20px]">Ciao sono Fra!🥕</div>
               <div className="font-semibold text-[20px]">
-                Esperto nel marketing agroalimentare
+                Amo il marketing agroalimentare
               </div>
             </div>
             <div className="text-[18px]">
-              Lo sapevi che una buona strategia marketing può aumentare il tuo
-              fatturato del 75?%
+              Sto cercando un progetto di startup su cui investire il mio tempo
+              e se mi piaci ti aiuterò. Solo un progetto.
             </div>
           </div>
         </div>

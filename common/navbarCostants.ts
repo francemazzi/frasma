@@ -27,19 +27,19 @@ export const WORK_WHY: { title: string; description: string }[] = [
       "Seleziono solo alcune realtà che seguo dalla strategia allo sviluppo web",
   },
   {
-    title: "🧑🏻‍🌾 Solo agricoltura",
+    title: "🧑🏻‍🌾 Solo sostenibilità",
     description:
       "In questo mondo non si può sapere tutto! La mia esperienza è nel mondo agricolo",
   },
   {
     title: "💸 Low cost",
     description:
-      "Inzieremo con prove di mercato per definire come posizionare al meglio la tua azienda.",
+      "Inzieremo con prove di mercato per definire secondo il modello lean canvas",
   },
   {
     title: "🧑🏻‍💻 Innovation",
     description:
-      "Per sviluppare utilizzo: next.js, react, typescript, web3.js, firebase, solidity, python, GraphQL...",
+      "Per sviluppare utilizzo: next.js, react, Remix, typescript, web3.js, firebase, solidity, Flutter, GraphQL...",
   },
 ];
 
