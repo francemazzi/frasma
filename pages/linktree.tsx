@@ -37,7 +37,8 @@ function Card({ emoji, hueA, hueB }: Props) {
     "Linkedin 🧑🏻‍💻":
       "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
     "Github 🐈‍⬛": "https://github.com/francemazzi",
-    "Gitlab 🦊": "https://gitlab.com/francesco.mazzi",
+    "Spotify 🥷🏻":
+      "https://open.spotify.com/playlist/0CZjfbV2kqCjtDBQTwoPzd?si=1857c09296d04f6a",
   };
 
   // ottieni il link corrispondente all'emoji attuale
