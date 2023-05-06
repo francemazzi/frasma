@@ -64,7 +64,7 @@ function Card({ emoji, hueA, hueB }: Props) {
 const food: [string, number, number][] = [
   ["Linkedin 🧑🏻‍💻", 340, 10],
   ["Github 🐈‍⬛", 20, 40],
-  ["Gitlab 🦊", 60, 90],
+  ["Spotify 🥷🏻", 60, 90],
 ];
 
 export default function Linktree() {
