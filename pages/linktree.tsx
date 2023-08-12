@@ -1,5 +1,4 @@
 import React from "react";
-
 import { motion, Variants } from "framer-motion";
 
 interface Props {
@@ -25,23 +24,21 @@ const cardVariants: Variants = {
 
 const hue = (h: number) => `hsl(${h}, 100%, 50%)`;
 
+type LinkMap = {
+  [key: string]: string;
+};
+
+const linkMap: LinkMap = {
+  "Linkedin 🧑🏻‍💻":
+    "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
+  "Github 🐈‍⬛": "https://github.com/francemazzi",
+  "Spotify 🥷🏻":
+    "https://open.spotify.com/playlist/0CZjfbV2kqCjtDBQTwoPzd?si=1857c09296d04f6a",
+};
+
 function Card({ emoji, hueA, hueB }: Props) {
   const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
 
-  type LinkMap = {
-    [key: string]: string;
-  };
-
-  // definisci un oggetto che mappa le stringhe di input a link di output
-  const linkMap: LinkMap = {
-    "Linkedin 🧑🏻‍💻":
-      "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
-    "Github 🐈‍⬛": "https://github.com/francemazzi",
-    "Spotify 🥷🏻":
-      "https://open.spotify.com/playlist/0CZjfbV2kqCjtDBQTwoPzd?si=1857c09296d04f6a",
-  };
-
-  // ottieni il link corrispondente all'emoji attuale
   const link = linkMap[emoji];
 
   return (
@@ -53,7 +50,14 @@ function Card({ emoji, hueA, hueB }: Props) {
         viewport={{ once: true, amount: 0.8 }}
       >
         <div className="splash" style={{ background }} />
-        <motion.div className="card" variants={cardVariants}>
+        <motion.div
+          className="card"
+          variants={cardVariants}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
+          }}
+        >
           {emoji}
         </motion.div>
       </motion.div>
@@ -69,8 +73,7 @@ const food: [string, number, number][] = [
 
 export default function Linktree() {
   return (
-    <div className="h-full w-full">
-      {" "}
+    <div className="h-screen w-full flex flex-wrap justify-center md:flex-row flex-col items-center">
       {food.map(([emoji, hueA, hueB]) => (
         <Card emoji={emoji} hueA={hueA} hueB={hueB} key={emoji} />
       ))}

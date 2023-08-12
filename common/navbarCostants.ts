@@ -32,14 +32,13 @@ export const WORK_WHY: { title: string; description: string }[] = [
       "In questo mondo non si può sapere tutto! La mia esperienza è nel mondo agricolo",
   },
   {
-    title: "💸 Low cost",
-    description:
-      "Inzieremo con prove di mercato per definire secondo il modello lean canvas",
+    title: "💸 Lean Canvas",
+    description: "Prove di mercato per definire i bisogni degli utenti",
   },
   {
     title: "🧑🏻‍💻 Innovation",
     description:
-      "Per sviluppare utilizzo: next.js, react, Remix, typescript, web3.js, firebase, solidity, Flutter, GraphQL...",
+      "Per sviluppare utilizzo: Typescript, Dart, SQL, Flutter, Prisma, MongoDB, React,  Next.js, Remix, Three.js, web3.js, Firebase, Solidity...",
   },
 ];
 
@@ -55,6 +54,14 @@ export const PORTFOLIO: {
     description:
       "Sviluppo di una Urban Farm verticale, progetto imprenditoriale riconosciuto dall'UniBo.",
     site: "https://www.valbindola.it/",
+  },
+
+  {
+    img: "/image/greamBack2.png",
+    titolo: "8 LOI",
+    description:
+      "PROGETTO SELEZIONATO PER ORA: Sviluppo del software ERP per analizzare i dati dell'invetario",
+    site: "https://www.greamm.com/",
   },
   {
     img: "/image/baky.png",

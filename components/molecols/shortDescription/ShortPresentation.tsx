@@ -39,7 +39,7 @@ function ShortPresentation() {
             </div>
             <div className="text-[18px]">
               Sto cercando un progetto di startup su cui investire il mio tempo
-              e se mi piaci ti aiuterò. Solo un progetto.
+              libero, se mi piaci ti aiuterò. Solo un progetto.
             </div>
           </div>
         </div>

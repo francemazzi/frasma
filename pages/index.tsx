@@ -17,7 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SliderOne label="Investo il mio tempo nella tua startup" />
+      <SliderOne label="Benvenuto nel mio mondo da startupper agricolo" />
       <ShortPresentation />
       <ShortDescription />
       <Why />
