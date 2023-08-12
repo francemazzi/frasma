@@ -13,12 +13,12 @@ function Portofolio() {
       <div className="text-[22px] text-center font-bold my-[10px]">
         La mia esperienza
       </div>
-      <div className="flex flex-row items-center overflow-x-scroll">
+      <div className="flex flex-row items-center overflow-x-scroll py-8">
         {PORTFOLIO.map((data, i) => {
           return (
             <div
               key={i}
-              className="flex flex-col w-[20rem] items-center rounded-[12px] shadow-lg mx-[5px] h-[30rem] lg:h-[30rem] relative"
+              className="flex flex-col w-[20rem] items-center rounded-[12px] shadow-lg mx-[15px] h-[30rem] lg:h-[30rem] relative"
             >
               <div className="relative h-[15rem] w-[20rem]">
                 <Image
