@@ -73,7 +73,7 @@ const food: [string, number, number][] = [
 
 export default function Linktree() {
   return (
-    <div className="h-screen w-full flex flex-wrap justify-center md:flex-row flex-col items-center">
+    <div className="h-screen flex lg:flex-wrap justify-center md:flex-row flex-col items-center">
       {food.map(([emoji, hueA, hueB]) => (
         <Card emoji={emoji} hueA={hueA} hueB={hueB} key={emoji} />
       ))}
