@@ -9,10 +9,10 @@ const Cal = ({
   leftIcon: LeftIcon,
   buttonType = "default",
 }: {
-  textButton: string;
+  textButton: string | React.ReactNode;
   leftImage?: string;
   leftIcon?: LucideIcon;
-  buttonType?: "default" | "textual";
+  buttonType?: "default" | "textual" | "icon";
 }) => {
   useEffect(() => {
     (async function () {
@@ -28,6 +28,8 @@ const Cal = ({
   const buttonClasses =
     buttonType === "textual"
       ? "flex items-center gap-2 px-3 py-2 text-sm font-medium text-green-700 hover:text-green-600 bg-green-50 rounded-md"
+      : buttonType === "icon"
+      ? "flex items-center justify-center p-2 rounded-md bg-green-600 hover:bg-green-700 transition duration-300"
       : "flex items-center gap-3 rounded-md bg-green-600 px-8 py-3 text-lg font-semibold text-white shadow-lg hover:bg-green-700 transition duration-300";
 
   return (

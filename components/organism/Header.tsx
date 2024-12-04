@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Cal from "./Cal";
+import { CalendarIcon } from "@heroicons/react/24/outline";
 
 export default function Header() {
   return (
@@ -19,7 +20,12 @@ export default function Header() {
         >
           Frasma
         </motion.div>
-        <Cal textButton="Schedule a Meeting Now" buttonType="default" />
+        <div className="md:hidden">
+          <Cal textButton={"🗓️"} buttonType="icon" />
+        </div>
+        <div className="hidden md:block">
+          <Cal textButton="Schedule a Meeting Now" buttonType="default" />
+        </div>
       </nav>
     </motion.header>
   );
