@@ -92,6 +92,7 @@ export default function Experience() {
               <Link
                 href={exp.link}
                 className="text-green-600 hover:underline mt-auto"
+                target="_blank"
               >
                 Visit the site
               </Link>

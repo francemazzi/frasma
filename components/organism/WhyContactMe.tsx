@@ -22,6 +22,13 @@ export default function WhyContactMe() {
         duration: 0.5,
       },
     },
+    hover: {
+      scale: 1.05,
+      boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
+      transition: {
+        duration: 0.2,
+      },
+    },
   };
 
   const reasons = [
@@ -66,6 +73,7 @@ export default function WhyContactMe() {
             key={index}
             className="bg-green-50 p-6 rounded-lg shadow-md"
             variants={itemVariants}
+            whileHover="hover"
           >
             <div className="text-4xl mb-4">{reason.icon}</div>
             <h3 className="text-xl font-semibold mb-2">{reason.title}</h3>
