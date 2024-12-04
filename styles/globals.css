@@ -42,3 +42,11 @@
     background-size: cover;
   }
 }
+
+canvas {
+  touch-action: none;
+}
+
+.canvas-container {
+  background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+}

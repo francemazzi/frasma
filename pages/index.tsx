@@ -1,12 +1,11 @@
 import Head from "next/head";
-import Image from "next/image";
-import SliderOne from "../components/molecols/sliders/Header";
-import Footer from "../components/molecols/footer/Footer";
-import ShortDescription from "../components/molecols/shortDescription/ShortDescription";
-import ShortPresentation from "../components/molecols/shortDescription/ShortPresentation";
-import Why from "../components/molecols/sliders/Why";
-import Portofolio from "../components/molecols/portfolio/Portofolio";
-import InputField from "../components/molecols/inputs/InputField";
+import Header from "../components/organism/Header";
+import Intro from "../components/organism/Intro";
+import WhyContactMe from "../components/organism/WhyContactMe";
+import Experience from "../components/organism/Experience";
+import CallToAction from "../components/organism/CallToAction";
+import Footer from "../components/organism/Footer";
+import TechnicalSkillsDetailed from "../components/organism/TechnicalSkills";
 
 export default function Home() {
   return (
@@ -17,13 +16,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SliderOne label="Benvenuto nel mio mondo da startupper agricolo" />
-      <ShortPresentation />
-      <ShortDescription />
-      <Why />
-      <Portofolio />
-      <InputField />
-      <Footer />
+      <main className="min-h-screen bg-gradient-to-b from-sand-50 to-green-50">
+        <Header />
+        <Intro />
+        <WhyContactMe />
+        <Experience />
+        <CallToAction />
+        <TechnicalSkillsDetailed />
+        <Footer />
+      </main>
     </>
   );
 }

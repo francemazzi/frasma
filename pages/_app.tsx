@@ -6,7 +6,6 @@ import Footer from "../components/molecols/footer/Footer";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <NavBar />
       <Component {...pageProps} />
     </>
   );
