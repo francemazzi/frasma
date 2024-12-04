@@ -7,10 +7,10 @@ type LinkMap = {
   [key: string]: string;
 };
 const linkMap: LinkMap = {
-  "Linkedin 🧑🏻‍💻":
+  "LinkedIn ⚡":
     "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
-  "Github 🐈‍⬛": "https://github.com/francemazzi",
-  "Spotify 🥷🏻":
+  "Github ⌨": "https://github.com/francemazzi",
+  "Spotify ♪":
     "https://open.spotify.com/playlist/0CZjfbV2kqCjtDBQTwoPzd?si=1857c09296d04f6a",
 };
 
