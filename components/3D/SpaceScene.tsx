@@ -1,7 +1,6 @@
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
-import { TextureLoader } from "three";
 
 const starVertexShader = `
   varying vec3 vColor;
@@ -45,6 +44,9 @@ export function SpaceScene() {
     starColors[i3 + 2] = color.b;
   }
 
+  const sunTexture = useLoader(THREE.TextureLoader, "/image/sun.jpg");
+  const jupiterTexture = useLoader(THREE.TextureLoader, "/image/jupiter.jpg");
+
   useFrame(() => {
     if (starsRef.current) {
       starsRef.current.rotation.y += 0.0005;
@@ -56,7 +58,7 @@ export function SpaceScene() {
 
   return (
     <>
-      {/* Campo stellare */}
+      {/* Campo stellare con stelle luminose */}
       <points ref={starsRef}>
         <bufferGeometry>
           <bufferAttribute
@@ -78,18 +80,31 @@ export function SpaceScene() {
           vertexColors
           transparent
           depthWrite={false}
+          blending={THREE.AdditiveBlending}
         />
       </points>
 
-      {/* Pianeti */}
+      {/* Pianeti con texture realistiche */}
       <group ref={planetsRef}>
+        {/* Stella tipo sole */}
         <mesh position={[5, 0, -20]}>
-          <sphereGeometry args={[2, 32, 32]} />
-          <meshStandardMaterial color="#ff6347" />
+          <sphereGeometry args={[2, 64, 64]} />
+          <meshStandardMaterial
+            map={sunTexture}
+            emissive="#ff8a00"
+            emissiveIntensity={1}
+          />
+          <pointLight color="#ff8a00" intensity={1} distance={50} />
         </mesh>
+
+        {/* Pianeta tipo Giove */}
         <mesh position={[-10, 5, -30]}>
-          <sphereGeometry args={[3, 32, 32]} />
-          <meshStandardMaterial color="#4682b4" />
+          <sphereGeometry args={[3, 64, 64]} />
+          <meshStandardMaterial
+            map={jupiterTexture}
+            metalness={0.2}
+            roughness={0.8}
+          />
         </mesh>
       </group>
     </>
