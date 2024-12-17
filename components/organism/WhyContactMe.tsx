@@ -38,7 +38,7 @@ export default function WhyContactMe() {
       icon: "❤️",
       title: "I won't let you down",
       description:
-        "I carefully select projects and support them from strategy to web development.",
+        "I carefully select projects and support them from strategy to development.",
     },
     {
       icon: "🧑🏻‍🌾",
