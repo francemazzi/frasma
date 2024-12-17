@@ -82,7 +82,7 @@ export default function WhyContactMe() {
           <div className="relative w-32 h-32 rounded-full overflow-hidden">
             <Image
               className="rounded-[50%]"
-              src={"/image/profilo.jpg"}
+              src={"/profilo.jpg"}
               alt="francesco profilo"
               fill
               sizes="(max-width: 128px) 100vw, 128px"
