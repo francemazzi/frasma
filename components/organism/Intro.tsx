@@ -48,9 +48,7 @@ export default function Intro() {
           industry and travel.
         </motion.p>
         <motion.p className="text-lg mb-8" variants={itemVariants}>
-          I&apos;m looking to contribute my skills to an exciting startup
-          project. If your idea resonates with me, I&apos;ll help you bring it
-          to life—one project, one great opportunity.
+          I&apos;m looking to contribute my skills to an exciting project.
         </motion.p>
         <motion.div
           className="flex flex-wrap justify-center gap-4"
