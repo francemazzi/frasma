@@ -55,7 +55,7 @@ export default function Intro() {
           variants={containerVariants}
         >
           {[
-            "💻 Software Development",
+            "🌐 Frontend Web Development",
             "🛠️ Backend",
             "🤖 LLM",
             "🚀 Startups Launch",
