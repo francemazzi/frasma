@@ -70,11 +70,19 @@ export default function WhyContactMe() {
           className="shadow-lg rounded-full"
         >
           <div className="relative w-32 h-32 rounded-full overflow-hidden">
-            <Image
+            {/* <Image
               src={"/image/profilo.jpg"}
               alt="Foto profilo"
               fill
               className="object-cover"
+              priority
+            /> */}
+            <Image
+              className="rounded-[50%]"
+              src={"/image/profilo.jpg"}
+              layout="fill"
+              objectFit="cover"
+              alt="francesco profilo"
               priority
             />
           </div>
