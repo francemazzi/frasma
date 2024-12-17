@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import profilePic from "/image/profilo.jpg";
+import profilePic from "public/image/profilo.jpg";
 
 export default function WhyContactMe() {
   const containerVariants = {
@@ -70,19 +70,12 @@ export default function WhyContactMe() {
           className="shadow-lg rounded-full"
         >
           <div className="relative w-32 h-32 rounded-full overflow-hidden">
-            {/* <Image
-              src={"/image/profilo.jpg"}
-              alt="Foto profilo"
-              fill
-              className="object-cover"
-              priority
-            /> */}
             <Image
               className="rounded-[50%]"
-              src={"/image/profilo.jpg"}
-              layout="fill"
-              objectFit="cover"
+              src="/image/profilo.jpg"
               alt="francesco profilo"
+              fill
+              sizes="(max-width: 128px) 100vw, 128px"
               priority
             />
           </div>
