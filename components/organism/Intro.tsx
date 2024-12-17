@@ -44,11 +44,13 @@ export default function Intro() {
           Hi, I&apos;m Fra!🥕
         </motion.p>
         <motion.p className="text-xl mb-6" variants={itemVariants}>
-          I love agri-food marketing.
+          I&apos;m a software developer with a strong passion for the agri-food
+          industry and travel.
         </motion.p>
         <motion.p className="text-lg mb-8" variants={itemVariants}>
-          I&apos;m looking for a startup project to dedicate my free time to. If
-          I like your idea, I&apos;ll help you—just one project.
+          I&apos;m looking to contribute my skills to an exciting startup
+          project. If your idea resonates with me, I&apos;ll help you bring it
+          to life—one project, one great opportunity.
         </motion.p>
         <motion.div
           className="flex flex-wrap justify-center gap-4"
