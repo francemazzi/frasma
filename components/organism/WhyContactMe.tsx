@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import profilePic from "/image/profilo.jpg";
 
 export default function WhyContactMe() {
   const containerVariants = {
@@ -58,10 +60,35 @@ export default function WhyContactMe() {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-sand-50">
-      <h2 className="text-3xl font-bold text-center mb-12 text-green-700">
-        Why Contact Me?
-      </h2>
+    <section className="flex flex-col justify-center items-center py-20 px-4 sm:px-6 lg:px-8 bg-sand-50">
+      <div className="flex flex-row items-center gap-8 mb-12">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.05 }}
+          className="shadow-lg rounded-full"
+        >
+          <div className="relative w-32 h-32 rounded-full overflow-hidden">
+            <Image
+              src={"/image/profilo.jpg"}
+              alt="Foto profilo"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-3xl font-bold text-green-700"
+        >
+          Why Contact Me?
+        </motion.h2>
+      </div>
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
         variants={containerVariants}
