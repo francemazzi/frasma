@@ -69,10 +69,20 @@ export default function WhyContactMe() {
           whileHover={{ scale: 1.05 }}
           className="shadow-lg rounded-full"
         >
+          {/* <div className="rounded-[50%]  w-32 h-32 items-center ">
+            <Image
+              className="rounded-[50%]"
+              src={"/image/profilo.jpg"}
+              layout="fill"
+              objectFit="cover"
+              alt="francesco profilo"
+              priority
+            />
+          </div> */}
           <div className="relative w-32 h-32 rounded-full overflow-hidden">
             <Image
               className="rounded-[50%]"
-              src={profilePic}
+              src={"/image/profilo.jpg"}
               alt="francesco profilo"
               fill
               sizes="(max-width: 128px) 100vw, 128px"
