@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import profilePic from "public/image/profilo.jpg";
+import profilePic from "/image/profilo.jpg";
 
 export default function WhyContactMe() {
   const containerVariants = {
