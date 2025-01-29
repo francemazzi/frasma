@@ -44,8 +44,8 @@ export default function Intro() {
           Hi, I&apos;m Fra!🥕
         </motion.p>
         <motion.p className="text-xl mb-6" variants={itemVariants}>
-          I&apos;m a software developer with a strong passion for the agri-food
-          industry and travel.
+          I&apos;m a software developer with a strong passion for agri-tech and
+          manufacturing companies.
         </motion.p>
         <motion.p className="text-lg mb-8" variants={itemVariants}>
           I&apos;m looking to contribute my skills to an exciting project.

@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-center md:text-left mb-4 md:mb-0">
-            <p>Made with 👽 and FraSma - 3317424341</p>
+            <p>Made with 👽 and FraSma - 3317424341 - P.IVA 02750410207</p>
           </div>
           <div className="flex space-x-4">
             <Link
