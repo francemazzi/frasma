@@ -28,7 +28,7 @@ const skills = [
           "GeoJSON for managing field boundaries and cultivation zones",
           "Turf.js for geometric calculations and spatial analysis",
           "OpenStreetMap and satellite imagery for base mapping",
-          "React for mapping system user interface",
+          "Vite for mapping system user interface",
         ],
         highlights: [
           "Implementation of drawing tools for field boundary delimitation",
