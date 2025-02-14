@@ -14,9 +14,27 @@ const skills = [
           "Developed software to manage over 500 tons of harvest and supply chain operations for a 190-hectare farm.",
         technologies: [
           "TypeScript for type-safe, scalable application structure",
-          "React for building a responsive and interactive user interface",
-          "Node.js with Express for robust backend API development",
+          "React with Vite for building a responsive and interactive user interface (SPA architecture)",
+          "TypeScript with Express for robust backend API development",
           "PostgreSQL for efficient data storage and retrieval of large-scale farm data",
+        ],
+      },
+      {
+        title: "GIS Agricultural Mapping System",
+        description:
+          "Implemented a GIS mapping system for digital farm management, handling over 190 hectares of agricultural land with precise activity tracking and soil analysis.",
+        technologies: [
+          "Leaflet.js for interactive map visualization",
+          "GeoJSON for managing field boundaries and cultivation zones",
+          "Turf.js for geometric calculations and spatial analysis",
+          "OpenStreetMap and satellite imagery for base mapping",
+          "React for mapping system user interface",
+        ],
+        highlights: [
+          "Implementation of drawing tools for field boundary delimitation",
+          "Automatic calculation of areas and distances",
+          "Integration with IoT sensors for soil monitoring",
+          "Georeferenced logging system for agricultural activities",
         ],
       },
       {
@@ -26,7 +44,7 @@ const skills = [
         technologies: [
           "Python with FastAPI for high-performance API development",
           "React with Redux for complex state management in the frontend",
-          "MongoDB for flexible document storage of supplier and buyer data",
+          "MongoDB for flexible document storage of supplier and buyer data in combination with bucket storage from Google Cloud Platform",
           "Docker for containerization and easy deployment",
         ],
       },
@@ -182,6 +200,20 @@ export default function TechnicalSkillsDetailed() {
                           <li key={techIndex}>{tech}</li>
                         ))}
                       </ul>
+                      {project.highlights && (
+                        <div className="mt-4">
+                          <h4 className="text-lg font-semibold mb-2 text-green-500">
+                            Highlights:
+                          </h4>
+                          <ul className="list-disc list-inside text-gray-600">
+                            {project.highlights.map(
+                              (highlight, highlightIndex) => (
+                                <li key={highlightIndex}>{highlight}</li>
+                              )
+                            )}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </motion.div>
