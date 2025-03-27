@@ -32,7 +32,8 @@ export default function Intro() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        Welcome to my world as a startup enthusiast
+        I optimize processes with lightweight software in the manufacturing
+        sector
       </motion.h1>
       <motion.div
         className="max-w-3xl mx-auto"
@@ -41,15 +42,13 @@ export default function Intro() {
         animate="visible"
       >
         <motion.p className="text-2xl mb-6" variants={itemVariants}>
-          Hi, I&apos;m Fra!🥕
+          Hi, I&apos;m Fra!
         </motion.p>
         <motion.p className="text-xl mb-6" variants={itemVariants}>
-          I&apos;m a software developer with a strong passion for agri-tech and
-          manufacturing companies.
+          I&apos;m a software developer with a strong passion for manufacturing
+          companies and agri-tech.
         </motion.p>
-        <motion.p className="text-lg mb-8" variants={itemVariants}>
-          I&apos;m looking to contribute my skills to an exciting project.
-        </motion.p>
+
         <motion.div
           className="flex flex-wrap justify-center gap-4"
           variants={containerVariants}
