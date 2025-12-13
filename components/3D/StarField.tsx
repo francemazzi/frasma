@@ -8,7 +8,7 @@ const starVertexShader = `
   void main() {
     vColor = color;
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-    gl_PointSize = size * (300.0 / -mvPosition.z);
+    gl_PointSize = clamp(size * (200.0 / -mvPosition.z), 0.8, 3.0);
     gl_Position = projectionMatrix * mvPosition;
   }
 `;
@@ -35,9 +35,10 @@ export function StarField() {
   for (let i = 0; i < starCount; i++) {
     const i3 = i * 3;
     // Posizione casuale in un cubo
-    positions[i3] = (Math.random() - 0.5) * 100;
-    positions[i3 + 1] = (Math.random() - 0.5) * 100;
-    positions[i3 + 2] = (Math.random() - 0.5) * 100;
+    positions[i3] = (Math.random() - 0.5) * 220;
+    positions[i3 + 1] = (Math.random() - 0.5) * 140;
+    // Keep stars far away so they don't look like big squares
+    positions[i3 + 2] = -40 - Math.random() * 360;
 
     // Colori con tendenza al blu/viola per effetto iperspazio
     colors[i3] = 0.6 + Math.random() * 0.4;
@@ -45,7 +46,7 @@ export function StarField() {
     colors[i3 + 2] = 1;
 
     // Dimensione casuale delle stelle
-    sizes[i] = Math.random() * 2;
+    sizes[i] = 0.6 + Math.random() * 1.2;
   }
 
   useFrame((state, delta) => {
@@ -54,9 +55,9 @@ export function StarField() {
       const positions = starsRef.current.geometry.attributes.position
         .array as Float32Array;
       for (let i = 0; i < positions.length; i += 3) {
-        positions[i + 2] += delta * 20; // Velocità del movimento
-        if (positions[i + 2] > 50) {
-          positions[i + 2] = -50;
+        positions[i + 2] += delta * 35; // Velocità del movimento
+        if (positions[i + 2] > -20) {
+          positions[i + 2] = -380;
         }
       }
       starsRef.current.geometry.attributes.position.needsUpdate = true;
@@ -68,21 +69,18 @@ export function StarField() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
+          args={[positions, 3]}
           count={positions.length / 3}
-          array={positions}
-          itemSize={3}
         />
         <bufferAttribute
           attach="attributes-color"
+          args={[colors, 3]}
           count={colors.length / 3}
-          array={colors}
-          itemSize={3}
         />
         <bufferAttribute
           attach="attributes-size"
+          args={[sizes, 1]}
           count={sizes.length}
-          array={sizes}
-          itemSize={1}
         />
       </bufferGeometry>
       <shaderMaterial
@@ -91,6 +89,7 @@ export function StarField() {
         vertexColors
         transparent
         depthWrite={false}
+        blending={THREE.AdditiveBlending}
       />
     </points>
   );

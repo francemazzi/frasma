@@ -63,15 +63,13 @@ export function SpaceScene() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
+            args={[starPositions, 3]}
             count={starPositions.length / 3}
-            array={starPositions}
-            itemSize={3}
           />
           <bufferAttribute
             attach="attributes-color"
+            args={[starColors, 3]}
             count={starColors.length / 3}
-            array={starColors}
-            itemSize={3}
           />
         </bufferGeometry>
         <shaderMaterial

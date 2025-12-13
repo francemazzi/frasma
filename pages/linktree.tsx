@@ -1,35 +1,45 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { LinkCard } from "../components/3D/LinkCard";
-import { SpaceScene } from "../components/3D/SpaceScene";
-
-type LinkMap = {
-  [key: string]: string;
-};
-const linkMap: LinkMap = {
-  LinkedIn: "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
-  Github: "https://github.com/francemazzi",
-  Spotify:
-    "https://open.spotify.com/playlist/0CZjfbV2kqCjtDBQTwoPzd?si=1857c09296d04f6a",
-};
+import { PlanetLinkCatalog } from "../components/3D/domain/PlanetLinkCatalog";
+import { SolarSystemScene } from "../components/3D/SolarSystemScene";
 
 export default function Linktree() {
-  return (
-    <div className="h-screen w-full bg-black">
-      <Canvas camera={{ position: [0, 0, 15], fov: 35 }}>
-        <SpaceScene />
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <OrbitControls enableZoom={false} />
+  const sun = PlanetLinkCatalog.buildSun();
+  const planets = PlanetLinkCatalog.buildDefault();
 
-        {Object.entries(linkMap).map(([emoji, link], index) => (
-          <LinkCard
-            key={emoji}
-            position={[index * 4 - 4, Math.sin(index) * 2, 0]}
-            emoji={emoji}
-            link={link}
-          />
-        ))}
+  return (
+    <div className="relative h-screen w-full bg-black">
+      <div className="pointer-events-none absolute left-0 top-0 z-10 w-full p-4 text-white">
+        <div className="mx-auto flex max-w-3xl items-center justify-between rounded-xl bg-black/40 px-4 py-3 backdrop-blur">
+          <div className="text-sm font-medium">
+            Esplora lo spazio: passa col mouse sui pianeti e clicca per &quot;saltare&quot;
+            al link.
+          </div>
+          <div className="text-xs opacity-80">Zoom/drag attivi</div>
+        </div>
+      </div>
+
+      <Canvas
+        dpr={[1, 2]}
+        gl={{ antialias: true, alpha: false }}
+        camera={{ position: [0, 3, 18], fov: 45, near: 0.1, far: 2000 }}
+      >
+        <color attach="background" args={["#000000"]} />
+
+        <SolarSystemScene sun={sun} planets={planets} />
+
+        <ambientLight intensity={0.35} />
+        <pointLight position={[8, 6, 8]} intensity={0.9} />
+
+        <OrbitControls
+          enableDamping
+          dampingFactor={0.06}
+          enablePan
+          enableZoom
+          minDistance={10}
+          maxDistance={60}
+          autoRotate={false}
+        />
       </Canvas>
     </div>
   );
