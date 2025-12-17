@@ -11,6 +11,7 @@ type MeetingSchedulePayload = {
   email: string;
   description?: string;
   timezone?: string;
+  honeypot?: string;
 };
 
 class MeetingScheduleRequest {
@@ -54,6 +55,12 @@ class MeetingScheduleRequestParser {
       throw new Error("Invalid request body.");
     }
 
+    // Honeypot check - if filled, it's a bot
+    const honeypot = String(payload.honeypot ?? "").trim();
+    if (honeypot.length > 0) {
+      throw new Error("Spam detected.");
+    }
+
     const date = String(payload.date ?? "").trim();
     const time = String(payload.time ?? "").trim();
     const email = String(payload.email ?? "").trim();
@@ -64,11 +71,25 @@ class MeetingScheduleRequestParser {
       throw new Error("Invalid date.");
     }
 
+    // Validate date is not in the past
+    const selectedDate = new Date(`${date}T${time}`);
+    const now = new Date();
+    if (selectedDate < now) {
+      throw new Error("Date and time must be in the future.");
+    }
+
     if (!this._timeRegex.test(time)) {
       throw new Error("Invalid time.");
     }
 
     if (!this._emailRegex.test(email)) {
+      throw new Error("Invalid email.");
+    }
+
+    // Validate email domain is not suspicious
+    const emailDomain = email.split("@")[1]?.toLowerCase() || "";
+    const suspiciousDomains = ["tempmail", "10minutemail", "guerrillamail", "mailinator"];
+    if (suspiciousDomains.some((domain) => emailDomain.includes(domain))) {
       throw new Error("Invalid email.");
     }
 
@@ -273,7 +294,9 @@ class EmailSenderFactory {
   }
 }
 
-const rateLimiter: IRateLimiter = new InMemoryFixedWindowRateLimiter(5, 60_000);
+// Rate limiters: more restrictive limits
+const ipRateLimiter: IRateLimiter = new InMemoryFixedWindowRateLimiter(3, 60_000); // 3 per minuto per IP
+const emailRateLimiter: IRateLimiter = new InMemoryFixedWindowRateLimiter(2, 300_000); // 2 per 5 minuti per email
 const parser = new MeetingScheduleRequestParser();
 
 class HttpResponder {
@@ -320,8 +343,9 @@ export default async function handler(
     return responder.methodNotAllowed(res);
   }
 
-  const key = getClientKey(req);
-  if (!rateLimiter.allow(key)) {
+  // Rate limiting by IP
+  const ipKey = getClientKey(req);
+  if (!ipRateLimiter.allow(ipKey)) {
     return responder.tooMany(res);
   }
 
@@ -331,6 +355,12 @@ export default async function handler(
   } catch (e) {
     const message = e instanceof Error ? e.message : "Invalid request.";
     return responder.badRequest(res, message);
+  }
+
+  // Rate limiting by email (after parsing to ensure valid email)
+  const emailKey = request.email.toLowerCase();
+  if (!emailRateLimiter.allow(emailKey)) {
+    return responder.tooMany(res);
   }
 
   try {

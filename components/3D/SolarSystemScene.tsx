@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { StarField } from "./StarField";
 import { PlanetLink } from "./PlanetLink";
 import { OrbitingPlanetLinkModel } from "./domain/OrbitingPlanetLinkModel";
-import { PlanetLinkModel } from "./domain/PlanetLinkModel";
+import { PlanetLinkModel, Vec3Tuple } from "./domain/PlanetLinkModel";
 import { OrbitCalculator } from "./domain/OrbitCalculator";
 
 export function SolarSystemScene(props: {
@@ -13,7 +13,7 @@ export function SolarSystemScene(props: {
 }) {
   const orbitCalculator = useMemo(() => new OrbitCalculator(), []);
   const planetGroupRefs = useRef<Array<THREE.Group | null>>([]);
-  const sunCenter = useMemo(() => [0, 0, -10] as [number, number, number], []);
+  const sunCenter = useMemo(() => [0, 0, -10] as Vec3Tuple, []);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();

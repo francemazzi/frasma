@@ -12,7 +12,7 @@ export default function Linktree() {
       <div className="pointer-events-none absolute left-0 top-0 z-10 w-full p-4 text-white">
         <div className="mx-auto flex max-w-3xl items-center justify-between rounded-xl bg-black/40 px-4 py-3 backdrop-blur">
           <div className="text-sm font-medium">
-            Esplora lo spazio: passa col mouse sui pianeti e clicca per &quot;saltare&quot;
+            Esplora lo spazio: passa col mouse sui pianeti e clicca per "saltare"
             al link.
           </div>
           <div className="text-xs opacity-80">Zoom/drag attivi</div>
