@@ -6,23 +6,26 @@ import Experience from "../components/organism/Experience";
 import CallToAction from "../components/organism/CallToAction";
 import Footer from "../components/organism/Footer";
 import TechnicalSkillsDetailed from "../components/organism/TechnicalSkills";
+import { useT } from "../lib/i18n/context";
 
 export default function Home() {
+  const t = useT();
+
   return (
     <>
       <Head>
-        <title>Frasma - Developing future value</title>
-        <meta name="description" content="Fall in love with technology" />
+        <title>{t("meta.title")}</title>
+        <meta name="description" content={t("meta.description")} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen bg-gradient-to-b from-sand-50 to-green-50">
+      <main className="min-h-screen bg-farm-bg font-poppins">
         <Header />
         <Intro />
-        <WhyContactMe />
         <Experience />
-        <CallToAction />
         <TechnicalSkillsDetailed />
+        <WhyContactMe />
+        <CallToAction />
         <Footer />
       </main>
     </>

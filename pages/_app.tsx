@@ -1,12 +1,11 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import NavBar from "../components/molecols/Navbar/Navbar";
-import Footer from "../components/molecols/footer/Footer";
+import { LanguageProvider } from "../lib/i18n/context";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <LanguageProvider>
       <Component {...pageProps} />
-    </>
+    </LanguageProvider>
   );
 }

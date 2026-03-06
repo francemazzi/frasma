@@ -1,0 +1,82 @@
+export const en: Record<string, string> = {
+  // Meta
+  "meta.title": "Francesco Saverio Mazzi - Software Developer",
+  "meta.description": "Software developer specializing in Manufacturing, Agriculture, Food, and LLM agents. Schedule a call today.",
+
+  // Header
+  "header.book": "Book",
+  "header.schedule": "Schedule a Call",
+
+  // Hero
+  "hero.subtitle": "Software Developer",
+  "hero.title1": "Building intelligent software",
+  "hero.title2": "for manufacturing and agriculture.",
+  "hero.desc": "I\u2019m Francesco Saverio Mazzi. I help companies in Manufacturing, Agriculture, and Food build lightweight software solutions powered by AI and LLM agents.",
+  "hero.cta": "Schedule a Free Call",
+  "hero.projects": "View my projects",
+
+  // Projects
+  "projects.title": "Projects",
+  "projects.subtitle": "Open source tools and AI-powered applications I\u2019ve built.",
+  "projects.seminai": "AI-powered agronomic tool for compiling the field notebook.",
+  "projects.formit": "Open source tool for managing microbiological analyses.",
+  "projects.bilanciami": "Open source tool for managing deadlines and invoices.",
+  "projects.tree": "Open source tool for evaluating carbon absorption impact from plants.",
+  "projects.emilio": "Expert agronomist agent with dataset from 'Manuale dell'agronomo' v2016.",
+  "projects.rudolf": "Agent integrated with Info Camere for extracting balance sheets and generating reports.",
+
+  // Skills
+  "skills.title": "Skills & Technologies",
+  "skills.subtitle": "8+ years building across the full stack.",
+  "skills.languages": "Languages",
+  "skills.technologies": "Technologies",
+  "skills.interests": "Areas of Interest",
+
+  // About
+  "about.title": "About Me",
+  "about.bio": "I\u2019m Francesco Saverio Mazzi, a software developer with 8+ years of experience. I specialize in building lightweight, intelligent software for companies in the manufacturing and agricultural sectors.",
+  "about.rates": "Rates",
+  "about.rateUnit": "/hr",
+  "about.rateOutside": "45\u20AC/hr outside core areas of interest",
+  "about.rateOnsite": "+10\u20AC/hr for on-site work",
+  "about.prop1.title": "Dedicated Partnership",
+  "about.prop1.desc": "I carefully select projects and provide end-to-end support, from strategy through development.",
+  "about.prop2.title": "Domain Expertise",
+  "about.prop2.desc": "Deep focus on Manufacturing, Agriculture, Food, and AI/LLM agent integration.",
+  "about.prop3.title": "Lean Methodology",
+  "about.prop3.desc": "Market testing and validation to identify real user needs before building.",
+  "about.prop4.title": "Full-Stack Capability",
+  "about.prop4.desc": "TypeScript, Python, React, Next.js, FastAPI, Flutter, and more \u2014 from frontend to AI pipelines.",
+
+  // CTA
+  "cta.title1": "Let\u2019s build something",
+  "cta.title2": "together.",
+  "cta.desc": "Schedule a free introductory call. I\u2019ll get back to you with initial questions to understand your challenges and how I can help.",
+  "cta.button": "Schedule a Call",
+
+  // Footer
+  "footer.info": "Francesco Saverio Mazzi \u00B7 VAT 02750410207",
+
+  // Cal modal
+  "cal.title": "Schedule a meeting",
+  "cal.subtitle": "Select a date and time, then leave your contact details.",
+  "cal.date": "Date",
+  "cal.time": "Time",
+  "cal.email": "Your email",
+  "cal.emailPlaceholder": "you@example.com",
+  "cal.description": "Description",
+  "cal.descPlaceholder": "Tell me what you need and any helpful context...",
+  "cal.timezone": "Timezone",
+  "cal.close": "Close",
+  "cal.cancel": "Cancel",
+  "cal.send": "Send",
+  "cal.sending": "Sending...",
+  "cal.success": "Request sent! I\u2019ll get back to you shortly.",
+  "cal.errorFallback": "Something went wrong while sending your request.",
+  "cal.networkError": "Network error. Please try again.",
+  "cal.validDate": "Please select a date.",
+  "cal.validTime": "Please select a time.",
+  "cal.validEmail": "Please enter your email.",
+  "cal.validEmailFormat": "Please enter a valid email.",
+  "cal.validDesc": "Description is too long.",
+};

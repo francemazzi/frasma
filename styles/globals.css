@@ -2,7 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2C2417;
+  }
+
+  body {
+    background-color: #FDFBF6;
+  }
+}
+
 @layer components {
+  .section-farm {
+    @apply max-w-5xl mx-auto px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Keep card classes for linktree page compatibility */
   .card {
     font-size: 20px;
     width: 300px;
@@ -11,7 +29,6 @@
     align-items: center;
     justify-content: center;
     margin: 0 48px;
-
     background: white;
     border-radius: 20px;
     box-shadow: 0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075),

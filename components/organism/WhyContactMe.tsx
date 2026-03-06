@@ -2,123 +2,90 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import profilePic from "/image/profilo.jpg";
+import { useT } from "../../lib/i18n/context";
 
 export default function WhyContactMe() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+  const t = useT();
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-    hover: {
-      scale: 1.05,
-      boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
-      transition: {
-        duration: 0.2,
-      },
-    },
-  };
-
-  const reasons = [
-    {
-      icon: "❤️",
-      title: "I won't let you down",
-      description:
-        "I carefully select projects and support them from strategy to development.",
-    },
-    {
-      icon: "🧑🏻‍🌾",
-      title: "Focused on sustainability",
-      description:
-        "My expertise lies in agriculture, and I value sustainable solutions.",
-    },
-    {
-      icon: "💸",
-      title: "Lean Canvas",
-      description: "Market testing to identify user needs.",
-    },
-    {
-      icon: "🧑🏻‍💻",
-      title: "Innovation",
-      description:
-        "Tools I use: Typescript, Python, Dart, SQL, Flutter, Prisma, PostgreSQL, Docker, MongoDB, React, Next.js, Remix, Three.js, web3.js, Firebase, Solidity.",
-    },
+  const valueProps = [
+    { title: t("about.prop1.title"), description: t("about.prop1.desc") },
+    { title: t("about.prop2.title"), description: t("about.prop2.desc") },
+    { title: t("about.prop3.title"), description: t("about.prop3.desc") },
+    { title: t("about.prop4.title"), description: t("about.prop4.desc") },
   ];
 
   return (
-    <section className="flex flex-col justify-center items-center py-20 px-4 sm:px-6 lg:px-8 bg-sand-50">
-      <div className="flex flex-row items-center gap-8 mb-12">
+    <section className="py-20 sm:py-28 bg-farm-panel">
+      <div className="section-farm">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
-          className="shadow-lg rounded-full"
         >
-          {/* <div className="rounded-[50%]  w-32 h-32 items-center ">
-            <Image
-              className="rounded-[50%]"
-              src={"/image/profilo.jpg"}
-              layout="fill"
-              objectFit="cover"
-              alt="francesco profilo"
-              priority
-            />
-          </div> */}
-          <div className="relative w-32 h-32 rounded-full overflow-hidden">
-            <Image
-              className="rounded-[50%]"
-              src={"/profilo.jpg"}
-              alt="francesco profilo"
-              fill
-              sizes="(max-width: 128px) 100vw, 128px"
-              priority
-            />
+          <div className="flex-shrink-0">
+            <div className="relative w-40 h-40 rounded-3xl overflow-hidden shadow-lg">
+              <Image
+                src="/profilo.jpg"
+                alt="Francesco Saverio Mazzi"
+                fill
+                sizes="160px"
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl sm:text-4xl font-bold text-farm-text tracking-tight mb-4">
+              {t("about.title")}
+            </h2>
+            <p className="text-lg text-farm-secondary leading-relaxed max-w-xl">
+              {t("about.bio")}
+            </p>
           </div>
         </motion.div>
 
-        <motion.h2
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
+          {valueProps.map((item, index) => (
+            <motion.div
+              key={index}
+              className="bg-farm-surface rounded-2xl p-6 border border-farm-border"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+            >
+              <h3 className="text-base font-semibold text-farm-text mb-2">
+                {item.title}
+              </h3>
+              <p className="text-sm text-farm-secondary leading-relaxed">
+                {item.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          className="bg-farm-surface rounded-2xl p-8 border border-farm-border text-center max-w-lg mx-auto"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-3xl font-bold text-green-700"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
         >
-          Why Contact Me?
-        </motion.h2>
+          <h3 className="text-sm font-semibold text-farm-secondary uppercase tracking-widest mb-4">
+            {t("about.rates")}
+          </h3>
+          <div className="text-4xl font-bold text-farm-text mb-2">
+            40&euro;<span className="text-lg font-normal text-farm-secondary">{t("about.rateUnit")}</span>
+          </div>
+          <div className="space-y-1 text-sm text-farm-secondary">
+            <p>{t("about.rateOutside")}</p>
+            <p>{t("about.rateOnsite")}</p>
+          </div>
+        </motion.div>
       </div>
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {reasons.map((reason, index) => (
-          <motion.div
-            key={index}
-            className="bg-green-50 p-6 rounded-lg shadow-md"
-            variants={itemVariants}
-            whileHover="hover"
-          >
-            <div className="text-4xl mb-4">{reason.icon}</div>
-            <h3 className="text-xl font-semibold mb-2">{reason.title}</h3>
-            <p>{reason.description}</p>
-          </motion.div>
-        ))}
-      </motion.div>
     </section>
   );
 }

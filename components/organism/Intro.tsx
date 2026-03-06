@@ -1,77 +1,61 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useT } from "../../lib/i18n/context";
+import Cal from "./Cal";
 
 export default function Intro() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
+  const t = useT();
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 text-center">
-      <motion.h1
-        className="text-4xl sm:text-5xl font-bold text-green-700 mb-8"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        I optimize processes with lightweight software in the manufacturing
-        sector
-      </motion.h1>
-      <motion.div
-        className="max-w-3xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.p className="text-2xl mb-6" variants={itemVariants}>
-          Hi, I&apos;m Fra!
+    <section className="py-24 sm:py-32 lg:py-40">
+      <div className="section-farm text-center">
+        <motion.p
+          className="text-sage-500 font-medium text-lg mb-4 tracking-wide"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          {t("hero.subtitle")}
         </motion.p>
-        <motion.p className="text-xl mb-6" variants={itemVariants}>
-          I&apos;m a software developer with a strong passion for manufacturing
-          companies and agri-tech.
+
+        <motion.h1
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-farm-text leading-tight tracking-tight mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          {t("hero.title1")}
+          <br />
+          <span className="text-farm-secondary">
+            {t("hero.title2")}
+          </span>
+        </motion.h1>
+
+        <motion.p
+          className="text-xl text-farm-secondary max-w-2xl mx-auto mb-10 leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          {t("hero.desc")}
         </motion.p>
 
         <motion.div
-          className="flex flex-wrap justify-center gap-4"
-          variants={containerVariants}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
-          {[
-            "🛠️ Backend",
-            "🌐 Frontend Web Development",
-
-            "🤖 LLM",
-            "🚀 Startups Launch",
-            "🔎 Market Testing",
-            "🔒 Smart Contracts",
-          ].map((item, index) => (
-            <motion.span
-              key={index}
-              className="bg-sand-100 text-green-800 px-4 py-2 rounded-full"
-              variants={itemVariants}
-            >
-              {item}
-            </motion.span>
-          ))}
+          <Cal textButton={t("hero.cta")} buttonType="default" />
+          <a
+            href="#projects"
+            className="text-sage-500 font-medium hover:text-sage-600 transition-colors"
+          >
+            {t("hero.projects")} &rarr;
+          </a>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

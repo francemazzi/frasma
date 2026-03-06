@@ -1,32 +1,46 @@
-import { Github, Linkedin } from "lucide-react";
+"use client";
+
+import { Github, Linkedin, Globe } from "lucide-react";
 import Link from "next/link";
+import { useT } from "../../lib/i18n/context";
 
 export default function Footer() {
+  const t = useT();
+
   return (
-    <footer className="bg-green-800 text-white py-8">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="text-center md:text-left mb-4 md:mb-0">
-            <p>Made with 👽 and FraSma - 3317424341 - P.IVA 02750410207</p>
-          </div>
-          <div className="flex space-x-4">
+    <footer className="border-t border-farm-border py-8">
+      <div className="section-farm">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-farm-secondary">
+            {t("footer.info")}
+          </p>
+          <div className="flex items-center gap-5">
             <Link
               href="https://github.com/francemazzi"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-sand-300 transition-colors"
+              className="text-farm-secondary hover:text-farm-text transition-colors"
             >
-              <Github size={24} />
+              <Github size={20} />
               <span className="sr-only">GitHub</span>
             </Link>
             <Link
               href="https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-sand-300 transition-colors"
+              className="text-farm-secondary hover:text-farm-text transition-colors"
             >
-              <Linkedin size={24} />
+              <Linkedin size={20} />
               <span className="sr-only">LinkedIn</span>
+            </Link>
+            <Link
+              href="https://www.frasma.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-farm-secondary hover:text-farm-text transition-colors"
+            >
+              <Globe size={20} />
+              <span className="sr-only">Website</span>
             </Link>
           </div>
         </div>

@@ -1,14 +1,20 @@
 import Image from "next/image";
 import { LucideIcon } from "lucide-react";
 import React from "react";
+import { useT, useLang } from "../../lib/i18n/context";
 
 type CalButtonType = "default" | "textual" | "icon";
 
-type CalProps = {
+type CalPublicProps = {
   textButton: string | React.ReactNode;
   leftImage?: string;
   leftIcon?: LucideIcon;
   buttonType?: CalButtonType;
+};
+
+type CalInternalProps = CalPublicProps & {
+  t: (key: string) => string;
+  lang: string;
 };
 
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
@@ -28,12 +34,12 @@ type CalState = {
 class MeetingFormValidator {
   private readonly _emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  public validate(state: CalState): string {
-    if (!state.date) return "Please select a date.";
-    if (!state.time) return "Please select a time.";
-    if (!state.email) return "Please enter your email.";
-    if (!this._emailRegex.test(state.email)) return "Please enter a valid email.";
-    if (state.description.length > 2000) return "Description is too long.";
+  public validate(state: CalState, t: (key: string) => string): string {
+    if (!state.date) return t("cal.validDate");
+    if (!state.time) return t("cal.validTime");
+    if (!state.email) return t("cal.validEmail");
+    if (!this._emailRegex.test(state.email)) return t("cal.validEmailFormat");
+    if (state.description.length > 2000) return t("cal.validDesc");
     return "";
   }
 }
@@ -41,20 +47,21 @@ class MeetingFormValidator {
 class CssClassBuilder {
   public buildButtonClasses(type: CalButtonType): string {
     if (type === "textual") {
-      return "flex items-center gap-2 px-3 py-2 text-sm font-medium text-green-700 hover:text-green-600 bg-green-50 rounded-md";
+      return "flex items-center gap-2 px-3 py-2 text-sm font-medium text-sage-600 hover:text-sage-500 bg-sage-50 rounded-full transition duration-200";
     }
     if (type === "icon") {
-      return "flex items-center justify-center p-2 rounded-md bg-green-600 hover:bg-green-700 transition duration-300";
+      return "flex items-center justify-center p-2 rounded-full bg-sage-500 hover:bg-sage-400 text-white transition duration-200";
     }
-    return "flex items-center gap-3 rounded-md bg-green-600 px-8 py-3 text-lg font-semibold text-white shadow-lg hover:bg-green-700 transition duration-300";
+    return "flex items-center gap-3 rounded-full bg-sage-500 px-8 py-3 text-lg font-semibold text-white shadow-sm hover:bg-sage-400 transition duration-200";
   }
 }
 
 class MeetingSchedulerModal extends React.PureComponent<
   {
     isOpen: boolean;
-    title: string;
     state: CalState;
+    t: (key: string) => string;
+    lang: string;
     onClose: () => void;
     onChange: (patch: Partial<CalState>) => void;
     onSubmit: () => Promise<void>;
@@ -64,7 +71,7 @@ class MeetingSchedulerModal extends React.PureComponent<
   public render(): React.ReactNode {
     if (!this.props.isOpen) return null;
 
-    const { state } = this.props;
+    const { state, t, lang } = this.props;
     const isBusy = state.status === "submitting";
 
     return (
@@ -72,37 +79,37 @@ class MeetingSchedulerModal extends React.PureComponent<
         className="fixed inset-0 z-50 flex items-center justify-center px-4"
         role="dialog"
         aria-modal="true"
-        aria-label={this.props.title}
+        aria-label={t("cal.title")}
       >
         <div
-          className="absolute inset-0 bg-black/40"
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
           onClick={this.props.onClose}
         />
 
-        <div className="relative w-full max-w-xl rounded-xl bg-white shadow-2xl border border-green-100">
-          <div className="flex items-start justify-between gap-4 p-6 border-b border-green-100">
+        <div className="relative w-full max-w-xl rounded-2xl bg-farm-surface shadow-2xl border border-farm-border">
+          <div className="flex items-start justify-between gap-4 p-6 border-b border-farm-border">
             <div>
-              <h3 className="text-xl font-semibold text-green-800">
-                {this.props.title}
+              <h3 className="text-xl font-semibold text-farm-text">
+                {t("cal.title")}
               </h3>
-              <p className="mt-1 text-sm text-gray-600">
-                Select a date and time, then leave your contact details.
+              <p className="mt-1 text-sm text-farm-secondary">
+                {t("cal.subtitle")}
               </p>
             </div>
             <button
               type="button"
-              className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-farm-secondary hover:bg-farm-panel transition-colors"
               onClick={this.props.onClose}
-              aria-label="Close"
+              aria-label={t("cal.close")}
               disabled={isBusy}
             >
-              Close
+              {t("cal.close")}
             </button>
           </div>
 
           <form
             className="p-6 space-y-4"
-            lang="it"
+            lang={lang}
             onSubmit={(e) => {
               e.preventDefault();
               void this.props.onSubmit();
@@ -110,14 +117,14 @@ class MeetingSchedulerModal extends React.PureComponent<
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <label className="block">
-                <span className="block text-sm font-medium text-gray-700">
-                  Date
+                <span className="block text-sm font-medium text-farm-text">
+                  {t("cal.date")}
                 </span>
                 <input
                   type="date"
-                  lang="it"
+                  lang={lang}
                   inputMode="none"
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="mt-1 w-full rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
                   value={state.date}
                   onChange={(e) =>
                     this.props.onChange({ date: e.currentTarget.value })
@@ -127,15 +134,15 @@ class MeetingSchedulerModal extends React.PureComponent<
               </label>
 
               <label className="block">
-                <span className="block text-sm font-medium text-gray-700">
-                  Time
+                <span className="block text-sm font-medium text-farm-text">
+                  {t("cal.time")}
                 </span>
                 <input
                   type="time"
-                  lang="it"
+                  lang={lang}
                   inputMode="none"
                   step="900"
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="mt-1 w-full rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
                   value={state.time}
                   onChange={(e) =>
                     this.props.onChange({ time: e.currentTarget.value })
@@ -146,13 +153,13 @@ class MeetingSchedulerModal extends React.PureComponent<
             </div>
 
             <label className="block">
-              <span className="block text-sm font-medium text-gray-700">
-                Your email
+              <span className="block text-sm font-medium text-farm-text">
+                {t("cal.email")}
               </span>
               <input
                 type="email"
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="you@example.com"
+                className="mt-1 w-full rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
+                placeholder={t("cal.emailPlaceholder")}
                 value={state.email}
                 onChange={(e) =>
                   this.props.onChange({ email: e.currentTarget.value })
@@ -162,20 +169,20 @@ class MeetingSchedulerModal extends React.PureComponent<
             </label>
 
             <label className="block">
-              <span className="block text-sm font-medium text-gray-700">
-                Description
+              <span className="block text-sm font-medium text-farm-text">
+                {t("cal.description")}
               </span>
               <textarea
-                className="mt-1 w-full min-h-[110px] rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Tell me what you need and any helpful context..."
+                className="mt-1 w-full min-h-[110px] rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
+                placeholder={t("cal.descPlaceholder")}
                 value={state.description}
                 onChange={(e) =>
                   this.props.onChange({ description: e.currentTarget.value })
                 }
                 maxLength={2000}
               />
-              <div className="mt-1 text-xs text-gray-500">
-                Timezone: <span className="font-medium">{state.timezone}</span>
+              <div className="mt-1 text-xs text-farm-secondary">
+                {t("cal.timezone")}: <span className="font-medium">{state.timezone}</span>
               </div>
             </label>
 
@@ -194,32 +201,32 @@ class MeetingSchedulerModal extends React.PureComponent<
             />
 
             {state.status === "error" && state.errorMessage && (
-              <div className="rounded-md bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+              <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
                 {state.errorMessage}
               </div>
             )}
 
             {state.status === "success" && (
-              <div className="rounded-md bg-green-50 border border-green-200 px-4 py-3 text-sm text-green-800">
-                Request sent! I&apos;ll get back to you shortly.
+              <div className="rounded-lg bg-sage-50 border border-sage-200 px-4 py-3 text-sm text-sage-600">
+                {t("cal.success")}
               </div>
             )}
 
             <div className="flex items-center justify-end gap-3 pt-2">
               <button
                 type="button"
-                className="rounded-md px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-farm-secondary hover:bg-farm-panel transition-colors"
                 onClick={this.props.onClose}
                 disabled={isBusy}
               >
-                Cancel
+                {t("cal.cancel")}
               </button>
               <button
                 type="submit"
-                className="rounded-md bg-green-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-green-700 disabled:opacity-60"
+                className="rounded-full bg-sage-500 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sage-400 disabled:opacity-60 transition-colors"
                 disabled={isBusy}
               >
-                {isBusy ? "Sending..." : "Send"}
+                {isBusy ? t("cal.sending") : t("cal.send")}
               </button>
             </div>
           </form>
@@ -229,11 +236,11 @@ class MeetingSchedulerModal extends React.PureComponent<
   }
 }
 
-class Cal extends React.PureComponent<CalProps, CalState> {
+class CalInner extends React.PureComponent<CalInternalProps, CalState> {
   private readonly _validator: MeetingFormValidator = new MeetingFormValidator();
   private readonly _css: CssClassBuilder = new CssClassBuilder();
 
-  public constructor(props: CalProps) {
+  public constructor(props: CalInternalProps) {
     super(props);
     this.state = {
       isOpen: false,
@@ -248,7 +255,7 @@ class Cal extends React.PureComponent<CalProps, CalState> {
     };
   }
 
-  public componentDidUpdate(_: CalProps, prevState: CalState): void {
+  public componentDidUpdate(_: CalInternalProps, prevState: CalState): void {
     if (!prevState.isOpen && this.state.isOpen) {
       window.addEventListener("keydown", this.onKeyDown);
     }
@@ -296,7 +303,8 @@ class Cal extends React.PureComponent<CalProps, CalState> {
   }
 
   private async submit(): Promise<void> {
-    const validationError = this._validator.validate(this.state);
+    const { t } = this.props;
+    const validationError = this._validator.validate(this.state, t);
     if (validationError) {
       this.setState({ status: "error", errorMessage: validationError });
       return;
@@ -325,8 +333,7 @@ class Cal extends React.PureComponent<CalProps, CalState> {
 
       if (!res.ok || !json || (json as any).ok !== true) {
         const msg =
-          (json && (json as any).error) ||
-          "Something went wrong while sending your request.";
+          (json && (json as any).error) || t("cal.errorFallback");
         this.setState({ status: "error", errorMessage: msg });
         return;
       }
@@ -335,44 +342,45 @@ class Cal extends React.PureComponent<CalProps, CalState> {
     } catch {
       this.setState({
         status: "error",
-        errorMessage: "Network error. Please try again.",
+        errorMessage: t("cal.networkError"),
       });
     }
   }
 
   public render(): React.ReactNode {
-    const { leftIcon: LeftIcon, leftImage, buttonType = "default" } = this.props;
+    const { leftIcon: LeftIcon, leftImage, buttonType = "default", t, lang } = this.props;
     const buttonClasses = this._css.buildButtonClasses(buttonType);
 
-  return (
+    return (
       <>
-    <button
+        <button
           type="button"
-      className={buttonClasses}
+          className={buttonClasses}
           onClick={() => this.openModal()}
-    >
-      {leftImage && (
-        <Image
-          src={leftImage}
-          alt={leftImage.split("/").pop() || "Francesco"}
-          width={buttonType === "textual" ? 24 : 40}
-          height={buttonType === "textual" ? 24 : 40}
-          className="object-cover rounded-md"
-        />
-      )}
-      {LeftIcon && (
-        <LeftIcon
-          size={buttonType === "textual" ? 20 : 24}
-          className="flex-shrink-0"
-        />
-      )}
+        >
+          {leftImage && (
+            <Image
+              src={leftImage}
+              alt={leftImage.split("/").pop() || "Francesco"}
+              width={buttonType === "textual" ? 24 : 40}
+              height={buttonType === "textual" ? 24 : 40}
+              className="object-cover rounded-md"
+            />
+          )}
+          {LeftIcon && (
+            <LeftIcon
+              size={buttonType === "textual" ? 20 : 24}
+              className="flex-shrink-0"
+            />
+          )}
           <span>{this.props.textButton}</span>
-    </button>
+        </button>
 
         <MeetingSchedulerModal
           isOpen={this.state.isOpen}
-          title="Schedule a meeting"
           state={this.state}
+          t={t}
+          lang={lang}
           onClose={() => this.closeModal()}
           onChange={(patch) => this.patchState(patch)}
           onSubmit={() => this.submit()}
@@ -382,4 +390,8 @@ class Cal extends React.PureComponent<CalProps, CalState> {
   }
 }
 
-export default Cal;
+export default function Cal(props: CalPublicProps) {
+  const t = useT();
+  const { lang } = useLang();
+  return <CalInner {...props} t={t} lang={lang} />;
+}
