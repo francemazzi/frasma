@@ -80,4 +80,12 @@ export const it: Record<string, string> = {
   "cal.validEmail": "Inserisci la tua email.",
   "cal.validEmailFormat": "Inserisci un'email valida.",
   "cal.validDesc": "La descrizione \u00E8 troppo lunga.",
+
+  // Chat widget
+  "chat.title": "Chatta con Bobby",
+  "chat.welcome": "Ciao! Sono Bobby, l'assistente AI di Francesco. Chiedimi del suo stack tecnologico, stime per progetti, o prenota un incontro!",
+  "chat.placeholder": "Scrivi un messaggio...",
+  "chat.send": "Invia",
+  "chat.close": "Chiudi chat",
+  "chat.error": "Qualcosa \u00E8 andato storto. Riprova.",
 };
