@@ -39,6 +39,7 @@ export const en: Record<string, string> = {
   "about.rateUnit": "/hr",
   "about.rateOutside": "45\u20AC/hr outside core areas of interest",
   "about.rateOnsite": "+10\u20AC/hr for on-site work",
+  "about.rateReveal": "Book a call to see rates",
   "about.prop1.title": "Dedicated Partnership",
   "about.prop1.desc": "I carefully select projects and provide end-to-end support, from strategy through development.",
   "about.prop2.title": "Domain Expertise",

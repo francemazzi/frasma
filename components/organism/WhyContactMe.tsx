@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useT } from "../../lib/i18n/context";
+import Cal from "./Cal";
 
 export default function WhyContactMe() {
   const t = useT();
@@ -68,21 +69,27 @@ export default function WhyContactMe() {
         </div>
 
         <motion.div
-          className="bg-farm-surface rounded-2xl p-8 border border-farm-border text-center max-w-lg mx-auto"
+          className="relative bg-farm-surface rounded-2xl p-8 border border-farm-border text-center max-w-lg mx-auto overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-sm font-semibold text-farm-secondary uppercase tracking-widest mb-4">
-            {t("about.rates")}
-          </h3>
-          <div className="text-4xl font-bold text-farm-text mb-2">
-            40&euro;<span className="text-lg font-normal text-farm-secondary">{t("about.rateUnit")}</span>
+          <div className="select-none" aria-hidden="true">
+            <h3 className="text-sm font-semibold text-farm-secondary uppercase tracking-widest mb-4">
+              {t("about.rates")}
+            </h3>
+            <div className="text-4xl font-bold text-farm-text mb-2 blur-md">
+              40&euro;<span className="text-lg font-normal text-farm-secondary">{t("about.rateUnit")}</span>
+            </div>
+            <div className="space-y-1 text-sm text-farm-secondary blur-md">
+              <p>{t("about.rateOutside")}</p>
+              <p>{t("about.rateOnsite")}</p>
+            </div>
           </div>
-          <div className="space-y-1 text-sm text-farm-secondary">
-            <p>{t("about.rateOutside")}</p>
-            <p>{t("about.rateOnsite")}</p>
+
+          <div className="absolute inset-0 flex items-center justify-center bg-farm-surface/60">
+            <Cal textButton={t("about.rateReveal")} buttonType="default" />
           </div>
         </motion.div>
       </div>
