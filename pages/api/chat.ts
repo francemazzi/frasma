@@ -233,6 +233,70 @@ type ChatRequestBody = {
 };
 
 let agentInstance: ReturnType<typeof createReactAgent> | null = null;
+const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
+
+type EmailFormPayload = {
+  subject: string;
+  body: string;
+  clientEmail: string;
+  clientName: string;
+};
+
+function getMessageContent(message: unknown): string | null {
+  if (!message || typeof message !== "object") return null;
+
+  const content = (message as { content?: unknown }).content;
+  if (typeof content === "string") return content;
+
+  return content != null ? JSON.stringify(content) : null;
+}
+
+function getMessageName(message: unknown): string | null {
+  if (!message || typeof message !== "object") return null;
+
+  const directName = (message as { name?: unknown }).name;
+  if (typeof directName === "string") return directName;
+
+  const nestedName = (message as { lc_kwargs?: { name?: unknown } }).lc_kwargs?.name;
+  return typeof nestedName === "string" ? nestedName : null;
+}
+
+function buildEmailFormResponse(
+  payload: EmailFormPayload,
+  lang: ChatRequestBody["lang"]
+): string {
+  const intro = lang === "en" ? "Here's the draft:" : "Ecco la bozza:";
+  return `${intro}\n\n<!--EMAIL_FORM-->${JSON.stringify(payload)}<!--/EMAIL_FORM-->`;
+}
+
+function extractEmailFormFallback(
+  messages: unknown[],
+  lang: ChatRequestBody["lang"]
+): string | null {
+  for (let i = messages.length - 1; i >= 0; i -= 1) {
+    const message = messages[i];
+    if (getMessageName(message) !== "draft_quote_email") continue;
+
+    const content = getMessageContent(message);
+    if (!content) continue;
+
+    try {
+      const parsed = JSON.parse(content) as Partial<EmailFormPayload>;
+      if (
+        typeof parsed.subject === "string" &&
+        typeof parsed.body === "string" &&
+        typeof parsed.clientEmail === "string" &&
+        typeof parsed.clientName === "string"
+      ) {
+        return buildEmailFormResponse(parsed as EmailFormPayload, lang);
+      }
+    } catch {
+      // Ignore malformed tool output and keep the normal agent response.
+    }
+  }
+
+  return null;
+}
 
 function getAgent() {
   if (agentInstance) return agentInstance;
@@ -290,12 +354,13 @@ export default async function handler(
     });
 
     const lastMessage = result.messages[result.messages.length - 1];
-    const content =
-      typeof lastMessage.content === "string"
-        ? lastMessage.content
-        : JSON.stringify(lastMessage.content);
+    const content = getMessageContent(lastMessage) ?? "";
+    const fallbackEmailForm =
+      content.match(EMAIL_FORM_RE) == null
+        ? extractEmailFormFallback(result.messages, body.lang)
+        : null;
 
-    return res.status(200).json({ response: content });
+    return res.status(200).json({ response: fallbackEmailForm ?? content });
   } catch (e) {
     console.error("[chat] Agent error:", e);
     return res
