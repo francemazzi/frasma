@@ -130,24 +130,48 @@ Client details:
 - Additional notes: ${input.notes || "None"}
 
 Write a clear, structured email in the same language as the project description. The email should include:
-1. Subject line
-2. Client contact info summary
-3. Project requirements (organized clearly)
-4. Suggested tech stack from Francesco's toolkit
-5. Budget/timeline preferences if provided
-6. Next steps (Francesco will review and reply with a detailed quote)
+1. Client contact info summary
+2. Project requirements (organized clearly)
+3. Suggested tech stack from Francesco's toolkit
+4. Budget/timeline preferences if provided
+5. Next steps (Francesco will review and reply with a detailed quote)
 
-Format it as a professional email. Do NOT include hour estimates or pricing — Francesco will evaluate that himself.`;
+Do NOT include hour estimates or pricing — Francesco will evaluate that himself.
+
+Return your answer as JSON with exactly these two fields:
+{
+  "subject": "The email subject line",
+  "body": "The full email body text"
+}
+Return ONLY valid JSON, nothing else.`;
 
     const response = await miniModel.invoke([new HumanMessage(prompt)]);
-    return typeof response.content === "string"
-      ? response.content
-      : JSON.stringify(response.content);
+    const raw =
+      typeof response.content === "string"
+        ? response.content
+        : JSON.stringify(response.content);
+
+    try {
+      const parsed = JSON.parse(raw);
+      return JSON.stringify({
+        subject: parsed.subject,
+        body: parsed.body,
+        clientEmail: input.clientEmail,
+        clientName: input.clientName,
+      });
+    } catch {
+      return JSON.stringify({
+        subject: `Quote Request from ${input.clientName}`,
+        body: raw,
+        clientEmail: input.clientEmail,
+        clientName: input.clientName,
+      });
+    }
   },
   {
     name: "draft_quote_email",
     description:
-      "Generate a draft quote request email with all the project details collected from the user. Use this AFTER you have collected: client name, email, project description. Optional: company, budget, timeline, notes. Show the draft to the user and ask for confirmation BEFORE sending.",
+      "Generate a draft quote request email with all the project details collected from the user. Use this AFTER the user has confirmed they want to send an email AND you have collected: client name, email, project description. Optional: company, budget, timeline, notes. The tool returns JSON with subject, body, clientEmail, clientName.",
     schema: z.object({
       clientName: z.string().describe("Client's full name"),
       clientEmail: z.string().describe("Client's email address"),
@@ -156,53 +180,6 @@ Format it as a professional email. Do NOT include hour estimates or pricing — 
       budget: z.string().optional().describe("Budget indication if provided"),
       timeline: z.string().optional().describe("Timeline preference if provided"),
       notes: z.string().optional().describe("Any additional notes or context"),
-    }),
-  }
-);
-
-const sendQuoteEmailTool = tool(
-  async (input) => {
-    const nodemailer = await import("nodemailer");
-
-    const host = process.env.SMTP_HOST?.trim();
-    const port = Number(process.env.SMTP_PORT?.trim() || "465");
-    const user = process.env.SMTP_USER?.trim();
-    const pass = process.env.SMTP_PASS?.trim();
-    const to = process.env.MEETING_NOTIFICATION_EMAIL?.trim() || "francemazzi@gmail.com";
-
-    if (!host || !user || !pass) {
-      return "Email service not configured. Please ask the user to contact Francesco directly at francemazzi@gmail.com.";
-    }
-
-    const transporter = nodemailer.default.createTransport({
-      host,
-      port,
-      secure: port === 465,
-      auth: { user, pass },
-    });
-
-    try {
-      await transporter.sendMail({
-        from: `Bobby AI <${user}>`,
-        to,
-        replyTo: input.clientEmail,
-        subject: input.subject,
-        text: input.emailBody,
-      });
-      return "Email sent successfully! Francesco will review the request and get back to the client.";
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : "Unknown error";
-      return `Failed to send email: ${msg}. Please ask the user to contact Francesco directly at francemazzi@gmail.com.`;
-    }
-  },
-  {
-    name: "send_quote_email",
-    description:
-      "Send the quote request email to Francesco. Use this ONLY after the user has confirmed the draft email. Never call this without explicit user confirmation.",
-    schema: z.object({
-      clientEmail: z.string().describe("Client's email for reply-to"),
-      subject: z.string().describe("Email subject line"),
-      emailBody: z.string().describe("The full email body text"),
     }),
   }
 );
@@ -229,10 +206,13 @@ When a user describes a project or asks for an estimate:
    - Budget indication (optional)
    - Timeline preference (optional)
    - Any additional notes
-2. Use draft_quote_email to generate the email draft
-3. Show the FULL draft to the user and ask "Shall I send this to Francesco?" or similar
-4. ONLY after explicit confirmation ("yes", "send it", "ok", etc.), use send_quote_email
-5. NEVER send without confirmation. If the user wants changes, re-draft with draft_quote_email.
+2. BEFORE generating the email, ASK the user if they want to send an email to Francesco (e.g. "Vuoi che prepari un'email da inviare a Francesco?" / "Would you like me to prepare an email to send to Francesco?")
+3. ONLY after the user confirms, use draft_quote_email to generate the email
+4. The tool returns JSON. You MUST include the JSON result in your response wrapped EXACTLY like this:
+   <!--EMAIL_FORM-->{"subject":"...","body":"...","clientEmail":"...","clientName":"..."}<!--/EMAIL_FORM-->
+   Add a brief intro before the marker (e.g. "Ecco la bozza:" / "Here's the draft:"). The website will render it as an editable email form with a Send button.
+5. Do NOT attempt to send the email yourself. The user will review, edit, and send it directly from the form.
+6. After including the EMAIL_FORM marker, do NOT add any text after it.
 
 Do NOT provide hour estimates or pricing — that's Francesco's job. Focus on collecting complete project details.
 
@@ -265,7 +245,7 @@ function getAgent() {
 
   agentInstance = createReactAgent({
     llm: model,
-    tools: [getStackInfoTool, scheduleMeetingTool, draftQuoteEmailTool, sendQuoteEmailTool],
+    tools: [getStackInfoTool, scheduleMeetingTool, draftQuoteEmailTool],
   });
 
   return agentInstance;
