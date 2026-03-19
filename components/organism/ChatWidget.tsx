@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { X, Send, Loader2, Mail } from "lucide-react";
+import { X, Send, Loader2, Mail, Calendar } from "lucide-react";
+import { validateMeetingFormFields } from "../../lib/meetingFormValidation";
 import { useT, useLang } from "../../lib/i18n/context";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -12,22 +13,49 @@ type EmailFormData = {
   clientName: string;
 };
 
-const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
+type MeetingFormData = {
+  date: string;
+  time: string;
+  email: string;
+  description: string;
+  timezone: string;
+};
 
-function parseEmailForm(content: string): {
+const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
+const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
+
+function parseAssistantMessage(content: string): {
   text: string;
   emailForm: EmailFormData | null;
+  meetingForm: MeetingFormData | null;
 } {
-  const match = content.match(EMAIL_FORM_RE);
-  if (!match) return { text: content, emailForm: null };
-
-  try {
-    const emailForm = JSON.parse(match[1]) as EmailFormData;
-    const text = content.replace(EMAIL_FORM_RE, "").trim();
-    return { text, emailForm };
-  } catch {
-    return { text: content, emailForm: null };
+  let emailForm: EmailFormData | null = null;
+  const emailMatch = content.match(EMAIL_FORM_RE);
+  if (emailMatch) {
+    try {
+      emailForm = JSON.parse(emailMatch[1]) as EmailFormData;
+    } catch {
+      emailForm = null;
+    }
   }
+
+  let meetingForm: MeetingFormData | null = null;
+  const meetingMatch = content.match(MEETING_FORM_RE);
+  if (meetingMatch) {
+    try {
+      meetingForm = JSON.parse(meetingMatch[1]) as MeetingFormData;
+    } catch {
+      meetingForm = null;
+    }
+  }
+
+  const text = content
+    .replace(EMAIL_FORM_RE, "")
+    .replace(MEETING_FORM_RE, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  return { text, emailForm, meetingForm };
 }
 
 /* ------------------------------------------------------------------ */
@@ -146,8 +174,213 @@ function InlineEmailForm({
 }
 
 /* ------------------------------------------------------------------ */
+/*  Inline meeting form (same API body as Cal modal)                   */
+/* ------------------------------------------------------------------ */
+
+function InlineMeetingForm({
+  form,
+  onSent,
+  t,
+  lang,
+}: {
+  form: MeetingFormData;
+  onSent: () => void;
+  t: (key: string) => string;
+  lang: string;
+}) {
+  const [date, setDate] = useState(form.date);
+  const [time, setTime] = useState(form.time);
+  const [email, setEmail] = useState(form.email);
+  const [description, setDescription] = useState(form.description);
+  const [timezone] = useState(() => {
+    const tz = form.timezone?.trim();
+    if (tz) return tz;
+    if (typeof window !== "undefined") {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone || "Europe/Rome";
+    }
+    return "Europe/Rome";
+  });
+  const [honeypot, setHoneypot] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const validationError = validateMeetingFormFields(
+      { date, time, email, description },
+      t
+    );
+    if (validationError) {
+      setErrorMessage(validationError);
+      return;
+    }
+
+    setSending(true);
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/schedule-meeting", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date,
+          time,
+          email,
+          description,
+          timezone,
+          honeypot,
+        }),
+      });
+
+      const json = (await res.json().catch(() => null)) as
+        | { ok: true }
+        | { ok: false; error: string }
+        | null;
+
+      if (!res.ok || !json || json.ok !== true) {
+        const msg =
+          json && "error" in json && json.error
+            ? json.error
+            : t("cal.errorFallback");
+        setErrorMessage(msg);
+        return;
+      }
+
+      setSent(true);
+      onSent();
+    } catch {
+      setErrorMessage(t("cal.networkError"));
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (sent) {
+    return (
+      <div className="flex items-center gap-2 text-sage-600 text-xs font-medium py-1">
+        <Calendar size={14} />
+        {t("cal.success")}
+      </div>
+    );
+  }
+
+  return (
+    <form
+      className="relative mt-2 rounded-xl border border-sage-200 bg-white p-3 space-y-2"
+      lang={lang}
+      onSubmit={(e) => void handleSubmit(e)}
+    >
+      <div className="flex items-center gap-2 text-sage-600 font-semibold text-xs">
+        <Calendar size={14} />
+        {t("chat.meeting.title")}
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        <div>
+          <label className="block text-[11px] text-farm-secondary mb-0.5">
+            {t("cal.date")}
+          </label>
+          <input
+            type="date"
+            lang={lang}
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            disabled={sending}
+            className="w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+          />
+        </div>
+        <div>
+          <label className="block text-[11px] text-farm-secondary mb-0.5">
+            {t("cal.time")}
+          </label>
+          <input
+            type="time"
+            lang={lang}
+            step={900}
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            disabled={sending}
+            className="w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-[11px] text-farm-secondary mb-0.5">
+          {t("cal.email")}
+        </label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          disabled={sending}
+          placeholder={t("cal.emailPlaceholder")}
+          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+        />
+      </div>
+
+      <div>
+        <label className="block text-[11px] text-farm-secondary mb-0.5">
+          {t("cal.description")}
+        </label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          disabled={sending}
+          rows={4}
+          maxLength={2000}
+          placeholder={t("cal.descPlaceholder")}
+          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
+        />
+        <p className="mt-0.5 text-[10px] text-farm-secondary">
+          {t("cal.timezone")}: <span className="font-medium">{timezone}</span>
+        </p>
+      </div>
+
+      <input
+        type="text"
+        name="website"
+        className="absolute opacity-0 pointer-events-none h-0 w-0"
+        tabIndex={-1}
+        autoComplete="off"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        aria-hidden="true"
+      />
+
+      {errorMessage ? (
+        <p className="text-xs text-red-500">{errorMessage}</p>
+      ) : null}
+
+      <div className="flex gap-2 justify-end">
+        <button
+          type="submit"
+          disabled={sending}
+          className="flex items-center gap-1.5 rounded-full bg-sage-500 text-white text-xs font-medium px-3 py-1.5 hover:bg-sage-400 disabled:opacity-40 transition-colors"
+        >
+          {sending ? (
+            <>
+              <Loader2 size={12} className="animate-spin" />
+              {t("cal.sending")}
+            </>
+          ) : (
+            <>
+              <Send size={12} />
+              {t("cal.send")}
+            </>
+          )}
+        </button>
+      </div>
+    </form>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Chat widget                                                        */
 /* ------------------------------------------------------------------ */
+
+const CHAT_FETCH_TIMEOUT_MS = 12_000;
 
 export default function ChatWidget() {
   const t = useT();
@@ -198,25 +431,48 @@ export default function ChatWidget() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: nextMessages, lang }),
+        signal: AbortSignal.timeout(CHAT_FETCH_TIMEOUT_MS),
       });
 
-      const json = await res.json().catch(() => null);
+      const json = (await res.json().catch(() => null)) as
+        | { response?: string; code?: string }
+        | null;
 
-      if (res.ok && json?.response) {
+      if (json?.code === "TIMEOUT") {
         setMessages((prev) => [
           ...prev,
-          { role: "assistant", content: json.response },
+          {
+            role: "assistant",
+            content: t("chat.timeout") ?? "Timeout.",
+          },
+        ]);
+        return;
+      }
+
+      if (res.ok && json?.response != null && json.response !== "") {
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: json.response as string },
         ]);
       } else {
         setMessages((prev) => [
           ...prev,
-          { role: "assistant", content: t("chat.error") },
+          {
+            role: "assistant",
+            content: t("chat.error") ?? "Error.",
+          },
         ]);
       }
-    } catch {
+    } catch (e) {
+      const isAbort =
+        e instanceof DOMException && e.name === "AbortError";
+      const fallback = (isAbort ? t("chat.timeout") : t("chat.error")) ?? "Error.";
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: t("chat.error") },
+        {
+          role: "assistant",
+          content: fallback,
+        },
       ]);
     } finally {
       setLoading(false);
@@ -234,6 +490,13 @@ export default function ChatWidget() {
     setMessages((prev) => [
       ...prev,
       { role: "assistant", content: t("chat.email.sent") },
+    ]);
+  }, [t]);
+
+  const handleMeetingSent = useCallback(() => {
+    setMessages((prev) => [
+      ...prev,
+      { role: "assistant", content: t("cal.success") },
     ]);
   }, [t]);
 
@@ -288,10 +551,14 @@ export default function ChatWidget() {
             className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[300px] bg-farm-bg"
           >
             {messages.map((msg, i) => {
-              const { text, emailForm } =
+              const { text, emailForm, meetingForm } =
                 msg.role === "assistant"
-                  ? parseEmailForm(msg.content)
-                  : { text: msg.content, emailForm: null };
+                  ? parseAssistantMessage(msg.content)
+                  : {
+                      text: msg.content,
+                      emailForm: null,
+                      meetingForm: null,
+                    };
 
               return (
                 <div
@@ -305,14 +572,22 @@ export default function ChatWidget() {
                         : "bg-farm-surface text-farm-text border border-farm-border rounded-bl-md"
                     }`}
                   >
-                    {text && <span>{text}</span>}
-                    {emailForm && (
+                    {text ? <span>{text}</span> : null}
+                    {emailForm ? (
                       <InlineEmailForm
                         form={emailForm}
                         onSent={handleEmailSent}
                         t={t}
                       />
-                    )}
+                    ) : null}
+                    {meetingForm ? (
+                      <InlineMeetingForm
+                        form={meetingForm}
+                        onSent={handleMeetingSent}
+                        t={t}
+                        lang={lang}
+                      />
+                    ) : null}
                   </div>
                 </div>
               );

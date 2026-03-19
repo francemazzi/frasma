@@ -88,6 +88,7 @@ export const it: Record<string, string> = {
   "chat.send": "Invia",
   "chat.close": "Chiudi chat",
   "chat.error": "Qualcosa \u00E8 andato storto. Riprova.",
+  "chat.timeout": "La risposta ha impiegato troppo tempo. Riprova con un messaggio pi\u00F9 breve.",
 
   // Email form in chat
   "chat.email.title": "Bozza Email",
@@ -98,4 +99,7 @@ export const it: Record<string, string> = {
   "chat.email.sending": "Invio...",
   "chat.email.sent": "Email inviata! Francesco la esaminer\u00E0 a breve.",
   "chat.email.error": "Invio fallito. Riprova o contatta Francesco direttamente.",
+
+  // Meeting form in chat
+  "chat.meeting.title": "Richiesta incontro",
 };

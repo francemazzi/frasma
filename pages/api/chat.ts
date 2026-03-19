@@ -10,6 +10,27 @@ import {
   AIMessage,
 } from "@langchain/core/messages";
 
+const CHAT_INVOKE_TIMEOUT_MS = 12_000;
+const DRAFT_QUOTE_MINI_TIMEOUT_MS = 9_000;
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(new Error("TIMEOUT"));
+    }, ms);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (err) => {
+        clearTimeout(timer);
+        reject(err);
+      }
+    );
+  });
+}
+
 /* ------------------------------------------------------------------ */
 /*  Knowledge base                                                     */
 /* ------------------------------------------------------------------ */
@@ -68,42 +89,34 @@ const getStackInfoTool = tool(
   }
 );
 
+/** Prepares meeting data for the in-chat form; the user submits to /api/schedule-meeting from the UI. */
 const scheduleMeetingTool = tool(
   async (input) => {
-    const baseUrl = process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000";
-
-    const res = await fetch(`${baseUrl}/api/schedule-meeting`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        date: input.date,
-        time: input.time,
-        email: input.email,
-        description: input.description || "",
-        timezone: input.timezone || "Europe/Rome",
-      }),
-    });
-
-    const json = await res.json().catch(() => null);
-
-    if (res.ok && json?.ok) {
-      return "Meeting scheduled successfully! Francesco will get back to you shortly.";
-    }
-
-    return `Could not schedule the meeting: ${json?.error || "Unknown error"}. Please ask the user to try again or provide different details.`;
+    const payload = {
+      date: input.date,
+      time: input.time,
+      email: input.email,
+      description: input.description ?? "",
+      timezone: input.timezone?.trim() || "Europe/Rome",
+    };
+    return JSON.stringify(payload);
   },
   {
     name: "schedule_meeting",
     description:
-      "Schedule a meeting with Francesco. Use this tool when the user wants to book a call or meeting. You MUST collect all required fields (date, time, email) from the user before calling this tool. Guide the user through the process conversationally.",
+      "Prepare a meeting request for Francesco. Use when the user wants to book a call. You MUST collect date, time, email, and description from the user and get their confirmation before calling. The website shows an editable form — you do NOT send the booking yourself. After this tool returns JSON, wrap it in MEETING_FORM markers in your reply (see system prompt).",
     schema: z.object({
       date: z.string().describe("Meeting date in YYYY-MM-DD format"),
       time: z.string().describe("Meeting time in HH:mm format (24h)"),
       email: z.string().describe("User's email address"),
-      description: z.string().optional().describe("Optional description or context for the meeting"),
-      timezone: z.string().optional().describe("User's timezone (e.g. Europe/Rome). Defaults to Europe/Rome."),
+      description: z
+        .string()
+        .optional()
+        .describe("Description or context for the meeting (optional but recommended)"),
+      timezone: z
+        .string()
+        .optional()
+        .describe("User's IANA timezone (e.g. Europe/Rome). Defaults to Europe/Rome."),
     }),
   }
 );
@@ -145,7 +158,10 @@ Return your answer as JSON with exactly these two fields:
 }
 Return ONLY valid JSON, nothing else.`;
 
-    const response = await miniModel.invoke([new HumanMessage(prompt)]);
+    const response = await withTimeout(
+      miniModel.invoke([new HumanMessage(prompt)]),
+      DRAFT_QUOTE_MINI_TIMEOUT_MS
+    );
     const raw =
       typeof response.content === "string"
         ? response.content
@@ -214,6 +230,16 @@ When a user describes a project or asks for an estimate:
 5. Do NOT attempt to send the email yourself. The user will review, edit, and send it directly from the form.
 6. After including the EMAIL_FORM marker, do NOT add any text after it.
 
+MEETING / CALL BOOKING FLOW:
+When the user wants to book a call or meeting:
+1. Collect conversationally: preferred date (YYYY-MM-DD), time (HH:mm 24h), email, and a short description of what they want to discuss. Ask for timezone if unclear; default mentally to Europe/Rome.
+2. BEFORE calling schedule_meeting, ASK for confirmation (e.g. "Vuoi che prepari il modulo per inviare la richiesta a Francesco?" / "Shall I prepare the form to send the request to Francesco?")
+3. ONLY after the user confirms, call schedule_meeting with the collected fields.
+4. The tool returns JSON only. You MUST wrap it EXACTLY like this in your reply:
+   <!--MEETING_FORM-->{"date":"YYYY-MM-DD","time":"HH:mm","email":"...","description":"...","timezone":"Europe/Rome"}<!--/MEETING_FORM-->
+   Add a brief intro before the marker. The user will review, edit, and submit from the chat form — you do NOT complete the booking yourself.
+5. After the MEETING_FORM marker, do NOT add any text after it.
+
 Do NOT provide hour estimates or pricing — that's Francesco's job. Focus on collecting complete project details.
 
 Key rules:
@@ -221,7 +247,6 @@ Key rules:
 - Keep answers short and conversational (2-4 sentences max)
 - If the user seems interested, suggest creating a quote request or scheduling a call
 - Use get_stack_info to retrieve Francesco's complete profile when needed
-- For booking meetings, collect date, time, and email step by step before calling schedule_meeting
 - Never invent information about Francesco that isn't in the knowledge base
 - Be honest: if you don't know something, suggest the user ask Francesco directly`;
 
@@ -234,12 +259,21 @@ type ChatRequestBody = {
 
 let agentInstance: ReturnType<typeof createReactAgent> | null = null;
 const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
+const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
 
 type EmailFormPayload = {
   subject: string;
   body: string;
   clientEmail: string;
   clientName: string;
+};
+
+type MeetingFormPayload = {
+  date: string;
+  time: string;
+  email: string;
+  description: string;
+  timezone: string;
 };
 
 function getMessageContent(message: unknown): string | null {
@@ -267,6 +301,17 @@ function buildEmailFormResponse(
 ): string {
   const intro = lang === "en" ? "Here's the draft:" : "Ecco la bozza:";
   return `${intro}\n\n<!--EMAIL_FORM-->${JSON.stringify(payload)}<!--/EMAIL_FORM-->`;
+}
+
+function buildMeetingFormResponse(
+  payload: MeetingFormPayload,
+  lang: ChatRequestBody["lang"]
+): string {
+  const intro =
+    lang === "en"
+      ? "Here's the meeting request form:"
+      : "Ecco il modulo per la richiesta di incontro:";
+  return `${intro}\n\n<!--MEETING_FORM-->${JSON.stringify(payload)}<!--/MEETING_FORM-->`;
 }
 
 function extractEmailFormFallback(
@@ -298,11 +343,58 @@ function extractEmailFormFallback(
   return null;
 }
 
+function extractMeetingFormFallback(
+  messages: unknown[],
+  lang: ChatRequestBody["lang"]
+): string | null {
+  for (let i = messages.length - 1; i >= 0; i -= 1) {
+    const message = messages[i];
+    if (getMessageName(message) !== "schedule_meeting") continue;
+
+    const content = getMessageContent(message);
+    if (!content) continue;
+
+    try {
+      const parsed = JSON.parse(content) as Partial<MeetingFormPayload>;
+      if (
+        typeof parsed.date === "string" &&
+        typeof parsed.time === "string" &&
+        typeof parsed.email === "string" &&
+        typeof parsed.description === "string" &&
+        typeof parsed.timezone === "string"
+      ) {
+        return buildMeetingFormResponse(parsed as MeetingFormPayload, lang);
+      }
+    } catch {
+      // Ignore malformed tool output.
+    }
+  }
+
+  return null;
+}
+
+function applyStructuredFormFallbacks(
+  content: string,
+  messages: unknown[],
+  lang: ChatRequestBody["lang"]
+): string {
+  let out = content;
+  if (!EMAIL_FORM_RE.test(out)) {
+    const emailFb = extractEmailFormFallback(messages, lang);
+    if (emailFb) out = emailFb;
+  }
+  if (!MEETING_FORM_RE.test(out)) {
+    const meetingFb = extractMeetingFormFallback(messages, lang);
+    if (meetingFb) out = meetingFb;
+  }
+  return out;
+}
+
 function getAgent() {
   if (agentInstance) return agentInstance;
 
   const model = new ChatOpenAI({
-    modelName: "gpt-4o",
+    modelName: "gpt-4o-mini",
     temperature: 0.5,
     openAIApiKey: process.env.OPENAI_API_KEY,
   });
@@ -349,19 +441,26 @@ export default async function handler(
       ),
     ];
 
-    const result = await agent.invoke({
-      messages: langchainMessages,
-    });
+    const result = (await withTimeout(
+      agent.invoke({
+        messages: langchainMessages,
+      }),
+      CHAT_INVOKE_TIMEOUT_MS
+    )) as { messages: unknown[] };
 
     const lastMessage = result.messages[result.messages.length - 1];
     const content = getMessageContent(lastMessage) ?? "";
-    const fallbackEmailForm =
-      content.match(EMAIL_FORM_RE) == null
-        ? extractEmailFormFallback(result.messages, body.lang)
-        : null;
+    const responseText = applyStructuredFormFallbacks(
+      content,
+      result.messages,
+      body.lang
+    );
 
-    return res.status(200).json({ response: fallbackEmailForm ?? content });
+    return res.status(200).json({ response: responseText });
   } catch (e) {
+    if (e instanceof Error && e.message === "TIMEOUT") {
+      return res.status(200).json({ code: "TIMEOUT" });
+    }
     console.error("[chat] Agent error:", e);
     return res
       .status(500)

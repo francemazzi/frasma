@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { LucideIcon } from "lucide-react";
 import React from "react";
+import { createPortal } from "react-dom";
+import { validateMeetingFormFields } from "../../lib/meetingFormValidation";
 import { useT, useLang } from "../../lib/i18n/context";
 
 type CalButtonType = "default" | "textual" | "icon";
@@ -31,19 +33,6 @@ type CalState = {
   honeypot: string;
 };
 
-class MeetingFormValidator {
-  private readonly _emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  public validate(state: CalState, t: (key: string) => string): string {
-    if (!state.date) return t("cal.validDate");
-    if (!state.time) return t("cal.validTime");
-    if (!state.email) return t("cal.validEmail");
-    if (!this._emailRegex.test(state.email)) return t("cal.validEmailFormat");
-    if (state.description.length > 2000) return t("cal.validDesc");
-    return "";
-  }
-}
-
 class CssClassBuilder {
   public buildButtonClasses(type: CalButtonType): string {
     if (type === "textual") {
@@ -70,13 +59,14 @@ class MeetingSchedulerModal extends React.PureComponent<
 > {
   public render(): React.ReactNode {
     if (!this.props.isOpen) return null;
+    if (typeof document === "undefined") return null;
 
     const { state, t, lang } = this.props;
     const isBusy = state.status === "submitting";
 
-    return (
+    const modal = (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center px-4"
+        className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-4"
         role="dialog"
         aria-modal="true"
         aria-label={t("cal.title")}
@@ -86,7 +76,7 @@ class MeetingSchedulerModal extends React.PureComponent<
           onClick={this.props.onClose}
         />
 
-        <div className="relative w-full max-w-xl rounded-2xl bg-farm-surface shadow-2xl border border-farm-border">
+        <div className="relative w-full max-w-xl max-h-[90dvh] overflow-y-auto rounded-2xl bg-farm-surface shadow-2xl border border-farm-border">
           <div className="flex items-start justify-between gap-4 p-6 border-b border-farm-border">
             <div>
               <h3 className="text-xl font-semibold text-farm-text">
@@ -233,11 +223,12 @@ class MeetingSchedulerModal extends React.PureComponent<
         </div>
       </div>
     );
+
+    return createPortal(modal, document.body);
   }
 }
 
 class CalInner extends React.PureComponent<CalInternalProps, CalState> {
-  private readonly _validator: MeetingFormValidator = new MeetingFormValidator();
   private readonly _css: CssClassBuilder = new CssClassBuilder();
 
   public constructor(props: CalInternalProps) {
@@ -304,7 +295,15 @@ class CalInner extends React.PureComponent<CalInternalProps, CalState> {
 
   private async submit(): Promise<void> {
     const { t } = this.props;
-    const validationError = this._validator.validate(this.state, t);
+    const validationError = validateMeetingFormFields(
+      {
+        date: this.state.date,
+        time: this.state.time,
+        email: this.state.email,
+        description: this.state.description,
+      },
+      t
+    );
     if (validationError) {
       this.setState({ status: "error", errorMessage: validationError });
       return;
