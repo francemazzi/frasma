@@ -243,6 +243,7 @@ When the user wants to book a call or meeting:
 Do NOT provide hour estimates or pricing — that's Francesco's job. Focus on collecting complete project details.
 
 Key rules:
+- You receive a CURRENT TIME CONTEXT system message on every request. Use it to resolve relative dates and times (e.g. "domani", "next Monday", "tra due giorni") into concrete YYYY-MM-DD and HH:mm for schedule_meeting. Never guess the calendar date without that context.
 - ALWAYS respond in the same language the user writes in (Italian or English)
 - Keep answers short and conversational (2-4 sentences max)
 - If the user seems interested, suggest creating a quote request or scheduling a call
@@ -255,7 +256,82 @@ type ChatMessage = { role: "user" | "assistant"; content: string };
 type ChatRequestBody = {
   messages: ChatMessage[];
   lang?: "it" | "en";
+  /** IANA timezone from the client (e.g. Europe/Rome) for interpreting "tomorrow" etc. */
+  timezone?: string;
 };
+
+function getTodayYmdInTimeZone(timeZone: string): string {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date());
+
+  const y = parts.find((p) => p.type === "year")?.value ?? "1970";
+  const m = parts.find((p) => p.type === "month")?.value ?? "01";
+  const d = parts.find((p) => p.type === "day")?.value ?? "01";
+  return `${y}-${m}-${d}`;
+}
+
+/** Civil calendar +1 day (for the user's "today" string in their TZ). */
+function addCalendarDaysToYmd(ymd: string, days: number): string {
+  const [y, mo, da] = ymd.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, mo - 1, da));
+  dt.setUTCDate(dt.getUTCDate() + days);
+  const y2 = dt.getUTCFullYear();
+  const m2 = String(dt.getUTCMonth() + 1).padStart(2, "0");
+  const d2 = String(dt.getUTCDate()).padStart(2, "0");
+  return `${y2}-${m2}-${d2}`;
+}
+
+function weekdayForYmd(
+  ymd: string,
+  timeZone: string,
+  locale: string
+): string {
+  const [y, mo, da] = ymd.split("-").map(Number);
+  const utcNoon = new Date(Date.UTC(y, mo - 1, da, 12, 0, 0));
+  return new Intl.DateTimeFormat(locale, {
+    timeZone,
+    weekday: "long",
+  }).format(utcNoon);
+}
+
+function buildTemporalContextMessage(
+  lang: ChatRequestBody["lang"],
+  timeZone: string
+): string {
+  const locale = lang === "en" ? "en-GB" : "it-IT";
+  const now = new Date();
+  const todayYmd = getTodayYmdInTimeZone(timeZone);
+  const tomorrowYmd = addCalendarDaysToYmd(todayYmd, 1);
+  const dayAfterYmd = addCalendarDaysToYmd(todayYmd, 2);
+
+  const fullDateTime = new Intl.DateTimeFormat(locale, {
+    timeZone,
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(now);
+
+  const isoInstant = now.toISOString();
+
+  return [
+    "CURRENT TIME CONTEXT (authoritative for relative phrases like tomorrow / domani / next week):",
+    `- Reference timezone: ${timeZone}`,
+    `- Now (ISO UTC): ${isoInstant}`,
+    `- Now (local in reference timezone): ${fullDateTime}`,
+    `- Today's calendar date: ${todayYmd} (${weekdayForYmd(todayYmd, timeZone, locale)})`,
+    `- Tomorrow's calendar date: ${tomorrowYmd} (${weekdayForYmd(tomorrowYmd, timeZone, locale)})`,
+    `- Day after tomorrow: ${dayAfterYmd} (${weekdayForYmd(dayAfterYmd, timeZone, locale)})`,
+    "When the user says relative dates, map them to YYYY-MM-DD in this timezone before calling schedule_meeting.",
+  ].join("\n");
+}
 
 let agentInstance: ReturnType<typeof createReactAgent> | null = null;
 const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
@@ -432,8 +508,14 @@ export default async function handler(
   try {
     const agent = getAgent();
 
+    const timeZone =
+      typeof body.timezone === "string" && body.timezone.trim().length > 0
+        ? body.timezone.trim()
+        : "Europe/Rome";
+
     const langchainMessages = [
       new SystemMessage(SYSTEM_PROMPT),
+      new SystemMessage(buildTemporalContextMessage(body.lang, timeZone)),
       ...body.messages.map((m) =>
         m.role === "user"
           ? new HumanMessage(m.content)

@@ -427,10 +427,19 @@ export default function ChatWidget() {
     setLoading(true);
 
     try {
+      const timezone =
+        typeof Intl !== "undefined"
+          ? Intl.DateTimeFormat().resolvedOptions().timeZone ?? "Europe/Rome"
+          : "Europe/Rome";
+
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages, lang }),
+        body: JSON.stringify({
+          messages: nextMessages,
+          lang,
+          timezone,
+        }),
         signal: AbortSignal.timeout(CHAT_FETCH_TIMEOUT_MS),
       });
 
@@ -507,7 +516,7 @@ export default function ChatWidget() {
         <button
           type="button"
           onClick={handleOpen}
-          className="fixed bottom-6 right-6 z-50 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden w-14 h-14 border-2 border-sage-300 hover:border-sage-400"
+          className="fixed z-50 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden w-14 h-14 border-2 border-sage-300 hover:border-sage-400 bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6"
           aria-label={t("chat.title")}
         >
           <Image
@@ -522,7 +531,7 @@ export default function ChatWidget() {
 
       {/* Chat window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col w-[360px] max-h-[500px] rounded-2xl bg-farm-surface shadow-2xl border border-farm-border overflow-hidden">
+        <div className="fixed z-50 flex min-w-0 flex-col overflow-hidden rounded-2xl border border-farm-border bg-farm-surface shadow-2xl left-3 right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] max-h-[min(31.25rem,calc(100dvh-1.5rem-env(safe-area-inset-bottom,0px)-env(safe-area-inset-top,0px)))] sm:left-auto sm:right-6 sm:bottom-6 sm:w-[360px] sm:max-h-[500px]">
           {/* Header */}
           <div className="flex items-center gap-3 px-4 py-3 bg-sage-500 text-white">
             <Image
@@ -548,7 +557,7 @@ export default function ChatWidget() {
           {/* Messages */}
           <div
             ref={scrollRef}
-            className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[300px] bg-farm-bg"
+            className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto bg-farm-bg p-3 space-y-3 sm:p-4"
           >
             {messages.map((msg, i) => {
               const { text, emailForm, meetingForm } =
@@ -563,10 +572,10 @@ export default function ChatWidget() {
               return (
                 <div
                   key={i}
-                  className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                  className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
+                    className={`max-w-[min(100%,18rem)] sm:max-w-[80%] rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 text-sm leading-relaxed whitespace-pre-wrap break-words ${
                       msg.role === "user"
                         ? "bg-sage-500 text-white rounded-br-md"
                         : "bg-farm-surface text-farm-text border border-farm-border rounded-bl-md"
@@ -603,7 +612,7 @@ export default function ChatWidget() {
           </div>
 
           {/* Input */}
-          <div className="flex items-center gap-2 p-3 border-t border-farm-border bg-farm-surface">
+          <div className="flex min-w-0 items-center gap-2 border-t border-farm-border bg-farm-surface p-3">
             <input
               ref={inputRef}
               type="text"
@@ -612,7 +621,7 @@ export default function ChatWidget() {
               onKeyDown={handleKeyDown}
               placeholder={t("chat.placeholder")}
               disabled={loading}
-              className="flex-1 rounded-full border border-farm-border bg-farm-bg px-4 py-2 text-sm text-farm-text placeholder:text-farm-secondary focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
+              className="min-w-0 flex-1 rounded-full border border-farm-border bg-farm-bg px-3 py-2 text-sm text-farm-text placeholder:text-farm-secondary transition-shadow focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sage-300 sm:px-4"
             />
             <button
               type="button"
