@@ -10,42 +10,42 @@ const projects = [
     name: "Seminai",
     descKey: "projects.seminai",
     url: "https://seminai.tech/",
-    tag: "AI / Agriculture",
+    tagKey: "projects.tag.agriculture",
     tagColor: "bg-sage-100 text-sage-600",
   },
   {
     name: "Formit",
     descKey: "projects.formit",
     url: "https://github.com/francemazzi/formit_local",
-    tag: "Open Source",
+    tagKey: "projects.tag.workflow",
     tagColor: "bg-lavender-100 text-lavender-400",
   },
   {
     name: "Bilanciami",
     descKey: "projects.bilanciami",
     url: "https://github.com/francemazzi/bilanciami",
-    tag: "Finance",
+    tagKey: "projects.tag.documents",
     tagColor: "bg-wheat-100 text-wheat-500",
   },
   {
     name: "Tree Evaluator",
     descKey: "projects.tree",
     url: "https://github.com/francemazzi/tree-evaluator",
-    tag: "Sustainability",
+    tagKey: "projects.tag.sustainability",
     tagColor: "bg-sage-100 text-sage-600",
   },
   {
     name: "Emilio",
     descKey: "projects.emilio",
     url: "https://agronomo.formit.tech/",
-    tag: "LLM Agent",
+    tagKey: "projects.tag.aiAgents",
     tagColor: "bg-terra-100 text-terra-500",
   },
   {
     name: "Rudolf AI",
     descKey: "projects.rudolf",
     url: "https://github.com/francemazzi/rudolf_ai",
-    tag: "LLM Agent",
+    tagKey: "projects.tag.aiAgents",
     tagColor: "bg-terra-100 text-terra-500",
   },
 ];
@@ -93,7 +93,7 @@ export default function Experience() {
                   <span
                     className={`text-xs font-medium px-2.5 py-1 rounded-full ${project.tagColor}`}
                   >
-                    {project.tag}
+                    {t(project.tagKey)}
                   </span>
                   <ArrowUpRight
                     size={18}

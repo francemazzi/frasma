@@ -41,6 +41,24 @@ export default function Intro() {
           {t("hero.desc")}
         </motion.p>
 
+        <motion.p
+          className="text-sm sm:text-base text-farm-text/85 max-w-3xl mx-auto mb-3 font-medium"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+        >
+          {t("hero.focus")}
+        </motion.p>
+
+        <motion.p
+          className="text-sm text-farm-secondary max-w-3xl mx-auto mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.37 }}
+        >
+          {t("hero.brand")}
+        </motion.p>
+
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}

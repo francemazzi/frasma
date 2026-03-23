@@ -1,29 +1,62 @@
 export const en: Record<string, string> = {
   // Meta
   "meta.title": "Francesco Saverio Mazzi - Software Developer",
-  "meta.description": "Software developer specializing in Manufacturing, Agriculture, Food, and LLM agents. Schedule a call today.",
+  "meta.description":
+    "Software developer specializing in Manufacturing, Agriculture, Food, and LLM agents. Schedule a call today.",
 
   // Header
   "header.book": "Book",
   "header.schedule": "Schedule a Call",
+  "header.companion": "with Fra",
 
   // Hero
-  "hero.subtitle": "Software Developer",
+  "hero.subtitle": "From process to production software",
   "hero.title1": "Building intelligent software",
   "hero.title2": "for manufacturing and agriculture.",
-  "hero.desc": "I\u2019m Francesco Saverio Mazzi. I help companies in Manufacturing, Agriculture, and Food build lightweight software solutions powered by AI and LLM agents.",
+  "hero.desc":
+    "I help teams and founders reduce manual work, delays, and errors through lightweight AI-powered software.",
+  "hero.focus":
+    "Focus: agriculture, agri-food, and manufacturing. I work on operational workflows, document handling, and AI agents.",
+  "hero.brand":
+    "Bobby, the Lagotto in the brand, represents the conversational and first-contact support experience.",
   "hero.cta": "Schedule a Free Call",
-  "hero.projects": "View my projects",
+  "hero.projects": "View use cases",
+
+  // How I Work
+  "how.title": "How I Work",
+  "how.subtitle":
+    "A lean three-step process to move quickly from initial idea to software in production.",
+  "how.title1": "Process analysis",
+  "how.desc1":
+    "I map the current workflow, bottlenecks, and available data to set clear priorities and measurable goals.",
+  "how.title2": "Rapid prototype",
+  "how.desc2":
+    "I build a testable first version quickly, so we can validate value with real users before scaling.",
+  "how.title3": "Operational software",
+  "how.desc3":
+    "I harden the solution, integrate it into daily operations, and improve it with incremental iterations.",
 
   // Projects
-  "projects.title": "Projects",
-  "projects.subtitle": "Open source tools and AI-powered applications I\u2019ve built.",
-  "projects.seminai": "AI-powered agronomic tool for compiling the field notebook.",
-  "projects.formit": "Open source tool for managing microbiological analyses.",
-  "projects.bilanciami": "Open source tool for managing deadlines and invoices.",
-  "projects.tree": "Open source tool for evaluating carbon absorption impact from plants.",
-  "projects.emilio": "Expert agronomist agent with dataset from 'Manuale dell'agronomo' v2016.",
-  "projects.rudolf": "Agent integrated with Info Camere for extracting balance sheets and generating reports.",
+  "projects.title": "Use cases and solved problems",
+  "projects.subtitle":
+    "Concrete examples of improved operations using digital workflows, structured documents, and AI agents.",
+  "projects.seminai":
+    "Problem: manual field notebook compilation. Solution: AI agronomic assistant for guided completion and better data traceability.",
+  "projects.formit":
+    "Problem: fragmented microbiological analysis management. Solution: one workflow for collection, review, and historical records.",
+  "projects.bilanciami":
+    "Problem: deadlines and invoices spread across tools. Solution: a single operational system with automated reminders.",
+  "projects.tree":
+    "Problem: no shared model to estimate carbon impact. Solution: a tool that quantifies absorption and supports sustainability decisions.",
+  "projects.emilio":
+    "Problem: slow and inconsistent agronomic answers. Solution: a specialized AI agent trained on verified technical sources.",
+  "projects.rudolf":
+    "Problem: repetitive and slow balance sheet analysis. Solution: InfoCamere-integrated agent for data extraction and report generation.",
+  "projects.tag.agriculture": "Agriculture / AI",
+  "projects.tag.workflow": "Workflow",
+  "projects.tag.documents": "Documents",
+  "projects.tag.sustainability": "Sustainability",
+  "projects.tag.aiAgents": "AI Agents",
 
   // Skills
   "skills.title": "Skills & Technologies",
@@ -34,25 +67,31 @@ export const en: Record<string, string> = {
 
   // About
   "about.title": "About Me",
-  "about.bio": "I\u2019m Francesco Saverio Mazzi, a software developer with 8+ years of experience. I specialize in building lightweight, intelligent software for companies in the manufacturing and agricultural sectors.",
+  "about.bio":
+    "I\u2019m Francesco Saverio Mazzi, a software developer with 8+ years of experience. I specialize in building lightweight, intelligent software for companies in the manufacturing and agricultural sectors.",
   "about.rates": "Rates",
   "about.rateUnit": "/hr",
   "about.rateOutside": "45\u20AC/hr outside core areas of interest",
   "about.rateOnsite": "+10\u20AC/hr for on-site work",
   "about.rateReveal": "Book a call to see rates",
   "about.prop1.title": "Dedicated Partnership",
-  "about.prop1.desc": "I carefully select projects and provide end-to-end support, from strategy through development.",
+  "about.prop1.desc":
+    "I carefully select projects and provide end-to-end support, from strategy through development.",
   "about.prop2.title": "Domain Expertise",
-  "about.prop2.desc": "Deep focus on Manufacturing, Agriculture, Food, and AI/LLM agent integration.",
+  "about.prop2.desc":
+    "Deep focus on Manufacturing, Agriculture, Food, and AI/LLM agent integration.",
   "about.prop3.title": "Lean Methodology",
-  "about.prop3.desc": "Market testing and validation to identify real user needs before building.",
+  "about.prop3.desc":
+    "Market testing and validation to identify real user needs before building.",
   "about.prop4.title": "Full-Stack Capability",
-  "about.prop4.desc": "TypeScript, Python, React, Next.js, FastAPI, Flutter, and more \u2014 from frontend to AI pipelines.",
+  "about.prop4.desc":
+    "TypeScript, Python, React, Next.js, FastAPI, Flutter, and more \u2014 from frontend to AI pipelines.",
 
   // CTA
   "cta.title1": "Let\u2019s build something",
   "cta.title2": "together.",
-  "cta.desc": "Schedule a free introductory call. I\u2019ll get back to you with initial questions to understand your challenges and how I can help.",
+  "cta.desc":
+    "Schedule a free introductory call. I\u2019ll get back to you with initial questions to understand your challenges and how I can help.",
   "cta.button": "Schedule a Call",
 
   // Footer
@@ -83,7 +122,8 @@ export const en: Record<string, string> = {
 
   // Chat widget
   "chat.title": "Chat with Bobby",
-  "chat.welcome": "Hi! I'm Bobby, Francesco's AI assistant. Ask me about his tech stack, project estimates, or book a meeting!",
+  "chat.welcome":
+    "Hi! I'm Bobby, Francesco's AI assistant. Ask me about his tech stack, project estimates, or book a meeting!",
   "chat.placeholder": "Type a message...",
   "chat.send": "Send",
   "chat.close": "Close chat",
@@ -98,7 +138,8 @@ export const en: Record<string, string> = {
   "chat.email.cancel": "Cancel",
   "chat.email.sending": "Sending...",
   "chat.email.sent": "Email sent! Francesco will review it shortly.",
-  "chat.email.error": "Failed to send. Try again or contact Francesco directly.",
+  "chat.email.error":
+    "Failed to send. Try again or contact Francesco directly.",
 
   // Meeting form in chat
   "chat.meeting.title": "Meeting request",

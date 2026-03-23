@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Header from "../components/organism/Header";
 import Intro from "../components/organism/Intro";
+import HowIWork from "../components/organism/HowIWork";
 import WhyContactMe from "../components/organism/WhyContactMe";
 import Experience from "../components/organism/Experience";
 import CallToAction from "../components/organism/CallToAction";
@@ -22,6 +23,7 @@ export default function Home() {
       <main className="min-h-screen bg-farm-bg font-poppins">
         <Header />
         <Intro />
+        <HowIWork />
         <Experience />
         <TechnicalSkillsDetailed />
         <WhyContactMe />

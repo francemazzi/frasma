@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useT, useLang } from "../../lib/i18n/context";
 import Cal from "./Cal";
 
@@ -17,11 +18,23 @@ export default function Header() {
     >
       <nav className="section-farm py-4 flex justify-between items-center">
         <motion.div
-          className="text-xl font-semibold text-farm-text tracking-tight"
+          className="flex items-center gap-3"
           whileHover={{ opacity: 0.7 }}
           transition={{ duration: 0.2 }}
         >
-          Frasma
+          <span className="text-xl font-semibold text-farm-text tracking-tight">
+            Frasma
+          </span>
+          <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-farm-border bg-farm-surface px-2.5 py-1 text-xs text-farm-secondary">
+            <Image
+              src="/bobby_chat_cuffie.png"
+              alt="Bobby the Lagotto"
+              width={18}
+              height={18}
+              className="rounded-full object-cover"
+            />
+            {t("header.companion")}
+          </span>
         </motion.div>
 
         <div className="flex items-center gap-4">
