@@ -32,6 +32,7 @@ export default function Header() {
               width={18}
               height={18}
               className="rounded-full object-cover"
+              priority
             />
             {t("header.companion")}
           </span>

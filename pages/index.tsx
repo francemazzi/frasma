@@ -18,6 +18,7 @@ export default function Home() {
         <title>{t("meta.title")}</title>
         <meta name="description" content={t("meta.description")} />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preload" href="/bobby_chat_cuffie.png" as="image" />
       </Head>
 
       <main className="min-h-screen bg-farm-bg font-poppins">
