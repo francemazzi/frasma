@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useT, useLang } from "../../lib/i18n/context";
 import Cal from "./Cal";
 
@@ -24,17 +23,6 @@ export default function Header() {
         >
           <span className="text-xl font-semibold text-farm-text tracking-tight">
             Frasma
-          </span>
-          <span className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-farm-border bg-farm-surface px-2.5 py-1 text-xs text-farm-secondary">
-            <Image
-              src="/bobby_chat_cuffie.png"
-              alt="Bobby the Lagotto"
-              width={18}
-              height={18}
-              className="rounded-full object-cover"
-              priority
-            />
-            {t("header.companion")}
           </span>
         </motion.div>
 
