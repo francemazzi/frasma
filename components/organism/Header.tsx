@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useT, useLang } from "../../lib/i18n/context";
 import Cal from "./Cal";
 
@@ -9,22 +8,15 @@ export default function Header() {
   const { lang, setLang } = useLang();
 
   return (
-    <motion.header
+    <header
       className="sticky top-0 z-50 backdrop-blur-xl bg-farm-bg/80 border-b border-farm-border"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <nav className="section-farm py-4 flex justify-between items-center">
-        <motion.div
-          className="flex items-center gap-3"
-          whileHover={{ opacity: 0.7 }}
-          transition={{ duration: 0.2 }}
-        >
+        <div className="flex items-center gap-3">
           <span className="text-xl font-semibold text-farm-text tracking-tight">
             Frasma
           </span>
-        </motion.div>
+        </div>
 
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1 text-sm">
@@ -61,6 +53,6 @@ export default function Header() {
           </div>
         </div>
       </nav>
-    </motion.header>
+    </header>
   );
 }

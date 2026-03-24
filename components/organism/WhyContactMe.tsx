@@ -28,12 +28,12 @@ export default function WhyContactMe() {
           <div className="flex-shrink-0">
             <div className="relative w-40 h-40 rounded-3xl overflow-hidden shadow-lg">
               <Image
-                src="/profilo.jpg"
+                src="/profilo_home.jpg"
                 alt="Francesco Saverio Mazzi"
                 fill
-                sizes="160px"
+                sizes="(max-width: 640px) 112px, 160px"
+                quality={68}
                 className="object-cover"
-                priority
               />
             </div>
           </div>

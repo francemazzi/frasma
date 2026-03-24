@@ -520,10 +520,12 @@ export default function ChatWidget() {
           aria-label={t("chat.title")}
         >
           <Image
-            src="/bobby_chat_cuffie.png"
+            src="/bobby_chat_cuffie_chat.png"
             alt="Bobby"
             width={56}
             height={56}
+            sizes="56px"
+            quality={70}
             className="object-cover"
           />
         </button>
@@ -535,10 +537,12 @@ export default function ChatWidget() {
           {/* Header */}
           <div className="flex items-center gap-3 px-4 py-3 bg-sage-500 text-white">
             <Image
-              src="/bobby_chat_cuffie.png"
+              src="/bobby_chat_cuffie_chat.png"
               alt="Bobby"
               width={32}
               height={32}
+              sizes="32px"
+              quality={70}
               className="rounded-full object-cover"
             />
             <span className="font-semibold text-sm flex-1">
