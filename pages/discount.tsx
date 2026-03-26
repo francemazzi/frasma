@@ -33,6 +33,20 @@ export default function DiscountPage() {
           <p className="mt-4 text-base sm:text-lg leading-relaxed text-farm-secondary">
             {t("discount.description")}
           </p>
+          <div className="mt-6 rounded-2xl border border-farm-border bg-farm-bg p-5 text-left">
+            <h2 className="text-base font-semibold text-farm-text sm:text-lg">
+              {t("discount.bringTitle")}
+            </h2>
+            <ul className="mt-3 space-y-2 text-sm sm:text-base text-farm-secondary">
+              <li>- {t("discount.bringItem1")}</li>
+              <li>- {t("discount.bringItem2")}</li>
+              <li>- {t("discount.bringItem3")}</li>
+              <li>- {t("discount.bringItem4")}</li>
+            </ul>
+            <p className="mt-4 text-sm text-farm-secondary">
+              {t("discount.callNote")}
+            </p>
+          </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <button

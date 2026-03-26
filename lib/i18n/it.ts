@@ -146,13 +146,24 @@ export const it: Record<string, string> = {
   "chat.meeting.title": "Richiesta incontro",
 
   // Discount page
-  "discount.metaTitle": "Consulenza gratuita - Francesco Saverio Mazzi",
+  "discount.metaTitle": "Grazie per la richiesta - Francesco Saverio Mazzi",
   "discount.metaDescription":
-    "Hai ottenuto 1 ora gratuita di consulenza. Scopri come usarla al meglio.",
-  "discount.badge": "Promo attiva",
-  "discount.title": "Hai 1h gratuita di consulenza",
+    "Pagina di ringraziamento con le informazioni utili da portare alla call.",
+  "discount.badge": "Richiesta ricevuta",
+  "discount.title": "Grazie, ci sentiamo in call",
   "discount.description":
-    "Grazie per il contatto. Usiamo questa ora per chiarire obiettivi, priorita operative e prossimi step per il tuo progetto.",
+    "Per rendere la call concreta e utile, prepara questi elementi essenziali.",
+  "discount.bringTitle": "Cosa portare alla call",
+  "discount.bringItem1":
+    "Il flusso operativo che vuoi ottimizzare oggi (anche descritto in modo semplice).",
+  "discount.bringItem2":
+    "2-3 casi d'uso reali su cui vuoi ottenere un miglioramento rapido.",
+  "discount.bringItem3":
+    "Un esempio di dati o file (CSV, Excel, report, documenti) che usate gia.",
+  "discount.bringItem4":
+    "Vincoli pratici: tempi, persone coinvolte, strumenti gia in uso.",
+  "discount.callNote":
+    "Non serve preparare slide: basta materiale reale, anche incompleto.",
   "discount.backPrevious": "Torna alla pagina precedente",
   "discount.backHome": "Torna alla Home",
 };

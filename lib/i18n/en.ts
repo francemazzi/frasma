@@ -145,13 +145,24 @@ export const en: Record<string, string> = {
   "chat.meeting.title": "Meeting request",
 
   // Discount page
-  "discount.metaTitle": "Free consultation - Francesco Saverio Mazzi",
+  "discount.metaTitle": "Thanks for your request - Francesco Saverio Mazzi",
   "discount.metaDescription":
-    "You unlocked 1 free hour of consulting. Learn how to make the most of it.",
-  "discount.badge": "Active offer",
-  "discount.title": "You have 1 free hour of consulting",
+    "Thank-you page with practical information to bring to the call.",
+  "discount.badge": "Request received",
+  "discount.title": "Thanks, see you on the call",
   "discount.description":
-    "Thanks for reaching out. We can use this hour to clarify goals, operational priorities, and next steps for your project.",
+    "To keep the call practical and useful, please prepare these key items.",
+  "discount.bringTitle": "What to bring to the call",
+  "discount.bringItem1":
+    "The current workflow you want to optimize (a simple description is enough).",
+  "discount.bringItem2":
+    "2-3 real use cases where you want a quick and concrete improvement.",
+  "discount.bringItem3":
+    "A sample of your existing data or files (CSV, Excel, reports, documents).",
+  "discount.bringItem4":
+    "Practical constraints: timeline, people involved, tools already in use.",
+  "discount.callNote":
+    "No slides needed: real material, even if incomplete, is perfect.",
   "discount.backPrevious": "Back to previous page",
   "discount.backHome": "Back to Home",
 };
