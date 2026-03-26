@@ -1,22 +1,40 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import {
+  FileSpreadsheet,
+  ClipboardList,
+  FolderSearch,
+  RefreshCw,
+  Calculator,
+  PackageCheck,
+  GitBranch,
+  ShoppingCart,
+  LayoutDashboard,
+  Plug,
+  ClipboardX,
+  Unlink,
+  ListChecks,
+} from "lucide-react";
 import Cal from "../components/organism/Cal";
+import ProblemCard from "../components/organism/ProblemCard";
+import AreaCard from "../components/organism/AreaCard";
+import CaseCard from "../components/organism/CaseCard";
 
-const problemi: { key: string; node: React.ReactNode }[] = [
-  { key: "excel", node: <><strong>Excel come ponte</strong> tra ufficio tecnico, commerciale e produzione.</> },
-  { key: "preventivi", node: <>Preventivi con troppi <strong>passaggi manuali</strong>.</> },
-  { key: "dati", node: <>Dati sparsi tra <strong>mail, PDF e cartelle condivise</strong>.</> },
-  { key: "ripetitive", node: <><strong>Attivita ripetitive</strong> che rallentano il flusso.</> },
+const problemi = [
+  { key: "excel", icon: FileSpreadsheet, node: <><strong>Excel come ponte</strong> tra ufficio tecnico, commerciale e produzione.</> },
+  { key: "preventivi", icon: ClipboardList, node: <>Preventivi con troppi <strong>passaggi manuali</strong>.</> },
+  { key: "dati", icon: FolderSearch, node: <>Dati sparsi tra <strong>mail, PDF e cartelle condivise</strong>.</> },
+  { key: "ripetitive", icon: RefreshCw, node: <><strong>Attivita ripetitive</strong> che rallentano il flusso.</> },
 ];
 
 const areeIntervento = [
-  "Preventivazione",
-  "Gestione ordini e commesse",
-  "Workflow tecnico-produttivi",
-  "Richieste acquisto e fornitori",
-  "Dashboard operative",
-  "Integrazioni con software esistenti",
+  { label: "Preventivazione", icon: Calculator },
+  { label: "Gestione ordini e commesse", icon: PackageCheck },
+  { label: "Workflow tecnico-produttivi", icon: GitBranch },
+  { label: "Richieste acquisto e fornitori", icon: ShoppingCart },
+  { label: "Dashboard operative", icon: LayoutDashboard },
+  { label: "Integrazioni con software esistenti", icon: Plug },
 ];
 
 const benefici: { key: string; node: React.ReactNode }[] = [
@@ -28,18 +46,21 @@ const benefici: { key: string; node: React.ReactNode }[] = [
 
 const casiTipici = [
   {
+    icon: ClipboardX,
     titolo: "Preventivi con troppo lavoro manuale",
     testo: (
       <>Ogni offerta richiede <strong>copia-incolla</strong>, verifiche e <strong>passaggi tra piu persone</strong>.</>
     ),
   },
   {
+    icon: Unlink,
     titolo: "Flussi spezzati tra reparti",
     testo: (
       <>Il gestionale c&apos;e, ma il <strong>processo reale</strong> si regge su <strong>Excel e abitudini interne</strong>.</>
     ),
   },
   {
+    icon: ListChecks,
     titolo: "Commesse e task poco tracciate",
     testo: (
       <>Manca uno <strong>strumento semplice</strong> per seguire <strong>avanzamento e priorita</strong>.</>
@@ -162,11 +183,11 @@ export default function ManifatturaPage() {
           <h2 className="text-2xl font-semibold sm:text-3xl">
             Situazioni che riconosci?
           </h2>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 text-farm-secondary">
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
             {problemi.map((item) => (
-              <li key={item.key} className="rounded-lg bg-farm-panel px-4 py-3 leading-relaxed">
+              <ProblemCard key={item.key} icon={item.icon}>
                 {item.node}
-              </li>
+              </ProblemCard>
             ))}
           </ul>
         </section>
@@ -183,12 +204,7 @@ export default function ManifatturaPage() {
           <h3 className="mt-10 text-lg font-semibold">Aree di intervento</h3>
           <div className="mt-4 grid gap-3 grid-cols-2 lg:grid-cols-3">
             {areeIntervento.map((area) => (
-              <div
-                key={area}
-                className="rounded-lg border border-farm-border bg-farm-surface px-4 py-3 text-sm font-medium"
-              >
-                {area}
-              </div>
+              <AreaCard key={area.label} icon={area.icon} label={area.label} />
             ))}
           </div>
         </section>
@@ -217,15 +233,12 @@ export default function ManifatturaPage() {
           </h2>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {casiTipici.map((caso) => (
-              <article
+              <CaseCard
                 key={caso.titolo}
-                className="rounded-xl border border-farm-border bg-farm-surface p-5"
-              >
-                <h3 className="text-lg font-semibold">{caso.titolo}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-farm-secondary">
-                  {caso.testo}
-                </p>
-              </article>
+                icon={caso.icon}
+                titolo={caso.titolo}
+                testo={caso.testo}
+              />
             ))}
           </div>
         </section>

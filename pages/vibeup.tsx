@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Cal from "../components/organism/Cal";
 import { Laptop, Smartphone, AlertCircle, Hourglass, Bot, Rocket, Lightbulb, MapPin } from "lucide-react";
@@ -551,6 +552,15 @@ export default function VibeUpPage() {
               <span className="inline-block text-xs font-semibold tracking-[0.15em] text-sage-500 border border-sage/30 px-3 py-1 rounded mb-5">
                 CHI SONO
               </span>
+              <div className="relative mx-auto h-52 w-52 overflow-hidden rounded-2xl border border-farm-border bg-farm-panel mb-6 lg:mx-0">
+                <Image
+                  src="/profilo_home.jpg"
+                  alt="Francesco Mazzi - sviluppatore full-stack"
+                  fill
+                  sizes="200px"
+                  className="object-cover"
+                />
+              </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold leading-tight tracking-tight mb-6">
                 Francesco Mazzi
                 <br />
