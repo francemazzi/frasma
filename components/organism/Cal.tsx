@@ -32,6 +32,7 @@ type CalState = {
   errorMessage: string;
   honeypot: string;
 };
+const DISCOUNT_PATH = "/discount";
 
 class CssClassBuilder {
   public buildButtonClasses(type: CalButtonType): string {
@@ -338,6 +339,9 @@ class CalInner extends React.PureComponent<CalInternalProps, CalState> {
       }
 
       this.setState({ status: "success" });
+      if (typeof window !== "undefined") {
+        window.location.assign(DISCOUNT_PATH);
+      }
     } catch {
       this.setState({
         status: "error",

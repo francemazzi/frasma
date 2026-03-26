@@ -144,4 +144,15 @@ export const it: Record<string, string> = {
 
   // Meeting form in chat
   "chat.meeting.title": "Richiesta incontro",
+
+  // Discount page
+  "discount.metaTitle": "Consulenza gratuita - Francesco Saverio Mazzi",
+  "discount.metaDescription":
+    "Hai ottenuto 1 ora gratuita di consulenza. Scopri come usarla al meglio.",
+  "discount.badge": "Promo attiva",
+  "discount.title": "Hai 1h gratuita di consulenza",
+  "discount.description":
+    "Grazie per il contatto. Usiamo questa ora per chiarire obiettivi, priorita operative e prossimi step per il tuo progetto.",
+  "discount.backPrevious": "Torna alla pagina precedente",
+  "discount.backHome": "Torna alla Home",
 };

@@ -143,4 +143,15 @@ export const en: Record<string, string> = {
 
   // Meeting form in chat
   "chat.meeting.title": "Meeting request",
+
+  // Discount page
+  "discount.metaTitle": "Free consultation - Francesco Saverio Mazzi",
+  "discount.metaDescription":
+    "You unlocked 1 free hour of consulting. Learn how to make the most of it.",
+  "discount.badge": "Active offer",
+  "discount.title": "You have 1 free hour of consulting",
+  "discount.description":
+    "Thanks for reaching out. We can use this hour to clarify goals, operational priorities, and next steps for your project.",
+  "discount.backPrevious": "Back to previous page",
+  "discount.backHome": "Back to Home",
 };

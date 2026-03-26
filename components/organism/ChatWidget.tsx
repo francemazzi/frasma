@@ -23,6 +23,13 @@ type MeetingFormData = {
 
 const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
 const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
+const DISCOUNT_PATH = "/discount";
+
+function redirectToDiscount(): void {
+  if (typeof window !== "undefined") {
+    window.location.assign(DISCOUNT_PATH);
+  }
+}
 
 function parseAssistantMessage(content: string): {
   text: string;
@@ -93,6 +100,7 @@ function InlineEmailForm({
       if (res.ok) {
         setSent(true);
         onSent();
+        redirectToDiscount();
       } else {
         setError(true);
       }
@@ -249,6 +257,7 @@ function InlineMeetingForm({
 
       setSent(true);
       onSent();
+      redirectToDiscount();
     } catch {
       setErrorMessage(t("cal.networkError"));
     } finally {
