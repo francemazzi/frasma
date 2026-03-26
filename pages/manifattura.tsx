@@ -4,64 +4,53 @@ import { useRouter } from "next/router";
 import Cal from "../components/organism/Cal";
 
 const problemi: { key: string; node: React.ReactNode }[] = [
-  { key: "excel", node: <><strong>Excel usati come ponte</strong> tra ufficio tecnico, commerciale e produzione.</> },
-  { key: "preventivi", node: <>Preventivi costruiti con <strong>passaggi manuali</strong>.</> },
-  { key: "ordini", node: <>Ordini e commesse gestiti su <strong>strumenti diversi</strong>.</> },
-  { key: "dati", node: <>Dati sparsi tra <strong>mail, PDF, cartelle condivise</strong> e software non integrati.</> },
-  { key: "ripetitive", node: <><strong>Attivita ripetitive</strong> che rallentano il flusso e aumentano il <strong>rischio di errore</strong>.</> },
+  { key: "excel", node: <><strong>Excel come ponte</strong> tra ufficio tecnico, commerciale e produzione.</> },
+  { key: "preventivi", node: <>Preventivi con troppi <strong>passaggi manuali</strong>.</> },
+  { key: "dati", node: <>Dati sparsi tra <strong>mail, PDF e cartelle condivise</strong>.</> },
+  { key: "ripetitive", node: <><strong>Attivita ripetitive</strong> che rallentano il flusso.</> },
 ];
 
 const areeIntervento = [
   "Preventivazione",
-  "Gestione ordini",
+  "Gestione ordini e commesse",
   "Workflow tecnico-produttivi",
-  "Commesse e task interni",
   "Richieste acquisto e fornitori",
-  "Documentazione tecnica e commerciale",
   "Dashboard operative",
-  "Integrazioni con software gia presenti",
+  "Integrazioni con software esistenti",
 ];
 
 const benefici: { key: string; node: React.ReactNode }[] = [
-  { key: "manuali", node: <>Ridurre <strong>attivita manuali</strong> e doppio inserimento dati.</> },
-  { key: "centralizzare", node: <><strong>Centralizzare informazioni</strong> oggi sparse.</> },
-  { key: "velocizzare", node: <><strong>Velocizzare passaggi</strong> tra reparti.</> },
-  { key: "errori", node: <>Abbassare <strong>errori</strong> e <strong>colli di bottiglia</strong>.</> },
-  { key: "vista", node: <>Avere una <strong>vista piu chiara</strong> sullo stato del lavoro.</> },
-  { key: "processo", node: <>Costruire un processo <strong>meno fragile</strong> e meno dipendente da singoli operatori.</> },
+  { key: "manuali", node: <>Meno <strong>attivita manuali</strong> e doppi inserimenti.</> },
+  { key: "velocizzare", node: <><strong>Passaggi piu fluidi</strong> tra reparti.</> },
+  { key: "errori", node: <>Meno <strong>errori</strong> e <strong>colli di bottiglia</strong>.</> },
+  { key: "vista", node: <><strong>Vista chiara</strong> sullo stato del lavoro.</> },
 ];
 
 const casiTipici = [
   {
-    titolo: "Preventivi e ordini gestiti con troppo lavoro manuale",
+    titolo: "Preventivi con troppo lavoro manuale",
     testo: (
-      <>Quando ogni offerta richiede <strong>copia-incolla</strong>, verifiche continue e <strong>passaggi tra piu persone</strong>.</>
+      <>Ogni offerta richiede <strong>copia-incolla</strong>, verifiche e <strong>passaggi tra piu persone</strong>.</>
     ),
   },
   {
-    titolo: "Flussi spezzati tra ufficio tecnico, commerciale e produzione",
+    titolo: "Flussi spezzati tra reparti",
     testo: (
-      <>Quando il gestionale esiste, ma il <strong>processo reale</strong> si regge su <strong>Excel, file condivisi</strong> e abitudini interne.</>
+      <>Il gestionale c&apos;e, ma il <strong>processo reale</strong> si regge su <strong>Excel e abitudini interne</strong>.</>
     ),
   },
   {
-    titolo: "Commesse, task e richieste interne poco tracciate",
+    titolo: "Commesse e task poco tracciate",
     testo: (
-      <>Quando manca uno <strong>strumento semplice</strong> per seguire <strong>avanzamento, responsabilita e priorita</strong>.</>
-    ),
-  },
-  {
-    titolo: "Documentazione tecnica o commerciale dispersa",
-    testo: (
-      <>Quando le informazioni servono, ma sono <strong>distribuite tra mail, PDF, cartelle</strong> e software diversi.</>
+      <>Manca uno <strong>strumento semplice</strong> per seguire <strong>avanzamento e priorita</strong>.</>
     ),
   },
 ];
 
 const proof: { key: string; node: React.ReactNode }[] = [
-  { key: "task", node: <><strong>Centralizzazione</strong> di task, preventivazione e richieste fornitori in un&apos;<strong>unica piattaforma operativa</strong>.</> },
-  { key: "flusso", node: <><strong>Automazione</strong> del flusso ordine &rarr; distinta &rarr; parti &rarr; preventivo in contesti produttivi.</> },
-  { key: "misura", node: <>Strumenti <strong>su misura</strong> per unificare workflow oggi dispersi tra piu sistemi.</> },
+  { key: "task", node: <><strong>Centralizzazione</strong> di task e preventivazione in un&apos;<strong>unica piattaforma</strong>.</> },
+  { key: "flusso", node: <><strong>Automazione</strong> del flusso ordine &rarr; distinta &rarr; preventivo.</> },
+  { key: "misura", node: <>Workflow <strong>su misura</strong> per unificare sistemi oggi dispersi.</> },
 ];
 
 const progetti = [
@@ -138,22 +127,20 @@ export default function ManifatturaPage() {
 
       <main className="min-h-screen bg-farm-bg text-farm-text">
         {/* ── Hero ── */}
-        <section className="section-farm pt-14 pb-16 sm:pt-20 sm:pb-20">
-          <p className="mb-4 inline-flex rounded-full border border-farm-border bg-farm-surface px-4 py-2 text-sm font-medium text-farm-secondary">
-            Quando il gestionale non basta e Excel sta diventando un problema
+        <section className="section-farm pt-16 pb-20 sm:pt-24 sm:pb-28">
+          <p className="mb-5 inline-flex rounded-full border border-farm-border bg-farm-surface px-4 py-2 text-sm font-medium text-farm-secondary">
+            Quando il gestionale non basta
           </p>
-          <h1 className="max-w-4xl text-3xl font-bold leading-tight sm:text-5xl">
-            Software operativo per aziende manifatturiere che vogliono{" "}
-            <span className="text-sage">ridurre passaggi manuali, errori e tempi morti</span>
+          <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-5xl">
+            Meno passaggi manuali,{" "}
+            <span className="text-sage">piu controllo sui processi</span>
           </h1>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-farm-secondary sm:text-lg">
-            Aiuto imprese manifatturiere e tecniche a <strong>unificare flussi</strong> oggi
-            distribuiti tra gestionale, file Excel, documenti e attivita
-            manuali, creando <strong>strumenti software leggeri, su misura</strong> e realmente
-            utili nel lavoro quotidiano.
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-farm-secondary sm:text-lg">
+            Creo <strong>software su misura</strong> per aziende manifatturiere che vogliono
+            unificare flussi oggi sparsi tra gestionale, Excel e attivita manuali.
           </p>
-          <p className="mt-4 max-w-3xl text-base font-medium text-farm-text sm:text-lg">
-            Sono Francesco Saverio, sviluppatore freelance &mdash; lavoro esclusivamente con aziende manifatturiere.
+          <p className="mt-3 max-w-2xl text-base font-medium text-farm-text sm:text-lg">
+            Francesco Saverio &mdash; sviluppatore freelance per la manifattura.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Cal
@@ -171,36 +158,30 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── Problemi ── */}
-        <section className="section-farm py-12 sm:py-16">
+        <section className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">
-            Quando il processo reale non vive nel gestionale
+            Situazioni che riconosci?
           </h2>
-          <ul className="mt-6 grid gap-3 text-farm-secondary">
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2 text-farm-secondary">
             {problemi.map((item) => (
               <li key={item.key} className="rounded-lg bg-farm-panel px-4 py-3 leading-relaxed">
                 {item.node}
               </li>
             ))}
           </ul>
-          <p className="mt-6 max-w-4xl text-farm-secondary leading-relaxed">
-            Il risultato e sempre lo stesso: <strong>piu tempo perso</strong>, meno visibilita e
-            processi che dipendono troppo dalle persone che sanno dove trovare
-            le cose.
-          </p>
         </section>
 
         {/* ── Cosa faccio ── */}
-        <section className="section-farm py-12 sm:py-16">
+        <section className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">
-            Creo software verticale per far funzionare meglio i processi interni
+            Software verticale, pensato sul tuo flusso
           </h2>
-          <p className="mt-5 max-w-4xl text-farm-secondary leading-relaxed">
-            Non propongo software generici da adattare a forza. Progetto{" "}
-            <strong>strumenti operativi</strong> pensati sul <strong>flusso reale</strong> dell&apos;azienda, per
-            aiutare i team a lavorare in modo piu ordinato, veloce e tracciabile.
+          <p className="mt-5 max-w-3xl text-farm-secondary leading-relaxed">
+            Niente software generici. Progetto <strong>strumenti operativi</strong> sul{" "}
+            <strong>flusso reale</strong> dell&apos;azienda.
           </p>
-          <h3 className="mt-8 text-lg font-semibold">Posso intervenire su aree come:</h3>
-          <div className="mt-4 grid gap-3 grid-cols-2 lg:grid-cols-4">
+          <h3 className="mt-10 text-lg font-semibold">Aree di intervento</h3>
+          <div className="mt-4 grid gap-3 grid-cols-2 lg:grid-cols-3">
             {areeIntervento.map((area) => (
               <div
                 key={area}
@@ -213,11 +194,11 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── Benefici ── */}
-        <section className="section-farm py-12 sm:py-16">
+        <section className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">
-            Cosa migliora in pratica
+            Cosa cambia in pratica
           </h2>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
             {benefici.map((item) => (
               <li
                 key={item.key}
@@ -230,11 +211,11 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── Casi d'uso ── */}
-        <section id="casi-uso" className="section-farm py-12 sm:py-16">
+        <section id="casi-uso" className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">
-            Situazioni in cui intervengo piu spesso
+            Casi d&apos;uso frequenti
           </h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
             {casiTipici.map((caso) => (
               <article
                 key={caso.titolo}
@@ -250,9 +231,9 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── Come lavoro ── */}
-        <section className="section-farm py-12 sm:py-16">
+        <section className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">Come lavoro</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
             <article className="rounded-xl border border-farm-border bg-farm-surface p-5">
               <p className="text-sm font-semibold text-sage">1. Analisi del processo</p>
               <p className="mt-2 text-sm text-farm-secondary leading-relaxed">
@@ -276,24 +257,10 @@ export default function ManifatturaPage() {
           </div>
         </section>
 
-        {/* ── Non vendo digitalizzazione in astratto ── */}
-        <section className="section-farm py-12 sm:py-16">
-          <h2 className="text-2xl font-semibold sm:text-3xl">
-            Non vendo digitalizzazione in astratto
-          </h2>
-          <p className="mt-5 max-w-4xl text-farm-secondary leading-relaxed">
-            Lavoro su <strong>problemi operativi concreti</strong>. Il focus non e aggiungere un
-            altro software da gestire, ma costruire uno strumento che aiuti
-            davvero a <strong>far scorrere meglio il lavoro</strong>, ridurre attriti tra
-            reparti, <strong>semplificare attivita ripetitive</strong> e dare piu controllo al
-            team.
-          </p>
-        </section>
-
         {/* ── Proof ── */}
-        <section className="section-farm py-12 sm:py-16">
+        <section className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">
-            Esempi di problemi gia affrontati
+            Problemi gia affrontati
           </h2>
           <ul className="mt-6 grid gap-3">
             {proof.map((item) => (
@@ -308,35 +275,33 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── Chi sono ── */}
-        <section className="section-farm py-12 sm:py-16">
-          <div className="grid items-center gap-8 lg:grid-cols-[240px_minmax(0,1fr)]">
-            <div className="relative mx-auto h-60 w-60 overflow-hidden rounded-2xl border border-farm-border bg-farm-panel lg:mx-0">
+        <section className="section-farm py-16 sm:py-20">
+          <div className="grid items-center gap-10 lg:grid-cols-[200px_minmax(0,1fr)]">
+            <div className="relative mx-auto h-52 w-52 overflow-hidden rounded-2xl border border-farm-border bg-farm-panel lg:mx-0">
               <Image
                 src="/profilo_home.jpg"
                 alt="Francesco Saverio - consulente software per manifattura"
                 fill
-                sizes="240px"
+                sizes="200px"
                 className="object-cover"
               />
             </div>
             <div>
               <h2 className="text-2xl font-semibold sm:text-3xl">Chi sono</h2>
-              <p className="mt-4 text-farm-secondary leading-relaxed">
-                Mi chiamo <strong>Francesco Saverio</strong>, ho <strong>11 anni di esperienza</strong> nello
-                sviluppo software e una <strong>Laurea Magistrale in Scienze e Tecnologie Agrarie</strong>.
-                Lavoro come freelance con aziende manifatturiere e tecniche che vogliono rendere
-                piu fluidi i processi interni. Progetto <strong>soluzioni snelle, concrete</strong> e orientate
-                all&apos;operativita quotidiana, partendo sempre dal <strong>flusso reale</strong> di
-                chi usa il sistema.
+              <p className="mt-4 max-w-2xl text-farm-secondary leading-relaxed">
+                <strong>Francesco Saverio</strong> &mdash; <strong>11 anni</strong> nello sviluppo software,
+                Laurea Magistrale in Scienze e Tecnologie Agrarie. Lavoro come freelance
+                con aziende manifatturiere, progettando <strong>soluzioni snelle</strong> partendo
+                dal <strong>flusso reale</strong> di chi usa il sistema.
               </p>
             </div>
           </div>
         </section>
 
         {/* ── Progetti ── */}
-        <section className="section-farm py-12 sm:py-16">
-          <h2 className="text-2xl font-semibold sm:text-3xl">I miei progetti</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <section className="section-farm py-16 sm:py-20">
+          <h2 className="text-2xl font-semibold sm:text-3xl">Progetti</h2>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
             {progetti.map((progetto) => (
               <article
                 key={progetto.titolo}
@@ -358,20 +323,16 @@ export default function ManifatturaPage() {
 
         {/* ── CTA finale ── */}
         <section id="contatti" className="section-farm py-20 sm:py-28">
-          <div className="rounded-2xl border-2 border-sage/30 bg-farm-panel p-8 text-center sm:p-12">
+          <div className="rounded-2xl border-2 border-sage/30 bg-farm-panel p-8 text-center sm:p-14">
             <h2 className="text-2xl font-semibold sm:text-3xl">
-              Hai un processo che oggi sopravvive tra gestionale, Excel e
-              passaggi manuali?
+              Processi che sopravvivono tra Excel e passaggi manuali?
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-farm-secondary leading-relaxed">
-              Prenota una <strong>call di 30 minuti</strong>: analizziamo il tuo flusso e capiamo
-              se ha senso intervenire con uno <strong>strumento software dedicato</strong>.
+            <p className="mx-auto mt-5 max-w-xl text-farm-secondary leading-relaxed">
+              <strong>Call di 30 minuti</strong>: analizziamo il tuo flusso e capiamo
+              se conviene intervenire.
             </p>
-            <p className="mx-auto mt-2 max-w-2xl text-sm font-medium text-farm-secondary">
+            <p className="mx-auto mt-2 max-w-xl text-sm font-medium text-farm-secondary">
               {activeCta.finalMicrocopy}
-            </p>
-            <p className="mx-auto mt-3 max-w-2xl text-xs text-farm-secondary">
-              Esempio reale: aiutata una realta manifatturiera a <strong>ridurre i tempi di preventivazione da 2 giorni a 20 minuti</strong>.
             </p>
             <div className="mt-8 flex justify-center">
               <Cal
