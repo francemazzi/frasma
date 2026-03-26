@@ -77,8 +77,8 @@ class MeetingSchedulerModal extends React.PureComponent<
           onClick={this.props.onClose}
         />
 
-        <div className="relative w-full max-w-xl max-h-[90dvh] overflow-y-auto rounded-2xl bg-farm-surface shadow-2xl border border-farm-border">
-          <div className="flex items-start justify-between gap-4 p-6 border-b border-farm-border">
+        <div className="relative w-full max-w-xl max-h-[90dvh] overflow-y-auto rounded-2xl bg-farm-surface shadow-2xl border border-farm-border mx-2 sm:mx-0">
+          <div className="flex items-start justify-between gap-4 p-4 sm:p-6 border-b border-farm-border">
             <div>
               <h3 className="text-xl font-semibold text-farm-text">
                 {t("cal.title")}
@@ -99,7 +99,7 @@ class MeetingSchedulerModal extends React.PureComponent<
           </div>
 
           <form
-            className="p-6 space-y-4"
+            className="p-4 sm:p-6 space-y-4"
             lang={lang}
             onSubmit={(e) => {
               e.preventDefault();
