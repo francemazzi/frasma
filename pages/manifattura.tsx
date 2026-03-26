@@ -155,11 +155,15 @@ export default function ManifatturaPage() {
           <p className="mt-4 max-w-3xl text-base font-medium text-farm-text sm:text-lg">
             Sono Francesco Saverio, sviluppatore freelance &mdash; lavoro esclusivamente con aziende manifatturiere.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Cal
+              textButton={activeCta.finalPrimary}
+              buttonType="default"
+            />
             <a
               href="#casi-uso"
               data-cta-id="hero-secondary-cases"
-              className="inline-flex rounded-xl border border-farm-border bg-farm-surface px-6 py-3 text-sm font-semibold text-farm-text transition hover:border-sage hover:text-sage"
+              className="rounded-xl border border-farm-border bg-farm-surface px-6 py-3 text-sm font-semibold text-farm-text transition hover:border-sage hover:text-sage"
             >
               Vedi i casi d&apos;uso &darr;
             </a>
