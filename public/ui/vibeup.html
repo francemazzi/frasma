@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Up — Francesco Mazzi · Frasma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bricolage+Grotesque:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080b0f;
+    --surface: #0e1318;
+    --surface2: #141a22;
+    --border: rgba(255,255,255,0.07);
+    --neon: #00e5a0;
+    --neon2: #4dffcf;
+    --accent: #ff5f3d;
+    --text: #e8edf2;
+    --muted: #6b7a8d;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Bricolage Grotesque', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(8,11,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--neon);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo span { color: var(--muted); }
+  .nav-cta {
+    background: var(--neon);
+    color: #080b0f;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--neon2); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute;
+    bottom: -30%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,95,61,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; max-width: 900px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--neon);
+    border: 1px solid rgba(0,229,160,0.3);
+    padding: 6px 14px;
+    margin-bottom: 32px;
+    background: rgba(0,229,160,0.05);
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--neon);
+    border-radius: 50%;
+    animation: blink 1.4s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  h1 {
+    font-size: clamp(46px, 7vw, 88px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+  h1 em { font-style: normal; color: var(--neon); }
+  h1 .strike {
+    text-decoration: line-through;
+    color: var(--muted);
+    text-decoration-color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: clamp(17px, 2vw, 21px);
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 48px;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--neon);
+    color: #080b0f;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 16px 32px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 0 0 rgba(0,229,160,0);
+  }
+  .btn-primary:hover {
+    background: var(--neon2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,229,160,0.25);
+  }
+  .btn-secondary {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 0;
+    transition: color 0.2s;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { color: var(--text); }
+
+  .hero-terminal {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 0;
+    display: none;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  }
+  @media (min-width: 1100px) { .hero-terminal { display: block; } }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .terminal-bar span:last-child {
+    margin-left: auto;
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  .terminal-body { padding: 20px; line-height: 2; }
+  .t-muted { color: var(--muted); }
+  .t-green { color: var(--neon); }
+  .t-red { color: var(--accent); }
+  .t-white { color: var(--text); }
+  .t-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--neon);
+    vertical-align: middle;
+    animation: blink 0.9s step-end infinite;
+  }
+
+  /* PROBLEM */
+  .section { padding: 100px 48px; position: relative; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 56px;
+    max-width: 860px;
+  }
+  @media (max-width: 700px) { .problem-grid { grid-template-columns: 1fr; } }
+
+  .problem-card {
+    background: var(--surface);
+    padding: 28px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .problem-card:hover { border-color: rgba(255,95,61,0.3); }
+  .problem-icon { font-size: 24px; margin-bottom: 12px; }
+  .problem-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .problem-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  h2 {
+    font-size: clamp(32px, 4.5vw, 54px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  h2 em { font-style: normal; color: var(--neon); }
+
+  /* HOW IT WORKS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-top: 60px;
+  }
+  .step {
+    background: var(--surface);
+    padding: 36px 28px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--neon);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  /* PACKAGES */
+  .packages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .pkg {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pkg:hover { border-color: rgba(0,229,160,0.25); transform: translateY(-4px); }
+  .pkg.featured {
+    border-color: var(--neon);
+    background: linear-gradient(135deg, var(--surface), rgba(0,229,160,0.04));
+  }
+  .pkg.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: 16px; right: -28px;
+    background: var(--neon);
+    color: #080b0f;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    transform-origin: center;
+  }
+
+  .pkg-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--neon);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .pkg h3 { font-size: 22px; font-weight: 800; margin-bottom: 16px; }
+  .pkg-price {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .pkg-price span { font-size: 20px; font-weight: 400; color: var(--muted); }
+  .pkg-duration {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .pkg-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 28px;
+  }
+  .pkg-features { list-style: none; margin-bottom: 36px; flex: 1; }
+  .pkg-features li {
+    font-size: 14px;
+    padding: 7px 0;
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+  }
+  .pkg-features li:last-child { border-bottom: none; }
+  .pkg-features li::before {
+    content: '→';
+    color: var(--neon);
+    font-family: var(--mono);
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .pkg-features li.muted::before { content: '·'; color: var(--muted); }
+
+  .pkg .btn-primary { text-align: center; width: 100%; }
+  .pkg .btn-outline {
+    display: block;
+    text-align: center;
+    width: 100%;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    padding: 16px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .pkg .btn-outline:hover { border-color: var(--neon); color: var(--neon); }
+
+  .pkg-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+  }
+  .pkg-note strong { color: var(--accent); }
+
+  /* FOR WHO */
+  .for-who {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 60px 48px;
+    margin: 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .for-who::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+  }
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .who-card {
+    padding: 24px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .who-card .emoji { font-size: 28px; margin-bottom: 12px; }
+  .who-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .who-card p { font-size: 13px; color: var(--muted); }
+
+  /* ABOUT */
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1000px;
+  }
+  @media (max-width: 800px) { .about-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+  .about-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--neon);
+    border: 1px solid rgba(0,229,160,0.3);
+    padding: 4px 10px;
+    margin-bottom: 20px;
+  }
+
+  .about-text p { font-size: 16px; color: var(--muted); margin-bottom: 16px; line-height: 1.7; }
+  .about-text strong { color: var(--text); }
+  .about-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .about-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--neon);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,229,160,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .about-link:hover { border-color: var(--neon); }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+  .stat-num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--neon);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 13px; color: var(--muted); }
+
+  /* FAQ */
+  .faq-list { max-width: 700px; margin-top: 56px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .faq-q {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .faq-a a { color: var(--neon); text-decoration: none; }
+
+  /* CTA FINAL */
+  .cta-final {
+    padding: 120px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,229,160,0.06), transparent);
+  }
+  .cta-final h2 { position: relative; max-width: 700px; margin: 0 auto 16px; }
+  .cta-final p { color: var(--muted); margin-bottom: 40px; font-size: 18px; position: relative; }
+  .cta-final .btn-primary { font-size: 15px; padding: 20px 48px; position: relative; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer p { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  footer a { color: var(--neon); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .section { padding: 80px 24px; }
+    .for-who { margin: 0 24px; padding: 40px 24px; }
+    .cta-final { padding: 80px 24px; }
+    footer { padding: 24px; }
+  }
+
+  /* DIVIDER LINE */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 48px;
+  }
+
+  /* SCROLL FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://www.frasma.org" class="nav-logo">
+    VIBE UP <span>by frasma.org</span>
+  </a>
+  <a href="https://cal.com/" class="nav-cta" target="_blank">→ PRENOTA ORA</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">VIBE UP · DEPLOY AS A SERVICE</div>
+
+    <h1>
+      Hai vibe-codato<br>
+      qualcosa di <em>figo.</em><br>
+      <span class="strike">Non sai</span> come<br>
+      pubblicarlo.
+    </h1>
+
+    <p class="hero-sub">
+      App Expo bloccata. Claude Code che funziona solo sul tuo laptop.<br>
+      Errori in produzione che non capisci.<br>
+      <strong>Ti porto online in poche ore. Garantito.</strong>
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#pacchetti" class="btn-primary">SCEGLI IL PACCHETTO →</a>
+      <a href="#come-funziona" class="btn-secondary">Come funziona ↓</a>
+    </div>
+  </div>
+
+  <div class="hero-terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot" style="background:#ff5f56"></div>
+      <div class="terminal-dot" style="background:#ffbd2e"></div>
+      <div class="terminal-dot" style="background:#27c93f"></div>
+      <span>terminal — bash</span>
+    </div>
+    <div class="terminal-body">
+      <div class="t-muted">$ npm run build</div>
+      <div class="t-red">✗ Error: Cannot find module './api'</div>
+      <div class="t-muted">$ expo publish</div>
+      <div class="t-red">✗ EAS Build failed (exit 1)</div>
+      <div class="t-muted">$ git push heroku main</div>
+      <div class="t-red">✗ Application Error H10</div>
+      <div>&nbsp;</div>
+      <div class="t-muted">— — — — — — — — — — —</div>
+      <div>&nbsp;</div>
+      <div class="t-muted">$ vibe-up deploy .</div>
+      <div class="t-green">✓ Build completed in 4m 12s</div>
+      <div class="t-green">✓ Deployed → <span style="text-decoration:underline">tuaapp.com</span></div>
+      <div class="t-green">✓ SSL, CDN, monitoring: OK</div>
+      <div class="t-white">$ <span class="t-cursor"></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROBLEMA -->
+<section class="section" id="problema">
+  <div class="section-label">IL PROBLEMA</div>
+  <h2 class="fade-in">Vibe coding è facile.<br><em>Il deploy no.</em></h2>
+
+  <div class="problem-grid">
+    <div class="problem-card fade-in">
+      <div class="problem-icon">💻</div>
+      <h3>"Funziona sul mio PC"</h3>
+      <p>Hai buildato con Claude Code o Cursor su Windows. In produzione è tutto rotto. Dipendenze, path, variabili d'ambiente: un casino.</p>
+    </div>
+    <div class="problem-card fade-in">
+      <div class="problem-icon">📱</div>
+      <h3>App Expo nel limbo</h3>
+      <p>L'app gira sull'emulatore ma non sai come pubblicarla sull'App Store o Google Play. EAS Build, certificati, provisioning: una giungla.</p>
+    </div>
+    <div class="problem-card fade-in">
+      <div class="problem-icon">🔴</div>
+      <h3>Errori in produzione</h3>
+      <p>Hai deployato qualcosa ma crasha, scala male o ha tempi di risposta assurdi. Il cliente ti sta scrivendo.</p>
+    </div>
+    <div class="problem-card fade-in">
+      <div class="problem-icon">⏳</div>
+      <h3>Settimane perse</h3>
+      <p>Hai già perso ore su Stack Overflow e YouTube. Il tuo tempo vale. Delegare il deploy è la mossa più intelligente che puoi fare.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COME FUNZIONA -->
+<section class="section" id="come-funziona">
+  <div class="section-label">COME FUNZIONA</div>
+  <h2 class="fade-in">Tre step.<br><em>Poi sei live.</em></h2>
+
+  <div class="steps">
+    <div class="step fade-in">
+      <div class="step-num">01 / CALL GRATUITA</div>
+      <h3>30 min di consulenza</h3>
+      <p>Mi mostri il progetto, mi spieghi cosa deve fare. Definisco un piano chiaro: cosa serve, quanto ci vuole, quanto costa. Zero sorprese.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">02 / LAVORO IN LIVE</div>
+      <h3>Sesssione condivisa</h3>
+      <p>Lavoriamo insieme in screen sharing oppure mi mandi accesso al repo. Fix, build, deploy, configurazione infrastruttura: tutto documentato.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">03 / CONSEGNA</div>
+      <h3>Sei online</h3>
+      <p>L'app è pubblica, funziona, scala. Ti lascio tutte le chiavi: repo, dominio, credenziali, guida al deploy autonomo se serve.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PACCHETTI -->
+<section class="section" id="pacchetti">
+  <div class="section-label">PACCHETTI</div>
+  <h2 class="fade-in">Scegli il livello<br><em>di supporto.</em></h2>
+
+  <div class="packages">
+
+    <!-- STARTER -->
+    <div class="pkg fade-in">
+      <div class="pkg-name">STARTER</div>
+      <h3>Deploy &amp; Fix</h3>
+      <div class="pkg-price">€250 <span>/ sessione</span></div>
+      <div class="pkg-duration">≈ 3 ore di lavoro</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>30 min di consulenza gratuita inclusa</li>
+        <li>Deploy su cloud (Vercel, Railway, Fly.io, AWS…)</li>
+        <li>Fix degli errori di build e configurazione</li>
+        <li>Setup variabili d'ambiente e secrets</li>
+        <li>Dominio custom + SSL</li>
+        <li class="muted">Code review non inclusa</li>
+        <li class="muted">Nuove feature non incluse</li>
+      </ul>
+      <a href="https://cal.com/" class="btn-outline" target="_blank">PRENOTA ORA</a>
+      <p class="pkg-note">+ <strong>30 min consulenza gratuita</strong> prima di iniziare</p>
+    </div>
+
+    <!-- DEPLOY + REVIEW -->
+    <div class="pkg featured fade-in">
+      <div class="pkg-name">PRO</div>
+      <h3>Deploy + Code Review</h3>
+      <div class="pkg-price">€499 <span>/ sessione</span></div>
+      <div class="pkg-duration">≈ 5 ore di lavoro</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>30 min di consulenza gratuita inclusa</li>
+        <li>Tutto incluso nel pacchetto Starter</li>
+        <li><strong style="color:var(--text)">2 ore di code review</strong> del tuo codice</li>
+        <li>Refactoring e pulizia del codebase</li>
+        <li>Performance audit + ottimizzazione</li>
+        <li>Monitoring base (uptime, logs, alerts)</li>
+        <li>1 settimana di supporto post-deploy</li>
+      </ul>
+      <a href="https://cal.com/" class="btn-primary" target="_blank">PRENOTA ORA →</a>
+      <p class="pkg-note">Consigliato se il codice è ancora grezzo</p>
+    </div>
+
+    <!-- FULL BUILD -->
+    <div class="pkg fade-in">
+      <div class="pkg-name">FULL BUILD</div>
+      <h3>Da Zero a Live</h3>
+      <div class="pkg-price">€2500 <span>/ progetto</span></div>
+      <div class="pkg-duration">App SaaS completa · prezzo fisso</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>Consulenza iniziale inclusa</li>
+        <li>Sviluppo dell'app da zero alla pubblicazione</li>
+        <li>Frontend + Backend + Database</li>
+        <li>Autenticazione, pagamenti, API</li>
+        <li>Deploy su infrastruttura scalabile</li>
+        <li>App Store / Google Play se mobile</li>
+        <li>1 mese di supporto post-lancio</li>
+      </ul>
+      <a href="https://cal.com/" class="btn-outline" target="_blank">PARLIAMO DEL PROGETTO</a>
+      <p class="pkg-note">Prezzo fisso. Nessuna sorpresa.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PER CHI È -->
+<div class="for-who fade-in">
+  <div class="section-label">PER CHI È</div>
+  <h2>Se ti riconosci<br><em>qui, scrivimi.</em></h2>
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="emoji">🤖</div>
+      <h4>Vibe coder</h4>
+      <p>Hai buildato con Claude Code, Cursor, Bolt o Lovable. Il progetto funziona in locale ma non sai come pubblicarlo.</p>
+    </div>
+    <div class="who-card">
+      <div class="emoji">🚀</div>
+      <h4>Founder / Maker</h4>
+      <p>Vuoi lanciare veloce. Non hai voglia di perdere una settimana su Terraform o Docker. Deleghi il deploy a qualcuno di fiducia.</p>
+    </div>
+    <div class="who-card">
+      <div class="emoji">📱</div>
+      <h4>App builder</h4>
+      <p>Hai un'app Expo / React Native che funziona sull'emulatore. Vuoi arrivare sugli store senza impazzire con certificati e build pipeline.</p>
+    </div>
+    <div class="who-card">
+      <div class="emoji">💡</div>
+      <h4>Dev senza DevOps</h4>
+      <p>Sei bravo a scrivere codice ma non il tuo mestiere ottimizzare infrastrutture. Ti concentri sul prodotto, io gestisco il resto.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="about-inner">
+    <div class="about-text fade-in">
+      <div class="about-tag">CHI SONO</div>
+      <h2 style="margin-bottom:24px">Francesco Mazzi<br><em>Frasma</em></h2>
+      <p>Sviluppatore full-stack con <strong>10 anni di esperienza</strong> su TypeScript, React, Next.js, Python, Flutter e Swift. Ho lavorato su SaaS, app mobile e sistemi AI per aziende manifatturiere e agricole.</p>
+      <p>So cos'è un deploy rotto perché ne ho fixati centinaia. So cosa vuol dire avere un'idea in testa e non riuscire a portarla online. <strong>Per questo ho creato Vibe Up.</strong></p>
+      <div class="about-links">
+        <a href="https://www.frasma.org" class="about-link" target="_blank">frasma.org</a>
+        <a href="https://github.com/francemazzi" class="about-link" target="_blank">github</a>
+        <a href="https://seminai.tech" class="about-link" target="_blank">seminai.tech</a>
+      </div>
+    </div>
+    <div class="about-stats fade-in">
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">anni di esperienza full-stack</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">TS</div>
+        <div class="stat-label">TypeScript · React · Next.js</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">LangChain · Claude · OpenAI</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">📍</div>
+        <div class="stat-label">Guastalla, Reggio Emilia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-label">FAQ</div>
+  <h2 class="fade-in">Domande<br><em>frequenti.</em></h2>
+
+  <div class="faq-list">
+    <div class="faq-item fade-in">
+      <div class="faq-q">E se il progetto è più complesso del previsto?</div>
+      <div class="faq-a">Lo valutiamo nella call gratuita di 30 minuti prima di iniziare. Se serve più tempo, te lo dico prima. Nessun extra a sorpresa.</div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-q">Funziona anche per app mobile (iOS / Android)?</div>
+      <div class="faq-a">Sì. Lavoro con Expo, React Native e Flutter. Mi occupo di tutto: EAS Build, TestFlight, App Store Connect, Google Play Console.</div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-q">Su quali piattaforme deployi?</div>
+      <div class="faq-a">Vercel, Railway, Fly.io, Render, AWS, DigitalOcean, Cloudflare Pages, Supabase — dipende dal progetto. Ti consiglio l'opzione più adatta a costo e complessità.</div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-q">Posso usare il pacchetto Starter per un'app codificata con AI?</div>
+      <div class="faq-a">Assolutamente sì. È nato esattamente per chi vibe-coda con Claude Code, Bolt, Lovable o Cursor e non sa come pubblicare il risultato.</div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-q">Come si paga?</div>
+      <div class="faq-a">Bonifico bancario o carta. Metà prima, metà a consegna per il pacchetto Full Build. Per Starter e Pro pagamento anticipato.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="cta-final">
+  <h2 class="fade-in">Il tuo progetto<br><em>merita di essere online.</em></h2>
+  <p class="fade-in">Prenota 30 minuti gratuiti. Nessun impegno.</p>
+  <a href="https://cal.com/" class="btn-primary fade-in" target="_blank">PRENOTA LA CALL GRATUITA →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <a href="https://www.frasma.org" target="_blank">Frasma.org</a> · Francesco Saverio Mazzi · Guastalla, RE</p>
+  <p><a href="https://www.frasma.org" target="_blank">frasma.org</a> · <a href="https://github.com/francemazzi" target="_blank">github</a> · <a href="https://seminai.tech" target="_blank">seminai.tech</a></p>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Staggered children
+  document.querySelectorAll('.problem-grid, .steps, .packages, .who-grid, .about-stats, .faq-list').forEach(parent => {
+    parent.querySelectorAll(':scope > *').forEach((child, i) => {
+      child.style.transitionDelay = `${i * 80}ms`;
+    });
+  });
+</script>
+</body>
+</html>
