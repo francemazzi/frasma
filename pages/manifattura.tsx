@@ -163,9 +163,9 @@ export default function ManifatturaPage() {
             <a
               href="#casi-uso"
               data-cta-id="hero-secondary-cases"
-              className="rounded-xl border border-farm-border bg-farm-surface px-6 py-3 text-sm font-semibold text-farm-text transition hover:border-sage hover:text-sage"
+              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-sage-600 hover:text-sage-500 bg-sage-50 rounded-full transition duration-200"
             >
-              Vedi i casi d&apos;uso &darr;
+              Vedi i casi d&apos;uso &rarr;
             </a>
           </div>
         </section>

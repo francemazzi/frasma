@@ -42,7 +42,7 @@ class CssClassBuilder {
     if (type === "icon") {
       return "flex items-center justify-center p-2 rounded-full bg-sage-500 hover:bg-sage-400 text-white transition duration-200";
     }
-    return "flex items-center gap-3 rounded-full bg-sage-500 px-8 py-3 text-lg font-semibold text-white shadow-sm hover:bg-sage-400 transition duration-200";
+    return "flex items-center gap-2 sm:gap-3 rounded-full bg-sage-500 px-5 py-2.5 text-base sm:px-8 sm:py-3 sm:text-lg font-semibold text-white shadow-sm hover:bg-sage-400 transition duration-200";
   }
 }
 

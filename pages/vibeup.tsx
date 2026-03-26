@@ -1,27 +1,28 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
 import Cal from "../components/organism/Cal";
+import { Laptop, Smartphone, AlertCircle, Hourglass, Bot, Rocket, Lightbulb, MapPin } from "lucide-react";
 
 /* ── Data ─────────────────────────────────────────────────── */
 
 const problemi = [
   {
-    emoji: "\u{1F4BB}",
+    icon: <Laptop className="w-7 h-7 text-sage-500" />,
     title: "\"Funziona sul mio PC\"",
     desc: "Hai buildato con Claude Code o Cursor su Windows. In produzione \u00e8 tutto rotto. Dipendenze, path, variabili d\u2019ambiente: un casino.",
   },
   {
-    emoji: "\u{1F4F1}",
+    icon: <Smartphone className="w-7 h-7 text-sage-500" />,
     title: "App Expo nel limbo",
     desc: "L\u2019app gira sull\u2019emulatore ma non sai come pubblicarla sull\u2019App Store o Google Play. EAS Build, certificati, provisioning: una giungla.",
   },
   {
-    emoji: "\u{1F534}",
+    icon: <AlertCircle className="w-7 h-7 text-sage-500" />,
     title: "Errori in produzione",
     desc: "Hai deployato qualcosa ma crasha, scala male o ha tempi di risposta assurdi. Il cliente ti sta scrivendo.",
   },
   {
-    emoji: "\u23F3",
+    icon: <Hourglass className="w-7 h-7 text-sage-500" />,
     title: "Settimane perse",
     desc: "Hai gi\u00e0 perso ore su Stack Overflow e YouTube. Il tuo tempo vale. Delegare il deploy \u00e8 la mossa pi\u00f9 intelligente che puoi fare.",
   },
@@ -122,22 +123,22 @@ const pacchetti: {
 
 const personas = [
   {
-    emoji: "\u{1F916}",
+    icon: <Bot className="w-7 h-7 text-sage-500" />,
     title: "Vibe coder",
     desc: "Hai buildato con Claude Code, Cursor, Bolt o Lovable. Il progetto funziona in locale ma non sai come pubblicarlo.",
   },
   {
-    emoji: "\u{1F680}",
+    icon: <Rocket className="w-7 h-7 text-sage-500" />,
     title: "Founder / Maker",
     desc: "Vuoi lanciare veloce. Non hai voglia di perdere una settimana su Terraform o Docker. Deleghi il deploy a qualcuno di fiducia.",
   },
   {
-    emoji: "\u{1F4F1}",
+    icon: <Smartphone className="w-7 h-7 text-sage-500" />,
     title: "App builder",
     desc: "Hai un\u2019app Expo / React Native che funziona sull\u2019emulatore. Vuoi arrivare sugli store senza impazzire con certificati e build pipeline.",
   },
   {
-    emoji: "\u{1F4A1}",
+    icon: <Lightbulb className="w-7 h-7 text-sage-500" />,
     title: "Dev senza DevOps",
     desc: "Sei bravo a scrivere codice ma non \u00e8 il tuo mestiere ottimizzare infrastrutture. Ti concentri sul prodotto, io gestisco il resto.",
   },
@@ -147,7 +148,7 @@ const aboutStats = [
   { value: "10+", label: "anni di esperienza full-stack" },
   { value: "TS", label: "TypeScript \u00b7 React \u00b7 Next.js" },
   { value: "AI", label: "LangChain \u00b7 Claude \u00b7 OpenAI" },
-  { value: "\u{1F4CD}", label: "Guastalla, Reggio Emilia" },
+  { value: <MapPin className="w-8 h-8" />, label: "Guastalla, Reggio Emilia" },
 ];
 
 const faqs = [
@@ -282,7 +283,7 @@ export default function VibeUpPage() {
               <Cal textButton="SCEGLI IL PACCHETTO" buttonType="default" />
               <a
                 href="#come-funziona"
-                className="rounded-xl border border-farm-border bg-farm-surface px-6 py-3 text-sm font-semibold text-farm-text transition hover:border-sage hover:text-sage"
+                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-sage-600 hover:text-sage-500 bg-sage-50 rounded-full transition duration-200"
               >
                 Come funziona &darr;
               </a>
@@ -362,7 +363,7 @@ export default function VibeUpPage() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="rounded-xl border border-farm-border bg-farm-surface p-6 transition-colors hover:border-terra/40"
               >
-                <div className="text-2xl mb-3">{p.emoji}</div>
+                <div className="mb-3">{p.icon}</div>
                 <h3 className="text-base font-semibold mb-2">{p.title}</h3>
                 <p className="text-sm text-farm-secondary leading-relaxed">
                   {p.desc}
@@ -532,7 +533,7 @@ export default function VibeUpPage() {
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                   className="rounded-xl border border-farm-border bg-farm-bg p-5"
                 >
-                  <div className="text-2xl mb-3">{p.emoji}</div>
+                  <div className="mb-3">{p.icon}</div>
                   <h4 className="text-sm font-bold mb-2">{p.title}</h4>
                   <p className="text-xs text-farm-secondary leading-relaxed">
                     {p.desc}
