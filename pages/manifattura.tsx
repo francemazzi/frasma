@@ -20,6 +20,7 @@ import Cal from "../components/organism/Cal";
 import ProblemCard from "../components/organism/ProblemCard";
 import AreaCard from "../components/organism/AreaCard";
 import CaseCard from "../components/organism/CaseCard";
+import DashboardMockup from "../components/organism/DashboardMockup";
 
 const problemi = [
   { key: "excel", icon: FileSpreadsheet, node: <><strong>Excel come ponte</strong> tra ufficio tecnico, commerciale e produzione.</> },
@@ -148,34 +149,38 @@ export default function ManifatturaPage() {
 
       <main className="min-h-screen bg-farm-bg text-farm-text">
         {/* ── Hero ── */}
-        <section className="section-farm pt-16 pb-20 sm:pt-24 sm:pb-28">
-          <p className="mb-5 inline-flex rounded-full border border-farm-border bg-farm-surface px-4 py-2 text-sm font-medium text-farm-secondary">
-            Quando il gestionale non basta
-          </p>
-          <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-5xl">
-            Meno passaggi manuali,{" "}
-            <span className="text-sage">piu controllo sui processi</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-farm-secondary sm:text-lg">
-            Creo <strong>software su misura</strong> per aziende manifatturiere che vogliono
-            unificare flussi oggi sparsi tra gestionale, Excel e attivita manuali.
-          </p>
-          <p className="mt-3 max-w-2xl text-base font-medium text-farm-text sm:text-lg">
-            Francesco Saverio &mdash; sviluppatore freelance per la manifattura.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Cal
-              textButton={activeCta.finalPrimary}
-              buttonType="default"
-            />
-            <a
-              href="#casi-uso"
-              data-cta-id="hero-secondary-cases"
-              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-sage-600 hover:text-sage-500 bg-sage-50 rounded-full transition duration-200"
-            >
-              Vedi i casi d&apos;uso &rarr;
-            </a>
+        <section className="section-farm pt-16 pb-20 sm:pt-24 sm:pb-28 relative overflow-hidden">
+          <div className="relative lg:pr-[420px]">
+            <p className="mb-5 inline-flex rounded-full border border-farm-border bg-farm-surface px-4 py-2 text-sm font-medium text-farm-secondary">
+              Quando il gestionale non basta
+            </p>
+            <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-5xl">
+              Meno passaggi manuali,{" "}
+              <span className="text-sage">piu controllo sui processi</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-farm-secondary sm:text-lg">
+              Creo <strong>software su misura</strong> per aziende manifatturiere che vogliono
+              unificare flussi oggi sparsi tra gestionale, Excel e attivita manuali.
+            </p>
+            <p className="mt-3 max-w-2xl text-base font-medium text-farm-text sm:text-lg">
+              Francesco Saverio &mdash; sviluppatore freelance per la manifattura.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Cal
+                textButton={activeCta.finalPrimary}
+                buttonType="default"
+              />
+              <a
+                href="#casi-uso"
+                data-cta-id="hero-secondary-cases"
+                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-sage-600 hover:text-sage-500 bg-sage-50 rounded-full transition duration-200"
+              >
+                Vedi i casi d&apos;uso &rarr;
+              </a>
+            </div>
           </div>
+
+          <DashboardMockup />
         </section>
 
         {/* ── Problemi ── */}
