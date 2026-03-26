@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { LanguageProvider } from "../lib/i18n/context";
 
 const poppins = Poppins({
@@ -16,12 +17,17 @@ const ChatWidget = dynamic(
   { ssr: false, loading: () => null }
 );
 
+const HIDE_CHAT_PATHS = ["/manifattura"];
+
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const showChat = !HIDE_CHAT_PATHS.includes(router.pathname);
+
   return (
     <LanguageProvider>
       <div className={poppins.className}>
         <Component {...pageProps} />
-        <ChatWidget />
+        {showChat && <ChatWidget />}
       </div>
     </LanguageProvider>
   );

@@ -71,7 +71,7 @@ const progetti = [
       <>Offerte lente e dipendenti da <strong>fogli Excel</strong> con formule difficili da mantenere.</>
     ),
     risultato: (
-      <><strong>Generazione guidata</strong> dei preventivi con dati centralizzati e <strong>tempi di risposta ridotti</strong>.</>
+      <><strong>Generazione guidata</strong> dei preventivi con dati centralizzati: <strong>da 2 giorni a 20 minuti</strong> per preventivo.</>
     ),
   },
   {
@@ -80,7 +80,7 @@ const progetti = [
       <>Avanzamenti <strong>non allineati</strong> tra ufficio tecnico, produzione e commerciale.</>
     ),
     risultato: (
-      <><strong>Vista unica</strong> sullo stato commessa, priorita chiare e passaggi tra reparti piu fluidi.</>
+      <><strong>Vista unica</strong> sullo stato commessa, priorita chiare e passaggi tra reparti piu fluidi. Circa <strong>8 ore risparmiate a settimana</strong> in allineamenti manuali.</>
     ),
   },
   {
@@ -89,7 +89,7 @@ const progetti = [
       <>Richieste materiali <strong>disperse tra mail e chat</strong>, con poca tracciabilita delle approvazioni.</>
     ),
     risultato: (
-      <><strong>Workflow strutturato</strong> delle richieste con storico decisioni e <strong>controllo stato in tempo reale</strong>.</>
+      <><strong>Workflow strutturato</strong> delle richieste con storico decisioni e controllo stato in tempo reale. <strong>Tempo di approvazione ridotto del 70%</strong>.</>
     ),
   },
 ];
@@ -97,33 +97,22 @@ const progetti = [
 type CtaVariantKey = "a" | "b" | "c";
 
 type CtaVariant = {
-  heroPrimary: string;
-  heroMicrocopy: string;
   finalPrimary: string;
   finalMicrocopy: string;
 };
 
 const ctaVariants: Record<CtaVariantKey, CtaVariant> = {
   a: {
-    heroPrimary: "Analisi gratuita del tuo processo (30 minuti)",
-    heroMicrocopy:
-      "In 30 minuti identifichiamo i passaggi piu lenti tra gestionale, Excel e attivita manuali. Nessun impegno.",
     finalPrimary: "Prenota analisi gratuita",
     finalMicrocopy:
       "Call di 30 minuti, concreta e senza vendita aggressiva: capiamo se e dove conviene intervenire.",
   },
   b: {
-    heroPrimary: "30 minuti per capire se puoi automatizzare",
-    heroMicrocopy:
-      "Sessione breve e pratica: analizziamo il tuo flusso e stimiamo priorita e impatto, senza impegno.",
     finalPrimary: "Blocca la tua call di 30 minuti",
     finalMicrocopy:
       "Nessun vincolo contrattuale: solo un confronto operativo sul tuo caso specifico.",
   },
   c: {
-    heroPrimary: "Ti mostro come migliorare il tuo flusso operativo",
-    heroMicrocopy:
-      "Partiamo dal tuo processo reale: evidenziamo attriti, colli di bottiglia e opportunita di automazione.",
     finalPrimary: "Richiedi analisi sul tuo caso",
     finalMicrocopy:
       "Condividi il contesto, ricevi una direzione chiara. Nessuna offerta commerciale durante la call.",
@@ -151,7 +140,7 @@ export default function ManifatturaPage() {
         {/* ── Hero ── */}
         <section className="section-farm pt-14 pb-16 sm:pt-20 sm:pb-20">
           <p className="mb-4 inline-flex rounded-full border border-farm-border bg-farm-surface px-4 py-2 text-sm font-medium text-farm-secondary">
-            Software su misura per la manifattura
+            Quando il gestionale non basta e Excel sta diventando un problema
           </p>
           <h1 className="max-w-4xl text-3xl font-bold leading-tight sm:text-5xl">
             Software operativo per aziende manifatturiere che vogliono{" "}
@@ -163,32 +152,17 @@ export default function ManifatturaPage() {
             manuali, creando <strong>strumenti software leggeri, su misura</strong> e realmente
             utili nel lavoro quotidiano.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Cal
-              textButton={activeCta.heroPrimary}
-              buttonType="default"
-            />
+          <p className="mt-4 max-w-3xl text-base font-medium text-farm-text sm:text-lg">
+            Sono Francesco Saverio, sviluppatore freelance &mdash; lavoro esclusivamente con aziende manifatturiere.
+          </p>
+          <div className="mt-8">
             <a
               href="#casi-uso"
               data-cta-id="hero-secondary-cases"
-              className="rounded-xl border border-farm-border bg-farm-surface px-6 py-3 text-sm font-semibold text-farm-text transition hover:border-sage hover:text-sage"
+              className="inline-flex rounded-xl border border-farm-border bg-farm-surface px-6 py-3 text-sm font-semibold text-farm-text transition hover:border-sage hover:text-sage"
             >
-              Vedi i casi d&apos;uso
+              Vedi i casi d&apos;uso &darr;
             </a>
-          </div>
-          <p className="mt-4 max-w-3xl text-sm text-farm-secondary">
-            {activeCta.heroMicrocopy}
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2 text-xs font-medium text-farm-secondary">
-            <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
-              Nessun impegno
-            </span>
-            <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
-              Nessuna offerta commerciale durante la call
-            </span>
-            <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
-              Disponibilita mensile limitata
-            </span>
           </div>
         </section>
 
@@ -335,7 +309,7 @@ export default function ManifatturaPage() {
             <div className="relative mx-auto h-60 w-60 overflow-hidden rounded-2xl border border-farm-border bg-farm-panel lg:mx-0">
               <Image
                 src="/profilo_home.jpg"
-                alt="Francesco - consulente software per manifattura"
+                alt="Francesco Saverio - consulente software per manifattura"
                 fill
                 sizes="240px"
                 className="object-cover"
@@ -344,9 +318,10 @@ export default function ManifatturaPage() {
             <div>
               <h2 className="text-2xl font-semibold sm:text-3xl">Chi sono</h2>
               <p className="mt-4 text-farm-secondary leading-relaxed">
-                Sono uno <strong>sviluppatore software freelance</strong> e lavoro con aziende
-                manifatturiere e tecniche che vogliono rendere piu fluidi i
-                processi interni. Progetto <strong>soluzioni snelle, concrete</strong> e orientate
+                Mi chiamo <strong>Francesco Saverio</strong>, ho <strong>11 anni di esperienza</strong> nello
+                sviluppo software e una <strong>Laurea Magistrale in Scienze e Tecnologie Agrarie</strong>.
+                Lavoro come freelance con aziende manifatturiere e tecniche che vogliono rendere
+                piu fluidi i processi interni. Progetto <strong>soluzioni snelle, concrete</strong> e orientate
                 all&apos;operativita quotidiana, partendo sempre dal <strong>flusso reale</strong> di
                 chi usa il sistema.
               </p>
@@ -378,8 +353,8 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── CTA finale ── */}
-        <section id="contatti" className="section-farm py-16 sm:py-20">
-          <div className="rounded-2xl border border-farm-border bg-farm-panel p-8 text-center sm:p-10">
+        <section id="contatti" className="section-farm py-20 sm:py-28">
+          <div className="rounded-2xl border-2 border-sage/30 bg-farm-panel p-8 text-center sm:p-12">
             <h2 className="text-2xl font-semibold sm:text-3xl">
               Hai un processo che oggi sopravvive tra gestionale, Excel e
               passaggi manuali?
@@ -392,14 +367,24 @@ export default function ManifatturaPage() {
               {activeCta.finalMicrocopy}
             </p>
             <p className="mx-auto mt-3 max-w-2xl text-xs text-farm-secondary">
-              Esempio reale: aiutata una realta manifatturiera a <strong>eliminare i
-              preventivi manuali</strong> e ridurre tempi di risposta.
+              Esempio reale: aiutata una realta manifatturiera a <strong>ridurre i tempi di preventivazione da 2 giorni a 20 minuti</strong>.
             </p>
             <div className="mt-8 flex justify-center">
               <Cal
                 textButton={activeCta.finalPrimary}
                 buttonType="default"
               />
+            </div>
+            <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs font-medium text-farm-secondary">
+              <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
+                Nessun impegno
+              </span>
+              <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
+                Nessuna offerta commerciale durante la call
+              </span>
+              <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
+                Disponibilita mensile limitata
+              </span>
             </div>
           </div>
         </section>
