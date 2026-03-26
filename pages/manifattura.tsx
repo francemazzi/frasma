@@ -23,10 +23,43 @@ import CaseCard from "../components/organism/CaseCard";
 import DashboardMockup from "../components/organism/DashboardMockup";
 
 const problemi = [
-  { key: "excel", icon: FileSpreadsheet, node: <><strong>Excel come ponte</strong> tra ufficio tecnico, commerciale e produzione.</> },
-  { key: "preventivi", icon: ClipboardList, node: <>Preventivi con troppi <strong>passaggi manuali</strong>.</> },
-  { key: "dati", icon: FolderSearch, node: <>Dati sparsi tra <strong>mail, PDF e cartelle condivise</strong>.</> },
-  { key: "ripetitive", icon: RefreshCw, node: <><strong>Attivita ripetitive</strong> che rallentano il flusso.</> },
+  {
+    key: "excel",
+    icon: FileSpreadsheet,
+    node: (
+      <>
+        <strong>Excel come ponte</strong> tra ufficio tecnico, commerciale e
+        produzione.
+      </>
+    ),
+  },
+  {
+    key: "preventivi",
+    icon: ClipboardList,
+    node: (
+      <>
+        Preventivi con troppi <strong>passaggi manuali</strong>.
+      </>
+    ),
+  },
+  {
+    key: "dati",
+    icon: FolderSearch,
+    node: (
+      <>
+        Dati sparsi tra <strong>mail, PDF e cartelle condivise</strong>.
+      </>
+    ),
+  },
+  {
+    key: "ripetitive",
+    icon: RefreshCw,
+    node: (
+      <>
+        <strong>Attivita ripetitive</strong> che rallentano il flusso.
+      </>
+    ),
+  },
 ];
 
 const areeIntervento = [
@@ -39,10 +72,38 @@ const areeIntervento = [
 ];
 
 const benefici: { key: string; node: React.ReactNode }[] = [
-  { key: "manuali", node: <>Meno <strong>attivita manuali</strong> e doppi inserimenti.</> },
-  { key: "velocizzare", node: <><strong>Passaggi piu fluidi</strong> tra reparti.</> },
-  { key: "errori", node: <>Meno <strong>errori</strong> e <strong>colli di bottiglia</strong>.</> },
-  { key: "vista", node: <><strong>Vista chiara</strong> sullo stato del lavoro.</> },
+  {
+    key: "manuali",
+    node: (
+      <>
+        Meno <strong>attivita manuali</strong> e doppi inserimenti.
+      </>
+    ),
+  },
+  {
+    key: "velocizzare",
+    node: (
+      <>
+        <strong>Passaggi piu fluidi</strong> tra reparti.
+      </>
+    ),
+  },
+  {
+    key: "errori",
+    node: (
+      <>
+        Meno <strong>errori</strong> e <strong>colli di bottiglia</strong>.
+      </>
+    ),
+  },
+  {
+    key: "vista",
+    node: (
+      <>
+        <strong>Vista chiara</strong> sullo stato del lavoro.
+      </>
+    ),
+  },
 ];
 
 const casiTipici = [
@@ -50,57 +111,109 @@ const casiTipici = [
     icon: ClipboardX,
     titolo: "Preventivi con troppo lavoro manuale",
     testo: (
-      <>Ogni offerta richiede <strong>copia-incolla</strong>, verifiche e <strong>passaggi tra piu persone</strong>.</>
+      <>
+        Ogni offerta richiede <strong>copia-incolla</strong>, verifiche e{" "}
+        <strong>passaggi tra piu persone</strong>.
+      </>
     ),
   },
   {
     icon: Unlink,
     titolo: "Flussi spezzati tra reparti",
     testo: (
-      <>Il gestionale c&apos;e, ma il <strong>processo reale</strong> si regge su <strong>Excel e abitudini interne</strong>.</>
+      <>
+        Il gestionale c&apos;e, ma il <strong>processo reale</strong> si regge
+        su <strong>Excel e abitudini interne</strong>.
+      </>
     ),
   },
   {
     icon: ListChecks,
     titolo: "Commesse e task poco tracciate",
     testo: (
-      <>Manca uno <strong>strumento semplice</strong> per seguire <strong>avanzamento e priorita</strong>.</>
+      <>
+        Manca uno <strong>strumento semplice</strong> per seguire{" "}
+        <strong>avanzamento e priorita</strong>.
+      </>
     ),
   },
 ];
 
 const proof: { key: string; node: React.ReactNode }[] = [
-  { key: "task", node: <><strong>Centralizzazione</strong> di task e preventivazione in un&apos;<strong>unica piattaforma</strong>.</> },
-  { key: "flusso", node: <><strong>Automazione</strong> del flusso ordine &rarr; distinta &rarr; preventivo.</> },
-  { key: "misura", node: <>Workflow <strong>su misura</strong> per unificare sistemi oggi dispersi.</> },
+  {
+    key: "task",
+    node: (
+      <>
+        <strong>Centralizzazione</strong> di task e preventivazione in un&apos;
+        <strong>unica piattaforma</strong>.
+      </>
+    ),
+  },
+  {
+    key: "flusso",
+    node: (
+      <>
+        <strong>Automazione</strong> del flusso ordine &rarr; distinta &rarr;
+        preventivo.
+      </>
+    ),
+  },
+  {
+    key: "misura",
+    node: (
+      <>
+        Workflow <strong>su misura</strong> per unificare sistemi oggi dispersi.
+      </>
+    ),
+  },
 ];
 
 const progetti = [
   {
     titolo: "Configuratore preventivi per lavorazioni meccaniche",
     problema: (
-      <>Offerte lente e dipendenti da <strong>fogli Excel</strong> con formule difficili da mantenere.</>
+      <>
+        Offerte lente e dipendenti da <strong>fogli Excel</strong> con formule
+        difficili da mantenere.
+      </>
     ),
     risultato: (
-      <><strong>Generazione guidata</strong> dei preventivi con dati centralizzati: <strong>da 2 giorni a 20 minuti</strong> per preventivo.</>
+      <>
+        <strong>Generazione guidata</strong> dei preventivi con dati
+        centralizzati: <strong>da 2 giorni a 20 minuti</strong> per preventivo.
+      </>
     ),
   },
   {
     titolo: "Tracking commesse multi-reparto",
     problema: (
-      <>Avanzamenti <strong>non allineati</strong> tra ufficio tecnico, produzione e commerciale.</>
+      <>
+        Avanzamenti <strong>non allineati</strong> tra ufficio tecnico,
+        produzione e commerciale.
+      </>
     ),
     risultato: (
-      <><strong>Vista unica</strong> sullo stato commessa, priorita chiare e passaggi tra reparti piu fluidi. Circa <strong>8 ore risparmiate a settimana</strong> in allineamenti manuali.</>
+      <>
+        <strong>Vista unica</strong> sullo stato commessa, priorita chiare e
+        passaggi tra reparti piu fluidi. Circa{" "}
+        <strong>8 ore risparmiate a settimana</strong> in allineamenti manuali.
+      </>
     ),
   },
   {
     titolo: "Portale richieste acquisto e fornitori",
     problema: (
-      <>Richieste materiali <strong>disperse tra mail e chat</strong>, con poca tracciabilita delle approvazioni.</>
+      <>
+        Richieste materiali <strong>disperse tra mail e chat</strong>, con poca
+        tracciabilita delle approvazioni.
+      </>
     ),
     risultato: (
-      <><strong>Workflow strutturato</strong> delle richieste con storico decisioni e controllo stato in tempo reale. <strong>Tempo di approvazione ridotto del 70%</strong>.</>
+      <>
+        <strong>Workflow strutturato</strong> delle richieste con storico
+        decisioni e controllo stato in tempo reale.{" "}
+        <strong>Tempo di approvazione ridotto del 70%</strong>.
+      </>
     ),
   },
 ];
@@ -132,7 +245,8 @@ const ctaVariants: Record<CtaVariantKey, CtaVariant> = {
 
 export default function ManifatturaPage() {
   const router = useRouter();
-  const rawVariant = typeof router.query.cta === "string" ? router.query.cta.toLowerCase() : "a";
+  const rawVariant =
+    typeof router.query.cta === "string" ? router.query.cta.toLowerCase() : "a";
   const ctaVariantKey: CtaVariantKey =
     rawVariant === "b" || rawVariant === "c" ? rawVariant : "a";
   const activeCta = ctaVariants[ctaVariantKey];
@@ -159,17 +273,13 @@ export default function ManifatturaPage() {
               <span className="text-sage">piu controllo sui processi</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-farm-secondary sm:text-lg">
-              Creo <strong>software su misura</strong> per aziende manifatturiere che vogliono
-              unificare flussi oggi sparsi tra gestionale, Excel e attivita manuali.
+              Creo <strong>software su misura</strong> per aziende
+              manifatturiere che vogliono unificare flussi oggi sparsi tra
+              gestionale, Excel e attivita manuali.
             </p>
-            <p className="mt-3 max-w-2xl text-base font-medium text-farm-text sm:text-lg">
-              Francesco Saverio &mdash; sviluppatore freelance per la manifattura.
-            </p>
+
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Cal
-                textButton={activeCta.finalPrimary}
-                buttonType="default"
-              />
+              <Cal textButton={activeCta.finalPrimary} buttonType="default" />
               <a
                 href="#casi-uso"
                 data-cta-id="hero-secondary-cases"
@@ -203,7 +313,8 @@ export default function ManifatturaPage() {
             Software verticale, pensato sul tuo flusso
           </h2>
           <p className="mt-5 max-w-3xl text-farm-secondary leading-relaxed">
-            Niente software generici. Progetto <strong>strumenti operativi</strong> sul{" "}
+            Niente software generici. Progetto{" "}
+            <strong>strumenti operativi</strong> sul{" "}
             <strong>flusso reale</strong> dell&apos;azienda.
           </p>
           <h3 className="mt-10 text-lg font-semibold">Aree di intervento</h3>
@@ -253,23 +364,30 @@ export default function ManifatturaPage() {
           <h2 className="text-2xl font-semibold sm:text-3xl">Come lavoro</h2>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             <article className="rounded-xl border border-farm-border bg-farm-surface p-5">
-              <p className="text-sm font-semibold text-sage">1. Analisi del processo</p>
+              <p className="text-sm font-semibold text-sage">
+                1. Analisi del processo
+              </p>
               <p className="mt-2 text-sm text-farm-secondary leading-relaxed">
-                Mappo il <strong>flusso attuale</strong>, i punti di attrito e le attivita che
-                oggi fanno perdere piu tempo.
+                Mappo il <strong>flusso attuale</strong>, i punti di attrito e
+                le attivita che oggi fanno perdere piu tempo.
               </p>
             </article>
             <article className="rounded-xl border border-farm-border bg-farm-surface p-5">
-              <p className="text-sm font-semibold text-sage">2. Prototipo rapido</p>
+              <p className="text-sm font-semibold text-sage">
+                2. Prototipo rapido
+              </p>
               <p className="mt-2 text-sm text-farm-secondary leading-relaxed">
-                Sviluppo una <strong>prima versione testabile</strong> per validare subito utilita
-                e adozione.
+                Sviluppo una <strong>prima versione testabile</strong> per
+                validare subito utilita e adozione.
               </p>
             </article>
             <article className="rounded-xl border border-farm-border bg-farm-surface p-5">
-              <p className="text-sm font-semibold text-sage">3. Software operativo</p>
+              <p className="text-sm font-semibold text-sage">
+                3. Software operativo
+              </p>
               <p className="mt-2 text-sm text-farm-secondary leading-relaxed">
-                Rendo la soluzione <strong>robusta, integrata</strong> e pronta all&apos;uso quotidiano.
+                Rendo la soluzione <strong>robusta, integrata</strong> e pronta
+                all&apos;uso quotidiano.
               </p>
             </article>
           </div>
@@ -307,10 +425,12 @@ export default function ManifatturaPage() {
             <div>
               <h2 className="text-2xl font-semibold sm:text-3xl">Chi sono</h2>
               <p className="mt-4 max-w-2xl text-farm-secondary leading-relaxed">
-                <strong>Francesco Saverio</strong> &mdash; <strong>11 anni</strong> nello sviluppo software,
-                Laurea Magistrale in Scienze e Tecnologie Agrarie. Lavoro come freelance
-                con aziende manifatturiere, progettando <strong>soluzioni snelle</strong> partendo
-                dal <strong>flusso reale</strong> di chi usa il sistema.
+                <strong>Francesco Saverio</strong> &mdash;{" "}
+                <strong>11 anni</strong> nello sviluppo software, Laurea
+                Magistrale in Scienze e Tecnologie Agrarie. Lavoro come
+                freelance con aziende manifatturiere, progettando{" "}
+                <strong>soluzioni snelle</strong> partendo dal{" "}
+                <strong>flusso reale</strong> di chi usa il sistema.
               </p>
             </div>
           </div>
@@ -327,11 +447,15 @@ export default function ManifatturaPage() {
               >
                 <h3 className="text-lg font-semibold">{progetto.titolo}</h3>
                 <p className="mt-3 text-sm text-farm-secondary leading-relaxed">
-                  <span className="font-semibold text-farm-text">Problema:</span>{" "}
+                  <span className="font-semibold text-farm-text">
+                    Problema:
+                  </span>{" "}
                   {progetto.problema}
                 </p>
                 <p className="mt-2 text-sm text-farm-secondary leading-relaxed">
-                  <span className="font-semibold text-farm-text">Risultato:</span>{" "}
+                  <span className="font-semibold text-farm-text">
+                    Risultato:
+                  </span>{" "}
                   {progetto.risultato}
                 </p>
               </article>
@@ -346,17 +470,14 @@ export default function ManifatturaPage() {
               Processi che sopravvivono tra Excel e passaggi manuali?
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-farm-secondary leading-relaxed">
-              <strong>Call di 30 minuti</strong>: analizziamo il tuo flusso e capiamo
-              se conviene intervenire.
+              <strong>Call di 30 minuti</strong>: analizziamo il tuo flusso e
+              capiamo se conviene intervenire.
             </p>
             <p className="mx-auto mt-2 max-w-xl text-sm font-medium text-farm-secondary">
               {activeCta.finalMicrocopy}
             </p>
             <div className="mt-8 flex justify-center">
-              <Cal
-                textButton={activeCta.finalPrimary}
-                buttonType="default"
-              />
+              <Cal textButton={activeCta.finalPrimary} buttonType="default" />
             </div>
             <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs font-medium text-farm-secondary">
               <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
