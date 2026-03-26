@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const problemi = [
   "Excel usati come ponte tra ufficio tecnico, commerciale e produzione.",
@@ -82,7 +83,53 @@ const progetti = [
   },
 ];
 
+type CtaVariantKey = "a" | "b" | "c";
+
+type CtaVariant = {
+  heroPrimary: string;
+  heroMicrocopy: string;
+  finalPrimary: string;
+  finalMicrocopy: string;
+};
+
+const ctaVariants: Record<CtaVariantKey, CtaVariant> = {
+  a: {
+    heroPrimary: "Analisi gratuita del tuo processo (30 minuti)",
+    heroMicrocopy:
+      "In 30 minuti identifichiamo i passaggi piu lenti tra gestionale, Excel e attivita manuali. Nessun impegno.",
+    finalPrimary: "Prenota analisi gratuita",
+    finalMicrocopy:
+      "Call di 30 minuti, concreta e senza vendita aggressiva: capiamo se e dove conviene intervenire.",
+  },
+  b: {
+    heroPrimary: "30 minuti per capire se puoi automatizzare",
+    heroMicrocopy:
+      "Sessione breve e pratica: analizziamo il tuo flusso e stimiamo priorita e impatto, senza impegno.",
+    finalPrimary: "Blocca la tua call di 30 minuti",
+    finalMicrocopy:
+      "Nessun vincolo contrattuale: solo un confronto operativo sul tuo caso specifico.",
+  },
+  c: {
+    heroPrimary: "Ti mostro come migliorare il tuo flusso operativo",
+    heroMicrocopy:
+      "Partiamo dal tuo processo reale: evidenziamo attriti, colli di bottiglia e opportunita di automazione.",
+    finalPrimary: "Richiedi analisi sul tuo caso",
+    finalMicrocopy:
+      "Condividi il contesto, ricevi una direzione chiara. Nessuna offerta commerciale durante la call.",
+  },
+};
+
 export default function ManifatturaPage() {
+  const router = useRouter();
+  const rawVariant = typeof router.query.cta === "string" ? router.query.cta.toLowerCase() : "a";
+  const ctaVariantKey: CtaVariantKey =
+    rawVariant === "b" || rawVariant === "c" ? rawVariant : "a";
+  const activeCta = ctaVariants[ctaVariantKey];
+
+  const bookingUrl =
+    process.env.NEXT_PUBLIC_BOOKING_URL ??
+    "https://calendly.com/frasma/analisi-processo-30-minuti";
+
   return (
     <>
       <Head>
@@ -110,17 +157,35 @@ export default function ManifatturaPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="#contatti"
+              href={bookingUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-cta-id={`hero-primary-${ctaVariantKey}`}
               className="rounded-xl bg-sage px-6 py-3 text-sm font-semibold text-white transition hover:bg-sage-600"
             >
-              Prenota una call
+              {activeCta.heroPrimary}
             </a>
             <a
               href="#casi-uso"
+              data-cta-id="hero-secondary-cases"
               className="rounded-xl border border-farm-border bg-farm-surface px-6 py-3 text-sm font-semibold text-farm-text transition hover:border-sage hover:text-sage"
             >
               Vedi i casi d&apos;uso
             </a>
+          </div>
+          <p className="mt-4 max-w-3xl text-sm text-farm-secondary">
+            {activeCta.heroMicrocopy}
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2 text-xs font-medium text-farm-secondary">
+            <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
+              Nessun impegno
+            </span>
+            <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
+              Nessuna offerta commerciale durante la call
+            </span>
+            <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">
+              Disponibilita mensile limitata
+            </span>
           </div>
         </section>
 
@@ -307,14 +372,24 @@ export default function ManifatturaPage() {
               passaggi manuali?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-farm-secondary">
-              Parliamone. Posso aiutarti a capire se ha senso intervenire con
-              uno strumento software dedicato.
+              Prenota una call di 30 minuti: analizziamo il tuo flusso e capiamo
+              se ha senso intervenire con uno strumento software dedicato.
+            </p>
+            <p className="mx-auto mt-2 max-w-2xl text-sm font-medium text-farm-secondary">
+              {activeCta.finalMicrocopy}
+            </p>
+            <p className="mx-auto mt-3 max-w-2xl text-xs text-farm-secondary">
+              Esempio reale: aiutata una realta manifatturiera a eliminare i
+              preventivi manuali e ridurre tempi di risposta.
             </p>
             <a
-              href="mailto:hello@frasma.it?subject=Prenota%20una%20call%20-%20Landing%20Manifattura"
+              href={bookingUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-cta-id={`final-primary-${ctaVariantKey}`}
               className="mt-8 inline-flex rounded-xl bg-sage px-8 py-3 text-sm font-semibold text-white transition hover:bg-sage-600"
             >
-              Prenota una call
+              {activeCta.finalPrimary}
             </a>
           </div>
         </section>
