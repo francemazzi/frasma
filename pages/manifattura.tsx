@@ -5,9 +5,7 @@ import {
   FileSpreadsheet,
   ClipboardList,
   FolderSearch,
-  RefreshCw,
   Calculator,
-  PackageCheck,
   GitBranch,
   ShoppingCart,
   LayoutDashboard,
@@ -28,7 +26,7 @@ const problemi = [
     icon: FileSpreadsheet,
     node: (
       <>
-        <strong>Excel come ponte</strong> tra ufficio tecnico, commerciale e
+        <strong>Excel usato come ponte</strong> tra ERP, ufficio tecnico e
         produzione.
       </>
     ),
@@ -38,53 +36,86 @@ const problemi = [
     icon: ClipboardList,
     node: (
       <>
-        Preventivi con troppi <strong>passaggi manuali</strong>.
+        Preventivi costruiti copiando dati da{" "}
+        <strong>CAD, ERP e listini</strong>.
       </>
     ),
   },
   {
-    key: "dati",
+    key: "distinte",
+    icon: GitBranch,
+    node: (
+      <>
+        Distinte, cicli o dati tecnici <strong>ricopiati manualmente</strong>{" "}
+        tra sistemi.
+      </>
+    ),
+  },
+  {
+    key: "rfq",
+    icon: ShoppingCart,
+    node: (
+      <>
+        RFQ e richieste fornitori gestite via <strong>mail</strong>, senza
+        tracciabilita.
+      </>
+    ),
+  },
+  {
+    key: "pdf",
     icon: FolderSearch,
     node: (
       <>
-        Dati sparsi tra <strong>mail, PDF e cartelle condivise</strong>.
-      </>
-    ),
-  },
-  {
-    key: "ripetitive",
-    icon: RefreshCw,
-    node: (
-      <>
-        <strong>Attivita ripetitive</strong> che rallentano il flusso.
+        PDF (DDT, certificazioni, schede tecniche) letti e{" "}
+        <strong>inseriti a mano</strong> nei sistemi.
       </>
     ),
   },
 ];
 
 const areeIntervento = [
-  { label: "Preventivazione", icon: Calculator },
-  { label: "Gestione ordini e commesse", icon: PackageCheck },
-  { label: "Workflow tecnico-produttivi", icon: GitBranch },
-  { label: "Richieste acquisto e fornitori", icon: ShoppingCart },
-  { label: "Dashboard operative", icon: LayoutDashboard },
-  { label: "Integrazioni con software esistenti", icon: Plug },
+  {
+    label: "Preventivazione automatica da dati tecnici e listini",
+    icon: Calculator,
+  },
+  {
+    label: "Integrazione ERP con CAD, nesting e produzione",
+    icon: Plug,
+  },
+  {
+    label: "Gestione RFQ e richieste fornitori con workflow tracciato",
+    icon: ShoppingCart,
+  },
+  {
+    label: "Parsing automatico PDF (DDT, certificazioni, schede tecniche)",
+    icon: FolderSearch,
+  },
+  {
+    label: "Generazione automatica documenti (Word, report, certificazioni)",
+    icon: ClipboardList,
+  },
+  {
+    label: "Dashboard operative su tempi, colli di bottiglia e avanzamento",
+    icon: LayoutDashboard,
+  },
 ];
 
 const benefici: { key: string; node: React.ReactNode }[] = [
   {
-    key: "manuali",
+    key: "tempi",
     node: (
       <>
-        Meno <strong>attivita manuali</strong> e doppi inserimenti.
+        Riduzione dei tempi operativi: <strong>preventivi da giorni a
+        minuti</strong> nei flussi ripetitivi.
       </>
     ),
   },
   {
-    key: "velocizzare",
+    key: "doppi",
     node: (
       <>
-        <strong>Passaggi piu fluidi</strong> tra reparti.
+        Eliminazione dei <strong>doppi inserimenti</strong> tra ERP, file
+        tecnici e produzione.
       </>
     ),
   },
@@ -92,15 +123,17 @@ const benefici: { key: string; node: React.ReactNode }[] = [
     key: "errori",
     node: (
       <>
-        Meno <strong>errori</strong> e <strong>colli di bottiglia</strong>.
+        Meno <strong>errori da copia-incolla</strong> e meno versioni non
+        allineate.
       </>
     ),
   },
   {
-    key: "vista",
+    key: "tracciabilita",
     node: (
       <>
-        <strong>Vista chiara</strong> sullo stato del lavoro.
+        <strong>Maggiore tracciabilita</strong> tra ufficio tecnico, acquisti
+        e produzione.
       </>
     ),
   },
@@ -109,31 +142,31 @@ const benefici: { key: string; node: React.ReactNode }[] = [
 const casiTipici = [
   {
     icon: ClipboardX,
-    titolo: "Preventivi con troppo lavoro manuale",
+    titolo: "Preventivi da CAD, ERP e listini non allineati",
     testo: (
       <>
-        Ogni offerta richiede <strong>copia-incolla</strong>, verifiche e{" "}
-        <strong>passaggi tra piu persone</strong>.
+        Ogni offerta richiede <strong>copia-incolla</strong>, verifiche su fonti
+        diverse e passaggi tra piu persone.
       </>
     ),
   },
   {
     icon: Unlink,
-    titolo: "Flussi spezzati tra reparti",
+    titolo: "ERP presente, ma processo reale ancora su Excel e mail",
     testo: (
       <>
-        Il gestionale c&apos;e, ma il <strong>processo reale</strong> si regge
-        su <strong>Excel e abitudini interne</strong>.
+        Il gestionale c&apos;e, ma la parte operativa si regge su{" "}
+        <strong>file locali, messaggi e passaggi manuali</strong>.
       </>
     ),
   },
   {
     icon: ListChecks,
-    titolo: "Commesse e task poco tracciate",
+    titolo: "RFQ fornitori e approvazioni senza storico unico",
     testo: (
       <>
-        Manca uno <strong>strumento semplice</strong> per seguire{" "}
-        <strong>avanzamento e priorita</strong>.
+        Richieste e risposte restano distribuite tra canali diversi, con{" "}
+        <strong>tracciabilita debole</strong> su tempi e decisioni.
       </>
     ),
   },
@@ -141,28 +174,29 @@ const casiTipici = [
 
 const proof: { key: string; node: React.ReactNode }[] = [
   {
-    key: "task",
+    key: "erp-cad",
     node: (
       <>
-        <strong>Centralizzazione</strong> di task e preventivazione in un&apos;
-        <strong>unica piattaforma</strong>.
+        Integrazione tra <strong>ERP</strong>, strumenti{" "}
+        <strong>CAD/nesting</strong> e flussi produttivi.
       </>
     ),
   },
   {
-    key: "flusso",
+    key: "rfq",
     node: (
       <>
-        <strong>Automazione</strong> del flusso ordine &rarr; distinta &rarr;
-        preventivo.
+        Workflow RFQ e richieste fornitori con <strong>stato tracciato</strong>{" "}
+        e storico approvazioni.
       </>
     ),
   },
   {
-    key: "misura",
+    key: "ai-pdf",
     node: (
       <>
-        Workflow <strong>su misura</strong> per unificare sistemi oggi dispersi.
+        Parsing assistito da <strong>AI</strong> su PDF tecnici e
+        certificazioni, con meno inserimento manuale.
       </>
     ),
   },
@@ -229,17 +263,17 @@ const ctaVariants: Record<CtaVariantKey, CtaVariant> = {
   a: {
     finalPrimary: "Prenota analisi gratuita",
     finalMicrocopy:
-      "Call di 30 minuti, concreta e senza vendita aggressiva: capiamo se e dove conviene intervenire.",
+      "Porta un processo reale: in 30 minuti identifichiamo colli di bottiglia, priorita e prossimo passo operativo.",
   },
   b: {
     finalPrimary: "Blocca la tua call di 30 minuti",
     finalMicrocopy:
-      "Nessun vincolo contrattuale: solo un confronto operativo sul tuo caso specifico.",
+      "Confronto operativo sul tuo caso: usciamo con una direzione pratica, non con una proposta generica.",
   },
   c: {
     finalPrimary: "Richiedi analisi sul tuo caso",
     finalMicrocopy:
-      "Condividi il contesto, ricevi una direzione chiara. Nessuna offerta commerciale durante la call.",
+      "Analizziamo un flusso reale e definiamo dove intervenire prima, con impatto misurabile.",
   },
 };
 
@@ -257,7 +291,7 @@ export default function ManifatturaPage() {
         <title>Software operativo per aziende manifatturiere | Frasma</title>
         <meta
           name="description"
-          content="Landing dedicata alle aziende manifatturiere: software verticale per ridurre passaggi manuali, errori e tempi morti."
+          content="Software operativo per manifattura: integrazione ERP, ufficio tecnico e produzione, con automazioni su Excel, mail e PDF."
         />
       </Head>
 
@@ -266,16 +300,20 @@ export default function ManifatturaPage() {
         <section className="section-farm pt-16 pb-20 sm:pt-24 sm:pb-28 relative overflow-hidden">
           <div className="relative lg:pr-[420px]">
             <p className="mb-5 inline-flex rounded-full border border-farm-border bg-farm-surface px-4 py-2 text-sm font-medium text-farm-secondary">
-              Quando il gestionale non basta
+              Il gestionale c&apos;e. Il processo no.
             </p>
             <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-5xl">
-              Meno passaggi manuali,{" "}
-              <span className="text-sage">piu controllo sui processi</span>
+              Il gestionale c&apos;e. Ma il lavoro gira ancora su{" "}
+              <span className="text-sage">Excel, mail e PDF</span>.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-farm-secondary sm:text-lg">
-              Creo <strong>software su misura</strong> per aziende
-              manifatturiere che vogliono unificare flussi oggi sparsi tra
-              gestionale, Excel e attivita manuali.
+              Sviluppo software su misura che collega <strong>ERP</strong>,{" "}
+              <strong>ufficio tecnico</strong> e <strong>produzione</strong>,
+              eliminando passaggi manuali e colli di bottiglia operativi.
+            </p>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-farm-secondary sm:text-base">
+              Lavoro sui <strong>processi reali</strong>: quelli che oggi vivono
+              tra ERP, Excel, PDF e strumenti tecnici.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -291,6 +329,30 @@ export default function ManifatturaPage() {
           </div>
 
           <DashboardMockup />
+        </section>
+
+        {/* ── Caso in evidenza ── */}
+        <section className="section-farm pb-8 sm:pb-10">
+          <article className="rounded-2xl border border-sage/30 bg-sage-50/70 p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-wide text-sage-700">
+              Caso reale
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
+              Preventivi da 2 giorni a 20 minuti
+            </h2>
+            <p className="mt-4 max-w-3xl text-farm-secondary leading-relaxed">
+              In una lavorazione meccanica, la preventivazione dipendeva da
+              fogli Excel complessi e passaggi tra reparti. Abbiamo centralizzato
+              dati tecnici e logica di calcolo in un flusso guidato, riducendo
+              tempi, errori e dipendenza da file locali.
+            </p>
+            <a
+              href="#progetti"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-sage-700 hover:text-sage-600"
+            >
+              Vedi altri progetti simili &rarr;
+            </a>
+          </article>
         </section>
 
         {/* ── Problemi ── */}
@@ -310,14 +372,14 @@ export default function ManifatturaPage() {
         {/* ── Cosa faccio ── */}
         <section className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">
-            Software verticale, pensato sul tuo flusso
+            Automazione operativa sui tuoi flussi reali
           </h2>
           <p className="mt-5 max-w-3xl text-farm-secondary leading-relaxed">
-            Niente software generici. Progetto{" "}
-            <strong>strumenti operativi</strong> sul{" "}
-            <strong>flusso reale</strong> dell&apos;azienda.
+            Niente software generici. Progetto <strong>strumenti operativi</strong>{" "}
+            su processi reali, con integrazioni tra sistemi esistenti e
+            automazioni anche su documenti tecnici e PDF.
           </p>
-          <h3 className="mt-10 text-lg font-semibold">Aree di intervento</h3>
+          <h3 className="mt-10 text-lg font-semibold">Use case su cui intervengo</h3>
           <div className="mt-4 grid gap-3 grid-cols-2 lg:grid-cols-3">
             {areeIntervento.map((area) => (
               <AreaCard key={area.label} icon={area.icon} label={area.label} />
@@ -437,7 +499,7 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── Progetti ── */}
-        <section className="section-farm py-16 sm:py-20">
+        <section id="progetti" className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">Progetti</h2>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {progetti.map((progetto) => (
@@ -467,11 +529,11 @@ export default function ManifatturaPage() {
         <section id="contatti" className="section-farm py-20 sm:py-28">
           <div className="rounded-2xl border-2 border-sage/30 bg-farm-panel p-8 text-center sm:p-14">
             <h2 className="text-2xl font-semibold sm:text-3xl">
-              Processi che sopravvivono tra Excel e passaggi manuali?
+              Processi ancora gestiti tra ERP, Excel, mail e PDF?
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-farm-secondary leading-relaxed">
-              <strong>Call di 30 minuti</strong>: analizziamo il tuo flusso e
-              capiamo se conviene intervenire.
+              <strong>Call di 30 minuti</strong>: analizziamo un processo reale
+              della tua azienda e identifichiamo dove intervenire.
             </p>
             <p className="mx-auto mt-2 max-w-xl text-sm font-medium text-farm-secondary">
               {activeCta.finalMicrocopy}
