@@ -1,8 +1,8 @@
 export const en: Record<string, string> = {
   // Meta
-  "meta.title": "Francesco Saverio Mazzi - Software Developer",
+  "meta.title": "Operational software for manufacturing | Francesco Saverio Mazzi",
   "meta.description":
-    "Software developer specializing in Manufacturing, Agriculture, Food, and LLM agents. Schedule a call today.",
+    "I build custom operational software for manufacturing teams by connecting ERP, Excel, PDFs, and technical tools to remove manual bottlenecks.",
 
   // Header
   "header.book": "Book",
@@ -10,13 +10,13 @@ export const en: Record<string, string> = {
   "header.companion": "with Fra",
 
   // Hero
-  "hero.subtitle": "From process to production software",
-  "hero.title1": "Building intelligent software",
-  "hero.title2": "for manufacturing and agriculture.",
+  "hero.subtitle": "The ERP exists. The process does not.",
+  "hero.title1": "The ERP exists.",
+  "hero.title2": "But work still runs through Excel, email, and PDFs.",
   "hero.desc":
-    "I help teams and founders reduce manual work, delays, and errors through lightweight AI-powered software.",
+    "I build custom software that connects ERP, Excel, PDFs, and technical tools, removing manual steps and operational bottlenecks.",
   "hero.focus":
-    "Focus: agriculture, agri-food, and manufacturing. I work on operational workflows, document handling, and AI agents.",
+    "I work with manufacturing teams to turn real-world processes into reliable operational systems. Agriculture remains a secondary focus.",
   "hero.brand":
     "Bobby, the Lagotto in the brand, represents the conversational and first-contact support experience.",
   "hero.cta": "Schedule a Free Call",
@@ -68,7 +68,7 @@ export const en: Record<string, string> = {
   // About
   "about.title": "About Me",
   "about.bio":
-    "I\u2019m Francesco Saverio Mazzi, a software developer with 8+ years of experience. I specialize in building lightweight, intelligent software for companies in the manufacturing and agricultural sectors.",
+    "I\u2019m Francesco Saverio Mazzi. I build operational software for real processes that currently live across ERP, Excel, PDFs, and technical tools. I worked as CTO in a supply-chain startup and joined SkyDeck Berkeley (Silicon Valley).",
   "about.rates": "Rates",
   "about.rateUnit": "/hr",
   "about.rateOutside": "45\u20AC/hr outside core areas of interest",
@@ -76,23 +76,23 @@ export const en: Record<string, string> = {
   "about.rateReveal": "Book a call to see rates",
   "about.prop1.title": "Dedicated Partnership",
   "about.prop1.desc":
-    "I carefully select projects and provide end-to-end support, from strategy through development.",
-  "about.prop2.title": "Domain Expertise",
+    "End-to-end collaboration: process analysis, rapid prototype, release, and operational adoption.",
+  "about.prop2.title": "Field-proven outcomes",
   "about.prop2.desc":
-    "Deep focus on Manufacturing, Agriculture, Food, and AI/LLM agent integration.",
-  "about.prop3.title": "Lean Methodology",
+    "Automated quoting, job/order workflows, and RFQ management with full traceability.",
+  "about.prop3.title": "Document automation",
   "about.prop3.desc":
-    "Market testing and validation to identify real user needs before building.",
-  "about.prop4.title": "Full-Stack Capability",
+    "PDF and certification parsing with data extraction and automatic Word/report generation.",
+  "about.prop4.title": "Stack and integration",
   "about.prop4.desc":
-    "TypeScript, Python, React, Next.js, FastAPI, Flutter, and more \u2014 from frontend to AI pipelines.",
+    "TypeScript, Python, React, FastAPI, plus integration with ERP, APIs, databases, and existing systems.",
 
   // CTA
-  "cta.title1": "Let\u2019s build something",
-  "cta.title2": "together.",
+  "cta.title1": "30-minute",
+  "cta.title2": "operational call.",
   "cta.desc":
-    "Schedule a free introductory call. I\u2019ll get back to you with initial questions to understand your challenges and how I can help.",
-  "cta.button": "Schedule a Call",
+    "We analyze one real process in your company and identify where to intervene for measurable operational impact.",
+  "cta.button": "Book the call",
 
   // Footer
   "footer.info": "Francesco Saverio Mazzi \u00B7 VAT 02750410207",

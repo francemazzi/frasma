@@ -1,8 +1,8 @@
 export const it: Record<string, string> = {
   // Meta
-  "meta.title": "Francesco Saverio Mazzi - Sviluppatore Software",
+  "meta.title": "Software operativo per manifattura | Francesco Saverio Mazzi",
   "meta.description":
-    "Sviluppatore software specializzato in Manifattura, Agricoltura, Food e agenti LLM. Prenota una call.",
+    "Sviluppo software su misura per manifattura: integrazione ERP, Excel, PDF e strumenti tecnici per ridurre passaggi manuali e colli di bottiglia operativi.",
 
   // Header
   "header.book": "Prenota",
@@ -10,13 +10,13 @@ export const it: Record<string, string> = {
   "header.companion": "con Bobby, il lagotto",
 
   // Hero
-  "hero.subtitle": "Dal processo al software operativo",
-  "hero.title1": "Creo software intelligente",
-  "hero.title2": "per manifattura e agricoltura.",
+  "hero.subtitle": "Il gestionale c'e. Il processo no.",
+  "hero.title1": "Il gestionale c'e.",
+  "hero.title2": "Ma il lavoro gira ancora su Excel, mail e PDF.",
   "hero.desc":
-    "Aiuto team e imprenditori a ridurre tempi, errori e attivita manuali con applicazioni leggere basate su AI.",
+    "Sviluppo software su misura che collega ERP, Excel, PDF e strumenti tecnici, eliminando passaggi manuali e colli di bottiglia operativi.",
   "hero.focus":
-    "Focus: agricoltura, agroalimentare e manifattura. Intervengo su workflow operativi, gestione documentale e AI agents.",
+    "Lavoro con aziende manifatturiere per trasformare processi reali in sistemi operativi funzionanti. Agricoltura in ambito secondario.",
   "hero.brand":
     "Bobby, il lagotto del brand, accompagna la parte conversazionale e l'assistenza iniziale ai clienti.",
   "hero.cta": "Prenota una Call Gratuita",
@@ -68,7 +68,7 @@ export const it: Record<string, string> = {
   // About
   "about.title": "Chi Sono",
   "about.bio":
-    "Sono Francesco Saverio Mazzi, sviluppatore software con 8+ anni di esperienza. Mi specializzo nella creazione di software leggero e intelligente per aziende nei settori manifatturiero e agricolo.",
+    "Sono Francesco Saverio Mazzi. Sviluppo software operativo per processi reali: quelli che oggi vivono tra ERP, Excel, PDF e strumenti tecnici. Ho lavorato come CTO in una startup supply chain e ho partecipato a SkyDeck Berkeley (Silicon Valley).",
   "about.rates": "Prevetivi",
   "about.rateUnit": "/ora",
   "about.rateOutside": "45\u20AC/ora fuori dalle aree di interesse",
@@ -76,23 +76,23 @@ export const it: Record<string, string> = {
   "about.rateReveal": "Prenota una call per una quotazione ",
   "about.prop1.title": "Partnership Dedicata",
   "about.prop1.desc":
-    "Seleziono i progetti con cura e offro supporto end-to-end, dalla strategia allo sviluppo.",
-  "about.prop2.title": "Competenza di Dominio",
+    "Affiancamento end-to-end: analisi processo, prototipo, rilascio e adozione operativa.",
+  "about.prop2.title": "Problemi risolti sul campo",
   "about.prop2.desc":
-    "Focus su Manifattura, Agricoltura, Food e integrazione di agenti AI/LLM.",
-  "about.prop3.title": "Metodologia Lean",
+    "Preventivazione automatica, gestione commesse e workflow RFQ con tracciabilita completa.",
+  "about.prop3.title": "Automazione documentale",
   "about.prop3.desc":
-    "Test di mercato e validazione per identificare i reali bisogni degli utenti.",
-  "about.prop4.title": "Capacit\u00E0 Full-Stack",
+    "Parsing PDF e certificazioni con estrazione dati e generazione automatica documenti Word/report.",
+  "about.prop4.title": "Stack e integrazione",
   "about.prop4.desc":
-    "TypeScript, Python, React, Next.js, FastAPI, Flutter e altro \u2014 dal frontend alle pipeline AI.",
+    "TypeScript, Python, React, FastAPI e integrazione con ERP, API, database e sistemi esistenti.",
 
   // CTA
-  "cta.title1": "Costruiamo qualcosa",
-  "cta.title2": "insieme.",
+  "cta.title1": "Call operativa",
+  "cta.title2": "di 30 minuti.",
   "cta.desc":
-    "Prenota una call introduttiva gratuita. Ti risponder\u00F2 con alcune domande iniziali per capire le tue sfide e come posso aiutarti.",
-  "cta.button": "Prenota una Call",
+    "Analizziamo un processo reale della tua azienda e identifichiamo dove intervenire per ottenere impatto operativo.",
+  "cta.button": "Prenota la call",
 
   // Footer
   "footer.info": "Francesco Saverio Mazzi \u00B7 P.IVA 02750410207",
