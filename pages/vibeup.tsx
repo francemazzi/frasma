@@ -149,6 +149,8 @@ const caseStudies = [
   {
     name: "SeminAI",
     stack: "Cloud Run · AI Agent · Web app",
+    platformUrl: "https://seminai.tech",
+    platformLabel: "Apri la piattaforma",
     before:
       "Agente AI funzionante ma non ancora pubblicato in modo affidabile su infrastruttura cloud.",
     intervention:
@@ -159,6 +161,8 @@ const caseStudies = [
   {
     name: "Bilanciami Mobile",
     stack: "Expo/React Native · TestFlight · App Store",
+    platformUrl: "https://github.com/francemazzi/bilanciami",
+    platformLabel: "Apri la piattaforma",
     before:
       "App mobile valida in sviluppo locale ma bloccata nel passaggio verso la pubblicazione iOS.",
     intervention:
@@ -169,6 +173,8 @@ const caseStudies = [
   {
     name: "Deploy ibrido Linux + Web",
     stack: "Docker · Raspberry/VM Linux · Vercel",
+    platformUrl: "https://vercel.com",
+    platformLabel: "Apri la piattaforma",
     before:
       "Backend e frontend separati senza una pipeline chiara tra ambiente Linux e hosting web.",
     intervention:
@@ -283,38 +289,28 @@ export default function VibeUpPage() {
               transition={{ duration: 0.5, delay: 0.08 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight"
             >
-              Hai vibe-codato
+              Hai un'app pronta.
               <br />
-              qualcosa di <span className="text-sage">figo.</span>
-              <br />
-              <span className="text-farm-secondary line-through decoration-terra decoration-2">
-                Non sai
-              </span>{" "}
-              come
-              <br />
-              pubblicarlo.
+              <span className="text-sage">La portiamo online.</span>
             </motion.h1>
 
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.5, delay: 0.16 }}
-              className="mt-7 text-farm-secondary text-base sm:text-lg leading-relaxed max-w-xl"
+              className="mt-6 text-farm-secondary text-base sm:text-lg leading-relaxed max-w-xl"
             >
-              App Expo bloccata. Claude Code che funziona solo sul tuo laptop.
-              <br />
-              Errori in produzione che non capisci.
-              <br />
+              Build rotta, release bloccata o deploy che non parte:
               <strong className="text-farm-text">
-                Dalla build rotta al deploy funzionante, senza perdere giorni.
+                {" "}
+                lo sistemiamo in tempi rapidi.
               </strong>
             </motion.p>
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-4 text-sm sm:text-base text-farm-secondary max-w-2xl"
+              className="mt-3 text-sm sm:text-base text-farm-secondary max-w-2xl"
             >
-              Deploy, fix di build e pubblicazione per app web e mobile
-              generate o accelerate con AI.
+              Deploy e pubblicazione per app web/mobile generate o accelerate con AI.
             </motion.p>
 
             <motion.div
@@ -322,12 +318,12 @@ export default function VibeUpPage() {
               transition={{ duration: 0.5, delay: 0.24 }}
               className="mt-8 flex flex-wrap items-center gap-4"
             >
-              <Cal textButton="SCEGLI IL PACCHETTO" buttonType="default" />
+              <Cal textButton="PRENOTA LA CALL GRATUITA" buttonType="default" />
               <a
-                href="#come-funziona"
+                href="#casi-reali"
                 className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-sage-600 hover:text-sage-500 bg-sage-50 rounded-full transition duration-200"
               >
-                Come funziona &darr;
+                Vedi problemi risolti &darr;
               </a>
             </motion.div>
           </div>
@@ -505,6 +501,14 @@ export default function VibeUpPage() {
                   <span className="text-farm-text font-semibold">Risultato:</span>{" "}
                   {item.result}
                 </p>
+                <a
+                  href={item.platformUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-4 text-xs font-semibold text-sage-600 hover:text-sage-500"
+                >
+                  {item.platformLabel} &rarr;
+                </a>
               </motion.article>
             ))}
           </div>
