@@ -161,7 +161,7 @@ const caseStudies = [
   {
     name: "Bilanciami Mobile",
     stack: "Expo/React Native · TestFlight · App Store",
-    platformUrl: "https://github.com/francemazzi/bilanciami",
+    platformUrl: "https://bilanciami.com/login",
     platformLabel: "Apri la piattaforma",
     before:
       "App mobile valida in sviluppo locale ma bloccata nel passaggio verso la pubblicazione iOS.",
@@ -173,7 +173,7 @@ const caseStudies = [
   {
     name: "Deploy ibrido Linux + Web",
     stack: "Docker · Raspberry/VM Linux · Vercel",
-    platformUrl: "https://vercel.com",
+    platformUrl: "https://www.formit.tech/",
     platformLabel: "Apri la piattaforma",
     before:
       "Backend e frontend separati senza una pipeline chiara tra ambiente Linux e hosting web.",
