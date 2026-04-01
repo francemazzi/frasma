@@ -102,19 +102,19 @@ const pacchetti: {
     note: "Consigliato se il codice \u00e8 ancora grezzo",
   },
   {
-    name: "FULL BUILD",
-    title: "Da Zero a Live",
+    name: "LAUNCH SPRINT",
+    title: "From Prototype to Production",
     price: "\u20AC2500",
     unit: "/ progetto",
-    duration: "App SaaS completa \u00b7 prezzo fisso",
+    duration: "Sprint di rilascio completo \u00b7 prezzo fisso",
     features: [
       { text: "Consulenza iniziale inclusa", included: true },
-      { text: "Sviluppo dell\u2019app da zero alla pubblicazione", included: true },
-      { text: "Frontend + Backend + Database", included: true },
-      { text: "Autenticazione, pagamenti, API", included: true },
-      { text: "Deploy su infrastruttura scalabile", included: true },
-      { text: "App Store / Google Play se mobile", included: true },
-      { text: "1 mese di supporto post-lancio", included: true },
+      { text: "Hardening tecnico prima del go-live", included: true },
+      { text: "Fix critici su build, config e deploy pipeline", included: true },
+      { text: "Setup infrastruttura e ambienti (staging/prod)", included: true },
+      { text: "Rilascio web o mobile con checklist di pubblicazione", included: true },
+      { text: "Monitoring base e logging post-lancio", included: true },
+      { text: "2 settimane di supporto post go-live", included: true },
     ],
     featured: false,
     ctaText: "PARLIAMO DEL PROGETTO",
@@ -145,6 +145,39 @@ const personas = [
   },
 ];
 
+const caseStudies = [
+  {
+    name: "SeminAI",
+    stack: "Cloud Run · AI Agent · Web app",
+    before:
+      "Agente AI funzionante ma non ancora pubblicato in modo affidabile su infrastruttura cloud.",
+    intervention:
+      "Setup deploy su Cloud Run, configurazione variabili e pipeline di rilascio stabile.",
+    result:
+      "Agente pubblicato in cloud con release operativa e ambiente pronto per iterazioni rapide.",
+  },
+  {
+    name: "Bilanciami Mobile",
+    stack: "Expo/React Native · TestFlight · App Store",
+    before:
+      "App mobile valida in sviluppo locale ma bloccata nel passaggio verso la pubblicazione iOS.",
+    intervention:
+      "Risoluzione build/release, configurazione flusso TestFlight e preparazione submission.",
+    result:
+      "Pubblicazione completata prima su TestFlight e poi su App Store con processo replicabile.",
+  },
+  {
+    name: "Deploy ibrido Linux + Web",
+    stack: "Docker · Raspberry/VM Linux · Vercel",
+    before:
+      "Backend e frontend separati senza una pipeline chiara tra ambiente Linux e hosting web.",
+    intervention:
+      "Containerizzazione backend su Docker per Raspberry/VM Linux e allineamento frontend su Vercel.",
+    result:
+      "Architettura ibrida online, deploy coordinato e base pronta per monitoring e manutenzione.",
+  },
+];
+
 const aboutStats = [
   { value: "10+", label: "anni di esperienza full-stack" },
   { value: "TS", label: "TypeScript \u00b7 React \u00b7 Next.js" },
@@ -171,7 +204,7 @@ const faqs = [
   },
   {
     q: "Come si paga?",
-    a: "Bonifico bancario o carta. Met\u00e0 prima, met\u00e0 a consegna per il pacchetto Full Build. Per Starter e Pro pagamento anticipato.",
+    a: "Bonifico bancario o carta. Met\u00e0 prima, met\u00e0 a consegna per il pacchetto Launch Sprint. Per Starter e Pro pagamento anticipato.",
   },
 ];
 
@@ -192,7 +225,7 @@ export default function VibeUpPage() {
         <title>Vibe Up &mdash; Deploy as a Service | Frasma</title>
         <meta
           name="description"
-          content="Hai vibe-codato qualcosa di figo ma non sai come pubblicarlo? Ti porto online in poche ore. Deploy, fix, code review. Garantito."
+          content="Hai build rotte o release bloccate? Ti aiuto a portare online app web e mobile generate o accelerate con AI, con deploy e fix concreti."
         />
       </Head>
 
@@ -272,8 +305,16 @@ export default function VibeUpPage() {
               Errori in produzione che non capisci.
               <br />
               <strong className="text-farm-text">
-                Ti porto online in poche ore. Garantito.
+                Dalla build rotta al deploy funzionante, senza perdere giorni.
               </strong>
+            </motion.p>
+            <motion.p
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-4 text-sm sm:text-base text-farm-secondary max-w-2xl"
+            >
+              Deploy, fix di build e pubblicazione per app web e mobile
+              generate o accelerate con AI.
             </motion.p>
 
             <motion.div
@@ -417,6 +458,60 @@ export default function VibeUpPage() {
 
         <div className="h-px mx-6 sm:mx-8 lg:mx-12 bg-gradient-to-r from-transparent via-farm-border to-transparent" />
 
+        {/* ── Casi reali ── */}
+        <section className="section-farm py-16 sm:py-20" id="casi-reali">
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.4 }}
+            className="text-xs font-semibold tracking-[0.2em] uppercase text-sage-500 mb-5"
+          >
+            PROVE REALI
+          </motion.p>
+          <motion.h2
+            {...fadeUp}
+            transition={{ duration: 0.5 }}
+            className="text-2xl sm:text-4xl font-extrabold leading-tight tracking-tight"
+          >
+            Problemi reali.
+            <br />
+            <span className="text-sage">Release completate.</span>
+          </motion.h2>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {caseStudies.map((item, i) => (
+              <motion.article
+                key={item.name}
+                {...fadeUp}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="rounded-xl border border-farm-border bg-farm-surface p-6"
+              >
+                <p className="text-xs font-semibold tracking-[0.15em] uppercase text-sage-500 mb-2">
+                  {item.name}
+                </p>
+                <p className="text-xs text-farm-secondary font-mono mb-4">
+                  {item.stack}
+                </p>
+                <p className="text-sm text-farm-secondary leading-relaxed mb-3">
+                  <span className="text-farm-text font-semibold">Prima:</span>{" "}
+                  {item.before}
+                </p>
+                <p className="text-sm text-farm-secondary leading-relaxed mb-3">
+                  <span className="text-farm-text font-semibold">
+                    Intervento:
+                  </span>{" "}
+                  {item.intervention}
+                </p>
+                <p className="text-sm text-farm-secondary leading-relaxed">
+                  <span className="text-farm-text font-semibold">Risultato:</span>{" "}
+                  {item.result}
+                </p>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <div className="h-px mx-6 sm:mx-8 lg:mx-12 bg-gradient-to-r from-transparent via-farm-border to-transparent" />
+
         {/* ── Pacchetti ── */}
         <section className="section-farm py-16 sm:py-20" id="pacchetti">
           <motion.p
@@ -501,6 +596,14 @@ export default function VibeUpPage() {
               </motion.div>
             ))}
           </div>
+          <motion.p
+            {...fadeUp}
+            transition={{ duration: 0.45, delay: 0.2 }}
+            className="mt-8 text-sm sm:text-base text-farm-secondary text-center"
+          >
+            Una sessione costa meno di una settimana persa tra build rotte,
+            tutorial e tentativi.
+          </motion.p>
         </section>
 
         <div className="h-px mx-6 sm:mx-8 lg:mx-12 bg-gradient-to-r from-transparent via-farm-border to-transparent" />
@@ -689,6 +792,10 @@ export default function VibeUpPage() {
                 buttonType="default"
               />
             </div>
+            <p className="relative mt-4 text-sm text-farm-secondary">
+              Ti dir&ograve; subito se si risolve in una sessione o se non
+              conviene partire.
+            </p>
           </motion.div>
         </section>
 
