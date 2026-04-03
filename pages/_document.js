@@ -19,17 +19,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {/* Google tag (gtag.js) */}
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-S34PK90YV6"
+            src="https://www.googletagmanager.com/gtag/js?id=G-91NBKQG4T6"
           />
           <script
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-S34PK90YV6');`,
+gtag('config', 'G-91NBKQG4T6');`,
             }}
           />
           {/* End Google tag (gtag.js) */}
+          {/* Microsoft Clarity */}
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `(function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w5joon4wbg");`,
+            }}
+          />
+          {/* Contentsquare */}
+          <script src="https://t.contentsquare.net/uxa/a9769d2931c2f.js" />
           {/* firebase */}
           <meta
             name="viewport"
