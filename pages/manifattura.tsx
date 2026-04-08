@@ -7,12 +7,12 @@ import {
   FolderSearch,
   Calculator,
   GitBranch,
+  Users,
   ShoppingCart,
   LayoutDashboard,
   Plug,
   ClipboardX,
   Unlink,
-  ListChecks,
 } from "lucide-react";
 import Cal from "../components/organism/Cal";
 import ProblemCard from "../components/organism/ProblemCard";
@@ -36,8 +36,8 @@ const problemi = [
     icon: ClipboardList,
     node: (
       <>
-        Preventivi costruiti copiando dati da{" "}
-        <strong>CAD, ERP e listini</strong>.
+        Preventivi costruiti ricopiando dati da{" "}
+        <strong>sistemi diversi: ERP, listini e specifiche tecniche</strong>.
       </>
     ),
   },
@@ -46,8 +46,8 @@ const problemi = [
     icon: GitBranch,
     node: (
       <>
-        Distinte, cicli o dati tecnici <strong>ricopiati manualmente</strong>{" "}
-        tra sistemi.
+        Commerciale, ufficio tecnico e produzione lavorano su{" "}
+        <strong>versioni diverse della stessa commessa</strong>.
       </>
     ),
   },
@@ -63,11 +63,11 @@ const problemi = [
   },
   {
     key: "pdf",
-    icon: FolderSearch,
+    icon: Users,
     node: (
       <>
-        PDF (DDT, certificazioni, schede tecniche) letti e{" "}
-        <strong>inseriti a mano</strong> nei sistemi.
+        Il flusso regge perché <strong>due persone tengono insieme tutto</strong>.
+        Se non ci sono, si blocca.
       </>
     ),
   },
@@ -79,8 +79,8 @@ const areeIntervento = [
     icon: Calculator,
   },
   {
-    label: "Integrazione ERP con CAD, nesting e produzione",
-    icon: Plug,
+    label: "Flusso commerciale -> tecnico -> produzione senza passaggi manuali",
+    icon: GitBranch,
   },
   {
     label: "Gestione RFQ e richieste fornitori con workflow tracciato",
@@ -95,7 +95,7 @@ const areeIntervento = [
     icon: ClipboardList,
   },
   {
-    label: "Dashboard operative su tempi, colli di bottiglia e avanzamento",
+    label: "Avanzamento commesse e carico reparto in tempo reale",
     icon: LayoutDashboard,
   },
 ];
@@ -105,8 +105,8 @@ const benefici: { key: string; node: React.ReactNode }[] = [
     key: "tempi",
     node: (
       <>
-        Riduzione dei tempi operativi: <strong>preventivi da giorni a
-        minuti</strong> nei flussi ripetitivi.
+        Riduzione dei tempi operativi: <strong>preventivi da giorni a minuti</strong>{" "}
+        e meno attivita ripetitive.
       </>
     ),
   },
@@ -114,8 +114,8 @@ const benefici: { key: string; node: React.ReactNode }[] = [
     key: "doppi",
     node: (
       <>
-        Eliminazione dei <strong>doppi inserimenti</strong> tra ERP, file
-        tecnici e produzione.
+        Ogni dato inserito <strong>una volta sola</strong>: niente doppi
+        aggiornamenti tra ERP, Excel e reparto.
       </>
     ),
   },
@@ -123,8 +123,8 @@ const benefici: { key: string; node: React.ReactNode }[] = [
     key: "errori",
     node: (
       <>
-        Meno <strong>errori da copia-incolla</strong> e meno versioni non
-        allineate.
+        Meno <strong>errori da copia-incolla</strong>, meno versioni non
+        allineate e meno rilavorazioni.
       </>
     ),
   },
@@ -132,8 +132,8 @@ const benefici: { key: string; node: React.ReactNode }[] = [
     key: "tracciabilita",
     node: (
       <>
-        <strong>Maggiore tracciabilita</strong> tra ufficio tecnico, acquisti
-        e produzione.
+        <strong>Tracciabilita reale</strong> tra ufficio tecnico, acquisti e
+        produzione: chi ha fatto cosa, quando e su quale commessa.
       </>
     ),
   },
@@ -142,7 +142,7 @@ const benefici: { key: string; node: React.ReactNode }[] = [
 const casiTipici = [
   {
     icon: ClipboardX,
-    titolo: "Preventivi da CAD, ERP e listini non allineati",
+    titolo: "Preventivi costruiti su fonti separate e non allineate",
     testo: (
       <>
         Ogni offerta richiede <strong>copia-incolla</strong>, verifiche su fonti
@@ -161,12 +161,13 @@ const casiTipici = [
     ),
   },
   {
-    icon: ListChecks,
-    titolo: "RFQ fornitori e approvazioni senza storico unico",
+    icon: LayoutDashboard,
+    titolo:
+      "Lo stato della commessa si scopre chiamando le persone, non guardando un sistema",
     testo: (
       <>
-        Richieste e risposte restano distribuite tra canali diversi, con{" "}
-        <strong>tracciabilita debole</strong> su tempi e decisioni.
+        Nessuna dashboard, nessuna fonte unica. I colli di bottiglia emergono{" "}
+        <strong>quando e gia tardi</strong>.
       </>
     ),
   },
@@ -174,11 +175,12 @@ const casiTipici = [
 
 const proof: { key: string; node: React.ReactNode }[] = [
   {
-    key: "erp-cad",
+    key: "avanzamento-commesse",
     node: (
       <>
-        Integrazione tra <strong>ERP</strong>, strumenti{" "}
-        <strong>CAD/nesting</strong> e flussi produttivi.
+        Avanzamento commesse <strong>multi-reparto</strong> con stato in tempo
+        reale. Prima servivano <strong>tre telefonate al giorno</strong> per
+        capire a che punto eravamo.
       </>
     ),
   },
@@ -186,17 +188,17 @@ const proof: { key: string; node: React.ReactNode }[] = [
     key: "rfq",
     node: (
       <>
-        Workflow RFQ e richieste fornitori con <strong>stato tracciato</strong>{" "}
-        e storico approvazioni.
+        Workflow RFQ e richieste fornitori con <strong>priorita visibili</strong>{" "}
+        e storico decisioni: niente piu mail perse.
       </>
     ),
   },
   {
-    key: "ai-pdf",
+    key: "qualita",
     node: (
       <>
-        Parsing assistito da <strong>AI</strong> su PDF tecnici e
-        certificazioni, con meno inserimento manuale.
+        Registrazione non conformita e documenti qualita: da moduli cartacei a
+        <strong>flusso digitale tracciato</strong>.
       </>
     ),
   },
@@ -291,7 +293,7 @@ export default function ManifatturaPage() {
         <title>Software operativo per aziende manifatturiere | Frasma</title>
         <meta
           name="description"
-          content="Software operativo per manifattura: integrazione ERP, ufficio tecnico e produzione, con automazioni su Excel, mail e PDF."
+          content="Software operativo per manifattura: integrazione ERP, ufficio tecnico e produzione, con automazioni su commesse, preventivi, PDF e flussi di approvazione."
         />
       </Head>
 
@@ -312,8 +314,8 @@ export default function ManifatturaPage() {
               eliminando passaggi manuali e colli di bottiglia operativi.
             </p>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-farm-secondary sm:text-base">
-              Lavoro sui <strong>processi reali</strong>: quelli che oggi vivono
-              tra ERP, Excel, PDF e strumenti tecnici.
+              Lavoro sul <strong>processo reale</strong>: quello che vive tra
+              persone, reparti e strumenti, non solo nell&apos;ERP.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -342,9 +344,9 @@ export default function ManifatturaPage() {
             </h2>
             <p className="mt-4 max-w-3xl text-farm-secondary leading-relaxed">
               In una lavorazione meccanica, la preventivazione dipendeva da
-              fogli Excel complessi e passaggi tra reparti. Abbiamo centralizzato
-              dati tecnici e logica di calcolo in un flusso guidato, riducendo
-              tempi, errori e dipendenza da file locali.
+              fogli Excel complessi e passaggi tra reparti. Abbiamo
+              centralizzato dati tecnici e logica di calcolo in un flusso
+              guidato, riducendo tempi, errori e dipendenza da file locali.
             </p>
             <a
               href="#progetti"
@@ -375,11 +377,14 @@ export default function ManifatturaPage() {
             Automazione operativa sui tuoi flussi reali
           </h2>
           <p className="mt-5 max-w-3xl text-farm-secondary leading-relaxed">
-            Niente software generici. Progetto <strong>strumenti operativi</strong>{" "}
-            su processi reali, con integrazioni tra sistemi esistenti e
-            automazioni anche su documenti tecnici e PDF.
+            Niente software generici. Progetto{" "}
+            <strong>strumenti operativi</strong> su processi reali, con
+            integrazioni tra sistemi esistenti e automazioni anche su documenti
+            tecnici e PDF.
           </p>
-          <h3 className="mt-10 text-lg font-semibold">Use case su cui intervengo</h3>
+          <h3 className="mt-10 text-lg font-semibold">
+            Use case su cui intervengo
+          </h3>
           <div className="mt-4 grid gap-3 grid-cols-2 lg:grid-cols-3">
             {areeIntervento.map((area) => (
               <AreaCard key={area.label} icon={area.icon} label={area.label} />
