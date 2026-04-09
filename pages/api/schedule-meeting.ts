@@ -1,5 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
+import {
+  type IRateLimiter,
+  InMemoryFixedWindowRateLimiter,
+  getClientIp,
+} from "../../lib/rate-limit";
 
 type ApiError = { ok: false; error: string };
 type ApiSuccess = { ok: true };
@@ -98,42 +103,6 @@ class MeetingScheduleRequestParser {
     }
 
     return new MeetingScheduleRequest(date, time, email, description, timezone);
-  }
-}
-
-interface IRateLimiter {
-  allow(key: string): boolean;
-}
-
-class InMemoryFixedWindowRateLimiter implements IRateLimiter {
-  private readonly _hitsByKey: Map<string, { windowStartMs: number; hits: number }> =
-    new Map();
-
-  public constructor(
-    private readonly _maxHits: number,
-    private readonly _windowMs: number
-  ) {}
-
-  public allow(key: string): boolean {
-    const now = Date.now();
-    const entry = this._hitsByKey.get(key);
-
-    if (!entry) {
-      this._hitsByKey.set(key, { windowStartMs: now, hits: 1 });
-      return true;
-    }
-
-    if (now - entry.windowStartMs > this._windowMs) {
-      this._hitsByKey.set(key, { windowStartMs: now, hits: 1 });
-      return true;
-    }
-
-    if (entry.hits >= this._maxHits) {
-      return false;
-    }
-
-    entry.hits += 1;
-    return true;
   }
 }
 
@@ -324,17 +293,6 @@ class HttpResponder {
 
 const responder = new HttpResponder();
 
-function getClientKey(req: NextApiRequest): string {
-  const forwarded = req.headers["x-forwarded-for"];
-  const ip = Array.isArray(forwarded)
-    ? forwarded[0]
-    : typeof forwarded === "string"
-      ? forwarded.split(",")[0]?.trim()
-      : req.socket.remoteAddress || "unknown";
-
-  return ip || "unknown";
-}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ApiResponse>
@@ -344,7 +302,7 @@ export default async function handler(
   }
 
   // Rate limiting by IP
-  const ipKey = getClientKey(req);
+  const ipKey = getClientIp(req);
   if (!ipRateLimiter.allow(ipKey)) {
     return responder.tooMany(res);
   }

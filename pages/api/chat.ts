@@ -1,4 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import {
+  InMemoryFixedWindowRateLimiter,
+  getClientIp,
+} from "../../lib/rate-limit";
 import { ChatOpenAI } from "@langchain/openai";
 // @ts-ignore -- moduleResolution "node" can't resolve subpath exports
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
@@ -333,6 +337,11 @@ function buildTemporalContextMessage(
   ].join("\n");
 }
 
+const chatIpRateLimiter = new InMemoryFixedWindowRateLimiter(10, 60_000); // 10 per minute per IP
+
+const MAX_MESSAGES = 20;
+const MAX_MESSAGE_LENGTH = 2000;
+
 let agentInstance: ReturnType<typeof createReactAgent> | null = null;
 const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
 const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
@@ -496,6 +505,12 @@ export default async function handler(
     return res.status(405).json({ error: "Method not allowed." });
   }
 
+  // Rate limiting by IP
+  const ipKey = getClientIp(req);
+  if (!chatIpRateLimiter.allow(ipKey)) {
+    return res.status(429).json({ error: "Too many requests. Try again later." });
+  }
+
   if (!process.env.OPENAI_API_KEY) {
     return res.status(500).json({ error: "OpenAI API key not configured." });
   }
@@ -503,6 +518,17 @@ export default async function handler(
   const body = req.body as ChatRequestBody | null;
   if (!body?.messages?.length) {
     return res.status(400).json({ error: "Messages are required." });
+  }
+
+  if (body.messages.length > MAX_MESSAGES) {
+    return res.status(400).json({ error: "Too many messages." });
+  }
+
+  const hasOversizedMessage = body.messages.some(
+    (m) => typeof m.content !== "string" || m.content.length > MAX_MESSAGE_LENGTH
+  );
+  if (hasOversizedMessage) {
+    return res.status(400).json({ error: "Message too long." });
   }
 
   try {
