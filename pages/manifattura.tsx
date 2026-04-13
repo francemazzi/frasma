@@ -427,7 +427,7 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── Come lavoro ── */}
-        <section className="section-farm py-16 sm:py-20">
+        <section id="come-lavoro" className="section-farm py-16 sm:py-20">
           <h2 className="text-2xl font-semibold sm:text-3xl">Come lavoro</h2>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             <article className="rounded-xl border border-farm-border bg-farm-surface p-5">
@@ -478,7 +478,7 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── Chi sono ── */}
-        <section className="section-farm py-16 sm:py-20">
+        <section id="chi-sono" className="section-farm py-16 sm:py-20">
           <div className="grid items-center gap-10 lg:grid-cols-[200px_minmax(0,1fr)]">
             <div className="relative mx-auto h-52 w-52 overflow-hidden rounded-2xl border border-farm-border bg-farm-panel lg:mx-0">
               <Image
@@ -531,7 +531,7 @@ export default function ManifatturaPage() {
         </section>
 
         {/* ── CTA finale ── */}
-        <section id="contatti" className="section-farm py-20 sm:py-28">
+        <section id="prenota" className="section-farm py-20 sm:py-28">
           <div className="rounded-2xl border-2 border-sage/30 bg-farm-panel p-8 text-center sm:p-14">
             <h2 className="text-2xl font-semibold sm:text-3xl">
               Processi ancora gestiti tra ERP, Excel, mail e PDF?
