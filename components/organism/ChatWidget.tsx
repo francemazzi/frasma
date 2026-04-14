@@ -23,7 +23,7 @@ type MeetingFormData = {
 
 const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
 const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
-const DISCOUNT_PATH = "/discount";
+const DISCOUNT_PATH = "/discount?conv=contact";
 
 function redirectToDiscount(): void {
   if (typeof window !== "undefined") {

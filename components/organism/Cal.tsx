@@ -32,7 +32,7 @@ type CalState = {
   errorMessage: string;
   honeypot: string;
 };
-const DISCOUNT_PATH = "/discount";
+const DISCOUNT_PATH = "/discount?conv=contact";
 
 class CssClassBuilder {
   public buildButtonClasses(type: CalButtonType): string {

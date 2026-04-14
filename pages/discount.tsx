@@ -1,11 +1,30 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useRef } from "react";
 import { useT } from "../lib/i18n/context";
 
 export default function DiscountPage() {
   const t = useT();
   const router = useRouter();
+  const hasTrackedConversionRef = useRef(false);
+
+  useEffect(() => {
+    if (!router.isReady || hasTrackedConversionRef.current) return;
+
+    const convQuery = router.query.conv;
+    const convValue = Array.isArray(convQuery) ? convQuery[0] : convQuery;
+    if (convValue !== "contact") return;
+
+    const trackedWindow = window as Window & {
+      gtag?: (...args: unknown[]) => void;
+    };
+
+    if (typeof trackedWindow.gtag !== "function") return;
+
+    trackedWindow.gtag("event", "conversion_event_contact", {});
+    hasTrackedConversionRef.current = true;
+  }, [router.isReady, router.query.conv]);
 
   const handleBack = () => {
     if (typeof window !== "undefined" && window.history.length > 1) {
