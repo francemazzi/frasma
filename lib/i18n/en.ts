@@ -11,7 +11,6 @@ export const en: Record<string, string> = {
   "header.companion": "with Fra",
 
   // Hero
-  "hero.subtitle": "Freelance software developer",
   "hero.title1": "Custom software development",
   "hero.title2": "for companies that want to automate.",
   "hero.desc":

@@ -11,7 +11,6 @@ export const it: Record<string, string> = {
   "header.companion": "con Bobby, il lagotto",
 
   // Hero
-  "hero.subtitle": "Programmatore freelance e software developer",
   "hero.title1": "Sviluppo software su misura",
   "hero.title2": "per aziende che vogliono automatizzare.",
   "hero.desc":

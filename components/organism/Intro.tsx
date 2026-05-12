@@ -9,12 +9,6 @@ export default function Intro() {
   return (
     <section className="py-24 sm:py-32 lg:py-40">
       <div className="section-farm text-center">
-        <p
-          className="text-sage-500 font-medium text-lg mb-4 tracking-wide"
-        >
-          {t("hero.subtitle")}
-        </p>
-
         <h1
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-farm-text leading-tight tracking-tight mb-6"
         >
