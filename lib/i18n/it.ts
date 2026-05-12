@@ -1,8 +1,9 @@
 export const it: Record<string, string> = {
   // Meta
-  "meta.title": "Francesco Saverio Mazzi - Sviluppatore Software",
+  "meta.title":
+    "Programmatore Freelance e Software Developer | Francesco Saverio Mazzi",
   "meta.description":
-    "Sviluppatore software specializzato in Manifattura, Agricoltura, Food e agenti LLM. Prenota una call.",
+    "Cerchi un programmatore freelance, informatico freelance o software developer? Sviluppo software su misura, app web e automazioni AI per aziende in Italia.",
 
   // Header
   "header.book": "Prenota",
@@ -10,17 +11,34 @@ export const it: Record<string, string> = {
   "header.companion": "con Bobby, il lagotto",
 
   // Hero
-  "hero.subtitle": "Dal processo al software operativo",
-  "hero.title1": "Creo software intelligente",
-  "hero.title2": "per manifattura e agricoltura.",
+  "hero.subtitle": "Programmatore freelance e software developer",
+  "hero.title1": "Sviluppo software su misura",
+  "hero.title2": "per aziende che vogliono automatizzare.",
   "hero.desc":
-    "Aiuto team e imprenditori a ridurre tempi, errori e attivita manuali con applicazioni leggere basate su AI.",
+    "Sono un informatico freelance: aiuto team e imprenditori a ridurre tempi, errori e attivita manuali con applicazioni web, integrazioni e soluzioni AI.",
   "hero.focus":
     "Focus: agricoltura, agroalimentare e manifattura. Intervengo su workflow operativi, gestione documentale e AI agents.",
   "hero.brand":
     "Bobby, il lagotto del brand, accompagna la parte conversazionale e l'assistenza iniziale ai clienti.",
   "hero.cta": "Prenota una Call Gratuita",
   "hero.projects": "Vedi i casi d'uso",
+
+  // Search landing content
+  "search.eyebrow": "Sviluppo software freelance",
+  "search.title": "Programmatore freelance per software su misura",
+  "search.description":
+    "Lavoro come sviluppatore software freelance per aziende che cercano un referente tecnico pratico: analizzo il processo, progetto l'applicazione e sviluppo soluzioni operative con React, Next.js, Python, FastAPI e integrazioni AI.",
+  "search.coverage":
+    "Intervengo su web app, dashboard, gestionali leggeri, automazioni, parsing di documenti, integrazioni con ERP e agenti AI per manifattura, agricoltura e food.",
+  "search.service1.title": "Web app e gestionali",
+  "search.service1.desc":
+    "Realizzo applicazioni full stack, dashboard e strumenti interni per digitalizzare flussi ancora gestiti con Excel, mail e file locali.",
+  "search.service2.title": "Automazioni e AI agents",
+  "search.service2.desc":
+    "Creo automazioni con LLM, agenti AI e workflow documentali per ridurre lavoro ripetitivo, tempi di risposta ed errori manuali.",
+  "search.service3.title": "Integrazioni dati e processi",
+  "search.service3.desc":
+    "Collego API, database, ERP e servizi cloud per costruire una fonte dati unica e processi piu tracciabili.",
 
   // How I Work
   "how.title": "Come lavoro",
@@ -68,7 +86,7 @@ export const it: Record<string, string> = {
   // About
   "about.title": "Chi Sono",
   "about.bio":
-    "Sono Francesco Saverio Mazzi, sviluppatore software con 8+ anni di esperienza. Mi specializzo nella creazione di software leggero e intelligente per aziende nei settori manifatturiero e agricolo.",
+    "Sono Francesco Saverio Mazzi, programmatore freelance e sviluppatore software con 8+ anni di esperienza. Mi specializzo nella creazione di software leggero e intelligente per aziende nei settori manifatturiero e agricolo.",
   "about.rates": "Prevetivi",
   "about.rateUnit": "/ora",
   "about.rateOutside": "45\u20AC/ora fuori dalle aree di interesse",

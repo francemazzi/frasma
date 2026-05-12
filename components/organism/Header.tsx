@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useT, useLang } from "../../lib/i18n/context";
 import Cal from "./Cal";
 
@@ -12,13 +13,25 @@ export default function Header() {
       className="sticky top-0 z-50 backdrop-blur-xl bg-farm-bg/80 border-b border-farm-border"
     >
       <nav className="section-farm py-4 flex justify-between items-center">
-        <div className="flex items-center gap-3">
-          <span className="text-xl font-semibold text-farm-text tracking-tight">
+        <Link href="/" className="flex items-center gap-3">
+          <span className="text-xl font-semibold text-farm-text tracking-tight hover:opacity-70 transition-opacity">
             Frasma
           </span>
-        </div>
+        </Link>
 
         <div className="flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-5 text-sm font-medium text-farm-secondary">
+            <a href="/#servizi" className="hover:text-farm-text transition-colors">
+              Servizi
+            </a>
+            <a href="/#projects" className="hover:text-farm-text transition-colors">
+              Casi
+            </a>
+            <Link href="/blog" className="hover:text-farm-text transition-colors">
+              Blog
+            </Link>
+          </div>
+
           <div className="flex items-center gap-1 text-sm">
             <button
               type="button"

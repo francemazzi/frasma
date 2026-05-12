@@ -1,18 +1,46 @@
-import Head from "next/head";
 import Link from "next/link";
 import Footer from "../../components/organism/Footer";
+import Seo from "../../components/Seo";
+import { absoluteUrl, breadcrumbJsonLd, SITE_URL } from "../../lib/seo";
 
 export default function SeminaiPost() {
+  const title =
+    "SeminAI: sviluppo software AI e automazioni operative | Frasma";
+  const description =
+    "Come sto sviluppando SeminAI, una piattaforma con intelligenza artificiale per dati, processi e workflow aziendali.";
+
   return (
     <>
-      <Head>
-        <title>SeminAI: lo sviluppo di una piattaforma AI - Frasma Blog</title>
-        <meta
-          name="description"
-          content="Sto sviluppando SeminAI, una piattaforma che integra intelligenza artificiale per trasformare il modo in cui lavoriamo con i dati e i processi."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        title={title}
+        description={description}
+        path="/blog/seminai"
+        type="article"
+        publishedTime="2026-03-06"
+        modifiedTime="2026-05-12"
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: "SeminAI", path: "/blog/seminai" },
+          ]),
+          {
+            "@type": "BlogPosting",
+            "@id": `${SITE_URL}/blog/seminai#article`,
+            headline: title,
+            description,
+            datePublished: "2026-03-06",
+            dateModified: "2026-05-12",
+            author: {
+              "@id": `${SITE_URL}/#person`,
+            },
+            publisher: {
+              "@id": `${SITE_URL}/#business`,
+            },
+            mainEntityOfPage: absoluteUrl("/blog/seminai"),
+          },
+        ]}
+      />
 
       <main className="min-h-screen bg-farm-bg font-poppins">
         <header className="sticky top-0 z-50 backdrop-blur-xl bg-farm-bg/80 border-b border-farm-border">

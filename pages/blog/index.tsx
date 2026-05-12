@@ -1,6 +1,7 @@
-import Head from "next/head";
 import Link from "next/link";
 import Footer from "../../components/organism/Footer";
+import Seo from "../../components/Seo";
+import { absoluteUrl, breadcrumbJsonLd, SITE_URL } from "../../lib/seo";
 
 const posts = [
   {
@@ -20,16 +21,37 @@ const posts = [
 ];
 
 export default function Blog() {
+  const title = "Blog sviluppo software freelance | Frasma";
+  const description =
+    "Articoli di Frasma su programmazione freelance, sviluppo software, automazioni AI e progetti tech.";
+
   return (
     <>
-      <Head>
-        <title>Blog - Frasma</title>
-        <meta
-          name="description"
-          content="Blog di Frasma - articoli su sviluppo software, freelancing e tecnologia"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        title={title}
+        description={description}
+        path="/blog"
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+          ]),
+          {
+            "@type": "Blog",
+            "@id": `${SITE_URL}/blog#blog`,
+            name: "Blog Frasma",
+            description,
+            url: absoluteUrl("/blog"),
+            blogPost: posts.map((post) => ({
+              "@type": "BlogPosting",
+              headline: post.title,
+              description: post.excerpt,
+              datePublished: post.date,
+              url: absoluteUrl(`/blog/${post.slug}`),
+            })),
+          },
+        ]}
+      />
 
       <main className="min-h-screen bg-farm-bg font-poppins">
         <header className="sticky top-0 z-50 backdrop-blur-xl bg-farm-bg/80 border-b border-farm-border">

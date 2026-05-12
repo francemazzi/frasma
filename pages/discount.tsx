@@ -1,8 +1,8 @@
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { useT } from "../lib/i18n/context";
+import Seo from "../components/Seo";
 
 export default function DiscountPage() {
   const t = useT();
@@ -36,10 +36,12 @@ export default function DiscountPage() {
 
   return (
     <>
-      <Head>
-        <title>{t("discount.metaTitle")}</title>
-        <meta name="description" content={t("discount.metaDescription")} />
-      </Head>
+      <Seo
+        title={t("discount.metaTitle")}
+        description={t("discount.metaDescription")}
+        path="/discount"
+        noindex
+      />
 
       <main className="min-h-screen bg-farm-bg font-poppins px-6 py-16 sm:py-24">
         <section className="mx-auto max-w-2xl rounded-3xl border border-farm-border bg-farm-surface p-8 sm:p-10 text-center shadow-sm">

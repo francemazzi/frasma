@@ -1,8 +1,9 @@
 export const en: Record<string, string> = {
   // Meta
-  "meta.title": "Francesco Saverio Mazzi - Software Developer",
+  "meta.title":
+    "Freelance Software Developer | Francesco Saverio Mazzi",
   "meta.description":
-    "Software developer specializing in Manufacturing, Agriculture, Food, and LLM agents. Schedule a call today.",
+    "Freelance software developer for custom web apps, business automations, AI agents, and operational software for Italian companies.",
 
   // Header
   "header.book": "Book",
@@ -10,17 +11,34 @@ export const en: Record<string, string> = {
   "header.companion": "with Fra",
 
   // Hero
-  "hero.subtitle": "From process to production software",
-  "hero.title1": "Building intelligent software",
-  "hero.title2": "for manufacturing and agriculture.",
+  "hero.subtitle": "Freelance software developer",
+  "hero.title1": "Custom software development",
+  "hero.title2": "for companies that want to automate.",
   "hero.desc":
-    "I help teams and founders reduce manual work, delays, and errors through lightweight AI-powered software.",
+    "I help teams and founders reduce manual work, delays, and errors with web apps, integrations, and AI-powered operational tools.",
   "hero.focus":
     "Focus: agriculture, agri-food, and manufacturing. I work on operational workflows, document handling, and AI agents.",
   "hero.brand":
     "Bobby, the Lagotto in the brand, represents the conversational and first-contact support experience.",
   "hero.cta": "Schedule a Free Call",
   "hero.projects": "View use cases",
+
+  // Search landing content
+  "search.eyebrow": "Freelance software development",
+  "search.title": "A freelance software developer for custom business tools",
+  "search.description":
+    "I work with companies that need a practical technical partner: I analyze the process, design the application, and build operational software with React, Next.js, Python, FastAPI, and AI integrations.",
+  "search.coverage":
+    "I build web apps, dashboards, lightweight internal tools, automations, document parsing, ERP integrations, and AI agents for manufacturing, agriculture, and food companies.",
+  "search.service1.title": "Web apps and internal tools",
+  "search.service1.desc":
+    "I build full-stack applications, dashboards, and internal systems that replace Excel, email, and scattered local files.",
+  "search.service2.title": "Automations and AI agents",
+  "search.service2.desc":
+    "I create LLM-powered automations, AI agents, and document workflows that reduce repetitive work, response times, and manual errors.",
+  "search.service3.title": "Data and process integrations",
+  "search.service3.desc":
+    "I connect APIs, databases, ERP systems, and cloud services to create a single operational data source and more traceable workflows.",
 
   // How I Work
   "how.title": "How I Work",
@@ -68,7 +86,7 @@ export const en: Record<string, string> = {
   // About
   "about.title": "About Me",
   "about.bio":
-    "I\u2019m Francesco Saverio Mazzi, a software developer with 8+ years of experience. I specialize in building lightweight, intelligent software for companies in the manufacturing and agricultural sectors.",
+    "I\u2019m Francesco Saverio Mazzi, a freelance software developer with 8+ years of experience. I specialize in building lightweight, intelligent software for companies in the manufacturing and agricultural sectors.",
   "about.rates": "Rates",
   "about.rateUnit": "/hr",
   "about.rateOutside": "45\u20AC/hr outside core areas of interest",

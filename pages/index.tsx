@@ -1,48 +1,44 @@
-import Head from "next/head";
-import dynamic from "next/dynamic";
 import Header from "../components/organism/Header";
 import Intro from "../components/organism/Intro";
+import HowIWork from "../components/organism/HowIWork";
+import SearchLandingContent from "../components/organism/SearchLandingContent";
+import Experience from "../components/organism/Experience";
+import TechnicalSkillsDetailed from "../components/organism/TechnicalSkills";
+import WhyContactMe from "../components/organism/WhyContactMe";
+import CallToAction from "../components/organism/CallToAction";
+import Footer from "../components/organism/Footer";
+import Seo from "../components/Seo";
 import { useT } from "../lib/i18n/context";
-
-const HowIWork = dynamic(
-  () => import("../components/organism/HowIWork"),
-  { ssr: false, loading: () => null }
-);
-const Experience = dynamic(
-  () => import("../components/organism/Experience"),
-  { ssr: false, loading: () => null }
-);
-const TechnicalSkillsDetailed = dynamic(
-  () => import("../components/organism/TechnicalSkills"),
-  { ssr: false, loading: () => null }
-);
-const WhyContactMe = dynamic(
-  () => import("../components/organism/WhyContactMe"),
-  { ssr: false, loading: () => null }
-);
-const CallToAction = dynamic(
-  () => import("../components/organism/CallToAction"),
-  { ssr: false, loading: () => null }
-);
-const Footer = dynamic(
-  () => import("../components/organism/Footer"),
-  { ssr: false, loading: () => null }
-);
+import {
+  breadcrumbJsonLd,
+  personJsonLd,
+  professionalServiceJsonLd,
+  websiteJsonLd,
+} from "../lib/seo";
 
 export default function Home() {
   const t = useT();
+  const title = t("meta.title");
+  const description = t("meta.description");
 
   return (
     <>
-      <Head>
-        <title>{t("meta.title")}</title>
-        <meta name="description" content={t("meta.description")} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        title={title}
+        description={description}
+        path="/"
+        jsonLd={[
+          websiteJsonLd,
+          professionalServiceJsonLd,
+          personJsonLd,
+          breadcrumbJsonLd([{ name: "Home", path: "/" }]),
+        ]}
+      />
 
       <main className="min-h-screen bg-farm-bg font-poppins">
         <Header />
         <Intro />
+        <SearchLandingContent />
         <HowIWork />
         <Experience />
         <TechnicalSkillsDetailed />

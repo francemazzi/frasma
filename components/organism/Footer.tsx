@@ -16,6 +16,13 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-5">
             <Link
+              href="/programmatore-freelance"
+              className="text-sm font-medium text-farm-secondary hover:text-farm-text transition-colors"
+            >
+              Programmatore freelance
+            </Link>
+            <span className="text-farm-tertiary">·</span>
+            <Link
               href="/blog"
               className="text-sm font-medium text-farm-secondary hover:text-farm-text transition-colors"
             >

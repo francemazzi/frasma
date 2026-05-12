@@ -14,6 +14,15 @@ const nextConfig = {
       "framer-motion",
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/index.html",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

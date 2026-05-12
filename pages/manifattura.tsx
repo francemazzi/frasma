@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import {
@@ -19,6 +18,8 @@ import ProblemCard from "../components/organism/ProblemCard";
 import AreaCard from "../components/organism/AreaCard";
 import CaseCard from "../components/organism/CaseCard";
 import DashboardMockup from "../components/organism/DashboardMockup";
+import Seo from "../components/Seo";
+import { breadcrumbJsonLd, SITE_URL } from "../lib/seo";
 
 const problemi = [
   {
@@ -281,6 +282,9 @@ const ctaVariants: Record<CtaVariantKey, CtaVariant> = {
 
 export default function ManifatturaPage() {
   const router = useRouter();
+  const title = "Software operativo per aziende manifatturiere | Frasma";
+  const description =
+    "Software operativo per manifattura: integrazione ERP, ufficio tecnico e produzione, con automazioni su commesse, preventivi, PDF e flussi di approvazione.";
   const rawVariant =
     typeof router.query.cta === "string" ? router.query.cta.toLowerCase() : "a";
   const ctaVariantKey: CtaVariantKey =
@@ -289,13 +293,31 @@ export default function ManifatturaPage() {
 
   return (
     <>
-      <Head>
-        <title>Software operativo per aziende manifatturiere | Frasma</title>
-        <meta
-          name="description"
-          content="Software operativo per manifattura: integrazione ERP, ufficio tecnico e produzione, con automazioni su commesse, preventivi, PDF e flussi di approvazione."
-        />
-      </Head>
+      <Seo
+        title={title}
+        description={description}
+        path="/manifattura"
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Manifattura", path: "/manifattura" },
+          ]),
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/manifattura#service`,
+            name: "Software operativo per aziende manifatturiere",
+            description,
+            provider: {
+              "@id": `${SITE_URL}/#business`,
+            },
+            serviceType: "Sviluppo software su misura per manifattura",
+            areaServed: {
+              "@type": "Country",
+              name: "Italia",
+            },
+          },
+        ]}
+      />
 
       <main className="min-h-screen bg-farm-bg text-farm-text">
         {/* ── Hero ── */}

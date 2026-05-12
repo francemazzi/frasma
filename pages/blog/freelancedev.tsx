@@ -1,18 +1,46 @@
-import Head from "next/head";
 import Link from "next/link";
 import Footer from "../../components/organism/Footer";
+import Seo from "../../components/Seo";
+import { absoluteUrl, breadcrumbJsonLd, SITE_URL } from "../../lib/seo";
 
 export default function FreelanceDevPost() {
+  const title =
+    "Trovami su FreelanceDEV: freelancer italiani per progetti tech | Frasma";
+  const description =
+    "Sono disponibile su FreelanceDEV: sviluppatore freelance per web app, cloud, automazioni e software su misura.";
+
   return (
     <>
-      <Head>
-        <title>Trovami su FreelanceDEV - Frasma Blog</title>
-        <meta
-          name="description"
-          content="Sono disponibile su FreelanceDEV, la piattaforma dedicata ai freelancer italiani del mondo tech."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        title={title}
+        description={description}
+        path="/blog/freelancedev"
+        type="article"
+        publishedTime="2026-03-06"
+        modifiedTime="2026-05-12"
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: "FreelanceDEV", path: "/blog/freelancedev" },
+          ]),
+          {
+            "@type": "BlogPosting",
+            "@id": `${SITE_URL}/blog/freelancedev#article`,
+            headline: title,
+            description,
+            datePublished: "2026-03-06",
+            dateModified: "2026-05-12",
+            author: {
+              "@id": `${SITE_URL}/#person`,
+            },
+            publisher: {
+              "@id": `${SITE_URL}/#business`,
+            },
+            mainEntityOfPage: absoluteUrl("/blog/freelancedev"),
+          },
+        ]}
+      />
 
       <main className="min-h-screen bg-farm-bg font-poppins">
         <header className="sticky top-0 z-50 backdrop-blur-xl bg-farm-bg/80 border-b border-farm-border">

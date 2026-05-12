@@ -1,7 +1,8 @@
-import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Cal from "../components/organism/Cal";
+import Seo from "../components/Seo";
+import { breadcrumbJsonLd, SITE_URL } from "../lib/seo";
 import { Laptop, Smartphone, AlertCircle, Hourglass, Bot, Rocket, Lightbulb, MapPin } from "lucide-react";
 
 /* ── Data ─────────────────────────────────────────────────── */
@@ -225,15 +226,37 @@ const fadeUp = {
 /* ── Page ─────────────────────────────────────────────────── */
 
 export default function VibeUpPage() {
+  const title = "Vibe Up - Deploy as a Service per app AI | Frasma";
+  const description =
+    "Hai build rotte o release bloccate? Ti aiuto a portare online app web e mobile generate o accelerate con AI, con deploy e fix concreti.";
+
   return (
     <>
-      <Head>
-        <title>Vibe Up &mdash; Deploy as a Service | Frasma</title>
-        <meta
-          name="description"
-          content="Hai build rotte o release bloccate? Ti aiuto a portare online app web e mobile generate o accelerate con AI, con deploy e fix concreti."
-        />
-      </Head>
+      <Seo
+        title={title}
+        description={description}
+        path="/vibeup"
+        jsonLd={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Vibe Up", path: "/vibeup" },
+          ]),
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/vibeup#service`,
+            name: "Vibe Up - Deploy as a Service",
+            description,
+            provider: {
+              "@id": `${SITE_URL}/#business`,
+            },
+            serviceType: "Deploy, fix build e pubblicazione app web e mobile",
+            areaServed: {
+              "@type": "Country",
+              name: "Italia",
+            },
+          },
+        ]}
+      />
 
       {/* ── Nav ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-8 lg:px-12 py-4 bg-farm-bg/85 backdrop-blur-md border-b border-farm-border">
