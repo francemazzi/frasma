@@ -1,20 +1,20 @@
 export const it: Record<string, string> = {
   // Meta
-  "meta.title": "Frasma — Software operativo e AI per PMI manifatturiere",
+  "meta.title": "Frasma — Agenzia AI per software, agenti e presenza digitale",
   "meta.description":
-    "Frasma è uno studio software indipendente: aiuta PMI manifatturiere, alimentari e operative a ridurre lavoro manuale con applicazioni su misura, integrazioni e automazioni AI.",
+    "Frasma è un'agenzia AI strutturata per PMI: sviluppa software su misura, agenti AI, integrazioni MCP e strategie di presenza su ChatGPT, Claude e Gemini.",
 
   // Top rule (editorial)
-  "topRule.studio": "Frasma · Studio Software indipendente · Mantova — Italia",
+  "topRule.studio": "Frasma · Agenzia AI strutturata · Mantova — Italia",
   "topRule.tag1": "Software operativo",
-  "topRule.tag2": "Agenti AI",
-  "topRule.tag3": "Integrazioni",
+  "topRule.tag2": "Agenti AI e MCP",
+  "topRule.tag3": "Presenza AI",
   "topRule.sheet": "Foglio 01 / 2026",
 
   // Header
   "header.book": "Prenota",
   "header.schedule": "Prenota una call",
-  "header.companion": "",
+  "header.companion": "agenzia AI",
   "header.nav.cases": "Casi studio",
   "header.nav.platform": "Aree di valore",
   "header.nav.projects": "Progetti",
@@ -26,9 +26,11 @@ export const it: Record<string, string> = {
   "hero.titleEm": "integrata",
   "hero.title2": "nei processi operativi reali — custom, non standard.",
   "hero.desc":
-    "Frasma sviluppa software su misura dove agenti AI, parsing documentale e integrazioni si fondono nei flussi di lavoro di aziende manifatturiere, alimentari, agronomiche e di field service.",
+    "Frasma è un'agenzia AI strutturata: software su misura con agenti, parsing documentale, MCP e integrazioni per manifattura, alimentare, agronomia e field service.",
   "hero.lead":
-    "Non chatbot, non automazioni generiche. Una sola piattaforma per documenti, ticket, preventivi e controlli — al posto di Excel, email e quattro tool scollegati.",
+    "Niente chatbot né automazioni generiche: una piattaforma per documenti, ticket, preventivi e controlli — al posto di Excel, email e tool scollegati.",
+  "hero.presence":
+    "Presenza anche su ChatGPT, Claude e Gemini: contenuti, dati strutturati e connettori MCP.",
   "hero.focus":
     "Verticali: manifattura, alimentare, agronomia, servizi sul campo.",
   "hero.brand":
@@ -117,7 +119,22 @@ export const it: Record<string, string> = {
   "search.description":
     "Sviluppiamo software su misura quando un processo aziendale è troppo specifico per essere gestito bene con strumenti standard, ma troppo importante per restare su Excel, email o procedure manuali.",
   "search.coverage":
-    "Web app operative, automazioni AI, integrazioni con ERP e sistemi esistenti, parsing e generazione di documenti tecnici.",
+    "Web app operative, automazioni AI, integrazioni con ERP e sistemi esistenti, MCP, presenza negli agenti AI, parsing e generazione di documenti tecnici.",
+
+  // AI presence
+  "aiPresence.eyebrow": "Presenza AI e MCP",
+  "aiPresence.title": "Rendiamo l'azienda leggibile e azionabile dagli agenti AI",
+  "aiPresence.desc":
+    "Non basta comparire su Google: sempre più ricerche, decisioni e operazioni passano da agenti conversazionali. Prepariamo contenuti, dati e strumenti perché il brand sia trovato, capito e collegato ai sistemi interni.",
+  "aiPresence.item1.title": "ChatGPT, Claude, Gemini",
+  "aiPresence.item1.desc":
+    "Strutturiamo informazioni, knowledge base e contenuti perché gli agenti AI possano rappresentare correttamente servizi, prodotti e competenze.",
+  "aiPresence.item2.title": "MCP e connettori",
+  "aiPresence.item2.desc":
+    "Progettiamo server MCP e integrazioni sicure per far dialogare agenti AI, software aziendale, documenti, database e API operative.",
+  "aiPresence.item3.title": "Strategia digitale AI-ready",
+  "aiPresence.item3.desc":
+    "Allineiamo sito, dati strutturati, automazioni e processi commerciali per essere presenti nei nuovi percorsi di ricerca e acquisizione clienti.",
 
   // How we work
   "how.title": "Come lavoriamo",
@@ -165,9 +182,9 @@ export const it: Record<string, string> = {
   "skills.interests": "Verticali",
 
   // Why Frasma ("Studio software snello")
-  "about.title": "Uno studio software snello, tecnico e orientato ai processi",
+  "about.title": "Un'agenzia AI tecnica, strutturata e orientata ai processi",
   "about.bio":
-    "Frasma lavora su progetti dove il valore non è solo sviluppare un'app, ma capire un processo aziendale e trasformarlo in uno strumento operativo. Non partiamo da chatbot o automazioni standard: partiamo dal flusso reale — documenti, dati, ruoli, eccezioni, software già usati e ore perse ogni settimana.",
+    "Frasma lavora su progetti dove il valore non è solo sviluppare un'app, ma capire un processo aziendale e trasformarlo in uno strumento operativo affidabile. Non partiamo da chatbot o automazioni standard: partiamo dal flusso reale — documenti, dati, ruoli, eccezioni, software già usati e ore perse ogni settimana.",
   "about.prop1.title": "Verticali su processi reali",
   "about.prop1.desc":
     "Non vendiamo AI generica. Costruiamo software su processi misurati: preventivi, documenti, ticket, commesse.",
@@ -177,9 +194,9 @@ export const it: Record<string, string> = {
   "about.prop3.title": "Ciclo rapido",
   "about.prop3.desc":
     "Validazione su un caso reale prima di scalare: meno demo, più prima versione utile in produzione.",
-  "about.prop4.title": "Stack full-stack e AI",
+  "about.prop4.title": "Stack full-stack, AI e MCP",
   "about.prop4.desc":
-    "Web app, agenti AI/LLM, parsing documentale, integrazioni con ERP e cloud. Sviluppo end-to-end.",
+    "Web app, agenti AI/LLM, MCP, parsing documentale, integrazioni con ERP, cloud e strategie digitali AI-ready. Sviluppo end-to-end.",
   "about.rateCta.title": "Ogni progetto è diverso",
   "about.rateCta.desc":
     "Tempi e budget dipendono da scope e processo. Una call di 30 minuti basta per capire se ha senso lavorare insieme.",

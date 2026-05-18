@@ -1,20 +1,20 @@
 export const en: Record<string, string> = {
   // Meta
-  "meta.title": "Frasma — Operational software & AI for manufacturing SMEs",
+  "meta.title": "Frasma — AI agency for software, agents, and digital presence",
   "meta.description":
-    "Frasma is an independent software studio that helps manufacturing, food, and operational SMEs cut manual work with custom applications, integrations, and AI automations.",
+    "Frasma is a structured AI agency for SMEs: custom software, AI agents, MCP integrations, and AI presence strategies for ChatGPT, Claude, and Gemini.",
 
   // Top rule (editorial)
-  "topRule.studio": "Frasma · Independent Software Studio · Mantova — Italy",
+  "topRule.studio": "Frasma · Structured AI agency · Mantova — Italy",
   "topRule.tag1": "Operational software",
-  "topRule.tag2": "AI agents",
-  "topRule.tag3": "Integrations",
+  "topRule.tag2": "AI agents & MCP",
+  "topRule.tag3": "AI presence",
   "topRule.sheet": "Sheet 01 / 2026",
 
   // Header
   "header.book": "Book",
   "header.schedule": "Book a call",
-  "header.companion": "software studio",
+  "header.companion": "AI agency",
   "header.nav.cases": "Case studies",
   "header.nav.platform": "Use cases",
   "header.nav.projects": "Projects",
@@ -26,9 +26,11 @@ export const en: Record<string, string> = {
   "hero.titleEm": "embedded",
   "hero.title2": "in real operational processes — custom, not generic.",
   "hero.desc":
-    "Frasma builds custom software where AI agents, document parsing, and integrations live inside the daily workflows of manufacturing, food, agronomy, and field-service companies.",
+    "Frasma is a structured AI agency: custom software with agents, document parsing, MCP, and integrations for manufacturing, food, agronomy, and field service.",
   "hero.lead":
-    "Not chatbots, not generic automations. One platform for documents, tickets, quotes, and controls — instead of Excel, email, and four disconnected tools.",
+    "No generic chatbots or automations: one platform for documents, tickets, quotes, and controls — instead of Excel, email, and disconnected tools.",
+  "hero.presence":
+    "Presence on ChatGPT, Claude, and Gemini too: content, structured data, and MCP connectors.",
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
   "hero.brand":
     "Frasma, the Lagotto in the brand, represents the conversational and first-contact support experience.",
@@ -116,7 +118,22 @@ export const en: Record<string, string> = {
   "search.description":
     "We build custom software when a business process is too specific for off-the-shelf tools, but too important to live on Excel, email, or manual procedures.",
   "search.coverage":
-    "Operational web apps, AI automations, integrations with ERPs and existing systems, parsing and generation of technical documents.",
+    "Operational web apps, AI automations, integrations with ERPs and existing systems, MCP, AI-agent presence, parsing, and generation of technical documents.",
+
+  // AI presence
+  "aiPresence.eyebrow": "AI presence and MCP",
+  "aiPresence.title": "We make the company readable and actionable by AI agents",
+  "aiPresence.desc":
+    "Being present on Google is no longer enough: more searches, decisions, and operations now run through conversational agents. We prepare content, data, and tools so the brand can be found, understood, and connected to internal systems.",
+  "aiPresence.item1.title": "ChatGPT, Claude, Gemini",
+  "aiPresence.item1.desc":
+    "We structure information, knowledge bases, and content so AI agents can represent services, products, and expertise correctly.",
+  "aiPresence.item2.title": "MCP and connectors",
+  "aiPresence.item2.desc":
+    "We design MCP servers and secure integrations that connect AI agents with business software, documents, databases, and operational APIs.",
+  "aiPresence.item3.title": "AI-ready digital strategy",
+  "aiPresence.item3.desc":
+    "We align the website, structured data, automations, and commercial processes for the new search and customer acquisition journeys.",
 
   // How we work
   "how.title": "How we work",
@@ -163,9 +180,9 @@ export const en: Record<string, string> = {
   "skills.interests": "Verticals",
 
   // Why Frasma ("Lean software studio")
-  "about.title": "A lean, technical software studio focused on real processes",
+  "about.title": "A technical, structured AI agency focused on real processes",
   "about.bio":
-    "Frasma works on projects where the value isn’t just shipping an app, but understanding a business process and turning it into an operational tool. We don’t start from chatbots or generic automations: we start from the real workflow — documents, data, roles, exceptions, existing software, and hours lost every week.",
+    "Frasma works on projects where the value isn’t just shipping an app, but understanding a business process and turning it into a reliable operational tool. We don’t start from chatbots or generic automations: we start from the real workflow — documents, data, roles, exceptions, existing software, and hours lost every week.",
   "about.prop1.title": "Vertical on real processes",
   "about.prop1.desc":
     "We don’t sell generic AI. We build software on measured processes: quoting, documents, tickets, jobs.",
@@ -175,9 +192,9 @@ export const en: Record<string, string> = {
   "about.prop3.title": "Fast cycle",
   "about.prop3.desc":
     "Validate on a real case before scaling: fewer demos, more first-useful versions in production.",
-  "about.prop4.title": "Full-stack & AI stack",
+  "about.prop4.title": "Full-stack, AI & MCP stack",
   "about.prop4.desc":
-    "Web apps, AI/LLM agents, document parsing, integrations with ERPs and cloud. End-to-end development.",
+    "Web apps, AI/LLM agents, MCP, document parsing, integrations with ERPs, cloud, and AI-ready digital strategies. End-to-end development.",
   "about.rateCta.title": "Every project is different",
   "about.rateCta.desc":
     "Timelines and budget depend on scope and process. A 30-minute call is enough to see whether it makes sense to work together.",

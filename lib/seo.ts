@@ -52,6 +52,9 @@ export const personJsonLd = {
     "Studio software per PMI",
     "Automazioni AI per imprese",
     "Agenti AI e LLM operativi",
+    "MCP e Model Context Protocol",
+    "Presenza su ChatGPT, Claude e Gemini",
+    "Strategie digitali AI-ready",
     "Integrazioni ERP e API",
     "Digitalizzazione documentale",
     "Parsing PDF e OCR",
@@ -81,7 +84,7 @@ export const professionalServiceJsonLd = {
     "@id": `${SITE_URL}/#person`,
   },
   description:
-    "Studio software indipendente: applicazioni su misura, integrazioni e automazioni AI per PMI manifatturiere, alimentari e operative.",
+    "Agenzia AI strutturata: applicazioni su misura, agenti AI, MCP, integrazioni e strategie di presenza su ChatGPT, Claude e Gemini per PMI.",
   areaServed: [
     {
       "@type": "Country",

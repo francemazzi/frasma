@@ -5,6 +5,24 @@ import { Bot, ClipboardList, ListChecks, FileSpreadsheet } from "lucide-react";
 import { useT } from "../../lib/i18n/context";
 import { BentoCard, BentoGrid } from "../atoms/Bento";
 
+const AI_PRESENCE_ITEMS = [
+  {
+    number: "01",
+    titleKey: "aiPresence.item1.title",
+    descKey: "aiPresence.item1.desc",
+  },
+  {
+    number: "02",
+    titleKey: "aiPresence.item2.title",
+    descKey: "aiPresence.item2.desc",
+  },
+  {
+    number: "03",
+    titleKey: "aiPresence.item3.title",
+    descKey: "aiPresence.item3.desc",
+  },
+] as const;
+
 export default function Platform() {
   const t = useT();
 
@@ -50,8 +68,53 @@ export default function Platform() {
             background={<PreventiviMock />}
           />
         </BentoGrid>
+
+        <AiPresence t={t} />
       </div>
     </section>
+  );
+}
+
+function AiPresence({ t }: { t: (key: string) => string }) {
+  return (
+    <div className="mt-4 overflow-hidden rounded-3xl border border-hairline-strong bg-[#FBF6E5]">
+      <div className="grid lg:grid-cols-[1.05fr_1.95fr]">
+        <div className="p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-hairline-strong">
+          <div className="font-mono text-[10px] tracking-[0.16em] uppercase text-accent mb-3">
+            {t("aiPresence.eyebrow")}
+          </div>
+          <h3 className="font-serif text-[28px] sm:text-[34px] leading-[1.08] tracking-[-0.02em] text-ink mb-4">
+            {t("aiPresence.title")}
+          </h3>
+          <p className="text-[14.5px] leading-[1.6] text-ink-soft">
+            {t("aiPresence.desc")}
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-3">
+          {AI_PRESENCE_ITEMS.map((item, index) => (
+            <div
+              key={item.number}
+              className={`p-5 sm:p-6 ${
+                index === 0
+                  ? ""
+                  : "border-t sm:border-t-0 sm:border-l border-hairline-strong"
+              }`}
+            >
+              <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-accent mb-3">
+                {item.number}
+              </div>
+              <h4 className="text-[15px] font-semibold text-ink mb-2">
+                {t(item.titleKey)}
+              </h4>
+              <p className="text-[13.5px] leading-[1.55] text-ink-soft">
+                {t(item.descKey)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
