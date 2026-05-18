@@ -1,6 +1,9 @@
 "use client";
 
+import { Bot, ClipboardList, ListChecks, FileSpreadsheet } from "lucide-react";
+
 import { useT } from "../../lib/i18n/context";
+import { BentoCard, BentoGrid } from "../atoms/Bento";
 
 export default function Platform() {
   const t = useT();
@@ -19,12 +22,36 @@ export default function Platform() {
           {t("platform.intro")}
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <AgentMock />
-          <TicketsMock />
-          <WorkflowMock />
-          <PreventiviMock />
-        </div>
+        <BentoGrid className="lg:auto-rows-[26rem]">
+          <BentoCard
+            className="lg:col-span-2"
+            name={t("platform.cards.agent.name")}
+            description={t("platform.cards.agent.desc")}
+            Icon={Bot}
+            background={<AgentMock />}
+          />
+          <BentoCard
+            className="lg:col-span-1"
+            name={t("platform.cards.tickets.name")}
+            description={t("platform.cards.tickets.desc")}
+            Icon={ClipboardList}
+            background={<TicketsMock />}
+          />
+          <BentoCard
+            className="lg:col-span-1"
+            name={t("platform.cards.workflow.name")}
+            description={t("platform.cards.workflow.desc")}
+            Icon={ListChecks}
+            background={<WorkflowMock />}
+          />
+          <BentoCard
+            className="lg:col-span-2"
+            name={t("platform.cards.preventivi.name")}
+            description={t("platform.cards.preventivi.desc")}
+            Icon={FileSpreadsheet}
+            background={<PreventiviMock />}
+          />
+        </BentoGrid>
       </div>
     </section>
   );
@@ -57,7 +84,7 @@ function MockHead({
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="border border-hairline-strong bg-[#FBF6E5] overflow-hidden flex flex-col min-h-[280px] lg:min-h-[320px]">
+    <div className="h-full w-full bg-[#FBF6E5] overflow-hidden flex flex-col">
       {children}
     </div>
   );

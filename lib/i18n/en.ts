@@ -16,7 +16,7 @@ export const en: Record<string, string> = {
   "header.schedule": "Book a call",
   "header.companion": "software studio",
   "header.nav.cases": "Case studies",
-  "header.nav.platform": "Platform",
+  "header.nav.platform": "Use cases",
   "header.nav.projects": "Projects",
   "header.nav.blog": "Blog",
 
@@ -204,6 +204,18 @@ export const en: Record<string, string> = {
   "platform.title2": ".",
   "platform.intro":
     "Each case has its own app, but we reuse the same operative building blocks: AI agents grounded on technical sources, dashboards for tickets and orders, document workflows with validation, tables wired into ERP and existing spreadsheets. Four real components, lifted from production projects.",
+  "platform.cards.agent.name": "AI agents on documents",
+  "platform.cards.agent.desc":
+    "Automatic data extraction from PDFs, technical sheets, and attachments. Operators confirm or correct; history stays tracked.",
+  "platform.cards.tickets.name": "Operations & ticketing",
+  "platform.cards.tickets.desc":
+    "Dashboards for field work, priorities, and SLAs. Real visibility on what is open, in progress, and closed.",
+  "platform.cards.workflow.name": "Workflows & procedures",
+  "platform.cards.workflow.desc":
+    "Guided procedures with monitoring, validations, and document generation. Built for the people who fill them out every day.",
+  "platform.cards.preventivi.name": "Lightweight back-office",
+  "platform.cards.preventivi.desc":
+    "Tables, totals, statuses, and exportable data. They replace unmanageable spreadsheets without forcing a full ERP.",
 
   // Founder
   "founder.role": "Founder · CTO",

@@ -1,23 +1,34 @@
 "use client";
 
+import { LayoutDashboard, Bot, Workflow, ScanText } from "lucide-react";
+
 import { useT } from "../../lib/i18n/context";
+import { BentoCard, BentoGrid } from "../atoms/Bento";
 
 const services = [
   {
     titleKey: "search.service1.title",
     descKey: "search.service1.desc",
+    Icon: LayoutDashboard,
+    className: "lg:col-span-2",
   },
   {
     titleKey: "search.service2.title",
     descKey: "search.service2.desc",
+    Icon: Bot,
+    className: "lg:col-span-1",
   },
   {
     titleKey: "search.service3.title",
     descKey: "search.service3.desc",
+    Icon: Workflow,
+    className: "lg:col-span-1",
   },
   {
     titleKey: "search.service4.title",
     descKey: "search.service4.desc",
+    Icon: ScanText,
+    className: "lg:col-span-2",
   },
 ];
 
@@ -42,21 +53,17 @@ export default function SearchLandingContent() {
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <BentoGrid>
           {services.map((service) => (
-            <article
+            <BentoCard
               key={service.titleKey}
-              className="rounded-2xl border border-farm-border bg-farm-surface p-5 shadow-sm h-full"
-            >
-              <h3 className="text-base font-semibold text-farm-text mb-2">
-                {t(service.titleKey)}
-              </h3>
-              <p className="text-sm leading-relaxed text-farm-secondary">
-                {t(service.descKey)}
-              </p>
-            </article>
+              className={service.className}
+              name={t(service.titleKey)}
+              description={t(service.descKey)}
+              Icon={service.Icon}
+            />
           ))}
-        </div>
+        </BentoGrid>
       </div>
     </section>
   );

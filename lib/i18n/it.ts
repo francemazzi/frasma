@@ -14,9 +14,9 @@ export const it: Record<string, string> = {
   // Header
   "header.book": "Prenota",
   "header.schedule": "Prenota una call",
-  "header.companion": "studio software",
+  "header.companion": "",
   "header.nav.cases": "Casi studio",
-  "header.nav.platform": "Piattaforma",
+  "header.nav.platform": "Aree di valore",
   "header.nav.projects": "Progetti",
   "header.nav.blog": "Blog",
 
@@ -206,6 +206,18 @@ export const it: Record<string, string> = {
   "platform.title2": ".",
   "platform.intro":
     "Ogni caso ha la sua app, ma riusiamo gli stessi blocchi operativi: agenti AI agganciati a fonti tecniche, dashboard per ticket e commesse, workflow documentali con validazione, tabelle integrate con ERP e fogli esistenti. Quattro componenti reali, presi da progetti in produzione.",
+  "platform.cards.agent.name": "Agenti AI su documenti",
+  "platform.cards.agent.desc":
+    "Estrazione automatica di dati da PDF, schede tecniche e allegati. L'operatore conferma o corregge, lo storico resta tracciato.",
+  "platform.cards.tickets.name": "Operations e ticketing",
+  "platform.cards.tickets.desc":
+    "Dashboard per attività sul campo, priorità e SLA. Visibilità reale su cosa è aperto, in corso e chiuso.",
+  "platform.cards.workflow.name": "Workflow e procedure",
+  "platform.cards.workflow.desc":
+    "Procedure guidate con monitoraggio, validazioni e generazione documenti. Pensate per chi le compila ogni giorno.",
+  "platform.cards.preventivi.name": "Gestionali leggeri",
+  "platform.cards.preventivi.desc":
+    "Tabelle, totali, stati e dati esportabili. Sostituiscono fogli Excel ingestibili senza imporre un ERP completo.",
 
   // Founder
   "founder.role": "Founder · CTO",
