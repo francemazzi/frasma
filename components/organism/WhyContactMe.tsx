@@ -4,6 +4,12 @@ import { motion } from "framer-motion";
 import { useT } from "../../lib/i18n/context";
 import Cal from "./Cal";
 
+const steps = [
+  { number: "01", titleKey: "how.title1", descKey: "how.desc1" },
+  { number: "02", titleKey: "how.title2", descKey: "how.desc2" },
+  { number: "03", titleKey: "how.title3", descKey: "how.desc3" },
+];
+
 export default function WhyContactMe() {
   const t = useT();
 
@@ -32,7 +38,30 @@ export default function WhyContactMe() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.number}
+              className="bg-farm-surface rounded-2xl p-6 border border-farm-border shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+            >
+              <p className="text-xs font-semibold tracking-[0.2em] text-sage-500 mb-3">
+                {step.number}
+              </p>
+              <h3 className="text-xl font-semibold text-farm-text mb-2">
+                {t(step.titleKey)}
+              </h3>
+              <p className="text-farm-secondary leading-relaxed">
+                {t(step.descKey)}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
           {valueProps.map((item, index) => (
             <motion.div
               key={index}
@@ -53,21 +82,13 @@ export default function WhyContactMe() {
         </div>
 
         <motion.div
-          className="bg-farm-surface rounded-2xl p-8 border border-farm-border text-center max-w-xl mx-auto"
+          className="flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-lg font-semibold text-farm-text mb-2">
-            {t("about.rateCta.title")}
-          </h3>
-          <p className="text-sm text-farm-secondary leading-relaxed mb-6">
-            {t("about.rateCta.desc")}
-          </p>
-          <div className="flex justify-center">
-            <Cal textButton={t("about.rateReveal")} buttonType="default" />
-          </div>
+          <Cal textButton={t("about.rateReveal")} buttonType="default" />
         </motion.div>
       </div>
     </section>

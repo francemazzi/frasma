@@ -197,9 +197,6 @@ export const it: Record<string, string> = {
   "about.prop4.title": "Stack full-stack, AI e MCP",
   "about.prop4.desc":
     "Web app, agenti AI/LLM, MCP, parsing documentale, integrazioni con ERP, cloud e strategie digitali AI-ready. Sviluppo end-to-end.",
-  "about.rateCta.title": "Ogni progetto è diverso",
-  "about.rateCta.desc":
-    "Tempi e budget dipendono da scope e processo. Una call di 30 minuti basta per capire se ha senso lavorare insieme.",
   "about.rateReveal": "Prenota una call",
 
   // Platform (UI mockups)
