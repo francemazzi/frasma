@@ -197,7 +197,7 @@ export const it: Record<string, string> = {
   "platform.cards.workflow.name": "Workflow e procedure",
   "platform.cards.workflow.desc":
     "Digitalizzazione documentale e procedure guidate con monitoraggio, validazioni e generazione automatica di documenti. Pensate per chi le compila ogni giorno.",
-  "platform.cards.preventivi.name": "Gestionali leggeri",
+  "platform.cards.preventivi.name": "Gestionali personalizzati",
   "platform.cards.preventivi.desc":
     "Tabelle, totali, stati e dati esportabili, con integrazioni verso ERP, listini e fogli esistenti. Sostituiscono Excel ingestibili senza imporre un gestionale completo.",
 

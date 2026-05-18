@@ -56,13 +56,15 @@ export function BentoCard({
           <div className="pointer-events-none absolute inset-0 z-0 transition-transform duration-700 ease-out group-hover:scale-[1.015]">
             {background}
           </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[58%] bg-gradient-to-t from-paper via-paper/85 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[72%] bg-gradient-to-t from-paper from-40% via-paper/95 to-transparent" />
         </>
       ) : null}
 
       <div
         className={`relative z-10 flex flex-col gap-2 p-5 transition-transform duration-300 ease-out ${
-          hasBg ? "mt-auto lg:group-hover:-translate-y-4" : "lg:group-hover:-translate-y-6"
+          hasBg
+            ? "mt-auto bg-paper/95 backdrop-blur-[2px] lg:group-hover:-translate-y-4"
+            : "lg:group-hover:-translate-y-6"
         }`}
       >
         {Icon ? (
