@@ -9,7 +9,7 @@ const emailRateLimiter = new InMemoryFixedWindowRateLimiter(2, 300_000); // 2 pe
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -19,7 +19,9 @@ export default async function handler(
   // Rate limiting by IP
   const ipKey = getClientIp(req);
   if (!ipRateLimiter.allow(ipKey)) {
-    return res.status(429).json({ error: "Too many requests. Try again later." });
+    return res
+      .status(429)
+      .json({ error: "Too many requests. Try again later." });
   }
 
   const { clientEmail, subject, body } = req.body ?? {};
@@ -39,7 +41,9 @@ export default async function handler(
   // Rate limiting by email
   const emailKey = String(clientEmail).toLowerCase();
   if (!emailRateLimiter.allow(emailKey)) {
-    return res.status(429).json({ error: "Too many requests. Try again later." });
+    return res
+      .status(429)
+      .json({ error: "Too many requests. Try again later." });
   }
 
   const nodemailer = await import("nodemailer");
@@ -64,7 +68,7 @@ export default async function handler(
 
   try {
     await transporter.sendMail({
-      from: `Bobby AI <${user}>`,
+      from: `Frasma AI <${user}>`,
       to,
       replyTo: clientEmail,
       subject,

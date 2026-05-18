@@ -30,7 +30,7 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
       (err) => {
         clearTimeout(timer);
         reject(err);
-      }
+      },
     );
   });
 }
@@ -65,15 +65,35 @@ const FRANCESCO_KNOWLEDGE = {
     outsideCoreAreas: "45€/hr",
     onSiteSurcharge: "+10€/hr",
   },
-  methodology: "Lean — market testing and validation to identify real user needs before building.",
-  approach: "Dedicated partnership with end-to-end support, from strategy through development.",
+  methodology:
+    "Lean — market testing and validation to identify real user needs before building.",
+  approach:
+    "Dedicated partnership with end-to-end support, from strategy through development.",
   projects: [
-    { name: "SeminAI", desc: "AI-powered agronomic tool for compiling the field notebook." },
-    { name: "FormIT", desc: "Open source tool for managing microbiological analyses." },
-    { name: "BilanciaMI", desc: "Open source tool for managing deadlines and invoices." },
-    { name: "Tree", desc: "Open source tool for evaluating carbon absorption impact from plants." },
-    { name: "Emilio", desc: "Expert agronomist agent with dataset from 'Manuale dell'agronomo' v2016." },
-    { name: "Rudolf", desc: "Agent integrated with Info Camere for extracting balance sheets and generating reports." },
+    {
+      name: "SeminAI",
+      desc: "AI-powered agronomic tool for compiling the field notebook.",
+    },
+    {
+      name: "FormIT",
+      desc: "Open source tool for managing microbiological analyses.",
+    },
+    {
+      name: "BilanciaMI",
+      desc: "Open source tool for managing deadlines and invoices.",
+    },
+    {
+      name: "Tree",
+      desc: "Open source tool for evaluating carbon absorption impact from plants.",
+    },
+    {
+      name: "Emilio",
+      desc: "Expert agronomist agent with dataset from 'Manuale dell'agronomo' v2016.",
+    },
+    {
+      name: "Rudolf",
+      desc: "Agent integrated with Info Camere for extracting balance sheets and generating reports.",
+    },
   ],
 };
 
@@ -90,7 +110,7 @@ const getStackInfoTool = tool(
     description:
       "Returns all information about Francesco's tech stack, skills, projects, rates, and methodology. Use this when the user asks about what Francesco can do, his technologies, projects, or pricing.",
     schema: z.object({}),
-  }
+  },
 );
 
 /** Prepares meeting data for the in-chat form; the user submits to /api/schedule-meeting from the UI. */
@@ -116,13 +136,17 @@ const scheduleMeetingTool = tool(
       description: z
         .string()
         .optional()
-        .describe("Description or context for the meeting (optional but recommended)"),
+        .describe(
+          "Description or context for the meeting (optional but recommended)",
+        ),
       timezone: z
         .string()
         .optional()
-        .describe("User's IANA timezone (e.g. Europe/Rome). Defaults to Europe/Rome."),
+        .describe(
+          "User's IANA timezone (e.g. Europe/Rome). Defaults to Europe/Rome.",
+        ),
     }),
-  }
+  },
 );
 
 const draftQuoteEmailTool = tool(
@@ -164,7 +188,7 @@ Return ONLY valid JSON, nothing else.`;
 
     const response = await withTimeout(
       miniModel.invoke([new HumanMessage(prompt)]),
-      DRAFT_QUOTE_MINI_TIMEOUT_MS
+      DRAFT_QUOTE_MINI_TIMEOUT_MS,
     );
     const raw =
       typeof response.content === "string"
@@ -198,17 +222,20 @@ Return ONLY valid JSON, nothing else.`;
       clientCompany: z.string().optional().describe("Client's company name"),
       projectDescription: z.string().describe("Detailed project description"),
       budget: z.string().optional().describe("Budget indication if provided"),
-      timeline: z.string().optional().describe("Timeline preference if provided"),
+      timeline: z
+        .string()
+        .optional()
+        .describe("Timeline preference if provided"),
       notes: z.string().optional().describe("Any additional notes or context"),
     }),
-  }
+  },
 );
 
 /* ------------------------------------------------------------------ */
 /*  Agent setup                                                        */
 /* ------------------------------------------------------------------ */
 
-const SYSTEM_PROMPT = `You are Bobby, Francesco Saverio Mazzi's AI assistant on his portfolio website.
+const SYSTEM_PROMPT = `You are Frasma, Francesco Saverio Mazzi's AI assistant on his portfolio website.
 Your personality: friendly, professional, concise. You use a warm but business-like tone.
 
 Your main goals (in order of priority):
@@ -289,11 +316,7 @@ function addCalendarDaysToYmd(ymd: string, days: number): string {
   return `${y2}-${m2}-${d2}`;
 }
 
-function weekdayForYmd(
-  ymd: string,
-  timeZone: string,
-  locale: string
-): string {
+function weekdayForYmd(ymd: string, timeZone: string, locale: string): string {
   const [y, mo, da] = ymd.split("-").map(Number);
   const utcNoon = new Date(Date.UTC(y, mo - 1, da, 12, 0, 0));
   return new Intl.DateTimeFormat(locale, {
@@ -304,7 +327,7 @@ function weekdayForYmd(
 
 function buildTemporalContextMessage(
   lang: ChatRequestBody["lang"],
-  timeZone: string
+  timeZone: string,
 ): string {
   const locale = lang === "en" ? "en-GB" : "it-IT";
   const now = new Date();
@@ -376,13 +399,14 @@ function getMessageName(message: unknown): string | null {
   const directName = (message as { name?: unknown }).name;
   if (typeof directName === "string") return directName;
 
-  const nestedName = (message as { lc_kwargs?: { name?: unknown } }).lc_kwargs?.name;
+  const nestedName = (message as { lc_kwargs?: { name?: unknown } }).lc_kwargs
+    ?.name;
   return typeof nestedName === "string" ? nestedName : null;
 }
 
 function buildEmailFormResponse(
   payload: EmailFormPayload,
-  lang: ChatRequestBody["lang"]
+  lang: ChatRequestBody["lang"],
 ): string {
   const intro = lang === "en" ? "Here's the draft:" : "Ecco la bozza:";
   return `${intro}\n\n<!--EMAIL_FORM-->${JSON.stringify(payload)}<!--/EMAIL_FORM-->`;
@@ -390,7 +414,7 @@ function buildEmailFormResponse(
 
 function buildMeetingFormResponse(
   payload: MeetingFormPayload,
-  lang: ChatRequestBody["lang"]
+  lang: ChatRequestBody["lang"],
 ): string {
   const intro =
     lang === "en"
@@ -401,7 +425,7 @@ function buildMeetingFormResponse(
 
 function extractEmailFormFallback(
   messages: unknown[],
-  lang: ChatRequestBody["lang"]
+  lang: ChatRequestBody["lang"],
 ): string | null {
   for (let i = messages.length - 1; i >= 0; i -= 1) {
     const message = messages[i];
@@ -430,7 +454,7 @@ function extractEmailFormFallback(
 
 function extractMeetingFormFallback(
   messages: unknown[],
-  lang: ChatRequestBody["lang"]
+  lang: ChatRequestBody["lang"],
 ): string | null {
   for (let i = messages.length - 1; i >= 0; i -= 1) {
     const message = messages[i];
@@ -461,7 +485,7 @@ function extractMeetingFormFallback(
 function applyStructuredFormFallbacks(
   content: string,
   messages: unknown[],
-  lang: ChatRequestBody["lang"]
+  lang: ChatRequestBody["lang"],
 ): string {
   let out = content;
   if (!EMAIL_FORM_RE.test(out)) {
@@ -498,7 +522,7 @@ function getAgent() {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -508,7 +532,9 @@ export default async function handler(
   // Rate limiting by IP
   const ipKey = getClientIp(req);
   if (!chatIpRateLimiter.allow(ipKey)) {
-    return res.status(429).json({ error: "Too many requests. Try again later." });
+    return res
+      .status(429)
+      .json({ error: "Too many requests. Try again later." });
   }
 
   if (!process.env.OPENAI_API_KEY) {
@@ -525,7 +551,8 @@ export default async function handler(
   }
 
   const hasOversizedMessage = body.messages.some(
-    (m) => typeof m.content !== "string" || m.content.length > MAX_MESSAGE_LENGTH
+    (m) =>
+      typeof m.content !== "string" || m.content.length > MAX_MESSAGE_LENGTH,
   );
   if (hasOversizedMessage) {
     return res.status(400).json({ error: "Message too long." });
@@ -545,7 +572,7 @@ export default async function handler(
       ...body.messages.map((m) =>
         m.role === "user"
           ? new HumanMessage(m.content)
-          : new AIMessage(m.content)
+          : new AIMessage(m.content),
       ),
     ];
 
@@ -553,7 +580,7 @@ export default async function handler(
       agent.invoke({
         messages: langchainMessages,
       }),
-      CHAT_INVOKE_TIMEOUT_MS
+      CHAT_INVOKE_TIMEOUT_MS,
     )) as { messages: unknown[] };
 
     const lastMessage = result.messages[result.messages.length - 1];
@@ -561,7 +588,7 @@ export default async function handler(
     const responseText = applyStructuredFormFallbacks(
       content,
       result.messages,
-      body.lang
+      body.lang,
     );
 
     return res.status(200).json({ response: responseText });

@@ -32,7 +32,7 @@ export const it: Record<string, string> = {
   "hero.focus":
     "Verticali: manifattura, alimentare, agronomia, servizi sul campo.",
   "hero.brand":
-    "Bobby, il lagotto del brand, accompagna la parte conversazionale e l'assistenza iniziale ai clienti.",
+    "Frasma, il lagotto del brand, accompagna la parte conversazionale e l'assistenza iniziale ai clienti.",
   "hero.cta": "Prenota una call gratuita",
   "hero.projects": "Vedi i casi studio",
   "hero.card.title": "Studio — scheda",
@@ -261,9 +261,9 @@ export const it: Record<string, string> = {
   "cal.validDesc": "La descrizione è troppo lunga.",
 
   // Chat widget
-  "chat.title": "Chatta con Bobby",
+  "chat.title": "Chatta con Frasma",
   "chat.welcome":
-    "Ciao! Sono Bobby, l'assistente AI di Frasma. Chiedimi dello stack, dei casi studio o prenota una call!",
+    "Ciao! Sono Frasma, l'assistente AI di Frasma. Chiedimi dello stack, dei casi studio o prenota una call!",
   "chat.placeholder": "Scrivi un messaggio...",
   "chat.send": "Invia",
   "chat.close": "Chiudi chat",

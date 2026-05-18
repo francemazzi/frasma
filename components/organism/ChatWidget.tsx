@@ -543,7 +543,7 @@ export default function ChatWidget() {
       {/* Chat window — editorial paper panel */}
       {isOpen && (
         <div
-          className="fixed z-50 flex min-w-0 flex-col overflow-hidden border border-hairline-strong bg-paper left-3 right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] max-h-[min(34rem,calc(100dvh-1.5rem-env(safe-area-inset-bottom,0px)-env(safe-area-inset-top,0px)))] sm:left-auto sm:right-6 sm:bottom-6 sm:w-[380px] sm:max-h-[540px]"
+          className="fixed z-50 flex min-w-0 flex-col overflow-hidden rounded-3xl border border-hairline-strong bg-paper left-3 right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] max-h-[min(34rem,calc(100dvh-1.5rem-env(safe-area-inset-bottom,0px)-env(safe-area-inset-top,0px)))] sm:left-auto sm:right-6 sm:bottom-6 sm:w-[380px] sm:max-h-[540px]"
           style={{
             background: "linear-gradient(180deg, #F4EEDF 0%, #EDE5CF 100%)",
             boxShadow: "0 28px 60px -12px rgba(27,25,22,0.4)",

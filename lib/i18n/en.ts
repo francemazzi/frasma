@@ -31,7 +31,7 @@ export const en: Record<string, string> = {
     "Not chatbots, not generic automations. One platform for documents, tickets, quotes, and controls — instead of Excel, email, and four disconnected tools.",
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
   "hero.brand":
-    "Bobby, the Lagotto in the brand, represents the conversational and first-contact support experience.",
+    "Frasma, the Lagotto in the brand, represents the conversational and first-contact support experience.",
   "hero.cta": "Book a free call",
   "hero.projects": "See case studies",
   "hero.card.title": "Studio — card",
@@ -259,9 +259,9 @@ export const en: Record<string, string> = {
   "cal.validDesc": "Description is too long.",
 
   // Chat widget
-  "chat.title": "Chat with Bobby",
+  "chat.title": "Chat with Frasma",
   "chat.welcome":
-    "Hi! I'm Bobby, Frasma's AI assistant. Ask me about the stack, case studies, or book a call!",
+    "Hi! I'm Frasma, Frasma's AI assistant. Ask me about the stack, case studies, or book a call!",
   "chat.placeholder": "Type a message...",
   "chat.send": "Send",
   "chat.close": "Close chat",
