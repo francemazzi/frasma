@@ -166,8 +166,6 @@ export const en: Record<string, string> = {
   "about.title": "A lean, technical software studio focused on real processes",
   "about.bio":
     "Frasma works on projects where the value isn’t just shipping an app, but understanding a business process and turning it into an operational tool. We don’t start from chatbots or generic automations: we start from the real workflow — documents, data, roles, exceptions, existing software, and hours lost every week.",
-  "about.team":
-    "Frasma is led by Francesco Saverio Mazzi, a full-stack developer specialized in operational software, AI automations, and data integrations. For larger projects Frasma works with a network of external professionals on UX, marketing, and use-case analysis, while keeping a lean, outcome-oriented structure.",
   "about.prop1.title": "Vertical on real processes",
   "about.prop1.desc":
     "We don’t sell generic AI. We build software on measured processes: quoting, documents, tickets, jobs.",

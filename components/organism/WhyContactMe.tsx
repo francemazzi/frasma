@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useT } from "../../lib/i18n/context";
 import Cal from "./Cal";
 
@@ -52,30 +51,6 @@ export default function WhyContactMe() {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-12 max-w-4xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex-shrink-0">
-            <div className="relative w-32 h-32 rounded-2xl overflow-hidden shadow-md">
-              <Image
-                src="/profilo_home.jpg"
-                alt="Francesco Saverio Mazzi"
-                fill
-                sizes="(max-width: 640px) 96px, 128px"
-                quality={68}
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <p className="text-base text-farm-secondary leading-relaxed text-center lg:text-left">
-            {t("about.team")}
-          </p>
-        </motion.div>
 
         <motion.div
           className="bg-farm-surface rounded-2xl p-8 border border-farm-border text-center max-w-xl mx-auto"

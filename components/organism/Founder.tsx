@@ -9,7 +9,7 @@ export default function Founder() {
   return (
     <section className="section-farm">
       <div className="grid grid-cols-1 sm:grid-cols-[220px_minmax(0,1fr)] gap-6 sm:gap-12 items-start py-14 sm:py-20 border-t border-hairline">
-        <div className="relative aspect-square border border-hairline-strong overflow-hidden bg-paper-2 max-w-[200px] sm:max-w-none">
+        <div className="relative aspect-square rounded-2xl border border-hairline-strong overflow-hidden bg-paper-2 max-w-[200px] sm:max-w-none">
           <Image
             src="/image/use_case/francesco-mazzi.jpg"
             alt="Francesco Saverio Mazzi"

@@ -168,8 +168,6 @@ export const it: Record<string, string> = {
   "about.title": "Uno studio software snello, tecnico e orientato ai processi",
   "about.bio":
     "Frasma lavora su progetti dove il valore non è solo sviluppare un'app, ma capire un processo aziendale e trasformarlo in uno strumento operativo. Non partiamo da chatbot o automazioni standard: partiamo dal flusso reale — documenti, dati, ruoli, eccezioni, software già usati e ore perse ogni settimana.",
-  "about.team":
-    "Frasma è guidata da Francesco Saverio Mazzi, sviluppatore full-stack specializzato in software operativo, automazioni AI e integrazioni dati. Per progetti più ampi Frasma si appoggia a una rete di professionisti su UX, marketing e analisi dei casi d'uso, mantenendo una struttura snella e orientata al risultato.",
   "about.prop1.title": "Verticali su processi reali",
   "about.prop1.desc":
     "Non vendiamo AI generica. Costruiamo software su processi misurati: preventivi, documenti, ticket, commesse.",
