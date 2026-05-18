@@ -12,14 +12,12 @@ export default function Platform() {
     <section id="piattaforma" className="ed-section">
       <div className="section-farm">
         <div className="mb-10 sm:mb-14">
-          <div className="ed-kicker">{t("platform.kicker")}</div>
-          <h2 className="ed-title max-w-[28ch]">
-            {t("platform.title1")} <em>{t("platform.titleEm")}</em>
-            {t("platform.title2")}
-          </h2>
+          <div className="ed-kicker">{t("search.eyebrow")}</div>
+          <h2 className="ed-title max-w-[28ch]">{t("search.title")}</h2>
         </div>
-        <p className="ed-intro mb-10 sm:mb-14 lg:ml-[200px]">
-          {t("platform.intro")}
+        <p className="ed-intro mb-4 lg:ml-[200px]">{t("search.description")}</p>
+        <p className="ed-intro mb-10 sm:mb-14 lg:ml-[200px] text-ink-soft/80">
+          {t("search.coverage")}
         </p>
 
         <BentoGrid className="lg:auto-rows-[26rem]">

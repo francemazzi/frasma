@@ -3,7 +3,6 @@ import Intro from "../components/organism/Intro";
 import Results from "../components/organism/Results";
 import Platform from "../components/organism/Platform";
 import HowIWork from "../components/organism/HowIWork";
-import SearchLandingContent from "../components/organism/SearchLandingContent";
 import TechnicalSkillsDetailed from "../components/organism/TechnicalSkills";
 import WhyContactMe from "../components/organism/WhyContactMe";
 import Founder from "../components/organism/Founder";
@@ -43,7 +42,6 @@ export default function Home() {
         <Intro />
         <Results />
         <Platform />
-        <SearchLandingContent />
         <HowIWork />
         <WhyContactMe />
         <TechnicalSkillsDetailed />

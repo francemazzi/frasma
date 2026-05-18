@@ -117,18 +117,6 @@ export const en: Record<string, string> = {
     "We build custom software when a business process is too specific for off-the-shelf tools, but too important to live on Excel, email, or manual procedures.",
   "search.coverage":
     "Operational web apps, AI automations, integrations with ERPs and existing systems, parsing and generation of technical documents.",
-  "search.service1.title": "Custom operational applications",
-  "search.service1.desc":
-    "Dashboards, light internal tools, portals, and web apps to track activities, jobs, deadlines, clients, documents, and teams.",
-  "search.service2.title": "AI automations & operational agents",
-  "search.service2.desc":
-    "AI assistants connected to documents, databases, and business procedures: they extract data, generate reports, validate information, and guide repetitive tasks.",
-  "search.service3.title": "Integrations with existing systems",
-  "search.service3.desc":
-    "Connections to ERPs, APIs, databases, Excel files, email, business software, and cloud services to avoid double entry and keep data traceable.",
-  "search.service4.title": "Document digitization",
-  "search.service4.desc":
-    "Parsing, OCR, data extraction, and automatic generation of documents from PDFs, forms, attachments, certifications, orders, and technical files.",
 
   // How we work
   "how.title": "How we work",
@@ -198,24 +186,18 @@ export const en: Record<string, string> = {
   "about.rateReveal": "Book a call",
 
   // Platform (UI mockups)
-  "platform.kicker": "Real components",
-  "platform.title1": "Actual software, not",
-  "platform.titleEm": "trend slides",
-  "platform.title2": ".",
-  "platform.intro":
-    "Each case has its own app, but we reuse the same operative building blocks: AI agents grounded on technical sources, dashboards for tickets and orders, document workflows with validation, tables wired into ERP and existing spreadsheets. Four real components, lifted from production projects.",
   "platform.cards.agent.name": "AI agents on documents",
   "platform.cards.agent.desc":
-    "Automatic data extraction from PDFs, technical sheets, and attachments. Operators confirm or correct; history stays tracked.",
+    "AI automation and data extraction from PDFs, technical sheets, and attachments. Operators confirm or correct; history stays tracked.",
   "platform.cards.tickets.name": "Operations & ticketing",
   "platform.cards.tickets.desc":
-    "Dashboards for field work, priorities, and SLAs. Real visibility on what is open, in progress, and closed.",
+    "Operational apps for field work, tickets, priorities, and SLAs. Real visibility on what is open, in progress, and closed.",
   "platform.cards.workflow.name": "Workflows & procedures",
   "platform.cards.workflow.desc":
-    "Guided procedures with monitoring, validations, and document generation. Built for the people who fill them out every day.",
+    "Document digitization and guided procedures with monitoring, validations, and automatic document generation. Built for the people who fill them out every day.",
   "platform.cards.preventivi.name": "Lightweight back-office",
   "platform.cards.preventivi.desc":
-    "Tables, totals, statuses, and exportable data. They replace unmanageable spreadsheets without forcing a full ERP.",
+    "Tables, totals, statuses, and exportable data, wired into ERPs, price lists, and existing spreadsheets. They replace unmanageable Excel files without forcing a full back-office system.",
 
   // Founder
   "founder.role": "Founder · CTO",

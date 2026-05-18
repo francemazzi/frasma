@@ -118,18 +118,6 @@ export const it: Record<string, string> = {
     "Sviluppiamo software su misura quando un processo aziendale è troppo specifico per essere gestito bene con strumenti standard, ma troppo importante per restare su Excel, email o procedure manuali.",
   "search.coverage":
     "Web app operative, automazioni AI, integrazioni con ERP e sistemi esistenti, parsing e generazione di documenti tecnici.",
-  "search.service1.title": "Applicazioni operative su misura",
-  "search.service1.desc":
-    "Dashboard, gestionali leggeri, portali interni e strumenti web per seguire attività, commesse, scadenze, clienti, documenti e team.",
-  "search.service2.title": "Automazioni AI e agenti operativi",
-  "search.service2.desc":
-    "Assistenti AI collegati a documenti, database e procedure aziendali: estraggono dati, generano report, controllano informazioni e guidano attività ripetitive.",
-  "search.service3.title": "Integrazioni con sistemi esistenti",
-  "search.service3.desc":
-    "Connessioni con ERP, API, database, fogli Excel, email, gestionali e servizi cloud per evitare doppi inserimenti e rendere i dati tracciabili.",
-  "search.service4.title": "Digitalizzazione documentale",
-  "search.service4.desc":
-    "Parsing, OCR, estrazione dati e generazione automatica di documenti da PDF, moduli, allegati, certificazioni, ordini e file tecnici.",
 
   // How we work
   "how.title": "Come lavoriamo",
@@ -200,24 +188,18 @@ export const it: Record<string, string> = {
   "about.rateReveal": "Prenota una call",
 
   // Platform (UI mockups)
-  "platform.kicker": "Componenti reali",
-  "platform.title1": "Software vero, non slide di",
-  "platform.titleEm": "tendenza",
-  "platform.title2": ".",
-  "platform.intro":
-    "Ogni caso ha la sua app, ma riusiamo gli stessi blocchi operativi: agenti AI agganciati a fonti tecniche, dashboard per ticket e commesse, workflow documentali con validazione, tabelle integrate con ERP e fogli esistenti. Quattro componenti reali, presi da progetti in produzione.",
   "platform.cards.agent.name": "Agenti AI su documenti",
   "platform.cards.agent.desc":
-    "Estrazione automatica di dati da PDF, schede tecniche e allegati. L'operatore conferma o corregge, lo storico resta tracciato.",
+    "Automazioni AI ed estrazione di dati da PDF, schede tecniche e allegati. L'operatore conferma o corregge, lo storico resta tracciato.",
   "platform.cards.tickets.name": "Operations e ticketing",
   "platform.cards.tickets.desc":
-    "Dashboard per attività sul campo, priorità e SLA. Visibilità reale su cosa è aperto, in corso e chiuso.",
+    "Applicazioni operative per attività sul campo, ticket, priorità e SLA. Visibilità reale su cosa è aperto, in corso e chiuso.",
   "platform.cards.workflow.name": "Workflow e procedure",
   "platform.cards.workflow.desc":
-    "Procedure guidate con monitoraggio, validazioni e generazione documenti. Pensate per chi le compila ogni giorno.",
+    "Digitalizzazione documentale e procedure guidate con monitoraggio, validazioni e generazione automatica di documenti. Pensate per chi le compila ogni giorno.",
   "platform.cards.preventivi.name": "Gestionali leggeri",
   "platform.cards.preventivi.desc":
-    "Tabelle, totali, stati e dati esportabili. Sostituiscono fogli Excel ingestibili senza imporre un ERP completo.",
+    "Tabelle, totali, stati e dati esportabili, con integrazioni verso ERP, listini e fogli esistenti. Sostituiscono Excel ingestibili senza imporre un gestionale completo.",
 
   // Founder
   "founder.role": "Founder · CTO",
