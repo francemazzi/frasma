@@ -1,37 +1,39 @@
 "use client";
 
 import { useT } from "../../lib/i18n/context";
-import Cal from "./Cal";
 
 export default function Intro() {
   const t = useT();
 
   return (
-    <section className="py-24 sm:py-32 lg:py-40">
-      <div className="section-farm text-center">
+    <section id="top" className="section-farm">
+      <div className="pt-16 sm:pt-20 lg:pt-[70px] pb-20 sm:pb-24 lg:pb-[110px]">
         <h1
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-farm-text leading-tight tracking-tight mb-6"
+          className="font-serif font-normal text-ink leading-[1.0] tracking-[-0.025em] mb-10 max-w-[16ch] [text-wrap:balance]"
+          style={{ fontSize: "clamp(46px, 5.4vw, 86px)" }}
         >
-          {t("hero.title1")}
-          <br />
-          <span className="text-farm-secondary">
-            {t("hero.title2")}
-          </span>
+          {t("hero.title1")}{" "}
+          <em className="italic text-accent font-normal">{t("hero.titleEm")}</em>{" "}
+          {t("hero.title2")}
         </h1>
 
-        <p
-          className="text-xl text-farm-secondary max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          {t("hero.desc")}
+        <p className="text-[18px] leading-[1.6] text-ink-2 max-w-[62ch] mb-4">
+          <strong className="text-ink font-medium">{t("hero.desc")}</strong>
+        </p>
+        <p className="text-[18px] leading-[1.6] text-ink-2 max-w-[62ch] mb-4">
+          {t("hero.lead")}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Cal textButton={t("hero.cta")} buttonType="default" />
+        <div className="flex gap-[14px] mt-10 items-center flex-wrap">
+          <a href="#contact" className="btn-ink">
+            {t("hero.cta")}
+            <span className="font-serif text-[16px] leading-[0.8]">↗</span>
+          </a>
           <a
-            href="#projects"
-            className="text-sage-500 font-medium hover:text-sage-600 transition-colors"
+            href="#casi-studio"
+            className="font-mono text-[12px] tracking-[0.05em] uppercase text-ink no-underline pb-[3px] border-b border-ink hover:text-accent hover:border-accent transition-colors"
           >
-            {t("hero.projects")} &rarr;
+            {t("hero.projects")} →
           </a>
         </div>
       </div>

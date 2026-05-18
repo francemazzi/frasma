@@ -1,74 +1,165 @@
 export const en: Record<string, string> = {
   // Meta
-  "meta.title":
-    "Freelance Software Developer | Francesco Saverio Mazzi",
+  "meta.title": "Frasma — Operational software & AI for manufacturing SMEs",
   "meta.description":
-    "Freelance software developer for custom web apps, business automations, AI agents, and operational software for Italian companies.",
+    "Frasma is an independent software studio that helps manufacturing, food, and operational SMEs cut manual work with custom applications, integrations, and AI automations.",
+
+  // Top rule (editorial)
+  "topRule.studio": "Frasma · Independent Software Studio · Mantova — Italy",
+  "topRule.tag1": "Operational software",
+  "topRule.tag2": "AI agents",
+  "topRule.tag3": "Integrations",
+  "topRule.sheet": "Sheet 01 / 2026",
 
   // Header
   "header.book": "Book",
-  "header.schedule": "Schedule a Call",
-  "header.companion": "with Fra",
+  "header.schedule": "Book a call",
+  "header.companion": "software studio",
+  "header.nav.cases": "Case studies",
+  "header.nav.platform": "Platform",
+  "header.nav.projects": "Projects",
+  "header.nav.blog": "Blog",
 
-  // Hero
-  "hero.title1": "Custom software development",
-  "hero.title2": "for companies that want to automate.",
+  // Hero (editorial)
+  "hero.eyebrow": "AI software · Integrations · Operational processes",
+  "hero.title1": "AI",
+  "hero.titleEm": "embedded",
+  "hero.title2": "in real operational processes — custom, not generic.",
   "hero.desc":
-    "I help teams and founders reduce manual work, delays, and errors with web apps, integrations, and AI-powered operational tools.",
-  "hero.focus":
-    "Focus: agriculture, agri-food, and manufacturing. I work on operational workflows, document handling, and AI agents.",
+    "Frasma builds custom software where AI agents, document parsing, and integrations live inside the daily workflows of manufacturing, food, agronomy, and field-service companies.",
+  "hero.lead":
+    "Not chatbots, not generic automations. One platform for documents, tickets, quotes, and controls — instead of Excel, email, and four disconnected tools.",
+  "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
   "hero.brand":
     "Bobby, the Lagotto in the brand, represents the conversational and first-contact support experience.",
-  "hero.cta": "Schedule a Free Call",
-  "hero.projects": "View use cases",
+  "hero.cta": "Book a free call",
+  "hero.projects": "See case studies",
+  "hero.card.title": "Studio — card",
+  "hero.card.studioKey": "Studio",
+  "hero.card.studioVal": "Mantova · IT",
+  "hero.card.casesKey": "Case studies",
+  "hero.card.casesVal": "04",
+  "hero.card.verticalsKey": "Verticals",
+  "hero.card.verticalsVal": "04",
+  "hero.card.langKey": "Languages",
+  "hero.card.langVal": "IT · EN",
+  "hero.card.callKey": "Call",
+  "hero.card.callVal": "30 min · free",
 
-  // Search landing content
-  "search.eyebrow": "Freelance software development",
-  "search.title": "A freelance software developer for custom business tools",
+  // Results (anonymous case studies)
+  "results.eyebrow": "real cases",
+  "results.title1": "Processes you can",
+  "results.titleEm": "measure",
+  "results.title2": ", not demos.",
+  "results.title": "Real cases, measurable processes.",
+  "results.subtitle":
+    "We don’t start from technology. We start from the activities that today eat hours, cause errors, or block teams. Page through four recent examples.",
+  "results.pageWord": "page",
+  "results.pageMark": "Case study",
+  "results.read": "Read full case →",
+  "results.case1.pull": "From days of manual work to a guided flow of minutes.",
+  "results.case1.plate": "CS · 01 — Food · Documents",
+  "results.case1.m1n": "−92%",
+  "results.case1.m1l": "Compilation time per case",
+  "results.case1.m2n": "1 flow",
+  "results.case1.m2l": "Single flow for cert. and revisions",
+  "results.case2.pull":
+    "Quote preparation cut by roughly a full working day per offer.",
+  "results.case2.plate": "CS · 02 — Manufacturing · Quoting",
+  "results.case2.m1n": "−1 day",
+  "results.case2.m1l": "Average time per offer",
+  "results.case2.m2n": "0 duplicates",
+  "results.case2.m2l": "Entries between CAD, price lists, ERP",
+  "results.case3.pull":
+    "Daily team capacity more than tripled, with standardized processes.",
+  "results.case3.plate": "CS · 03 — Agri-food · Operations",
+  "results.case3.m1n": "3×",
+  "results.case3.m1l": "Daily capacity per agronomist",
+  "results.case3.m2n": "1 standard",
+  "results.case3.m2l": "Single process across a distributed network",
+  "results.case4.pull":
+    "From scattered tools to one platform, mobile-friendly.",
+  "results.case4.plate": "CS · 04 — Maintenance · Field service",
+  "results.case4.m1n": "1 platform",
+  "results.case4.m1l": "Tickets, team, orders, mobile",
+  "results.case4.m2n": "100%",
+  "results.case4.m2l": "Accessible from the field",
+  "results.case1.tag": "Food / Documents",
+  "results.case1.title": "HACCP documentation & certifications",
+  "results.case1.impact":
+    "From days of manual work to a guided flow of minutes.",
+  "results.case1.desc":
+    "For a firm in the food sector we automated information collection and document generation for HACCP procedures and certifications. The process — once managed manually on templates — became a guided flow that cuts time, errors, and rework.",
+  "results.case2.tag": "Manufacturing / Quoting",
+  "results.case2.title": "Sheet-metal quoting",
+  "results.case2.impact":
+    "Quote preparation time reduced on the order of a full working day per offer.",
+  "results.case2.desc":
+    "For a sheet-metal company we built software that speeds up data collection, calculations, and information needed to produce quotes. Fewer manual steps between customer request, technical analysis, and commercial proposal.",
+  "results.case3.tag": "Agri-food / Operations",
+  "results.case3.title": "Multi-farm agronomy management",
+  "results.case3.impact":
+    "Daily team capacity more than tripled, with standardized processes.",
+  "results.case3.desc":
+    "For a consortium of agronomists we built tools that automate repetitive activities in document handling, farm data, and agronomic workflows. The same team now follows many more farms in parallel.",
+  "results.case4.tag": "Maintenance / Field service",
+  "results.case4.title":
+    "Tickets & field interventions for industrial refrigeration",
+  "results.case4.impact":
+    "From scattered tools to a single platform, mobile-friendly.",
+  "results.case4.desc":
+    "For a company managing industrial refrigeration repairs we centralized tickets, teams, activities, and communications into one platform. Requests and operations now run from one place, including off-site.",
+
+  // Services ("What we build")
+  "search.eyebrow": "What we build",
+  "search.title": "Software, AI, and integrations on real processes",
   "search.description":
-    "I work with companies that need a practical technical partner: I analyze the process, design the application, and build operational software with React, Next.js, Python, FastAPI, and AI integrations.",
+    "We build custom software when a business process is too specific for off-the-shelf tools, but too important to live on Excel, email, or manual procedures.",
   "search.coverage":
-    "I build web apps, dashboards, lightweight internal tools, automations, document parsing, ERP integrations, and AI agents for manufacturing, agriculture, and food companies.",
-  "search.service1.title": "Web apps and internal tools",
+    "Operational web apps, AI automations, integrations with ERPs and existing systems, parsing and generation of technical documents.",
+  "search.service1.title": "Custom operational applications",
   "search.service1.desc":
-    "I build full-stack applications, dashboards, and internal systems that replace Excel, email, and scattered local files.",
-  "search.service2.title": "Automations and AI agents",
+    "Dashboards, light internal tools, portals, and web apps to track activities, jobs, deadlines, clients, documents, and teams.",
+  "search.service2.title": "AI automations & operational agents",
   "search.service2.desc":
-    "I create LLM-powered automations, AI agents, and document workflows that reduce repetitive work, response times, and manual errors.",
-  "search.service3.title": "Data and process integrations",
+    "AI assistants connected to documents, databases, and business procedures: they extract data, generate reports, validate information, and guide repetitive tasks.",
+  "search.service3.title": "Integrations with existing systems",
   "search.service3.desc":
-    "I connect APIs, databases, ERP systems, and cloud services to create a single operational data source and more traceable workflows.",
+    "Connections to ERPs, APIs, databases, Excel files, email, business software, and cloud services to avoid double entry and keep data traceable.",
+  "search.service4.title": "Document digitization",
+  "search.service4.desc":
+    "Parsing, OCR, data extraction, and automatic generation of documents from PDFs, forms, attachments, certifications, orders, and technical files.",
 
-  // How I Work
-  "how.title": "How I Work",
-  "how.subtitle":
-    "A lean three-step process to move quickly from initial idea to software in production.",
+  // How we work
+  "how.title": "How we work",
+  "how.subtitle": "A quick process to find where software creates real value.",
   "how.title1": "Process analysis",
   "how.desc1":
-    "I map the current workflow, bottlenecks, and available data to set clear priorities and measurable goals.",
-  "how.title2": "Rapid prototype",
+    "We map the current workflow: who does what, which tools they use, where hours are lost, which data is copied by hand, and which errors keep repeating.",
+  "how.title2": "Operational prototype",
   "how.desc2":
-    "I build a testable first version quickly, so we can validate value with real users before scaling.",
-  "how.title3": "Operational software",
+    "We build a first usable version on a real case. The goal isn’t a demo, but to validate quickly whether the software cuts time, errors, or manual work.",
+  "how.title3": "Integrated system",
   "how.desc3":
-    "I harden the solution, integrate it into daily operations, and improve it with incremental iterations.",
+    "We make the solution stable, connected to existing tools, and ready for everyday use by the team.",
 
-  // Projects
-  "projects.title": "Use cases and solved problems",
+  // Projects (R&D / open source)
+  "projects.eyebrow": "R&D and public products",
+  "projects.title": "Projects, experiments, and vertical products",
   "projects.subtitle":
-    "Concrete examples of improved operations using digital workflows, structured documents, and AI agents.",
+    "Experiments, vertical products, and open-source applications built alongside client work.",
   "projects.seminai":
-    "Problem: manual field notebook compilation. Solution: AI agronomic assistant for guided completion and better data traceability.",
+    "AI agronomy assistant for guided field-notebook compilation and better data traceability.",
   "projects.formit":
-    "Problem: fragmented microbiological analysis management. Solution: one workflow for collection, review, and historical records.",
+    "One workflow for collection, review, and historical records of microbiological analyses.",
   "projects.bilanciami":
-    "Problem: deadlines and invoices spread across tools. Solution: a single operational system with automated reminders.",
+    "Single operational system for deadlines and invoices, with automated reminders.",
   "projects.tree":
-    "Problem: no shared model to estimate carbon impact. Solution: a tool that quantifies absorption and supports sustainability decisions.",
+    "Tool that estimates CO₂ absorption and supports sustainability decisions.",
   "projects.emilio":
-    "Problem: slow and inconsistent agronomic answers. Solution: a specialized AI agent trained on verified technical sources.",
+    "Specialized AI agent trained on verified technical sources for standardized agronomic answers.",
   "projects.rudolf":
-    "Problem: repetitive and slow balance sheet analysis. Solution: InfoCamere-integrated agent for data extraction and report generation.",
+    "InfoCamere-integrated agent for automated data extraction and balance-sheet analysis.",
   "projects.tag.agriculture": "Agriculture / AI",
   "projects.tag.workflow": "Workflow",
   "projects.tag.documents": "Documents",
@@ -76,43 +167,79 @@ export const en: Record<string, string> = {
   "projects.tag.aiAgents": "AI Agents",
 
   // Skills
-  "skills.title": "Skills & Technologies",
-  "skills.subtitle": "8+ years building across the full stack.",
+  "skills.title": "Technology stack",
+  "skills.subtitle":
+    "The stack we use to build operational software, AI, and integrations.",
   "skills.languages": "Languages",
   "skills.technologies": "Technologies",
-  "skills.interests": "Areas of Interest",
+  "skills.interests": "Verticals",
 
-  // About
-  "about.title": "About Me",
+  // Why Frasma ("Lean software studio")
+  "about.title": "A lean, technical software studio focused on real processes",
   "about.bio":
-    "I\u2019m Francesco Saverio Mazzi, a freelance software developer with 8+ years of experience. I specialize in building lightweight, intelligent software for companies in the manufacturing and agricultural sectors.",
-  "about.rates": "Rates",
-  "about.rateUnit": "/hr",
-  "about.rateOutside": "45\u20AC/hr outside core areas of interest",
-  "about.rateOnsite": "+10\u20AC/hr for on-site work",
-  "about.rateReveal": "Book a call to see rates",
-  "about.prop1.title": "Dedicated Partnership",
+    "Frasma works on projects where the value isn’t just shipping an app, but understanding a business process and turning it into an operational tool. We don’t start from chatbots or generic automations: we start from the real workflow — documents, data, roles, exceptions, existing software, and hours lost every week.",
+  "about.team":
+    "Frasma is led by Francesco Saverio Mazzi, a full-stack developer specialized in operational software, AI automations, and data integrations. For larger projects Frasma works with a network of external professionals on UX, marketing, and use-case analysis, while keeping a lean, outcome-oriented structure.",
+  "about.prop1.title": "Vertical on real processes",
   "about.prop1.desc":
-    "I carefully select projects and provide end-to-end support, from strategy through development.",
-  "about.prop2.title": "Domain Expertise",
+    "We don’t sell generic AI. We build software on measured processes: quoting, documents, tickets, jobs.",
+  "about.prop2.title": "Operational domain",
   "about.prop2.desc":
-    "Deep focus on Manufacturing, Agriculture, Food, and AI/LLM agent integration.",
-  "about.prop3.title": "Lean Methodology",
+    "Manufacturing, food, agronomy, field services: sectors where documents, data, and flows matter more than aesthetics.",
+  "about.prop3.title": "Fast cycle",
   "about.prop3.desc":
-    "Market testing and validation to identify real user needs before building.",
-  "about.prop4.title": "Full-Stack Capability",
+    "Validate on a real case before scaling: fewer demos, more first-useful versions in production.",
+  "about.prop4.title": "Full-stack & AI stack",
   "about.prop4.desc":
-    "TypeScript, Python, React, Next.js, FastAPI, Flutter, and more \u2014 from frontend to AI pipelines.",
+    "Web apps, AI/LLM agents, document parsing, integrations with ERPs and cloud. End-to-end development.",
+  "about.rateCta.title": "Every project is different",
+  "about.rateCta.desc":
+    "Timelines and budget depend on scope and process. A 30-minute call is enough to see whether it makes sense to work together.",
+  "about.rateReveal": "Book a call",
 
-  // CTA
-  "cta.title1": "Let\u2019s build something",
-  "cta.title2": "together.",
+  // Platform (UI mockups)
+  "platform.kicker": "Real components",
+  "platform.title1": "Actual software, not",
+  "platform.titleEm": "trend slides",
+  "platform.title2": ".",
+  "platform.intro":
+    "Each case has its own app, but we reuse the same operative building blocks: AI agents grounded on technical sources, dashboards for tickets and orders, document workflows with validation, tables wired into ERP and existing spreadsheets. Four real components, lifted from production projects.",
+
+  // Founder
+  "founder.role": "Founder · CTO",
+  "founder.title": "Francesco Saverio Mazzi",
+  "founder.bio1":
+    "Full-stack developer focused on operational software, AI agents, and data integrations. Works with manufacturing, food, agronomy, and field-service companies to ship tools that reduce manual work and errors.",
+  "founder.bio2":
+    "Frasma stays lean: for broader projects it leans on a curated network covering UX, marketing, and process analysis.",
+  "founder.note":
+    "Every project starts from a real activity and a metric we want to move.",
+
+  // Stack
+  "stack.kicker": "tech stack",
+  "stack.title1": "The tech we use,",
+  "stack.titleEm": "the verticals",
+  "stack.title2": "we work in.",
+  "stack.langCol": "Languages",
+  "stack.techCol": "Technologies",
+  "stack.vertCol": "Verticals",
+  "stack.vert1": "Manufacturing",
+  "stack.vert2": "Food",
+  "stack.vert3": "Agronomy",
+  "stack.vert4": "Field service",
+
+  // CTA (editorial)
+  "cta.title1": "Let’s build something",
+  "cta.titleEm": "together",
+  "cta.title2": ".",
   "cta.desc":
-    "Schedule a free introductory call. I\u2019ll get back to you with initial questions to understand your challenges and how I can help.",
-  "cta.button": "Schedule a Call",
+    "Book a free 30-minute intro call. Bring a real process: we’ll tell you where software can cut time, errors, or manual work.",
+  "cta.button": "Book a call",
+  "cta.secondary": "Write us via email",
 
   // Footer
-  "footer.info": "Francesco Saverio Mazzi \u00B7 VAT 02750410207",
+  "footer.info":
+    "Frasma — independent software studio of Francesco Saverio Mazzi · VAT 02750410207",
 
   // Cal modal
   "cal.title": "Schedule a meeting",
@@ -128,7 +255,7 @@ export const en: Record<string, string> = {
   "cal.cancel": "Cancel",
   "cal.send": "Send",
   "cal.sending": "Sending...",
-  "cal.success": "Request sent! I\u2019ll get back to you shortly.",
+  "cal.success": "Request sent! We’ll get back to you shortly.",
   "cal.errorFallback": "Something went wrong while sending your request.",
   "cal.networkError": "Network error. Please try again.",
   "cal.validDate": "Please select a date.",
@@ -140,7 +267,7 @@ export const en: Record<string, string> = {
   // Chat widget
   "chat.title": "Chat with Bobby",
   "chat.welcome":
-    "Hi! I'm Bobby, Francesco's AI assistant. Ask me about his tech stack, project estimates, or book a meeting!",
+    "Hi! I'm Bobby, Frasma's AI assistant. Ask me about the stack, case studies, or book a call!",
   "chat.placeholder": "Type a message...",
   "chat.send": "Send",
   "chat.close": "Close chat",
@@ -151,18 +278,17 @@ export const en: Record<string, string> = {
   "chat.email.title": "Email Draft",
   "chat.email.subject": "Subject",
   "chat.email.body": "Message",
-  "chat.email.send": "Send to Francesco",
+  "chat.email.send": "Send to Frasma",
   "chat.email.cancel": "Cancel",
   "chat.email.sending": "Sending...",
-  "chat.email.sent": "Email sent! Francesco will review it shortly.",
-  "chat.email.error":
-    "Failed to send. Try again or contact Francesco directly.",
+  "chat.email.sent": "Email sent! We’ll review it shortly.",
+  "chat.email.error": "Failed to send. Try again or contact Frasma directly.",
 
   // Meeting form in chat
   "chat.meeting.title": "Meeting request",
 
   // Discount page
-  "discount.metaTitle": "Thanks for your request - Francesco Saverio Mazzi",
+  "discount.metaTitle": "Thanks for your request - Frasma",
   "discount.metaDescription":
     "Thank-you page with practical information to bring to the call.",
   "discount.badge": "Request received",

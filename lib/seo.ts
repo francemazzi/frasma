@@ -31,9 +31,10 @@ export const personJsonLd = {
   name: OWNER_NAME,
   alternateName: ["Frasma", "francemazzi"],
   jobTitle: [
+    "Founder & Lead Developer",
+    "Software developer",
     "Programmatore freelance",
     "Sviluppatore software",
-    "Software developer freelance",
     "Informatico freelance",
   ],
   url: SITE_URL,
@@ -47,17 +48,22 @@ export const personJsonLd = {
     "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
   ],
   knowsAbout: [
-    "Sviluppo software su misura",
+    "Software operativo su misura",
+    "Studio software per PMI",
+    "Automazioni AI per imprese",
+    "Agenti AI e LLM operativi",
+    "Integrazioni ERP e API",
+    "Digitalizzazione documentale",
+    "Parsing PDF e OCR",
+    "Software per manifattura",
+    "Software per alimentare e HACCP",
+    "Software per agronomia",
     "Programmazione full stack",
     "React",
     "Next.js",
     "TypeScript",
     "Python",
     "FastAPI",
-    "AI agents",
-    "Automazioni aziendali",
-    "Software per manifattura",
-    "Software per agricoltura",
   ],
   address: {
     "@type": "PostalAddress",
@@ -75,7 +81,7 @@ export const professionalServiceJsonLd = {
     "@id": `${SITE_URL}/#person`,
   },
   description:
-    "Sviluppo software su misura, applicazioni web, automazioni AI e integrazioni per aziende italiane.",
+    "Studio software indipendente: applicazioni su misura, integrazioni e automazioni AI per PMI manifatturiere, alimentari e operative.",
   areaServed: [
     {
       "@type": "Country",

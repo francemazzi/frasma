@@ -1,10 +1,13 @@
 import Header from "../components/organism/Header";
 import Intro from "../components/organism/Intro";
+import Results from "../components/organism/Results";
+import Platform from "../components/organism/Platform";
 import HowIWork from "../components/organism/HowIWork";
 import SearchLandingContent from "../components/organism/SearchLandingContent";
-import Experience from "../components/organism/Experience";
 import TechnicalSkillsDetailed from "../components/organism/TechnicalSkills";
 import WhyContactMe from "../components/organism/WhyContactMe";
+import Founder from "../components/organism/Founder";
+import Stack from "../components/organism/Stack";
 import CallToAction from "../components/organism/CallToAction";
 import Footer from "../components/organism/Footer";
 import Seo from "../components/Seo";
@@ -35,14 +38,17 @@ export default function Home() {
         ]}
       />
 
-      <main className="min-h-screen bg-farm-bg font-poppins">
+      <main className="min-h-screen bg-paper font-sans">
         <Header />
         <Intro />
+        <Results />
+        <Platform />
         <SearchLandingContent />
         <HowIWork />
-        <Experience />
-        <TechnicalSkillsDetailed />
         <WhyContactMe />
+        <TechnicalSkillsDetailed />
+        <Founder />
+        <Stack />
         <CallToAction />
         <Footer />
       </main>

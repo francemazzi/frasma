@@ -4,23 +4,69 @@
 
 @layer base {
   html {
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #2C2417;
+    color: #1B1916;
   }
 
   body {
-    background-color: #FDFBF6;
+    background-color: #F1EADA;
+    background-image:
+      radial-gradient(ellipse 1200px 600px at 20% -5%, rgba(255, 255, 255, 0.55), transparent 70%),
+      radial-gradient(circle at 85% 90%, rgba(168, 65, 43, 0.05), transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: #1B1916;
+    color: #F1EADA;
   }
 }
 
 @layer components {
   .section-farm {
-    @apply max-w-5xl mx-auto px-6 sm:px-8 lg:px-12;
+    @apply max-w-6xl mx-auto px-6 sm:px-8 lg:px-14;
   }
 
-  /* Keep card classes for linktree page compatibility */
+  /* Editorial "ink pill" button */
+  .btn-ink {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink bg-ink text-paper px-[18px] py-[10px] text-[13.5px] font-medium transition-colors;
+  }
+  .btn-ink:hover {
+    background-color: #A8412B;
+    border-color: #A8412B;
+  }
+  .btn-ink-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink bg-transparent text-ink px-[18px] py-[10px] text-[13.5px] font-medium transition-colors;
+  }
+  .btn-ink-ghost:hover {
+    background-color: #1B1916;
+    color: #F1EADA;
+  }
+
+  /* Editorial section heading helpers */
+  .ed-section {
+    @apply border-t border-hairline py-20 sm:py-24;
+  }
+  .ed-kicker {
+    @apply font-mono text-[11px] tracking-[0.16em] uppercase text-accent leading-none mb-3;
+  }
+  .ed-title {
+    @apply font-serif font-normal leading-[1.04] tracking-[-0.022em] text-ink;
+    font-size: clamp(34px, 3.6vw, 52px);
+  }
+  .ed-title em {
+    font-style: italic;
+    color: #A8412B;
+    font-weight: 400;
+  }
+  .ed-intro {
+    @apply text-[17px] leading-[1.6] text-ink-soft max-w-[58ch];
+  }
+
+  /* Legacy linktree card classes (untouched) */
   .card {
     font-size: 20px;
     width: 300px;
@@ -66,4 +112,35 @@ canvas {
 
 .canvas-container {
   background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+}
+
+/* Book carousel page-flip animation */
+.book-page {
+  transform-origin: left center;
+  transition:
+    transform 0.85s cubic-bezier(0.62, 0.04, 0.25, 1),
+    box-shadow 0.85s ease;
+  backface-visibility: hidden;
+  will-change: transform;
+  /* Mobile: single page, no fake spine seam */
+  background: linear-gradient(180deg, #F3EBD3, #ECE3C8);
+}
+.book-page.flipped {
+  transform: rotateY(-180deg);
+  box-shadow: 12px 0 36px -8px rgba(0, 0, 0, 0.32);
+}
+/* Desktop: open-book look with center spine shadow */
+@media (min-width: 1024px) {
+  .book-page {
+    background: linear-gradient(
+      90deg,
+      #EAE0C5 0%,
+      #F3EBD3 5%,
+      #F3EBD3 49%,
+      rgba(27, 25, 22, 0.08) 50%,
+      #F3EBD3 51%,
+      #F3EBD3 95%,
+      #EAE0C5 100%
+    );
+  }
 }

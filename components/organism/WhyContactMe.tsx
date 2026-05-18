@@ -19,33 +19,18 @@ export default function WhyContactMe() {
     <section className="py-20 sm:py-28 bg-farm-panel">
       <div className="section-farm">
         <motion.div
-          className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16"
+          className="max-w-3xl mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex-shrink-0">
-            <div className="relative w-40 h-40 rounded-3xl overflow-hidden shadow-lg">
-              <Image
-                src="/profilo_home.jpg"
-                alt="Francesco Saverio Mazzi"
-                fill
-                sizes="(max-width: 640px) 112px, 160px"
-                quality={68}
-                className="object-cover"
-              />
-            </div>
-          </div>
-
-          <div className="text-center lg:text-left">
-            <h2 className="text-3xl sm:text-4xl font-bold text-farm-text tracking-tight mb-4">
-              {t("about.title")}
-            </h2>
-            <p className="text-lg text-farm-secondary leading-relaxed max-w-xl">
-              {t("about.bio")}
-            </p>
-          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-farm-text tracking-tight mb-5">
+            {t("about.title")}
+          </h2>
+          <p className="text-lg text-farm-secondary leading-relaxed">
+            {t("about.bio")}
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
@@ -69,26 +54,43 @@ export default function WhyContactMe() {
         </div>
 
         <motion.div
-          className="relative bg-farm-surface rounded-2xl p-8 border border-farm-border text-center max-w-lg mx-auto overflow-hidden"
+          className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 mb-12 max-w-4xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
         >
-          <div className="select-none" aria-hidden="true">
-            <h3 className="text-sm font-semibold text-farm-secondary uppercase tracking-widest mb-4">
-              {t("about.rates")}
-            </h3>
-            <div className="text-4xl font-bold text-farm-text mb-2 blur-md">
-              40&euro;<span className="text-lg font-normal text-farm-secondary">{t("about.rateUnit")}</span>
-            </div>
-            <div className="space-y-1 text-sm text-farm-secondary blur-md">
-              <p>{t("about.rateOutside")}</p>
-              <p>{t("about.rateOnsite")}</p>
+          <div className="flex-shrink-0">
+            <div className="relative w-32 h-32 rounded-2xl overflow-hidden shadow-md">
+              <Image
+                src="/profilo_home.jpg"
+                alt="Francesco Saverio Mazzi"
+                fill
+                sizes="(max-width: 640px) 96px, 128px"
+                quality={68}
+                className="object-cover"
+              />
             </div>
           </div>
+          <p className="text-base text-farm-secondary leading-relaxed text-center lg:text-left">
+            {t("about.team")}
+          </p>
+        </motion.div>
 
-          <div className="absolute inset-0 flex items-center justify-center bg-farm-surface/60">
+        <motion.div
+          className="bg-farm-surface rounded-2xl p-8 border border-farm-border text-center max-w-xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+        >
+          <h3 className="text-lg font-semibold text-farm-text mb-2">
+            {t("about.rateCta.title")}
+          </h3>
+          <p className="text-sm text-farm-secondary leading-relaxed mb-6">
+            {t("about.rateCta.desc")}
+          </p>
+          <div className="flex justify-center">
             <Cal textButton={t("about.rateReveal")} buttonType="default" />
           </div>
         </motion.div>

@@ -8,36 +8,52 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Legacy colors for linktree/blog pages
-        green: {
-          50: "#f0fdf4", 100: "#dcfce7", 200: "#bbf7d0", 300: "#86efac",
-          400: "#4ade80", 500: "#22c55e", 600: "#16a34a", 700: "#15803d",
-          800: "#166534", 900: "#14532d",
+        // Editorial "Italian operative studio" palette (new)
+        paper: {
+          DEFAULT: "#F1EADA",
+          2: "#E8DFC8",
+          3: "#DCD0B3",
         },
-        sand: {
-          50: "#fefce8", 100: "#fef9c3", 200: "#fef08a", 300: "#fde047",
-          400: "#facc15", 500: "#eab308", 600: "#ca8a04", 700: "#a16207",
-          800: "#854d0e", 900: "#713f12",
+        ink: {
+          DEFAULT: "#1B1916",
+          2: "#3A342B",
+          soft: "#6A6357",
+          faint: "rgba(27,25,22,0.45)",
         },
-        // Agriculture watercolor palette
+        hairline: {
+          DEFAULT: "rgba(27,25,22,0.16)",
+          strong: "rgba(27,25,22,0.34)",
+        },
+        accent: {
+          DEFAULT: "#A8412B",
+          2: "#872E1B",
+          leaf: "#5A6B3E",
+          blue: "#3D5A6C",
+        },
+
+        // farm.* values remapped to editorial palette — existing components
+        // (HowIWork, Experience, WhyContactMe, TechnicalSkills, Search…)
+        // automatically shift to the new look without code changes.
         farm: {
-          bg: "#FDFBF6",
-          surface: "#FFFFFF",
-          panel: "#F7F3EC",
-          text: "#2C2417",
-          secondary: "#7D7265",
-          tertiary: "#D5CEBF",
-          border: "#E8E2D6",
+          bg: "#F1EADA",
+          surface: "#FBF6E5",
+          panel: "#E8DFC8",
+          text: "#1B1916",
+          secondary: "#6A6357",
+          tertiary: "#B0A797",
+          border: "#D4CCBC",
         },
+        // Sage remapped to red/ink-ish so legacy CTA accents look intentional
+        // in the new editorial palette rather than green.
         sage: {
-          50: "#F2F6EF",
-          100: "#E1EADA",
-          200: "#C5D6B8",
-          300: "#A3BE93",
-          400: "#82A66E",
-          500: "#6B8F57",
-          600: "#547243",
-          DEFAULT: "#6B8F57",
+          50: "#F4EEDF",
+          100: "#EDE5CF",
+          200: "#DCD0B3",
+          300: "#C9624C",
+          400: "#B54E36",
+          500: "#A8412B",
+          600: "#872E1B",
+          DEFAULT: "#A8412B",
         },
         terra: {
           50: "#FBF3ED",
@@ -65,9 +81,25 @@ module.exports = {
           400: "#A07ABD",
           DEFAULT: "#A07ABD",
         },
+        // legacy
+        green: {
+          50: "#f0fdf4", 100: "#dcfce7", 200: "#bbf7d0", 300: "#86efac",
+          400: "#4ade80", 500: "#22c55e", 600: "#16a34a", 700: "#15803d",
+          800: "#166534", 900: "#14532d",
+        },
+        sand: {
+          50: "#fefce8", 100: "#fef9c3", 200: "#fef08a", 300: "#fde047",
+          400: "#facc15", 500: "#eab308", 600: "#ca8a04", 700: "#a16207",
+          800: "#854d0e", 900: "#713f12",
+        },
       },
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
+        // Geist replaces Poppins as the sans default.
+        sans: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+        poppins: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['Newsreader', 'Times New Roman', 'serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        script: ['Caveat', 'cursive'],
       },
     },
   },

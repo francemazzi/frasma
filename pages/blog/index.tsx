@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Header from "../../components/organism/Header";
 import Footer from "../../components/organism/Footer";
 import Seo from "../../components/Seo";
 import { absoluteUrl, breadcrumbJsonLd, SITE_URL } from "../../lib/seo";
@@ -53,23 +54,8 @@ export default function Blog() {
         ]}
       />
 
-      <main className="min-h-screen bg-farm-bg font-poppins">
-        <header className="sticky top-0 z-50 backdrop-blur-xl bg-farm-bg/80 border-b border-farm-border">
-          <nav className="section-farm py-4 flex justify-between items-center">
-            <Link
-              href="/"
-              className="text-xl font-semibold text-farm-text tracking-tight hover:opacity-70 transition-opacity"
-            >
-              Frasma
-            </Link>
-            <Link
-              href="/blog"
-              className="text-sm font-medium text-sage-600 hover:text-sage-500 transition-colors"
-            >
-              Blog
-            </Link>
-          </nav>
-        </header>
+      <main className="min-h-screen bg-paper font-sans">
+        <Header />
 
         <section className="section-farm py-16 max-w-3xl mx-auto">
           <h1 className="text-4xl font-bold text-farm-text mb-12">Blog</h1>

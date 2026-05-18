@@ -1,6 +1,5 @@
 "use client";
 
-import { Github, Linkedin, Globe } from "lucide-react";
 import Link from "next/link";
 import { useT } from "../../lib/i18n/context";
 
@@ -8,53 +7,41 @@ export default function Footer() {
   const t = useT();
 
   return (
-    <footer className="border-t border-farm-border py-8">
+    <footer className="border-t border-hairline py-9 pb-20 font-mono text-[11px] text-ink-soft tracking-[0.04em]">
       <div className="section-farm">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-farm-secondary">
-            {t("footer.info")}
-          </p>
-          <div className="flex items-center gap-5">
-            <Link
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
+          <p>{t("footer.info")}</p>
+          <div className="flex gap-5 flex-wrap items-center">
+            {/* <Link
               href="/programmatore-freelance"
-              className="text-sm font-medium text-farm-secondary hover:text-farm-text transition-colors"
+              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
             >
               Programmatore freelance
-            </Link>
-            <span className="text-farm-tertiary">·</span>
+            </Link> */}
+            {/* <span className="text-ink-faint">·</span> */}
             <Link
               href="/blog"
-              className="text-sm font-medium text-farm-secondary hover:text-farm-text transition-colors"
+              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
             >
               Blog
             </Link>
-            <span className="text-farm-tertiary">·</span>
+            <span className="text-ink-faint">·</span>
             <Link
               href="https://github.com/francemazzi"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-farm-secondary hover:text-farm-text transition-colors"
+              className="hover:text-accent transition-colors"
             >
-              <Github size={20} />
-              <span className="sr-only">GitHub</span>
+              GitHub
             </Link>
+            <span className="text-ink-faint">·</span>
             <Link
               href="https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-farm-secondary hover:text-farm-text transition-colors"
+              className="hover:text-accent transition-colors"
             >
-              <Linkedin size={20} />
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-            <Link
-              href="https://www.frasma.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-farm-secondary hover:text-farm-text transition-colors"
-            >
-              <Globe size={20} />
-              <span className="sr-only">Website</span>
+              LinkedIn
             </Link>
           </div>
         </div>

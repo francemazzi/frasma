@@ -520,57 +520,64 @@ export default function ChatWidget() {
 
   return (
     <>
-      {/* Floating button */}
+      {/* Floating launcher — editorial */}
       {!isOpen && (
         <button
           type="button"
           onClick={handleOpen}
-          className="fixed z-50 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden w-14 h-14 border-2 border-sage-300 hover:border-sage-400 bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6"
+          className="fixed z-50 inline-flex items-center gap-[10px] rounded-full bg-ink text-paper px-[18px] py-3 pl-[14px] font-sans text-sm font-medium transition-all hover:bg-accent hover:-translate-y-px bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6"
           aria-label={t("chat.title")}
+          style={{
+            boxShadow:
+              "0 12px 28px -8px rgba(27,25,22,0.5), 0 4px 10px -4px rgba(27,25,22,0.3)",
+          }}
         >
-          <Image
-            src="/bobby_chat_cuffie_chat.png"
-            alt="Bobby"
-            width={56}
-            height={56}
-            sizes="56px"
-            quality={70}
-            className="object-cover"
+          <span
+            className="w-2 h-2 rounded-full bg-[#6fbf5a]"
+            style={{ boxShadow: "0 0 0 3px rgba(111,191,90,0.25)" }}
           />
+          {t("chat.title")}
         </button>
       )}
 
-      {/* Chat window */}
+      {/* Chat window — editorial paper panel */}
       {isOpen && (
-        <div className="fixed z-50 flex min-w-0 flex-col overflow-hidden rounded-2xl border border-farm-border bg-farm-surface shadow-2xl left-3 right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] max-h-[min(31.25rem,calc(100dvh-1.5rem-env(safe-area-inset-bottom,0px)-env(safe-area-inset-top,0px)))] sm:left-auto sm:right-6 sm:bottom-6 sm:w-[360px] sm:max-h-[500px]">
+        <div
+          className="fixed z-50 flex min-w-0 flex-col overflow-hidden border border-hairline-strong bg-paper left-3 right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] max-h-[min(34rem,calc(100dvh-1.5rem-env(safe-area-inset-bottom,0px)-env(safe-area-inset-top,0px)))] sm:left-auto sm:right-6 sm:bottom-6 sm:w-[380px] sm:max-h-[540px]"
+          style={{
+            background: "linear-gradient(180deg, #F4EEDF 0%, #EDE5CF 100%)",
+            boxShadow: "0 28px 60px -12px rgba(27,25,22,0.4)",
+          }}
+        >
           {/* Header */}
-          <div className="flex items-center gap-3 px-4 py-3 bg-sage-500 text-white">
-            <Image
-              src="/bobby_chat_cuffie_chat.png"
-              alt="Bobby"
-              width={32}
-              height={32}
-              sizes="32px"
-              quality={70}
-              className="rounded-full object-cover"
-            />
-            <span className="font-semibold text-sm flex-1">
-              {t("chat.title")}
-            </span>
+          <div className="px-5 py-[18px] border-b border-hairline bg-paper flex flex-col gap-[6px] relative">
+            <div className="font-serif text-[20px] font-medium leading-tight tracking-[-0.015em] text-ink">
+              <em className="italic text-accent font-normal">{t("chat.title")}</em>
+            </div>
+            <div className="font-mono text-[10.5px] text-ink-soft tracking-[0.06em] uppercase flex items-center gap-2">
+              <span
+                className="w-[7px] h-[7px] rounded-full bg-[#4f8a3f]"
+                style={{
+                  boxShadow: "0 0 0 3px rgba(79,138,63,0.18)",
+                  animation: "pulse 2s infinite",
+                }}
+              />
+              online · risponde in pochi minuti
+            </div>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="p-1 rounded-lg hover:bg-white/20 transition-colors"
               aria-label={t("chat.close")}
+              className="absolute right-3 top-3 w-8 h-8 rounded-full border border-hairline-strong text-ink flex items-center justify-center transition-colors hover:bg-ink hover:text-paper hover:border-ink"
             >
-              <X size={18} />
+              <X size={14} />
             </button>
           </div>
 
           {/* Messages */}
           <div
             ref={scrollRef}
-            className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto bg-farm-bg p-3 space-y-3 sm:p-4"
+            className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-[22px] py-[18px] flex flex-col gap-[18px]"
           >
             {messages.map((msg, i) => {
               const { text, emailForm, meetingForm } =
@@ -582,50 +589,58 @@ export default function ChatWidget() {
                       meetingForm: null,
                     };
 
-              return (
-                <div
-                  key={i}
-                  className={`flex min-w-0 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                >
-                  <div
-                    className={`max-w-[min(100%,18rem)] sm:max-w-[80%] rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 text-sm leading-relaxed whitespace-pre-wrap break-words ${
-                      msg.role === "user"
-                        ? "bg-sage-500 text-white rounded-br-md"
-                        : "bg-farm-surface text-farm-text border border-farm-border rounded-bl-md"
-                    }`}
-                  >
-                    {text ? <span>{text}</span> : null}
-                    {emailForm ? (
-                      <InlineEmailForm
-                        form={emailForm}
-                        onSent={handleEmailSent}
-                        t={t}
-                      />
-                    ) : null}
-                    {meetingForm ? (
-                      <InlineMeetingForm
-                        form={meetingForm}
-                        onSent={handleMeetingSent}
-                        t={t}
-                        lang={lang}
-                      />
-                    ) : null}
+              if (msg.role === "user") {
+                return (
+                  <div key={i} className="self-end max-w-[86%] flex flex-col items-end">
+                    <span className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-ink-faint text-right">
+                      tu
+                    </span>
+                    <div className="bg-ink text-paper px-[14px] py-[10px] rounded-[16px_16px_4px_16px] text-[13.5px] leading-[1.5] whitespace-pre-wrap break-words">
+                      {text}
+                    </div>
                   </div>
+                );
+              }
+
+              return (
+                <div key={i} className="max-w-full">
+                  <div className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-accent">
+                    frasma
+                  </div>
+                  <div className="font-serif text-[16px] leading-[1.5] text-ink whitespace-pre-wrap break-words">
+                    {text}
+                  </div>
+                  {emailForm ? (
+                    <InlineEmailForm form={emailForm} onSent={handleEmailSent} t={t} />
+                  ) : null}
+                  {meetingForm ? (
+                    <InlineMeetingForm
+                      form={meetingForm}
+                      onSent={handleMeetingSent}
+                      t={t}
+                      lang={lang}
+                    />
+                  ) : null}
                 </div>
               );
             })}
 
             {loading && (
-              <div className="flex justify-start">
-                <div className="bg-farm-surface text-farm-secondary border border-farm-border rounded-2xl rounded-bl-md px-4 py-2.5 text-sm">
-                  <Loader2 size={16} className="animate-spin" />
+              <div className="max-w-full">
+                <div className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-accent">
+                  frasma
+                </div>
+                <div className="flex gap-[5px] py-[6px]">
+                  <span className="w-[6px] h-[6px] rounded-full bg-accent" style={{ animation: "bounce 1.2s infinite" }} />
+                  <span className="w-[6px] h-[6px] rounded-full bg-accent" style={{ animation: "bounce 1.2s infinite", animationDelay: "0.15s" }} />
+                  <span className="w-[6px] h-[6px] rounded-full bg-accent" style={{ animation: "bounce 1.2s infinite", animationDelay: "0.3s" }} />
                 </div>
               </div>
             )}
           </div>
 
           {/* Input */}
-          <div className="flex min-w-0 items-center gap-2 border-t border-farm-border bg-farm-surface p-3">
+          <div className="border-t border-hairline px-[18px] py-4 flex items-end gap-[10px] bg-paper">
             <input
               ref={inputRef}
               type="text"
@@ -634,18 +649,29 @@ export default function ChatWidget() {
               onKeyDown={handleKeyDown}
               placeholder={t("chat.placeholder")}
               disabled={loading}
-              className="min-w-0 flex-1 rounded-full border border-farm-border bg-farm-bg px-3 py-2 text-sm text-farm-text placeholder:text-farm-secondary transition-shadow focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sage-300 sm:px-4"
+              className="min-w-0 flex-1 bg-transparent border-none outline-none font-sans text-[14px] text-ink placeholder:text-ink-faint leading-[1.4] py-[6px]"
             />
             <button
               type="button"
               onClick={() => void sendMessage()}
               disabled={loading || !input.trim()}
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-sage-500 text-white hover:bg-sage-400 disabled:opacity-40 transition-colors"
+              className="w-9 h-9 rounded-full bg-ink text-paper flex items-center justify-center hover:bg-accent disabled:opacity-35 transition-colors"
               aria-label={t("chat.send")}
             >
-              <Send size={16} />
+              {loading ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
             </button>
           </div>
+
+          <style jsx>{`
+            @keyframes pulse {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.5; }
+            }
+            @keyframes bounce {
+              0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+              30% { transform: translateY(-6px); opacity: 1; }
+            }
+          `}</style>
         </div>
       )}
     </>

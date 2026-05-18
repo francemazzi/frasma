@@ -14,7 +14,7 @@ const technologies = [
 ];
 
 const interests = [
-  "Manufacturing", "Agriculture", "Food", "LLM Agents",
+  "Manufacturing", "Food", "Agronomy", "Field Service",
 ];
 
 function PillGroup({

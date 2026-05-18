@@ -1,118 +1,247 @@
 export const it: Record<string, string> = {
   // Meta
-  "meta.title":
-    "Programmatore Freelance e Software Developer | Francesco Saverio Mazzi",
+  "meta.title": "Frasma — Software operativo e AI per PMI manifatturiere",
   "meta.description":
-    "Cerchi un programmatore freelance, informatico freelance o software developer? Sviluppo software su misura, app web e automazioni AI per aziende in Italia.",
+    "Frasma è uno studio software indipendente: aiuta PMI manifatturiere, alimentari e operative a ridurre lavoro manuale con applicazioni su misura, integrazioni e automazioni AI.",
+
+  // Top rule (editorial)
+  "topRule.studio": "Frasma · Studio Software indipendente · Mantova — Italia",
+  "topRule.tag1": "Software operativo",
+  "topRule.tag2": "Agenti AI",
+  "topRule.tag3": "Integrazioni",
+  "topRule.sheet": "Foglio 01 / 2026",
 
   // Header
   "header.book": "Prenota",
-  "header.schedule": "Prenota una Call",
-  "header.companion": "con Bobby, il lagotto",
+  "header.schedule": "Prenota una call",
+  "header.companion": "studio software",
+  "header.nav.cases": "Casi studio",
+  "header.nav.platform": "Piattaforma",
+  "header.nav.projects": "Progetti",
+  "header.nav.blog": "Blog",
 
-  // Hero
-  "hero.title1": "Sviluppo software su misura",
-  "hero.title2": "per aziende che vogliono automatizzare.",
+  // Hero (editorial)
+  "hero.eyebrow": "Software AI · Integrazioni · Processi operativi",
+  "hero.title1": "AI",
+  "hero.titleEm": "integrata",
+  "hero.title2": "nei processi operativi reali — custom, non standard.",
   "hero.desc":
-    "Sono un informatico freelance: aiuto team e imprenditori a ridurre tempi, errori e attivita manuali con applicazioni web, integrazioni e soluzioni AI.",
+    "Frasma sviluppa software su misura dove agenti AI, parsing documentale e integrazioni si fondono nei flussi di lavoro di aziende manifatturiere, alimentari, agronomiche e di field service.",
+  "hero.lead":
+    "Non chatbot, non automazioni generiche. Una sola piattaforma per documenti, ticket, preventivi e controlli — al posto di Excel, email e quattro tool scollegati.",
   "hero.focus":
-    "Focus: agricoltura, agroalimentare e manifattura. Intervengo su workflow operativi, gestione documentale e AI agents.",
+    "Verticali: manifattura, alimentare, agronomia, servizi sul campo.",
   "hero.brand":
     "Bobby, il lagotto del brand, accompagna la parte conversazionale e l'assistenza iniziale ai clienti.",
-  "hero.cta": "Prenota una Call Gratuita",
-  "hero.projects": "Vedi i casi d'uso",
+  "hero.cta": "Prenota una call gratuita",
+  "hero.projects": "Vedi i casi studio",
+  "hero.card.title": "Studio — scheda",
+  "hero.card.studioKey": "Studio",
+  "hero.card.studioVal": "Mantova · IT",
+  "hero.card.casesKey": "Casi studio",
+  "hero.card.casesVal": "04",
+  "hero.card.verticalsKey": "Verticali",
+  "hero.card.verticalsVal": "04",
+  "hero.card.langKey": "Lingue",
+  "hero.card.langVal": "IT · EN",
+  "hero.card.callKey": "Call",
+  "hero.card.callVal": "30 min · gratis",
 
-  // Search landing content
-  "search.eyebrow": "Sviluppo software freelance",
-  "search.title": "Programmatore freelance per software su misura",
+  // Results (anonymous case studies)
+  "results.eyebrow": "casi reali",
+  "results.title1": "Processi",
+  "results.titleEm": "misurabili",
+  "results.title2": ", non demo.",
+  "results.title": "Casi reali, processi misurabili.",
+  "results.subtitle":
+    "Non partiamo dalla tecnologia. Partiamo da attività che oggi consumano ore, generano errori o bloccano il lavoro dei team. Sfoglia quattro esempi recenti.",
+  "results.pageWord": "pagina",
+  "results.pageMark": "Caso studio",
+  "results.read": "Caso studio completo →",
+  "results.case1.pull":
+    "Da giornate di lavoro a un flusso guidato di pochi minuti.",
+  "results.case1.plate": "CS · 01 — Alimentare · Documentale",
+  "results.case1.m1n": "−92%",
+  "results.case1.m1l": "Tempo di compilazione per pratica",
+  "results.case1.m2n": "1 flusso",
+  "results.case1.m2l": "Unico per certificazioni e revisioni",
+  "results.case2.pull":
+    "Tempi di preparazione preventivo ridotti dell'ordine di una giornata di lavoro per offerta.",
+  "results.case2.plate": "CS · 02 — Manifattura · Preventivazione",
+  "results.case2.m1n": "−1 giornata",
+  "results.case2.m1l": "Tempo medio per offerta",
+  "results.case2.m2n": "0 doppi",
+  "results.case2.m2l": "Inserimenti tra CAD, listini, ERP",
+  "results.case3.pull":
+    "Capacità giornaliera del team più che triplicata, con processi standardizzati.",
+  "results.case3.plate": "CS · 03 — Agroalimentare · Operations",
+  "results.case3.m1n": "3×",
+  "results.case3.m1l": "Capacità giornaliera per agronomo",
+  "results.case3.m2n": "1 standard",
+  "results.case3.m2l": "Processo unico su rete distribuita",
+  "results.case4.pull":
+    "Da strumenti separati a una piattaforma unica, accessibile anche da mobile.",
+  "results.case4.plate": "CS · 04 — Manutenzione · Field service",
+  "results.case4.m1n": "1 piattaforma",
+  "results.case4.m1l": "Ticket, team, commesse, mobile",
+  "results.case4.m2n": "100%",
+  "results.case4.m2l": "Accessibile da campo",
+  "results.case1.tag": "Alimentare / Documentale",
+  "results.case1.title": "Documentazione HACCP e certificazioni",
+  "results.case1.impact":
+    "Da giornate di lavoro a un flusso guidato di pochi minuti.",
+  "results.case1.desc":
+    "Per uno studio nel settore alimentare abbiamo automatizzato la raccolta delle informazioni e la generazione di documenti per procedure HACCP e certificazioni. Il processo, prima gestito manualmente su template, è diventato un flusso guidato che riduce tempi, errori e revisioni ripetitive.",
+  "results.case2.tag": "Manifattura / Preventivazione",
+  "results.case2.title": "Preventivazione lamiere",
+  "results.case2.impact":
+    "Tempi di preparazione preventivo ridotti dell'ordine di una giornata di lavoro per offerta.",
+  "results.case2.desc":
+    "Per un'azienda che lavora lamiere abbiamo sviluppato un software che velocizza raccolta dati, calcoli e organizzazione delle informazioni necessarie al preventivo. Meno passaggi manuali tra richiesta cliente, analisi tecnica e proposta economica.",
+  "results.case3.tag": "Agroalimentare / Operations",
+  "results.case3.title": "Gestione agronomica multi-azienda",
+  "results.case3.impact":
+    "Capacità giornaliera del team più che triplicata, con processi standardizzati.",
+  "results.case3.desc":
+    "Per un ente e una rete di agronomi abbiamo creato strumenti che automatizzano attività ripetitive sulla gestione documentale, sui dati aziendali e sui flussi agronomici. Lo stesso team segue oggi molte più aziende contemporaneamente.",
+  "results.case4.tag": "Manutenzione / Field service",
+  "results.case4.title": "Ticket e interventi per frigoriferi industriali",
+  "results.case4.impact":
+    "Da strumenti separati a una piattaforma unica, accessibile anche da mobile.",
+  "results.case4.desc":
+    "Per un'azienda che gestisce riparazioni su frigoriferi industriali abbiamo centralizzato ticket, team, attività e comunicazioni in un'unica piattaforma. Le richieste e l'operatività si seguono ora da una sola area, anche fuori ufficio.",
+
+  // Services ("Cosa costruiamo")
+  "search.eyebrow": "Cosa costruiamo",
+  "search.title": "Software, AI e integrazioni su processi reali",
   "search.description":
-    "Lavoro come sviluppatore software freelance per aziende che cercano un referente tecnico pratico: analizzo il processo, progetto l'applicazione e sviluppo soluzioni operative con React, Next.js, Python, FastAPI e integrazioni AI.",
+    "Sviluppiamo software su misura quando un processo aziendale è troppo specifico per essere gestito bene con strumenti standard, ma troppo importante per restare su Excel, email o procedure manuali.",
   "search.coverage":
-    "Intervengo su web app, dashboard, gestionali leggeri, automazioni, parsing di documenti, integrazioni con ERP e agenti AI per manifattura, agricoltura e food.",
-  "search.service1.title": "Web app e gestionali",
+    "Web app operative, automazioni AI, integrazioni con ERP e sistemi esistenti, parsing e generazione di documenti tecnici.",
+  "search.service1.title": "Applicazioni operative su misura",
   "search.service1.desc":
-    "Realizzo applicazioni full stack, dashboard e strumenti interni per digitalizzare flussi ancora gestiti con Excel, mail e file locali.",
-  "search.service2.title": "Automazioni e AI agents",
+    "Dashboard, gestionali leggeri, portali interni e strumenti web per seguire attività, commesse, scadenze, clienti, documenti e team.",
+  "search.service2.title": "Automazioni AI e agenti operativi",
   "search.service2.desc":
-    "Creo automazioni con LLM, agenti AI e workflow documentali per ridurre lavoro ripetitivo, tempi di risposta ed errori manuali.",
-  "search.service3.title": "Integrazioni dati e processi",
+    "Assistenti AI collegati a documenti, database e procedure aziendali: estraggono dati, generano report, controllano informazioni e guidano attività ripetitive.",
+  "search.service3.title": "Integrazioni con sistemi esistenti",
   "search.service3.desc":
-    "Collego API, database, ERP e servizi cloud per costruire una fonte dati unica e processi piu tracciabili.",
+    "Connessioni con ERP, API, database, fogli Excel, email, gestionali e servizi cloud per evitare doppi inserimenti e rendere i dati tracciabili.",
+  "search.service4.title": "Digitalizzazione documentale",
+  "search.service4.desc":
+    "Parsing, OCR, estrazione dati e generazione automatica di documenti da PDF, moduli, allegati, certificazioni, ordini e file tecnici.",
 
-  // How I Work
-  "how.title": "Come lavoro",
+  // How we work
+  "how.title": "Come lavoriamo",
   "how.subtitle":
-    "Un processo snello in tre step per passare velocemente dall'idea al software in produzione.",
-  "how.title1": "Analisi processo",
+    "Un processo rapido per capire dove il software genera valore reale.",
+  "how.title1": "Analisi del processo",
   "how.desc1":
-    "Mappo il flusso attuale, i colli di bottiglia e i dati disponibili per definire priorita e obiettivi concreti.",
-  "how.title2": "Prototipo rapido",
+    "Mappiamo il flusso attuale: chi fa cosa, quali strumenti usa, dove si perdono ore, quali dati vengono copiati a mano e quali errori si ripetono.",
+  "how.title2": "Prototipo operativo",
   "how.desc2":
-    "Sviluppo una prima versione testabile in tempi brevi, cosi validiamo il valore con gli utenti reali.",
-  "how.title3": "Software operativo",
+    "Costruiamo una prima versione utilizzabile su un caso reale. L'obiettivo non è una demo, ma validare subito se il software riduce tempi, errori o lavoro manuale.",
+  "how.title3": "Sistema integrato",
   "how.desc3":
-    "Rendo la soluzione robusta, integrata e pronta all'uso quotidiano con monitoraggio e miglioramenti incrementali.",
+    "Rendiamo la soluzione stabile, collegata agli strumenti esistenti e pronta per l'uso quotidiano del team.",
 
-  // Projects
-  "projects.title": "Casi d'uso e problemi risolti",
+  // Projects (R&D / open source)
+  "projects.eyebrow": "R&D e prodotti pubblici",
+  "projects.title": "Progetti, esperimenti e prodotti verticali",
   "projects.subtitle":
-    "Esempi concreti di processi migliorati con workflow digitali, documenti strutturati e agenti AI.",
+    "Esperimenti, prodotti verticali e applicazioni open source nati accanto al lavoro con i clienti.",
   "projects.seminai":
-    "Problema: compilazione manuale del quaderno di campagna. Soluzione: assistente agronomico AI per compilazione guidata e tracciabilita dei dati.",
+    "Assistente agronomico AI per compilazione guidata del quaderno di campagna e tracciabilità dei dati.",
   "projects.formit":
-    "Problema: gestione frammentata delle analisi microbiologiche. Soluzione: workflow unico per raccolta, revisione e storico dei risultati.",
+    "Workflow unico per raccolta, revisione e storico delle analisi microbiologiche.",
   "projects.bilanciami":
-    "Problema: scadenze e fatture disperse su strumenti diversi. Soluzione: sistema unico per controllo operativo e promemoria automatici.",
+    "Sistema unico per controllo operativo di scadenze e fatture, con promemoria automatici.",
   "projects.tree":
-    "Problema: valutare impatto carbonio senza modello condiviso. Soluzione: strumento che stima assorbimento e supporta decisioni di sostenibilita.",
+    "Strumento che stima l'assorbimento di CO₂ e supporta decisioni di sostenibilità.",
   "projects.emilio":
-    "Problema: risposte agronomiche lente e non standardizzate. Soluzione: agente AI specializzato su fonti tecniche verificate.",
+    "Agente AI specializzato su fonti tecniche verificate per risposte agronomiche standardizzate.",
   "projects.rudolf":
-    "Problema: analisi bilanci lenta e ripetitiva. Soluzione: agente con integrazione InfoCamere per estrazione dati e report automatici.",
+    "Agente con integrazione InfoCamere per estrazione dati e analisi bilanci automatica.",
   "projects.tag.agriculture": "Agricoltura / AI",
   "projects.tag.workflow": "Workflow",
   "projects.tag.documents": "Documenti",
-  "projects.tag.sustainability": "Sostenibilita",
+  "projects.tag.sustainability": "Sostenibilità",
   "projects.tag.aiAgents": "AI Agents",
 
   // Skills
-  "skills.title": "Competenze & Tecnologie",
-  "skills.subtitle": "8+ anni di sviluppo full stack.",
+  "skills.title": "Stack tecnologico",
+  "skills.subtitle":
+    "Lo stack su cui costruiamo software operativo, AI e integrazioni.",
   "skills.languages": "Linguaggi",
   "skills.technologies": "Tecnologie",
-  "skills.interests": "Aree di Interesse",
+  "skills.interests": "Verticali",
 
-  // About
-  "about.title": "Chi Sono",
+  // Why Frasma ("Studio software snello")
+  "about.title": "Uno studio software snello, tecnico e orientato ai processi",
   "about.bio":
-    "Sono Francesco Saverio Mazzi, programmatore freelance e sviluppatore software con 8+ anni di esperienza. Mi specializzo nella creazione di software leggero e intelligente per aziende nei settori manifatturiero e agricolo.",
-  "about.rates": "Prevetivi",
-  "about.rateUnit": "/ora",
-  "about.rateOutside": "45\u20AC/ora fuori dalle aree di interesse",
-  "about.rateOnsite": "+10\u20AC/ora per lavoro in presenza",
-  "about.rateReveal": "Prenota una call per una quotazione ",
-  "about.prop1.title": "Partnership Dedicata",
+    "Frasma lavora su progetti dove il valore non è solo sviluppare un'app, ma capire un processo aziendale e trasformarlo in uno strumento operativo. Non partiamo da chatbot o automazioni standard: partiamo dal flusso reale — documenti, dati, ruoli, eccezioni, software già usati e ore perse ogni settimana.",
+  "about.team":
+    "Frasma è guidata da Francesco Saverio Mazzi, sviluppatore full-stack specializzato in software operativo, automazioni AI e integrazioni dati. Per progetti più ampi Frasma si appoggia a una rete di professionisti su UX, marketing e analisi dei casi d'uso, mantenendo una struttura snella e orientata al risultato.",
+  "about.prop1.title": "Verticali su processi reali",
   "about.prop1.desc":
-    "Seleziono i progetti con cura e offro supporto end-to-end, dalla strategia allo sviluppo.",
-  "about.prop2.title": "Competenza di Dominio",
+    "Non vendiamo AI generica. Costruiamo software su processi misurati: preventivi, documenti, ticket, commesse.",
+  "about.prop2.title": "Dominio operativo",
   "about.prop2.desc":
-    "Focus su Manifattura, Agricoltura, Food e integrazione di agenti AI/LLM.",
-  "about.prop3.title": "Metodologia Lean",
+    "Manifattura, alimentare, agronomia e servizi sul campo: settori dove documenti, dati e flussi contano più dell'estetica.",
+  "about.prop3.title": "Ciclo rapido",
   "about.prop3.desc":
-    "Test di mercato e validazione per identificare i reali bisogni degli utenti.",
-  "about.prop4.title": "Capacit\u00E0 Full-Stack",
+    "Validazione su un caso reale prima di scalare: meno demo, più prima versione utile in produzione.",
+  "about.prop4.title": "Stack full-stack e AI",
   "about.prop4.desc":
-    "TypeScript, Python, React, Next.js, FastAPI, Flutter e altro \u2014 dal frontend alle pipeline AI.",
+    "Web app, agenti AI/LLM, parsing documentale, integrazioni con ERP e cloud. Sviluppo end-to-end.",
+  "about.rateCta.title": "Ogni progetto è diverso",
+  "about.rateCta.desc":
+    "Tempi e budget dipendono da scope e processo. Una call di 30 minuti basta per capire se ha senso lavorare insieme.",
+  "about.rateReveal": "Prenota una call",
 
-  // CTA
+  // Platform (UI mockups)
+  "platform.kicker": "Componenti reali",
+  "platform.title1": "Software vero, non slide di",
+  "platform.titleEm": "tendenza",
+  "platform.title2": ".",
+  "platform.intro":
+    "Ogni caso ha la sua app, ma riusiamo gli stessi blocchi operativi: agenti AI agganciati a fonti tecniche, dashboard per ticket e commesse, workflow documentali con validazione, tabelle integrate con ERP e fogli esistenti. Quattro componenti reali, presi da progetti in produzione.",
+
+  // Founder
+  "founder.role": "Founder · CTO",
+  "founder.title": "Francesco Saverio Mazzi",
+  "founder.bio1":
+    "Sviluppatore full-stack focalizzato su software operativo, agenti AI e integrazioni dati. Lavora con aziende manifatturiere, alimentari, agronomiche e di field service per portare in produzione strumenti che riducono lavoro manuale ed errori.",
+  "founder.bio2":
+    "Frasma resta una struttura snella: per progetti più ampi si appoggia a una rete selezionata su UX, marketing e analisi processi.",
+  "founder.note":
+    "Ogni progetto parte da un'attività reale e da una metrica che vogliamo spostare.",
+
+  // Stack
+  "stack.kicker": "stack tecnologico",
+  "stack.title1": "Tecnologie che usiamo,",
+  "stack.titleEm": "verticali",
+  "stack.title2": "su cui lavoriamo.",
+  "stack.langCol": "Linguaggi",
+  "stack.techCol": "Tecnologie",
+  "stack.vertCol": "Verticali",
+  "stack.vert1": "Manifattura",
+  "stack.vert2": "Alimentare",
+  "stack.vert3": "Agronomia",
+  "stack.vert4": "Field service",
+
+  // CTA (editorial)
   "cta.title1": "Costruiamo qualcosa",
-  "cta.title2": "insieme.",
+  "cta.titleEm": "insieme",
+  "cta.title2": ".",
   "cta.desc":
-    "Prenota una call introduttiva gratuita. Ti risponder\u00F2 con alcune domande iniziali per capire le tue sfide e come posso aiutarti.",
-  "cta.button": "Prenota una Call",
+    "Prenota una call introduttiva gratuita di 30 minuti. Portaci un processo reale: ti diciamo dove il software può ridurre tempi, errori o lavoro manuale.",
+  "cta.button": "Prenota una call",
+  "cta.secondary": "Scrivici via email",
 
   // Footer
-  "footer.info": "Francesco Saverio Mazzi \u00B7 P.IVA 02750410207",
+  "footer.info":
+    "Frasma — studio software indipendente di Francesco Saverio Mazzi · P.IVA 02750410207",
 
   // Cal modal
   "cal.title": "Prenota un incontro",
@@ -128,42 +257,41 @@ export const it: Record<string, string> = {
   "cal.cancel": "Annulla",
   "cal.send": "Invia",
   "cal.sending": "Invio...",
-  "cal.success": "Richiesta inviata! Ti risponder\u00F2 a breve.",
-  "cal.errorFallback":
-    "Qualcosa \u00E8 andato storto nell'invio della richiesta.",
+  "cal.success": "Richiesta inviata! Ti risponderò a breve.",
+  "cal.errorFallback": "Qualcosa è andato storto nell'invio della richiesta.",
   "cal.networkError": "Errore di rete. Riprova.",
   "cal.validDate": "Seleziona una data.",
   "cal.validTime": "Seleziona un orario.",
   "cal.validEmail": "Inserisci la tua email.",
   "cal.validEmailFormat": "Inserisci un'email valida.",
-  "cal.validDesc": "La descrizione \u00E8 troppo lunga.",
+  "cal.validDesc": "La descrizione è troppo lunga.",
 
   // Chat widget
   "chat.title": "Chatta con Bobby",
   "chat.welcome":
-    "Ciao! Sono Bobby, l'assistente AI di Francesco. Chiedimi del suo stack tecnologico, stime per progetti, o prenota un incontro!",
+    "Ciao! Sono Bobby, l'assistente AI di Frasma. Chiedimi dello stack, dei casi studio o prenota una call!",
   "chat.placeholder": "Scrivi un messaggio...",
   "chat.send": "Invia",
   "chat.close": "Chiudi chat",
-  "chat.error": "Qualcosa \u00E8 andato storto. Riprova.",
-  "chat.timeout": "La risposta ha impiegato troppo tempo. Riprova con un messaggio pi\u00F9 breve.",
+  "chat.error": "Qualcosa è andato storto. Riprova.",
+  "chat.timeout":
+    "La risposta ha impiegato troppo tempo. Riprova con un messaggio più breve.",
 
   // Email form in chat
   "chat.email.title": "Bozza Email",
   "chat.email.subject": "Oggetto",
   "chat.email.body": "Messaggio",
-  "chat.email.send": "Invia a Francesco",
+  "chat.email.send": "Invia a Frasma",
   "chat.email.cancel": "Annulla",
   "chat.email.sending": "Invio...",
-  "chat.email.sent": "Email inviata! Francesco la esaminer\u00E0 a breve.",
-  "chat.email.error":
-    "Invio fallito. Riprova o contatta Francesco direttamente.",
+  "chat.email.sent": "Email inviata! Ti risponderemo a breve.",
+  "chat.email.error": "Invio fallito. Riprova o contatta Frasma direttamente.",
 
   // Meeting form in chat
   "chat.meeting.title": "Richiesta incontro",
 
   // Discount page
-  "discount.metaTitle": "Grazie per la richiesta - Francesco Saverio Mazzi",
+  "discount.metaTitle": "Grazie per la richiesta - Frasma",
   "discount.metaDescription":
     "Pagina di ringraziamento con le informazioni utili da portare alla call.",
   "discount.badge": "Richiesta ricevuta",
@@ -176,9 +304,9 @@ export const it: Record<string, string> = {
   "discount.bringItem2":
     "2-3 casi d'uso reali su cui vuoi ottenere un miglioramento rapido.",
   "discount.bringItem3":
-    "Un esempio di dati o file (CSV, Excel, report, documenti) che usate gia.",
+    "Un esempio di dati o file (CSV, Excel, report, documenti) che usate già.",
   "discount.bringItem4":
-    "Vincoli pratici: tempi, persone coinvolte, strumenti gia in uso.",
+    "Vincoli pratici: tempi, persone coinvolte, strumenti già in uso.",
   "discount.callNote":
     "Non serve preparare slide: basta materiale reale, anche incompleto.",
   "discount.backPrevious": "Torna alla pagina precedente",
