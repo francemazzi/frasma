@@ -177,13 +177,13 @@ export default function Results() {
                           </span>
                           <span className="text-ink-soft">{t("results.pageMark")}</span>
                         </div>
-                        <div className="relative border border-hairline-strong bg-[#FBF7EB] mx-auto w-full max-w-[240px] lg:max-w-[460px] overflow-hidden" style={{ aspectRatio: "1122 / 1402" }}>
+                        <div className="relative mx-auto w-full max-w-[240px] lg:max-w-[460px] overflow-hidden" style={{ aspectRatio: "1122 / 1402" }}>
                           <Image
                             src={c.imgSrc}
                             alt={c.imgAlt}
                             fill
                             sizes="(max-width: 1024px) 240px, 460px"
-                            className="object-cover"
+                            className="object-cover mix-blend-darken"
                           />
                           <div className="absolute left-3 bottom-3 font-mono text-[10px] tracking-[0.08em] bg-ink/85 text-paper px-[10px] py-[5px] uppercase">
                             {t(c.plateKey)}
