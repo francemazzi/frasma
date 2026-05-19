@@ -171,14 +171,6 @@ export const en: Record<string, string> = {
   "projects.tag.sustainability": "Sustainability",
   "projects.tag.aiAgents": "AI Agents",
 
-  // Skills
-  "skills.title": "Technology stack",
-  "skills.subtitle":
-    "The stack we use to build operational software, AI, and integrations.",
-  "skills.languages": "Languages",
-  "skills.technologies": "Technologies",
-  "skills.interests": "Verticals",
-
   // Why Frasma ("Lean software studio")
   "about.title": "A technical, structured AI agency focused on real processes",
   "about.bio":
@@ -220,19 +212,6 @@ export const en: Record<string, string> = {
     "Frasma stays lean: for broader projects it leans on a curated network covering UX, marketing, and process analysis.",
   "founder.note":
     "Every project starts from a real activity and a metric we want to move.",
-
-  // Stack
-  "stack.kicker": "tech stack",
-  "stack.title1": "The tech we use,",
-  "stack.titleEm": "the verticals",
-  "stack.title2": "we work in.",
-  "stack.langCol": "Languages",
-  "stack.techCol": "Technologies",
-  "stack.vertCol": "Verticals",
-  "stack.vert1": "Manufacturing",
-  "stack.vert2": "Food",
-  "stack.vert3": "Agronomy",
-  "stack.vert4": "Field service",
 
   // CTA (editorial)
   "cta.title1": "Let’s build something",

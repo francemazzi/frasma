@@ -173,14 +173,6 @@ export const it: Record<string, string> = {
   "projects.tag.sustainability": "Sostenibilità",
   "projects.tag.aiAgents": "AI Agents",
 
-  // Skills
-  "skills.title": "Stack tecnologico",
-  "skills.subtitle":
-    "Lo stack su cui costruiamo software operativo, AI e integrazioni.",
-  "skills.languages": "Linguaggi",
-  "skills.technologies": "Tecnologie",
-  "skills.interests": "Verticali",
-
   // Why Frasma ("Studio software snello")
   "about.title": "Un'agenzia AI tecnica, strutturata e orientata ai processi",
   "about.bio":
@@ -222,19 +214,6 @@ export const it: Record<string, string> = {
     "Frasma resta una struttura snella: per progetti più ampi si appoggia a una rete selezionata su UX, marketing e analisi processi.",
   "founder.note":
     "Ogni progetto parte da un'attività reale e da una metrica che vogliamo spostare.",
-
-  // Stack
-  "stack.kicker": "stack tecnologico",
-  "stack.title1": "Tecnologie che usiamo,",
-  "stack.titleEm": "verticali",
-  "stack.title2": "su cui lavoriamo.",
-  "stack.langCol": "Linguaggi",
-  "stack.techCol": "Tecnologie",
-  "stack.vertCol": "Verticali",
-  "stack.vert1": "Manifattura",
-  "stack.vert2": "Alimentare",
-  "stack.vert3": "Agronomia",
-  "stack.vert4": "Field service",
 
   // CTA (editorial)
   "cta.title1": "Costruiamo qualcosa",

@@ -2,10 +2,8 @@ import Header from "../components/organism/Header";
 import Intro from "../components/organism/Intro";
 import Results from "../components/organism/Results";
 import Platform from "../components/organism/Platform";
-import TechnicalSkillsDetailed from "../components/organism/TechnicalSkills";
 import WhyContactMe from "../components/organism/WhyContactMe";
 import Founder from "../components/organism/Founder";
-import Stack from "../components/organism/Stack";
 import CallToAction from "../components/organism/CallToAction";
 import Footer from "../components/organism/Footer";
 import Seo from "../components/Seo";
@@ -42,9 +40,7 @@ export default function Home() {
         <Results />
         <Platform />
         <WhyContactMe />
-        <TechnicalSkillsDetailed />
         <Founder />
-        <Stack />
         <CallToAction />
         <Footer />
       </main>
