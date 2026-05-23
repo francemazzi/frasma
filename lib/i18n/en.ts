@@ -59,19 +59,20 @@ export const en: Record<string, string> = {
   "results.pageWord": "page",
   "results.pageMark": "Case study",
   "results.read": "Read full case →",
-  "results.case1.pull": "From days of manual work to a guided flow of minutes.",
+  "results.case1.pull":
+    "A companion for drafting personalized HACCP plans: faster data handling, fewer errors, guided compliance.",
   "results.case1.plate": "CS · 01 — Food · Documents",
-  "results.case1.m1n": "−92%",
-  "results.case1.m1l": "Compilation time per case",
-  "results.case1.m2n": "1 flow",
-  "results.case1.m2l": "Single flow for cert. and revisions",
+  "results.case1.m1n": "4×",
+  "results.case1.m1l": "Faster documentation work per case",
+  "results.case1.m2n": "More cases",
+  "results.case1.m2l": "Handled in parallel by the same team",
   "results.case2.pull":
-    "Quote preparation cut by roughly a full working day per offer.",
-  "results.case2.plate": "CS · 02 — Manufacturing · Quoting",
-  "results.case2.m1n": "−1 day",
-  "results.case2.m1l": "Average time per offer",
-  "results.case2.m2n": "0 duplicates",
-  "results.case2.m2l": "Entries between CAD, price lists, ERP",
+    "60% reduction in daily work from warehouse admin to offer management.",
+  "results.case2.plate": "CS · 02 — Manufacturing · ERP & Quoting",
+  "results.case2.m1n": "−60%",
+  "results.case2.m1l": "On daily admin work",
+  "results.case2.m2n": "1 flow",
+  "results.case2.m2l": "From ERP document to quote",
   "results.case3.pull":
     "Daily team capacity more than tripled, with standardized processes.",
   "results.case3.plate": "CS · 03 — Agri-food · Operations",
@@ -80,24 +81,24 @@ export const en: Record<string, string> = {
   "results.case3.m2n": "1 standard",
   "results.case3.m2l": "Single process across a distributed network",
   "results.case4.pull":
-    "From scattered tools to one platform, mobile-friendly.",
+    "Clearer, better coordinated service between clients, technicians, and suppliers.",
   "results.case4.plate": "CS · 04 — Maintenance · Field service",
   "results.case4.m1n": "1 platform",
-  "results.case4.m1l": "Tickets, team, orders, mobile",
+  "results.case4.m1l": "Request to closed intervention",
   "results.case4.m2n": "100%",
-  "results.case4.m2l": "Accessible from the field",
+  "results.case4.m2l": "Visibility for clients and suppliers",
   "results.case1.tag": "Food / Documents",
   "results.case1.title": "HACCP documentation & certifications",
   "results.case1.impact":
-    "From days of manual work to a guided flow of minutes.",
+    "A companion for drafting personalized HACCP plans: faster data handling, fewer errors, guided compliance.",
   "results.case1.desc":
-    "For a firm in the food sector we automated information collection and document generation for HACCP procedures and certifications. The process — once managed manually on templates — became a guided flow that cuts time, errors, and rework.",
-  "results.case2.tag": "Manufacturing / Quoting",
-  "results.case2.title": "Sheet-metal quoting",
+    "For a food-sector consultancy we built operational support that speeds up data collection and processing for HACCP procedures and certifications. The consultant stays at the center: less time on repetitive documentation, more room for verification, safety, and content quality. A guided flow that cuts typos and errors and lets the same team manage more manual programs in parallel.",
+  "results.case2.tag": "Manufacturing / ERP & AI",
+  "results.case2.title": "AI for quotes and ERP documents in sheet metal",
   "results.case2.impact":
-    "Quote preparation time reduced on the order of a full working day per offer.",
+    "60% reduction in daily work from warehouse admin to offer management.",
   "results.case2.desc":
-    "For a sheet-metal company we built software that speeds up data collection, calculations, and information needed to produce quotes. Fewer manual steps between customer request, technical analysis, and commercial proposal.",
+    "AI software for companies working sheet metal and crane components: data extraction from invoices, delivery notes and admin documents, ERP load/unload updates, and support for quote generation. Fewer manual steps, fewer errors, and faster offers.",
   "results.case3.tag": "Agri-food / Operations",
   "results.case3.title": "Multi-farm agronomy management",
   "results.case3.impact":
@@ -105,12 +106,11 @@ export const en: Record<string, string> = {
   "results.case3.desc":
     "For a consortium of agronomists we built tools that automate repetitive activities in document handling, farm data, and agronomic workflows. The same team now follows many more farms in parallel.",
   "results.case4.tag": "Maintenance / Field service",
-  "results.case4.title":
-    "Tickets & field interventions for industrial refrigeration",
+  "results.case4.title": "Industrial plant maintenance",
   "results.case4.impact":
-    "From scattered tools to a single platform, mobile-friendly.",
+    "Clearer, better coordinated service between clients, technicians, and suppliers.",
   "results.case4.desc":
-    "For a company managing industrial refrigeration repairs we centralized tickets, teams, activities, and communications into one platform. Requests and operations now run from one place, including off-site.",
+    "A platform to coordinate requests, technicians, and suppliers in industrial plant maintenance. Tickets, communications, and interventions run in a single flow, improving traceability, response times, and operational control — including from the field. A tailor-made back-office with AI that automates coordination flows starting from quotes, delivery notes, invoices, and technical documentation.",
 
   // Services ("What we build")
   "search.eyebrow": "What we build",

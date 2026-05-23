@@ -61,19 +61,19 @@ export const it: Record<string, string> = {
   "results.pageMark": "Caso studio",
   "results.read": "Caso studio completo →",
   "results.case1.pull":
-    "Da giornate di lavoro a un flusso guidato di pochi minuti.",
+    "Tool di accompagnamento alla stesura di piani HACCP personalizzati: dati più rapidi, meno refusi, conformità guidata.",
   "results.case1.plate": "CS · 01 — Alimentare · Documentale",
-  "results.case1.m1n": "−92%",
-  "results.case1.m1l": "Tempo di compilazione per pratica",
-  "results.case1.m2n": "1 flusso",
-  "results.case1.m2l": "Unico per certificazioni e revisioni",
+  "results.case1.m1n": "4×",
+  "results.case1.m1l": "Più veloce la parte documentale per pratica",
+  "results.case1.m2n": "Più pratiche",
+  "results.case1.m2l": "Gestite in parallelo dallo stesso team",
   "results.case2.pull":
-    "Tempi di preparazione preventivo ridotti dell'ordine di una giornata di lavoro per offerta.",
-  "results.case2.plate": "CS · 02 — Manifattura · Preventivazione",
-  "results.case2.m1n": "−1 giornata",
-  "results.case2.m1l": "Tempo medio per offerta",
-  "results.case2.m2n": "0 doppi",
-  "results.case2.m2l": "Inserimenti tra CAD, listini, ERP",
+    "Tempi ridotti del 60% nei lavori giornalieri dalla gestione amministrativa del magazzino alla gestione delle offerte.",
+  "results.case2.plate": "CS · 02 — Manifattura · ERP & Preventivi",
+  "results.case2.m1n": "−60%",
+  "results.case2.m1l": "Sui lavori giornalieri amministrativi",
+  "results.case2.m2n": "1 flusso",
+  "results.case2.m2l": "Da documento ERP a preventivo",
   "results.case3.pull":
     "Capacità giornaliera del team più che triplicata, con processi standardizzati.",
   "results.case3.plate": "CS · 03 — Agroalimentare · Operations",
@@ -82,24 +82,24 @@ export const it: Record<string, string> = {
   "results.case3.m2n": "1 standard",
   "results.case3.m2l": "Processo unico su rete distribuita",
   "results.case4.pull":
-    "Da strumenti separati a una piattaforma unica, accessibile anche da mobile.",
+    "Gestione più chiara e coordinata del servizio tra clienti, tecnici e fornitori.",
   "results.case4.plate": "CS · 04 — Manutenzione · Field service",
   "results.case4.m1n": "1 piattaforma",
-  "results.case4.m1l": "Ticket, team, commesse, mobile",
+  "results.case4.m1l": "Da richiesta a chiusura intervento",
   "results.case4.m2n": "100%",
-  "results.case4.m2l": "Accessibile da campo",
+  "results.case4.m2l": "Visibilità per clienti e fornitori",
   "results.case1.tag": "Alimentare / Documentale",
   "results.case1.title": "Documentazione HACCP e certificazioni",
   "results.case1.impact":
-    "Da giornate di lavoro a un flusso guidato di pochi minuti.",
+    "Tool di accompagnamento alla stesura di piani HACCP personalizzati: dati più rapidi, meno refusi, conformità guidata.",
   "results.case1.desc":
-    "Per uno studio nel settore alimentare abbiamo automatizzato la raccolta delle informazioni e la generazione di documenti per procedure HACCP e certificazioni. Il processo, prima gestito manualmente su template, è diventato un flusso guidato che riduce tempi, errori e revisioni ripetitive.",
-  "results.case2.tag": "Manifattura / Preventivazione",
-  "results.case2.title": "Preventivazione lamiere",
+    "Per uno studio nel settore alimentare abbiamo sviluppato un supporto operativo che velocizza raccolta ed elaborazione dei dati per procedure HACCP e certificazioni. Il consulente resta al centro del processo: meno tempo su compiti ripetitivi e documentali, più spazio per verifica, sicurezza e qualità del contenuto. Un flusso guidato che riduce refusi ed errori e permette allo stesso team di seguire più programmi manuali in parallelo.",
+  "results.case2.tag": "Manifattura / ERP & AI",
+  "results.case2.title": "AI per preventivi e documenti ERP nel settore lamiera",
   "results.case2.impact":
-    "Tempi di preparazione preventivo ridotti dell'ordine di una giornata di lavoro per offerta.",
+    "Tempi ridotti del 60% nei lavori giornalieri dalla gestione amministrativa del magazzino alla gestione delle offerte.",
   "results.case2.desc":
-    "Per un'azienda che lavora lamiere abbiamo sviluppato un software che velocizza raccolta dati, calcoli e organizzazione delle informazioni necessarie al preventivo. Meno passaggi manuali tra richiesta cliente, analisi tecnica e proposta economica.",
+    "Software AI per aziende che lavorano lamiere e componenti per gru: estrazione dati da fatture, DDT e documenti amministrativi, aggiornamento di carichi/scarichi su ERP e supporto alla generazione dei preventivi. Meno passaggi manuali, meno errori e offerte preparate più velocemente.",
   "results.case3.tag": "Agroalimentare / Operations",
   "results.case3.title": "Gestione agronomica multi-azienda",
   "results.case3.impact":
@@ -107,11 +107,11 @@ export const it: Record<string, string> = {
   "results.case3.desc":
     "Per un ente e una rete di agronomi abbiamo creato strumenti che automatizzano attività ripetitive sulla gestione documentale, sui dati aziendali e sui flussi agronomici. Lo stesso team segue oggi molte più aziende contemporaneamente.",
   "results.case4.tag": "Manutenzione / Field service",
-  "results.case4.title": "Ticket e interventi per frigoriferi industriali",
+  "results.case4.title": "Manutenzione impianti industriali",
   "results.case4.impact":
-    "Da strumenti separati a una piattaforma unica, accessibile anche da mobile.",
+    "Gestione più chiara e coordinata del servizio tra clienti, tecnici e fornitori.",
   "results.case4.desc":
-    "Per un'azienda che gestisce riparazioni su frigoriferi industriali abbiamo centralizzato ticket, team, attività e comunicazioni in un'unica piattaforma. Le richieste e l'operatività si seguono ora da una sola area, anche fuori ufficio.",
+    "Una piattaforma per coordinare richieste, tecnici e fornitori nel settore della manutenzione impianti. Ticket, comunicazioni e interventi vengono gestiti in un unico flusso, migliorando tracciabilità, tempi di risposta e controllo operativo anche da campo. Un gestionale tailor made con AI che automatizza i flussi di coordinamento partendo da offerte, DDT, fatture e documentazione tecnica.",
 
   // Services ("Cosa costruiamo")
   "search.eyebrow": "Cosa costruiamo",
