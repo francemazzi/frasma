@@ -72,14 +72,14 @@ export const en: Record<string, string> = {
     "Quotes, filings, interventions, and documents ready to use.",
   "results.case1.pull":
     "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
-  "results.case1.plate": "CS · 03 — Food · Quality & documents",
+  "results.case1.plate": "CS · 01 — Food · Quality & documents",
   "results.case1.m1n": "4×",
   "results.case1.m1l": "Faster document preparation",
   "results.case1.m2n": "Parallel cases",
   "results.case1.m2l": "Handled in parallel by the same team",
   "results.case2.pull":
     "From invoices, delivery notes, and technical specs to quotes: data read, checked, and pushed into systems without copy-paste.",
-  "results.case2.plate": "CS · 01 — Manufacturing · ERP & Quoting",
+  "results.case2.plate": "CS · 02 — Manufacturing · ERP & Quoting",
   "results.case2.m1n": "−60%",
   "results.case2.m1l": "On repetitive admin activities",
   "results.case2.m2n": "1 flow",
@@ -93,7 +93,7 @@ export const en: Record<string, string> = {
   "results.case3.m2l": "Single process across a distributed network",
   "results.case4.pull":
     "From request to closed intervention: clients, technicians, and suppliers in the same operational workflow.",
-  "results.case4.plate": "CS · 02 — Maintenance · Field service",
+  "results.case4.plate": "CS · 03 — Maintenance · Field service",
   "results.case4.m1n": "1 platform",
   "results.case4.m1l": "Request to closed intervention",
   "results.case4.m2n": "100%",

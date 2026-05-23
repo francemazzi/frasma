@@ -74,14 +74,14 @@ export const it: Record<string, string> = {
     "Preventivi, pratiche, interventi e documenti pronti da usare.",
   "results.case1.pull":
     "Lo stesso metodo applicato alla qualità alimentare: dati guidati, documenti controllati, meno refusi e consulente sempre al centro della verifica.",
-  "results.case1.plate": "CS · 03 — Alimentare · Qualità & documenti",
+  "results.case1.plate": "CS · 01 — Alimentare · Qualità & documenti",
   "results.case1.m1n": "4×",
   "results.case1.m1l": "Più veloce la preparazione documentale",
   "results.case1.m2n": "Pratiche parallele",
   "results.case1.m2l": "Gestite in parallelo dallo stesso team",
   "results.case2.pull":
     "Da fatture, DDT e specifiche tecniche al preventivo: dati letti, verificati e riportati nei sistemi senza copia-incolla.",
-  "results.case2.plate": "CS · 01 — Manifattura · ERP & Preventivi",
+  "results.case2.plate": "CS · 02 — Manifattura · ERP & Preventivi",
   "results.case2.m1n": "−60%",
   "results.case2.m1l": "Sulle attività amministrative ripetitive",
   "results.case2.m2n": "1 flusso",
@@ -95,7 +95,7 @@ export const it: Record<string, string> = {
   "results.case3.m2l": "Processo unico su rete distribuita",
   "results.case4.pull":
     "Da richiesta a intervento chiuso: clienti, tecnici e fornitori nello stesso flusso operativo.",
-  "results.case4.plate": "CS · 02 — Manutenzione · Field service",
+  "results.case4.plate": "CS · 03 — Manutenzione · Field service",
   "results.case4.m1n": "1 piattaforma",
   "results.case4.m1l": "Da richiesta a chiusura intervento",
   "results.case4.m2n": "100%",
