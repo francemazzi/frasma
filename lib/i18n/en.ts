@@ -140,13 +140,13 @@ export const en: Record<string, string> = {
   "how.subtitle": "A quick process to find where software creates real value.",
   "how.title1": "Process analysis",
   "how.desc1":
-    "We map the current workflow: who does what, which tools they use, where hours are lost, which data is copied by hand, and which errors keep repeating.",
+    "We start from the real workflow: documents, roles, hand-copied data, repeating errors. Not from generic chatbots or AI — from measured processes like quotes, tickets, and jobs.",
   "how.title2": "Operational prototype",
   "how.desc2":
-    "We build a first usable version on a real case. The goal isn’t a demo, but to validate quickly whether the software cuts time, errors, or manual work.",
+    "We build a first useful version on a real case in manufacturing, food, agronomy, or field services. Fewer demos, more validation in production.",
   "how.title3": "Integrated system",
   "how.desc3":
-    "We make the solution stable, connected to existing tools, and ready for everyday use by the team.",
+    "We make the solution stable and connected to existing tools: web apps, AI agents, MCP, document parsing, ERP integrations. Ready for everyday team use.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D and public products",
@@ -171,22 +171,7 @@ export const en: Record<string, string> = {
   "projects.tag.sustainability": "Sustainability",
   "projects.tag.aiAgents": "AI Agents",
 
-  // Why Frasma ("Lean software studio")
-  "about.title": "A technical, structured AI agency focused on real processes",
-  "about.bio":
-    "Frasma works on projects where the value isn’t just shipping an app, but understanding a business process and turning it into a reliable operational tool. We don’t start from chatbots or generic automations: we start from the real workflow — documents, data, roles, exceptions, existing software, and hours lost every week.",
-  "about.prop1.title": "Vertical on real processes",
-  "about.prop1.desc":
-    "We don’t sell generic AI. We build software on measured processes: quoting, documents, tickets, jobs.",
-  "about.prop2.title": "Operational domain",
-  "about.prop2.desc":
-    "Manufacturing, food, agronomy, field services: sectors where documents, data, and flows matter more than aesthetics.",
-  "about.prop3.title": "Fast cycle",
-  "about.prop3.desc":
-    "Validate on a real case before scaling: fewer demos, more first-useful versions in production.",
-  "about.prop4.title": "Full-stack, AI & MCP stack",
-  "about.prop4.desc":
-    "Web apps, AI/LLM agents, MCP, document parsing, integrations with ERPs, cloud, and AI-ready digital strategies. End-to-end development.",
+  // Why Frasma CTA
   "about.rateReveal": "Book a call",
 
   // Platform (UI mockups)

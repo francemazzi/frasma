@@ -142,13 +142,13 @@ export const it: Record<string, string> = {
     "Un processo rapido per capire dove il software genera valore reale.",
   "how.title1": "Analisi del processo",
   "how.desc1":
-    "Mappiamo il flusso attuale: chi fa cosa, quali strumenti usa, dove si perdono ore, quali dati vengono copiati a mano e quali errori si ripetono.",
+    "Partiamo dal flusso reale: documenti, ruoli, dati copiati a mano, errori che si ripetono. Non da chatbot o AI generica — da processi misurati come preventivi, ticket e commesse.",
   "how.title2": "Prototipo operativo",
   "how.desc2":
-    "Costruiamo una prima versione utilizzabile su un caso reale. L'obiettivo non è una demo, ma validare subito se il software riduce tempi, errori o lavoro manuale.",
+    "Costruiamo una prima versione utile su un caso reale in manifattura, alimentare, agronomia o field service. Meno demo, più validazione in produzione.",
   "how.title3": "Sistema integrato",
   "how.desc3":
-    "Rendiamo la soluzione stabile, collegata agli strumenti esistenti e pronta per l'uso quotidiano del team.",
+    "Rendiamo la soluzione stabile e collegata agli strumenti esistenti: web app, agenti AI, MCP, parsing documentale, integrazioni ERP. Pronta per l'uso quotidiano del team.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D e prodotti pubblici",
@@ -173,22 +173,7 @@ export const it: Record<string, string> = {
   "projects.tag.sustainability": "Sostenibilità",
   "projects.tag.aiAgents": "AI Agents",
 
-  // Why Frasma ("Studio software snello")
-  "about.title": "Un'agenzia AI tecnica, strutturata e orientata ai processi",
-  "about.bio":
-    "Frasma lavora su progetti dove il valore non è solo sviluppare un'app, ma capire un processo aziendale e trasformarlo in uno strumento operativo affidabile. Non partiamo da chatbot o automazioni standard: partiamo dal flusso reale — documenti, dati, ruoli, eccezioni, software già usati e ore perse ogni settimana.",
-  "about.prop1.title": "Verticali su processi reali",
-  "about.prop1.desc":
-    "Non vendiamo AI generica. Costruiamo software su processi misurati: preventivi, documenti, ticket, commesse.",
-  "about.prop2.title": "Dominio operativo",
-  "about.prop2.desc":
-    "Manifattura, alimentare, agronomia e servizi sul campo: settori dove documenti, dati e flussi contano più dell'estetica.",
-  "about.prop3.title": "Ciclo rapido",
-  "about.prop3.desc":
-    "Validazione su un caso reale prima di scalare: meno demo, più prima versione utile in produzione.",
-  "about.prop4.title": "Stack full-stack, AI e MCP",
-  "about.prop4.desc":
-    "Web app, agenti AI/LLM, MCP, parsing documentale, integrazioni con ERP, cloud e strategie digitali AI-ready. Sviluppo end-to-end.",
+  // Why Frasma CTA
   "about.rateReveal": "Prenota una call",
 
   // Platform (UI mockups)
