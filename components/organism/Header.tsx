@@ -8,27 +8,7 @@ export default function Header() {
   const { lang, setLang } = useLang();
 
   return (
-    <>
-      {/* TOP RULE */}
-      <div className="section-farm">
-        <div className="flex items-center justify-between gap-4 py-3 border-b border-dashed border-hairline font-mono text-[10.5px] tracking-[0.1em] uppercase text-ink-soft">
-          <span className="truncate">{t("topRule.studio")}</span>
-          <div className="hidden md:flex gap-[18px]">
-            <span className="relative pl-[14px] before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-[6px] before:h-[6px] before:border before:border-ink-faint before:-translate-y-1/2 before:rotate-45">
-              {t("topRule.tag1")}
-            </span>
-            <span className="relative pl-[14px] before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-[6px] before:h-[6px] before:border before:border-ink-faint before:-translate-y-1/2 before:rotate-45">
-              {t("topRule.tag2")}
-            </span>
-            <span className="relative pl-[14px] before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-[6px] before:h-[6px] before:border before:border-ink-faint before:-translate-y-1/2 before:rotate-45">
-              {t("topRule.tag3")}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* PRIMARY NAV */}
-      <header className="sticky top-0 z-50 bg-paper border-b border-hairline">
+    <header className="sticky top-0 z-50 bg-paper border-b border-hairline">
         <nav className="section-farm py-5 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-3 no-underline">
             <span className="font-serif text-[30px] font-medium leading-none tracking-[-0.025em] text-ink">
@@ -93,7 +73,6 @@ export default function Header() {
             </a>
           </div>
         </nav>
-      </header>
-    </>
+    </header>
   );
 }

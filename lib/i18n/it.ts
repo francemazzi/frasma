@@ -5,16 +5,16 @@ export const it: Record<string, string> = {
     "Frasma è un'agenzia AI strutturata per PMI: sviluppa software su misura, agenti AI, integrazioni MCP e strategie di presenza su ChatGPT, Claude e Gemini.",
 
   // Top rule (editorial)
-  "topRule.studio": "Frasma · Agenzia AI strutturata · Mantova — Italia",
-  "topRule.tag1": "Software operativo",
-  "topRule.tag2": "Agenti AI e MCP",
-  "topRule.tag3": "Presenza AI",
-  "topRule.sheet": "Foglio 01 / 2026",
+  "topRule.studio": "", //Frasma · Agenzia AI strutturata · Mantova — Italia
+  "topRule.tag1": "", //Software operativo
+  "topRule.tag2": "", //Agenti AI e MCP
+  "topRule.tag3": "", //Presenza AI
+  "topRule.sheet": "", //Foglio 01 / 2026
 
   // Header
   "header.book": "Prenota",
   "header.schedule": "Prenota una call",
-  "header.companion": "agenzia AI",
+  "header.companion": "",
   "header.nav.cases": "Casi studio",
   "header.nav.platform": "Aree di valore",
   "header.nav.projects": "Progetti",
@@ -26,9 +26,9 @@ export const it: Record<string, string> = {
   "hero.titleEm": "integrata",
   "hero.title2": "nei processi operativi reali — custom, non standard.",
   "hero.desc":
-    "Frasma è un'agenzia AI strutturata: software su misura con agenti, parsing documentale, MCP e integrazioni per manifattura, alimentare, agronomia e field service.",
+    "Frasma sviluppa software operativo con AI per PMI manifatturiere e aziende con processi documentali complessi: agenti, parsing documentale, MCP e integrazioni su ERP e strumenti esistenti.",
   "hero.lead":
-    "Niente chatbot né automazioni generiche: una piattaforma per documenti, ticket, preventivi e controlli — al posto di Excel, email e tool scollegati.",
+    "Niente chatbot né automazioni generiche: flussi per preventivi, commesse, documenti, ticket e controlli — al posto di Excel, email e tool scollegati.",
   "hero.presence":
     "Presenza anche su ChatGPT, Claude e Gemini: contenuti, dati strutturati e connettori MCP.",
   "hero.focus":
@@ -56,60 +56,72 @@ export const it: Record<string, string> = {
   "results.title2": ", non demo.",
   "results.title": "Casi reali, processi misurabili.",
   "results.subtitle":
-    "Non partiamo dalla tecnologia. Partiamo da attività che oggi consumano ore, generano errori o bloccano il lavoro dei team. Sfoglia quattro esempi recenti.",
+    "Il settore cambia, il problema si ripete: dati copiati a mano, documenti non strutturati, passaggi tra ERP, email e persone chiave. Qui il filo conduttore è trasformare quel lavoro in flussi controllati, misurabili e verificabili.",
   "results.pageWord": "pagina",
   "results.pageMark": "Caso studio",
   "results.read": "Caso studio completo →",
+  "results.thread.label": "Filo conduttore",
+  "results.thread.title":
+    "Documenti, dati e responsabilità nello stesso flusso.",
+  "results.thread.input.title": "Input frammentati",
+  "results.thread.input.desc":
+    "PDF, DDT, certificazioni, richieste, schede tecniche e dati ERP.",
+  "results.thread.flow.title": "Flusso controllato",
+  "results.thread.flow.desc":
+    "Regole, stati e verifiche: l'AI prepara, il team valida.",
+  "results.thread.output.title": "Output operativo",
+  "results.thread.output.desc":
+    "Preventivi, pratiche, interventi e documenti pronti da usare.",
   "results.case1.pull":
-    "Tool di accompagnamento alla stesura di piani HACCP personalizzati: dati più rapidi, meno refusi, conformità guidata.",
-  "results.case1.plate": "CS · 01 — Alimentare · Documentale",
+    "Lo stesso metodo applicato alla qualità alimentare: dati guidati, documenti controllati, meno refusi e consulente sempre al centro della verifica.",
+  "results.case1.plate": "CS · 03 — Alimentare · Qualità & documenti",
   "results.case1.m1n": "4×",
-  "results.case1.m1l": "Più veloce la parte documentale per pratica",
-  "results.case1.m2n": "Più pratiche",
+  "results.case1.m1l": "Più veloce la preparazione documentale",
+  "results.case1.m2n": "Pratiche parallele",
   "results.case1.m2l": "Gestite in parallelo dallo stesso team",
   "results.case2.pull":
-    "Tempi ridotti del 60% nei lavori giornalieri dalla gestione amministrativa del magazzino alla gestione delle offerte.",
-  "results.case2.plate": "CS · 02 — Manifattura · ERP & Preventivi",
+    "Da fatture, DDT e specifiche tecniche al preventivo: dati letti, verificati e riportati nei sistemi senza copia-incolla.",
+  "results.case2.plate": "CS · 01 — Manifattura · ERP & Preventivi",
   "results.case2.m1n": "−60%",
-  "results.case2.m1l": "Sui lavori giornalieri amministrativi",
+  "results.case2.m1l": "Sulle attività amministrative ripetitive",
   "results.case2.m2n": "1 flusso",
   "results.case2.m2l": "Da documento ERP a preventivo",
   "results.case3.pull":
-    "Capacità giornaliera del team più che triplicata, con processi standardizzati.",
-  "results.case3.plate": "CS · 03 — Agroalimentare · Operations",
+    "Pratiche agroalimentari standardizzate: meno passaggi manuali e più aziende gestite dallo stesso team.",
+  "results.case3.plate": "CS · 04 — Agroalimentare · Operations",
   "results.case3.m1n": "3×",
   "results.case3.m1l": "Capacità giornaliera per agronomo",
   "results.case3.m2n": "1 standard",
   "results.case3.m2l": "Processo unico su rete distribuita",
   "results.case4.pull":
-    "Gestione più chiara e coordinata del servizio tra clienti, tecnici e fornitori.",
-  "results.case4.plate": "CS · 04 — Manutenzione · Field service",
+    "Da richiesta a intervento chiuso: clienti, tecnici e fornitori nello stesso flusso operativo.",
+  "results.case4.plate": "CS · 02 — Manutenzione · Field service",
   "results.case4.m1n": "1 piattaforma",
   "results.case4.m1l": "Da richiesta a chiusura intervento",
   "results.case4.m2n": "100%",
   "results.case4.m2l": "Visibilità per clienti e fornitori",
-  "results.case1.tag": "Alimentare / Documentale",
-  "results.case1.title": "Documentazione HACCP e certificazioni",
+  "results.case1.tag": "Alimentare / Qualità & documenti",
+  "results.case1.title": "Procedure, controlli e certificazioni alimentari",
   "results.case1.impact":
-    "Tool di accompagnamento alla stesura di piani HACCP personalizzati: dati più rapidi, meno refusi, conformità guidata.",
+    "Lo stesso metodo applicato alla qualità alimentare: dati guidati, documenti controllati, meno refusi e consulente sempre al centro della verifica.",
   "results.case1.desc":
-    "Per uno studio nel settore alimentare abbiamo sviluppato un supporto operativo che velocizza raccolta ed elaborazione dei dati per procedure HACCP e certificazioni. Il consulente resta al centro del processo: meno tempo su compiti ripetitivi e documentali, più spazio per verifica, sicurezza e qualità del contenuto. Un flusso guidato che riduce refusi ed errori e permette allo stesso team di seguire più programmi manuali in parallelo.",
+    "Per uno studio nel settore alimentare abbiamo costruito un supporto operativo per raccogliere dati, generare documenti HACCP e gestire certificazioni con passaggi guidati. Il consulente resta al centro della verifica: meno tempo su compilazioni ripetitive, più controllo su sicurezza, qualità e conformità. Lo stesso schema torna nei flussi manifatturieri: dati corretti, documenti tracciati, responsabilità chiare.",
   "results.case2.tag": "Manifattura / ERP & AI",
-  "results.case2.title": "AI per preventivi e documenti ERP nel settore lamiera",
+  "results.case2.title": "Preventivi e documenti ERP per gru e lamiera",
   "results.case2.impact":
-    "Tempi ridotti del 60% nei lavori giornalieri dalla gestione amministrativa del magazzino alla gestione delle offerte.",
+    "Da fatture, DDT e specifiche tecniche al preventivo: dati letti, verificati e riportati nei sistemi senza copia-incolla.",
   "results.case2.desc":
-    "Software AI per aziende che lavorano lamiere e componenti per gru: estrazione dati da fatture, DDT e documenti amministrativi, aggiornamento di carichi/scarichi su ERP e supporto alla generazione dei preventivi. Meno passaggi manuali, meno errori e offerte preparate più velocemente.",
+    "Software AI per aziende che realizzano gru e lavorano lamiera con taglio e piega: estrazione dati da fatture, DDT, specifiche tecniche e documenti amministrativi, aggiornamento di carichi/scarichi su ERP e supporto alla generazione dei preventivi. Meno passaggi manuali, meno errori e offerte preparate più velocemente.",
   "results.case3.tag": "Agroalimentare / Operations",
-  "results.case3.title": "Gestione agronomica multi-azienda",
+  "results.case3.title": "Pratiche agroalimentari multi-azienda",
   "results.case3.impact":
-    "Capacità giornaliera del team più che triplicata, con processi standardizzati.",
+    "Pratiche agroalimentari standardizzate: meno passaggi manuali e più aziende gestite dallo stesso team.",
   "results.case3.desc":
     "Per un ente e una rete di agronomi abbiamo creato strumenti che automatizzano attività ripetitive sulla gestione documentale, sui dati aziendali e sui flussi agronomici. Lo stesso team segue oggi molte più aziende contemporaneamente.",
   "results.case4.tag": "Manutenzione / Field service",
   "results.case4.title": "Manutenzione impianti industriali",
   "results.case4.impact":
-    "Gestione più chiara e coordinata del servizio tra clienti, tecnici e fornitori.",
+    "Da richiesta a intervento chiuso: clienti, tecnici e fornitori nello stesso flusso operativo.",
   "results.case4.desc":
     "Una piattaforma per coordinare richieste, tecnici e fornitori nel settore della manutenzione impianti. Ticket, comunicazioni e interventi vengono gestiti in un unico flusso, migliorando tracciabilità, tempi di risposta e controllo operativo anche da campo. Un gestionale tailor made con AI che automatizza i flussi di coordinamento partendo da offerte, DDT, fatture e documentazione tecnica.",
 
@@ -123,7 +135,8 @@ export const it: Record<string, string> = {
 
   // AI presence
   "aiPresence.eyebrow": "Presenza AI e MCP",
-  "aiPresence.title": "Rendiamo l'azienda leggibile e azionabile dagli agenti AI",
+  "aiPresence.title":
+    "Rendiamo l'azienda leggibile e azionabile dagli agenti AI",
   "aiPresence.desc":
     "Non basta comparire su Google: sempre più ricerche, decisioni e operazioni passano da agenti conversazionali. Prepariamo contenuti, dati e strumenti perché il brand sia trovato, capito e collegato ai sistemi interni.",
   "aiPresence.item1.title": "ChatGPT, Claude, Gemini",

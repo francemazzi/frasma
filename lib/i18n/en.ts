@@ -26,9 +26,9 @@ export const en: Record<string, string> = {
   "hero.titleEm": "embedded",
   "hero.title2": "in real operational processes — custom, not generic.",
   "hero.desc":
-    "Frasma is a structured AI agency: custom software with agents, document parsing, MCP, and integrations for manufacturing, food, agronomy, and field service.",
+    "Frasma builds operational AI software for manufacturing SMEs and companies with complex document-heavy workflows: agents, document parsing, MCP, and integrations with ERPs and existing tools.",
   "hero.lead":
-    "No generic chatbots or automations: one platform for documents, tickets, quotes, and controls — instead of Excel, email, and disconnected tools.",
+    "No generic chatbots or automations: workflows for quotes, jobs, documents, tickets, and controls — instead of Excel, email, and disconnected tools.",
   "hero.presence":
     "Presence on ChatGPT, Claude, and Gemini too: content, structured data, and MCP connectors.",
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
@@ -55,60 +55,71 @@ export const en: Record<string, string> = {
   "results.title2": ", not demos.",
   "results.title": "Real cases, measurable processes.",
   "results.subtitle":
-    "We don’t start from technology. We start from the activities that today eat hours, cause errors, or block teams. Page through four recent examples.",
+    "The sector changes, the problem repeats: hand-copied data, unstructured documents, and handoffs across ERPs, email, and key people. The common thread is turning that work into controlled, measurable, verifiable workflows.",
   "results.pageWord": "page",
   "results.pageMark": "Case study",
   "results.read": "Read full case →",
+  "results.thread.label": "Common thread",
+  "results.thread.title": "Documents, data, and responsibility in one workflow.",
+  "results.thread.input.title": "Fragmented input",
+  "results.thread.input.desc":
+    "PDFs, delivery notes, certifications, requests, technical sheets, and ERP data.",
+  "results.thread.flow.title": "Controlled flow",
+  "results.thread.flow.desc":
+    "Rules, states, and checks: AI prepares, the team validates.",
+  "results.thread.output.title": "Operational output",
+  "results.thread.output.desc":
+    "Quotes, filings, interventions, and documents ready to use.",
   "results.case1.pull":
-    "A companion for drafting personalized HACCP plans: faster data handling, fewer errors, guided compliance.",
-  "results.case1.plate": "CS · 01 — Food · Documents",
+    "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
+  "results.case1.plate": "CS · 03 — Food · Quality & documents",
   "results.case1.m1n": "4×",
-  "results.case1.m1l": "Faster documentation work per case",
-  "results.case1.m2n": "More cases",
+  "results.case1.m1l": "Faster document preparation",
+  "results.case1.m2n": "Parallel cases",
   "results.case1.m2l": "Handled in parallel by the same team",
   "results.case2.pull":
-    "60% reduction in daily work from warehouse admin to offer management.",
-  "results.case2.plate": "CS · 02 — Manufacturing · ERP & Quoting",
+    "From invoices, delivery notes, and technical specs to quotes: data read, checked, and pushed into systems without copy-paste.",
+  "results.case2.plate": "CS · 01 — Manufacturing · ERP & Quoting",
   "results.case2.m1n": "−60%",
-  "results.case2.m1l": "On daily admin work",
+  "results.case2.m1l": "On repetitive admin activities",
   "results.case2.m2n": "1 flow",
   "results.case2.m2l": "From ERP document to quote",
   "results.case3.pull":
-    "Daily team capacity more than tripled, with standardized processes.",
-  "results.case3.plate": "CS · 03 — Agri-food · Operations",
+    "Standardized agri-food filings: fewer manual steps and more companies handled by the same team.",
+  "results.case3.plate": "CS · 04 — Agri-food · Operations",
   "results.case3.m1n": "3×",
   "results.case3.m1l": "Daily capacity per agronomist",
   "results.case3.m2n": "1 standard",
   "results.case3.m2l": "Single process across a distributed network",
   "results.case4.pull":
-    "Clearer, better coordinated service between clients, technicians, and suppliers.",
-  "results.case4.plate": "CS · 04 — Maintenance · Field service",
+    "From request to closed intervention: clients, technicians, and suppliers in the same operational workflow.",
+  "results.case4.plate": "CS · 02 — Maintenance · Field service",
   "results.case4.m1n": "1 platform",
   "results.case4.m1l": "Request to closed intervention",
   "results.case4.m2n": "100%",
   "results.case4.m2l": "Visibility for clients and suppliers",
-  "results.case1.tag": "Food / Documents",
-  "results.case1.title": "HACCP documentation & certifications",
+  "results.case1.tag": "Food / Quality & documents",
+  "results.case1.title": "Food procedures, controls & certifications",
   "results.case1.impact":
-    "A companion for drafting personalized HACCP plans: faster data handling, fewer errors, guided compliance.",
+    "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
   "results.case1.desc":
-    "For a food-sector consultancy we built operational support that speeds up data collection and processing for HACCP procedures and certifications. The consultant stays at the center: less time on repetitive documentation, more room for verification, safety, and content quality. A guided flow that cuts typos and errors and lets the same team manage more manual programs in parallel.",
+    "For a food-sector consultancy we built operational support to collect data, generate HACCP documents, and manage certifications through guided steps. The consultant stays at the center of verification: less time on repetitive filling, more control over safety, quality, and compliance. The same pattern applies to manufacturing flows: correct data, tracked documents, clear responsibilities.",
   "results.case2.tag": "Manufacturing / ERP & AI",
-  "results.case2.title": "AI for quotes and ERP documents in sheet metal",
+  "results.case2.title": "ERP documents and quotes for cranes and sheet metal",
   "results.case2.impact":
-    "60% reduction in daily work from warehouse admin to offer management.",
+    "From invoices, delivery notes, and technical specs to quotes: data read, checked, and pushed into systems without copy-paste.",
   "results.case2.desc":
-    "AI software for companies working sheet metal and crane components: data extraction from invoices, delivery notes and admin documents, ERP load/unload updates, and support for quote generation. Fewer manual steps, fewer errors, and faster offers.",
+    "AI software for companies building cranes and working sheet metal through cutting and bending: data extraction from invoices, delivery notes, technical specs, and admin documents, ERP load/unload updates, and support for quote generation. Fewer manual steps, fewer errors, and faster offers.",
   "results.case3.tag": "Agri-food / Operations",
-  "results.case3.title": "Multi-farm agronomy management",
+  "results.case3.title": "Multi-company agri-food filings",
   "results.case3.impact":
-    "Daily team capacity more than tripled, with standardized processes.",
+    "Standardized agri-food filings: fewer manual steps and more companies handled by the same team.",
   "results.case3.desc":
     "For a consortium of agronomists we built tools that automate repetitive activities in document handling, farm data, and agronomic workflows. The same team now follows many more farms in parallel.",
   "results.case4.tag": "Maintenance / Field service",
   "results.case4.title": "Industrial plant maintenance",
   "results.case4.impact":
-    "Clearer, better coordinated service between clients, technicians, and suppliers.",
+    "From request to closed intervention: clients, technicians, and suppliers in the same operational workflow.",
   "results.case4.desc":
     "A platform to coordinate requests, technicians, and suppliers in industrial plant maintenance. Tickets, communications, and interventions run in a single flow, improving traceability, response times, and operational control — including from the field. A tailor-made back-office with AI that automates coordination flows starting from quotes, delivery notes, invoices, and technical documentation.",
 

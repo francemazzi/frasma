@@ -26,27 +26,12 @@ const CASES: Case[] = [
   {
     idx: 0,
     pageLabel: "01",
-    imgSrc: "/image/use_case/haccp.png",
-    imgAlt: "HACCP — schizzo tecnico",
-    plateKey: "results.case1.plate",
-    tagKey: "results.case1.tag",
-    titlePre: "Documentazione",
-    titleEm: "HACCP",
-    titlePost: "e certificazioni",
-    pullKey: "results.case1.pull",
-    descKey: "results.case1.desc",
-    m1: { numKey: "results.case1.m1n", labelKey: "results.case1.m1l" },
-    m2: { numKey: "results.case1.m2n", labelKey: "results.case1.m2l" },
-  },
-  {
-    idx: 1,
-    pageLabel: "02",
     imgSrc: "/image/use_case/lamiere.png",
     imgAlt: "Lamiere — schizzo tecnico",
     plateKey: "results.case2.plate",
     tagKey: "results.case2.tag",
-    titlePre: "AI per preventivi e documenti ERP nel settore",
-    titleEm: "lamiera",
+    titlePre: "Preventivi e documenti ERP per",
+    titleEm: "gru e lamiera",
     titlePost: "",
     pullKey: "results.case2.pull",
     descKey: "results.case2.desc",
@@ -54,23 +39,8 @@ const CASES: Case[] = [
     m2: { numKey: "results.case2.m2n", labelKey: "results.case2.m2l" },
   },
   {
-    idx: 2,
-    pageLabel: "03",
-    imgSrc: "/image/use_case/agricoltura.png",
-    imgAlt: "Agronomia — schizzo tecnico",
-    plateKey: "results.case3.plate",
-    tagKey: "results.case3.tag",
-    titlePre: "Gestione",
-    titleEm: "agronomica",
-    titlePost: "multi-azienda",
-    pullKey: "results.case3.pull",
-    descKey: "results.case3.desc",
-    m1: { numKey: "results.case3.m1n", labelKey: "results.case3.m1l" },
-    m2: { numKey: "results.case3.m2n", labelKey: "results.case3.m2l" },
-  },
-  {
-    idx: 3,
-    pageLabel: "04",
+    idx: 1,
+    pageLabel: "02",
     imgSrc: "/image/use_case/impianti-frigo.png",
     imgAlt: "Manutenzione impianti — schizzo tecnico",
     plateKey: "results.case4.plate",
@@ -82,6 +52,51 @@ const CASES: Case[] = [
     descKey: "results.case4.desc",
     m1: { numKey: "results.case4.m1n", labelKey: "results.case4.m1l" },
     m2: { numKey: "results.case4.m2n", labelKey: "results.case4.m2l" },
+  },
+  {
+    idx: 2,
+    pageLabel: "03",
+    imgSrc: "/image/use_case/haccp.png",
+    imgAlt: "Controllo qualità alimentare — schizzo tecnico",
+    plateKey: "results.case1.plate",
+    tagKey: "results.case1.tag",
+    titlePre: "Procedure, controlli e",
+    titleEm: "certificazioni",
+    titlePost: "",
+    pullKey: "results.case1.pull",
+    descKey: "results.case1.desc",
+    m1: { numKey: "results.case1.m1n", labelKey: "results.case1.m1l" },
+    m2: { numKey: "results.case1.m2n", labelKey: "results.case1.m2l" },
+  },
+  {
+    idx: 3,
+    pageLabel: "04",
+    imgSrc: "/image/use_case/agricoltura.png",
+    imgAlt: "Agronomia — schizzo tecnico",
+    plateKey: "results.case3.plate",
+    tagKey: "results.case3.tag",
+    titlePre: "Pratiche agroalimentari",
+    titleEm: "multi-azienda",
+    titlePost: "",
+    pullKey: "results.case3.pull",
+    descKey: "results.case3.desc",
+    m1: { numKey: "results.case3.m1n", labelKey: "results.case3.m1l" },
+    m2: { numKey: "results.case3.m2n", labelKey: "results.case3.m2l" },
+  },
+];
+
+const THREAD_ITEMS = [
+  {
+    titleKey: "results.thread.input.title",
+    descKey: "results.thread.input.desc",
+  },
+  {
+    titleKey: "results.thread.flow.title",
+    descKey: "results.thread.flow.desc",
+  },
+  {
+    titleKey: "results.thread.output.title",
+    descKey: "results.thread.output.desc",
   },
 ];
 
@@ -120,6 +135,33 @@ export default function Results() {
           </h2>
         </div>
         <p className="ed-intro mb-10 sm:mb-14 lg:ml-[200px]">{t("results.subtitle")}</p>
+
+        <div className="mb-10 sm:mb-14 border-y border-hairline-strong py-5 sm:py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_repeat(3,1fr)] gap-5 lg:gap-0">
+            <div className="lg:pr-8">
+              <div className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-accent mb-2">
+                {t("results.thread.label")}
+              </div>
+              <p className="font-serif text-[22px] sm:text-[26px] leading-[1.15] text-ink max-w-[20ch]">
+                {t("results.thread.title")}
+              </p>
+            </div>
+            {THREAD_ITEMS.map((item, idx) => (
+              <div
+                key={item.titleKey}
+                className="lg:border-l lg:border-hairline-strong lg:pl-6 lg:pr-5"
+              >
+                <div className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-ink mb-2">
+                  <span className="text-accent">{String(idx + 1).padStart(2, "0")}</span>{" "}
+                  {t(item.titleKey)}
+                </div>
+                <p className="text-[13.5px] leading-[1.55] text-ink-soft max-w-[34ch]">
+                  {t(item.descKey)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* BOOK */}
         <div
