@@ -26,11 +26,11 @@ export const it: Record<string, string> = {
   "hero.titleEm": "integrata",
   "hero.title2": "nei processi operativi reali — custom, non standard.",
   "hero.desc":
-    "Frasma sviluppa software operativo con AI per PMI manifatturiere e aziende con processi documentali complessi: agenti, parsing documentale, MCP e integrazioni su ERP e strumenti esistenti.",
+    "Frasma sviluppa software operativo con AI per PMI manifatturiere e processi documentali complessi: agenti, parsing, MCP e integrazioni ERP.",
   "hero.lead":
-    "Niente chatbot né automazioni generiche: flussi per preventivi, commesse, documenti, ticket e controlli — al posto di Excel, email e tool scollegati.",
+    "Flussi per preventivi, commesse, documenti e ticket — al posto di Excel ed email. Presenza su ChatGPT, Claude e Gemini.",
   "hero.presence":
-    "Presenza anche su ChatGPT, Claude e Gemini: contenuti, dati strutturati e connettori MCP.",
+    "Presenza su ChatGPT, Claude e Gemini.",
   "hero.focus":
     "Verticali: manifattura, alimentare, agronomia, servizi sul campo.",
   "hero.brand":
@@ -56,7 +56,7 @@ export const it: Record<string, string> = {
   "results.title2": ", non demo.",
   "results.title": "Casi reali, processi misurabili.",
   "results.subtitle":
-    "Il settore cambia, il problema si ripete: dati copiati a mano, documenti non strutturati, passaggi tra ERP, email e persone chiave. Qui il filo conduttore è trasformare quel lavoro in flussi controllati, misurabili e verificabili.",
+    "Settori diversi, stesso problema: dati copiati a mano e documenti sparsi tra ERP ed email. Li trasformiamo in flussi controllati e misurabili.",
   "results.pageWord": "pagina",
   "results.pageMark": "Caso studio",
   "results.read": "Caso studio completo →",
@@ -65,13 +65,13 @@ export const it: Record<string, string> = {
     "Documenti, dati e responsabilità nello stesso flusso.",
   "results.thread.input.title": "Input frammentati",
   "results.thread.input.desc":
-    "PDF, DDT, certificazioni, richieste, schede tecniche e dati ERP.",
+    "PDF, DDT, certificazioni, schede tecniche e dati ERP.",
   "results.thread.flow.title": "Flusso controllato",
   "results.thread.flow.desc":
     "Regole, stati e verifiche: l'AI prepara, il team valida.",
   "results.thread.output.title": "Output operativo",
   "results.thread.output.desc":
-    "Preventivi, pratiche, interventi e documenti pronti da usare.",
+    "Preventivi, pratiche e documenti pronti da usare.",
   "results.case1.pull":
     "Lo stesso metodo applicato alla qualità alimentare: dati guidati, documenti controllati, meno refusi e consulente sempre al centro della verifica.",
   "results.case1.plate": "CS · 01 — Alimentare · Qualità & documenti",
@@ -105,63 +105,63 @@ export const it: Record<string, string> = {
   "results.case1.impact":
     "Lo stesso metodo applicato alla qualità alimentare: dati guidati, documenti controllati, meno refusi e consulente sempre al centro della verifica.",
   "results.case1.desc":
-    "Per uno studio nel settore alimentare abbiamo costruito un supporto operativo per raccogliere dati, generare documenti HACCP e gestire certificazioni con passaggi guidati. Il consulente resta al centro della verifica: meno tempo su compilazioni ripetitive, più controllo su sicurezza, qualità e conformità. Lo stesso schema torna nei flussi manifatturieri: dati corretti, documenti tracciati, responsabilità chiare.",
+    "HACCP e certificazioni con passaggi guidati: meno compilazioni ripetitive, consulente sempre in verifica.",
   "results.case2.tag": "Manifattura / ERP & AI",
   "results.case2.title": "Preventivi e documenti ERP per gru e lamiera",
   "results.case2.impact":
     "Da fatture, DDT e specifiche tecniche al preventivo: dati letti, verificati e riportati nei sistemi senza copia-incolla.",
   "results.case2.desc":
-    "Software AI per aziende che realizzano gru e lavorano lamiera con taglio e piega: estrazione dati da fatture, DDT, specifiche tecniche e documenti amministrativi, aggiornamento di carichi/scarichi su ERP e supporto alla generazione dei preventivi. Meno passaggi manuali, meno errori e offerte preparate più velocemente.",
+    "Estrazione dati da fatture, DDT e schede tecniche verso ERP e preventivi — senza copia-incolla.",
   "results.case3.tag": "Agroalimentare / Operations",
   "results.case3.title": "Pratiche agroalimentari multi-azienda",
   "results.case3.impact":
     "Pratiche agroalimentari standardizzate: meno passaggi manuali e più aziende gestite dallo stesso team.",
   "results.case3.desc":
-    "Per un ente e una rete di agronomi abbiamo creato strumenti che automatizzano attività ripetitive sulla gestione documentale, sui dati aziendali e sui flussi agronomici. Lo stesso team segue oggi molte più aziende contemporaneamente.",
+    "Automazione documentale e flussi agronomici: lo stesso team segue molte più aziende.",
   "results.case4.tag": "Manutenzione / Field service",
   "results.case4.title": "Manutenzione impianti industriali",
   "results.case4.impact":
     "Da richiesta a intervento chiuso: clienti, tecnici e fornitori nello stesso flusso operativo.",
   "results.case4.desc":
-    "Una piattaforma per coordinare richieste, tecnici e fornitori nel settore della manutenzione impianti. Ticket, comunicazioni e interventi vengono gestiti in un unico flusso, migliorando tracciabilità, tempi di risposta e controllo operativo anche da campo. Un gestionale tailor made con AI che automatizza i flussi di coordinamento partendo da offerte, DDT, fatture e documentazione tecnica.",
+    "Ticket, tecnici e fornitori in un unico flusso — da richiesta a intervento chiuso.",
 
   // Services ("Cosa costruiamo")
   "search.eyebrow": "Cosa costruiamo",
   "search.title": "Software, AI e integrazioni su processi reali",
   "search.description":
-    "Sviluppiamo software su misura quando un processo aziendale è troppo specifico per essere gestito bene con strumenti standard, ma troppo importante per restare su Excel, email o procedure manuali.",
+    "Software su misura quando Excel e tool standard non bastano: web app, automazioni AI, integrazioni ERP, MCP e documenti tecnici.",
   "search.coverage":
-    "Web app operative, automazioni AI, integrazioni con ERP e sistemi esistenti, MCP, presenza negli agenti AI, parsing e generazione di documenti tecnici.",
+    "Web app operative, automazioni AI, integrazioni ERP, MCP e documenti tecnici.",
 
   // AI presence
   "aiPresence.eyebrow": "Presenza AI e MCP",
   "aiPresence.title":
     "Rendiamo l'azienda leggibile e azionabile dagli agenti AI",
   "aiPresence.desc":
-    "Non basta comparire su Google: sempre più ricerche, decisioni e operazioni passano da agenti conversazionali. Prepariamo contenuti, dati e strumenti perché il brand sia trovato, capito e collegato ai sistemi interni.",
+    "Prepariamo contenuti, dati e connettori MCP perché agenti AI trovino, capiscano e operino sul brand.",
   "aiPresence.item1.title": "ChatGPT, Claude, Gemini",
   "aiPresence.item1.desc":
-    "Strutturiamo informazioni, knowledge base e contenuti perché gli agenti AI possano rappresentare correttamente servizi, prodotti e competenze.",
+    "Knowledge base e contenuti strutturati per rappresentare servizi, prodotti e competenze.",
   "aiPresence.item2.title": "MCP e connettori",
   "aiPresence.item2.desc":
-    "Progettiamo server MCP e integrazioni sicure per far dialogare agenti AI, software aziendale, documenti, database e API operative.",
+    "Server MCP e integrazioni sicure tra agenti AI, software aziendale, documenti e API.",
   "aiPresence.item3.title": "Strategia digitale AI-ready",
   "aiPresence.item3.desc":
-    "Allineiamo sito, dati strutturati, automazioni e processi commerciali per essere presenti nei nuovi percorsi di ricerca e acquisizione clienti.",
+    "Sito, dati strutturati e processi commerciali allineati ai nuovi percorsi di ricerca.",
 
   // How we work
   "how.title": "Come lavoriamo",
   "how.subtitle":
-    "Un processo rapido per capire dove il software genera valore reale.",
+    "Capire dove il software sposta una metrica reale.",
   "how.title1": "Analisi del processo",
   "how.desc1":
-    "Partiamo dal flusso reale: documenti, ruoli, dati copiati a mano, errori che si ripetono. Non da chatbot o AI generica — da processi misurati come preventivi, ticket e commesse.",
+    "Partiamo dal flusso reale: documenti, ruoli, errori ripetuti — non da chatbot generici.",
   "how.title2": "Prototipo operativo",
   "how.desc2":
-    "Costruiamo una prima versione utile su un caso reale in manifattura, alimentare, agronomia o field service. Meno demo, più validazione in produzione.",
+    "Prototipo su un caso reale in manifattura, alimentare, agronomia o field service.",
   "how.title3": "Sistema integrato",
   "how.desc3":
-    "Rendiamo la soluzione stabile e collegata agli strumenti esistenti: web app, agenti AI, MCP, parsing documentale, integrazioni ERP. Pronta per l'uso quotidiano del team.",
+    "Integrazione stabile con ERP, agenti AI, MCP e parsing — pronta per l'uso quotidiano.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D e prodotti pubblici",
@@ -192,22 +192,22 @@ export const it: Record<string, string> = {
   // Platform (UI mockups)
   "platform.cards.agent.name": "Agenti AI su documenti",
   "platform.cards.agent.desc":
-    "Automazioni AI ed estrazione di dati da PDF, schede tecniche e allegati. L'operatore conferma o corregge, lo storico resta tracciato.",
+    "Estrazione da PDF e schede: l'operatore valida, lo storico resta tracciato.",
   "platform.cards.tickets.name": "Operations e ticketing",
   "platform.cards.tickets.desc":
-    "Applicazioni operative per attività sul campo, ticket, priorità e SLA. Visibilità reale su cosa è aperto, in corso e chiuso.",
+    "Ticket, priorità e SLA sul campo — visibilità su aperto, in corso e chiuso.",
   "platform.cards.workflow.name": "Workflow e procedure",
   "platform.cards.workflow.desc":
-    "Digitalizzazione documentale e procedure guidate con monitoraggio, validazioni e generazione automatica di documenti. Pensate per chi le compila ogni giorno.",
+    "Procedure guidate con validazioni e generazione documenti per chi le compila ogni giorno.",
   "platform.cards.preventivi.name": "Gestionali personalizzati",
   "platform.cards.preventivi.desc":
-    "Tabelle, totali, stati e dati esportabili, con integrazioni verso ERP, listini e fogli esistenti. Sostituiscono Excel ingestibili senza imporre un gestionale completo.",
+    "Tabelle, stati e export verso ERP e listini — senza imporre un gestionale completo.",
 
   // Founder
   "founder.role": "Founder · CTO",
   "founder.title": "Francesco Saverio Mazzi",
   "founder.bio1":
-    "Sviluppatore full-stack focalizzato su software operativo, agenti AI e integrazioni dati. Lavora con aziende manifatturiere, alimentari, agronomiche e di field service per portare in produzione strumenti che riducono lavoro manuale ed errori.",
+    "Full-stack su software operativo, agenti AI e integrazioni dati per manifattura, alimentare, agronomia e field service. Frasma resta snella, con rete selezionata su UX e processi.",
   "founder.bio2":
     "Frasma resta una struttura snella: per progetti più ampi si appoggia a una rete selezionata su UX, marketing e analisi processi.",
   "founder.note":
@@ -218,7 +218,7 @@ export const it: Record<string, string> = {
   "cta.titleEm": "insieme",
   "cta.title2": ".",
   "cta.desc":
-    "Prenota una call introduttiva gratuita di 30 minuti. Portaci un processo reale: ti diciamo dove il software può ridurre tempi, errori o lavoro manuale.",
+    "Call introduttiva gratuita di 30 minuti: portaci un processo reale e ti diciamo dove ridurre tempi, errori o lavoro manuale.",
   "cta.button": "Prenota una call",
   "cta.secondary": "Scrivici via email",
 

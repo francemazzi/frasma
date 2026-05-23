@@ -23,9 +23,6 @@ export default function Intro() {
         <p className="text-[18px] leading-[1.6] text-ink-2 max-w-[62ch] mb-4">
           {t("hero.lead")}
         </p>
-        <p className="text-[16.5px] leading-[1.65] text-ink-soft max-w-[66ch]">
-          {t("hero.presence")}
-        </p>
 
         <div className="flex gap-[14px] mt-10 items-center flex-wrap">
           <a href="#contact" className="btn-ink">

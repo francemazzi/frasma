@@ -33,10 +33,7 @@ export default function Platform() {
           <div className="ed-kicker">{t("search.eyebrow")}</div>
           <h2 className="ed-title max-w-[28ch]">{t("search.title")}</h2>
         </div>
-        <p className="ed-intro mb-4 lg:ml-[200px]">{t("search.description")}</p>
-        <p className="ed-intro mb-10 sm:mb-14 lg:ml-[200px] text-ink-soft/80">
-          {t("search.coverage")}
-        </p>
+        <p className="ed-intro mb-10 sm:mb-14 lg:ml-[200px]">{t("search.description")}</p>
 
         <BentoGrid className="lg:auto-rows-[26rem]">
           <BentoCard

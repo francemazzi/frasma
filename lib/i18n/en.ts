@@ -26,11 +26,11 @@ export const en: Record<string, string> = {
   "hero.titleEm": "embedded",
   "hero.title2": "in real operational processes — custom, not generic.",
   "hero.desc":
-    "Frasma builds operational AI software for manufacturing SMEs and companies with complex document-heavy workflows: agents, document parsing, MCP, and integrations with ERPs and existing tools.",
+    "Frasma builds operational AI software for manufacturing SMEs and complex document workflows: agents, parsing, MCP, and ERP integrations.",
   "hero.lead":
-    "No generic chatbots or automations: workflows for quotes, jobs, documents, tickets, and controls — instead of Excel, email, and disconnected tools.",
+    "Workflows for quotes, jobs, documents, and tickets — instead of Excel and email. Presence on ChatGPT, Claude, and Gemini.",
   "hero.presence":
-    "Presence on ChatGPT, Claude, and Gemini too: content, structured data, and MCP connectors.",
+    "Presence on ChatGPT, Claude, and Gemini.",
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
   "hero.brand":
     "Frasma, the Lagotto in the brand, represents the conversational and first-contact support experience.",
@@ -55,7 +55,7 @@ export const en: Record<string, string> = {
   "results.title2": ", not demos.",
   "results.title": "Real cases, measurable processes.",
   "results.subtitle":
-    "The sector changes, the problem repeats: hand-copied data, unstructured documents, and handoffs across ERPs, email, and key people. The common thread is turning that work into controlled, measurable, verifiable workflows.",
+    "Different sectors, same problem: hand-copied data and documents scattered across ERPs and email. We turn that into controlled, measurable workflows.",
   "results.pageWord": "page",
   "results.pageMark": "Case study",
   "results.read": "Read full case →",
@@ -63,13 +63,13 @@ export const en: Record<string, string> = {
   "results.thread.title": "Documents, data, and responsibility in one workflow.",
   "results.thread.input.title": "Fragmented input",
   "results.thread.input.desc":
-    "PDFs, delivery notes, certifications, requests, technical sheets, and ERP data.",
+    "PDFs, delivery notes, certifications, technical sheets, and ERP data.",
   "results.thread.flow.title": "Controlled flow",
   "results.thread.flow.desc":
     "Rules, states, and checks: AI prepares, the team validates.",
   "results.thread.output.title": "Operational output",
   "results.thread.output.desc":
-    "Quotes, filings, interventions, and documents ready to use.",
+    "Quotes, filings, and documents ready to use.",
   "results.case1.pull":
     "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
   "results.case1.plate": "CS · 01 — Food · Quality & documents",
@@ -103,61 +103,61 @@ export const en: Record<string, string> = {
   "results.case1.impact":
     "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
   "results.case1.desc":
-    "For a food-sector consultancy we built operational support to collect data, generate HACCP documents, and manage certifications through guided steps. The consultant stays at the center of verification: less time on repetitive filling, more control over safety, quality, and compliance. The same pattern applies to manufacturing flows: correct data, tracked documents, clear responsibilities.",
+    "Guided HACCP and certifications: fewer repetitive forms, consultant always in the loop.",
   "results.case2.tag": "Manufacturing / ERP & AI",
   "results.case2.title": "ERP documents and quotes for cranes and sheet metal",
   "results.case2.impact":
     "From invoices, delivery notes, and technical specs to quotes: data read, checked, and pushed into systems without copy-paste.",
   "results.case2.desc":
-    "AI software for companies building cranes and working sheet metal through cutting and bending: data extraction from invoices, delivery notes, technical specs, and admin documents, ERP load/unload updates, and support for quote generation. Fewer manual steps, fewer errors, and faster offers.",
+    "Data extraction from invoices, delivery notes, and technical sheets into ERP and quotes — no copy-paste.",
   "results.case3.tag": "Agri-food / Operations",
   "results.case3.title": "Multi-company agri-food filings",
   "results.case3.impact":
     "Standardized agri-food filings: fewer manual steps and more companies handled by the same team.",
   "results.case3.desc":
-    "For a consortium of agronomists we built tools that automate repetitive activities in document handling, farm data, and agronomic workflows. The same team now follows many more farms in parallel.",
+    "Document automation and agronomic workflows: the same team follows many more farms.",
   "results.case4.tag": "Maintenance / Field service",
   "results.case4.title": "Industrial plant maintenance",
   "results.case4.impact":
     "From request to closed intervention: clients, technicians, and suppliers in the same operational workflow.",
   "results.case4.desc":
-    "A platform to coordinate requests, technicians, and suppliers in industrial plant maintenance. Tickets, communications, and interventions run in a single flow, improving traceability, response times, and operational control — including from the field. A tailor-made back-office with AI that automates coordination flows starting from quotes, delivery notes, invoices, and technical documentation.",
+    "Tickets, technicians, and suppliers in one flow — from request to closed intervention.",
 
   // Services ("What we build")
   "search.eyebrow": "What we build",
   "search.title": "Software, AI, and integrations on real processes",
   "search.description":
-    "We build custom software when a business process is too specific for off-the-shelf tools, but too important to live on Excel, email, or manual procedures.",
+    "Custom software when Excel and off-the-shelf tools fall short: web apps, AI automations, ERP integrations, MCP, and technical documents.",
   "search.coverage":
-    "Operational web apps, AI automations, integrations with ERPs and existing systems, MCP, AI-agent presence, parsing, and generation of technical documents.",
+    "Operational web apps, AI automations, ERP integrations, MCP, and technical documents.",
 
   // AI presence
   "aiPresence.eyebrow": "AI presence and MCP",
   "aiPresence.title": "We make the company readable and actionable by AI agents",
   "aiPresence.desc":
-    "Being present on Google is no longer enough: more searches, decisions, and operations now run through conversational agents. We prepare content, data, and tools so the brand can be found, understood, and connected to internal systems.",
+    "We prepare content, data, and MCP connectors so AI agents can find, understand, and act on your brand.",
   "aiPresence.item1.title": "ChatGPT, Claude, Gemini",
   "aiPresence.item1.desc":
-    "We structure information, knowledge bases, and content so AI agents can represent services, products, and expertise correctly.",
+    "Structured knowledge bases and content to represent services, products, and expertise.",
   "aiPresence.item2.title": "MCP and connectors",
   "aiPresence.item2.desc":
-    "We design MCP servers and secure integrations that connect AI agents with business software, documents, databases, and operational APIs.",
+    "MCP servers and secure integrations between AI agents, business software, documents, and APIs.",
   "aiPresence.item3.title": "AI-ready digital strategy",
   "aiPresence.item3.desc":
-    "We align the website, structured data, automations, and commercial processes for the new search and customer acquisition journeys.",
+    "Website, structured data, and sales processes aligned with new search journeys.",
 
   // How we work
   "how.title": "How we work",
-  "how.subtitle": "A quick process to find where software creates real value.",
+  "how.subtitle": "Find where software moves a real metric.",
   "how.title1": "Process analysis",
   "how.desc1":
-    "We start from the real workflow: documents, roles, hand-copied data, repeating errors. Not from generic chatbots or AI — from measured processes like quotes, tickets, and jobs.",
+    "We start from the real workflow: documents, roles, repeating errors — not generic chatbots.",
   "how.title2": "Operational prototype",
   "how.desc2":
-    "We build a first useful version on a real case in manufacturing, food, agronomy, or field services. Fewer demos, more validation in production.",
+    "A prototype on a real case in manufacturing, food, agronomy, or field services.",
   "how.title3": "Integrated system",
   "how.desc3":
-    "We make the solution stable and connected to existing tools: web apps, AI agents, MCP, document parsing, ERP integrations. Ready for everyday team use.",
+    "Stable integration with ERP, AI agents, MCP, and parsing — ready for daily use.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D and public products",
@@ -188,22 +188,22 @@ export const en: Record<string, string> = {
   // Platform (UI mockups)
   "platform.cards.agent.name": "AI agents on documents",
   "platform.cards.agent.desc":
-    "AI automation and data extraction from PDFs, technical sheets, and attachments. Operators confirm or correct; history stays tracked.",
+    "Extraction from PDFs and sheets: operators validate, history stays tracked.",
   "platform.cards.tickets.name": "Operations & ticketing",
   "platform.cards.tickets.desc":
-    "Operational apps for field work, tickets, priorities, and SLAs. Real visibility on what is open, in progress, and closed.",
+    "Field tickets, priorities, and SLAs — visibility on open, in progress, and closed.",
   "platform.cards.workflow.name": "Workflows & procedures",
   "platform.cards.workflow.desc":
-    "Document digitization and guided procedures with monitoring, validations, and automatic document generation. Built for the people who fill them out every day.",
+    "Guided procedures with validations and document generation for daily users.",
   "platform.cards.preventivi.name": "Lightweight back-office",
   "platform.cards.preventivi.desc":
-    "Tables, totals, statuses, and exportable data, wired into ERPs, price lists, and existing spreadsheets. They replace unmanageable Excel files without forcing a full back-office system.",
+    "Tables, statuses, and exports to ERPs and price lists — without a full back-office system.",
 
   // Founder
   "founder.role": "Founder · CTO",
   "founder.title": "Francesco Saverio Mazzi",
   "founder.bio1":
-    "Full-stack developer focused on operational software, AI agents, and data integrations. Works with manufacturing, food, agronomy, and field-service companies to ship tools that reduce manual work and errors.",
+    "Full-stack on operational software, AI agents, and data integrations for manufacturing, food, agronomy, and field services. Frasma stays lean, with a curated network for UX and process work.",
   "founder.bio2":
     "Frasma stays lean: for broader projects it leans on a curated network covering UX, marketing, and process analysis.",
   "founder.note":
@@ -214,7 +214,7 @@ export const en: Record<string, string> = {
   "cta.titleEm": "together",
   "cta.title2": ".",
   "cta.desc":
-    "Book a free 30-minute intro call. Bring a real process: we’ll tell you where software can cut time, errors, or manual work.",
+    "Free 30-minute intro call: bring a real process and we'll show where to cut time, errors, or manual work.",
   "cta.button": "Book a call",
   "cta.secondary": "Write us via email",
 

@@ -33,9 +33,6 @@ export default function Founder() {
           <p className="text-[15px] sm:text-[16px] leading-[1.65] text-ink-2 max-w-[64ch] mb-4">
             {t("founder.bio1")}
           </p>
-          <p className="text-[15px] sm:text-[16px] leading-[1.65] text-ink-2 max-w-[64ch] mb-4">
-            {t("founder.bio2")}
-          </p>
           <p className="font-serif italic text-[16px] text-accent mt-6 pl-4 border-l-2 border-accent max-w-[56ch]">
             {t("founder.note")}
           </p>
