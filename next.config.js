@@ -23,6 +23,47 @@ const nextConfig = {
       },
     ];
   },
+  async headers() {
+    return [
+      {
+        source: "/.well-known/api-catalog",
+        headers: [
+          {
+            key: "Content-Type",
+            value:
+              'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"',
+          },
+        ],
+      },
+      {
+        source: "/openapi.json",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "application/openapi+json",
+          },
+        ],
+      },
+      {
+        source: "/.well-known/agent-skills/index.json",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "application/json",
+          },
+        ],
+      },
+      {
+        source: "/.well-known/agent-skills/contact-francesco/SKILL.md",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "text/markdown; charset=utf-8",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

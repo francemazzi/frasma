@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "contact-francesco",
+      "type": "skill-md",
+      "description": "Helps agents understand Frasma services and guide users toward quote requests or scheduled calls with Francesco Saverio Mazzi.",
+      "url": "https://www.frasma.org/.well-known/agent-skills/contact-francesco/SKILL.md",
+      "digest": "sha256:4c9b7cdfe75ae09126d0fe43469a6828bb26c97366040cfa02cc935fe52d314c"
+    }
+  ]
+}

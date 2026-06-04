@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /api/status
 Disallow: /api/
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 Sitemap: https://www.frasma.org/sitemap.xml

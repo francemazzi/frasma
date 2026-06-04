@@ -1,0 +1,25 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.frasma.org/api",
+      "service-desc": [
+        {
+          "href": "https://www.frasma.org/openapi.json",
+          "type": "application/openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.frasma.org/#contact",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://www.frasma.org/api/status",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

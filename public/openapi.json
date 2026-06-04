@@ -1,0 +1,342 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Frasma Public Website API",
+    "version": "0.1.0",
+    "description": "Public API description for Frasma website contact, chat, scheduling, email request, and service status endpoints."
+  },
+  "servers": [
+    {
+      "url": "https://www.frasma.org"
+    }
+  ],
+  "paths": {
+    "/api/status": {
+      "get": {
+        "operationId": "getStatus",
+        "summary": "Read service status",
+        "responses": {
+          "200": {
+            "description": "Service status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chat": {
+      "post": {
+        "operationId": "postChat",
+        "summary": "Send a chat message to the Frasma assistant",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Assistant response or timeout marker",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/ChatResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TimeoutResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "405": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
+    "/api/schedule-meeting": {
+      "post": {
+        "operationId": "scheduleMeeting",
+        "summary": "Submit a meeting request",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleMeetingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Meeting request accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "405": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "429": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "500": {
+            "$ref": "#/components/responses/BooleanError"
+          }
+        }
+      }
+    },
+    "/api/send-email": {
+      "post": {
+        "operationId": "sendQuoteRequestEmail",
+        "summary": "Send a reviewed quote request email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendEmailRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "405": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "Error": {
+        "description": "Error response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "BooleanError": {
+        "description": "Error response with ok=false",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/BooleanErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ChatMessage": {
+        "type": "object",
+        "required": ["role", "content"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["user", "assistant"]
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 2000
+          }
+        }
+      },
+      "ChatRequest": {
+        "type": "object",
+        "required": ["messages"],
+        "properties": {
+          "messages": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 20,
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            }
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["it", "en"]
+          },
+          "timezone": {
+            "type": "string",
+            "examples": ["Europe/Rome"]
+          }
+        }
+      },
+      "ChatResponse": {
+        "type": "object",
+        "required": ["response"],
+        "properties": {
+          "response": {
+            "type": "string"
+          }
+        }
+      },
+      "TimeoutResponse": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "const": "TIMEOUT"
+          }
+        }
+      },
+      "ScheduleMeetingRequest": {
+        "type": "object",
+        "required": ["date", "time", "email"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "time": {
+            "type": "string",
+            "pattern": "^\\d{2}:\\d{2}$"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "timezone": {
+            "type": "string",
+            "default": "Europe/Rome"
+          },
+          "honeypot": {
+            "type": "string",
+            "description": "Spam-prevention field. Leave empty."
+          }
+        }
+      },
+      "SendEmailRequest": {
+        "type": "object",
+        "required": ["clientEmail", "subject", "body"],
+        "properties": {
+          "clientEmail": {
+            "type": "string",
+            "format": "email"
+          },
+          "subject": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 5000
+          }
+        }
+      },
+      "StatusResponse": {
+        "type": "object",
+        "required": ["ok", "service", "version", "timestamp"],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          },
+          "service": {
+            "type": "string",
+            "const": "frasma"
+          },
+          "version": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "OkResponse": {
+        "type": "object",
+        "required": ["ok"],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "BooleanErrorResponse": {
+        "type": "object",
+        "required": ["ok", "error"],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": false
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
