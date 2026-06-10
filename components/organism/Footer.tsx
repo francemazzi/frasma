@@ -43,6 +43,15 @@ export default function Footer() {
             >
               LinkedIn
             </Link>
+            <span className="text-ink-faint">·</span>
+            <Link
+              href="https://www.youtube.com/@frasmatech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors"
+            >
+              YouTube
+            </Link>
           </div>
         </div>
       </div>
