@@ -1,7 +1,7 @@
 import Head from "next/head";
 import {
   absoluteUrl,
-  PROFILE_IMAGE,
+  BRAND_LOGO_IMAGE,
   SITE_NAME,
   SITE_URL,
 } from "../lib/seo";
@@ -40,7 +40,7 @@ export default function Seo({
   title,
   description,
   path = "/",
-  image = PROFILE_IMAGE,
+  image = BRAND_LOGO_IMAGE,
   type = "website",
   noindex = false,
   publishedTime,
@@ -61,6 +61,8 @@ export default function Seo({
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonicalUrl} />
       <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" type="image/png" href="/favicon.png" />
+      <link rel="apple-touch-icon" href="/logo-frasma.png" />
 
       <meta property="og:locale" content="it_IT" />
       <meta property="og:site_name" content={SITE_NAME} />

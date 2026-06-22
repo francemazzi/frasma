@@ -262,11 +262,18 @@ export default function VibeUpPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-8 lg:px-12 py-4 bg-farm-bg/85 backdrop-blur-md border-b border-farm-border">
         <a
           href="https://www.frasma.org"
-          className="text-sm font-semibold tracking-wide text-sage"
+          className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-sage"
           target="_blank"
           rel="noopener noreferrer"
         >
-          VIBE UP{" "}
+          <Image
+            src="/logo-frasma.png"
+            alt="Frasma"
+            width={34}
+            height={34}
+            className="h-[34px] w-[34px] rounded-full object-cover"
+          />
+          <span>VIBE UP</span>{" "}
           <span className="text-farm-secondary font-normal">by frasma.org</span>
         </a>
         <Cal textButton="PRENOTA ORA" buttonType="default" />
@@ -694,7 +701,16 @@ export default function VibeUpPage() {
               <h2 className="text-2xl sm:text-4xl font-extrabold leading-tight tracking-tight mb-6">
                 Francesco Mazzi
                 <br />
-                <span className="text-sage">Frasma</span>
+                <span className="inline-flex items-center gap-2 text-sage">
+                  <Image
+                    src="/logo-frasma.png"
+                    alt="Frasma"
+                    width={34}
+                    height={34}
+                    className="h-[34px] w-[34px] rounded-full object-cover"
+                  />
+                  Frasma
+                </span>
               </h2>
               <p className="text-farm-secondary leading-relaxed mb-4">
                 Sviluppatore full-stack con{" "}
@@ -834,9 +850,16 @@ export default function VibeUpPage() {
               href="https://www.frasma.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sage hover:underline"
+              className="inline-flex items-center gap-1.5 text-sage hover:underline"
             >
-              Frasma.org
+              <Image
+                src="/logo-frasma.png"
+                alt="Frasma"
+                width={20}
+                height={20}
+                className="h-5 w-5 rounded-full object-cover"
+              />
+              <span>Frasma.org</span>
             </a>{" "}
             &middot; Francesco Saverio Mazzi &middot; Guastalla, RE
           </p>

@@ -1,6 +1,8 @@
 export const SITE_URL = "https://www.frasma.org";
 export const SITE_NAME = "Frasma";
 export const OWNER_NAME = "Francesco Saverio Mazzi";
+export const BRAND_LOGO_PATH = "/logo-frasma.png";
+export const BRAND_LOGO_IMAGE = `${SITE_URL}${BRAND_LOGO_PATH}`;
 export const PROFILE_IMAGE = `${SITE_URL}/profilo_home.jpg`;
 
 export function absoluteUrl(path = "/"): string {
@@ -79,7 +81,8 @@ export const professionalServiceJsonLd = {
   "@id": `${SITE_URL}/#business`,
   name: `${SITE_NAME} - ${OWNER_NAME}`,
   url: SITE_URL,
-  image: PROFILE_IMAGE,
+  image: BRAND_LOGO_IMAGE,
+  logo: BRAND_LOGO_IMAGE,
   founder: {
     "@id": `${SITE_URL}/#person`,
   },
@@ -109,6 +112,7 @@ export const websiteJsonLd = {
   "@id": `${SITE_URL}/#website`,
   name: SITE_NAME,
   url: SITE_URL,
+  image: BRAND_LOGO_IMAGE,
   inLanguage: "it-IT",
   publisher: {
     "@id": `${SITE_URL}/#business`,

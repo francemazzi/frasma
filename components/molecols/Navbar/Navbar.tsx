@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { NAV_LINK } from "../../../common/navbarCostants";
 import { useRouter } from "next/router";
 
@@ -38,10 +39,17 @@ const NavBar = () => {
           <a
             className={`px-5 py-2 text-[28px] ${
               currentRoute === "/" && "text-[red]"
-            } text-[#000] font-bold `}
+            } text-[#000] font-bold flex items-center gap-3`}
             href={"/"}
           >
-            Frasma 🔥
+            <Image
+              src="/logo-frasma.png"
+              alt="Frasma"
+              width={44}
+              height={44}
+              className="h-11 w-11 rounded-full object-cover"
+            />
+            <span>Frasma</span>
           </a>
         </div>
 

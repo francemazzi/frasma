@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useT } from "../../lib/i18n/context";
 
@@ -10,7 +11,16 @@ export default function Footer() {
     <footer className="border-t border-hairline py-9 pb-20 font-mono text-[11px] text-ink-soft tracking-[0.04em]">
       <div className="section-farm">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
-          <p>{t("footer.info")}</p>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo-frasma.png"
+              alt="Frasma"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-full object-cover"
+            />
+            <p>{t("footer.info")}</p>
+          </div>
           <div className="flex gap-5 flex-wrap items-center">
             {/* <Link
               href="/programmatore-freelance"

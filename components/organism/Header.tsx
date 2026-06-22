@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useT, useLang } from "../../lib/i18n/context";
 
@@ -10,8 +11,16 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-paper border-b border-hairline">
         <nav className="section-farm py-5 flex items-center justify-between">
-          <Link href="/" className="flex items-baseline gap-3 no-underline">
-            <span className="font-serif text-[30px] font-medium leading-none tracking-[-0.025em] text-ink">
+          <Link href="/" className="flex items-center gap-3 no-underline">
+            <Image
+              src="/logo-frasma.png"
+              alt="Frasma"
+              width={48}
+              height={48}
+              priority
+              className="h-12 w-12 rounded-full object-cover"
+            />
+            <span className="hidden sm:inline font-serif text-[30px] font-medium leading-none tracking-[-0.025em] text-ink">
               Fr<em className="italic text-accent font-normal">asma</em>
             </span>
             <span className="hidden sm:inline pl-3 border-l border-hairline-strong font-mono text-[10.5px] text-ink-soft tracking-[0.08em] uppercase">

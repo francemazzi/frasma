@@ -532,9 +532,12 @@ export default function ChatWidget() {
               "0 12px 28px -8px rgba(27,25,22,0.5), 0 4px 10px -4px rgba(27,25,22,0.3)",
           }}
         >
-          <span
-            className="w-2 h-2 rounded-full bg-[#6fbf5a]"
-            style={{ boxShadow: "0 0 0 3px rgba(111,191,90,0.25)" }}
+          <Image
+            src="/logo-frasma.png"
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7 rounded-full object-cover"
           />
           {t("chat.title")}
         </button>
@@ -551,8 +554,17 @@ export default function ChatWidget() {
         >
           {/* Header */}
           <div className="px-5 py-[18px] border-b border-hairline bg-paper flex flex-col gap-[6px] relative">
-            <div className="font-serif text-[20px] font-medium leading-tight tracking-[-0.015em] text-ink">
-              <em className="italic text-accent font-normal">{t("chat.title")}</em>
+            <div className="flex items-center gap-3 pr-9">
+              <Image
+                src="/logo-frasma.png"
+                alt="Frasma"
+                width={38}
+                height={38}
+                className="h-[38px] w-[38px] rounded-full object-cover"
+              />
+              <div className="font-serif text-[20px] font-medium leading-tight tracking-[-0.015em] text-ink">
+                <em className="italic text-accent font-normal">{t("chat.title")}</em>
+              </div>
             </div>
             <div className="font-mono text-[10.5px] text-ink-soft tracking-[0.06em] uppercase flex items-center gap-2">
               <span
@@ -604,7 +616,14 @@ export default function ChatWidget() {
 
               return (
                 <div key={i} className="max-w-full">
-                  <div className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-accent">
+                  <div className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-accent flex items-center gap-1.5">
+                    <Image
+                      src="/logo-frasma.png"
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="h-4 w-4 rounded-full object-cover"
+                    />
                     frasma
                   </div>
                   <div className="font-serif text-[16px] leading-[1.5] text-ink whitespace-pre-wrap break-words">
@@ -627,7 +646,14 @@ export default function ChatWidget() {
 
             {loading && (
               <div className="max-w-full">
-                <div className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-accent">
+                <div className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-accent flex items-center gap-1.5">
+                  <Image
+                    src="/logo-frasma.png"
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="h-4 w-4 rounded-full object-cover"
+                  />
                   frasma
                 </div>
                 <div className="flex gap-[5px] py-[6px]">
