@@ -8,6 +8,9 @@ export default function Intro() {
   return (
     <section id="top" className="section-farm">
       <div className="pt-16 sm:pt-20 lg:pt-[70px] pb-20 sm:pb-24 lg:pb-[110px]">
+        <p className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-accent mb-5">
+          {t("hero.eyebrow")}
+        </p>
         <h1
           className="font-serif font-normal text-ink leading-[1.0] tracking-[-0.025em] mb-10 max-w-[16ch] [text-wrap:balance]"
           style={{ fontSize: "clamp(46px, 5.4vw, 86px)" }}
@@ -22,6 +25,9 @@ export default function Intro() {
         </p>
         <p className="text-[18px] leading-[1.6] text-ink-2 max-w-[62ch] mb-4">
           {t("hero.lead")}
+        </p>
+        <p className="text-[16px] leading-[1.6] text-ink-soft max-w-[62ch] mb-4 pl-4 border-l border-hairline-strong">
+          {t("hero.promise")}
         </p>
 
         <div className="flex gap-[14px] mt-10 items-center flex-wrap">

@@ -53,16 +53,13 @@ export const personJsonLd = {
     "Software operativo su misura",
     "Studio software per PMI",
     "Automazioni AI per imprese",
-    "Agenti AI e LLM operativi",
-    "MCP e Model Context Protocol",
-    "Presenza su ChatGPT, Claude e Gemini",
-    "Strategie digitali AI-ready",
-    "Integrazioni ERP e API",
     "Digitalizzazione documentale",
-    "Parsing PDF e OCR",
+    "Automazione processi aziendali",
+    "Integrazioni ERP e API",
     "Software per manifattura",
     "Software per alimentare e HACCP",
     "Software per agronomia",
+    "Presenza su ChatGPT, Claude e Gemini",
     "Programmazione full stack",
     "React",
     "Next.js",
@@ -87,7 +84,7 @@ export const professionalServiceJsonLd = {
     "@id": `${SITE_URL}/#person`,
   },
   description:
-    "Agenzia AI strutturata: applicazioni su misura, agenti AI, MCP, integrazioni e strategie di presenza su ChatGPT, Claude e Gemini per PMI.",
+    "Software su misura e automazioni AI per processi aziendali e documenti: riduciamo copia-incolla, errori e tempi morti tra email, PDF, Excel ed ERP per PMI.",
   areaServed: [
     {
       "@type": "Country",

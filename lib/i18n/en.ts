@@ -1,8 +1,8 @@
 export const en: Record<string, string> = {
   // Meta
-  "meta.title": "Frasma — AI agency for software, agents, and digital presence",
+  "meta.title": "Frasma — Custom software and AI for business processes and documents",
   "meta.description":
-    "Frasma is a structured AI agency for SMEs: custom software, AI agents, MCP integrations, and AI presence strategies for ChatGPT, Claude, and Gemini.",
+    "We reduce copy-paste, errors, and wasted time between email, PDF, Excel, and ERP. Custom operational software for quotes, delivery notes, filings, tickets, and technical documents.",
 
   // Top rule (editorial)
   "topRule.studio": "Frasma · Structured AI agency · Mantova — Italy",
@@ -16,26 +16,28 @@ export const en: Record<string, string> = {
   "header.schedule": "Book a call",
   "header.companion": "AI agency",
   "header.nav.cases": "Case studies",
-  "header.nav.platform": "Use cases",
+  "header.nav.platform": "Where we cut manual work",
   "header.nav.projects": "Projects",
   "header.nav.blog": "Blog",
 
   // Hero (editorial)
-  "hero.eyebrow": "AI software · Integrations · Operational processes",
-  "hero.title1": "AI",
-  "hero.titleEm": "embedded",
-  "hero.title2": "in real operational processes — custom, not generic.",
+  "hero.eyebrow": "For SMEs with repetitive document workflows",
+  "hero.title1": "Cut",
+  "hero.titleEm": "manual work",
+  "hero.title2": "between documents, email, and ERP.",
   "hero.desc":
-    "Frasma builds operational AI software for manufacturing SMEs and complex document workflows: agents, parsing, MCP, and ERP integrations.",
+    "Frasma builds custom software and AI automations to turn quotes, delivery notes, technical sheets, tickets, and business filings into controlled, traceable workflows.",
   "hero.lead":
-    "Workflows for quotes, jobs, documents, and tickets — instead of Excel and email. Presence on ChatGPT, Claude, and Gemini.",
+    "For business owners, operations leads, technical offices, and admin teams still doing too much copy-paste between Excel, PDF, email, and ERP.",
+  "hero.promise":
+    "We start from a real process, build a prototype on your data, and measure where to cut time, errors, and manual work.",
   "hero.presence":
     "Presence on ChatGPT, Claude, and Gemini.",
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
   "hero.brand":
     "Frasma, the Lagotto in the brand, represents the conversational and first-contact support experience.",
-  "hero.cta": "Book a free call",
-  "hero.projects": "See case studies",
+  "hero.cta": "Book a 30-minute process review",
+  "hero.projects": "See real examples",
   "hero.card.title": "Studio — card",
   "hero.card.studioKey": "Studio",
   "hero.card.studioVal": "Mantova · IT",
@@ -74,30 +76,63 @@ export const en: Record<string, string> = {
     "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
   "results.case1.plate": "CS · 01 — Food · Quality & documents",
   "results.case1.m1n": "4×",
-  "results.case1.m1l": "Faster document preparation",
+  "results.case1.m1l":
+    "On repetitive document filings, with final consultant validation",
+  "results.case1.before":
+    "HACCP and certification filings done by hand, scattered documents, and slow reviews.",
+  "results.case1.after":
+    "Guided steps, controlled documents, and the consultant always leading verification.",
+  "results.case1.titlePre": "Food procedures, controls &",
+  "results.case1.titleEm": "certifications",
+  "results.case1.titlePost": "",
   "results.case1.m2n": "Parallel cases",
   "results.case1.m2l": "Handled in parallel by the same team",
   "results.case2.pull":
     "From invoices, delivery notes, and technical specs to quotes: data read, checked, and pushed into systems without copy-paste.",
   "results.case2.plate": "CS · 02 — Manufacturing · ERP & Quoting",
   "results.case2.m1n": "−60%",
-  "results.case2.m1l": "On repetitive admin activities",
+  "results.case2.m1l":
+    "On time spent preparing quotes and ERP documents (invoices, delivery notes, technical sheets)",
+  "results.case2.before":
+    "Data copied from delivery notes, invoices, and technical sheets into ERP and quotes.",
+  "results.case2.after":
+    "Automatic reading, human review, quote ready and fully tracked.",
+  "results.case2.titlePre": "ERP documents and quotes for",
+  "results.case2.titleEm": "cranes and sheet metal",
+  "results.case2.titlePost": "",
   "results.case2.m2n": "1 flow",
   "results.case2.m2l": "From ERP document to quote",
   "results.case3.pull":
     "Standardized agri-food filings: fewer manual steps and more companies handled by the same team.",
   "results.case3.plate": "CS · 04 — Agri-food · Operations",
   "results.case3.m1n": "3×",
-  "results.case3.m1l": "Daily capacity per agronomist",
+  "results.case3.m1l":
+    "On agri-food filings handled per agronomist, same team",
+  "results.case3.before":
+    "Different agri-food filings per company, manual steps, and little standardization.",
+  "results.case3.after":
+    "Single process across a distributed network, fewer manual steps, and more companies per team.",
+  "results.case3.titlePre": "Multi-company agri-food",
+  "results.case3.titleEm": "filings",
+  "results.case3.titlePost": "",
   "results.case3.m2n": "1 standard",
   "results.case3.m2l": "Single process across a distributed network",
   "results.case4.pull":
     "From request to closed intervention: clients, technicians, and suppliers in the same operational workflow.",
   "results.case4.plate": "CS · 03 — Maintenance · Field service",
   "results.case4.m1n": "1 platform",
-  "results.case4.m1l": "Request to closed intervention",
+  "results.case4.m1l": "From client request to closed field intervention",
+  "results.case4.before":
+    "Requests over email and phone, with technicians and suppliers lacking shared visibility.",
+  "results.case4.after":
+    "Clients, technicians, and suppliers in one operational flow, from ticket open to close.",
+  "results.case4.titlePre": "Industrial plant",
+  "results.case4.titleEm": "maintenance",
+  "results.case4.titlePost": "",
   "results.case4.m2n": "100%",
   "results.case4.m2l": "Visibility for clients and suppliers",
+  "results.beforeLabel": "Before",
+  "results.afterLabel": "After",
   "results.case1.tag": "Food / Quality & documents",
   "results.case1.title": "Food procedures, controls & certifications",
   "results.case1.impact":
@@ -124,24 +159,24 @@ export const en: Record<string, string> = {
     "Tickets, technicians, and suppliers in one flow — from request to closed intervention.",
 
   // Services ("What we build")
-  "search.eyebrow": "What we build",
-  "search.title": "Software, AI, and integrations on real processes",
+  "search.eyebrow": "Processes we can improve",
+  "search.title": "Less copy-paste, more control over workflows",
   "search.description":
-    "Custom software when Excel and off-the-shelf tools fall short: web apps, AI automations, ERP integrations, MCP, and technical documents.",
+    "Custom software when Excel and off-the-shelf tools fall short: automatic document reading, guided checks, integrations with business software, and human validation.",
   "search.coverage":
-    "Operational web apps, AI automations, ERP integrations, MCP, and technical documents.",
+    "Operational web apps, AI automations, ERP integrations, and technical documents.",
 
   // AI presence
-  "aiPresence.eyebrow": "AI presence and MCP",
-  "aiPresence.title": "We make the company readable and actionable by AI agents",
+  "aiPresence.eyebrow": "AI presence",
+  "aiPresence.title": "We make the company readable by AI assistants",
   "aiPresence.desc":
-    "We prepare content, data, and MCP connectors so AI agents can find, understand, and act on your brand.",
+    "We prepare content, data, and secure connectors so ChatGPT, Claude, and Gemini can find and understand your services and processes.",
   "aiPresence.item1.title": "ChatGPT, Claude, Gemini",
   "aiPresence.item1.desc":
     "Structured knowledge bases and content to represent services, products, and expertise.",
-  "aiPresence.item2.title": "MCP and connectors",
+  "aiPresence.item2.title": "Connectors and integrations",
   "aiPresence.item2.desc":
-    "MCP servers and secure integrations between AI agents, business software, documents, and APIs.",
+    "Secure integrations between AI, business software, documents, and APIs.",
   "aiPresence.item3.title": "AI-ready digital strategy",
   "aiPresence.item3.desc":
     "Website, structured data, and sales processes aligned with new search journeys.",
@@ -157,7 +192,7 @@ export const en: Record<string, string> = {
     "A prototype on a real case in manufacturing, food, agronomy, or field services.",
   "how.title3": "Integrated system",
   "how.desc3":
-    "Stable integration with ERP, AI agents, MCP, and parsing — ready for daily use.",
+    "Stable integration with ERP, AI automations, and document workflows — ready for daily use.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D and public products",
@@ -186,9 +221,9 @@ export const en: Record<string, string> = {
   "about.rateReveal": "Book a call",
 
   // Platform (UI mockups)
-  "platform.cards.agent.name": "AI agents on documents",
+  "platform.cards.agent.name": "Documents and data extraction",
   "platform.cards.agent.desc":
-    "Extraction from PDFs and sheets: operators validate, history stays tracked.",
+    "Automatic reading from PDFs and sheets: operators validate, history stays tracked.",
   "platform.cards.tickets.name": "Operations & ticketing",
   "platform.cards.tickets.desc":
     "Field tickets, priorities, and SLAs — visibility on open, in progress, and closed.",
@@ -209,13 +244,25 @@ export const en: Record<string, string> = {
   "founder.note":
     "Every project starts from a real activity and a metric we want to move.",
 
+  // Qualify lead
+  "qualify.eyebrow": "When it makes sense",
+  "qualify.title": "To get in touch",
+  "qualify.item1":
+    "Your team copies data between email, Excel, PDF, and ERP",
+  "qualify.item2":
+    "You manage technical documents, delivery notes, quotes, filings, or tickets",
+  "qualify.item3":
+    "You already have a working process, but it's slow and full of manual steps",
+  "qualify.item4":
+    "You want custom software without adopting a huge ERP system",
+
   // CTA (editorial)
   "cta.title1": "Let’s build something",
   "cta.titleEm": "together",
   "cta.title2": ".",
   "cta.desc":
-    "Free 30-minute intro call: bring a real process and we'll show where to cut time, errors, or manual work.",
-  "cta.button": "Book a call",
+    "Free 30-minute intro call: bring a real process and we'll tell you whether automation makes sense and where to cut time, errors, or manual work.",
+  "cta.button": "Book a 30-minute review",
   "cta.secondary": "Write us via email",
 
   // Footer

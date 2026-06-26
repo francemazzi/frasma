@@ -153,7 +153,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 function AgentMock() {
   return (
     <Shell>
-      <MockHead label="AGENTE · EMILIO" em="agronomia" meta="RUN · 03:42" />
+      <MockHead label="DOCUMENTI · EMILIO" em="agronomia" meta="RUN · 03:42" />
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="flex-1 p-4 bg-white border-b sm:border-b-0 sm:border-r border-hairline-strong font-serif text-[11px] leading-[1.6] text-ink-2">
           <h6 className="font-mono text-[9.5px] text-ink-soft tracking-[0.12em] uppercase mb-3 pb-2 border-b border-hairline">

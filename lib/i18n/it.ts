@@ -1,8 +1,8 @@
 export const it: Record<string, string> = {
   // Meta
-  "meta.title": "Frasma — Agenzia AI per software, agenti e presenza digitale",
+  "meta.title": "Frasma — Software su misura e AI per processi aziendali e documenti",
   "meta.description":
-    "Frasma è un'agenzia AI strutturata per PMI: sviluppa software su misura, agenti AI, integrazioni MCP e strategie di presenza su ChatGPT, Claude e Gemini.",
+    "Riduciamo copia-incolla, errori e tempi morti tra email, PDF, Excel ed ERP. Software operativo su misura per preventivi, DDT, pratiche, ticket e documenti tecnici.",
 
   // Top rule (editorial)
   "topRule.studio": "", //Frasma · Agenzia AI strutturata · Mantova — Italia
@@ -16,27 +16,29 @@ export const it: Record<string, string> = {
   "header.schedule": "Prenota una call",
   "header.companion": "",
   "header.nav.cases": "Casi studio",
-  "header.nav.platform": "Aree di valore",
+  "header.nav.platform": "Dove riduciamo lavoro manuale",
   "header.nav.projects": "Progetti",
   "header.nav.blog": "Blog",
 
   // Hero (editorial)
-  "hero.eyebrow": "Software AI · Integrazioni · Processi operativi",
-  "hero.title1": "AI",
-  "hero.titleEm": "integrata",
-  "hero.title2": "nei processi operativi reali — custom, non standard.",
+  "hero.eyebrow": "Per PMI con processi documentali ripetitivi",
+  "hero.title1": "Riduci il",
+  "hero.titleEm": "lavoro manuale",
+  "hero.title2": "tra documenti, email ed ERP.",
   "hero.desc":
-    "Frasma sviluppa software operativo con AI per PMI manifatturiere e processi documentali complessi: agenti, parsing, MCP e integrazioni ERP.",
+    "Frasma sviluppa software su misura e automazioni AI per trasformare preventivi, DDT, schede tecniche, ticket e pratiche aziendali in flussi controllati e tracciabili.",
   "hero.lead":
-    "Flussi per preventivi, commesse, documenti e ticket — al posto di Excel ed email. Presenza su ChatGPT, Claude e Gemini.",
+    "Per imprenditori, responsabili operations, uffici tecnici e team amministrativi che gestiscono ancora troppo copia-incolla tra Excel, PDF, email ed ERP.",
+  "hero.promise":
+    "Partiamo da un processo reale, costruiamo un prototipo sui tuoi dati e misuriamo dove ridurre tempi, errori e lavoro manuale.",
   "hero.presence":
     "Presenza su ChatGPT, Claude e Gemini.",
   "hero.focus":
     "Verticali: manifattura, alimentare, agronomia, servizi sul campo.",
   "hero.brand":
     "Frasma, il lagotto del brand, accompagna la parte conversazionale e l'assistenza iniziale ai clienti.",
-  "hero.cta": "Prenota una call gratuita",
-  "hero.projects": "Vedi i casi studio",
+  "hero.cta": "Prenota 30 minuti di analisi del processo",
+  "hero.projects": "Guarda esempi reali",
   "hero.card.title": "Studio — scheda",
   "hero.card.studioKey": "Studio",
   "hero.card.studioVal": "Mantova · IT",
@@ -76,28 +78,61 @@ export const it: Record<string, string> = {
     "Lo stesso metodo applicato alla qualità alimentare: dati guidati, documenti controllati, meno refusi e consulente sempre al centro della verifica.",
   "results.case1.plate": "CS · 01 — Alimentare · Qualità & documenti",
   "results.case1.m1n": "4×",
-  "results.case1.m1l": "Più veloce la preparazione documentale",
+  "results.case1.m1l":
+    "Nella preparazione di pratiche documentali ripetitive, con validazione finale del consulente",
+  "results.case1.before":
+    "Pratiche HACCP e certificazioni compilate a mano, documenti sparsi e revisioni lente.",
+  "results.case1.after":
+    "Passaggi guidati, documenti controllati e consulente sempre al centro della verifica.",
+  "results.case1.titlePre": "Procedure, controlli e",
+  "results.case1.titleEm": "certificazioni",
+  "results.case1.titlePost": "",
   "results.case1.m2n": "Pratiche parallele",
   "results.case1.m2l": "Gestite in parallelo dallo stesso team",
   "results.case2.pull":
     "Da fatture, DDT e specifiche tecniche al preventivo: dati letti, verificati e riportati nei sistemi senza copia-incolla.",
   "results.case2.plate": "CS · 02 — Manifattura · ERP & Preventivi",
   "results.case2.m1n": "−60%",
-  "results.case2.m1l": "Sulle attività amministrative ripetitive",
+  "results.case2.m1l":
+    "Sul tempo di compilazione preventivi e documenti ERP (fatture, DDT, schede tecniche)",
+  "results.case2.before":
+    "Dati copiati da DDT, fatture e schede tecniche dentro ERP e preventivi.",
+  "results.case2.after":
+    "Lettura automatica, controllo umano, preventivo pronto e tracciato.",
+  "results.case2.titlePre": "Preventivi e documenti ERP per",
+  "results.case2.titleEm": "gru e lamiera",
+  "results.case2.titlePost": "",
   "results.case2.m2n": "1 flusso",
   "results.case2.m2l": "Da documento ERP a preventivo",
   "results.case3.pull":
     "Pratiche agroalimentari standardizzate: meno passaggi manuali e più aziende gestite dallo stesso team.",
   "results.case3.plate": "CS · 04 — Agroalimentare · Operations",
   "results.case3.m1n": "3×",
-  "results.case3.m1l": "Capacità giornaliera per agronomo",
+  "results.case3.m1l":
+    "Nelle pratiche agroalimentari gestite per agronomo, stesso team",
+  "results.case3.before":
+    "Pratiche agroalimentari diverse per ogni azienda, passaggi manuali e poca standardizzazione.",
+  "results.case3.after":
+    "Processo unico su rete distribuita, meno passaggi manuali e più aziende per team.",
+  "results.case3.titlePre": "Pratiche agroalimentari",
+  "results.case3.titleEm": "multi-azienda",
+  "results.case3.titlePost": "",
   "results.case3.m2n": "1 standard",
   "results.case3.m2l": "Processo unico su rete distribuita",
   "results.case4.pull":
     "Da richiesta a intervento chiuso: clienti, tecnici e fornitori nello stesso flusso operativo.",
   "results.case4.plate": "CS · 03 — Manutenzione · Field service",
   "results.case4.m1n": "1 piattaforma",
-  "results.case4.m1l": "Da richiesta a chiusura intervento",
+  "results.case4.m1l": "Da richiesta cliente a chiusura intervento sul campo",
+  "results.case4.before":
+    "Richieste su email e telefono, tecnici e fornitori senza visibilità condivisa.",
+  "results.case4.after":
+    "Clienti, tecnici e fornitori nello stesso flusso operativo, da apertura a chiusura ticket.",
+  "results.case4.titlePre": "Manutenzione",
+  "results.case4.titleEm": "impianti industriali",
+  "results.case4.titlePost": "",
+  "results.beforeLabel": "Prima",
+  "results.afterLabel": "Dopo",
   "results.case4.m2n": "100%",
   "results.case4.m2l": "Visibilità per clienti e fornitori",
   "results.case1.tag": "Alimentare / Qualità & documenti",
@@ -126,25 +161,25 @@ export const it: Record<string, string> = {
     "Ticket, tecnici e fornitori in un unico flusso — da richiesta a intervento chiuso.",
 
   // Services ("Cosa costruiamo")
-  "search.eyebrow": "Cosa costruiamo",
-  "search.title": "Software, AI e integrazioni su processi reali",
+  "search.eyebrow": "Processi che possiamo migliorare",
+  "search.title": "Meno copia-incolla, più controllo sui processi",
   "search.description":
-    "Software su misura quando Excel e tool standard non bastano: web app, automazioni AI, integrazioni ERP, MCP e documenti tecnici.",
+    "Software su misura quando Excel e tool standard non bastano: lettura automatica dei documenti, controlli guidati, integrazioni con i software aziendali e validazione umana.",
   "search.coverage":
-    "Web app operative, automazioni AI, integrazioni ERP, MCP e documenti tecnici.",
+    "Web app operative, automazioni AI, integrazioni ERP e documenti tecnici.",
 
   // AI presence
-  "aiPresence.eyebrow": "Presenza AI e MCP",
+  "aiPresence.eyebrow": "Presenza AI",
   "aiPresence.title":
-    "Rendiamo l'azienda leggibile e azionabile dagli agenti AI",
+    "Rendiamo l'azienda leggibile dagli assistenti AI",
   "aiPresence.desc":
-    "Prepariamo contenuti, dati e connettori MCP perché agenti AI trovino, capiscano e operino sul brand.",
+    "Prepariamo contenuti, dati e connettori sicuri perché ChatGPT, Claude e Gemini trovino e capiscano servizi e processi.",
   "aiPresence.item1.title": "ChatGPT, Claude, Gemini",
   "aiPresence.item1.desc":
     "Knowledge base e contenuti strutturati per rappresentare servizi, prodotti e competenze.",
-  "aiPresence.item2.title": "MCP e connettori",
+  "aiPresence.item2.title": "Connettori e integrazioni",
   "aiPresence.item2.desc":
-    "Server MCP e integrazioni sicure tra agenti AI, software aziendale, documenti e API.",
+    "Integrazioni sicure tra AI, software aziendale, documenti e API.",
   "aiPresence.item3.title": "Strategia digitale AI-ready",
   "aiPresence.item3.desc":
     "Sito, dati strutturati e processi commerciali allineati ai nuovi percorsi di ricerca.",
@@ -161,7 +196,7 @@ export const it: Record<string, string> = {
     "Prototipo su un caso reale in manifattura, alimentare, agronomia o field service.",
   "how.title3": "Sistema integrato",
   "how.desc3":
-    "Integrazione stabile con ERP, agenti AI, MCP e parsing — pronta per l'uso quotidiano.",
+    "Integrazione stabile con ERP, automazioni AI e flussi documentali — pronta per l'uso quotidiano.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D e prodotti pubblici",
@@ -190,9 +225,9 @@ export const it: Record<string, string> = {
   "about.rateReveal": "Prenota una call",
 
   // Platform (UI mockups)
-  "platform.cards.agent.name": "Agenti AI su documenti",
+  "platform.cards.agent.name": "Documenti e estrazione dati",
   "platform.cards.agent.desc":
-    "Estrazione da PDF e schede: l'operatore valida, lo storico resta tracciato.",
+    "Lettura automatica da PDF e schede: l'operatore valida, lo storico resta tracciato.",
   "platform.cards.tickets.name": "Operations e ticketing",
   "platform.cards.tickets.desc":
     "Ticket, priorità e SLA sul campo — visibilità su aperto, in corso e chiuso.",
@@ -213,13 +248,25 @@ export const it: Record<string, string> = {
   "founder.note":
     "Ogni progetto parte da un'attività reale e da una metrica che vogliamo spostare.",
 
+  // Qualify lead
+  "qualify.eyebrow": "Quando ha senso",
+  "qualify.title": "Contattarci",
+  "qualify.item1":
+    "Il tuo team copia dati tra email, Excel, PDF ed ERP",
+  "qualify.item2":
+    "Gestisci documenti tecnici, DDT, preventivi, pratiche o ticket",
+  "qualify.item3":
+    "Hai già un processo funzionante, ma lento e pieno di passaggi manuali",
+  "qualify.item4":
+    "Vuoi software su misura senza adottare un gestionale enorme",
+
   // CTA (editorial)
   "cta.title1": "Costruiamo qualcosa",
   "cta.titleEm": "insieme",
   "cta.title2": ".",
   "cta.desc":
-    "Call introduttiva gratuita di 30 minuti: portaci un processo reale e ti diciamo dove ridurre tempi, errori o lavoro manuale.",
-  "cta.button": "Prenota una call",
+    "Call introduttiva gratuita di 30 minuti: portaci un processo reale e ti diciamo se conviene automatizzarlo e dove ridurre tempi, errori o lavoro manuale.",
+  "cta.button": "Prenota 30 minuti di analisi",
   "cta.secondary": "Scrivici via email",
 
   // Footer

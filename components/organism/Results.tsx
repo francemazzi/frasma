@@ -13,11 +13,13 @@ type Case = {
   imgAlt: string;
   plateKey: string;
   tagKey: string;
-  titlePre: string;
-  titleEm: string;
-  titlePost: string;
+  titlePreKey: string;
+  titleEmKey: string;
+  titlePostKey: string;
   pullKey: string;
   descKey: string;
+  beforeKey: string;
+  afterKey: string;
   m1: { numKey: string; labelKey: string };
   m2: { numKey: string; labelKey: string };
 };
@@ -30,11 +32,13 @@ const CASES: Case[] = [
     imgAlt: "Controllo qualità alimentare — schizzo tecnico",
     plateKey: "results.case1.plate",
     tagKey: "results.case1.tag",
-    titlePre: "Procedure, controlli e",
-    titleEm: "certificazioni",
-    titlePost: "",
+    titlePreKey: "results.case1.titlePre",
+    titleEmKey: "results.case1.titleEm",
+    titlePostKey: "results.case1.titlePost",
     pullKey: "results.case1.pull",
     descKey: "results.case1.desc",
+    beforeKey: "results.case1.before",
+    afterKey: "results.case1.after",
     m1: { numKey: "results.case1.m1n", labelKey: "results.case1.m1l" },
     m2: { numKey: "results.case1.m2n", labelKey: "results.case1.m2l" },
   },
@@ -45,11 +49,13 @@ const CASES: Case[] = [
     imgAlt: "Lamiere — schizzo tecnico",
     plateKey: "results.case2.plate",
     tagKey: "results.case2.tag",
-    titlePre: "Preventivi e documenti ERP per",
-    titleEm: "gru e lamiera",
-    titlePost: "",
+    titlePreKey: "results.case2.titlePre",
+    titleEmKey: "results.case2.titleEm",
+    titlePostKey: "results.case2.titlePost",
     pullKey: "results.case2.pull",
     descKey: "results.case2.desc",
+    beforeKey: "results.case2.before",
+    afterKey: "results.case2.after",
     m1: { numKey: "results.case2.m1n", labelKey: "results.case2.m1l" },
     m2: { numKey: "results.case2.m2n", labelKey: "results.case2.m2l" },
   },
@@ -60,11 +66,13 @@ const CASES: Case[] = [
     imgAlt: "Manutenzione impianti — schizzo tecnico",
     plateKey: "results.case4.plate",
     tagKey: "results.case4.tag",
-    titlePre: "Manutenzione",
-    titleEm: "impianti industriali",
-    titlePost: "",
+    titlePreKey: "results.case4.titlePre",
+    titleEmKey: "results.case4.titleEm",
+    titlePostKey: "results.case4.titlePost",
     pullKey: "results.case4.pull",
     descKey: "results.case4.desc",
+    beforeKey: "results.case4.before",
+    afterKey: "results.case4.after",
     m1: { numKey: "results.case4.m1n", labelKey: "results.case4.m1l" },
     m2: { numKey: "results.case4.m2n", labelKey: "results.case4.m2l" },
   },
@@ -75,11 +83,13 @@ const CASES: Case[] = [
     imgAlt: "Agronomia — schizzo tecnico",
     plateKey: "results.case3.plate",
     tagKey: "results.case3.tag",
-    titlePre: "Pratiche agroalimentari",
-    titleEm: "multi-azienda",
-    titlePost: "",
+    titlePreKey: "results.case3.titlePre",
+    titleEmKey: "results.case3.titleEm",
+    titlePostKey: "results.case3.titlePost",
     pullKey: "results.case3.pull",
     descKey: "results.case3.desc",
+    beforeKey: "results.case3.before",
+    afterKey: "results.case3.after",
     m1: { numKey: "results.case3.m1n", labelKey: "results.case3.m1l" },
     m2: { numKey: "results.case3.m2n", labelKey: "results.case3.m2l" },
   },
@@ -243,12 +253,27 @@ export default function Results() {
                           className="font-serif font-normal leading-[1.05] tracking-[-0.02em] mb-5 text-ink"
                           style={{ fontSize: "clamp(24px, 2.8vw, 40px)" }}
                         >
-                          {c.titlePre} <em className="italic text-accent">{c.titleEm}</em>
-                          {c.titlePost ? ` ${c.titlePost}` : ""}
+                          {t(c.titlePreKey)}{" "}
+                          <em className="italic text-accent">{t(c.titleEmKey)}</em>
+                          {t(c.titlePostKey) ? ` ${t(c.titlePostKey)}` : ""}
                         </h3>
                         <p className="font-serif italic text-[18px] leading-[1.4] text-ink mb-[22px] pl-4 border-l-2 border-accent">
                           {t(c.pullKey)}
                         </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 max-w-[46ch]">
+                          <p className="text-[13.5px] leading-[1.55] text-ink-soft">
+                            <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-accent block mb-1">
+                              {t("results.beforeLabel")}
+                            </span>
+                            {t(c.beforeKey)}
+                          </p>
+                          <p className="text-[13.5px] leading-[1.55] text-ink-soft">
+                            <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-accent block mb-1">
+                              {t("results.afterLabel")}
+                            </span>
+                            {t(c.afterKey)}
+                          </p>
+                        </div>
                         <p className="text-[14.5px] leading-[1.6] text-ink-soft mb-3 max-w-[46ch]">
                           {t(c.descKey)}
                         </p>
