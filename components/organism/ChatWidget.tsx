@@ -285,8 +285,8 @@ function InlineMeetingForm({
         {t("chat.meeting.title")}
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
-        <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="min-w-0">
           <label className="block text-[11px] text-farm-secondary mb-0.5">
             {t("cal.date")}
           </label>
@@ -296,10 +296,10 @@ function InlineMeetingForm({
             value={date}
             onChange={(e) => setDate(e.target.value)}
             disabled={sending}
-            className="w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
           />
         </div>
-        <div>
+        <div className="min-w-0">
           <label className="block text-[11px] text-farm-secondary mb-0.5">
             {t("cal.time")}
           </label>
@@ -310,7 +310,7 @@ function InlineMeetingForm({
             value={time}
             onChange={(e) => setTime(e.target.value)}
             disabled={sending}
-            className="w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
           />
         </div>
       </div>
@@ -325,7 +325,7 @@ function InlineMeetingForm({
           onChange={(e) => setEmail(e.target.value)}
           disabled={sending}
           placeholder={t("cal.emailPlaceholder")}
-          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
         />
       </div>
 
@@ -340,7 +340,7 @@ function InlineMeetingForm({
           rows={4}
           maxLength={2000}
           placeholder={t("cal.descPlaceholder")}
-          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
+          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
         />
         <p className="mt-0.5 text-[10px] text-farm-secondary">
           {t("cal.timezone")}: <span className="font-medium">{timezone}</span>
