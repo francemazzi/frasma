@@ -1,17 +1,18 @@
 import Image from "next/image";
-import { LucideIcon } from "lucide-react";
+import { ArrowUpRight, LucideIcon } from "lucide-react";
 import React from "react";
 import { createPortal } from "react-dom";
 import { validateMeetingFormFields } from "../../lib/meetingFormValidation";
 import { useT, useLang } from "../../lib/i18n/context";
 
-type CalButtonType = "default" | "textual" | "icon";
+type CalButtonType = "default" | "textual" | "icon" | "ink";
 
 type CalPublicProps = {
   textButton: string | React.ReactNode;
   leftImage?: string;
   leftIcon?: LucideIcon;
   buttonType?: CalButtonType;
+  showArrow?: boolean;
 };
 
 type CalInternalProps = CalPublicProps & {
@@ -34,6 +35,9 @@ type CalState = {
 };
 const DISCOUNT_PATH = "/discount?conv=contact";
 
+const MEETING_INPUT_CLASS =
+  "mt-1 w-full min-w-0 max-w-full rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow";
+
 class CssClassBuilder {
   public buildButtonClasses(type: CalButtonType): string {
     if (type === "textual") {
@@ -41,6 +45,9 @@ class CssClassBuilder {
     }
     if (type === "icon") {
       return "flex items-center justify-center p-2 rounded-full bg-sage-500 hover:bg-sage-400 text-white transition duration-200";
+    }
+    if (type === "ink") {
+      return "btn-ink";
     }
     return "flex items-center gap-2 sm:gap-3 rounded-full bg-sage-500 px-5 py-2.5 text-base sm:px-8 sm:py-3 sm:text-lg font-semibold text-white shadow-sm hover:bg-sage-400 transition duration-200";
   }
@@ -77,7 +84,7 @@ class MeetingSchedulerModal extends React.PureComponent<
           onClick={this.props.onClose}
         />
 
-        <div className="relative w-full max-w-xl max-h-[90dvh] overflow-y-auto rounded-2xl bg-farm-surface shadow-2xl border border-farm-border mx-2 sm:mx-0">
+        <div className="relative w-full min-w-0 max-w-xl max-h-[90dvh] overflow-y-auto overflow-x-hidden rounded-2xl bg-farm-surface shadow-2xl border border-farm-border">
           <div className="flex items-start justify-between gap-4 p-4 sm:p-6 border-b border-farm-border">
             <div>
               <h3 className="text-xl font-semibold text-farm-text">
@@ -107,7 +114,7 @@ class MeetingSchedulerModal extends React.PureComponent<
             }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <label className="block">
+              <label className="block min-w-0">
                 <span className="block text-sm font-medium text-farm-text">
                   {t("cal.date")}
                 </span>
@@ -115,7 +122,7 @@ class MeetingSchedulerModal extends React.PureComponent<
                   type="date"
                   lang={lang}
                   inputMode="none"
-                  className="mt-1 w-full rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
+                  className={MEETING_INPUT_CLASS}
                   value={state.date}
                   onChange={(e) =>
                     this.props.onChange({ date: e.currentTarget.value })
@@ -124,7 +131,7 @@ class MeetingSchedulerModal extends React.PureComponent<
                 />
               </label>
 
-              <label className="block">
+              <label className="block min-w-0">
                 <span className="block text-sm font-medium text-farm-text">
                   {t("cal.time")}
                 </span>
@@ -133,7 +140,7 @@ class MeetingSchedulerModal extends React.PureComponent<
                   lang={lang}
                   inputMode="none"
                   step="900"
-                  className="mt-1 w-full rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
+                  className={MEETING_INPUT_CLASS}
                   value={state.time}
                   onChange={(e) =>
                     this.props.onChange({ time: e.currentTarget.value })
@@ -149,7 +156,7 @@ class MeetingSchedulerModal extends React.PureComponent<
               </span>
               <input
                 type="email"
-                className="mt-1 w-full rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
+                className={MEETING_INPUT_CLASS}
                 placeholder={t("cal.emailPlaceholder")}
                 value={state.email}
                 onChange={(e) =>
@@ -164,7 +171,7 @@ class MeetingSchedulerModal extends React.PureComponent<
                 {t("cal.description")}
               </span>
               <textarea
-                className="mt-1 w-full min-h-[110px] rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow"
+                className={`${MEETING_INPUT_CLASS} min-h-[110px]`}
                 placeholder={t("cal.descPlaceholder")}
                 value={state.description}
                 onChange={(e) =>
@@ -351,7 +358,14 @@ class CalInner extends React.PureComponent<CalInternalProps, CalState> {
   }
 
   public render(): React.ReactNode {
-    const { leftIcon: LeftIcon, leftImage, buttonType = "default", t, lang } = this.props;
+    const {
+      leftIcon: LeftIcon,
+      leftImage,
+      buttonType = "default",
+      showArrow = false,
+      t,
+      lang,
+    } = this.props;
     const buttonClasses = this._css.buildButtonClasses(buttonType);
 
     return (
@@ -377,6 +391,9 @@ class CalInner extends React.PureComponent<CalInternalProps, CalState> {
             />
           )}
           <span>{this.props.textButton}</span>
+          {showArrow && (
+            <ArrowUpRight size={16} className="shrink-0" aria-hidden="true" />
+          )}
         </button>
 
         <MeetingSchedulerModal

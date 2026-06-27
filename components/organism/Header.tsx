@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useT, useLang } from "../../lib/i18n/context";
+import Cal from "./Cal";
 
 export default function Header() {
   const t = useT();
@@ -73,13 +74,7 @@ export default function Header() {
                 EN
               </button>
             </div>
-            <a
-              href="#contact"
-              className="btn-ink"
-            >
-              {t("header.schedule")}
-              <span className="font-serif text-[16px] leading-[0.8]">↗</span>
-            </a>
+            <Cal textButton={t("header.schedule")} buttonType="ink" showArrow />
           </div>
         </nav>
     </header>

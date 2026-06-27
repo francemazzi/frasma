@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, ClipboardList, ListChecks, FileSpreadsheet } from "lucide-react";
+import { Bot, Check, ClipboardList, ListChecks, FileSpreadsheet } from "lucide-react";
 
 import { useT } from "../../lib/i18n/context";
 import { BentoCard, BentoGrid } from "../atoms/Bento";
@@ -346,9 +346,9 @@ function StatusPill({ kind }: { kind: string }) {
 
 function WorkflowMock() {
   const steps = [
-    { n: "✓", name: "Dati stabilimento", state: "done" },
-    { n: "✓", name: "Diagramma flusso", state: "done" },
-    { n: "✓", name: "Pericoli identificati", state: "done" },
+    { n: "1", name: "Dati stabilimento", state: "done" },
+    { n: "2", name: "Diagramma flusso", state: "done" },
+    { n: "3", name: "Pericoli identificati", state: "done" },
     { n: "4", name: "CCP · monitoraggio", state: "active" },
     { n: "5", name: "Azioni correttive", state: "" },
     { n: "6", name: "Allegati e firme", state: "" },
@@ -380,7 +380,11 @@ function WorkflowMock() {
                     : "text-ink-soft border-ink-soft"
                 }`}
               >
-                {s.n}
+                {s.state === "done" ? (
+                  <Check size={10} aria-hidden="true" />
+                ) : (
+                  s.n
+                )}
               </span>
               <span className="text-ink text-[10.5px]">{s.name}</span>
             </div>

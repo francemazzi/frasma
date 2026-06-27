@@ -1,6 +1,7 @@
 "use client";
 
 import { useT } from "../../lib/i18n/context";
+import Cal from "./Cal";
 
 const HERO_POINTS = ["hero.point1", "hero.point2", "hero.point3"] as const;
 
@@ -32,10 +33,7 @@ export default function Intro() {
         </ul>
 
         <div className="flex gap-[14px] mt-10 items-center flex-wrap">
-          <a href="#contact" className="btn-ink">
-            {t("hero.cta")}
-            <span className="font-serif text-[16px] leading-[0.8]">↗</span>
-          </a>
+          <Cal textButton={t("hero.cta")} buttonType="ink" showArrow />
           <a
             href="#casi-studio"
             className="font-mono text-[12px] tracking-[0.05em] uppercase text-ink no-underline pb-[3px] border-b border-ink hover:text-accent hover:border-accent transition-colors"
