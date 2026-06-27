@@ -2,6 +2,8 @@
 
 import { useT } from "../../lib/i18n/context";
 
+const HERO_POINTS = ["hero.point1", "hero.point2", "hero.point3"] as const;
+
 export default function Intro() {
   const t = useT();
 
@@ -20,15 +22,14 @@ export default function Intro() {
           {t("hero.title2")}
         </h1>
 
-        <p className="text-[18px] leading-[1.6] text-ink-2 max-w-[62ch] mb-4">
-          <strong className="text-ink font-medium">{t("hero.desc")}</strong>
-        </p>
-        <p className="text-[18px] leading-[1.6] text-ink-2 max-w-[62ch] mb-4">
-          {t("hero.lead")}
-        </p>
-        <p className="text-[16px] leading-[1.6] text-ink-soft max-w-[62ch] mb-4 pl-4 border-l border-hairline-strong">
-          {t("hero.promise")}
-        </p>
+        <ul className="list-none max-w-[52ch] space-y-3 mb-4">
+          {HERO_POINTS.map((key) => (
+            <li key={key} className="flex items-start gap-3">
+              <span className="mt-[9px] w-[5px] h-[5px] bg-accent rounded-full shrink-0" />
+              <span className="text-[17px] leading-[1.5] text-ink-2">{t(key)}</span>
+            </li>
+          ))}
+        </ul>
 
         <div className="flex gap-[14px] mt-10 items-center flex-wrap">
           <a href="#contact" className="btn-ink">

@@ -25,12 +25,10 @@ export const en: Record<string, string> = {
   "hero.title1": "Cut",
   "hero.titleEm": "manual work",
   "hero.title2": "between documents, email, and ERP.",
-  "hero.desc":
-    "Frasma builds custom software and AI automations to turn quotes, delivery notes, technical sheets, tickets, and business filings into controlled, traceable workflows.",
-  "hero.lead":
-    "For business owners, operations leads, technical offices, and admin teams still doing too much copy-paste between Excel, PDF, email, and ERP.",
-  "hero.promise":
-    "We start from a real process, build a prototype on your data, and measure where to cut time, errors, and manual work.",
+  "hero.point1":
+    "Custom software and AI for quotes, delivery notes, technical sheets, and tickets",
+  "hero.point2": "Less copy-paste between Excel, PDF, email, and ERP",
+  "hero.point3": "Prototype on your data, starting from a real process",
   "hero.presence":
     "Presence on ChatGPT, Claude, and Gemini.",
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",

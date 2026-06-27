@@ -25,12 +25,10 @@ export const it: Record<string, string> = {
   "hero.title1": "Riduci il",
   "hero.titleEm": "lavoro manuale",
   "hero.title2": "tra documenti, email ed ERP.",
-  "hero.desc":
-    "Frasma sviluppa software su misura e automazioni AI per trasformare preventivi, DDT, schede tecniche, ticket e pratiche aziendali in flussi controllati e tracciabili.",
-  "hero.lead":
-    "Per imprenditori, responsabili operations, uffici tecnici e team amministrativi che gestiscono ancora troppo copia-incolla tra Excel, PDF, email ed ERP.",
-  "hero.promise":
-    "Partiamo da un processo reale, costruiamo un prototipo sui tuoi dati e misuriamo dove ridurre tempi, errori e lavoro manuale.",
+  "hero.point1":
+    "Software su misura e AI per preventivi, DDT, schede tecniche e ticket",
+  "hero.point2": "Meno copia-incolla tra Excel, PDF, email ed ERP",
+  "hero.point3": "Prototipo sui tuoi dati, partendo da un processo reale",
   "hero.presence":
     "Presenza su ChatGPT, Claude e Gemini.",
   "hero.focus":
