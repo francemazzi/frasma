@@ -18,44 +18,9 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Meeting scheduler popup (email notification)
+## Meeting scheduler popup (Google Calendar)
 
-The **“Schedule a Meeting Now”** button opens a popup where the user can select:
-- date
-- time
-- email
-- description
-
-On submit, the app calls `POST /api/schedule-meeting` and sends an email notification to `francemazzi@gmail.com` (or a custom destination).
-
-### Required environment variables
-
-Create a `.env.local` file in the project root with:
-
-```bash
-# Destination email (defaults to francemazzi@gmail.com)
-MEETING_NOTIFICATION_EMAIL=francemazzi@gmail.com
-
-# Sender identity (defaults to SMTP_USER if using SMTP)
-MEETING_FROM_EMAIL=francemazzi@gmail.com
-
-# Sender display name (defaults to "Frasma")
-MEETING_FROM_NAME=Frasma
-
-# --- Option A (recommended): Gmail SMTP via App Password ---
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=465
-SMTP_SECURE=true
-SMTP_USER=francemazzi@gmail.com
-SMTP_PASS=your_gmail_app_password
-
-# --- Option B: Resend ---
-# RESEND_API_KEY=your_resend_api_key
-```
-
-Notes:
-- In production you should set these variables in your hosting provider (e.g. Vercel).
-- If neither SMTP nor Resend is configured, the API returns an error and the popup shows it to the user.
+The **“Schedule a Meeting Now”** button and the chat assistant both open a popup embedding Francesco's Google Calendar (`components/molecols/GoogleCalendarEmbed.tsx`), so the user can pick a date and time directly on the calendar rather than filling out a form. The embed URL and the fallback "open in new tab" link live in `lib/googleCalendar.ts`.
 
 ## Learn More
 

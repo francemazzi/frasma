@@ -273,7 +273,8 @@ export const it: Record<string, string> = {
 
   // Cal modal
   "cal.title": "Prenota un incontro",
-  "cal.subtitle": "Seleziona data e ora, poi lascia i tuoi contatti.",
+  "cal.subtitle": "Scegli data e ora direttamente dal calendario.",
+  "cal.openInNewTab": "Apri in nuova scheda",
   "cal.date": "Data",
   "cal.time": "Ora",
   "cal.email": "La tua email",
@@ -316,7 +317,7 @@ export const it: Record<string, string> = {
   "chat.email.error": "Invio fallito. Riprova o contatta Frasma direttamente.",
 
   // Meeting form in chat
-  "chat.meeting.title": "Richiesta incontro",
+  "chat.meeting.title": "Prenota dal calendario",
 
   // Discount page
   "discount.metaTitle": "Grazie per la richiesta - Frasma",

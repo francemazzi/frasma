@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X, Send, Loader2, Mail, Calendar } from "lucide-react";
-import { validateMeetingFormFields } from "../../lib/meetingFormValidation";
+import GoogleCalendarEmbed from "../molecols/GoogleCalendarEmbed";
 import { useT, useLang } from "../../lib/i18n/context";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -13,16 +13,8 @@ type EmailFormData = {
   clientName: string;
 };
 
-type MeetingFormData = {
-  date: string;
-  time: string;
-  email: string;
-  description: string;
-  timezone: string;
-};
-
 const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
-const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
+const MEETING_CALENDAR_RE = /<!--MEETING_CALENDAR-->/;
 const DISCOUNT_PATH = "/discount?conv=contact";
 
 function redirectToDiscount(): void {
@@ -34,7 +26,7 @@ function redirectToDiscount(): void {
 function parseAssistantMessage(content: string): {
   text: string;
   emailForm: EmailFormData | null;
-  meetingForm: MeetingFormData | null;
+  showCalendar: boolean;
 } {
   let emailForm: EmailFormData | null = null;
   const emailMatch = content.match(EMAIL_FORM_RE);
@@ -46,23 +38,15 @@ function parseAssistantMessage(content: string): {
     }
   }
 
-  let meetingForm: MeetingFormData | null = null;
-  const meetingMatch = content.match(MEETING_FORM_RE);
-  if (meetingMatch) {
-    try {
-      meetingForm = JSON.parse(meetingMatch[1]) as MeetingFormData;
-    } catch {
-      meetingForm = null;
-    }
-  }
+  const showCalendar = MEETING_CALENDAR_RE.test(content);
 
   const text = content
     .replace(EMAIL_FORM_RE, "")
-    .replace(MEETING_FORM_RE, "")
+    .replace(MEETING_CALENDAR_RE, "")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 
-  return { text, emailForm, meetingForm };
+  return { text, emailForm, showCalendar };
 }
 
 /* ------------------------------------------------------------------ */
@@ -182,206 +166,18 @@ function InlineEmailForm({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Inline meeting form (same API body as Cal modal)                   */
+/*  Inline Google Calendar embed                                       */
 /* ------------------------------------------------------------------ */
 
-function InlineMeetingForm({
-  form,
-  onSent,
-  t,
-  lang,
-}: {
-  form: MeetingFormData;
-  onSent: () => void;
-  t: (key: string) => string;
-  lang: string;
-}) {
-  const [date, setDate] = useState(form.date);
-  const [time, setTime] = useState(form.time);
-  const [email, setEmail] = useState(form.email);
-  const [description, setDescription] = useState(form.description);
-  const [timezone] = useState(() => {
-    const tz = form.timezone?.trim();
-    if (tz) return tz;
-    if (typeof window !== "undefined") {
-      return Intl.DateTimeFormat().resolvedOptions().timeZone || "Europe/Rome";
-    }
-    return "Europe/Rome";
-  });
-  const [honeypot, setHoneypot] = useState("");
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const validationError = validateMeetingFormFields(
-      { date, time, email, description },
-      t
-    );
-    if (validationError) {
-      setErrorMessage(validationError);
-      return;
-    }
-
-    setSending(true);
-    setErrorMessage("");
-
-    try {
-      const res = await fetch("/api/schedule-meeting", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          date,
-          time,
-          email,
-          description,
-          timezone,
-          honeypot,
-        }),
-      });
-
-      const json = (await res.json().catch(() => null)) as
-        | { ok: true }
-        | { ok: false; error: string }
-        | null;
-
-      if (!res.ok || !json || json.ok !== true) {
-        const msg =
-          json && "error" in json && json.error
-            ? json.error
-            : t("cal.errorFallback");
-        setErrorMessage(msg);
-        return;
-      }
-
-      setSent(true);
-      onSent();
-      redirectToDiscount();
-    } catch {
-      setErrorMessage(t("cal.networkError"));
-    } finally {
-      setSending(false);
-    }
-  };
-
-  if (sent) {
-    return (
-      <div className="flex items-center gap-2 text-sage-600 text-xs font-medium py-1">
-        <Calendar size={14} />
-        {t("cal.success")}
-      </div>
-    );
-  }
-
+function InlineCalendarEmbed({ t }: { t: (key: string) => string }) {
   return (
-    <form
-      className="relative mt-2 rounded-xl border border-sage-200 bg-white p-3 space-y-2"
-      lang={lang}
-      onSubmit={(e) => void handleSubmit(e)}
-    >
+    <div className="mt-2 rounded-xl border border-sage-200 bg-white p-3 space-y-2">
       <div className="flex items-center gap-2 text-sage-600 font-semibold text-xs">
         <Calendar size={14} />
         {t("chat.meeting.title")}
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <div className="min-w-0">
-          <label className="block text-[11px] text-farm-secondary mb-0.5">
-            {t("cal.date")}
-          </label>
-          <input
-            type="date"
-            lang={lang}
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            disabled={sending}
-            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
-          />
-        </div>
-        <div className="min-w-0">
-          <label className="block text-[11px] text-farm-secondary mb-0.5">
-            {t("cal.time")}
-          </label>
-          <input
-            type="time"
-            lang={lang}
-            step={900}
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            disabled={sending}
-            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-[11px] text-farm-secondary mb-0.5">
-          {t("cal.email")}
-        </label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          disabled={sending}
-          placeholder={t("cal.emailPlaceholder")}
-          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
-        />
-      </div>
-
-      <div>
-        <label className="block text-[11px] text-farm-secondary mb-0.5">
-          {t("cal.description")}
-        </label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          disabled={sending}
-          rows={4}
-          maxLength={2000}
-          placeholder={t("cal.descPlaceholder")}
-          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
-        />
-        <p className="mt-0.5 text-[10px] text-farm-secondary">
-          {t("cal.timezone")}: <span className="font-medium">{timezone}</span>
-        </p>
-      </div>
-
-      <input
-        type="text"
-        name="website"
-        className="absolute opacity-0 pointer-events-none h-0 w-0"
-        tabIndex={-1}
-        autoComplete="off"
-        value={honeypot}
-        onChange={(e) => setHoneypot(e.target.value)}
-        aria-hidden="true"
-      />
-
-      {errorMessage ? (
-        <p className="text-xs text-red-500">{errorMessage}</p>
-      ) : null}
-
-      <div className="flex gap-2 justify-end">
-        <button
-          type="submit"
-          disabled={sending}
-          className="flex items-center gap-1.5 rounded-full bg-sage-500 text-white text-xs font-medium px-3 py-1.5 hover:bg-sage-400 disabled:opacity-40 transition-colors"
-        >
-          {sending ? (
-            <>
-              <Loader2 size={12} className="animate-spin" />
-              {t("cal.sending")}
-            </>
-          ) : (
-            <>
-              <Send size={12} />
-              {t("cal.send")}
-            </>
-          )}
-        </button>
-      </div>
-    </form>
+      <GoogleCalendarEmbed height={420} />
+    </div>
   );
 }
 
@@ -511,13 +307,6 @@ export default function ChatWidget() {
     ]);
   }, [t]);
 
-  const handleMeetingSent = useCallback(() => {
-    setMessages((prev) => [
-      ...prev,
-      { role: "assistant", content: t("cal.success") },
-    ]);
-  }, [t]);
-
   return (
     <>
       {/* Floating launcher — editorial */}
@@ -592,13 +381,13 @@ export default function ChatWidget() {
             className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-[22px] py-[18px] flex flex-col gap-[18px]"
           >
             {messages.map((msg, i) => {
-              const { text, emailForm, meetingForm } =
+              const { text, emailForm, showCalendar } =
                 msg.role === "assistant"
                   ? parseAssistantMessage(msg.content)
                   : {
                       text: msg.content,
                       emailForm: null,
-                      meetingForm: null,
+                      showCalendar: false,
                     };
 
               if (msg.role === "user") {
@@ -632,14 +421,7 @@ export default function ChatWidget() {
                   {emailForm ? (
                     <InlineEmailForm form={emailForm} onSent={handleEmailSent} t={t} />
                   ) : null}
-                  {meetingForm ? (
-                    <InlineMeetingForm
-                      form={meetingForm}
-                      onSent={handleMeetingSent}
-                      t={t}
-                      lang={lang}
-                    />
-                  ) : null}
+                  {showCalendar ? <InlineCalendarEmbed t={t} /> : null}
                 </div>
               );
             })}
