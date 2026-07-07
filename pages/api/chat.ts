@@ -113,16 +113,39 @@ const getStackInfoTool = tool(
   },
 );
 
-/** Signals the UI to display the embedded Google Calendar for self-service booking. */
-const showBookingCalendarTool = tool(
-  async () => {
-    return JSON.stringify({ shown: true });
+/** Prepares meeting data for the in-chat form; the user submits to /api/schedule-meeting from the UI. */
+const scheduleMeetingTool = tool(
+  async (input) => {
+    const payload = {
+      date: input.date,
+      time: input.time,
+      email: input.email,
+      description: input.description ?? "",
+      timezone: input.timezone?.trim() || "Europe/Rome",
+    };
+    return JSON.stringify(payload);
   },
   {
-    name: "show_booking_calendar",
+    name: "schedule_meeting",
     description:
-      "Shows Francesco's Google Calendar so the user can pick a date and time themselves. Use this as soon as the user wants to book a call or meeting — no need to collect date, time, or email first.",
-    schema: z.object({}),
+      "Prepare a meeting request for Francesco. Use when the user wants to book a call. You MUST collect date, time, email, and description from the user and get their confirmation before calling. The website shows an editable form — you do NOT send the booking yourself. After this tool returns JSON, wrap it in MEETING_FORM markers in your reply (see system prompt).",
+    schema: z.object({
+      date: z.string().describe("Meeting date in YYYY-MM-DD format"),
+      time: z.string().describe("Meeting time in HH:mm format (24h)"),
+      email: z.string().describe("User's email address"),
+      description: z
+        .string()
+        .optional()
+        .describe(
+          "Description or context for the meeting (optional but recommended)",
+        ),
+      timezone: z
+        .string()
+        .optional()
+        .describe(
+          "User's IANA timezone (e.g. Europe/Rome). Defaults to Europe/Rome.",
+        ),
+    }),
   },
 );
 
@@ -240,16 +263,18 @@ When a user describes a project or asks for an estimate:
 
 MEETING / CALL BOOKING FLOW:
 When the user wants to book a call or meeting:
-1. Call show_booking_calendar right away — do NOT ask for date, time, or email, since the user will pick a slot themselves on the calendar.
-2. The tool returns JSON only. You MUST wrap it EXACTLY like this in your reply:
-   <!--MEETING_CALENDAR-->
-   Add a brief intro before the marker (e.g. "Ecco il calendario, scegli l'orario che preferisci:" / "Here's the calendar, pick the time that works for you:").
-3. After the MEETING_CALENDAR marker, do NOT add any text after it.
+1. Collect conversationally: preferred date (YYYY-MM-DD), time (HH:mm 24h), email, and a short description of what they want to discuss. Ask for timezone if unclear; default mentally to Europe/Rome.
+2. BEFORE calling schedule_meeting, ASK for confirmation (e.g. "Vuoi che prepari il modulo per inviare la richiesta a Francesco?" / "Shall I prepare the form to send the request to Francesco?")
+3. ONLY after the user confirms, call schedule_meeting with the collected fields.
+4. The tool returns JSON only. You MUST wrap it EXACTLY like this in your reply:
+   <!--MEETING_FORM-->{"date":"YYYY-MM-DD","time":"HH:mm","email":"...","description":"...","timezone":"Europe/Rome"}<!--/MEETING_FORM-->
+   Add a brief intro before the marker. The user will review, edit, and submit from the chat form — you do NOT complete the booking yourself.
+5. After the MEETING_FORM marker, do NOT add any text after it.
 
 Do NOT provide hour estimates or pricing — that's Francesco's job. Focus on collecting complete project details.
 
 Key rules:
-- You receive a CURRENT TIME CONTEXT system message on every request. Use it to resolve relative dates and times (e.g. "domani", "next Monday", "tra due giorni") when the user talks about timing, even though booking itself happens on the calendar.
+- You receive a CURRENT TIME CONTEXT system message on every request. Use it to resolve relative dates and times (e.g. "domani", "next Monday", "tra due giorni") into concrete YYYY-MM-DD and HH:mm for schedule_meeting. Never guess the calendar date without that context.
 - ALWAYS respond in the same language the user writes in (Italian or English)
 - Keep answers short and conversational (2-4 sentences max)
 - If the user seems interested, suggest creating a quote request or scheduling a call
@@ -332,6 +357,7 @@ function buildTemporalContextMessage(
     `- Today's calendar date: ${todayYmd} (${weekdayForYmd(todayYmd, timeZone, locale)})`,
     `- Tomorrow's calendar date: ${tomorrowYmd} (${weekdayForYmd(tomorrowYmd, timeZone, locale)})`,
     `- Day after tomorrow: ${dayAfterYmd} (${weekdayForYmd(dayAfterYmd, timeZone, locale)})`,
+    "When the user says relative dates, map them to YYYY-MM-DD in this timezone before calling schedule_meeting.",
   ].join("\n");
 }
 
@@ -342,13 +368,21 @@ const MAX_MESSAGE_LENGTH = 2000;
 
 let agentInstance: ReturnType<typeof createReactAgent> | null = null;
 const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
-const MEETING_CALENDAR_RE = /<!--MEETING_CALENDAR-->/;
+const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
 
 type EmailFormPayload = {
   subject: string;
   body: string;
   clientEmail: string;
   clientName: string;
+};
+
+type MeetingFormPayload = {
+  date: string;
+  time: string;
+  email: string;
+  description: string;
+  timezone: string;
 };
 
 function getMessageContent(message: unknown): string | null {
@@ -379,12 +413,15 @@ function buildEmailFormResponse(
   return `${intro}\n\n<!--EMAIL_FORM-->${JSON.stringify(payload)}<!--/EMAIL_FORM-->`;
 }
 
-function buildMeetingCalendarResponse(lang: ChatRequestBody["lang"]): string {
+function buildMeetingFormResponse(
+  payload: MeetingFormPayload,
+  lang: ChatRequestBody["lang"],
+): string {
   const intro =
     lang === "en"
-      ? "Here's the calendar, pick the time that works for you:"
-      : "Ecco il calendario, scegli l'orario che preferisci:";
-  return `${intro}\n\n<!--MEETING_CALENDAR-->`;
+      ? "Here's the meeting request form:"
+      : "Ecco il modulo per la richiesta di incontro:";
+  return `${intro}\n\n<!--MEETING_FORM-->${JSON.stringify(payload)}<!--/MEETING_FORM-->`;
 }
 
 function extractEmailFormFallback(
@@ -416,16 +453,31 @@ function extractEmailFormFallback(
   return null;
 }
 
-function extractMeetingCalendarFallback(
+function extractMeetingFormFallback(
   messages: unknown[],
   lang: ChatRequestBody["lang"],
 ): string | null {
   for (let i = messages.length - 1; i >= 0; i -= 1) {
     const message = messages[i];
-    if (getMessageName(message) !== "show_booking_calendar") continue;
-    if (!getMessageContent(message)) continue;
+    if (getMessageName(message) !== "schedule_meeting") continue;
 
-    return buildMeetingCalendarResponse(lang);
+    const content = getMessageContent(message);
+    if (!content) continue;
+
+    try {
+      const parsed = JSON.parse(content) as Partial<MeetingFormPayload>;
+      if (
+        typeof parsed.date === "string" &&
+        typeof parsed.time === "string" &&
+        typeof parsed.email === "string" &&
+        typeof parsed.description === "string" &&
+        typeof parsed.timezone === "string"
+      ) {
+        return buildMeetingFormResponse(parsed as MeetingFormPayload, lang);
+      }
+    } catch {
+      // Ignore malformed tool output.
+    }
   }
 
   return null;
@@ -441,8 +493,8 @@ function applyStructuredFormFallbacks(
     const emailFb = extractEmailFormFallback(messages, lang);
     if (emailFb) out = emailFb;
   }
-  if (!MEETING_CALENDAR_RE.test(out)) {
-    const meetingFb = extractMeetingCalendarFallback(messages, lang);
+  if (!MEETING_FORM_RE.test(out)) {
+    const meetingFb = extractMeetingFormFallback(messages, lang);
     if (meetingFb) out = meetingFb;
   }
   return out;
@@ -459,7 +511,7 @@ function getAgent() {
 
   agentInstance = createReactAgent({
     llm: model,
-    tools: [getStackInfoTool, showBookingCalendarTool, draftQuoteEmailTool],
+    tools: [getStackInfoTool, scheduleMeetingTool, draftQuoteEmailTool],
   });
 
   return agentInstance;

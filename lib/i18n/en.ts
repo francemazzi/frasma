@@ -269,8 +269,7 @@ export const en: Record<string, string> = {
 
   // Cal modal
   "cal.title": "Schedule a meeting",
-  "cal.subtitle": "Pick a date and time directly from the calendar.",
-  "cal.openInNewTab": "Open in new tab",
+  "cal.subtitle": "Select a date and time, then leave your contact details.",
   "cal.date": "Date",
   "cal.time": "Time",
   "cal.email": "Your email",
@@ -312,7 +311,7 @@ export const en: Record<string, string> = {
   "chat.email.error": "Failed to send. Try again or contact Frasma directly.",
 
   // Meeting form in chat
-  "chat.meeting.title": "Book from the calendar",
+  "chat.meeting.title": "Meeting request",
 
   // Discount page
   "discount.metaTitle": "Thanks for your request - Frasma",
