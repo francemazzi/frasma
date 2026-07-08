@@ -15,6 +15,7 @@ type SeoProps = {
   noindex?: boolean;
   publishedTime?: string;
   modifiedTime?: string;
+  tags?: string[];
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
@@ -45,6 +46,7 @@ export default function Seo({
   noindex = false,
   publishedTime,
   modifiedTime,
+  tags,
   jsonLd,
 }: SeoProps) {
   const canonicalUrl = absoluteUrl(path);
@@ -84,6 +86,10 @@ export default function Seo({
       {type === "article" && modifiedTime && (
         <meta property="article:modified_time" content={modifiedTime} />
       )}
+      {type === "article" &&
+        tags?.map((tag) => (
+          <meta key={tag} property="article:tag" content={tag} />
+        ))}
 
       <meta name="application-name" content={SITE_NAME} />
       <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
