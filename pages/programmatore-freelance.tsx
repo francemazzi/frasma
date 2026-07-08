@@ -88,7 +88,7 @@ export default function ProgrammatoreFreelancePage() {
               Sono Francesco Saverio Mazzi, informatico freelance e software
               developer full stack. Aiuto aziende italiane a trasformare
               processi manuali in strumenti digitali concreti, mantenibili e
-              pronti per l'uso quotidiano.
+              pronti per l&apos;uso quotidiano.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Cal textButton="Prenota una call gratuita" buttonType="default" />
@@ -96,7 +96,7 @@ export default function ProgrammatoreFreelancePage() {
                 href="/#projects"
                 className="text-sm font-semibold text-sage-600 hover:text-sage-500 transition-colors"
               >
-                Guarda i casi d'uso &rarr;
+                Guarda i casi d&apos;uso &rarr;
               </Link>
             </div>
           </div>

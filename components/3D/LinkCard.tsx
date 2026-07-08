@@ -3,6 +3,31 @@ import { useFrame, useLoader } from "@react-three/fiber";
 import { Sphere, Text } from "@react-three/drei";
 import * as THREE from "three";
 
+function seededRandom(seed: number) {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+}
+
+function createExplosion() {
+  const geometry = new THREE.BufferGeometry();
+  const particles = 1000;
+  const positions = new Float32Array(particles * 3);
+
+  for (let i = 0; i < particles * 3; i += 3) {
+    const particleIndex = i / 3;
+    const r = 1;
+    const theta = seededRandom(particleIndex + 1) * Math.PI * 2;
+    const phi = seededRandom(particleIndex + 2) * Math.PI;
+
+    positions[i] = r * Math.sin(phi) * Math.cos(theta);
+    positions[i + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i + 2] = r * Math.cos(phi);
+  }
+
+  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  return geometry;
+}
+
 interface LinkCardProps {
   position: [number, number, number];
   emoji: string;
@@ -34,25 +59,6 @@ export function LinkCard({ position, emoji, link }: LinkCardProps) {
       particles.geometry.attributes.position.needsUpdate = true;
     }
   });
-
-  const createExplosion = () => {
-    const geometry = new THREE.BufferGeometry();
-    const particles = 1000;
-    const positions = new Float32Array(particles * 3);
-
-    for (let i = 0; i < particles * 3; i += 3) {
-      const r = 1;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.random() * Math.PI;
-
-      positions[i] = r * Math.sin(phi) * Math.cos(theta);
-      positions[i + 1] = r * Math.sin(phi) * Math.sin(theta);
-      positions[i + 2] = r * Math.cos(phi);
-    }
-
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    return geometry;
-  };
 
   const handleClick = () => {
     if (exploding) return;

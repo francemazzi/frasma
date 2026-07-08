@@ -29,16 +29,21 @@ export default function Header() {
             </span>
           </Link>
 
-          <ul className="hidden lg:flex gap-7 list-none items-center text-[14px] text-ink">
+          <ul className="hidden lg:flex gap-6 list-none items-center text-[14px] text-ink">
             <li>
-              <a href="/#casi-studio" className="hover:text-accent transition-colors">
+              <Link href="/#casi-studio" className="hover:text-accent transition-colors">
                 {t("header.nav.cases")}
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/#piattaforma" className="hover:text-accent transition-colors">
+              <Link href="/#piattaforma" className="hover:text-accent transition-colors">
                 {t("header.nav.platform")}
-              </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/studio" className="hover:text-accent transition-colors">
+                {t("header.nav.studio")}
+              </Link>
             </li>
             <li>
               <Link href="/progetti" className="hover:text-accent transition-colors">

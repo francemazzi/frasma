@@ -2,6 +2,11 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+function seededRandom(seed: number) {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+}
+
 const geometries = [
   new THREE.BoxGeometry(0.5, 0.5, 1),
   new THREE.ConeGeometry(0.3, 1, 8),
@@ -19,9 +24,9 @@ export function StarshipField() {
 
   for (let i = 0; i < shipCount; i++) {
     const i3 = i * 3;
-    positions[i3] = (Math.random() - 0.5) * 100;
-    positions[i3 + 1] = (Math.random() - 0.5) * 100;
-    positions[i3 + 2] = (Math.random() - 0.5) * 100;
+    positions[i3] = (seededRandom(i + 1) - 0.5) * 100;
+    positions[i3 + 1] = (seededRandom(i + 2) - 0.5) * 100;
+    positions[i3 + 2] = (seededRandom(i + 3) - 0.5) * 100;
   }
 
   useFrame((state, delta) => {

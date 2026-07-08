@@ -2,6 +2,11 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+function seededRandom(seed: number) {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+}
+
 const starVertexShader = `
   attribute float size;
   varying vec3 vColor;
@@ -35,18 +40,18 @@ export function StarField() {
   for (let i = 0; i < starCount; i++) {
     const i3 = i * 3;
     // Posizione casuale in un cubo
-    positions[i3] = (Math.random() - 0.5) * 220;
-    positions[i3 + 1] = (Math.random() - 0.5) * 140;
+    positions[i3] = (seededRandom(i + 1) - 0.5) * 220;
+    positions[i3 + 1] = (seededRandom(i + 2) - 0.5) * 140;
     // Keep stars far away so they don't look like big squares
-    positions[i3 + 2] = -40 - Math.random() * 360;
+    positions[i3 + 2] = -40 - seededRandom(i + 3) * 360;
 
     // Colori con tendenza al blu/viola per effetto iperspazio
-    colors[i3] = 0.6 + Math.random() * 0.4;
-    colors[i3 + 1] = 0.6 + Math.random() * 0.4;
+    colors[i3] = 0.6 + seededRandom(i + 4) * 0.4;
+    colors[i3 + 1] = 0.6 + seededRandom(i + 5) * 0.4;
     colors[i3 + 2] = 1;
 
     // Dimensione casuale delle stelle
-    sizes[i] = 0.6 + Math.random() * 1.2;
+    sizes[i] = 0.6 + seededRandom(i + 6) * 1.2;
   }
 
   useFrame((state, delta) => {

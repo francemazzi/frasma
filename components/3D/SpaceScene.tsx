@@ -2,6 +2,11 @@ import { useRef } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 
+function seededRandom(seed: number) {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+}
+
 const starVertexShader = `
   varying vec3 vColor;
   void main() {
@@ -33,12 +38,12 @@ export function SpaceScene() {
 
   for (let i = 0; i < starCount; i++) {
     const i3 = i * 3;
-    starPositions[i3] = (Math.random() - 0.5) * 1000;
-    starPositions[i3 + 1] = (Math.random() - 0.5) * 1000;
-    starPositions[i3 + 2] = (Math.random() - 0.5) * 1000;
+    starPositions[i3] = (seededRandom(i + 1) - 0.5) * 1000;
+    starPositions[i3 + 1] = (seededRandom(i + 2) - 0.5) * 1000;
+    starPositions[i3 + 2] = (seededRandom(i + 3) - 0.5) * 1000;
 
     const color = new THREE.Color();
-    color.setHSL(Math.random(), 0.7, 0.7);
+    color.setHSL(seededRandom(i + 4), 0.7, 0.7);
     starColors[i3] = color.r;
     starColors[i3 + 1] = color.g;
     starColors[i3 + 2] = color.b;

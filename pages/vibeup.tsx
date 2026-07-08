@@ -319,7 +319,7 @@ export default function VibeUpPage() {
               transition={{ duration: 0.5, delay: 0.08 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight"
             >
-              Hai un'app pronta.
+              Hai un&apos;app pronta.
               <br />
               <span className="text-sage">La portiamo online.</span>
             </motion.h1>

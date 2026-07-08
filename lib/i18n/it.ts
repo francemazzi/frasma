@@ -17,6 +17,7 @@ export const it: Record<string, string> = {
   "header.companion": "",
   "header.nav.cases": "Casi studio",
   "header.nav.platform": "Dove riduciamo lavoro manuale",
+  "header.nav.studio": "Studio",
   "header.nav.projects": "Progetti",
   "header.nav.blog": "Blog",
 

@@ -49,13 +49,8 @@ gtag('config', 'G-91NBKQG4T6');`,
             }}
           />
           {/* Contentsquare */}
-          <script src="https://t.contentsquare.net/uxa/a9769d2931c2f.js" />
+          <script async src="https://t.contentsquare.net/uxa/a9769d2931c2f.js" />
           {/* firebase */}
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, viewport-fit=cover"
-          />
-
         </Head>
         <body>
           {/* Google Tag Manager (noscript) */}
