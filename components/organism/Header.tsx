@@ -41,11 +41,6 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/studio" className="hover:text-accent transition-colors">
-                {t("header.nav.studio")}
-              </Link>
-            </li>
-            <li>
               <Link href="/progetti" className="hover:text-accent transition-colors">
                 {t("header.nav.projects")}
               </Link>

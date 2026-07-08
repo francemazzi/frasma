@@ -1,13 +1,12 @@
 import Header from "../components/organism/Header";
-import Footer from "../components/organism/Footer";
 import Seo from "../components/Seo";
-import StudioLanding from "../components/studio/StudioLanding";
+import ProjectFarmPage from "../components/projectFarm/ProjectFarmPage";
 import { breadcrumbJsonLd } from "../lib/seo";
 
 export default function StudioPage() {
-  const title = "Frasma Studio — software operativo e agenti AI";
+  const title = "Project Farm — mappa progetti Frasma";
   const description =
-    "Una landing 3D per lo studio Frasma: software su misura, agenti AI, integrazioni e dashboard per processi aziendali reali.";
+    "Una mappa interattiva dei progetti che sto coltivando: traction, team e segnali di crescita in stile fattoria digitale.";
 
   return (
     <>
@@ -18,11 +17,11 @@ export default function StudioPage() {
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
-            { name: "Studio", path: "/studio" },
+            { name: "Project Farm", path: "/studio" },
           ]),
           {
             "@type": "WebPage",
-            name: "Frasma Studio",
+            name: "Project Farm",
             description,
             url: "https://www.frasma.org/studio",
           },
@@ -31,8 +30,7 @@ export default function StudioPage() {
 
       <main className="min-h-screen bg-paper font-sans">
         <Header />
-        <StudioLanding />
-        <Footer />
+        <ProjectFarmPage />
       </main>
     </>
   );

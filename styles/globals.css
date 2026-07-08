@@ -66,6 +66,27 @@
     @apply text-[17px] leading-[1.6] text-ink-soft max-w-[58ch];
   }
 
+  .farm-sprout {
+    display: inline-block;
+    animation: farm-sprout-grow 2.8s ease-in-out infinite;
+  }
+
+  @keyframes farm-sprout-grow {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-3px) scale(1.08);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .farm-sprout {
+      animation: none;
+    }
+  }
+
   /* Legacy linktree card classes (untouched) */
   .card {
     font-size: 20px;
