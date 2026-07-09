@@ -87,6 +87,22 @@
     }
   }
 
+  .blog-content p {
+    @apply leading-relaxed;
+  }
+
+  .blog-content h2 {
+    @apply text-2xl font-semibold text-farm-text pt-4;
+  }
+
+  .blog-content a {
+    @apply text-sage-600 font-semibold hover:text-sage-500 underline transition-colors;
+  }
+
+  .blog-content ul {
+    @apply list-disc pl-6 space-y-2;
+  }
+
   /* Legacy linktree card classes (untouched) */
   .card {
     font-size: 20px;
