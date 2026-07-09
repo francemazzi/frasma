@@ -78,3 +78,46 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 export function getAllPostSlugs(): string[] {
   return getAllPostSummaries().map((post) => post.slug);
 }
+
+export function getAllTags(): string[] {
+  const tags = new Set<string>();
+
+  for (const post of getAllPostSummaries()) {
+    for (const tag of post.tags ?? []) {
+      tags.add(tag);
+    }
+  }
+
+  return Array.from(tags).sort();
+}
+
+export function getPostsByTag(tag: string): BlogPostSummary[] {
+  return getAllPostSummaries().filter((post) => post.tags?.includes(tag));
+}
+
+export function getRelatedPosts(
+  post: BlogPostSummary,
+  limit = 2
+): BlogPostSummary[] {
+  const postTags = new Set(post.tags ?? []);
+
+  return getAllPostSummaries()
+    .filter((candidate) => candidate.slug !== post.slug)
+    .map((candidate) => ({
+      candidate,
+      score: (candidate.tags ?? []).filter((tag) => postTags.has(tag)).length,
+    }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => {
+      if (b.score !== a.score) {
+        return b.score - a.score;
+      }
+
+      return (
+        new Date(b.candidate.publishedAt).getTime() -
+        new Date(a.candidate.publishedAt).getTime()
+      );
+    })
+    .slice(0, limit)
+    .map(({ candidate }) => candidate);
+}

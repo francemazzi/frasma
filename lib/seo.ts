@@ -1,5 +1,7 @@
 export const SITE_URL = "https://www.frasma.org";
 export const SITE_NAME = "Frasma";
+export const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
+export const FEED_URL = `${SITE_URL}/feed.xml`;
 export const OWNER_NAME = "Francesco Saverio Mazzi";
 export const BRAND_LOGO_PATH = "/logo-frasma.png";
 export const BRAND_LOGO_IMAGE = `${SITE_URL}${BRAND_LOGO_PATH}`;

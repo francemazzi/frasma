@@ -1,15 +1,21 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import Seo from "../../components/Seo";
 import BlogPostLayout from "../../components/blog/BlogPostLayout";
-import type { BlogPost } from "../../lib/blog/types";
+import { FEED_URL } from "../../lib/blog/feed";
+import type { BlogPost, BlogPostSummary } from "../../lib/blog/types";
 import { absoluteUrl, breadcrumbJsonLd, SITE_URL } from "../../lib/seo";
 
 type BlogPostPageProps = {
   post: BlogPost;
+  relatedPosts: BlogPostSummary[];
   breadcrumbLabel: string;
 };
 
-export default function BlogPostPage({ post, breadcrumbLabel }: BlogPostPageProps) {
+export default function BlogPostPage({
+  post,
+  relatedPosts,
+  breadcrumbLabel,
+}: BlogPostPageProps) {
   const title = post.seoTitle ?? `${post.title} | Frasma`;
   const description = post.seoDescription ?? post.excerpt;
   const path = `/blog/${post.slug}`;
@@ -26,6 +32,7 @@ export default function BlogPostPage({ post, breadcrumbLabel }: BlogPostPageProp
         publishedTime={post.publishedAt}
         modifiedTime={modifiedTime}
         tags={post.tags}
+        feedUrl={FEED_URL}
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
@@ -51,7 +58,7 @@ export default function BlogPostPage({ post, breadcrumbLabel }: BlogPostPageProp
         ]}
       />
 
-      <BlogPostLayout post={post} />
+      <BlogPostLayout post={post} relatedPosts={relatedPosts} />
     </>
   );
 }
@@ -69,13 +76,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<BlogPostPageProps> = async ({
   params,
 }) => {
-  const { getPostBySlug } = await import("../../lib/blog/posts");
+  const { getPostBySlug, getRelatedPosts } = await import("../../lib/blog/posts");
   const slug = params?.slug as string;
   const post = await getPostBySlug(slug);
 
   if (!post) {
     return { notFound: true };
   }
+
+  const relatedPosts = getRelatedPosts(post);
 
   const breadcrumbLabel =
     slug === "seminai"
@@ -87,6 +96,7 @@ export const getStaticProps: GetStaticProps<BlogPostPageProps> = async ({
   return {
     props: {
       post,
+      relatedPosts,
       breadcrumbLabel,
     },
   };

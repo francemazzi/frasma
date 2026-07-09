@@ -1,9 +1,9 @@
 import type { GetStaticProps } from "next";
-import Link from "next/link";
 import Header from "../../components/organism/Header";
 import Footer from "../../components/organism/Footer";
+import PostCard from "../../components/blog/PostCard";
 import Seo from "../../components/Seo";
-import { formatItalianDate } from "../../lib/blog/format";
+import { FEED_URL } from "../../lib/blog/feed";
 import type { BlogPostSummary } from "../../lib/blog/types";
 import { absoluteUrl, breadcrumbJsonLd, SITE_URL } from "../../lib/seo";
 
@@ -22,6 +22,7 @@ export default function Blog({ posts }: BlogIndexProps) {
         title={title}
         description={description}
         path="/blog"
+        feedUrl={FEED_URL}
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
@@ -52,42 +53,7 @@ export default function Blog({ posts }: BlogIndexProps) {
 
           <div className="space-y-8">
             {posts.map((post) => (
-              <article
-                key={post.slug}
-                className="bg-farm-surface rounded-2xl border border-farm-border p-8 hover:shadow-md transition-shadow"
-              >
-                <time className="text-sm text-farm-secondary">
-                  {formatItalianDate(post.publishedAt)}
-                </time>
-                <h2 className="text-2xl font-semibold text-farm-text mt-2 mb-3">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="hover:text-sage-600 transition-colors"
-                  >
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className="text-farm-secondary leading-relaxed">
-                  {post.excerpt}
-                </p>
-                {post.tags && post.tags.length > 0 && (
-                  <ul className="flex flex-wrap gap-2 mt-4">
-                    {post.tags.map((tag) => (
-                      <li key={tag}>
-                        <span className="inline-block rounded-full bg-paper border border-farm-border px-3 py-1 text-xs text-farm-secondary">
-                          {tag}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="inline-block mt-4 text-sage-600 font-medium hover:text-sage-500 transition-colors"
-                >
-                  Leggi di più →
-                </Link>
-              </article>
+              <PostCard key={post.slug} post={post} />
             ))}
           </div>
         </section>

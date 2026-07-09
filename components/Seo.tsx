@@ -16,6 +16,7 @@ type SeoProps = {
   publishedTime?: string;
   modifiedTime?: string;
   tags?: string[];
+  feedUrl?: string;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
@@ -47,6 +48,7 @@ export default function Seo({
   publishedTime,
   modifiedTime,
   tags,
+  feedUrl,
   jsonLd,
 }: SeoProps) {
   const canonicalUrl = absoluteUrl(path);
@@ -62,6 +64,14 @@ export default function Seo({
       <meta name="description" content={description} />
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonicalUrl} />
+      {feedUrl && (
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE_NAME} Blog RSS`}
+          href={feedUrl}
+        />
+      )}
       <link rel="icon" href="/favicon.ico" />
       <link rel="icon" type="image/png" href="/favicon.png" />
       <link rel="apple-touch-icon" href="/logo-frasma.png" />

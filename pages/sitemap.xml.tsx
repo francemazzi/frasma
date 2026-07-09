@@ -40,8 +40,9 @@ function SiteMap() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const { getAllPostSummaries } = await import("../lib/blog/posts");
+  const { getAllPostSummaries, getAllTags } = await import("../lib/blog/posts");
   const posts = getAllPostSummaries();
+  const tags = getAllTags();
   const latestPostDate =
     posts[0]?.updatedAt ?? posts[0]?.publishedAt ?? "2026-07-08";
 
@@ -52,11 +53,18 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     priority: "0.6",
   }));
 
+  const tagEntries: SitemapEntry[] = tags.map((tag) => ({
+    loc: `${SITE_URL}/blog/tag/${tag}`,
+    lastmod: latestPostDate,
+    changefreq: "weekly",
+    priority: "0.5",
+  }));
+
   const entries = STATIC_PAGES.map((page) =>
     page.loc === `${SITE_URL}/blog`
       ? { ...page, lastmod: latestPostDate }
       : page
-  ).concat(blogEntries);
+  ).concat(blogEntries, tagEntries);
 
   const sitemap = buildSitemapXml(entries);
 
