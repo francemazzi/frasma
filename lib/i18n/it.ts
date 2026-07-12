@@ -340,4 +340,14 @@ export const it: Record<string, string> = {
     "Non serve preparare slide: basta materiale reale, anche incompleto.",
   "discount.backPrevious": "Torna alla pagina precedente",
   "discount.backHome": "Torna alla Home",
+
+  // 404 page
+  "notFound.metaTitle": "Pagina non trovata | Frasma",
+  "notFound.metaDescription":
+    "La pagina che stai cercando non esiste o è stata spostata.",
+  "notFound.kicker": "404",
+  "notFound.title": "Questa pagina non esiste",
+  "notFound.description":
+    "Il link potrebbe essere errato o la pagina essere stata spostata. Puoi tornare alla home oppure chiedere aiuto nella chat.",
+  "notFound.home": "Torna alla home",
 };

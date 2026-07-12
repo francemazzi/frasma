@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { X, Send, Loader2, Mail, Calendar } from "lucide-react";
 import { validateMeetingFormFields } from "../../lib/meetingFormValidation";
 import { useT, useLang } from "../../lib/i18n/context";
@@ -394,6 +395,7 @@ const CHAT_FETCH_TIMEOUT_MS = 12_000;
 export default function ChatWidget() {
   const t = useT();
   const { lang } = useLang();
+  const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -424,6 +426,15 @@ export default function ChatWidget() {
       setMessages([{ role: "assistant", content: t("chat.welcome") }]);
     }
   }, [messages.length, t]);
+
+  useEffect(() => {
+    const shouldAutoOpen =
+      router.pathname === "/404" || router.query.chat === "open";
+
+    if (shouldAutoOpen) {
+      handleOpen();
+    }
+  }, [router.pathname, router.query.chat, handleOpen]);
 
   const sendMessage = useCallback(async () => {
     const text = input.trim();

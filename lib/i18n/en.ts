@@ -335,4 +335,14 @@ export const en: Record<string, string> = {
     "No slides needed: real material, even if incomplete, is perfect.",
   "discount.backPrevious": "Back to previous page",
   "discount.backHome": "Back to Home",
+
+  // 404 page
+  "notFound.metaTitle": "Page not found | Frasma",
+  "notFound.metaDescription":
+    "The page you are looking for does not exist or has been moved.",
+  "notFound.kicker": "404",
+  "notFound.title": "This page does not exist",
+  "notFound.description":
+    "The link may be wrong or the page may have been moved. Go back home or ask for help in the chat.",
+  "notFound.home": "Back to home",
 };
