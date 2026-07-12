@@ -17,20 +17,16 @@ export type Metric = {
 
 export type ProjectStatus = "In crescita" | "In validazione" | "In partenza";
 
-export type MapPosition = {
-  x: number;
-  y: number;
-};
-
 export type Project = {
   id: string;
   name: string;
+  ticker: string;
   projectUrl?: string | null;
   tagline: string;
   status: ProjectStatus;
-  visualMetaphor: string;
+  sector: string;
   icon: string;
+  sortOrder: number;
   team: TeamMember[];
   metrics: Metric[];
-  mapPosition: MapPosition;
 };

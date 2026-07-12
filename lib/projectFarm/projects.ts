@@ -4,13 +4,14 @@ export const PROJECTS: Project[] = [
   {
     id: "seminai",
     name: "Seminai.tech",
+    ticker: "SEM",
     projectUrl: "https://seminai.tech",
     tagline:
       "Generazione di dosaggi e supporto decisionale per il mondo agricolo.",
     status: "In crescita",
-    visualMetaphor: "Serra AI",
+    sector: "AgriTech",
     icon: "🌱",
-    mapPosition: { x: 0, y: 0 },
+    sortOrder: 1,
     team: [
       {
         name: "Io",
@@ -54,12 +55,13 @@ export const PROJECTS: Project[] = [
   {
     id: "strata",
     name: "Strata",
+    ticker: "STR",
     projectUrl: "https://francemazzi.github.io/strata/",
     tagline: "Progetto QGIS / GeoAI per analisi territoriali e agronomiche.",
     status: "In validazione",
-    visualMetaphor: "Campo geospaziale",
+    sector: "GeoData",
     icon: "🛰️",
-    mapPosition: { x: -720, y: 280 },
+    sortOrder: 2,
     team: [
       {
         name: "Io",
@@ -99,12 +101,13 @@ export const PROJECTS: Project[] = [
   {
     id: "insurance-tool",
     name: "Assicurazioni Tool",
+    ticker: "AST",
     projectUrl: null,
     tagline: "Tool per gestire le scadenze delle assicurazioni.",
     status: "In partenza",
-    visualMetaphor: "Fienile operativo",
+    sector: "InsurTech",
     icon: "🛡️",
-    mapPosition: { x: 640, y: -240 },
+    sortOrder: 3,
     team: [
       {
         name: "Io",

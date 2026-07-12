@@ -4,9 +4,9 @@ import ProjectFarmPage from "../components/projectFarm/ProjectFarmPage";
 import { breadcrumbJsonLd } from "../lib/seo";
 
 export default function StudioPage() {
-  const title = "Project Farm — mappa progetti Frasma";
+  const title = "Frasma Borsa — mercato progetti";
   const description =
-    "Una mappa interattiva dei progetti che sto coltivando: traction, team e segnali di crescita in stile fattoria digitale.";
+    "Tabellone quote dei progetti in portafoglio: traction, team e segnali di crescita in stile borsa merci editoriale.";
 
   return (
     <>
@@ -17,11 +17,11 @@ export default function StudioPage() {
         jsonLd={[
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
-            { name: "Project Farm", path: "/studio" },
+            { name: "Frasma Borsa", path: "/studio" },
           ]),
           {
             "@type": "WebPage",
-            name: "Project Farm",
+            name: "Frasma Borsa",
             description,
             url: "https://www.frasma.org/studio",
           },

@@ -16,14 +16,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </span>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono text-sm text-exchange-ticker">
+              {project.ticker}
+            </span>
             <h2 className="font-serif text-2xl font-medium text-ink">
               {project.name}
             </h2>
             <StatusBadge status={project.status} />
           </div>
           <p className="mt-1 text-sm text-ink-soft">{project.tagline}</p>
-          <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.08em] text-accent-leaf">
-            {project.visualMetaphor}
+          <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
+            Settore · {project.sector}
           </p>
           {project.projectUrl ? (
             <a
@@ -51,7 +54,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       <section aria-label="Metriche">
         <h3 className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
-          Metriche principali
+          Quote principali
         </h3>
         <div className="mt-2 grid gap-2 sm:grid-cols-2">
           {project.metrics.map((metric) => (
@@ -63,8 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
         <p className="mt-3 font-mono text-[10px] text-ink-faint">
-          Dati aggiornati giornalmente · Trend simulato su base giornaliera ·
-          Pronto per collegamento API
+          Dati simulati · Aggiornamento giornaliero · Pronto per feed API
         </p>
       </section>
     </article>

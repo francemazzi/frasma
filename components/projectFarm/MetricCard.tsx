@@ -4,6 +4,8 @@ import {
   generateSparkline,
   getMetricLiveValue,
   getTrendArrow,
+  getTrendColorClass,
+  getTrendStrokeClass,
 } from "../../lib/projectFarm/projectFarmData";
 import type { Metric, Project } from "../../lib/projectFarm/types";
 import AnimatedCounter from "./AnimatedCounter";
@@ -23,15 +25,17 @@ export default function MetricCard({ project, metric }: MetricCardProps) {
     metric.dailyDeltaRange,
     metric.trend
   );
+  const trendColor = getTrendColorClass(metric.trend);
+  const trendStroke = getTrendStrokeClass(metric.trend);
 
   return (
-    <div className="rounded-2xl border border-farm-border bg-white/70 p-3 backdrop-blur-sm">
+    <div className="rounded-xl border border-hairline bg-paper/80 p-3">
       <div className="flex items-start justify-between gap-2">
         <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
           {metric.label}
         </p>
         <span
-          className="font-mono text-sm text-accent-leaf"
+          className={`font-mono text-sm ${trendColor}`}
           aria-label={`Trend ${metric.trend}`}
         >
           {getTrendArrow(metric.trend)}
@@ -40,9 +44,9 @@ export default function MetricCard({ project, metric }: MetricCardProps) {
       <div className="mt-2 flex items-end justify-between gap-3">
         <AnimatedCounter
           value={liveValue}
-          className="font-serif text-2xl font-medium text-ink"
+          className="font-mono text-2xl font-medium text-ink"
         />
-        <Sparkline points={sparkline} />
+        <Sparkline points={sparkline} strokeClassName={trendStroke} />
       </div>
     </div>
   );

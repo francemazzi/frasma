@@ -7,11 +7,11 @@ type StatusBadgeProps = {
 
 const statusStyles: Record<ProjectStatus, string> = {
   "In crescita":
-    "bg-accent-leaf/15 text-accent-leaf border-accent-leaf/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]",
+    "bg-exchange-bull/12 text-exchange-bull border-exchange-bull/30",
   "In validazione":
-    "bg-accent-blue/15 text-accent-blue border-accent-blue/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]",
+    "bg-exchange-ticker/10 text-exchange-ticker border-exchange-ticker/25",
   "In partenza":
-    "bg-terra-100 text-terra-500 border-terra-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)]",
+    "bg-ink/5 text-exchange-neutral border-hairline",
 };
 
 export default function StatusBadge({ status, className = "" }: StatusBadgeProps) {

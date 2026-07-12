@@ -7,7 +7,7 @@ type SparklineProps = {
 export default function Sparkline({
   points,
   className = "",
-  strokeClassName = "stroke-accent-leaf",
+  strokeClassName = "stroke-exchange-neutral",
 }: SparklineProps) {
   const width = 80;
   const height = 28;

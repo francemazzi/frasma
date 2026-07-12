@@ -87,6 +87,34 @@
     }
   }
 
+  .exchange-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: exchange-ticker 40s linear infinite;
+  }
+
+  @keyframes exchange-ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .exchange-ticker-track {
+      animation: none;
+    }
+  }
+
+  .exchange-grid-bg {
+    background-image:
+      linear-gradient(rgba(27, 25, 22, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(27, 25, 22, 0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
   .blog-content p {
     @apply leading-relaxed;
   }

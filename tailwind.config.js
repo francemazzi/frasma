@@ -30,6 +30,14 @@ module.exports = {
           leaf: "#5A6B3E",
           blue: "#3D5A6C",
         },
+        exchange: {
+          bull: "#2D6A4F",
+          bear: "#A8412B",
+          neutral: "#6A6357",
+          ticker: "#7A5C1E",
+          grid: "rgba(27,25,22,0.07)",
+          tape: "#E8DFC8",
+        },
 
         // farm.* values remapped to editorial palette — existing components
         // (HowIWork, Experience, WhyContactMe, TechnicalSkills, Search…)

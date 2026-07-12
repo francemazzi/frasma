@@ -6,7 +6,7 @@ type TeamChipProps = {
 
 export default function TeamChip({ member }: TeamChipProps) {
   const baseClass =
-    "inline-flex flex-col rounded-xl border border-farm-border bg-farm-surface/90 px-3 py-2 text-left transition-colors";
+    "inline-flex flex-col rounded-xl border border-hairline bg-paper/90 px-3 py-2 text-left transition-colors";
 
   if (member.linkedinUrl) {
     return (
@@ -14,7 +14,7 @@ export default function TeamChip({ member }: TeamChipProps) {
         href={member.linkedinUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${baseClass} hover:border-accent-leaf/40 hover:bg-white`}
+        className={`${baseClass} hover:border-exchange-bull/40 hover:bg-paper-2`}
         aria-label={`${member.name}, ${member.role} — profilo LinkedIn`}
       >
         <span className="text-sm font-medium text-ink">{member.name}</span>

@@ -207,6 +207,37 @@ export function getTrendArrow(trend: TrendType): string {
   }
 }
 
+export function getTrendColorClass(trend: TrendType): string {
+  switch (trend) {
+    case "up":
+      return "text-exchange-bull";
+    case "stable":
+    case "starting":
+      return "text-exchange-neutral";
+    case "flat":
+    default:
+      return "text-exchange-bear";
+  }
+}
+
+export function getTrendStrokeClass(trend: TrendType): string {
+  switch (trend) {
+    case "up":
+      return "stroke-exchange-bull";
+    case "stable":
+    case "starting":
+      return "stroke-exchange-neutral";
+    case "flat":
+    default:
+      return "stroke-exchange-bear";
+  }
+}
+
+export function getPrimaryMetric(project: Project): Metric {
+  const upMetric = project.metrics.find((metric) => metric.trend === "up");
+  return upMetric ?? project.metrics[0];
+}
+
 export function parseReferenceDate(dateKey = getTodaySeed()): Date {
   return parseDateKey(dateKey);
 }
