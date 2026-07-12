@@ -15,7 +15,7 @@ export default function ExchangeHeader() {
         <div>
           <p className="ed-kicker text-exchange-ticker">Mercato progetti</p>
           <h1 className="font-serif text-2xl font-medium tracking-[-0.02em] text-ink sm:text-3xl">
-            Frasma Borsa
+            Frasma Studio
           </h1>
           <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-soft sm:text-[15px]">
             Tabellone quote dei progetti in portafoglio: traction, team e
