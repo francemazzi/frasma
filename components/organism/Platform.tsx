@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, Check, ClipboardList, ListChecks, FileSpreadsheet } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { useT } from "../../lib/i18n/context";
 import { BentoCard, BentoGrid } from "../atoms/Bento";
@@ -33,35 +33,31 @@ export default function Platform() {
           <div className="ed-kicker">{t("search.eyebrow")}</div>
           <h2 className="ed-title max-w-[28ch]">{t("search.title")}</h2>
         </div>
-        <p className="ed-intro mb-10 sm:mb-14 lg:ml-[200px]">{t("search.description")}</p>
+        <p className="ed-intro mb-10 sm:mb-12">{t("search.description")}</p>
 
-        <BentoGrid className="lg:auto-rows-[26rem]">
+        <BentoGrid>
           <BentoCard
             className="lg:col-span-2"
             name={t("platform.cards.agent.name")}
             description={t("platform.cards.agent.desc")}
-            Icon={Bot}
             background={<AgentMock />}
           />
           <BentoCard
             className="lg:col-span-1"
             name={t("platform.cards.tickets.name")}
             description={t("platform.cards.tickets.desc")}
-            Icon={ClipboardList}
             background={<TicketsMock />}
           />
           <BentoCard
             className="lg:col-span-1"
             name={t("platform.cards.workflow.name")}
             description={t("platform.cards.workflow.desc")}
-            Icon={ListChecks}
             background={<WorkflowMock />}
           />
           <BentoCard
             className="lg:col-span-2"
             name={t("platform.cards.preventivi.name")}
             description={t("platform.cards.preventivi.desc")}
-            Icon={FileSpreadsheet}
             background={<PreventiviMock />}
           />
         </BentoGrid>
@@ -74,42 +70,27 @@ export default function Platform() {
 
 function AiPresence({ t }: { t: (key: string) => string }) {
   return (
-    <div className="mt-4 overflow-hidden rounded-3xl border border-hairline-strong bg-[#FBF6E5]">
-      <div className="grid lg:grid-cols-[1.05fr_1.95fr]">
-        <div className="p-5 sm:p-6 border-b lg:border-b-0 lg:border-r border-hairline-strong">
-          <div className="font-mono text-[10px] tracking-[0.16em] uppercase text-accent mb-3">
-            {t("aiPresence.eyebrow")}
-          </div>
-          <h3 className="font-serif text-[28px] sm:text-[34px] leading-[1.08] tracking-[-0.02em] text-ink mb-4">
-            {t("aiPresence.title")}
-          </h3>
-          <p className="text-[14.5px] leading-[1.6] text-ink-soft">
-            {t("aiPresence.desc")}
-          </p>
-        </div>
+    <div className="mt-10 border-t border-hairline pt-10">
+      <div className="max-w-3xl mb-8">
+        <div className="ed-kicker">{t("aiPresence.eyebrow")}</div>
+        <h3 className="ed-title max-w-[24ch] mb-4">{t("aiPresence.title")}</h3>
+        <p className="ed-intro">{t("aiPresence.desc")}</p>
+      </div>
 
-        <div className="grid sm:grid-cols-3">
-          {AI_PRESENCE_ITEMS.map((item, index) => (
-            <div
-              key={item.number}
-              className={`p-5 sm:p-6 ${
-                index === 0
-                  ? ""
-                  : "border-t sm:border-t-0 sm:border-l border-hairline-strong"
-              }`}
-            >
-              <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-accent mb-3">
-                {item.number}
-              </div>
+      <div className="max-w-3xl">
+        {AI_PRESENCE_ITEMS.map((item) => (
+          <div key={item.number} className="ed-list-row">
+            <span className="ed-list-num">{item.number}</span>
+            <div>
               <h4 className="text-[15px] font-semibold text-ink mb-2">
                 {t(item.titleKey)}
               </h4>
-              <p className="text-[13.5px] leading-[1.55] text-ink-soft">
+              <p className="text-[14px] leading-[1.55] text-ink-soft">
                 {t(item.descKey)}
               </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

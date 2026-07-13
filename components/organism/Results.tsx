@@ -144,23 +144,20 @@ export default function Results() {
             {t("results.title2")}
           </h2>
         </div>
-        <p className="ed-intro mb-10 sm:mb-14 lg:ml-[200px]">{t("results.subtitle")}</p>
+        <p className="ed-intro mb-10 sm:mb-12">{t("results.subtitle")}</p>
 
-        <div className="mb-10 sm:mb-14 border-y border-hairline-strong py-5 sm:py-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_repeat(3,1fr)] gap-5 lg:gap-0">
-            <div className="lg:pr-8">
-              <div className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-accent mb-2">
-                {t("results.thread.label")}
-              </div>
-              <p className="font-serif text-[22px] sm:text-[26px] leading-[1.15] text-ink max-w-[20ch]">
-                {t("results.thread.title")}
-              </p>
+        <div className="mb-10 sm:mb-12 border-y border-hairline py-6 sm:py-8">
+          <div className="mb-6 sm:mb-8">
+            <div className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-accent mb-2">
+              {t("results.thread.label")}
             </div>
+            <p className="font-serif text-[22px] sm:text-[26px] leading-[1.15] text-ink max-w-[28ch]">
+              {t("results.thread.title")}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
             {THREAD_ITEMS.map((item, idx) => (
-              <div
-                key={item.titleKey}
-                className="lg:border-l lg:border-hairline-strong lg:pl-6 lg:pr-5"
-              >
+              <div key={item.titleKey}>
                 <div className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-ink mb-2">
                   <span className="text-accent">{String(idx + 1).padStart(2, "0")}</span>{" "}
                   {t(item.titleKey)}
@@ -205,7 +202,7 @@ export default function Results() {
                   "linear-gradient(90deg, transparent 0%, rgba(27,25,22,0.18) 50%, transparent 100%)",
               }}
             />
-            <div className="relative min-h-[640px] lg:min-h-[760px]" style={{ transformStyle: "preserve-3d" }}>
+            <div className="relative min-h-[580px] lg:min-h-[640px]" style={{ transformStyle: "preserve-3d" }}>
               {CASES.map((c) => {
                 const active = c.idx === page;
                 return (
@@ -223,7 +220,7 @@ export default function Results() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-14 h-full items-stretch">
                       {/* Left page */}
                       <div className="flex flex-col gap-[18px]">
-                        <div className="flex justify-between items-baseline pb-2 border-b border-dashed border-hairline-strong font-mono text-[10.5px] text-ink-soft tracking-[0.1em] uppercase">
+                        <div className="flex justify-between items-baseline pb-2 border-b border-hairline font-mono text-[10.5px] text-ink-soft tracking-[0.1em] uppercase">
                           <span className="text-accent text-[14px] tracking-[0.08em]">
                             {t("results.pageWord")} {c.pageLabel}
                           </span>
@@ -290,24 +287,24 @@ export default function Results() {
           </div>
 
           {/* Foot controls */}
-          <div className="flex items-center justify-between gap-6 mt-7 pt-5 border-t border-dashed border-hairline-strong">
+          <div className="flex items-center justify-between gap-6 mt-7 pt-5 border-t border-hairline">
             <button
               type="button"
               onClick={() => goTo(page - 1)}
               disabled={page === 0}
               aria-label="Previous"
-              className="w-11 h-11 sm:w-[52px] sm:h-[52px] rounded-full border border-ink text-ink flex items-center justify-center font-serif text-[22px] sm:text-[28px] leading-none transition-colors hover:bg-ink hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-ink text-ink flex items-center justify-center font-serif text-[20px] sm:text-[22px] leading-none transition-colors hover:bg-ink hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
             >
               ←
             </button>
 
-            <div className="flex items-center gap-5 sm:gap-7">
-              <div className="font-serif text-[22px] sm:text-[28px] leading-none flex items-baseline gap-[6px]">
+            <div className="flex items-center gap-5 sm:gap-6">
+              <div className="font-serif text-[20px] sm:text-[24px] leading-none flex items-baseline gap-[6px]">
                 <span className="italic text-accent">
                   {String(page + 1).padStart(2, "0")}
                 </span>
-                <span className="text-ink-faint text-[18px] sm:text-[22px]">/</span>
-                <span className="text-ink-soft text-[18px] sm:text-[22px]">
+                <span className="text-ink-faint text-[16px] sm:text-[18px]">/</span>
+                <span className="text-ink-soft text-[16px] sm:text-[18px]">
                   {String(total).padStart(2, "0")}
                 </span>
               </div>
@@ -317,10 +314,10 @@ export default function Results() {
                     key={c.idx}
                     onClick={() => goTo(c.idx)}
                     aria-label={`Page ${c.idx + 1}`}
-                    className={`h-[6px] rounded-[1px] transition-all ${
+                    className={`h-[3px] rounded-[1px] transition-all ${
                       c.idx === page
-                        ? "w-9 bg-accent"
-                        : "w-[26px] bg-hairline-strong hover:bg-ink-soft"
+                        ? "w-8 bg-accent"
+                        : "w-6 bg-hairline-strong hover:bg-ink-soft"
                     }`}
                   />
                 ))}
@@ -332,7 +329,7 @@ export default function Results() {
               onClick={() => goTo(page + 1)}
               disabled={page === total - 1}
               aria-label="Next"
-              className="w-11 h-11 sm:w-[52px] sm:h-[52px] rounded-full border border-ink text-ink flex items-center justify-center font-serif text-[22px] sm:text-[28px] leading-none transition-colors hover:bg-ink hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-ink text-ink flex items-center justify-center font-serif text-[20px] sm:text-[22px] leading-none transition-colors hover:bg-ink hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
             >
               →
             </button>

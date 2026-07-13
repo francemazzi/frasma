@@ -13,8 +13,8 @@
   body {
     background-color: #F1EADA;
     background-image:
-      radial-gradient(ellipse 1200px 600px at 20% -5%, rgba(255, 255, 255, 0.55), transparent 70%),
-      radial-gradient(circle at 85% 90%, rgba(168, 65, 43, 0.05), transparent 50%);
+      radial-gradient(ellipse 1200px 600px at 20% -5%, rgba(255, 255, 255, 0.15), transparent 70%),
+      radial-gradient(circle at 85% 90%, rgba(168, 65, 43, 0.03), transparent 50%);
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -48,7 +48,7 @@
 
   /* Editorial section heading helpers */
   .ed-section {
-    @apply border-t border-hairline py-20 sm:py-24;
+    @apply border-t border-hairline py-16 sm:py-20;
   }
   .ed-kicker {
     @apply font-mono text-[11px] tracking-[0.16em] uppercase text-accent leading-none mb-3;
@@ -64,6 +64,21 @@
   }
   .ed-intro {
     @apply text-[17px] leading-[1.6] text-ink-soft max-w-[58ch];
+  }
+  .ed-section-header {
+    @apply mb-10 sm:mb-12;
+  }
+  .ed-list-row {
+    @apply grid grid-cols-[48px_minmax(0,1fr)] sm:grid-cols-[56px_minmax(0,1fr)] gap-4 sm:gap-6 py-6 border-b border-hairline;
+  }
+  .ed-list-row:last-child {
+    @apply border-b-0;
+  }
+  .ed-list-num {
+    @apply font-mono text-[11px] tracking-[0.14em] uppercase text-accent pt-1;
+  }
+  .ed-link-secondary {
+    @apply text-[15px] text-ink-2 no-underline transition-colors hover:text-accent;
   }
 
   .farm-sprout {

@@ -8,8 +8,8 @@ export default function Founder() {
 
   return (
     <section className="section-farm">
-      <div className="grid grid-cols-1 sm:grid-cols-[220px_minmax(0,1fr)] gap-6 sm:gap-12 items-start py-14 sm:py-20 border-t border-hairline">
-        <div className="relative aspect-square rounded-2xl border border-hairline-strong overflow-hidden bg-paper-2 max-w-[200px] sm:max-w-none">
+      <div className="grid grid-cols-1 sm:grid-cols-[220px_minmax(0,1fr)] gap-6 sm:gap-12 items-start py-14 sm:py-16 border-t border-hairline">
+        <div className="relative aspect-square rounded-lg border border-hairline-strong overflow-hidden bg-paper-2 max-w-[200px] sm:max-w-none">
           <Image
             src="/image/use_case/francesco-mazzi.jpg"
             alt="Francesco Saverio Mazzi"
@@ -18,9 +18,6 @@ export default function Founder() {
             className="object-cover"
             style={{ filter: "saturate(0.95) contrast(1.02)" }}
           />
-          <div className="absolute bottom-0 left-0 right-0 font-mono text-[10px] tracking-[0.12em] text-paper bg-ink/85 px-[10px] py-[6px]">
-            F. S. MAZZI · FOUNDER
-          </div>
         </div>
 
         <div className="min-w-0">

@@ -10,7 +10,7 @@ export default function Intro() {
 
   return (
     <section id="top" className="section-farm">
-      <div className="pt-16 sm:pt-20 lg:pt-[70px] pb-20 sm:pb-24 lg:pb-[110px]">
+      <div className="pt-16 sm:pt-20 lg:pt-[70px] pb-16 sm:pb-20 lg:pb-[90px] max-w-3xl">
         <p className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-accent mb-5">
           {t("hero.eyebrow")}
         </p>
@@ -23,21 +23,17 @@ export default function Intro() {
           {t("hero.title2")}
         </h1>
 
-        <ul className="list-none max-w-[52ch] space-y-3 mb-4">
+        <div className="space-y-3 mb-4 max-w-[52ch]">
           {HERO_POINTS.map((key) => (
-            <li key={key} className="flex items-start gap-3">
-              <span className="mt-[9px] w-[5px] h-[5px] bg-accent rounded-full shrink-0" />
-              <span className="text-[17px] leading-[1.5] text-ink-2">{t(key)}</span>
-            </li>
+            <p key={key} className="text-[17px] leading-[1.5] text-ink-2">
+              {t(key)}
+            </p>
           ))}
-        </ul>
+        </div>
 
-        <div className="flex gap-[14px] mt-10 items-center flex-wrap">
+        <div className="flex gap-5 mt-10 items-center flex-wrap">
           <Cal textButton={t("hero.cta")} buttonType="ink" showArrow />
-          <a
-            href="#casi-studio"
-            className="font-mono text-[12px] tracking-[0.05em] uppercase text-ink no-underline pb-[3px] border-b border-ink hover:text-accent hover:border-accent transition-colors"
-          >
+          <a href="#casi-studio" className="ed-link-secondary">
             {t("hero.projects")} →
           </a>
         </div>
