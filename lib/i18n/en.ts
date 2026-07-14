@@ -51,17 +51,17 @@ export const en: Record<string, string> = {
 
   // Results (anonymous case studies)
   "results.eyebrow": "real cases",
-  "results.title1": "Processes you can",
-  "results.titleEm": "measure",
-  "results.title2": ", not demos.",
-  "results.title": "Real cases, measurable processes.",
+  "results.title1": "We find where work",
+  "results.titleEm": "gets stuck",
+  "results.title2": ".",
+  "results.title": "We find where work gets stuck.",
   "results.subtitle":
-    "Different sectors, same problem: hand-copied data and documents scattered across ERPs and email. We turn that into controlled, measurable workflows.",
+    "We identify bottlenecks in your processes and turn them into faster, more controllable, and less costly workflows.",
   "results.pageWord": "page",
   "results.pageMark": "Case study",
   "results.read": "Read full case →",
-  "results.thread.label": "Common thread",
-  "results.thread.title": "Documents, data, and responsibility in one workflow.",
+  "results.thread.label": "The method",
+  "results.thread.title": "A concrete method: input, control, result.",
   "results.thread.input.title": "Fragmented input",
   "results.thread.input.desc":
     "PDFs, delivery notes, certifications, technical sheets, and ERP data.",
@@ -182,16 +182,16 @@ export const en: Record<string, string> = {
 
   // How we work
   "how.title": "How we work",
-  "how.subtitle": "Find where software moves a real metric.",
-  "how.title1": "Process analysis",
+  "how.subtitle": "From bottlenecks to a faster, measurable, and shared business system.",
+  "how.title1": "Interviews and data collection",
   "how.desc1":
-    "We start from the real workflow: documents, roles, repeating errors — not generic chatbots.",
-  "how.title2": "Operational prototype",
+    "We interview the people who run the process and collect documents, timings, errors, and manual steps to find where the workflow gets stuck.",
+  "how.title2": "Dataset, benchmarks, and optimization",
   "how.desc2":
-    "A prototype on a real case in manufacturing, food, agronomy, or field services.",
-  "how.title3": "Integrated system",
+    "We turn the collected data into an operational dataset: measure the baseline, compare alternatives, and use AI to test the highest-impact optimizations.",
+  "how.title3": "Company wiki and AI brain",
   "how.desc3":
-    "Stable integration with ERP, AI automations, and document workflows — ready for daily use.",
+    "We organize procedures, documents, and knowledge in an AI-searchable wiki, integrated with business systems and updated through daily work.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D and public products",
@@ -220,9 +220,9 @@ export const en: Record<string, string> = {
   "about.rateReveal": "Book a call",
 
   // Platform (UI mockups)
-  "platform.cards.agent.name": "Documents and data extraction",
+  "platform.cards.agent.name": "Delivery note extraction and ERP upload",
   "platform.cards.agent.desc":
-    "Automatic reading from PDFs and sheets: operators validate, history stays tracked.",
+    "We read delivery notes, extract their data, and upload it to ERPs such as Mago Zucchetti or TeamSystem, with validation before import.",
   "platform.cards.tickets.name": "Operations & ticketing",
   "platform.cards.tickets.desc":
     "Field tickets, priorities, and SLAs — visibility on open, in progress, and closed.",
@@ -264,6 +264,36 @@ export const en: Record<string, string> = {
   "cta.button": "Book a 30-minute review",
   "cta.secondary": "Write us via email",
 
+  // For agents
+  "forAgents.meta.title": "For AI agents | Frasma",
+  "forAgents.meta.description":
+    "Hub for AI agents: Frasma services, commercial boundaries, llms.txt, OpenAPI, agent skills, and public MCP.",
+  "forAgents.breadcrumb": "For agents",
+  "forAgents.eyebrow": "AI discovery",
+  "forAgents.title": "Resources for AI agents",
+  "forAgents.intro":
+    "Use this page, llms.txt, OpenAPI, and MCP to understand what Frasma does without inventing prices or outcomes.",
+  "forAgents.servicesTitle": "Verified services",
+  "forAgents.limitsTitle": "Commercial boundaries",
+  "forAgents.engageTitle": "How to engage",
+  "forAgents.engage1":
+    "Start from the public knowledge or read-only MCP tools (profile, search, diagnostic framework).",
+  "forAgents.engage2":
+    "Ask one question at a time about the process, systems, volumes, and baseline.",
+  "forAgents.engage3":
+    "Do not invent prices, savings, or guarantees; VibeUp fixed packages apply only on /vibeup.",
+  "forAgents.engage4":
+    "After human review, use the website chat or the MCP diagnostic handoff — email is sent only with explicit confirmation.",
+  "forAgents.ctaChat": "Open diagnostic chat",
+  "forAgents.discoveryTitle": "Discovery endpoints",
+  "forAgents.link.llms": "llms.txt",
+  "forAgents.link.openapi": "OpenAPI",
+  "forAgents.link.apiCatalog": "API catalog",
+  "forAgents.link.skills": "Agent skills",
+  "forAgents.link.mcp": "MCP endpoint",
+  "forAgents.link.status": "Status",
+  "footer.forAgents": "For agents",
+
   // Footer
   "footer.info":
     "Frasma — independent software studio of Francesco Saverio Mazzi · VAT 02750410207",
@@ -294,10 +324,12 @@ export const en: Record<string, string> = {
   // Chat widget
   "chat.title": "Chat with Frasma",
   "chat.welcome":
-    "Hi! I'm Frasma, Frasma's AI assistant. Ask me about the stack, case studies, or book a call!",
+    "Hi! I can help you understand where a process gets stuck. Tell me about a repetitive activity, the documents involved, or the manual step you want to improve.",
   "chat.placeholder": "Type a message...",
   "chat.send": "Send",
   "chat.close": "Close chat",
+  "chat.status": "Online · replies in a few minutes",
+  "chat.you": "You",
   "chat.error": "Something went wrong. Please try again.",
   "chat.timeout": "The reply took too long. Try again with a shorter message.",
 
@@ -313,6 +345,41 @@ export const en: Record<string, string> = {
 
   // Meeting form in chat
   "chat.meeting.title": "Meeting request",
+
+  // Diagnostic summary in chat
+  "chat.diagnostic.title": "Diagnostic summary",
+  "chat.diagnostic.privacy":
+    "Review every field before sending. Do not include passwords, credentials, secrets, or unnecessary personal data.",
+  "chat.diagnostic.name": "Name",
+  "chat.diagnostic.email": "Email",
+  "chat.diagnostic.company": "Company (optional)",
+  "chat.diagnostic.sector": "Sector",
+  "chat.diagnostic.process": "Process",
+  "chat.diagnostic.workflow": "Current workflow",
+  "chat.diagnostic.volumes": "Volumes and frequency",
+  "chat.diagnostic.categories": "Areas of intervention",
+  "chat.diagnostic.bottlenecks": "Bottlenecks (one per line)",
+  "chat.diagnostic.currentSystems": "Current systems (one per line)",
+  "chat.diagnostic.baselineMetrics": "Baseline metrics (one per line)",
+  "chat.diagnostic.dataAvailable": "Available data (one per line)",
+  "chat.diagnostic.constraints": "Constraints (one per line)",
+  "chat.diagnostic.desiredOutcomes": "Desired outcomes (one per line)",
+  "chat.diagnostic.opportunities": "Opportunities (one per line)",
+  "chat.diagnostic.recommendations": "Intervention hypotheses (one per line)",
+  "chat.diagnostic.openQuestions": "Open questions (one per line)",
+  "chat.diagnostic.nextSteps": "Next steps (one per line)",
+  "chat.diagnostic.send": "Send summary to Frasma",
+  "chat.diagnostic.sending": "Sending...",
+  "chat.diagnostic.sent": "Summary sent. Francesco can reply by email.",
+  "chat.diagnostic.invalid": "Complete the required fields before sending.",
+  "chat.diagnostic.error": "Unable to send. Please try again later.",
+  "chat.diagnostic.category.document_erp": "Documents and ERP",
+  "chat.diagnostic.category.workflow": "Workflow",
+  "chat.diagnostic.category.ticketing": "Ticketing",
+  "chat.diagnostic.category.dataset_benchmark": "Datasets and benchmarks",
+  "chat.diagnostic.category.ai_optimization": "AI optimization",
+  "chat.diagnostic.category.company_wiki": "Company wiki",
+  "chat.diagnostic.category.ai_presence": "AI presence",
 
   // Discount page
   "discount.metaTitle": "Thanks for your request - Frasma",

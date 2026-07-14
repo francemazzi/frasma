@@ -102,12 +102,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        // Geist replaces Poppins as the sans default.
-        sans: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
-        poppins: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
-        serif: ['Newsreader', 'Times New Roman', 'serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-        script: ['Caveat', 'cursive'],
+        sans: ['Arial', 'Helvetica', 'sans-serif'],
+        poppins: ['Arial', 'Helvetica', 'sans-serif'],
+        serif: ['Arial', 'Helvetica', 'sans-serif'],
+        mono: ['Arial', 'Helvetica', 'sans-serif'],
+        script: ['Arial', 'Helvetica', 'sans-serif'],
       },
     },
   },

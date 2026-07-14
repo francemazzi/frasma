@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useT } from "../../lib/i18n/context";
 
 const ITEMS = [
@@ -14,38 +13,19 @@ export default function QualifyLead() {
   const t = useT();
 
   return (
-    <section className="py-20 sm:py-28 bg-farm-panel border-y border-farm-border">
+    <section className="ed-section bg-white/20">
       <div className="section-farm">
-        <motion.div
-          className="max-w-3xl mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-accent mb-3">
-            {t("qualify.eyebrow")}
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-farm-text tracking-tight">
-            {t("qualify.title")}
-          </h2>
-        </motion.div>
+        <div className="ed-section-header mx-auto max-w-3xl text-center">
+          <div className="ed-kicker">{t("qualify.eyebrow")}</div>
+          <h2 className="ed-title">{t("qualify.title")}</h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2">
           {ITEMS.map((key, index) => (
-            <motion.div
-              key={key}
-              className="bg-farm-surface rounded-2xl p-6 border border-farm-border shadow-sm flex gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
-            >
-              <span className="font-mono text-xs font-semibold tracking-[0.2em] text-sage-500 shrink-0">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <p className="text-farm-secondary leading-relaxed">{t(key)}</p>
-            </motion.div>
+            <div key={key} className="rounded-2xl border border-white/70 bg-paper/65 p-6">
+              <span className="mb-6 block text-[11px] font-semibold text-accent">{String(index + 1).padStart(2, "0")}</span>
+              <p className="text-[15px] leading-[1.6] text-ink-2">{t(key)}</p>
+            </div>
           ))}
         </div>
       </div>

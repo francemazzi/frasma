@@ -8,7 +8,7 @@ export default function Footer() {
   const t = useT();
 
   return (
-    <footer className="border-t border-hairline py-9 pb-20 font-mono text-[11px] text-ink-soft tracking-[0.04em]">
+    <footer className="py-10 pb-20 text-[11px] font-medium text-ink-soft tracking-[0.04em]">
       <div className="section-farm">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
           <div className="flex items-center gap-3">
@@ -17,7 +17,7 @@ export default function Footer() {
               alt="Frasma"
               width={36}
               height={36}
-              className="h-9 w-9 rounded-full object-cover"
+              className="h-8 w-8 rounded-full object-cover"
             />
             <p>{t("footer.info")}</p>
           </div>
@@ -29,6 +29,13 @@ export default function Footer() {
               Programmatore freelance
             </Link> */}
             {/* <span className="text-ink-faint">·</span> */}
+            <Link
+              href="/for-agents"
+              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
+            >
+              {t("footer.forAgents")}
+            </Link>
+            <span className="text-ink-faint">·</span>
             <Link
               href="/blog"
               className="hover:text-accent hover:border-b hover:border-accent transition-colors"

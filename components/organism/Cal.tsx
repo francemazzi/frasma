@@ -36,7 +36,7 @@ type CalState = {
 const DISCOUNT_PATH = "/discount?conv=contact";
 
 const MEETING_INPUT_CLASS =
-  "mt-1 w-full min-w-0 max-w-full rounded-lg border border-farm-border px-3 py-2 bg-farm-surface focus:outline-none focus:ring-2 focus:ring-sage-300 focus:border-transparent transition-shadow";
+  "mt-1 w-full min-w-0 max-w-full rounded-lg border border-hairline-strong px-3 py-2 bg-paper-2 text-ink focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-transparent transition-shadow";
 
 class CssClassBuilder {
   public buildButtonClasses(type: CalButtonType): string {
@@ -49,7 +49,7 @@ class CssClassBuilder {
     if (type === "ink") {
       return "btn-ink";
     }
-    return "flex items-center gap-2 sm:gap-3 rounded-full bg-sage-500 px-5 py-2.5 text-base sm:px-8 sm:py-3 sm:text-lg font-semibold text-white shadow-sm hover:bg-sage-400 transition duration-200";
+    return "btn-ink";
   }
 }
 
@@ -84,19 +84,19 @@ class MeetingSchedulerModal extends React.PureComponent<
           onClick={this.props.onClose}
         />
 
-        <div className="relative w-full min-w-0 max-w-xl max-h-[90dvh] overflow-y-auto overflow-x-hidden rounded-2xl bg-farm-surface shadow-2xl border border-farm-border">
-          <div className="flex items-start justify-between gap-4 p-4 sm:p-6 border-b border-farm-border">
+        <div className="relative w-full min-w-0 max-w-xl max-h-[90dvh] overflow-y-auto overflow-x-hidden rounded-xl bg-paper shadow-2xl border border-hairline-strong">
+          <div className="flex items-start justify-between gap-4 p-4 sm:p-6 border-b border-hairline">
             <div>
-              <h3 className="text-xl font-semibold text-farm-text">
+              <h3 className="text-xl font-semibold text-ink">
                 {t("cal.title")}
               </h3>
-              <p className="mt-1 text-sm text-farm-secondary">
+              <p className="mt-1 text-sm text-ink-soft">
                 {t("cal.subtitle")}
               </p>
             </div>
             <button
               type="button"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-farm-secondary hover:bg-farm-panel transition-colors"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-ink-soft hover:bg-paper-2 transition-colors"
               onClick={this.props.onClose}
               aria-label={t("cal.close")}
               disabled={isBusy}
@@ -115,7 +115,7 @@ class MeetingSchedulerModal extends React.PureComponent<
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <label className="block min-w-0">
-                <span className="block text-sm font-medium text-farm-text">
+                <span className="block text-sm font-medium text-ink">
                   {t("cal.date")}
                 </span>
                 <input
@@ -132,7 +132,7 @@ class MeetingSchedulerModal extends React.PureComponent<
               </label>
 
               <label className="block min-w-0">
-                <span className="block text-sm font-medium text-farm-text">
+                <span className="block text-sm font-medium text-ink">
                   {t("cal.time")}
                 </span>
                 <input
@@ -151,7 +151,7 @@ class MeetingSchedulerModal extends React.PureComponent<
             </div>
 
             <label className="block">
-              <span className="block text-sm font-medium text-farm-text">
+              <span className="block text-sm font-medium text-ink">
                 {t("cal.email")}
               </span>
               <input
@@ -167,7 +167,7 @@ class MeetingSchedulerModal extends React.PureComponent<
             </label>
 
             <label className="block">
-              <span className="block text-sm font-medium text-farm-text">
+              <span className="block text-sm font-medium text-ink">
                 {t("cal.description")}
               </span>
               <textarea
@@ -179,7 +179,7 @@ class MeetingSchedulerModal extends React.PureComponent<
                 }
                 maxLength={2000}
               />
-              <div className="mt-1 text-xs text-farm-secondary">
+              <div className="mt-1 text-xs text-ink-soft">
                 {t("cal.timezone")}: <span className="font-medium">{state.timezone}</span>
               </div>
             </label>
@@ -213,7 +213,7 @@ class MeetingSchedulerModal extends React.PureComponent<
             <div className="flex items-center justify-end gap-3 pt-2">
               <button
                 type="button"
-                className="rounded-lg px-4 py-2 text-sm font-medium text-farm-secondary hover:bg-farm-panel transition-colors"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-ink-soft hover:bg-paper-2 transition-colors"
                 onClick={this.props.onClose}
                 disabled={isBusy}
               >
@@ -221,7 +221,7 @@ class MeetingSchedulerModal extends React.PureComponent<
               </button>
               <button
                 type="submit"
-                className="rounded-full bg-sage-500 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sage-400 disabled:opacity-60 transition-colors"
+                className="btn-ink disabled:opacity-60"
                 disabled={isBusy}
               >
                 {isBusy ? t("cal.sending") : t("cal.send")}
@@ -361,7 +361,7 @@ class CalInner extends React.PureComponent<CalInternalProps, CalState> {
     const {
       leftIcon: LeftIcon,
       leftImage,
-      buttonType = "default",
+      buttonType = "ink",
       showArrow = false,
       t,
       lang,

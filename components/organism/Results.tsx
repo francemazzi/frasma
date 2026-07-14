@@ -135,37 +135,34 @@ export default function Results() {
   }, [page, goTo]);
 
   return (
-    <section id="casi-studio" className="ed-section">
+    <section id="casi-studio" className="ed-section bg-white/20">
       <div className="section-farm">
-        <div className="mb-10 sm:mb-14">
+        <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
           <div className="ed-kicker">{t("results.eyebrow")}</div>
-          <h2 className="ed-title max-w-[28ch]">
+          <h2 className="ed-title">
             {t("results.title1")} <em>{t("results.titleEm")}</em>
             {t("results.title2")}
           </h2>
+          <p className="ed-intro mx-auto mt-6">{t("results.subtitle")}</p>
         </div>
-        <p className="ed-intro mb-10 sm:mb-14 lg:ml-[200px]">{t("results.subtitle")}</p>
 
-        <div className="mb-10 sm:mb-14 border-y border-hairline-strong py-5 sm:py-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_repeat(3,1fr)] gap-5 lg:gap-0">
-            <div className="lg:pr-8">
-              <div className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-accent mb-2">
-                {t("results.thread.label")}
-              </div>
-              <p className="font-serif text-[22px] sm:text-[26px] leading-[1.15] text-ink max-w-[20ch]">
-                {t("results.thread.title")}
-              </p>
+        <div className="mb-8">
+          <div className="mb-7 text-center">
+            <div className="mb-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-accent">
+              {t("results.thread.label")}
             </div>
+            <p className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.03em] text-ink">
+              {t("results.thread.title")}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             {THREAD_ITEMS.map((item, idx) => (
-              <div
-                key={item.titleKey}
-                className="lg:border-l lg:border-hairline-strong lg:pl-6 lg:pr-5"
-              >
-                <div className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-ink mb-2">
-                  <span className="text-accent">{String(idx + 1).padStart(2, "0")}</span>{" "}
+              <div key={item.titleKey} className="rounded-2xl bg-paper/60 p-5">
+                <div className="mb-2 text-[11px] font-semibold tracking-[0.08em] uppercase text-ink">
+                  <span className="mr-2 text-accent">{String(idx + 1).padStart(2, "0")}</span>
                   {t(item.titleKey)}
                 </div>
-                <p className="text-[13.5px] leading-[1.55] text-ink-soft max-w-[34ch]">
+                <p className="text-[13.5px] leading-[1.55] text-ink-soft">
                   {t(item.descKey)}
                 </p>
               </div>
@@ -173,10 +170,8 @@ export default function Results() {
           </div>
         </div>
 
-        {/* BOOK */}
         <div
-          className="relative"
-          style={{ perspective: "2800px", perspectiveOrigin: "50% 40%" }}
+          className="overflow-hidden rounded-[32px] border border-white/70 bg-paper-2 shadow-[0_32px_90px_-55px_rgba(27,25,22,0.65)]"
           onTouchStart={(e) => {
             touchStartX.current = e.touches[0]?.clientX ?? null;
           }}
@@ -190,124 +185,61 @@ export default function Results() {
             touchStartX.current = null;
           }}
         >
-          <div
-            className="relative border border-hairline-strong bg-paper-2 overflow-hidden"
-            style={{
-              boxShadow:
-                "0 28px 60px -36px rgba(27,25,22,0.45), 0 6px 16px -8px rgba(27,25,22,0.18)",
-            }}
-          >
-            {/* spine on desktop */}
-            <div
-              className="hidden lg:block pointer-events-none absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-8 z-10"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent 0%, rgba(27,25,22,0.18) 50%, transparent 100%)",
-              }}
-            />
-            <div className="relative min-h-[640px] lg:min-h-[760px]" style={{ transformStyle: "preserve-3d" }}>
-              {CASES.map((c) => {
-                const active = c.idx === page;
-                return (
-                  <article
-                    key={c.idx}
-                    data-idx={c.idx}
-                    aria-hidden={!active}
-                    className={`book-page ${active ? "" : "hidden lg:block"} lg:absolute lg:inset-0 p-7 sm:p-10 lg:p-12`}
-                    style={{
-                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.55)",
-                      zIndex: total - c.idx,
-                      transform: c.idx < page ? "rotateY(-180deg)" : undefined,
-                    }}
-                  >
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-14 h-full items-stretch">
-                      {/* Left page */}
-                      <div className="flex flex-col gap-[18px]">
-                        <div className="flex justify-between items-baseline pb-2 border-b border-dashed border-hairline-strong font-mono text-[10.5px] text-ink-soft tracking-[0.1em] uppercase">
-                          <span className="text-accent text-[14px] tracking-[0.08em]">
-                            {t("results.pageWord")} {c.pageLabel}
-                          </span>
-                          <span className="text-ink-soft">{t("results.pageMark")}</span>
-                        </div>
-                        <div className="relative mx-auto w-full max-w-[240px] lg:max-w-[460px] overflow-hidden" style={{ aspectRatio: "1122 / 1402" }}>
-                          <Image
-                            src={c.imgSrc}
-                            alt={c.imgAlt}
-                            fill
-                            sizes="(max-width: 1024px) 240px, 460px"
-                            className="object-cover mix-blend-darken"
-                          />
-                          <div className="absolute left-3 bottom-3 font-mono text-[10px] tracking-[0.08em] bg-ink/85 text-paper px-[10px] py-[5px] uppercase">
-                            {t(c.plateKey)}
-                          </div>
-                        </div>
-                      </div>
+          {CASES.filter((c) => c.idx === page).map((c) => (
+            <article key={c.idx} className="grid grid-cols-1 items-center gap-8 p-6 sm:p-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:p-12">
+              <div className="relative mx-auto w-full max-w-[440px] overflow-hidden rounded-[24px] bg-paper-2" style={{ aspectRatio: "1122 / 1402" }}>
+                <Image src={c.imgSrc} alt={c.imgAlt} fill sizes="(max-width: 1024px) 90vw, 440px" className="object-cover mix-blend-darken" />
+                <div className="absolute bottom-4 left-4 rounded-full bg-ink/85 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-paper backdrop-blur">
+                  {t(c.plateKey)}
+                </div>
+              </div>
+              <div className="min-w-0">
+                <div className="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-accent">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  {t(c.tagKey)}
+                </div>
+                <h3 className="mb-5 text-[30px] font-semibold leading-[1.05] tracking-[-0.045em] text-ink sm:text-[42px]">
+                  {t(c.titlePreKey)} <span className="text-accent">{t(c.titleEmKey)}</span>
+                  {t(c.titlePostKey) ? ` ${t(c.titlePostKey)}` : ""}
+                </h3>
+                <p className="mb-7 text-[17px] font-medium leading-[1.45] text-ink">{t(c.pullKey)}</p>
+                <div className="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <p className="rounded-xl bg-white/35 p-4 text-[13.5px] leading-[1.55] text-ink-soft">
+                    <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.1em] text-accent">{t("results.beforeLabel")}</span>
+                    {t(c.beforeKey)}
+                  </p>
+                  <p className="rounded-xl bg-white/35 p-4 text-[13.5px] leading-[1.55] text-ink-soft">
+                    <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.1em] text-accent">{t("results.afterLabel")}</span>
+                    {t(c.afterKey)}
+                  </p>
+                </div>
+                <p className="mb-6 text-[14.5px] leading-[1.6] text-ink-soft">{t(c.descKey)}</p>
+                <div className="grid grid-cols-2 gap-4 border-t border-hairline pt-6">
+                  <Metric numStr={t(c.m1.numKey)} label={t(c.m1.labelKey)} />
+                  <Metric numStr={t(c.m2.numKey)} label={t(c.m2.labelKey)} />
+                </div>
+              </div>
+            </article>
+          ))}
 
-                      {/* Right page */}
-                      <div className="flex flex-col justify-center min-w-0 pr-1">
-                        <div className="font-mono text-[11px] text-accent tracking-[0.12em] uppercase mb-4 flex items-center gap-[10px]">
-                          <span className="w-[6px] h-[6px] bg-accent rounded-full" />
-                          {t(c.tagKey)}
-                        </div>
-                        <h3
-                          className="font-serif font-normal leading-[1.05] tracking-[-0.02em] mb-5 text-ink"
-                          style={{ fontSize: "clamp(24px, 2.8vw, 40px)" }}
-                        >
-                          {t(c.titlePreKey)}{" "}
-                          <em className="italic text-accent">{t(c.titleEmKey)}</em>
-                          {t(c.titlePostKey) ? ` ${t(c.titlePostKey)}` : ""}
-                        </h3>
-                        <p className="font-serif italic text-[18px] leading-[1.4] text-ink mb-[22px] pl-4 border-l-2 border-accent">
-                          {t(c.pullKey)}
-                        </p>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 max-w-[46ch]">
-                          <p className="text-[13.5px] leading-[1.55] text-ink-soft">
-                            <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-accent block mb-1">
-                              {t("results.beforeLabel")}
-                            </span>
-                            {t(c.beforeKey)}
-                          </p>
-                          <p className="text-[13.5px] leading-[1.55] text-ink-soft">
-                            <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-accent block mb-1">
-                              {t("results.afterLabel")}
-                            </span>
-                            {t(c.afterKey)}
-                          </p>
-                        </div>
-                        <p className="text-[14.5px] leading-[1.6] text-ink-soft mb-3 max-w-[46ch]">
-                          {t(c.descKey)}
-                        </p>
-                        <div className="grid grid-cols-2 gap-4 mt-5 pt-5 border-t border-hairline-strong">
-                          <Metric numStr={t(c.m1.numKey)} label={t(c.m1.labelKey)} />
-                          <Metric numStr={t(c.m2.numKey)} label={t(c.m2.labelKey)} />
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Foot controls */}
-          <div className="flex items-center justify-between gap-6 mt-7 pt-5 border-t border-dashed border-hairline-strong">
+          <div className="flex items-center justify-between gap-6 border-t border-hairline px-6 py-5 sm:px-9">
             <button
               type="button"
               onClick={() => goTo(page - 1)}
               disabled={page === 0}
               aria-label="Previous"
-              className="w-11 h-11 sm:w-[52px] sm:h-[52px] rounded-full border border-ink text-ink flex items-center justify-center font-serif text-[22px] sm:text-[28px] leading-none transition-colors hover:bg-ink hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline-strong bg-white/30 text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
             >
               ←
             </button>
 
-            <div className="flex items-center gap-5 sm:gap-7">
-              <div className="font-serif text-[22px] sm:text-[28px] leading-none flex items-baseline gap-[6px]">
-                <span className="italic text-accent">
+            <div className="flex items-center gap-5 sm:gap-6">
+              <div className="flex items-baseline gap-[6px] text-[18px] font-semibold leading-none">
+                <span className="text-accent">
                   {String(page + 1).padStart(2, "0")}
                 </span>
-                <span className="text-ink-faint text-[18px] sm:text-[22px]">/</span>
-                <span className="text-ink-soft text-[18px] sm:text-[22px]">
+                <span className="text-ink-faint text-[14px]">/</span>
+                <span className="text-ink-soft text-[14px]">
                   {String(total).padStart(2, "0")}
                 </span>
               </div>
@@ -317,10 +249,10 @@ export default function Results() {
                     key={c.idx}
                     onClick={() => goTo(c.idx)}
                     aria-label={`Page ${c.idx + 1}`}
-                    className={`h-[6px] rounded-[1px] transition-all ${
+                    className={`h-[3px] rounded-[1px] transition-all ${
                       c.idx === page
-                        ? "w-9 bg-accent"
-                        : "w-[26px] bg-hairline-strong hover:bg-ink-soft"
+                        ? "w-8 bg-accent"
+                        : "w-6 bg-hairline-strong hover:bg-ink-soft"
                     }`}
                   />
                 ))}
@@ -332,7 +264,7 @@ export default function Results() {
               onClick={() => goTo(page + 1)}
               disabled={page === total - 1}
               aria-label="Next"
-              className="w-11 h-11 sm:w-[52px] sm:h-[52px] rounded-full border border-ink text-ink flex items-center justify-center font-serif text-[22px] sm:text-[28px] leading-none transition-colors hover:bg-ink hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline-strong bg-white/30 text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
             >
               →
             </button>
@@ -351,12 +283,12 @@ function Metric({ numStr, label }: { numStr: string; label: string }) {
   const post = match?.[3] ?? "";
   return (
     <div>
-      <div className="font-serif text-[28px] sm:text-[32px] font-normal text-ink leading-none mb-2">
+      <div className="mb-2 text-[28px] sm:text-[32px] font-semibold tracking-[-0.04em] text-ink leading-none">
         {pre}
-        <em className="italic text-accent not-prose">{em}</em>
+        <span className="text-accent">{em}</span>
         {post}
       </div>
-      <div className="font-mono text-[10.5px] text-ink-soft tracking-[0.05em] uppercase leading-[1.4]">
+      <div className="text-[10.5px] font-semibold text-ink-soft tracking-[0.05em] uppercase leading-[1.4]">
         {label}
       </div>
     </div>
