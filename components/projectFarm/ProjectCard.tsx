@@ -8,6 +8,10 @@ type ProjectCardProps = {
 };
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const hasNpmMetrics = project.metrics.some(
+    (metric) => metric.source === "npm"
+  );
+
   return (
     <article className="space-y-5">
       <header className="flex items-start gap-4">
@@ -28,16 +32,28 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
             Settore · {project.sector}
           </p>
-          {project.projectUrl ? (
-            <a
-              href={project.projectUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1 text-sm text-accent hover:text-accent-2 transition-colors"
-            >
-              Apri progetto ↗
-            </a>
-          ) : null}
+          <div className="mt-3 flex flex-wrap gap-3">
+            {project.projectUrl ? (
+              <a
+                href={project.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-2 transition-colors"
+              >
+                {project.npmPackage ? "npm ↗" : "Apri progetto ↗"}
+              </a>
+            ) : null}
+            {project.docsUrl ? (
+              <a
+                href={project.docsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-2 transition-colors"
+              >
+                Documentazione ↗
+              </a>
+            ) : null}
+          </div>
         </div>
       </header>
 
@@ -66,7 +82,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
         <p className="mt-3 font-mono text-[10px] text-ink-faint">
-          Dati simulati · Aggiornamento giornaliero · Pronto per feed API
+          {hasNpmMetrics
+            ? "Download npm · aggiornamento orario"
+            : "Dati simulati · Aggiornamento giornaliero · Pronto per feed API"}
         </p>
       </section>
     </article>

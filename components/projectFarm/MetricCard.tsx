@@ -2,12 +2,17 @@
 
 import {
   generateSparkline,
-  getMetricLiveValue,
   getTrendArrow,
   getTrendColorClass,
   getTrendStrokeClass,
 } from "../../lib/projectFarm/projectFarmData";
+import {
+  resolveMetricSparkline,
+  resolveMetricTrend,
+  resolveMetricValue,
+} from "../../lib/projectFarm/npmStats";
 import type { Metric, Project } from "../../lib/projectFarm/types";
+import { useNpmStats } from "../../lib/projectFarm/useNpmStats";
 import AnimatedCounter from "./AnimatedCounter";
 import Sparkline from "./Sparkline";
 
@@ -17,16 +22,21 @@ type MetricCardProps = {
 };
 
 export default function MetricCard({ project, metric }: MetricCardProps) {
-  const liveValue = getMetricLiveValue(project, metric);
-  const sparkline = generateSparkline(
-    project.id,
-    metric.key,
-    metric.baseValue,
-    metric.dailyDeltaRange,
-    metric.trend
-  );
-  const trendColor = getTrendColorClass(metric.trend);
-  const trendStroke = getTrendStrokeClass(metric.trend);
+  const { stats } = useNpmStats();
+  const liveValue = resolveMetricValue(project, metric, stats);
+  const npmSparkline = resolveMetricSparkline(project, metric, stats);
+  const sparkline =
+    npmSparkline ??
+    generateSparkline(
+      project.id,
+      metric.key,
+      metric.baseValue,
+      metric.dailyDeltaRange,
+      metric.trend
+    );
+  const trend = resolveMetricTrend(project, metric, stats);
+  const trendColor = getTrendColorClass(trend);
+  const trendStroke = getTrendStrokeClass(trend);
 
   return (
     <div className="rounded-xl border border-hairline bg-paper/80 p-3">
@@ -36,9 +46,9 @@ export default function MetricCard({ project, metric }: MetricCardProps) {
         </p>
         <span
           className={`font-mono text-sm ${trendColor}`}
-          aria-label={`Trend ${metric.trend}`}
+          aria-label={`Trend ${trend}`}
         >
-          {getTrendArrow(metric.trend)}
+          {getTrendArrow(trend)}
         </span>
       </div>
       <div className="mt-2 flex items-end justify-between gap-3">

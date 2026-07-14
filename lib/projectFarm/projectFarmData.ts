@@ -1,3 +1,4 @@
+import type { NpmStatsMap } from "./npmStats";
 import { PROJECTS } from "./projects";
 import type { Metric, Project, TrendType } from "./types";
 
@@ -163,7 +164,8 @@ export function getUniqueTeamCount(projects: Project[] = PROJECTS): number {
 
 export function getTractionSignals(
   projects: Project[] = PROJECTS,
-  referenceDate: Date = new Date()
+  referenceDate: Date = new Date(),
+  npmStats?: NpmStatsMap | null
 ): number {
   let total = 0;
 
@@ -173,10 +175,19 @@ export function getTractionSignals(
       const isTraction =
         label.includes("utenti iscritti") ||
         label.includes("utenti attivi") ||
-        label.includes("dosaggi");
+        label.includes("dosaggi") ||
+        label.includes("download");
 
       if (isTraction) {
-        total += getMetricLiveValue(project, metric, referenceDate);
+        if (
+          metric.source === "npm" &&
+          project.npmPackage &&
+          npmStats?.[project.npmPackage]
+        ) {
+          total += npmStats[project.npmPackage].weeklyDownloads;
+        } else {
+          total += getMetricLiveValue(project, metric, referenceDate);
+        }
       }
     }
   }

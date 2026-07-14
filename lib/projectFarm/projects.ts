@@ -187,4 +187,67 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
+  {
+    id: "worldsim",
+    name: "worldsim",
+    ticker: "WLD",
+    projectUrl: "https://www.npmjs.com/package/worldsim",
+    docsUrl: "https://francemazzi.github.io/worldsim/",
+    npmPackage: "worldsim",
+    tagline:
+      "Simulate how communities react to new rules, events, or policies — multi-agent simulation engine for TypeScript.",
+    status: "In crescita",
+    sector: "Open Source",
+    icon: "🌍",
+    sortOrder: 5,
+    team: [
+      {
+        name: "Io",
+        role: "Software / prodotto",
+        linkedinUrl: null,
+      },
+    ],
+    metrics: [
+      {
+        key: "weeklyDownloads",
+        label: "Download npm (7gg)",
+        baseValue: 238,
+        unit: "",
+        trend: "up",
+        dailyDeltaRange: [0, 0],
+        source: "npm",
+      },
+    ],
+  },
+  {
+    id: "wordsmith-ts",
+    name: "wordsmith-ts",
+    ticker: "WRD",
+    projectUrl: "https://www.npmjs.com/package/wordsmith-ts",
+    npmPackage: "wordsmith-ts",
+    tagline:
+      "Lightweight functional library to extract and replace variables in Word (.docx) files.",
+    status: "In validazione",
+    sector: "Open Source",
+    icon: "📝",
+    sortOrder: 6,
+    team: [
+      {
+        name: "Io",
+        role: "Software / prodotto",
+        linkedinUrl: null,
+      },
+    ],
+    metrics: [
+      {
+        key: "weeklyDownloads",
+        label: "Download npm (7gg)",
+        baseValue: 48,
+        unit: "",
+        trend: "stable",
+        dailyDeltaRange: [0, 0],
+        source: "npm",
+      },
+    ],
+  },
 ];

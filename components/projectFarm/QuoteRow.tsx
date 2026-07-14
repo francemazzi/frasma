@@ -2,13 +2,18 @@
 
 import {
   generateSparkline,
-  getMetricLiveValue,
   getPrimaryMetric,
   getTrendArrow,
   getTrendColorClass,
   getTrendStrokeClass,
 } from "../../lib/projectFarm/projectFarmData";
+import {
+  resolveMetricSparkline,
+  resolveMetricTrend,
+  resolveMetricValue,
+} from "../../lib/projectFarm/npmStats";
 import type { Project } from "../../lib/projectFarm/types";
+import { useNpmStats } from "../../lib/projectFarm/useNpmStats";
 import AnimatedCounter from "./AnimatedCounter";
 import Sparkline from "./Sparkline";
 import StatusBadge from "./StatusBadge";
@@ -24,17 +29,22 @@ export default function QuoteRow({
   isSelected,
   onSelect,
 }: QuoteRowProps) {
+  const { stats } = useNpmStats();
   const metric = getPrimaryMetric(project);
-  const liveValue = getMetricLiveValue(project, metric);
-  const sparkline = generateSparkline(
-    project.id,
-    metric.key,
-    metric.baseValue,
-    metric.dailyDeltaRange,
-    metric.trend
-  );
-  const trendColor = getTrendColorClass(metric.trend);
-  const trendStroke = getTrendStrokeClass(metric.trend);
+  const liveValue = resolveMetricValue(project, metric, stats);
+  const npmSparkline = resolveMetricSparkline(project, metric, stats);
+  const sparkline =
+    npmSparkline ??
+    generateSparkline(
+      project.id,
+      metric.key,
+      metric.baseValue,
+      metric.dailyDeltaRange,
+      metric.trend
+    );
+  const trend = resolveMetricTrend(project, metric, stats);
+  const trendColor = getTrendColorClass(trend);
+  const trendStroke = getTrendStrokeClass(trend);
 
   return (
     <>
@@ -81,9 +91,9 @@ export default function QuoteRow({
         </div>
         <span
           className={`font-mono text-lg ${trendColor}`}
-          aria-label={`Trend ${metric.trend}`}
+          aria-label={`Trend ${trend}`}
         >
-          {getTrendArrow(metric.trend)}
+          {getTrendArrow(trend)}
         </span>
         <Sparkline points={sparkline} strokeClassName={trendStroke} />
       </button>
@@ -132,7 +142,7 @@ export default function QuoteRow({
           </div>
           <div className="flex items-center gap-2">
             <span className={`font-mono text-lg ${trendColor}`}>
-              {getTrendArrow(metric.trend)}
+              {getTrendArrow(trend)}
             </span>
             <Sparkline points={sparkline} strokeClassName={trendStroke} />
           </div>

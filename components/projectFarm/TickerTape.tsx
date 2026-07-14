@@ -1,21 +1,28 @@
 "use client";
 
 import {
-  getMetricLiveValue,
   getPrimaryMetric,
   getTrendArrow,
   getTrendColorClass,
 } from "../../lib/projectFarm/projectFarmData";
+import {
+  resolveMetricTrend,
+  resolveMetricValue,
+} from "../../lib/projectFarm/npmStats";
 import { PROJECTS } from "../../lib/projectFarm/projects";
+import { useNpmStats } from "../../lib/projectFarm/useNpmStats";
 
 export default function TickerTape() {
+  const { stats } = useNpmStats();
+
   const items = [...PROJECTS]
     .sort((a, b) => a.sortOrder - b.sortOrder)
     .map((project) => {
       const metric = getPrimaryMetric(project);
-      const value = getMetricLiveValue(project, metric);
-      const arrow = getTrendArrow(metric.trend);
-      const colorClass = getTrendColorClass(metric.trend);
+      const value = resolveMetricValue(project, metric, stats);
+      const trend = resolveMetricTrend(project, metric, stats);
+      const arrow = getTrendArrow(trend);
+      const colorClass = getTrendColorClass(trend);
 
       return {
         key: project.id,

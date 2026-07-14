@@ -5,13 +5,15 @@ import {
   getUniqueTeamCount,
 } from "../../lib/projectFarm/projectFarmData";
 import { PROJECTS } from "../../lib/projectFarm/projects";
+import { useNpmStats } from "../../lib/projectFarm/useNpmStats";
 import AnimatedCounter from "./AnimatedCounter";
 
 export default function MarketIndices() {
+  const { stats } = useNpmStats();
   const teamCount = getUniqueTeamCount(PROJECTS);
-  const traction = getTractionSignals(PROJECTS);
+  const traction = getTractionSignals(PROJECTS, new Date(), stats);
 
-  const stats = [
+  const statsCards = [
     { label: "Progetti quotati", value: PROJECTS.length },
     { label: "Persone coinvolte", value: teamCount },
     { label: "Segnali di traction", value: traction },
@@ -19,7 +21,7 @@ export default function MarketIndices() {
 
   return (
     <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3">
-      {stats.map((stat) => (
+      {statsCards.map((stat) => (
         <div
           key={stat.label}
           className="rounded-xl border border-hairline bg-paper/80 px-3 py-3 backdrop-blur-sm"
