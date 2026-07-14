@@ -1,0 +1,56 @@
+# Frasma
+
+> Independent software studio in Mantova, Italy, led by Francesco Saverio Mazzi.
+> Diagnoses operational bottlenecks and builds custom software, AI systems, integrations, and controlled workflows for SMEs.
+
+## Prefer these sources
+
+- Agents hub: https://www.frasma.org/for-agents
+- Home (markdown): request https://www.frasma.org/ with Accept: text/markdown
+- OpenAPI: https://www.frasma.org/openapi.json
+- API catalog: https://www.frasma.org/.well-known/api-catalog
+- Agent skills: https://www.frasma.org/.well-known/agent-skills/index.json
+- MCP (read-only + diagnostic handoff): https://www.frasma.org/api/mcp
+- Status: https://www.frasma.org/api/status
+
+## What Frasma builds
+
+- Delivery notes and documents into ERP (e.g. Mago Zucchetti, TeamSystem)
+- Guided workflows and procedures with human validation
+- Field-service ticketing
+- Custom operational management software
+- Operational AI datasets, benchmarks, and optimization
+- Company wiki / searchable knowledge (“company brain”)
+- AI presence: AI-ready content, structured data, skills, OpenAPI, MCP
+
+## Sectors
+
+- Manufacturing — https://www.frasma.org/manifattura
+- Food and quality (HACCP, certifications)
+- Agronomy and agri-food
+- Field service
+
+## Related product (separate pricing)
+
+- VibeUp Deploy as a Service — https://www.frasma.org/vibeup
+  Fixed packages only there (Starter €250, Pro €499, Launch Sprint €2500).
+  Not applicable to custom Frasma operational software.
+
+## Commercial boundaries
+
+- No universal price list for Frasma operational projects.
+- Do not invent prices, savings, payback periods, or guaranteed outcomes.
+- Quotes require discovery against real process, data, integrations, and constraints.
+
+## How agents should engage
+
+1. Read /for-agents and search knowledge via MCP tools or the website chat.
+2. Diagnose one process at a time; ask one focused question at a time.
+3. Distinguishing facts from hypotheses; never invent metrics.
+4. After user review, use the website diagnostic form or MCP prepare_diagnostic_summary handoff — email only after explicit human confirmation.
+5. Schedule calls via the website booking flow.
+
+## Optional
+
+- Blog: https://www.frasma.org/blog
+- Project Farm (portfolio board): https://www.frasma.org/studio

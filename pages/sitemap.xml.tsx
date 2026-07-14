@@ -9,7 +9,9 @@ type SitemapEntry = {
 };
 
 const STATIC_PAGES: SitemapEntry[] = [
-  { loc: `${SITE_URL}/`, lastmod: "2026-07-08", changefreq: "weekly", priority: "1.0" },
+  { loc: `${SITE_URL}/`, lastmod: "2026-07-14", changefreq: "weekly", priority: "1.0" },
+  { loc: `${SITE_URL}/for-agents`, lastmod: "2026-07-14", changefreq: "monthly", priority: "0.9" },
+  { loc: `${SITE_URL}/llms.txt`, lastmod: "2026-07-14", changefreq: "monthly", priority: "0.8" },
   { loc: `${SITE_URL}/manifattura`, lastmod: "2026-05-12", changefreq: "monthly", priority: "0.8" },
   { loc: `${SITE_URL}/studio`, lastmod: "2026-07-08", changefreq: "monthly", priority: "0.8" },
   { loc: `${SITE_URL}/programmatore-freelance`, lastmod: "2026-05-12", changefreq: "monthly", priority: "0.9" },

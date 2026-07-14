@@ -52,18 +52,18 @@ export const it: Record<string, string> = {
 
   // Results (anonymous case studies)
   "results.eyebrow": "casi reali",
-  "results.title1": "Processi",
-  "results.titleEm": "misurabili",
-  "results.title2": ", non demo.",
-  "results.title": "Casi reali, processi misurabili.",
+  "results.title1": "Troviamo dove il lavoro",
+  "results.titleEm": "si blocca",
+  "results.title2": ".",
+  "results.title": "Troviamo dove il lavoro si blocca.",
   "results.subtitle":
-    "Settori diversi, stesso problema: dati copiati a mano e documenti sparsi tra ERP ed email. Li trasformiamo in flussi controllati e misurabili.",
+    "Individuiamo i colli di bottiglia nei processi e li trasformiamo in flussi più rapidi, controllabili e meno costosi.",
   "results.pageWord": "pagina",
   "results.pageMark": "Caso studio",
   "results.read": "Caso studio completo →",
-  "results.thread.label": "Filo conduttore",
+  "results.thread.label": "Il metodo",
   "results.thread.title":
-    "Documenti, dati e responsabilità nello stesso flusso.",
+    "Un metodo concreto: input, controllo, risultato.",
   "results.thread.input.title": "Input frammentati",
   "results.thread.input.desc":
     "PDF, DDT, certificazioni, schede tecniche e dati ERP.",
@@ -186,16 +186,16 @@ export const it: Record<string, string> = {
   // How we work
   "how.title": "Come lavoriamo",
   "how.subtitle":
-    "Capire dove il software sposta una metrica reale.",
-  "how.title1": "Analisi del processo",
+    "Dai colli di bottiglia a un sistema aziendale più veloce, misurabile e condiviso.",
+  "how.title1": "Interviste e raccolta dati",
   "how.desc1":
-    "Partiamo dal flusso reale: documenti, ruoli, errori ripetuti — non da chatbot generici.",
-  "how.title2": "Prototipo operativo",
+    "Intervistiamo chi lavora sul processo e raccogliamo documenti, tempi, errori e passaggi manuali per individuare dove il flusso si blocca.",
+  "how.title2": "Dataset, benchmark e ottimizzazione",
   "how.desc2":
-    "Prototipo su un caso reale in manifattura, alimentare, agronomia o field service.",
-  "how.title3": "Sistema integrato",
+    "Trasformiamo i dati raccolti in un dataset operativo: misuriamo il punto di partenza, confrontiamo le alternative e testiamo con l'AI le ottimizzazioni a maggior impatto.",
+  "how.title3": "Wiki e cervello aziendale",
   "how.desc3":
-    "Integrazione stabile con ERP, automazioni AI e flussi documentali — pronta per l'uso quotidiano.",
+    "Organizziamo procedure, documenti e conoscenza in una wiki con ricerca AI, integrata nei sistemi aziendali e aggiornata durante il lavoro quotidiano.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D e prodotti pubblici",
@@ -224,9 +224,9 @@ export const it: Record<string, string> = {
   "about.rateReveal": "Prenota una call",
 
   // Platform (UI mockups)
-  "platform.cards.agent.name": "Documenti e estrazione dati",
+  "platform.cards.agent.name": "Estrazione DDT e caricamento ERP",
   "platform.cards.agent.desc":
-    "Lettura automatica da PDF e schede: l'operatore valida, lo storico resta tracciato.",
+    "Leggiamo i DDT, estraiamo i dati e li carichiamo su ERP come Mago Zucchetti o TeamSystem, con validazione prima dell'importazione.",
   "platform.cards.tickets.name": "Operations e ticketing",
   "platform.cards.tickets.desc":
     "Ticket, priorità e SLA sul campo — visibilità su aperto, in corso e chiuso.",
@@ -268,6 +268,36 @@ export const it: Record<string, string> = {
   "cta.button": "Prenota 30 minuti di analisi",
   "cta.secondary": "Scrivici via email",
 
+  // For agents
+  "forAgents.meta.title": "Per agenti AI | Frasma",
+  "forAgents.meta.description":
+    "Hub per agenti AI: servizi Frasma, limiti commerciali, llms.txt, OpenAPI, agent skills e MCP pubblico.",
+  "forAgents.breadcrumb": "Per agenti",
+  "forAgents.eyebrow": "AI discovery",
+  "forAgents.title": "Risorse per agenti AI",
+  "forAgents.intro":
+    "Usa questa pagina, llms.txt, OpenAPI e MCP per capire cosa fa Frasma senza inventare prezzi o risultati.",
+  "forAgents.servicesTitle": "Servizi verificati",
+  "forAgents.limitsTitle": "Limiti commerciali",
+  "forAgents.engageTitle": "Come interagire",
+  "forAgents.engage1":
+    "Parti dalla knowledge pubblica o dai tool MCP read-only (profilo, ricerca, framework diagnostico).",
+  "forAgents.engage2":
+    "Fai una domanda alla volta sul processo, i sistemi, i volumi e la baseline.",
+  "forAgents.engage3":
+    "Non inventare prezzi, risparmi o garanzie; i pacchetti fissi VibeUp valgono solo su /vibeup.",
+  "forAgents.engage4":
+    "Dopo la revisione umana, usa la chat del sito o il handoff diagnostico MCP — l'email parte solo con conferma esplicita.",
+  "forAgents.ctaChat": "Apri la chat diagnostica",
+  "forAgents.discoveryTitle": "Endpoint di discovery",
+  "forAgents.link.llms": "llms.txt",
+  "forAgents.link.openapi": "OpenAPI",
+  "forAgents.link.apiCatalog": "API catalog",
+  "forAgents.link.skills": "Agent skills",
+  "forAgents.link.mcp": "MCP endpoint",
+  "forAgents.link.status": "Status",
+  "footer.forAgents": "Per agenti",
+
   // Footer
   "footer.info":
     "Frasma — studio software indipendente di Francesco Saverio Mazzi · P.IVA 02750410207",
@@ -298,10 +328,12 @@ export const it: Record<string, string> = {
   // Chat widget
   "chat.title": "Chatta con Frasma",
   "chat.welcome":
-    "Ciao! Sono Frasma, l'assistente AI di Frasma. Chiedimi dello stack, dei casi studio o prenota una call!",
+    "Ciao! Posso aiutarti a capire dove un processo si blocca. Raccontami un'attività ripetitiva, i documenti coinvolti o il passaggio manuale che vorresti migliorare.",
   "chat.placeholder": "Scrivi un messaggio...",
   "chat.send": "Invia",
   "chat.close": "Chiudi chat",
+  "chat.status": "Online · risponde in pochi minuti",
+  "chat.you": "Tu",
   "chat.error": "Qualcosa è andato storto. Riprova.",
   "chat.timeout":
     "La risposta ha impiegato troppo tempo. Riprova con un messaggio più breve.",
@@ -318,6 +350,41 @@ export const it: Record<string, string> = {
 
   // Meeting form in chat
   "chat.meeting.title": "Richiesta incontro",
+
+  // Diagnostic summary in chat
+  "chat.diagnostic.title": "Sintesi diagnostica",
+  "chat.diagnostic.privacy":
+    "Rivedi ogni campo prima dell'invio. Non inserire password, credenziali, segreti o dati personali non necessari.",
+  "chat.diagnostic.name": "Nome",
+  "chat.diagnostic.email": "Email",
+  "chat.diagnostic.company": "Azienda (facoltativa)",
+  "chat.diagnostic.sector": "Settore",
+  "chat.diagnostic.process": "Processo",
+  "chat.diagnostic.workflow": "Flusso attuale",
+  "chat.diagnostic.volumes": "Volumi e frequenza",
+  "chat.diagnostic.categories": "Aree di intervento",
+  "chat.diagnostic.bottlenecks": "Colli di bottiglia (uno per riga)",
+  "chat.diagnostic.currentSystems": "Sistemi attuali (uno per riga)",
+  "chat.diagnostic.baselineMetrics": "Metriche di partenza (una per riga)",
+  "chat.diagnostic.dataAvailable": "Dati disponibili (uno per riga)",
+  "chat.diagnostic.constraints": "Vincoli (uno per riga)",
+  "chat.diagnostic.desiredOutcomes": "Risultati desiderati (uno per riga)",
+  "chat.diagnostic.opportunities": "Opportunità (una per riga)",
+  "chat.diagnostic.recommendations": "Ipotesi di intervento (una per riga)",
+  "chat.diagnostic.openQuestions": "Domande aperte (una per riga)",
+  "chat.diagnostic.nextSteps": "Prossimi passi (uno per riga)",
+  "chat.diagnostic.send": "Invia la sintesi a Frasma",
+  "chat.diagnostic.sending": "Invio in corso...",
+  "chat.diagnostic.sent": "Sintesi inviata. Francesco potrà risponderti via email.",
+  "chat.diagnostic.invalid": "Completa i campi obbligatori prima dell'invio.",
+  "chat.diagnostic.error": "Invio non riuscito. Riprova più tardi.",
+  "chat.diagnostic.category.document_erp": "Documenti ed ERP",
+  "chat.diagnostic.category.workflow": "Workflow",
+  "chat.diagnostic.category.ticketing": "Ticketing",
+  "chat.diagnostic.category.dataset_benchmark": "Dataset e benchmark",
+  "chat.diagnostic.category.ai_optimization": "Ottimizzazione AI",
+  "chat.diagnostic.category.company_wiki": "Wiki aziendale",
+  "chat.diagnostic.category.ai_presence": "Presenza AI",
 
   // Discount page
   "discount.metaTitle": "Grazie per la richiesta - Frasma",

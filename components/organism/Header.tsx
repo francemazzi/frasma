@@ -11,8 +11,8 @@ export default function Header() {
   const companion = t("header.companion");
 
   return (
-    <header className="sticky top-0 z-50 bg-paper border-b border-hairline">
-        <nav className="section-farm py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-50 border-b border-white/50 bg-paper/80 backdrop-blur-xl">
+        <nav className="section-farm py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 no-underline">
             <Image
               src="/logo-frasma.png"
@@ -20,19 +20,19 @@ export default function Header() {
               width={48}
               height={48}
               priority
-              className="h-12 w-12 rounded-full object-cover"
+              className="h-10 w-10 rounded-full object-cover shadow-sm"
             />
-            <span className="hidden sm:inline font-serif text-[30px] font-medium leading-none tracking-[-0.025em] text-ink">
-              Fr<em className="italic text-accent font-normal">asma</em>
+            <span className="hidden sm:inline text-[22px] font-semibold leading-none tracking-[-0.035em] text-ink">
+              Fr<span className="text-accent">asma</span>
             </span>
             {companion ? (
-              <span className="hidden sm:inline pl-3 border-l border-hairline-strong font-mono text-[10.5px] text-ink-soft tracking-[0.08em] uppercase">
+              <span className="hidden xl:inline pl-3 border-l border-hairline text-[10px] font-semibold text-ink-soft tracking-[0.08em] uppercase">
                 {companion}
               </span>
             ) : null}
           </Link>
 
-          <ul className="hidden lg:flex gap-6 list-none items-center text-[14px] text-ink">
+          <ul className="hidden lg:flex gap-7 list-none items-center text-[13px] font-medium text-ink-soft">
             <li>
               <Link href="/#casi-studio" className="hover:text-accent transition-colors">
                 {t("header.nav.cases")}
@@ -44,7 +44,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/progetti" className="hover:text-accent transition-colors">
+              <Link href="/studio" className="hover:text-accent transition-colors">
                 {t("header.nav.projects")}
               </Link>
             </li>
@@ -56,7 +56,7 @@ export default function Header() {
           </ul>
 
           <div className="flex items-center gap-4 sm:gap-5">
-            <div className="hidden sm:flex items-center gap-0 font-mono text-[11px] text-ink-soft tracking-[0.05em]">
+            <div className="flex items-center gap-0 text-[10px] font-semibold text-ink-soft tracking-[0.04em] sm:text-[11px] sm:tracking-[0.05em]">
               <button
                 type="button"
                 onClick={() => setLang("it")}

@@ -1,3 +1,6 @@
+import { knowledgeCatalog } from "./knowledge/catalog";
+import type { Locale } from "./knowledge/types";
+
 export const SITE_URL = "https://www.frasma.org";
 export const SITE_NAME = "Frasma";
 export const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
@@ -13,6 +16,42 @@ export function absoluteUrl(path = "/"): string {
   }
 
   return new URL(path, SITE_URL).toString();
+}
+
+/** Offer catalog of verified Frasma services (no price list). */
+export function serviceOfferCatalogJsonLd(locale: Locale = "it") {
+  const services = knowledgeCatalog.entries.filter(
+    (entry) => entry.category === "service",
+  );
+
+  return {
+    "@type": "OfferCatalog",
+    "@id": `${SITE_URL}/#offer-catalog`,
+    name:
+      locale === "it"
+        ? "Servizi Frasma"
+        : "Frasma services",
+    itemListElement: services.map((entry, index) => {
+      const path =
+        entry.pagePaths.find((p) => !p.includes("#")) ??
+        entry.pagePaths[0] ??
+        "/";
+      return {
+        "@type": "Offer",
+        position: index + 1,
+        itemOffered: {
+          "@type": "Service",
+          "@id": `${SITE_URL}/#service-${entry.id}`,
+          name: entry.title[locale],
+          description: entry.summary[locale],
+          url: absoluteUrl(path),
+          provider: {
+            "@id": `${SITE_URL}/#business`,
+          },
+        },
+      };
+    }),
+  };
 }
 
 export function breadcrumbJsonLd(
@@ -99,6 +138,9 @@ export const professionalServiceJsonLd = {
   ],
   priceRange: "EUR",
   taxID: "02750410207",
+  hasOfferCatalog: {
+    "@id": `${SITE_URL}/#offer-catalog`,
+  },
   sameAs: [
     "https://github.com/francemazzi",
     "https://gitlab.com/francesco.mazzi",

@@ -12,7 +12,7 @@ interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
 export function BentoGrid({ children, className = "", ...props }: BentoGridProps) {
   return (
     <div
-      className={`grid grid-cols-1 lg:grid-cols-3 auto-rows-[minmax(14rem,auto)] gap-4 ${className}`}
+      className={`grid grid-cols-1 lg:grid-cols-3 auto-rows-[minmax(15rem,auto)] gap-4 ${className}`}
       {...props}
     >
       {children}
@@ -42,19 +42,19 @@ export function BentoCard({
 
   return (
     <div
-      className={`relative flex flex-col overflow-hidden rounded-xl border border-hairline-strong bg-paper ${
+      className={`relative flex flex-col overflow-hidden rounded-[28px] border border-white/70 bg-paper/70 shadow-[0_24px_70px_-50px_rgba(27,25,22,0.75)] ${
         hasBg ? "min-h-[220px]" : "bg-paper-2"
       } ${className}`}
       {...props}
     >
       {hasBg ? (
-        <div className="h-[140px] overflow-hidden border-b border-hairline shrink-0">
+        <div className="h-[165px] overflow-hidden border-b border-white/60 shrink-0">
           {background}
         </div>
       ) : null}
 
-      <div className="flex flex-col gap-2 p-5">
-        <h3 className="font-serif text-[22px] leading-[1.15] tracking-[-0.012em] text-ink">
+      <div className="flex flex-col gap-2 p-6">
+        <h3 className="text-[22px] font-semibold leading-[1.15] tracking-[-0.035em] text-ink">
           {name}
         </h3>
         <p className="max-w-[42ch] text-[13.5px] leading-[1.55] text-ink-soft">

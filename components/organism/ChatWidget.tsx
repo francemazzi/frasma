@@ -4,6 +4,17 @@ import { useRouter } from "next/router";
 import { X, Send, Loader2, Mail, Calendar } from "lucide-react";
 import { validateMeetingFormFields } from "../../lib/meetingFormValidation";
 import { useT, useLang } from "../../lib/i18n/context";
+import {
+  safeParseDiagnosticSummary,
+  type DiagnosticSummary,
+  type NeedCategory,
+} from "../../lib/chat/diagnostic";
+import {
+  extractDiagnosticForm,
+  extractEmailForm,
+  extractMeetingForm,
+  stripFormMarkers,
+} from "../../lib/chat/markers";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -22,8 +33,6 @@ type MeetingFormData = {
   timezone: string;
 };
 
-const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
-const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
 const DISCOUNT_PATH = "/discount?conv=contact";
 
 function redirectToDiscount(): void {
@@ -36,34 +45,14 @@ function parseAssistantMessage(content: string): {
   text: string;
   emailForm: EmailFormData | null;
   meetingForm: MeetingFormData | null;
+  diagnosticForm: DiagnosticSummary | null;
 } {
-  let emailForm: EmailFormData | null = null;
-  const emailMatch = content.match(EMAIL_FORM_RE);
-  if (emailMatch) {
-    try {
-      emailForm = JSON.parse(emailMatch[1]) as EmailFormData;
-    } catch {
-      emailForm = null;
-    }
-  }
+  const emailForm = extractEmailForm<EmailFormData>(content);
+  const meetingForm = extractMeetingForm<MeetingFormData>(content);
+  const diagnosticForm = extractDiagnosticForm(content);
+  const text = stripFormMarkers(content);
 
-  let meetingForm: MeetingFormData | null = null;
-  const meetingMatch = content.match(MEETING_FORM_RE);
-  if (meetingMatch) {
-    try {
-      meetingForm = JSON.parse(meetingMatch[1]) as MeetingFormData;
-    } catch {
-      meetingForm = null;
-    }
-  }
-
-  const text = content
-    .replace(EMAIL_FORM_RE, "")
-    .replace(MEETING_FORM_RE, "")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
-
-  return { text, emailForm, meetingForm };
+  return { text, emailForm, meetingForm, diagnosticForm };
 }
 
 /* ------------------------------------------------------------------ */
@@ -84,6 +73,7 @@ function InlineEmailForm({
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   const handleSend = async () => {
     setSending(true);
@@ -96,6 +86,7 @@ function InlineEmailForm({
           clientEmail: form.clientEmail,
           subject,
           body,
+          honeypot,
         }),
       });
       if (res.ok) {
@@ -157,6 +148,17 @@ function InlineEmailForm({
       {error && (
         <p className="text-xs text-red-500">{t("chat.email.error")}</p>
       )}
+
+      <input
+        type="text"
+        name="website"
+        value={honeypot}
+        onChange={(event) => setHoneypot(event.currentTarget.value)}
+        className="absolute h-0 w-0 opacity-0 pointer-events-none"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
 
       <div className="flex gap-2 justify-end">
         <button
@@ -387,6 +389,303 @@ function InlineMeetingForm({
 }
 
 /* ------------------------------------------------------------------ */
+/*  Inline diagnostic summary                                         */
+/* ------------------------------------------------------------------ */
+
+const NEED_CATEGORIES: NeedCategory[] = [
+  "document_erp",
+  "workflow",
+  "ticketing",
+  "dataset_benchmark",
+  "ai_optimization",
+  "company_wiki",
+  "ai_presence",
+];
+
+type DiagnosticListField =
+  | "bottlenecks"
+  | "currentSystems"
+  | "baselineMetrics"
+  | "dataAvailable"
+  | "constraints"
+  | "desiredOutcomes"
+  | "opportunities"
+  | "recommendations"
+  | "openQuestions"
+  | "nextSteps";
+
+function splitLines(value: string): string[] {
+  return value
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function DiagnosticListInput({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string[];
+  onChange: (value: string[]) => void;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-[11px] font-semibold text-ink">{label}</span>
+      <textarea
+        rows={3}
+        value={value.join("\n")}
+        onChange={(event) => onChange(splitLines(event.currentTarget.value))}
+        className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs leading-relaxed text-ink focus:border-accent focus:outline-none"
+      />
+    </label>
+  );
+}
+
+function InlineDiagnosticForm({
+  form,
+  onSent,
+  t,
+}: {
+  form: DiagnosticSummary;
+  onSent: () => void;
+  t: (key: string) => string;
+}) {
+  const [summary, setSummary] = useState(form);
+  const [honeypot, setHoneypot] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const updateText = (
+    field:
+      | "clientName"
+      | "clientEmail"
+      | "clientCompany"
+      | "sector"
+      | "process"
+      | "currentWorkflow"
+      | "volumesAndFrequency",
+    value: string,
+  ) => {
+    setSummary((current) => ({ ...current, [field]: value }));
+  };
+
+  const updateList = (field: DiagnosticListField, value: string[]) => {
+    setSummary((current) => ({ ...current, [field]: value }));
+  };
+
+  const toggleCategory = (category: NeedCategory) => {
+    setSummary((current) => ({
+      ...current,
+      needCategories: current.needCategories.includes(category)
+        ? current.needCategories.filter((item) => item !== category)
+        : [...current.needCategories, category],
+    }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setErrorMessage("");
+
+    const parsed = safeParseDiagnosticSummary({ ...summary, honeypot });
+    if (!parsed.success) {
+      setErrorMessage(t("chat.diagnostic.invalid"));
+      return;
+    }
+
+    setSending(true);
+    try {
+      const response = await fetch("/api/send-diagnostic-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
+      const result = (await response.json().catch(() => null)) as
+        | { ok: true }
+        | { ok: false; error?: string }
+        | null;
+
+      if (!response.ok || !result || result.ok !== true) {
+        setErrorMessage(t("chat.diagnostic.error"));
+        return;
+      }
+
+      setSent(true);
+      onSent();
+      redirectToDiscount();
+    } catch {
+      setErrorMessage(t("chat.diagnostic.error"));
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (sent) {
+    return (
+      <div className="mt-2 flex items-center gap-2 text-xs font-medium text-sage-600">
+        <Mail size={14} />
+        {t("chat.diagnostic.sent")}
+      </div>
+    );
+  }
+
+  return (
+    <form
+      className="relative mt-3 space-y-3 rounded-xl border border-hairline-strong bg-white/55 p-3"
+      onSubmit={(event) => void handleSubmit(event)}
+    >
+      <div>
+        <div className="flex items-center gap-2 text-xs font-semibold text-accent">
+          <Mail size={14} />
+          {t("chat.diagnostic.title")}
+        </div>
+        <p className="mt-1 text-[10.5px] leading-relaxed text-ink-soft">
+          {t("chat.diagnostic.privacy")}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <label>
+          <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.name")}</span>
+          <input
+            value={summary.clientName}
+            onChange={(event) => updateText("clientName", event.currentTarget.value)}
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+          />
+        </label>
+        <label>
+          <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.email")}</span>
+          <input
+            type="email"
+            value={summary.clientEmail}
+            onChange={(event) => updateText("clientEmail", event.currentTarget.value)}
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+          />
+        </label>
+      </div>
+
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.company")}</span>
+        <input
+          value={summary.clientCompany ?? ""}
+          onChange={(event) => updateText("clientCompany", event.currentTarget.value)}
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+        />
+      </label>
+
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <label>
+          <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.sector")}</span>
+          <input
+            value={summary.sector}
+            onChange={(event) => updateText("sector", event.currentTarget.value)}
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+          />
+        </label>
+        <label>
+          <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.process")}</span>
+          <input
+            value={summary.process}
+            onChange={(event) => updateText("process", event.currentTarget.value)}
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+          />
+        </label>
+      </div>
+
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.workflow")}</span>
+        <textarea
+          rows={4}
+          value={summary.currentWorkflow}
+          onChange={(event) => updateText("currentWorkflow", event.currentTarget.value)}
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs leading-relaxed focus:border-accent focus:outline-none"
+        />
+      </label>
+
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.volumes")}</span>
+        <textarea
+          rows={2}
+          value={summary.volumesAndFrequency}
+          onChange={(event) => updateText("volumesAndFrequency", event.currentTarget.value)}
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs leading-relaxed focus:border-accent focus:outline-none"
+        />
+      </label>
+
+      <div>
+        <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.categories")}</span>
+        <div className="flex flex-wrap gap-1.5">
+          {NEED_CATEGORIES.map((category) => (
+            <label
+              key={category}
+              className={`cursor-pointer rounded-full border px-2 py-1 text-[10px] ${
+                summary.needCategories.includes(category)
+                  ? "border-accent bg-accent text-paper"
+                  : "border-hairline-strong text-ink-soft"
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={summary.needCategories.includes(category)}
+                onChange={() => toggleCategory(category)}
+                className="sr-only"
+              />
+              {t(`chat.diagnostic.category.${category}`)}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {(
+        [
+          "bottlenecks",
+          "currentSystems",
+          "baselineMetrics",
+          "dataAvailable",
+          "constraints",
+          "desiredOutcomes",
+          "opportunities",
+          "recommendations",
+          "openQuestions",
+          "nextSteps",
+        ] as DiagnosticListField[]
+      ).map((field) => (
+        <DiagnosticListInput
+          key={field}
+          label={t(`chat.diagnostic.${field}`)}
+          value={summary[field]}
+          onChange={(value) => updateList(field, value)}
+        />
+      ))}
+
+      <input
+        type="text"
+        name="website"
+        value={honeypot}
+        onChange={(event) => setHoneypot(event.currentTarget.value)}
+        className="absolute h-0 w-0 opacity-0 pointer-events-none"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
+      {errorMessage ? <p className="text-xs text-red-600">{errorMessage}</p> : null}
+
+      <button
+        type="submit"
+        disabled={sending}
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-ink px-3 py-2 text-xs font-semibold text-paper transition-colors hover:bg-accent disabled:opacity-50"
+      >
+        {sending ? <Loader2 size={13} className="animate-spin" /> : <Send size={13} />}
+        {sending ? t("chat.diagnostic.sending") : t("chat.diagnostic.send")}
+      </button>
+    </form>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Chat widget                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -459,6 +758,7 @@ export default function ChatWidget() {
           messages: nextMessages,
           lang,
           timezone,
+          pagePath: router.asPath,
         }),
         signal: AbortSignal.timeout(CHAT_FETCH_TIMEOUT_MS),
       });
@@ -506,7 +806,7 @@ export default function ChatWidget() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading, messages, lang, t]);
+  }, [input, loading, messages, lang, router.asPath, t]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -526,6 +826,13 @@ export default function ChatWidget() {
     setMessages((prev) => [
       ...prev,
       { role: "assistant", content: t("cal.success") },
+    ]);
+  }, [t]);
+
+  const handleDiagnosticSent = useCallback(() => {
+    setMessages((prev) => [
+      ...prev,
+      { role: "assistant", content: t("chat.diagnostic.sent") },
     ]);
   }, [t]);
 
@@ -585,7 +892,7 @@ export default function ChatWidget() {
                   animation: "pulse 2s infinite",
                 }}
               />
-              online · risponde in pochi minuti
+              {t("chat.status")}
             </div>
             <button
               type="button"
@@ -603,20 +910,21 @@ export default function ChatWidget() {
             className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-[22px] py-[18px] flex flex-col gap-[18px]"
           >
             {messages.map((msg, i) => {
-              const { text, emailForm, meetingForm } =
+              const { text, emailForm, meetingForm, diagnosticForm } =
                 msg.role === "assistant"
                   ? parseAssistantMessage(msg.content)
                   : {
                       text: msg.content,
                       emailForm: null,
                       meetingForm: null,
+                      diagnosticForm: null,
                     };
 
               if (msg.role === "user") {
                 return (
                   <div key={i} className="self-end max-w-[86%] flex flex-col items-end">
                     <span className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-ink-faint text-right">
-                      tu
+                      {t("chat.you")}
                     </span>
                     <div className="bg-ink text-paper px-[14px] py-[10px] rounded-[16px_16px_4px_16px] text-[13.5px] leading-[1.5] whitespace-pre-wrap break-words">
                       {text}
@@ -649,6 +957,13 @@ export default function ChatWidget() {
                       onSent={handleMeetingSent}
                       t={t}
                       lang={lang}
+                    />
+                  ) : null}
+                  {diagnosticForm ? (
+                    <InlineDiagnosticForm
+                      form={diagnosticForm}
+                      onSent={handleDiagnosticSent}
+                      t={t}
                     />
                   ) : null}
                 </div>

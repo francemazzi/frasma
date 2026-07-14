@@ -3,7 +3,7 @@
   "info": {
     "title": "Frasma Public Website API",
     "version": "0.1.0",
-    "description": "Public API description for Frasma website contact, chat, scheduling, email request, and service status endpoints."
+    "description": "Public API description for Frasma website contact, chat, scheduling, diagnostic summary, MCP, and service status endpoints."
   },
   "servers": [
     {
@@ -155,6 +155,86 @@
           }
         }
       }
+    },
+    "/api/send-diagnostic-summary": {
+      "post": {
+        "operationId": "sendDiagnosticSummary",
+        "summary": "Send a reviewed process diagnostic summary",
+        "description": "Validates and emails a user-reviewed diagnostic summary. The endpoint does not persist the payload.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiagnosticSummaryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Diagnostic summary sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "405": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "429": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "500": {
+            "$ref": "#/components/responses/BooleanError"
+          }
+        }
+      }
+    },
+    "/api/mcp": {
+      "post": {
+        "operationId": "mcpStreamableHttp",
+        "summary": "Model Context Protocol (Streamable HTTP)",
+        "description": "Public read-only MCP endpoint exposing Frasma profile, knowledge search, diagnostic framework, and diagnostic summary handoff (no email send).",
+        "responses": {
+          "200": {
+            "description": "MCP JSON-RPC response"
+          },
+          "405": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      },
+      "get": {
+        "operationId": "mcpStreamableHttpGet",
+        "summary": "MCP Streamable HTTP session / SSE resume",
+        "responses": {
+          "200": {
+            "description": "MCP stream or session response"
+          },
+          "405": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "mcpStreamableHttpDelete",
+        "summary": "End MCP session",
+        "responses": {
+          "200": {
+            "description": "Session ended"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -191,7 +271,8 @@
           },
           "content": {
             "type": "string",
-            "maxLength": 2000
+            "maxLength": 30000,
+            "description": "User messages are limited to 2000 characters; assistant messages may include a reviewed structured form up to 30000 characters."
           }
         }
       },
@@ -214,6 +295,11 @@
           "timezone": {
             "type": "string",
             "examples": ["Europe/Rome"]
+          },
+          "pagePath": {
+            "type": "string",
+            "description": "Current public website path used to prioritize verified knowledge.",
+            "examples": ["/", "/studio"]
           }
         }
       },
@@ -281,7 +367,91 @@
           "body": {
             "type": "string",
             "maxLength": 5000
+          },
+          "honeypot": {
+            "type": "string",
+            "maxLength": 0,
+            "description": "Spam-prevention field. Leave empty."
           }
+        }
+      },
+      "DiagnosticSummaryRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "clientName",
+          "clientEmail",
+          "sector",
+          "process",
+          "currentWorkflow",
+          "bottlenecks",
+          "currentSystems",
+          "volumesAndFrequency",
+          "baselineMetrics",
+          "dataAvailable",
+          "constraints",
+          "desiredOutcomes",
+          "needCategories",
+          "opportunities",
+          "recommendations",
+          "openQuestions",
+          "nextSteps",
+          "language"
+        ],
+        "properties": {
+          "clientName": { "type": "string", "maxLength": 120 },
+          "clientEmail": { "type": "string", "format": "email", "maxLength": 254 },
+          "clientCompany": { "type": "string", "maxLength": 160 },
+          "sector": { "type": "string", "maxLength": 160 },
+          "process": { "type": "string", "maxLength": 240 },
+          "currentWorkflow": { "type": "string", "maxLength": 2000 },
+          "bottlenecks": { "$ref": "#/components/schemas/DiagnosticList" },
+          "currentSystems": { "$ref": "#/components/schemas/DiagnosticList" },
+          "volumesAndFrequency": { "type": "string", "maxLength": 1000 },
+          "baselineMetrics": { "$ref": "#/components/schemas/DiagnosticList" },
+          "dataAvailable": { "$ref": "#/components/schemas/DiagnosticList" },
+          "constraints": { "$ref": "#/components/schemas/DiagnosticList" },
+          "desiredOutcomes": { "$ref": "#/components/schemas/DiagnosticList" },
+          "needCategories": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 7,
+            "items": {
+              "type": "string",
+              "enum": [
+                "document_erp",
+                "workflow",
+                "ticketing",
+                "dataset_benchmark",
+                "ai_optimization",
+                "company_wiki",
+                "ai_presence"
+              ]
+            }
+          },
+          "opportunities": { "$ref": "#/components/schemas/DiagnosticList" },
+          "recommendations": { "$ref": "#/components/schemas/DiagnosticList" },
+          "openQuestions": {
+            "type": "array",
+            "maxItems": 20,
+            "items": { "type": "string", "maxLength": 800 }
+          },
+          "nextSteps": { "$ref": "#/components/schemas/DiagnosticList" },
+          "language": { "type": "string", "enum": ["it", "en"] },
+          "honeypot": {
+            "type": "string",
+            "maxLength": 0,
+            "description": "Spam-prevention field. Leave empty."
+          }
+        }
+      },
+      "DiagnosticList": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 20,
+        "items": {
+          "type": "string",
+          "maxLength": 800
         }
       },
       "StatusResponse": {

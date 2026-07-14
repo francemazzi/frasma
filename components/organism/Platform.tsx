@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Check } from "lucide-react";
 
 import { useT } from "../../lib/i18n/context";
@@ -29,11 +30,11 @@ export default function Platform() {
   return (
     <section id="piattaforma" className="ed-section">
       <div className="section-farm">
-        <div className="mb-10 sm:mb-14">
+        <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
           <div className="ed-kicker">{t("search.eyebrow")}</div>
-          <h2 className="ed-title max-w-[28ch]">{t("search.title")}</h2>
+          <h2 className="ed-title">{t("search.title")}</h2>
+          <p className="ed-intro mx-auto mt-6">{t("search.description")}</p>
         </div>
-        <p className="ed-intro mb-10 sm:mb-12">{t("search.description")}</p>
 
         <BentoGrid>
           <BentoCard
@@ -70,22 +71,30 @@ export default function Platform() {
 
 function AiPresence({ t }: { t: (key: string) => string }) {
   return (
-    <div className="mt-10 border-t border-hairline pt-10">
-      <div className="max-w-3xl mb-8">
+    <div className="mt-20 rounded-[32px] bg-ink p-7 text-paper sm:p-12">
+      <div className="max-w-3xl mb-10">
         <div className="ed-kicker">{t("aiPresence.eyebrow")}</div>
-        <h3 className="ed-title max-w-[24ch] mb-4">{t("aiPresence.title")}</h3>
-        <p className="ed-intro">{t("aiPresence.desc")}</p>
+        <h3 className="mb-5 text-[34px] font-semibold leading-[1.05] tracking-[-0.045em] text-paper sm:text-[52px]">{t("aiPresence.title")}</h3>
+        <p className="max-w-[58ch] text-[17px] leading-[1.55] text-paper/65">{t("aiPresence.desc")}</p>
+        <p className="mt-6">
+          <Link
+            href="/for-agents"
+            className="text-[14px] font-semibold text-accent underline-offset-2 hover:underline"
+          >
+            {t("footer.forAgents")} →
+          </Link>
+        </p>
       </div>
 
-      <div className="max-w-3xl">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
         {AI_PRESENCE_ITEMS.map((item) => (
-          <div key={item.number} className="ed-list-row">
-            <span className="ed-list-num">{item.number}</span>
+          <div key={item.number} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+            <span className="mb-6 block text-[11px] font-semibold text-accent">{item.number}</span>
             <div>
-              <h4 className="text-[15px] font-semibold text-ink mb-2">
+              <h4 className="text-[15px] font-semibold text-paper mb-2">
                 {t(item.titleKey)}
               </h4>
-              <p className="text-[14px] leading-[1.55] text-ink-soft">
+              <p className="text-[14px] leading-[1.55] text-paper/60">
                 {t(item.descKey)}
               </p>
             </div>
@@ -129,44 +138,44 @@ function Shell({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ── 1: Agent extraction ───────────────────────────────── */
+/* ── 1: Delivery note extraction ───────────────────────── */
 
 function AgentMock() {
   return (
     <Shell>
-      <MockHead label="DOCUMENTI · EMILIO" em="agronomia" meta="RUN · 03:42" />
+      <MockHead label="DDT · ACQUISIZIONE" em="Mago / TeamSystem" meta="RUN · 00:18" />
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="flex-1 p-4 bg-white border-b sm:border-b-0 sm:border-r border-hairline-strong font-serif text-[11px] leading-[1.6] text-ink-2">
           <h6 className="font-mono text-[9.5px] text-ink-soft tracking-[0.12em] uppercase mb-3 pb-2 border-b border-hairline">
-            Scheda fitosanitaria · PDF · pag. 1/2
+            Documento di trasporto · PDF · pag. 1/1
           </h6>
           <p className="mb-2 text-[11.5px] font-medium text-ink">
-            Trattamento <HL>Mospilan 20 SG</HL>
+            DDT n. <HL>1842</HL> del <HL>12/05/2026</HL>
           </p>
           <p className="mb-2 text-[11.5px]">
-            Coltura: <HL>vite — Sangiovese</HL>, lotto <HL>B-2024-117</HL>. Dose impiegata{" "}
-            <HL>0,25 kg/ha</HL> in <HL>600 L/ha</HL> di acqua.
+            Fornitore: <HL>Acciai Lombardi S.p.A.</HL>. Destinazione:{" "}
+            <HL>Magazzino centrale</HL>.
           </p>
           <p className="mb-2 text-[11.5px]">
-            Carenza giorni: <HL>14</HL>. Trattamento effettuato il <HL>12/05/2026</HL> ore{" "}
-            <HL>06:30 — 09:10</HL>, temperatura 14°C, umidità 68%.
+            <HL>12 righe articolo</HL>, imponibile <HL>€ 4.860,00</HL>. Ordine collegato{" "}
+            <HL>OA-2026-391</HL>.
           </p>
           <p className="text-ink-soft text-[10.5px]">
-            Note: nebulizzazione regolare, vento &lt; 5 km/h. Operatore patentino n° 4423.
+            Dati letti dal PDF e pronti per la validazione prima del caricamento in ERP.
           </p>
         </div>
         <div className="w-full sm:w-[220px] p-[14px] bg-paper-2 flex flex-col">
           <h6 className="font-mono text-[9.5px] text-ink-soft tracking-[0.12em] uppercase mb-2 pb-2 border-b border-hairline flex justify-between">
-            <span>Dati estratti</span>
-            <span className="text-[#5a8a3f] tracking-[0.08em]">● LIVE</span>
+            <span>Dati per ERP</span>
+            <span className="text-[#5a8a3f] tracking-[0.08em]">● VALIDATO</span>
           </h6>
-          <Field k="Prodotto" v="Mospilan 20 SG" conf="0.98" />
-          <Field k="Coltura" v="Vite · Sangiovese" conf="0.96" />
-          <Field k="Lotto" v="B-2024-117" conf="0.99" />
-          <Field k="Dose" v="0,25 kg/ha" conf="0.97" />
-          <Field k="Carenza" v="14 g" conf="0.81" warn last />
+          <Field k="Numero DDT" v="1842" conf="0.99" />
+          <Field k="Fornitore" v="Acciai Lombardi" conf="0.98" />
+          <Field k="Data" v="12/05/2026" conf="0.99" />
+          <Field k="Righe" v="12 articoli" conf="0.96" />
+          <Field k="Totale" v="€ 4.860,00" conf="0.94" last />
           <div className="mt-auto pt-3 flex gap-2">
-            <BtnMini>Conferma</BtnMini>
+            <BtnMini>Carica ERP</BtnMini>
             <BtnMini ghost>Modifica</BtnMini>
           </div>
         </div>

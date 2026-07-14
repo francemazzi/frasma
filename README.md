@@ -57,6 +57,90 @@ Notes:
 - In production you should set these variables in your hosting provider (e.g. Vercel).
 - If neither SMTP nor Resend is configured, the API returns an error and the popup shows it to the user.
 
+## Diagnostic chat agent
+
+The website chat is a stateless process-diagnostic assistant. It uses the bilingual, versioned knowledge base in `lib/knowledge/` to:
+
+- identify operational bottlenecks;
+- collect workflow, systems, volumes, baseline metrics, data, and constraints;
+- map the need to Frasma capabilities;
+- prepare an editable diagnostic summary;
+- email the summary only after explicit user review and confirmation.
+
+Conversation state remains in the browser and is sent to `POST /api/chat` on each turn. No database or server-side chat session is used. The reviewed summary is submitted to `POST /api/send-diagnostic-summary` and delivered through the same SMTP or Resend configuration used by meeting requests.
+
+Do not add prices, guaranteed savings, customer secrets, credentials, or personal data about third parties to the knowledge base or diagnostic examples.
+
+Required chat environment variable:
+
+```bash
+OPENAI_API_KEY=your_openai_api_key
+
+# Optional; defaults to gpt-4o-mini
+OPENAI_CHAT_MODEL=gpt-4o-mini
+```
+
+## AI discovery and public MCP
+
+Public discovery surfaces for agents and humans:
+
+| Resource | URL |
+|----------|-----|
+| Agents hub | https://www.frasma.org/for-agents |
+| llms.txt | https://www.frasma.org/llms.txt |
+| Home markdown | `GET /` with `Accept: text/markdown` |
+| OpenAPI | https://www.frasma.org/openapi.json |
+| API catalog | https://www.frasma.org/.well-known/api-catalog |
+| Agent skills | https://www.frasma.org/.well-known/agent-skills/index.json |
+| MCP (Streamable HTTP) | https://www.frasma.org/api/mcp |
+
+### MCP tools (read-only + handoff)
+
+- `get_frasma_profile`
+- `search_frasma_knowledge`
+- `get_diagnostic_framework`
+- `prepare_diagnostic_summary` — validates a summary and returns handoff URLs; **never sends email**
+
+Example Cursor / Claude Desktop remote config:
+
+```json
+{
+  "mcpServers": {
+    "frasma": {
+      "url": "https://www.frasma.org/api/mcp"
+    }
+  }
+}
+```
+
+For stdio-only clients:
+
+```json
+{
+  "mcpServers": {
+    "frasma": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://www.frasma.org/api/mcp"]
+    }
+  }
+}
+```
+
+### Directory listing (after production deploy)
+
+1. Confirm `/for-agents`, `/llms.txt`, and `/api/mcp` respond in production.
+2. Smoke: `curl -H 'Accept: text/markdown' https://www.frasma.org/` and an MCP `initialize` + `tools/list` against `/api/mcp`.
+3. Submit the server to relevant MCP directories with the short description from `/for-agents`.
+4. Keep the agent-skills digest in sync when `SKILL.md` changes (`shasum -a 256`).
+
+Quality checks:
+
+```bash
+npm run lint
+npm test
+npm run build
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

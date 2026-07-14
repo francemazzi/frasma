@@ -4,9 +4,9 @@
     {
       "name": "contact-francesco",
       "type": "skill-md",
-      "description": "Helps agents understand Frasma services and guide users toward quote requests or scheduled calls with Francesco Saverio Mazzi.",
+      "description": "Helps agents diagnose operational bottlenecks, understand Frasma services, and guide users toward reviewed summaries or scheduled calls.",
       "url": "https://www.frasma.org/.well-known/agent-skills/contact-francesco/SKILL.md",
-      "digest": "sha256:4c9b7cdfe75ae09126d0fe43469a6828bb26c97366040cfa02cc935fe52d314c"
+      "digest": "sha256:e664995911a96ce948643f61f3e2e73ed088b2ff148678177f737e9ea2e1ed89"
     }
   ]
 }

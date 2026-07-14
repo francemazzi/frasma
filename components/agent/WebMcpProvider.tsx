@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { getFrasmaProfile, knowledgeCatalog } from "../../lib/knowledge";
 
 type ModelContextLike = {
   registerTool?: (...args: unknown[]) => unknown;
@@ -34,7 +35,9 @@ declare global {
 
 const NAVIGATION_PATHS = [
   "/",
+  "/for-agents",
   "/progetti",
+  "/studio",
   "/blog",
   "/programmatore-freelance",
   "/manifattura",
@@ -124,31 +127,33 @@ const WEB_MCP_TOOLS: WebMcpTool[] = [
       additionalProperties: false,
       properties: {},
     },
-    execute: () => ({
-      name: "Frasma",
-      owner: "Francesco Saverio Mazzi",
-      website: "https://www.frasma.org/",
-      services: [
-        "Custom web applications",
-        "AI automations",
-        "Agent and MCP integration strategy",
-        "ERP and API integrations",
-        "Operational workflow software",
-      ],
-      focusAreas: [
-        "manufacturing",
-        "food and quality",
-        "agriculture and agronomy",
-        "field service",
-      ],
-      discovery: {
-        apiCatalog: "https://www.frasma.org/.well-known/api-catalog",
-        openapi: "https://www.frasma.org/openapi.json",
-        agentSkills:
-          "https://www.frasma.org/.well-known/agent-skills/index.json",
-        status: "https://www.frasma.org/api/status",
-      },
-    }),
+    execute: () => {
+      const profile = getFrasmaProfile("en");
+      const services = knowledgeCatalog.entries
+        .filter((entry) => entry.category === "service")
+        .map((entry) => ({
+          id: entry.id,
+          name: entry.title.en,
+          description: entry.summary.en,
+        }));
+
+      return {
+        ...profile,
+        owner: profile.founder,
+        website: "https://www.frasma.org/",
+        services,
+        discovery: {
+          forAgents: "https://www.frasma.org/for-agents",
+          llmsTxt: "https://www.frasma.org/llms.txt",
+          mcp: "https://www.frasma.org/api/mcp",
+          apiCatalog: "https://www.frasma.org/.well-known/api-catalog",
+          openapi: "https://www.frasma.org/openapi.json",
+          agentSkills:
+            "https://www.frasma.org/.well-known/agent-skills/index.json",
+          status: "https://www.frasma.org/api/status",
+        },
+      };
+    },
   },
   {
     name: "navigate_frasma",

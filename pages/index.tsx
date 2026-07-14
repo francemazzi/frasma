@@ -8,16 +8,18 @@ import Founder from "../components/organism/Founder";
 import CallToAction from "../components/organism/CallToAction";
 import Footer from "../components/organism/Footer";
 import Seo from "../components/Seo";
-import { useT } from "../lib/i18n/context";
+import { useLang, useT } from "../lib/i18n/context";
 import {
   breadcrumbJsonLd,
   personJsonLd,
   professionalServiceJsonLd,
+  serviceOfferCatalogJsonLd,
   websiteJsonLd,
 } from "../lib/seo";
 
 export default function Home() {
   const t = useT();
+  const { lang } = useLang();
   const title = t("meta.title");
   const description = t("meta.description");
 
@@ -31,6 +33,7 @@ export default function Home() {
           websiteJsonLd,
           professionalServiceJsonLd,
           personJsonLd,
+          serviceOfferCatalogJsonLd(lang),
           breadcrumbJsonLd([{ name: "Home", path: "/" }]),
         ]}
       />
