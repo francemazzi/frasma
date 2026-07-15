@@ -336,7 +336,7 @@ export const it: Record<string, string> = {
   "chat.you": "Tu",
   "chat.error": "Qualcosa è andato storto. Riprova.",
   "chat.timeout":
-    "La risposta ha impiegato troppo tempo. Riprova con un messaggio più breve.",
+    "La risposta ha impiegato troppo tempo. Riprova tra qualche secondo.",
 
   // Email form in chat
   "chat.email.title": "Bozza Email",

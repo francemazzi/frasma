@@ -23,8 +23,7 @@ import {
   searchKnowledge,
 } from "../../lib/knowledge";
 
-const CHAT_INVOKE_TIMEOUT_MS = 12_000;
-const DRAFT_QUOTE_MINI_TIMEOUT_MS = 9_000;
+const CHAT_INVOKE_TIMEOUT_MS = 14_000;
 
 function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -140,73 +139,90 @@ const scheduleMeetingTool = tool(
   },
 );
 
-const draftQuoteEmailTool = tool(
-  async (input) => {
-    const miniModel = new ChatOpenAI({
-      modelName: "gpt-4o-mini",
-      temperature: 0.3,
-      openAIApiKey: process.env.OPENAI_API_KEY,
-    });
+type QuoteEmailInput = {
+  clientName: string;
+  clientEmail: string;
+  clientCompany?: string;
+  projectDescription: string;
+  budget?: string;
+  timeline?: string;
+  notes?: string;
+  locale?: "it" | "en";
+};
 
-    const prompt = `You are drafting a quote request email on behalf of a potential client for Francesco Saverio Mazzi, a software developer.
-Francesco's stack: TypeScript, Python, React, Next.js, Flutter, FastAPI, LangChain, PostgreSQL, MongoDB, Docker, AWS, GCP, Firebase.
-Francesco's areas: Manufacturing, Agriculture, Food, LLM Agents.
+/** Builds a structured quote-request draft without a nested LLM call (avoids chat timeouts). */
+function buildQuoteEmailDraft(input: QuoteEmailInput): {
+  subject: string;
+  body: string;
+  clientEmail: string;
+  clientName: string;
+} {
+  const locale = input.locale ?? "it";
+  const isEn = locale === "en";
+  const notSpecified = isEn ? "Not specified" : "Non specificato";
+  const none = isEn ? "None" : "Nessuna";
 
-Client details:
-- Name: ${input.clientName}
-- Email: ${input.clientEmail}
-- Company: ${input.clientCompany || "Not specified"}
-- Project description: ${input.projectDescription}
-- Budget indication: ${input.budget || "Not specified"}
-- Timeline preference: ${input.timeline || "Not specified"}
-- Additional notes: ${input.notes || "None"}
+  const projectSnippet = input.projectDescription.trim().slice(0, 60);
+  const subject = isEn
+    ? `Quote request — ${projectSnippet} — ${input.clientName}`
+    : `Richiesta preventivo — ${projectSnippet} — ${input.clientName}`;
 
-Write a clear, structured email in the same language as the project description. The email should include:
-1. Client contact info summary
-2. Project requirements (organized clearly)
-3. Suggested tech stack from Francesco's toolkit
-4. Budget/timeline preferences if provided
-5. Next steps (Francesco will review and reply with a detailed quote)
+  const body = isEn
+    ? [
+        "Quote request for Francesco Saverio Mazzi",
+        "",
+        "Contact",
+        `- Name: ${input.clientName}`,
+        `- Email: ${input.clientEmail}`,
+        `- Company: ${input.clientCompany?.trim() || notSpecified}`,
+        "",
+        "Project",
+        input.projectDescription.trim(),
+        "",
+        "Budget / timeline",
+        `- Budget: ${input.budget?.trim() || notSpecified}`,
+        `- Timeline: ${input.timeline?.trim() || notSpecified}`,
+        "",
+        "Additional notes",
+        input.notes?.trim() || none,
+        "",
+        "Next steps: please review and reply with a detailed quote. Do not include hour estimates or pricing in this draft.",
+      ].join("\n")
+    : [
+        "Richiesta di preventivo per Francesco Saverio Mazzi",
+        "",
+        "Contatto",
+        `- Nome: ${input.clientName}`,
+        `- Email: ${input.clientEmail}`,
+        `- Azienda: ${input.clientCompany?.trim() || notSpecified}`,
+        "",
+        "Progetto",
+        input.projectDescription.trim(),
+        "",
+        "Budget / tempistica",
+        `- Budget: ${input.budget?.trim() || notSpecified}`,
+        `- Tempistica: ${input.timeline?.trim() || notSpecified}`,
+        "",
+        "Note aggiuntive",
+        input.notes?.trim() || none,
+        "",
+        "Prossimi passi: Francesco esaminerà la richiesta e risponderà con un preventivo dettagliato. Non includere stime orarie o prezzi in questa bozza.",
+      ].join("\n");
 
-Do NOT include hour estimates or pricing — Francesco will evaluate that himself.
-
-Return your answer as JSON with exactly these two fields:
-{
-  "subject": "The email subject line",
-  "body": "The full email body text"
+  return {
+    subject,
+    body,
+    clientEmail: input.clientEmail,
+    clientName: input.clientName,
+  };
 }
-Return ONLY valid JSON, nothing else.`;
 
-    const response = await withTimeout(
-      miniModel.invoke([new HumanMessage(prompt)]),
-      DRAFT_QUOTE_MINI_TIMEOUT_MS,
-    );
-    const raw =
-      typeof response.content === "string"
-        ? response.content
-        : JSON.stringify(response.content);
-
-    try {
-      const parsed = JSON.parse(raw);
-      return JSON.stringify({
-        subject: parsed.subject,
-        body: parsed.body,
-        clientEmail: input.clientEmail,
-        clientName: input.clientName,
-      });
-    } catch {
-      return JSON.stringify({
-        subject: `Quote Request from ${input.clientName}`,
-        body: raw,
-        clientEmail: input.clientEmail,
-        clientName: input.clientName,
-      });
-    }
-  },
+const draftQuoteEmailTool = tool(
+  async (input) => JSON.stringify(buildQuoteEmailDraft(input)),
   {
     name: "draft_quote_email",
     description:
-      "Generate a draft quote request email with all the project details collected from the user. Use this AFTER the user has confirmed they want to send an email AND you have collected: client name, email, project description. Optional: company, budget, timeline, notes. The tool returns JSON with subject, body, clientEmail, clientName.",
+      "Generate a draft quote request email with all the project details collected from the user. Use this AFTER the user has confirmed they want to send an email AND you have collected: client name, email, project description. Optional: company, budget, timeline, notes, locale. The tool returns JSON with subject, body, clientEmail, clientName.",
     schema: z.object({
       clientName: z.string().describe("Client's full name"),
       clientEmail: z.string().describe("Client's email address"),
@@ -218,6 +234,10 @@ Return ONLY valid JSON, nothing else.`;
         .optional()
         .describe("Timeline preference if provided"),
       notes: z.string().optional().describe("Any additional notes or context"),
+      locale: z
+        .enum(["it", "en"])
+        .optional()
+        .describe("Language for the draft email; match the user's language."),
     }),
   },
 );
@@ -259,6 +279,7 @@ DIAGNOSTIC SUMMARY FLOW:
 QUOTE REQUEST FLOW:
 - If the user explicitly wants a generic quote request instead of a diagnosis, collect name, email, company (optional), project description, budget/timeline (optional), and notes conversationally.
 - Ask confirmation before draft_quote_email.
+- Pass locale as "it" or "en" matching the user's language.
 - Wrap its JSON exactly in <!--EMAIL_FORM-->{...}<!--/EMAIL_FORM--> and add nothing after the marker.
 
 MEETING FLOW:

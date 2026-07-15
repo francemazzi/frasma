@@ -128,7 +128,7 @@ function InlineEmailForm({
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           disabled={sending}
-          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
         />
       </div>
 
@@ -141,7 +141,7 @@ function InlineEmailForm({
           onChange={(e) => setBody(e.target.value)}
           disabled={sending}
           rows={6}
-          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
+          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
         />
       </div>
 
@@ -299,7 +299,7 @@ function InlineMeetingForm({
             value={date}
             onChange={(e) => setDate(e.target.value)}
             disabled={sending}
-            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
           />
         </div>
         <div className="min-w-0">
@@ -313,7 +313,7 @@ function InlineMeetingForm({
             value={time}
             onChange={(e) => setTime(e.target.value)}
             disabled={sending}
-            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
           />
         </div>
       </div>
@@ -328,7 +328,7 @@ function InlineMeetingForm({
           onChange={(e) => setEmail(e.target.value)}
           disabled={sending}
           placeholder={t("cal.emailPlaceholder")}
-          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
         />
       </div>
 
@@ -343,7 +343,7 @@ function InlineMeetingForm({
           rows={4}
           maxLength={2000}
           placeholder={t("cal.descPlaceholder")}
-          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-xs text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
+          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
         />
         <p className="mt-0.5 text-[10px] text-farm-secondary">
           {t("cal.timezone")}: <span className="font-medium">{timezone}</span>
@@ -437,7 +437,7 @@ function DiagnosticListInput({
         rows={3}
         value={value.join("\n")}
         onChange={(event) => onChange(splitLines(event.currentTarget.value))}
-        className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs leading-relaxed text-ink focus:border-accent focus:outline-none"
+        className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed text-ink focus:border-accent focus:outline-none"
       />
     </label>
   );
@@ -552,7 +552,7 @@ function InlineDiagnosticForm({
           <input
             value={summary.clientName}
             onChange={(event) => updateText("clientName", event.currentTarget.value)}
-            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
           />
         </label>
         <label>
@@ -561,7 +561,7 @@ function InlineDiagnosticForm({
             type="email"
             value={summary.clientEmail}
             onChange={(event) => updateText("clientEmail", event.currentTarget.value)}
-            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
           />
         </label>
       </div>
@@ -571,7 +571,7 @@ function InlineDiagnosticForm({
         <input
           value={summary.clientCompany ?? ""}
           onChange={(event) => updateText("clientCompany", event.currentTarget.value)}
-          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
         />
       </label>
 
@@ -581,7 +581,7 @@ function InlineDiagnosticForm({
           <input
             value={summary.sector}
             onChange={(event) => updateText("sector", event.currentTarget.value)}
-            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
           />
         </label>
         <label>
@@ -589,7 +589,7 @@ function InlineDiagnosticForm({
           <input
             value={summary.process}
             onChange={(event) => updateText("process", event.currentTarget.value)}
-            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs focus:border-accent focus:outline-none"
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
           />
         </label>
       </div>
@@ -600,7 +600,7 @@ function InlineDiagnosticForm({
           rows={4}
           value={summary.currentWorkflow}
           onChange={(event) => updateText("currentWorkflow", event.currentTarget.value)}
-          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs leading-relaxed focus:border-accent focus:outline-none"
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed focus:border-accent focus:outline-none"
         />
       </label>
 
@@ -610,7 +610,7 @@ function InlineDiagnosticForm({
           rows={2}
           value={summary.volumesAndFrequency}
           onChange={(event) => updateText("volumesAndFrequency", event.currentTarget.value)}
-          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-xs leading-relaxed focus:border-accent focus:outline-none"
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed focus:border-accent focus:outline-none"
         />
       </label>
 
@@ -689,7 +689,7 @@ function InlineDiagnosticForm({
 /*  Chat widget                                                        */
 /* ------------------------------------------------------------------ */
 
-const CHAT_FETCH_TIMEOUT_MS = 12_000;
+const CHAT_FETCH_TIMEOUT_MS = 14_000;
 
 export default function ChatWidget() {
   const t = useT();
@@ -711,9 +711,11 @@ export default function ChatWidget() {
     }
   }, [messages, loading]);
 
-  // Focus input when chat opens
+  // Focus input when chat opens (skip on touch devices to avoid iOS Safari zoom)
   useEffect(() => {
-    if (isOpen && inputRef.current) {
+    if (!isOpen || !inputRef.current) return;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    if (!isCoarsePointer) {
       inputRef.current.focus();
     }
   }, [isOpen]);
@@ -1001,7 +1003,7 @@ export default function ChatWidget() {
               onKeyDown={handleKeyDown}
               placeholder={t("chat.placeholder")}
               disabled={loading}
-              className="min-w-0 flex-1 bg-transparent border-none outline-none font-sans text-[14px] text-ink placeholder:text-ink-faint leading-[1.4] py-[6px]"
+              className="min-w-0 flex-1 bg-transparent border-none outline-none font-sans text-[16px] text-ink placeholder:text-ink-faint leading-[1.4] py-[6px]"
             />
             <button
               type="button"

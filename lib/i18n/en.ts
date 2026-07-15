@@ -331,7 +331,7 @@ export const en: Record<string, string> = {
   "chat.status": "Online · replies in a few minutes",
   "chat.you": "You",
   "chat.error": "Something went wrong. Please try again.",
-  "chat.timeout": "The reply took too long. Try again with a shorter message.",
+  "chat.timeout": "The reply took too long. Please try again in a moment.",
 
   // Email form in chat
   "chat.email.title": "Email Draft",
