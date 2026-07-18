@@ -2,7 +2,7 @@ export const en: Record<string, string> = {
   // Meta
   "meta.title": "Frasma — Custom software and AI for business processes and documents",
   "meta.description":
-    "We reduce copy-paste, errors, and wasted time between email, PDF, Excel, and ERP. Custom operational software for quotes, delivery notes, filings, tickets, and technical documents.",
+    "We reduce copy-paste, errors, and wasted time between email, PDF, Excel, and ERP. Custom operational software for quotes, delivery notes, filings, tickets, and technical documents, with a company brain and on-premise AI for data-sensitive SMEs.",
 
   // Top rule (editorial)
   "topRule.studio": "Frasma · Structured AI agency · Mantova — Italy",
@@ -163,22 +163,22 @@ export const en: Record<string, string> = {
   "search.description":
     "Custom software when Excel and off-the-shelf tools fall short: automatic document reading, guided checks, integrations with business software, and human validation.",
   "search.coverage":
-    "Operational web apps, AI automations, ERP integrations, and technical documents.",
+    "Operational web apps, AI automations, ERP integrations, technical documents, company brain, and on-premise AI.",
 
   // AI presence
-  "aiPresence.eyebrow": "AI presence",
-  "aiPresence.title": "We make the company readable by AI assistants",
+  "aiPresence.eyebrow": "Operational AI",
+  "aiPresence.title": "Knowledge, control, and AI inside the company",
   "aiPresence.desc":
-    "We prepare content, data, and secure connectors so ChatGPT, Claude, and Gemini can find and understand your services and processes.",
-  "aiPresence.item1.title": "ChatGPT, Claude, Gemini",
+    "After documents and workflows, we organize internal knowledge. With on-premise AI when data must stay inside, and external presence only where it makes sense.",
+  "aiPresence.item1.title": "Company brain",
   "aiPresence.item1.desc":
-    "Structured knowledge bases and content to represent services, products, and expertise.",
-  "aiPresence.item2.title": "Connectors and integrations",
+    "Procedures, documents, and know-how in an AI-searchable base, connected to ERP and daily workflows.",
+  "aiPresence.item2.title": "On-premise AI",
   "aiPresence.item2.desc":
-    "Secure integrations between AI, business software, documents, and APIs.",
-  "aiPresence.item3.title": "AI-ready digital strategy",
+    "Models and agents on company infrastructure or a private network: sensitive data stays on site.",
+  "aiPresence.item3.title": "External AI presence",
   "aiPresence.item3.desc":
-    "Website, structured data, and sales processes aligned with new search journeys.",
+    "Structured content and connectors for ChatGPT, Claude, and Gemini.",
 
   // How we work
   "how.title": "How we work",
@@ -189,9 +189,9 @@ export const en: Record<string, string> = {
   "how.title2": "Dataset, benchmarks, and optimization",
   "how.desc2":
     "We turn the collected data into an operational dataset: measure the baseline, compare alternatives, and use AI to test the highest-impact optimizations.",
-  "how.title3": "Company wiki and AI brain",
+  "how.title3": "Structure and rollout",
   "how.desc3":
-    "We organize procedures, documents, and knowledge in an AI-searchable wiki, integrated with business systems and updated through daily work.",
+    "We interview source owners, version procedures and documents, assign update responsibilities, and roll out AI search with human validation and team handoff.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D and public products",

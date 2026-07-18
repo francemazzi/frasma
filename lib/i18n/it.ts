@@ -2,7 +2,7 @@ export const it: Record<string, string> = {
   // Meta
   "meta.title": "Frasma — Software su misura e AI per processi aziendali e documenti",
   "meta.description":
-    "Riduciamo copia-incolla, errori e tempi morti tra email, PDF, Excel ed ERP. Software operativo su misura per preventivi, DDT, pratiche, ticket e documenti tecnici.",
+    "Riduciamo copia-incolla, errori e tempi morti tra email, PDF, Excel ed ERP. Software operativo su misura per preventivi, DDT, pratiche, ticket e documenti tecnici, con cervello aziendale e AI in locale per PMI con vincoli sui dati.",
 
   // Top rule (editorial)
   "topRule.studio": "", //Frasma · Agenzia AI strutturata · Mantova — Italia
@@ -165,23 +165,23 @@ export const it: Record<string, string> = {
   "search.description":
     "Software su misura quando Excel e tool standard non bastano: lettura automatica dei documenti, controlli guidati, integrazioni con i software aziendali e validazione umana.",
   "search.coverage":
-    "Web app operative, automazioni AI, integrazioni ERP e documenti tecnici.",
+    "Web app operative, automazioni AI, integrazioni ERP, documenti tecnici, cervello aziendale e AI in locale.",
 
   // AI presence
-  "aiPresence.eyebrow": "Presenza AI",
+  "aiPresence.eyebrow": "AI operativa",
   "aiPresence.title":
-    "Rendiamo l'azienda leggibile dagli assistenti AI",
+    "Conoscenza, controllo e AI dentro l'azienda",
   "aiPresence.desc":
-    "Prepariamo contenuti, dati e connettori sicuri perché ChatGPT, Claude e Gemini trovino e capiscano servizi e processi.",
-  "aiPresence.item1.title": "ChatGPT, Claude, Gemini",
+    "Dopo documenti e flussi, organizziamo la conoscenza interna. Con AI in locale quando i dati non devono uscire, e presenza esterna solo dove ha senso.",
+  "aiPresence.item1.title": "Cervello aziendale",
   "aiPresence.item1.desc":
-    "Knowledge base e contenuti strutturati per rappresentare servizi, prodotti e competenze.",
-  "aiPresence.item2.title": "Connettori e integrazioni",
+    "Procedure, documenti e know-how in una base ricercabile con AI, collegata a ERP e workflow quotidiani.",
+  "aiPresence.item2.title": "AI in locale",
   "aiPresence.item2.desc":
-    "Integrazioni sicure tra AI, software aziendale, documenti e API.",
-  "aiPresence.item3.title": "Strategia digitale AI-ready",
+    "Modelli e agenti su infrastruttura aziendale o rete privata: dati sensibili che restano in sede.",
+  "aiPresence.item3.title": "Presenza AI esterna",
   "aiPresence.item3.desc":
-    "Sito, dati strutturati e processi commerciali allineati ai nuovi percorsi di ricerca.",
+    "Contenuti strutturati e connettori per ChatGPT, Claude e Gemini.",
 
   // How we work
   "how.title": "Come lavoriamo",
@@ -193,9 +193,9 @@ export const it: Record<string, string> = {
   "how.title2": "Dataset, benchmark e ottimizzazione",
   "how.desc2":
     "Trasformiamo i dati raccolti in un dataset operativo: misuriamo il punto di partenza, confrontiamo le alternative e testiamo con l'AI le ottimizzazioni a maggior impatto.",
-  "how.title3": "Wiki e cervello aziendale",
+  "how.title3": "Strutturazione e rilascio",
   "how.desc3":
-    "Organizziamo procedure, documenti e conoscenza in una wiki con ricerca AI, integrata nei sistemi aziendali e aggiornata durante il lavoro quotidiano.",
+    "Intervistiamo chi detiene le fonti, versioniamo procedure e documenti, assegniamo responsabilità di aggiornamento e rilasciamo ricerca AI con validazione umana e handoff al team.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D e prodotti pubblici",

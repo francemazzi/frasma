@@ -366,8 +366,8 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         "Company wiki and AI brain",
       ),
       summary: text(
-        "Conoscenza, procedure e documenti organizzati in una base ricercabile e collegata al lavoro quotidiano.",
-        "Knowledge, procedures, and documents organized into a searchable base connected to daily work.",
+        "Procedure, documenti e know-how in una base ricercabile con AI, collegata a ERP, workflow e lavoro quotidiano.",
+        "Procedures, documents, and know-how in an AI-searchable base connected to ERP, workflows, and daily work.",
       ),
       details: [
         text(
@@ -375,29 +375,57 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
           "Sources are structured, versioned, and assigned update responsibilities.",
         ),
         text(
-          "La ricerca AI deve citare le fonti e rispettare accessi e confini informativi.",
-          "AI search should cite sources and respect access and information boundaries.",
+          "La ricerca AI cita le fonti, rispetta accessi e confini informativi ed è integrata nei sistemi che il team usa ogni giorno.",
+          "AI search cites sources, respects access and information boundaries, and is integrated into the systems the team uses every day.",
         ),
       ],
       keywords: {
-        it: ["wiki", "cervello aziendale", "knowledge base", "procedure", "ricerca AI", "documenti"],
-        en: ["wiki", "company brain", "knowledge base", "procedures", "AI search", "documents"],
+        it: ["wiki", "cervello aziendale", "knowledge base", "procedure", "ricerca AI", "documenti", "ERP", "workflow"],
+        en: ["wiki", "company brain", "knowledge base", "procedures", "AI search", "documents", "ERP", "workflow"],
       },
-      pagePaths: ["/", "/for-agents"],
-      relatedIds: ["ai-presence", "workflow-procedures"],
+      pagePaths: ["/", "/#piattaforma", "/for-agents"],
+      relatedIds: ["local-ai-enterprise", "ai-presence", "workflow-procedures"],
+    },
+    {
+      id: "local-ai-enterprise",
+      category: "service",
+      title: text(
+        "AI in locale per aziende",
+        "On-premise and private-network AI",
+      ),
+      summary: text(
+        "Modelli e agenti AI su infrastruttura aziendale o rete privata, con dati sensibili che restano in sede.",
+        "AI models and agents on company infrastructure or a private network, with sensitive data kept on site.",
+      ),
+      details: [
+        text(
+          "L'AI risponde su documenti interni, procedure, ERP e casi d'uso operativi senza inviare dati sensibili al cloud pubblico.",
+          "AI answers over internal documents, procedures, ERP, and operational use cases without sending sensitive data to the public cloud.",
+        ),
+        text(
+          "Architettura, modelli e integrazioni dipendono da vincoli tecnici, privacy e GDPR del cliente; non promettiamo un stack generico.",
+          "Architecture, models, and integrations depend on the client's technical constraints, privacy, and GDPR requirements; we do not promise a generic stack.",
+        ),
+      ],
+      keywords: {
+        it: ["AI in locale", "on-prem", "rete privata", "GDPR", "dati sensibili", "infrastruttura aziendale", "agenti AI"],
+        en: ["on-premise AI", "private network", "GDPR", "sensitive data", "company infrastructure", "AI agents", "local AI"],
+      },
+      pagePaths: ["/", "/#piattaforma"],
+      relatedIds: ["company-wiki-brain", "ai-datasets-benchmarks"],
     },
     {
       id: "ai-presence",
       category: "service",
-      title: text("Presenza AI", "AI presence"),
+      title: text("Presenza AI esterna", "External AI presence"),
       summary: text(
-        "Contenuti, dati strutturati e connettori perché assistenti come ChatGPT, Claude e Gemini comprendano l'azienda.",
-        "Content, structured data, and connectors so assistants such as ChatGPT, Claude, and Gemini can understand the company.",
+        "Visibilità verso assistenti esterni come ChatGPT, Claude e Gemini: contenuti strutturati, connettori e hub per agenti.",
+        "Visibility to external assistants such as ChatGPT, Claude, and Gemini: structured content, connectors, and an agents hub.",
       ),
       details: [
         text(
-          "Il lavoro può includere knowledge base, contenuti AI-ready, dati strutturati, agent skills, OpenAPI e MCP.",
-          "Work can include knowledge bases, AI-ready content, structured data, agent skills, OpenAPI, and MCP.",
+          "Servizio distinto dal cervello aziendale interno e dall'AI in locale: riguarda come l'azienda appare e risponde fuori dai propri sistemi.",
+          "Distinct from the internal company brain and on-premise AI: this is about how the company appears and responds outside its own systems.",
         ),
         text(
           "Deliverable tipici: llms.txt, hub per agenti, schema.org, skill pubbliche e tool MCP read-only.",
@@ -413,7 +441,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         en: ["AI presence", "ChatGPT", "Claude", "Gemini", "structured data", "connectors", "MCP", "llms.txt"],
       },
       pagePaths: ["/", "/#piattaforma", "/for-agents"],
-      relatedIds: ["company-wiki-brain", "commercial-boundaries"],
+      relatedIds: ["company-wiki-brain", "local-ai-enterprise", "commercial-boundaries"],
     },
     {
       id: "vibeup-deploy-service",

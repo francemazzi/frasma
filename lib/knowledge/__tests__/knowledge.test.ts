@@ -35,6 +35,7 @@ describe("knowledge catalog", () => {
       "custom-management-software",
       "ai-datasets-benchmarks",
       "company-wiki-brain",
+      "local-ai-enterprise",
       "ai-presence",
       "vibeup-deploy-service",
       "manufacturing",

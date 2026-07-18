@@ -20,8 +20,9 @@
 - Field-service ticketing
 - Custom operational management software
 - Operational AI datasets, benchmarks, and optimization
-- Company wiki / searchable knowledge (“company brain”)
-- AI presence: AI-ready content, structured data, skills, OpenAPI, MCP
+- Company wiki / operational brain (internal knowledge + AI search)
+- On-premise / private-network AI for SMEs
+- External AI presence: AI-ready content, structured data, skills, OpenAPI, MCP
 
 ## Sectors
 
