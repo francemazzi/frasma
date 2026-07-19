@@ -15,6 +15,11 @@ import {
   extractMeetingForm,
   stripFormMarkers,
 } from "../../lib/chat/markers";
+import {
+  clearStoredConversationId,
+  readStoredConversationId,
+  writeStoredConversationId,
+} from "../../lib/chat/session";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -63,10 +68,12 @@ function InlineEmailForm({
   form,
   onSent,
   t,
+  conversationId,
 }: {
   form: EmailFormData;
   onSent: () => void;
   t: (key: string) => string;
+  conversationId: string | null;
 }) {
   const [subject, setSubject] = useState(form.subject);
   const [body, setBody] = useState(form.body);
@@ -87,6 +94,7 @@ function InlineEmailForm({
           subject,
           body,
           honeypot,
+          ...(conversationId ? { conversationId } : {}),
         }),
       });
       if (res.ok) {
@@ -193,11 +201,13 @@ function InlineMeetingForm({
   onSent,
   t,
   lang,
+  conversationId,
 }: {
   form: MeetingFormData;
   onSent: () => void;
   t: (key: string) => string;
   lang: string;
+  conversationId: string | null;
 }) {
   const [date, setDate] = useState(form.date);
   const [time, setTime] = useState(form.time);
@@ -241,6 +251,7 @@ function InlineMeetingForm({
           description,
           timezone,
           honeypot,
+          ...(conversationId ? { conversationId } : {}),
         }),
       });
 
@@ -447,10 +458,12 @@ function InlineDiagnosticForm({
   form,
   onSent,
   t,
+  conversationId,
 }: {
   form: DiagnosticSummary;
   onSent: () => void;
   t: (key: string) => string;
+  conversationId: string | null;
 }) {
   const [summary, setSummary] = useState(form);
   const [honeypot, setHoneypot] = useState("");
@@ -500,7 +513,10 @@ function InlineDiagnosticForm({
       const response = await fetch("/api/send-diagnostic-summary", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
+        body: JSON.stringify({
+          ...parsed.data,
+          ...(conversationId ? { conversationId } : {}),
+        }),
       });
       const result = (await response.json().catch(() => null)) as
         | { ok: true }
@@ -689,7 +705,7 @@ function InlineDiagnosticForm({
 /*  Chat widget                                                        */
 /* ------------------------------------------------------------------ */
 
-const CHAT_FETCH_TIMEOUT_MS = 14_000;
+const CHAT_FETCH_TIMEOUT_MS = 120_000;
 
 export default function ChatWidget() {
   const t = useT();
@@ -700,9 +716,13 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [conversationId, setConversationId] = useState<string | null>(null);
+  const [historyRestored, setHistoryRestored] = useState(false);
+  const [restoring, setRestoring] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const restoreAttemptedRef = useRef(false);
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -721,12 +741,65 @@ export default function ChatWidget() {
   }, [isOpen]);
 
   // Add welcome message on first open
+  const showWelcome = useCallback(() => {
+    setMessages([{ role: "assistant", content: t("chat.welcome") }]);
+    setHistoryRestored(false);
+  }, [t]);
+
+  const restoreConversation = useCallback(async () => {
+    const storedConversationId = readStoredConversationId();
+    if (!storedConversationId) {
+      showWelcome();
+      return;
+    }
+
+    setRestoring(true);
+    try {
+      const res = await fetch(`/api/conversations/${storedConversationId}`);
+      if (!res.ok) {
+        clearStoredConversationId();
+        setConversationId(null);
+        showWelcome();
+        return;
+      }
+
+      const json = (await res.json().catch(() => null)) as
+        | {
+            conversationId?: string;
+            messages?: Message[];
+          }
+        | null;
+
+      const restoredMessages = json?.messages?.filter(
+        (message) =>
+          (message.role === "user" || message.role === "assistant") &&
+          typeof message.content === "string" &&
+          message.content.trim().length > 0,
+      );
+
+      if (!restoredMessages?.length) {
+        showWelcome();
+        return;
+      }
+
+      setConversationId(json?.conversationId ?? storedConversationId);
+      writeStoredConversationId(json?.conversationId ?? storedConversationId);
+      setMessages(restoredMessages);
+      setHistoryRestored(true);
+    } catch {
+      showWelcome();
+    } finally {
+      setRestoring(false);
+    }
+  }, [showWelcome]);
+
   const handleOpen = useCallback(() => {
     setIsOpen(true);
-    if (messages.length === 0) {
-      setMessages([{ role: "assistant", content: t("chat.welcome") }]);
+    if (messages.length === 0 && !restoreAttemptedRef.current) {
+      restoreAttemptedRef.current = true;
+      void restoreConversation();
     }
-  }, [messages.length, t]);
+  }, [messages.length, restoreConversation]);
 
   useEffect(() => {
     const shouldAutoOpen =
@@ -761,13 +834,19 @@ export default function ChatWidget() {
           lang,
           timezone,
           pagePath: router.asPath,
+          ...(conversationId ? { conversationId } : {}),
         }),
         signal: AbortSignal.timeout(CHAT_FETCH_TIMEOUT_MS),
       });
 
       const json = (await res.json().catch(() => null)) as
-        | { response?: string; code?: string }
+        | { response?: string; code?: string; conversationId?: string }
         | null;
+
+      if (json?.conversationId) {
+        setConversationId(json.conversationId);
+        writeStoredConversationId(json.conversationId);
+      }
 
       if (json?.code === "TIMEOUT") {
         setMessages((prev) => [
@@ -808,7 +887,7 @@ export default function ChatWidget() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading, messages, lang, router.asPath, t]);
+  }, [input, loading, messages, lang, router.asPath, t, conversationId]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -896,6 +975,14 @@ export default function ChatWidget() {
               />
               {t("chat.status")}
             </div>
+            <p className="text-[10.5px] leading-relaxed text-ink-soft">
+              {t("chat.persistence.notice")}
+            </p>
+            {historyRestored ? (
+              <p className="text-[10px] leading-relaxed text-ink-faint">
+                {t("chat.persistence.restored")}
+              </p>
+            ) : null}
             <button
               type="button"
               onClick={() => setIsOpen(false)}
@@ -951,7 +1038,12 @@ export default function ChatWidget() {
                     {text}
                   </div>
                   {emailForm ? (
-                    <InlineEmailForm form={emailForm} onSent={handleEmailSent} t={t} />
+                    <InlineEmailForm
+                      form={emailForm}
+                      onSent={handleEmailSent}
+                      t={t}
+                      conversationId={conversationId}
+                    />
                   ) : null}
                   {meetingForm ? (
                     <InlineMeetingForm
@@ -959,6 +1051,7 @@ export default function ChatWidget() {
                       onSent={handleMeetingSent}
                       t={t}
                       lang={lang}
+                      conversationId={conversationId}
                     />
                   ) : null}
                   {diagnosticForm ? (
@@ -966,11 +1059,18 @@ export default function ChatWidget() {
                       form={diagnosticForm}
                       onSent={handleDiagnosticSent}
                       t={t}
+                      conversationId={conversationId}
                     />
                   ) : null}
                 </div>
               );
             })}
+
+            {restoring && (
+              <div className="max-w-full text-[12px] text-ink-soft">
+                {t("chat.persistence.loading")}
+              </div>
+            )}
 
             {loading && (
               <div className="max-w-full">

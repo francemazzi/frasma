@@ -332,6 +332,10 @@ export const en: Record<string, string> = {
   "chat.you": "You",
   "chat.error": "Something went wrong. Please try again.",
   "chat.timeout": "The reply took too long. Please try again in a moment.",
+  "chat.persistence.notice":
+    "This conversation is saved to improve the service and let you resume it later.",
+  "chat.persistence.restored": "Previous conversation restored.",
+  "chat.persistence.loading": "Loading conversation...",
 
   // Email form in chat
   "chat.email.title": "Email Draft",

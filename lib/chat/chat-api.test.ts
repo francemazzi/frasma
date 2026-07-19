@@ -1,5 +1,11 @@
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { NextApiRequest, NextApiResponse } from "next";
+
+vi.mock("../../lib/chat/persistence", () => ({
+  appendMessage: vi.fn(async () => undefined),
+  resolveConversationId: vi.fn(async () => "550e8400-e29b-41d4-a716-446655440000"),
+}));
+
 import handler from "../../pages/api/chat";
 
 function createResponse() {
@@ -32,6 +38,10 @@ function request(method: string, body: unknown, ip: string): NextApiRequest {
 }
 
 describe("chat API validation", () => {
+  beforeEach(() => {
+    delete process.env.OPENAI_API_KEY;
+  });
+
   it("rejects unsupported methods", async () => {
     const { response, state } = createResponse();
     await handler(request("GET", null, "203.0.113.10"), response);
@@ -62,5 +72,24 @@ describe("chat API validation", () => {
     );
     expect(state.status).toBe(400);
     expect(state.body).toEqual({ error: "Message too long." });
+  });
+
+  it("returns 500 when OpenAI is not configured", async () => {
+    const { response, state } = createResponse();
+    await handler(
+      request(
+        "POST",
+        {
+          messages: [{ role: "user", content: "Ciao" }],
+          lang: "it",
+          timezone: "Europe/Rome",
+          pagePath: "/",
+        },
+        "203.0.113.13",
+      ),
+      response,
+    );
+    expect(state.status).toBe(500);
+    expect(state.body).toEqual({ error: "OpenAI API key not configured." });
   });
 });

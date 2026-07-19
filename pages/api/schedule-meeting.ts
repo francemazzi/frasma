@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
+import { logConversionEvent } from "../../lib/chat/persistence";
+import { isValidConversationId } from "../../lib/chat/session";
 import {
   type IRateLimiter,
   InMemoryFixedWindowRateLimiter,
@@ -17,6 +19,7 @@ type MeetingSchedulePayload = {
   description?: string;
   timezone?: string;
   honeypot?: string;
+  conversationId?: string;
 };
 
 class MeetingScheduleRequest {
@@ -25,7 +28,8 @@ class MeetingScheduleRequest {
     private readonly _time: string,
     private readonly _email: string,
     private readonly _description: string,
-    private readonly _timezone: string
+    private readonly _timezone: string,
+    private readonly _conversationId?: string,
   ) {}
 
   public get date(): string {
@@ -46,6 +50,10 @@ class MeetingScheduleRequest {
 
   public get timezone(): string {
     return this._timezone;
+  }
+
+  public get conversationId(): string | undefined {
+    return this._conversationId;
   }
 }
 
@@ -71,6 +79,9 @@ class MeetingScheduleRequestParser {
     const email = String(payload.email ?? "").trim();
     const description = String(payload.description ?? "").trim();
     const timezone = String(payload.timezone ?? "").trim() || "Unknown";
+    const conversationId = isValidConversationId(payload.conversationId)
+      ? payload.conversationId
+      : undefined;
 
     if (!this._dateRegex.test(date)) {
       throw new Error("Invalid date.");
@@ -102,7 +113,14 @@ class MeetingScheduleRequestParser {
       throw new Error("Description too long.");
     }
 
-    return new MeetingScheduleRequest(date, time, email, description, timezone);
+    return new MeetingScheduleRequest(
+      date,
+      time,
+      email,
+      description,
+      timezone,
+      conversationId,
+    );
   }
 }
 
@@ -324,6 +342,18 @@ export default async function handler(
   try {
     const sender = EmailSenderFactory.fromEnv();
     await sender.sendMeetingNotification(request);
+    void logConversionEvent(
+      request.conversationId,
+      "meeting_scheduled",
+      {
+        date: request.date,
+        time: request.time,
+        timezone: request.timezone,
+      },
+      { contactEmail: request.email },
+    ).catch((error) => {
+      console.error("[schedule-meeting] Failed to log conversion event.", error);
+    });
     return responder.ok(res);
   } catch (e) {
     const message = e instanceof Error ? e.message : "Failed to send email.";

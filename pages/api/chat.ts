@@ -22,8 +22,13 @@ import {
   getFrasmaProfile,
   searchKnowledge,
 } from "../../lib/knowledge";
+import {
+  appendMessage,
+  resolveConversationId,
+} from "../../lib/chat/persistence";
+import { isValidConversationId } from "../../lib/chat/session";
 
-const CHAT_INVOKE_TIMEOUT_MS = 14_000;
+const CHAT_INVOKE_TIMEOUT_MS = 120_000;
 
 function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -303,6 +308,8 @@ type ChatRequestBody = {
   timezone?: string;
   /** Current public route, used only to prioritize verified knowledge. */
   pagePath?: string;
+  /** Existing MongoDB conversation id, when resuming a session. */
+  conversationId?: string;
 };
 
 function getTodayYmdInTimeZone(timeZone: string): string {
@@ -630,18 +637,47 @@ export default async function handler(
     return res.status(500).json({ error: "OpenAI API key not configured." });
   }
 
+  const lang = body.lang === "en" ? "en" : "it";
+  const timeZone =
+    typeof body.timezone === "string" && body.timezone.trim().length > 0
+      ? body.timezone.trim()
+      : "Europe/Rome";
+  const pagePath = normalizePagePath(body.pagePath);
+  const lastUserMessage = [...body.messages]
+    .reverse()
+    .find((message) => message.role === "user");
+
+  let conversationId: string | null = null;
+  try {
+    conversationId = await resolveConversationId(body.conversationId, {
+      lang,
+      timezone: timeZone,
+      pagePath,
+      clientIp: ipKey,
+    });
+
+    if (conversationId && lastUserMessage) {
+      await appendMessage(conversationId, {
+        role: "user",
+        content: lastUserMessage.content,
+      });
+    }
+  } catch (persistError) {
+    console.error("[chat] Persistence error before invoke:", persistError);
+    conversationId =
+      body.conversationId && isValidConversationId(body.conversationId)
+        ? body.conversationId
+        : null;
+  }
+
+  const invokeStartedAt = Date.now();
+
   try {
     const agent = getAgent();
 
-    const timeZone =
-      typeof body.timezone === "string" && body.timezone.trim().length > 0
-        ? body.timezone.trim()
-        : "Europe/Rome";
-    const pagePath = normalizePagePath(body.pagePath);
-
     const langchainMessages = [
       new SystemMessage(SYSTEM_PROMPT),
-      new SystemMessage(buildTemporalContextMessage(body.lang, timeZone)),
+      new SystemMessage(buildTemporalContextMessage(lang, timeZone)),
       new SystemMessage(
         `PUBLIC PAGE CONTEXT: the user is currently visiting "${pagePath}". Use this only as a hint when searching verified knowledge; never assume intent from the route alone.`,
       ),
@@ -664,13 +700,29 @@ export default async function handler(
     const responseText = applyStructuredFormFallbacks(
       content,
       result.messages,
-      body.lang,
+      lang,
     );
 
-    return res.status(200).json({ response: responseText });
+    if (conversationId && responseText) {
+      void appendMessage(conversationId, {
+        role: "assistant",
+        content: responseText,
+        latencyMs: Date.now() - invokeStartedAt,
+      }).catch((persistError) => {
+        console.error("[chat] Persistence error after invoke:", persistError);
+      });
+    }
+
+    return res.status(200).json({
+      response: responseText,
+      ...(conversationId ? { conversationId } : {}),
+    });
   } catch (e) {
     if (e instanceof Error && e.message === "TIMEOUT") {
-      return res.status(200).json({ code: "TIMEOUT" });
+      return res.status(200).json({
+        code: "TIMEOUT",
+        ...(conversationId ? { conversationId } : {}),
+      });
     }
     console.error("[chat] Agent error:", e);
     return res

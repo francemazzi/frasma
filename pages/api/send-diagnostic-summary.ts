@@ -5,6 +5,8 @@ import {
   type DiagnosticSummary,
 } from "../../lib/chat/diagnostic";
 import { buildDiagnosticEmail } from "../../lib/email/diagnostic";
+import { logConversionEvent } from "../../lib/chat/persistence";
+import { isValidConversationId } from "../../lib/chat/session";
 import {
   InMemoryFixedWindowRateLimiter,
   getClientIp,
@@ -139,7 +141,17 @@ export default async function handler(
       .json({ ok: false, error: "Too many requests. Try again later." });
   }
 
-  const parsed = diagnosticSummarySchema.safeParse(req.body);
+  const body =
+    req.body && typeof req.body === "object"
+      ? (req.body as Record<string, unknown>)
+      : null;
+  const rawConversationId = body?.conversationId;
+  const conversationId = isValidConversationId(rawConversationId)
+    ? rawConversationId
+    : undefined;
+  const { conversationId: _ignored, ...summaryBody } = body ?? {};
+
+  const parsed = diagnosticSummarySchema.safeParse(summaryBody);
   if (!parsed.success) {
     return res.status(400).json({ ok: false, error: "Invalid request." });
   }
@@ -161,6 +173,26 @@ export default async function handler(
 
   try {
     await sendDiagnosticSummary(summary);
+
+    void logConversionEvent(
+      conversationId,
+      "diagnostic_sent",
+      {
+        sector: summary.sector,
+        process: summary.process,
+        needCategories: summary.needCategories,
+      },
+      {
+        contactEmail: summary.clientEmail,
+        contactName: summary.clientName,
+      },
+    ).catch((error) => {
+      console.error(
+        "[send-diagnostic-summary] Failed to log conversion event.",
+        error,
+      );
+    });
+
     return res.status(200).json({ ok: true });
   } catch (error) {
     console.error("[send-diagnostic-summary] Email delivery failed.", error);

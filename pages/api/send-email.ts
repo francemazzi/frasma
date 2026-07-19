@@ -4,6 +4,8 @@ import {
   getClientIp,
 } from "../../lib/rate-limit";
 import { z } from "zod";
+import { logConversionEvent } from "../../lib/chat/persistence";
+import { isValidConversationId } from "../../lib/chat/session";
 
 const ipRateLimiter = new InMemoryFixedWindowRateLimiter(3, 60_000); // 3 per minute per IP
 const emailRateLimiter = new InMemoryFixedWindowRateLimiter(2, 300_000); // 2 per 5 minutes per email
@@ -13,6 +15,7 @@ const emailRequestSchema = z
     subject: z.string().trim().min(1).max(200),
     body: z.string().trim().min(1).max(5000),
     honeypot: z.string().max(0).optional(),
+    conversationId: z.string().optional(),
   })
   .strict();
 const disposableDomainFragments = [
@@ -85,6 +88,19 @@ export default async function handler(
       subject,
       text: body,
     });
+
+    const conversationId = isValidConversationId(parsed.data.conversationId)
+      ? parsed.data.conversationId
+      : undefined;
+    void logConversionEvent(
+      conversationId,
+      "email_sent",
+      { subjectLength: subject.length },
+      { contactEmail: clientEmail },
+    ).catch((error) => {
+      console.error("[send-email] Failed to log conversion event.", error);
+    });
+
     return res.status(200).json({ ok: true });
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Unknown error";

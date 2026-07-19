@@ -59,7 +59,7 @@ Notes:
 
 ## Diagnostic chat agent
 
-The website chat is a stateless process-diagnostic assistant. It uses the bilingual, versioned knowledge base in `lib/knowledge/` to:
+The website chat is a process-diagnostic assistant. It uses the bilingual, versioned knowledge base in `lib/knowledge/` to:
 
 - identify operational bottlenecks;
 - collect workflow, systems, volumes, baseline metrics, data, and constraints;
@@ -67,7 +67,7 @@ The website chat is a stateless process-diagnostic assistant. It uses the biling
 - prepare an editable diagnostic summary;
 - email the summary only after explicit user review and confirmation.
 
-Conversation state remains in the browser and is sent to `POST /api/chat` on each turn. No database or server-side chat session is used. The reviewed summary is submitted to `POST /api/send-diagnostic-summary` and delivered through the same SMTP or Resend configuration used by meeting requests.
+Each browser session stores a `conversationId` in `localStorage`. Messages are persisted server-side in MongoDB Atlas through the official Node.js driver. On reopen, the widget restores the conversation via `GET /api/conversations/:id`. If MongoDB is not configured, the chat keeps working in stateless mode.
 
 Do not add prices, guaranteed savings, customer secrets, credentials, or personal data about third parties to the knowledge base or diagnostic examples.
 
@@ -79,6 +79,30 @@ OPENAI_API_KEY=your_openai_api_key
 # Optional; defaults to gpt-4o-mini
 OPENAI_CHAT_MODEL=gpt-4o-mini
 ```
+
+### Chat persistence (MongoDB Atlas)
+
+Persistence is optional but recommended in production. When configured, the API stores:
+
+- conversation metadata (`lang`, `timezone`, `pagePath`, conversion flags);
+- user and assistant messages;
+- conversion events from inline forms (`email_sent`, `meeting_scheduled`, `diagnostic_sent`).
+
+Setup:
+
+1. Create a free **M0** cluster on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) (recommended region: Frankfurt or Ireland).
+2. Create a database user with read/write access.
+3. In Network Access, allow `0.0.0.0/0` (required for Vercel serverless).
+4. Copy the connection string and set these environment variables locally and on Vercel:
+
+```bash
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/frasma_chat?retryWrites=true&w=majority
+CHAT_RETENTION_DAYS=90
+```
+
+Indexes and a TTL policy on `conversations.expiresAt` are created automatically on first use.
+
+Without `MONGODB_URI`, `POST /api/chat` and the form APIs continue to work; persistence calls are skipped silently.
 
 ## AI discovery and public MCP
 
