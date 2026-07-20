@@ -293,6 +293,7 @@ export const en: Record<string, string> = {
   "forAgents.link.mcp": "MCP endpoint",
   "forAgents.link.status": "Status",
   "footer.forAgents": "For agents",
+  "footer.startupStudio": "Startup Studio",
 
   // Footer
   "footer.info":

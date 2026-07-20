@@ -37,6 +37,13 @@ export default function Footer() {
             </Link>
             <span className="text-ink-faint">·</span>
             <Link
+              href="/studio"
+              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
+            >
+              {t("footer.startupStudio")}
+            </Link>
+            <span className="text-ink-faint">·</span>
+            <Link
               href="/blog"
               className="hover:text-accent hover:border-b hover:border-accent transition-colors"
             >
