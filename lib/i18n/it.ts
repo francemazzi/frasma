@@ -338,6 +338,9 @@ export const it: Record<string, string> = {
   "chat.error": "Qualcosa è andato storto. Riprova.",
   "chat.timeout":
     "La risposta ha impiegato troppo tempo. Riprova tra qualche secondo.",
+  "chat.timeout.intro":
+    "La risposta ha impiegato troppo tempo. Ho preparato un riassunto del progetto da inviarti via email e ti propongo di fissare un incontro online.",
+  "chat.timeout.emailPlaceholder": "nome@azienda.it",
   "chat.persistence.notice":
     "La conversazione viene salvata per migliorare il servizio e riprenderla in un secondo momento.",
   "chat.persistence.restored": "Conversazione precedente ripristinata.",
@@ -345,6 +348,7 @@ export const it: Record<string, string> = {
 
   // Email form in chat
   "chat.email.title": "Bozza Email",
+  "chat.email.clientEmail": "Email",
   "chat.email.subject": "Oggetto",
   "chat.email.body": "Messaggio",
   "chat.email.send": "Invia a Frasma",

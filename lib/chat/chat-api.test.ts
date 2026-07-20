@@ -6,6 +6,12 @@ vi.mock("../../lib/chat/persistence", () => ({
   resolveConversationId: vi.fn(async () => "550e8400-e29b-41d4-a716-446655440000"),
 }));
 
+vi.mock("@langchain/langgraph/prebuilt", () => ({
+  createReactAgent: vi.fn(() => ({
+    invoke: vi.fn(() => new Promise(() => {})),
+  })),
+}));
+
 import handler from "../../pages/api/chat";
 
 function createResponse() {
@@ -40,6 +46,7 @@ function request(method: string, body: unknown, ip: string): NextApiRequest {
 describe("chat API validation", () => {
   beforeEach(() => {
     delete process.env.OPENAI_API_KEY;
+    vi.useRealTimers();
   });
 
   it("rejects unsupported methods", async () => {
@@ -91,5 +98,39 @@ describe("chat API validation", () => {
     );
     expect(state.status).toBe(500);
     expect(state.body).toEqual({ error: "OpenAI API key not configured." });
+  });
+
+  it("returns timeout fallback forms when the agent invoke times out", async () => {
+    vi.useFakeTimers();
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const { response, state } = createResponse();
+    const handlerPromise = handler(
+      request(
+        "POST",
+        {
+          messages: [
+            {
+              role: "user",
+              content:
+                "Vorrei automatizzare i DDT. Email ada@example.com",
+            },
+          ],
+          lang: "it",
+          timezone: "Europe/Rome",
+          pagePath: "/",
+        },
+        "203.0.113.20",
+      ),
+      response,
+    );
+
+    await vi.advanceTimersByTimeAsync(120_000);
+    await handlerPromise;
+
+    expect(state.status).toBe(200);
+    expect(state.body).toMatchObject({ code: "TIMEOUT" });
+    expect((state.body as { response?: string }).response).toContain("EMAIL_FORM");
+    expect((state.body as { response?: string }).response).toContain("MEETING_FORM");
   });
 });

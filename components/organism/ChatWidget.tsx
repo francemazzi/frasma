@@ -20,8 +20,12 @@ import {
   readStoredConversationId,
   writeStoredConversationId,
 } from "../../lib/chat/session";
+import { buildTimeoutFallbackResponse } from "../../lib/chat/timeout-fallback";
 
 type Message = { role: "user" | "assistant"; content: string };
+
+const EMAIL_ADDRESS_RE =
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type EmailFormData = {
   subject: string;
@@ -77,12 +81,21 @@ function InlineEmailForm({
 }) {
   const [subject, setSubject] = useState(form.subject);
   const [body, setBody] = useState(form.body);
+  const [clientEmail, setClientEmail] = useState(form.clientEmail);
+  const needsEmailInput =
+    !form.clientEmail.trim() || !EMAIL_ADDRESS_RE.test(form.clientEmail.trim());
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
   const [honeypot, setHoneypot] = useState("");
 
   const handleSend = async () => {
+    const resolvedEmail = clientEmail.trim();
+    if (needsEmailInput && !EMAIL_ADDRESS_RE.test(resolvedEmail)) {
+      setError(true);
+      return;
+    }
+
     setSending(true);
     setError(false);
     try {
@@ -90,7 +103,7 @@ function InlineEmailForm({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          clientEmail: form.clientEmail,
+          clientEmail: resolvedEmail,
           subject,
           body,
           honeypot,
@@ -126,6 +139,22 @@ function InlineEmailForm({
         <Mail size={14} />
         {t("chat.email.title")}
       </div>
+
+      {needsEmailInput ? (
+        <div>
+          <label className="block text-[11px] text-farm-secondary mb-0.5">
+            {t("chat.email.clientEmail")}
+          </label>
+          <input
+            type="email"
+            value={clientEmail}
+            onChange={(e) => setClientEmail(e.target.value)}
+            disabled={sending}
+            placeholder={t("chat.timeout.emailPlaceholder")}
+            className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+          />
+        </div>
+      ) : null}
 
       <div>
         <label className="block text-[11px] text-farm-secondary mb-0.5">
@@ -849,11 +878,19 @@ export default function ChatWidget() {
       }
 
       if (json?.code === "TIMEOUT") {
+        const timeoutContent =
+          json.response?.trim() ||
+          buildTimeoutFallbackResponse({
+            messages: nextMessages,
+            lang,
+            timezone,
+            pagePath: router.asPath,
+          });
         setMessages((prev) => [
           ...prev,
           {
             role: "assistant",
-            content: t("chat.timeout") ?? "Timeout.",
+            content: timeoutContent,
           },
         ]);
         return;
@@ -876,7 +913,18 @@ export default function ChatWidget() {
     } catch (e) {
       const isAbort =
         e instanceof DOMException && e.name === "AbortError";
-      const fallback = (isAbort ? t("chat.timeout") : t("chat.error")) ?? "Error.";
+      const timezone =
+        typeof Intl !== "undefined"
+          ? Intl.DateTimeFormat().resolvedOptions().timeZone ?? "Europe/Rome"
+          : "Europe/Rome";
+      const fallback = isAbort
+        ? buildTimeoutFallbackResponse({
+            messages: nextMessages,
+            lang,
+            timezone,
+            pagePath: router.asPath,
+          })
+        : (t("chat.error") ?? "Error.");
       setMessages((prev) => [
         ...prev,
         {

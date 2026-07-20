@@ -27,6 +27,8 @@ import {
   resolveConversationId,
 } from "../../lib/chat/persistence";
 import { isValidConversationId } from "../../lib/chat/session";
+import { buildQuoteEmailDraft } from "../../lib/chat/quote-email";
+import { buildTimeoutFallbackResponse } from "../../lib/chat/timeout-fallback";
 
 const CHAT_INVOKE_TIMEOUT_MS = 120_000;
 
@@ -143,84 +145,6 @@ const scheduleMeetingTool = tool(
     }),
   },
 );
-
-type QuoteEmailInput = {
-  clientName: string;
-  clientEmail: string;
-  clientCompany?: string;
-  projectDescription: string;
-  budget?: string;
-  timeline?: string;
-  notes?: string;
-  locale?: "it" | "en";
-};
-
-/** Builds a structured quote-request draft without a nested LLM call (avoids chat timeouts). */
-function buildQuoteEmailDraft(input: QuoteEmailInput): {
-  subject: string;
-  body: string;
-  clientEmail: string;
-  clientName: string;
-} {
-  const locale = input.locale ?? "it";
-  const isEn = locale === "en";
-  const notSpecified = isEn ? "Not specified" : "Non specificato";
-  const none = isEn ? "None" : "Nessuna";
-
-  const projectSnippet = input.projectDescription.trim().slice(0, 60);
-  const subject = isEn
-    ? `Quote request — ${projectSnippet} — ${input.clientName}`
-    : `Richiesta preventivo — ${projectSnippet} — ${input.clientName}`;
-
-  const body = isEn
-    ? [
-        "Quote request for Francesco Saverio Mazzi",
-        "",
-        "Contact",
-        `- Name: ${input.clientName}`,
-        `- Email: ${input.clientEmail}`,
-        `- Company: ${input.clientCompany?.trim() || notSpecified}`,
-        "",
-        "Project",
-        input.projectDescription.trim(),
-        "",
-        "Budget / timeline",
-        `- Budget: ${input.budget?.trim() || notSpecified}`,
-        `- Timeline: ${input.timeline?.trim() || notSpecified}`,
-        "",
-        "Additional notes",
-        input.notes?.trim() || none,
-        "",
-        "Next steps: please review and reply with a detailed quote. Do not include hour estimates or pricing in this draft.",
-      ].join("\n")
-    : [
-        "Richiesta di preventivo per Francesco Saverio Mazzi",
-        "",
-        "Contatto",
-        `- Nome: ${input.clientName}`,
-        `- Email: ${input.clientEmail}`,
-        `- Azienda: ${input.clientCompany?.trim() || notSpecified}`,
-        "",
-        "Progetto",
-        input.projectDescription.trim(),
-        "",
-        "Budget / tempistica",
-        `- Budget: ${input.budget?.trim() || notSpecified}`,
-        `- Tempistica: ${input.timeline?.trim() || notSpecified}`,
-        "",
-        "Note aggiuntive",
-        input.notes?.trim() || none,
-        "",
-        "Prossimi passi: Francesco esaminerà la richiesta e risponderà con un preventivo dettagliato. Non includere stime orarie o prezzi in questa bozza.",
-      ].join("\n");
-
-  return {
-    subject,
-    body,
-    clientEmail: input.clientEmail,
-    clientName: input.clientName,
-  };
-}
 
 const draftQuoteEmailTool = tool(
   async (input) => JSON.stringify(buildQuoteEmailDraft(input)),
@@ -719,8 +643,25 @@ export default async function handler(
     });
   } catch (e) {
     if (e instanceof Error && e.message === "TIMEOUT") {
+      const fallback = buildTimeoutFallbackResponse({
+        messages: body.messages,
+        lang,
+        timezone: timeZone,
+        pagePath,
+      });
+
+      if (conversationId) {
+        void appendMessage(conversationId, {
+          role: "assistant",
+          content: fallback,
+        }).catch((persistError) => {
+          console.error("[chat] Persistence error on timeout fallback:", persistError);
+        });
+      }
+
       return res.status(200).json({
         code: "TIMEOUT",
+        response: fallback,
         ...(conversationId ? { conversationId } : {}),
       });
     }

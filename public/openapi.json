@@ -371,6 +371,10 @@
             "type": "string",
             "const": "TIMEOUT"
           },
+          "response": {
+            "type": "string",
+            "description": "Fallback assistant message with EMAIL_FORM and MEETING_FORM markers when the agent times out."
+          },
           "conversationId": {
             "type": "string",
             "format": "uuid"

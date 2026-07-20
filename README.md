@@ -67,6 +67,8 @@ The website chat is a process-diagnostic assistant. It uses the bilingual, versi
 - prepare an editable diagnostic summary;
 - email the summary only after explicit user review and confirmation.
 
+If the assistant times out, the widget shows a project summary email draft and an inline meeting request form built from the conversation history (no extra LLM call).
+
 Each browser session stores a `conversationId` in `localStorage`. Messages are persisted server-side in MongoDB Atlas through the official Node.js driver. On reopen, the widget restores the conversation via `GET /api/conversations/:id`. If MongoDB is not configured, the chat keeps working in stateless mode.
 
 Do not add prices, guaranteed savings, customer secrets, credentials, or personal data about third parties to the knowledge base or diagnostic examples.
