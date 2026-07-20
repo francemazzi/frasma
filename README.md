@@ -104,6 +104,31 @@ Indexes and a TTL policy on `conversations.expiresAt` are created automatically 
 
 Without `MONGODB_URI`, `POST /api/chat` and the form APIs continue to work; persistence calls are skipped silently.
 
+Verify the connection:
+
+```bash
+npm run check:mongodb
+curl http://localhost:3000/api/status
+```
+
+Expected when configured correctly:
+
+```json
+{
+  "persistence": { "configured": true, "connected": true }
+}
+```
+
+A successful chat response also includes `conversationId`.
+
+### MongoDB troubleshooting
+
+1. **Network Access** on Atlas must include `0.0.0.0/0` for Vercel serverless.
+2. The URI must include the database name: `...mongodb.net/frasma_chat?...`
+3. If you reset the Atlas user password, update both `.env.local` and Vercel, then redeploy.
+4. URL-encode special characters in the password (`@`, `#`, `%`, etc.).
+5. After changing Vercel env vars, trigger a new deployment; env changes are not applied to existing deployments automatically.
+
 ## AI discovery and public MCP
 
 Public discovery surfaces for agents and humans:

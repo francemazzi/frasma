@@ -11,7 +11,8 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "check:mongodb": "node scripts/check-mongodb.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

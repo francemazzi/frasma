@@ -76,6 +76,47 @@
         }
       }
     },
+    "/api/conversations/{id}": {
+      "get": {
+        "operationId": "getConversation",
+        "summary": "Restore a persisted chat conversation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Conversation messages",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
+      }
+    },
     "/api/schedule-meeting": {
       "post": {
         "operationId": "scheduleMeeting",
@@ -300,6 +341,11 @@
             "type": "string",
             "description": "Current public website path used to prioritize verified knowledge.",
             "examples": ["/", "/studio"]
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Existing persisted conversation id, when resuming a session."
           }
         }
       },
@@ -309,6 +355,11 @@
         "properties": {
           "response": {
             "type": "string"
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Present when MongoDB persistence is configured and connected."
           }
         }
       },
@@ -319,6 +370,26 @@
           "code": {
             "type": "string",
             "const": "TIMEOUT"
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ConversationResponse": {
+        "type": "object",
+        "required": ["conversationId", "messages"],
+        "properties": {
+          "conversationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            }
           }
         }
       },
@@ -456,7 +527,7 @@
       },
       "StatusResponse": {
         "type": "object",
-        "required": ["ok", "service", "version", "timestamp"],
+        "required": ["ok", "service", "version", "timestamp", "persistence"],
         "properties": {
           "ok": {
             "type": "boolean",
@@ -472,6 +543,18 @@
           "timestamp": {
             "type": "string",
             "format": "date-time"
+          },
+          "persistence": {
+            "type": "object",
+            "required": ["configured", "connected"],
+            "properties": {
+              "configured": {
+                "type": "boolean"
+              },
+              "connected": {
+                "type": "boolean"
+              }
+            }
           }
         }
       },

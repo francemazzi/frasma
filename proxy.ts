@@ -53,7 +53,7 @@ Frasma is the independent software studio led by Francesco Saverio Mazzi. It dia
 
 ## Contact
 
-Use the website chat to complete a guided process diagnostic, review its summary, and email it to Francesco without server-side persistence. The booking form remains available for scheduling a call.
+Use the website chat to complete a guided process diagnostic, review its summary, and email it to Francesco. When MongoDB is configured, conversations are persisted server-side and can be resumed later. The booking form remains available for scheduling a call.
 `;
 
 function acceptsMarkdown(accept: string | null): boolean {

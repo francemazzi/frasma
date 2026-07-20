@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getConversationMessages } from "../../../lib/chat/persistence";
-import { isValidConversationId } from "../../../lib/chat/session";
+import { getConversationMessages } from "../../../../lib/chat/persistence";
+import { isValidConversationId } from "../../../../lib/chat/session";
 import {
   InMemoryFixedWindowRateLimiter,
   getClientIp,
-} from "../../../lib/rate-limit";
+} from "../../../../lib/rate-limit";
 
 const conversationRateLimiter = new InMemoryFixedWindowRateLimiter(30, 60_000);
 
