@@ -255,6 +255,15 @@ export const en: Record<string, string> = {
   "qualify.item4":
     "You want custom software without adopting a huge ERP system",
 
+  // Funding support
+  "funding.eyebrow": "Incentivized financing",
+  "funding.title": "Free grant eligibility check",
+  "funding.desc":
+    "We assess for free whether your AI project can be funded through active grants, before preparing a quote.",
+  "funding.body":
+    "We support companies in digital and AI transformation projects. We are listed among accredited suppliers for the Unioncamere Lombardia Double Transition Voucher program.",
+  "funding.cta": "Book a free eligibility call",
+
   // CTA (editorial)
   "cta.title1": "Let’s build something",
   "cta.titleEm": "together",
