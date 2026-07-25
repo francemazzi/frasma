@@ -333,28 +333,34 @@ function InlineMeetingForm({
           <label className="block text-[11px] text-farm-secondary mb-0.5">
             {t("cal.date")}
           </label>
-          <input
-            type="date"
-            lang={lang}
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            disabled={sending}
-            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
-          />
+          <div className="meeting-field-shell mt-0">
+            <input
+              type="date"
+              lang={lang}
+              inputMode="none"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              disabled={sending}
+              className="meeting-datetime-input"
+            />
+          </div>
         </div>
         <div className="min-w-0">
           <label className="block text-[11px] text-farm-secondary mb-0.5">
             {t("cal.time")}
           </label>
-          <input
-            type="time"
-            lang={lang}
-            step={900}
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            disabled={sending}
-            className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
-          />
+          <div className="meeting-field-shell mt-0">
+            <input
+              type="time"
+              lang={lang}
+              inputMode="none"
+              step={900}
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              disabled={sending}
+              className="meeting-datetime-input"
+            />
+          </div>
         </div>
       </div>
 
@@ -368,7 +374,7 @@ function InlineMeetingForm({
           onChange={(e) => setEmail(e.target.value)}
           disabled={sending}
           placeholder={t("cal.emailPlaceholder")}
-          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
+          className="meeting-input mt-0"
         />
       </div>
 
@@ -383,7 +389,7 @@ function InlineMeetingForm({
           rows={4}
           maxLength={2000}
           placeholder={t("cal.descPlaceholder")}
-          className="w-full min-w-0 max-w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
+          className="meeting-input mt-0 min-h-[88px] leading-relaxed resize-y"
         />
         <p className="mt-0.5 text-[10px] text-farm-secondary">
           {t("cal.timezone")}: <span className="font-medium">{timezone}</span>
