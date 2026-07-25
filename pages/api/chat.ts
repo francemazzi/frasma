@@ -30,7 +30,7 @@ import { isValidConversationId } from "../../lib/chat/session";
 import { buildQuoteEmailDraft } from "../../lib/chat/quote-email";
 import { buildTimeoutFallbackResponse } from "../../lib/chat/timeout-fallback";
 
-const CHAT_INVOKE_TIMEOUT_MS = 120_000;
+const CHAT_INVOKE_TIMEOUT_MS = 55_000;
 
 function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   return new Promise((resolve, reject) => {
