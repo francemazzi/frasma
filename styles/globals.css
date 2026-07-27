@@ -161,6 +161,11 @@
     background-size: 20px 20px;
   }
 
+  .blog-content {
+    @apply max-w-full min-w-0;
+    overflow-x: clip;
+  }
+
   .blog-content p {
     @apply leading-relaxed;
   }
@@ -189,21 +194,37 @@
     @apply font-semibold text-farm-text;
   }
 
+  /* Keep page margins intact: only the table wrapper scrolls horizontally. */
   .blog-table-scroll {
-    @apply my-6 w-full overflow-x-auto rounded-xl border border-farm-border bg-farm-surface;
+    @apply my-6 max-w-full rounded-xl border border-farm-border bg-farm-surface;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
   }
 
   .blog-content table {
-    @apply w-full min-w-[28rem] border-collapse text-left text-sm;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875rem;
+    line-height: 1.375;
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
   }
 
   .blog-content thead th {
-    @apply whitespace-nowrap border-b border-farm-border bg-paper/70 px-3 py-2.5 font-semibold text-farm-text;
+    @apply border-b border-farm-border bg-paper/70 px-3 py-2.5 font-semibold text-farm-text;
+    white-space: normal;
   }
 
   .blog-content tbody td {
     @apply border-b border-farm-border/70 px-3 py-2.5 align-top text-farm-secondary;
+    white-space: normal;
+    word-break: break-word;
   }
 
   .blog-content tbody tr:last-child td {
@@ -212,12 +233,6 @@
 
   .blog-content tbody tr:nth-child(even) td {
     @apply bg-paper/40;
-  }
-
-  @media (min-width: 768px) {
-    .blog-content table {
-      min-width: 0;
-    }
   }
 
   /* Legacy linktree card classes (untouched) */
