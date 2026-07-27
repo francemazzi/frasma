@@ -169,12 +169,55 @@
     @apply text-2xl font-semibold text-farm-text pt-4;
   }
 
+  .blog-content h3 {
+    @apply text-xl font-semibold text-farm-text pt-2;
+  }
+
   .blog-content a {
     @apply text-sage-600 font-semibold hover:text-sage-500 underline transition-colors;
   }
 
   .blog-content ul {
     @apply list-disc pl-6 space-y-2;
+  }
+
+  .blog-content ol {
+    @apply list-decimal pl-6 space-y-2;
+  }
+
+  .blog-content strong {
+    @apply font-semibold text-farm-text;
+  }
+
+  .blog-table-scroll {
+    @apply my-6 w-full overflow-x-auto rounded-xl border border-farm-border bg-farm-surface;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .blog-content table {
+    @apply w-full min-w-[28rem] border-collapse text-left text-sm;
+  }
+
+  .blog-content thead th {
+    @apply whitespace-nowrap border-b border-farm-border bg-paper/70 px-3 py-2.5 font-semibold text-farm-text;
+  }
+
+  .blog-content tbody td {
+    @apply border-b border-farm-border/70 px-3 py-2.5 align-top text-farm-secondary;
+  }
+
+  .blog-content tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .blog-content tbody tr:nth-child(even) td {
+    @apply bg-paper/40;
+  }
+
+  @media (min-width: 768px) {
+    .blog-content table {
+      min-width: 0;
+    }
   }
 
   /* Legacy linktree card classes (untouched) */

@@ -37,6 +37,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
     "swiper": "^8.4.4",
     "three": "^0.159.0",
