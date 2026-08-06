@@ -246,7 +246,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["DDT", "documenti", "ERP", "Mago Zucchetti", "TeamSystem", "fatture", "estrazione dati"],
         en: ["delivery notes", "documents", "ERP", "Mago Zucchetti", "TeamSystem", "invoices", "data extraction"],
       },
-      pagePaths: ["/", "/#piattaforma"],
+      pagePaths: ["/", "/#come-funziona"],
       relatedIds: ["manufacturing-erp-case", "manufacturing"],
     },
     {
@@ -271,7 +271,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["workflow", "procedure", "pratiche", "validazioni", "documenti", "controlli"],
         en: ["workflow", "procedures", "filings", "validation", "documents", "controls"],
       },
-      pagePaths: ["/", "/#piattaforma"],
+      pagePaths: ["/", "/#come-funziona"],
       relatedIds: ["food-quality-case", "agri-food-operations-case"],
     },
     {
@@ -299,7 +299,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["ticket", "field service", "manutenzione", "tecnici", "fornitori", "SLA", "interventi"],
         en: ["tickets", "field service", "maintenance", "technicians", "suppliers", "SLA", "interventions"],
       },
-      pagePaths: ["/", "/#piattaforma"],
+      pagePaths: ["/", "/#come-funziona"],
       relatedIds: ["industrial-maintenance-case", "field-service"],
     },
     {
@@ -327,7 +327,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["gestionale", "software su misura", "web app", "ERP", "back office", "integrazioni"],
         en: ["management software", "custom software", "web app", "ERP", "back office", "integrations"],
       },
-      pagePaths: ["/", "/#piattaforma"],
+      pagePaths: ["/", "/#come-funziona"],
       relatedIds: ["delivery-notes-to-erp", "workflow-procedures"],
     },
     {
@@ -383,7 +383,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["wiki", "cervello aziendale", "knowledge base", "procedure", "ricerca AI", "documenti", "ERP", "workflow"],
         en: ["wiki", "company brain", "knowledge base", "procedures", "AI search", "documents", "ERP", "workflow"],
       },
-      pagePaths: ["/", "/#piattaforma", "/for-agents"],
+      pagePaths: ["/", "/#come-funziona", "/for-agents"],
       relatedIds: ["local-ai-enterprise", "ai-presence", "workflow-procedures"],
     },
     {
@@ -411,7 +411,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["AI in locale", "on-prem", "rete privata", "GDPR", "dati sensibili", "infrastruttura aziendale", "agenti AI"],
         en: ["on-premise AI", "private network", "GDPR", "sensitive data", "company infrastructure", "AI agents", "local AI"],
       },
-      pagePaths: ["/", "/#piattaforma"],
+      pagePaths: ["/", "/#come-funziona"],
       relatedIds: ["company-wiki-brain", "ai-datasets-benchmarks"],
     },
     {
@@ -440,7 +440,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["presenza AI", "ChatGPT", "Claude", "Gemini", "dati strutturati", "connettori", "MCP", "llms.txt"],
         en: ["AI presence", "ChatGPT", "Claude", "Gemini", "structured data", "connectors", "MCP", "llms.txt"],
       },
-      pagePaths: ["/", "/#piattaforma", "/for-agents"],
+      pagePaths: ["/", "/#come-funziona", "/for-agents"],
       relatedIds: ["company-wiki-brain", "local-ai-enterprise", "commercial-boundaries"],
     },
     {
@@ -694,7 +694,56 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         en: ["method", "diagnostic", "baseline", "prototype", "validation", "measurement"],
       },
       pagePaths: ["/", "/for-agents"],
-      relatedIds: ["fit-criteria", "commercial-boundaries"],
+      relatedIds: ["fit-criteria", "commercial-boundaries", "post-golive-continuity"],
+    },
+    {
+      id: "post-golive-continuity",
+      category: "methodology",
+      title: text("Continuità dopo il go-live", "Continuity after go-live"),
+      summary: text(
+        "Il pilot non chiude il rapporto: il flusso resta in esercizio con manutenzione ed evoluzione nel tempo.",
+        "The pilot does not end the engagement: the workflow stays in service with maintenance and evolution over time.",
+      ),
+      details: [
+        text(
+          "Quando cambiano tracciati documentali, fornitori, versioni dell'ERP o obblighi normativi, si interviene sul flusso esistente invece di rifarlo.",
+          "When document formats, suppliers, ERP versions, or regulatory obligations change, the existing workflow is updated rather than rebuilt.",
+        ),
+        text(
+          "Il referente tecnico resta lo stesso dalla prima analisi alla manutenzione: chi ha costruito il flusso è chi risponde quando va aggiornato.",
+          "The technical lead stays the same from the first analysis through maintenance: whoever built the workflow is who answers when it needs updating.",
+        ),
+        text(
+          "Automatizzare l'attività successiva costa meno della prima, perché integrazioni, accessi e regole sono già in produzione.",
+          "Automating the next activity costs less than the first, because integrations, access, and rules are already in production.",
+        ),
+        text(
+          "I flussi Frasma in produzione sono seguiti con contratti di manutenzione attivi; durata e livelli di servizio si definiscono sul singolo processo e non esistono condizioni standard dichiarabili a priori.",
+          "Frasma workflows running in production are covered by active maintenance agreements; duration and service levels are set per process, and no standard terms can be stated upfront.",
+        ),
+      ],
+      keywords: {
+        it: [
+          "manutenzione",
+          "continuità",
+          "dopo il progetto",
+          "lungo termine",
+          "evoluzione",
+          "assistenza",
+          "aggiornamenti",
+        ],
+        en: [
+          "maintenance",
+          "continuity",
+          "after the project",
+          "long term",
+          "evolution",
+          "support",
+          "updates",
+        ],
+      },
+      pagePaths: ["/", "/for-agents"],
+      relatedIds: ["diagnostic-method", "commercial-boundaries"],
     },
     {
       id: "fit-criteria",

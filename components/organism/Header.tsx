@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useT, useLang } from "../../lib/i18n/context";
-import Cal from "./Cal";
+import ProcessAssessment from "./ProcessAssessment";
 
 export default function Header() {
   const t = useT();
@@ -34,18 +34,18 @@ export default function Header() {
 
           <ul className="hidden lg:flex gap-7 list-none items-center text-[13px] font-medium text-ink-soft">
             <li>
+              <Link href="/#come-funziona" className="hover:text-accent transition-colors">
+                {t("header.nav.platform")}
+              </Link>
+            </li>
+            <li>
               <Link href="/#casi-studio" className="hover:text-accent transition-colors">
                 {t("header.nav.cases")}
               </Link>
             </li>
             <li>
-              <Link href="/#piattaforma" className="hover:text-accent transition-colors">
-                {t("header.nav.platform")}
-              </Link>
-            </li>
-            <li>
-              <Link href="/blog" className="hover:text-accent transition-colors">
-                {t("header.nav.blog")}
+              <Link href="/#metodo" className="hover:text-accent transition-colors">
+                {t("header.nav.method")}
               </Link>
             </li>
           </ul>
@@ -72,7 +72,11 @@ export default function Header() {
                 EN
               </button>
             </div>
-            <Cal textButton={t("header.schedule")} buttonType="ink" showArrow />
+            <ProcessAssessment
+              textButton={t("header.schedule")}
+              showArrow
+              compact
+            />
           </div>
         </nav>
     </header>
