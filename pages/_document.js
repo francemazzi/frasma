@@ -5,6 +5,12 @@ class MyDocument extends Document {
     return (
       <Html lang="it">
         <Head>
+          {/* Scroll reveals stay opt-in: without this class every section renders visible. */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `if(window.IntersectionObserver){document.documentElement.classList.add('js-motion');}`,
+            }}
+          />
           {/* Google Tag Manager */}
           <script
             dangerouslySetInnerHTML={{

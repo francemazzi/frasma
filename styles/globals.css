@@ -84,6 +84,60 @@
     @apply text-[15px] font-semibold text-ink-2 no-underline transition-colors hover:text-accent;
   }
 
+  .ed-card-hover {
+    @apply transition-all duration-300;
+  }
+  .ed-card-hover:hover {
+    transform: translateY(-3px);
+    border-color: rgba(168, 65, 43, 0.35);
+    box-shadow: 0 22px 50px -34px rgba(27, 25, 22, 0.55);
+  }
+
+  /* Reveals are hidden only once the class on <html> confirms JS is running,
+     so a failed bundle or a crawler never gets an invisible page. */
+  .js-motion .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .js-motion .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js-motion .reveal-line {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .js-motion .reveal-line.is-visible {
+    transform: scaleY(1);
+  }
+
+  @media (min-width: 1024px) {
+    .js-motion .reveal-line {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .js-motion .reveal-line.is-visible {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ed-card-hover:hover {
+      transform: none;
+    }
+    .js-motion .reveal,
+    .js-motion .reveal-line {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   .farm-sprout {
     display: inline-block;
     animation: farm-sprout-grow 2.8s ease-in-out infinite;

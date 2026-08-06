@@ -1,8 +1,8 @@
 export const en: Record<string, string> = {
   // Meta
-  "meta.title": "Frasma — Custom software and AI for business processes and documents",
+  "meta.title": "Business process and document automation for SMEs | Frasma",
   "meta.description":
-    "We reduce copy-paste, errors, and wasted time between email, PDF, Excel, and ERP. Custom operational software for quotes, delivery notes, filings, tickets, and technical documents, with a company brain and on-premise AI for data-sensitive SMEs.",
+    "Frasma automates work between documents, email, Excel, and ERP for manufacturing and food SMEs, without replacing existing business systems.",
 
   // Top rule (editorial)
   "topRule.studio": "Frasma · Structured AI agency · Mantova — Italy",
@@ -13,19 +13,24 @@ export const en: Record<string, string> = {
 
   // Header
   "header.book": "Book",
-  "header.schedule": "Book a call",
-  "header.companion": "AI agency",
+  "header.schedule": "Assess a process",
+  "header.companion": "",
   "header.nav.cases": "Case studies",
-  "header.nav.platform": "Where we cut manual work",
+  "header.nav.platform": "How it works",
+  "header.nav.method": "Method",
   "header.nav.studio": "Studio",
   "header.nav.projects": "Projects",
   "header.nav.blog": "Blog",
 
   // Hero (editorial)
-  "hero.eyebrow": "For SMEs with repetitive document workflows",
-  "hero.title1": "Cut",
-  "hero.titleEm": "manual work",
+  "hero.eyebrow": "Automation for manufacturing and food SMEs",
+  "hero.title1": "Automate the",
+  "hero.titleEm": "work",
   "hero.title2": "between documents, email, and ERP.",
+  "hero.subtitle":
+    "Frasma designs workflows that read documents, check data, and update the software you already use, with approval from your team.",
+  "hero.risk":
+    "Start with one bounded process, keeping your current ERP. The assessment checks feasibility and operational value. The workflow then stays in service, maintained and evolved over time.",
   "hero.point1":
     "Custom software and AI for quotes, delivery notes, technical sheets, and tickets",
   "hero.point2": "Less copy-paste between Excel, PDF, email, and ERP",
@@ -35,7 +40,8 @@ export const en: Record<string, string> = {
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
   "hero.brand":
     "Frasma, the Lagotto in the brand, represents the conversational and first-contact support experience.",
-  "hero.cta": "Book a 30-minute process review",
+  "hero.cta": "Assess a process to automate",
+  "hero.secondary": "See how it works",
   "hero.projects": "See real examples",
   "hero.card.title": "Studio — card",
   "hero.card.studioKey": "Studio",
@@ -50,14 +56,16 @@ export const en: Record<string, string> = {
   "hero.card.callVal": "30 min · free",
 
   // Results (anonymous case studies)
-  "results.eyebrow": "real cases",
-  "results.title1": "We find where work",
-  "results.titleEm": "gets stuck",
+  "results.eyebrow": "Anonymous real cases",
+  "results.title1": "Real processes,",
+  "results.titleEm": "before and after",
   "results.title2": ".",
-  "results.title": "We find where work gets stuck.",
+  "results.title": "Real processes, before and after.",
   "results.subtitle":
-    "We identify bottlenecks in your processes and turn them into faster, more controllable, and less costly workflows.",
+    "Examples of document and operational work addressed while keeping people in control.",
   "results.pageWord": "page",
+  "results.previous": "Previous case",
+  "results.next": "Next case",
   "results.pageMark": "Case study",
   "results.read": "Read full case →",
   "results.thread.label": "The method",
@@ -157,7 +165,27 @@ export const en: Record<string, string> = {
   "results.case4.desc":
     "Tickets, technicians, and suppliers in one flow — from request to closed intervention.",
 
-  // Services ("What we build")
+  // Controlled workflow and use cases
+  "flow.eyebrow": "From document to ERP",
+  "flow.title": "A controlled workflow, not a black box",
+  "flow.subtitle":
+    "We connect the tools already in place. AI prepares the work; business rules and people decide what enters company systems.",
+  "flow.step1.title": "Read inputs",
+  "flow.step1.desc": "PDFs, email, spreadsheets, and attachments enter one workflow.",
+  "flow.step2.title": "Check data",
+  "flow.step2.desc": "Business rules flag missing fields, anomalies, and mismatches.",
+  "flow.step3.title": "Request approval",
+  "flow.step3.desc": "Your team reviews steps that require human responsibility.",
+  "flow.step4.title": "Update systems",
+  "flow.step4.desc": "Validated data reaches the ERP and tools already in use.",
+  "flow.step5.title": "Keep an audit trail",
+  "flow.step5.desc": "Inputs, checks, and decisions remain available for review.",
+  "useCases.eyebrow": "What it looks like",
+  "useCases.title": "The interfaces your team works in",
+  "useCases.subtitle":
+    "Four workflows already built: data extracted from documents, field jobs, guided procedures, and quotes.",
+
+  // Legacy services
   "search.eyebrow": "Processes we can improve",
   "search.title": "Less copy-paste, more control over workflows",
   "search.description":
@@ -181,17 +209,41 @@ export const en: Record<string, string> = {
     "Structured content and connectors for ChatGPT, Claude, and Gemini.",
 
   // How we work
-  "how.title": "How we work",
-  "how.subtitle": "From bottlenecks to a faster, measurable, and shared business system.",
-  "how.title1": "Interviews and data collection",
+  "how.eyebrow": "Method",
+  "how.title": "From process to pilot",
+  "how.subtitle": "A focused path to verify value before extending the solution.",
+  "how.title1": "Process analysis",
   "how.desc1":
-    "We interview the people who run the process and collect documents, timings, errors, and manual steps to find where the workflow gets stuck.",
-  "how.title2": "Dataset, benchmarks, and optimization",
+    "We map activities, exceptions, ownership, and the starting baseline.",
+  "how.title2": "Data and integrations",
   "how.desc2":
-    "We turn the collected data into an operational dataset: measure the baseline, compare alternatives, and use AI to test the highest-impact optimizations.",
-  "how.title3": "Structure and rollout",
+    "We verify documents, data quality, and access to the systems involved.",
+  "how.title3": "Bounded pilot",
   "how.desc3":
-    "We interview source owners, version procedures and documents, assign update responsibilities, and roll out AI search with human validation and team handoff.",
+    "We build the workflow on a limited scope using real cases.",
+  "how.title4": "Measurement",
+  "how.desc4":
+    "We compare time, errors, and manual workload with the starting point.",
+  "how.title5": "Production",
+  "how.desc5":
+    "Only if the pilot holds up, the workflow goes live on real volumes.",
+
+  // Life after go-live
+  "continuity.eyebrow": "After go-live",
+  "continuity.title": "A pilot is a beginning, not a handover",
+  "continuity.subtitle":
+    "A workflow that touches ERPs, documents, and suppliers changes as the company changes. It needs someone to keep it alive, not just to build it.",
+  "continuity.item1.title": "The workflow is updated, not rebuilt",
+  "continuity.item1.desc":
+    "When file formats, suppliers, ERP versions, or regulations change, we work on the existing workflow.",
+  "continuity.item2.title": "The same technical lead stays",
+  "continuity.item2.desc":
+    "Whoever built the workflow is the person who maintains it. No handover to a helpdesk.",
+  "continuity.item3.title": "The second process costs less than the first",
+  "continuity.item3.desc":
+    "Integrations, access, and rules already in production get reused when you automate the next activity.",
+  "continuity.proof":
+    "This is not a statement of intent: Frasma workflows running in production are covered by active maintenance agreements. Duration and service levels are set per process.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D and public products",
@@ -229,40 +281,48 @@ export const en: Record<string, string> = {
   "platform.cards.workflow.name": "Workflows & procedures",
   "platform.cards.workflow.desc":
     "Guided procedures with validations and document generation for daily users.",
-  "platform.cards.preventivi.name": "Lightweight back-office",
+  "platform.cards.preventivi.name": "Quotes and job orders",
   "platform.cards.preventivi.desc":
-    "Tables, statuses, and exports to ERPs and price lists — without a full back-office system.",
+    "Price lists, statuses, and amounts in one view, with export to the ERP already in place.",
 
   // Founder
-  "founder.role": "Founder · CTO",
+  "founder.role": "Your direct technical lead",
   "founder.title": "Francesco Saverio Mazzi",
   "founder.bio1":
-    "Full-stack on operational software, AI agents, and data integrations for manufacturing, food, agronomy, and field services. Frasma stays lean, with a curated network for UX and process work.",
+    "Francesco Mazzi leads analysis, architecture, and implementation at Frasma, with experience in operational software and data integrations for manufacturing, food, and agritech.",
   "founder.bio2":
-    "Frasma stays lean: for broader projects it leans on a curated network covering UX, marketing, and process analysis.",
+    "The same person stays from the first analysis through the maintenance years that follow: whoever answers when a workflow needs updating is whoever built it. Specialist expertise is brought in when the project requires it.",
   "founder.note":
     "Every project starts from a real activity and a metric we want to move.",
 
   // Qualify lead
-  "qualify.eyebrow": "When it makes sense",
-  "qualify.title": "To get in touch",
-  "qualify.item1":
-    "Your team copies data between email, Excel, PDF, and ERP",
-  "qualify.item2":
-    "You manage technical documents, delivery notes, quotes, filings, or tickets",
-  "qualify.item3":
-    "You already have a working process, but it's slow and full of manual steps",
-  "qualify.item4":
-    "You want custom software without adopting a huge ERP system",
+  "qualify.eyebrow": "Recognizable situations",
+  "qualify.title": "Where time is lost every day",
+  "qualify.subtitle":
+    "The starting point is not a software brief. It is a repetitive task that slows work down.",
+  "qualify.item1.title": "Orders copied from email",
+  "qualify.item1.desc":
+    "Attachments and order lines are read and entered manually into the ERP.",
+  "qualify.item2.title": "Delivery notes and invoices checked by hand",
+  "qualify.item2.desc":
+    "Numbers, items, and quantities are verified across PDFs, spreadsheets, and ERP.",
+  "qualify.item3.title": "Quotes assembled from separate files",
+  "qualify.item3.desc":
+    "Price lists, specifications, and job history depend on searches and copy-paste.",
+  "qualify.item4.title": "Complaints managed in email and spreadsheets",
+  "qualify.item4.desc":
+    "Non-conformities, evidence, and corrective actions stay fragmented and hard to trace.",
 
   // CTA (editorial)
-  "cta.title1": "Let’s build something",
-  "cta.titleEm": "together",
+  "cta.title1": "Start with one",
+  "cta.titleEm": "real process",
   "cta.title2": ".",
   "cta.desc":
-    "Free 30-minute intro call: bring a real process and we'll tell you whether automation makes sense and where to cut time, errors, or manual work.",
-  "cta.button": "Book a 30-minute review",
-  "cta.secondary": "Write us via email",
+    "Describe a repetitive task, the tools involved, and the main issue. The first assessment checks whether the data and conditions support a measurable pilot.",
+  "cta.button": "Assess a process to automate",
+  "cta.secondary": "See the method",
+  "cta.risk":
+    "You do not need to replace your ERP or define a software project in advance. The first process opens a path rather than closing a delivery.",
 
   // For agents
   "forAgents.meta.title": "For AI agents | Frasma",
@@ -298,6 +358,44 @@ export const en: Record<string, string> = {
   // Footer
   "footer.info":
     "Frasma — independent software studio of Francesco Saverio Mazzi · VAT 02750410207",
+
+  // Process assessment
+  "assessment.eyebrow": "Initial assessment",
+  "assessment.title": "Describe the process to assess",
+  "assessment.subtitle":
+    "The essentials are enough. Detailed questions and any sample documents come later.",
+  "assessment.company": "Company (optional)",
+  "assessment.role": "Role (optional)",
+  "assessment.email": "Work email",
+  "assessment.emailPlaceholder": "name@company.com",
+  "assessment.process": "Process and main issue",
+  "assessment.processPlaceholder":
+    "Example: we receive PDF orders by email and manually copy lines, codes, and quantities into our ERP...",
+  "assessment.systems": "Current tools (optional)",
+  "assessment.systemsPlaceholder": "ERP, spreadsheets, email inbox, portals...",
+  "assessment.volume": "Approximate volume (optional)",
+  "assessment.volumePlaceholder": "Example: 80 documents per week",
+  "assessment.privacy":
+    "Do not include credentials or sensitive data. We will use this information only to assess the process and contact you; sample documents can be shared later.",
+  "assessment.close": "Close",
+  "assessment.cancel": "Cancel",
+  "assessment.send": "Send the process",
+  "assessment.sending": "Sending...",
+  "assessment.validation.email": "Enter a valid email.",
+  "assessment.validation.process":
+    "Describe the process and main issue using at least 20 characters.",
+  "assessment.error.rate":
+    "Too many attempts. Wait a few minutes and try again.",
+  "assessment.error.generic":
+    "We could not send the request. Check the information and try again.",
+  "assessment.error.network": "Network error. Please try again shortly.",
+  "assessment.success.title": "Process received",
+  "assessment.success.description":
+    "Your request has been sent. It will be reviewed before any assumptions or promises are made.",
+  "assessment.success.next":
+    "If useful, you can already choose a time to discuss the process. Scheduling is optional.",
+  "assessment.success.schedule": "Choose date and time",
+  "assessment.success.close": "Close and wait for a reply",
 
   // Cal modal
   "cal.title": "Schedule a meeting",

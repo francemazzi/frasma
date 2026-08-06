@@ -13,6 +13,8 @@ type CalPublicProps = {
   leftIcon?: LucideIcon;
   buttonType?: CalButtonType;
   showArrow?: boolean;
+  hideTrigger?: boolean;
+  eventName?: string;
 };
 
 type CalInternalProps = CalPublicProps & {
@@ -120,6 +122,7 @@ class MeetingSchedulerModal extends React.PureComponent<
                 </span>
                 <input
                   type="date"
+                  autoFocus
                   lang={lang}
                   inputMode="none"
                   className={MEETING_INPUT_CLASS}
@@ -199,13 +202,13 @@ class MeetingSchedulerModal extends React.PureComponent<
             />
 
             {state.status === "error" && state.errorMessage && (
-              <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+              <div role="alert" className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
                 {state.errorMessage}
               </div>
             )}
 
             {state.status === "success" && (
-              <div className="rounded-lg bg-sage-50 border border-sage-200 px-4 py-3 text-sm text-sage-600">
+              <div role="status" aria-live="polite" className="rounded-lg bg-sage-50 border border-sage-200 px-4 py-3 text-sm text-sage-600">
                 {t("cal.success")}
               </div>
             )}
@@ -238,6 +241,7 @@ class MeetingSchedulerModal extends React.PureComponent<
 
 class CalInner extends React.PureComponent<CalInternalProps, CalState> {
   private readonly _css: CssClassBuilder = new CssClassBuilder();
+  private readonly triggerRef = React.createRef<HTMLButtonElement>();
 
   public constructor(props: CalInternalProps) {
     super(props);
@@ -260,12 +264,26 @@ class CalInner extends React.PureComponent<CalInternalProps, CalState> {
     }
     if (prevState.isOpen && !this.state.isOpen) {
       window.removeEventListener("keydown", this.onKeyDown);
+      this.triggerRef.current?.focus();
+    }
+  }
+
+  public componentDidMount(): void {
+    if (this.props.eventName) {
+      window.addEventListener(this.props.eventName, this.onExternalOpen);
     }
   }
 
   public componentWillUnmount(): void {
     window.removeEventListener("keydown", this.onKeyDown);
+    if (this.props.eventName) {
+      window.removeEventListener(this.props.eventName, this.onExternalOpen);
+    }
   }
+
+  private readonly onExternalOpen = (): void => {
+    this.openModal();
+  };
 
   private readonly onKeyDown = (e: KeyboardEvent): void => {
     if (e.key === "Escape") {
@@ -363,6 +381,7 @@ class CalInner extends React.PureComponent<CalInternalProps, CalState> {
       leftImage,
       buttonType = "ink",
       showArrow = false,
+      hideTrigger = false,
       t,
       lang,
     } = this.props;
@@ -370,31 +389,34 @@ class CalInner extends React.PureComponent<CalInternalProps, CalState> {
 
     return (
       <>
-        <button
-          type="button"
-          className={buttonClasses}
-          onClick={() => this.openModal()}
-        >
-          {leftImage && (
-            <Image
-              src={leftImage}
-              alt={leftImage.split("/").pop() || "Francesco"}
-              width={buttonType === "textual" ? 24 : 40}
-              height={buttonType === "textual" ? 24 : 40}
-              className="object-cover rounded-md"
-            />
-          )}
-          {LeftIcon && (
-            <LeftIcon
-              size={buttonType === "textual" ? 20 : 24}
-              className="flex-shrink-0"
-            />
-          )}
-          <span>{this.props.textButton}</span>
-          {showArrow && (
-            <ArrowUpRight size={16} className="shrink-0" aria-hidden="true" />
-          )}
-        </button>
+        {!hideTrigger ? (
+          <button
+            ref={this.triggerRef}
+            type="button"
+            className={buttonClasses}
+            onClick={() => this.openModal()}
+          >
+            {leftImage && (
+              <Image
+                src={leftImage}
+                alt={leftImage.split("/").pop() || "Francesco"}
+                width={buttonType === "textual" ? 24 : 40}
+                height={buttonType === "textual" ? 24 : 40}
+                className="object-cover rounded-md"
+              />
+            )}
+            {LeftIcon && (
+              <LeftIcon
+                size={buttonType === "textual" ? 20 : 24}
+                className="flex-shrink-0"
+              />
+            )}
+            <span>{this.props.textButton}</span>
+            {showArrow && (
+              <ArrowUpRight size={16} className="shrink-0" aria-hidden="true" />
+            )}
+          </button>
+        ) : null}
 
         <MeetingSchedulerModal
           isOpen={this.state.isOpen}
