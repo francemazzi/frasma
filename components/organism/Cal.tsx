@@ -37,9 +37,6 @@ type CalState = {
 };
 const DISCOUNT_PATH = "/discount?conv=contact";
 
-const MEETING_INPUT_CLASS =
-  "mt-1 w-full min-w-0 max-w-full rounded-lg border border-hairline-strong px-3 py-2 bg-paper-2 text-ink focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-transparent transition-shadow";
-
 class CssClassBuilder {
   public buildButtonClasses(type: CalButtonType): string {
     if (type === "textual") {
@@ -76,7 +73,7 @@ class MeetingSchedulerModal extends React.PureComponent<
 
     const modal = (
       <div
-        className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-4"
+        className="fixed inset-0 z-[100] flex items-end justify-center px-0 py-0 sm:items-center sm:px-4 sm:py-4"
         role="dialog"
         aria-modal="true"
         aria-label={t("cal.title")}
@@ -86,7 +83,7 @@ class MeetingSchedulerModal extends React.PureComponent<
           onClick={this.props.onClose}
         />
 
-        <div className="relative w-full min-w-0 max-w-xl max-h-[90dvh] overflow-y-auto overflow-x-hidden rounded-xl bg-paper shadow-2xl border border-hairline-strong">
+        <div className="relative w-full min-w-0 max-w-xl max-h-[90dvh] overflow-y-auto overflow-x-hidden rounded-t-2xl sm:rounded-xl bg-paper shadow-2xl border border-hairline-strong pb-[max(1rem,env(safe-area-inset-bottom,0px))] sm:pb-0">
           <div className="flex items-start justify-between gap-4 p-4 sm:p-6 border-b border-hairline">
             <div>
               <h3 className="text-xl font-semibold text-ink">
@@ -120,36 +117,40 @@ class MeetingSchedulerModal extends React.PureComponent<
                 <span className="block text-sm font-medium text-ink">
                   {t("cal.date")}
                 </span>
-                <input
-                  type="date"
-                  autoFocus
-                  lang={lang}
-                  inputMode="none"
-                  className={MEETING_INPUT_CLASS}
-                  value={state.date}
-                  onChange={(e) =>
-                    this.props.onChange({ date: e.currentTarget.value })
-                  }
-                  required
-                />
+                <div className="meeting-field-shell">
+                  <input
+                    type="date"
+                    autoFocus
+                    lang={lang}
+                    inputMode="none"
+                    className="meeting-datetime-input"
+                    value={state.date}
+                    onChange={(e) =>
+                      this.props.onChange({ date: e.currentTarget.value })
+                    }
+                    required
+                  />
+                </div>
               </label>
 
               <label className="block min-w-0">
                 <span className="block text-sm font-medium text-ink">
                   {t("cal.time")}
                 </span>
-                <input
-                  type="time"
-                  lang={lang}
-                  inputMode="none"
-                  step="900"
-                  className={MEETING_INPUT_CLASS}
-                  value={state.time}
-                  onChange={(e) =>
-                    this.props.onChange({ time: e.currentTarget.value })
-                  }
-                  required
-                />
+                <div className="meeting-field-shell">
+                  <input
+                    type="time"
+                    lang={lang}
+                    inputMode="none"
+                    step="900"
+                    className="meeting-datetime-input"
+                    value={state.time}
+                    onChange={(e) =>
+                      this.props.onChange({ time: e.currentTarget.value })
+                    }
+                    required
+                  />
+                </div>
               </label>
             </div>
 
@@ -159,7 +160,7 @@ class MeetingSchedulerModal extends React.PureComponent<
               </span>
               <input
                 type="email"
-                className={MEETING_INPUT_CLASS}
+                className="meeting-input"
                 placeholder={t("cal.emailPlaceholder")}
                 value={state.email}
                 onChange={(e) =>
@@ -174,7 +175,7 @@ class MeetingSchedulerModal extends React.PureComponent<
                 {t("cal.description")}
               </span>
               <textarea
-                className={`${MEETING_INPUT_CLASS} min-h-[110px]`}
+                className="meeting-input min-h-[110px]"
                 placeholder={t("cal.descPlaceholder")}
                 value={state.description}
                 onChange={(e) =>

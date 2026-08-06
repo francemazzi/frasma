@@ -5,6 +5,7 @@ import Platform from "../components/organism/Platform";
 import WhyContactMe from "../components/organism/WhyContactMe";
 import Continuity from "../components/organism/Continuity";
 import QualifyLead from "../components/organism/QualifyLead";
+import FundingSupport from "../components/organism/FundingSupport";
 import Founder from "../components/organism/Founder";
 import CallToAction from "../components/organism/CallToAction";
 import Footer from "../components/organism/Footer";
@@ -54,6 +55,7 @@ export default function Home() {
         <Results />
         <WhyContactMe />
         <Continuity />
+        <FundingSupport />
         <Founder />
         <CallToAction />
         <Footer />

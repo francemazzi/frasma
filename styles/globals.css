@@ -49,6 +49,34 @@
     color: #F1EADA;
   }
 
+  .meeting-input {
+    @apply mt-1 w-full min-w-0 max-w-full rounded-lg border border-hairline-strong bg-paper-2 px-3 py-2 text-[16px] text-ink min-h-[44px];
+    @apply focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-transparent transition-shadow;
+  }
+
+  .meeting-field-shell {
+    @apply mt-1 w-full min-w-0 max-w-full overflow-hidden rounded-lg border border-hairline-strong bg-paper-2;
+    @apply focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-transparent transition-shadow;
+  }
+
+  .meeting-datetime-input {
+    @apply block w-full min-w-0 max-w-full border-0 bg-transparent px-3 py-2 text-[16px] text-ink min-h-[44px];
+    @apply focus:outline-none;
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+  }
+
+  .meeting-datetime-input::-webkit-date-and-time-value {
+    text-align: left;
+    min-height: 1.25em;
+  }
+
+  .meeting-datetime-input::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+
   .ed-section {
     @apply py-20 sm:py-28;
   }
@@ -187,6 +215,11 @@
     background-size: 20px 20px;
   }
 
+  .blog-content {
+    @apply max-w-full min-w-0;
+    overflow-x: clip;
+  }
+
   .blog-content p {
     @apply leading-relaxed;
   }
@@ -195,12 +228,68 @@
     @apply text-2xl font-semibold text-farm-text pt-4;
   }
 
+  .blog-content h3 {
+    @apply text-xl font-semibold text-farm-text pt-2;
+  }
+
   .blog-content a {
     @apply text-sage-600 font-semibold hover:text-sage-500 underline transition-colors;
   }
 
   .blog-content ul {
     @apply list-disc pl-6 space-y-2;
+  }
+
+  .blog-content ol {
+    @apply list-decimal pl-6 space-y-2;
+  }
+
+  .blog-content strong {
+    @apply font-semibold text-farm-text;
+  }
+
+  /* Keep page margins intact: only the table wrapper scrolls horizontally. */
+  .blog-content .blog-table-scroll {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #d4ccbc;
+    border-radius: 0.75rem;
+    background-color: #fbf6e5;
+  }
+
+  .blog-content table {
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875rem;
+    line-height: 1.375;
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+  }
+
+  .blog-content thead th {
+    @apply border-b border-farm-border bg-paper/70 px-3 py-2.5 font-semibold text-farm-text;
+    white-space: normal;
+  }
+
+  .blog-content tbody td {
+    @apply border-b border-farm-border/70 px-3 py-2.5 align-top text-farm-secondary;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .blog-content tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .blog-content tbody tr:nth-child(even) td {
+    @apply bg-paper/40;
   }
 
   /* Legacy linktree card classes (untouched) */

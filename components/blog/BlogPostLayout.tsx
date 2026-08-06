@@ -17,10 +17,10 @@ export default function BlogPostLayout({
   relatedPosts = [],
 }: BlogPostLayoutProps) {
   return (
-    <main className="min-h-screen bg-paper font-sans">
+    <main className="min-h-screen max-w-[100vw] overflow-x-clip bg-paper font-sans">
       <Header />
 
-      <article className="section-farm py-16 max-w-3xl mx-auto px-4">
+      <article className="section-farm w-full max-w-3xl min-w-0 mx-auto py-16 px-4">
         <Link
           href="/blog"
           className="text-sage-600 hover:text-sage-500 transition-colors mb-8 inline-block"
@@ -31,7 +31,7 @@ export default function BlogPostLayout({
         <time className="block text-sm text-farm-secondary mt-4">
           {formatItalianDate(post.publishedAt)}
         </time>
-        <h1 className="text-4xl font-bold text-farm-text mt-2 mb-8">
+        <h1 className="text-4xl font-bold text-farm-text mt-2 mb-8 break-words">
           {post.title}
         </h1>
 
@@ -51,7 +51,7 @@ export default function BlogPostLayout({
         {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
 
         <div
-          className="blog-content prose prose-lg max-w-none text-farm-secondary space-y-6"
+          className="blog-content prose prose-lg max-w-full min-w-0 text-farm-secondary space-y-6"
           dangerouslySetInnerHTML={{ __html: post.htmlContent }}
         />
 
