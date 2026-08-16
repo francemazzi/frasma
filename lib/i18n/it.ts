@@ -409,6 +409,12 @@ export const it: Record<string, string> = {
     "Se vuoi, puoi già scegliere un momento per approfondire il processo. La prenotazione è facoltativa.",
   "assessment.success.schedule": "Scegli data e ora",
   "assessment.success.close": "Chiudi e attendi risposta",
+  "assessment.dictate": "Dettatura vocale",
+  "assessment.dictateStop": "Interrompi dettatura",
+  "assessment.dictateListening": "Trascrizione in corso...",
+  "assessment.dictateError": "Dettatura non riuscita. Riprova.",
+  "assessment.dictateDenied": "Permesso microfono negato",
+  "assessment.dictateUnsupported": "Dettatura non supportata su questo browser",
 
   // Cal modal
   "cal.title": "Prenota un incontro",

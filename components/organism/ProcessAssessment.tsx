@@ -2,6 +2,7 @@
 
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import {
+  useCallback,
   useEffect,
   useId,
   useRef,
@@ -9,6 +10,7 @@ import {
   type FormEvent,
 } from "react";
 import { createPortal } from "react-dom";
+import DictationButton from "../atoms/DictationButton";
 import { useLang, useT } from "../../lib/i18n/context";
 import Cal from "./Cal";
 
@@ -28,6 +30,8 @@ type FormState = {
   honeypot: string;
 };
 
+type DictatableField = "company" | "role" | "process" | "systems" | "volume";
+
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
 const INITIAL_FORM: FormState = {
@@ -40,8 +44,16 @@ const INITIAL_FORM: FormState = {
   honeypot: "",
 };
 
+const FIELD_MAX: Record<DictatableField, number> = {
+  company: 120,
+  role: 120,
+  process: 2000,
+  systems: 500,
+  volume: 500,
+};
+
 const INPUT_CLASS =
-  "mt-1 w-full rounded-lg border border-hairline-strong bg-paper-2 px-3 py-2.5 text-ink outline-none transition-shadow focus:border-transparent focus:ring-2 focus:ring-accent/30";
+  "mt-1 w-full rounded-lg border border-hairline-strong bg-paper-2 px-3 py-2.5 pr-11 text-ink outline-none transition-shadow focus:border-transparent focus:ring-2 focus:ring-accent/30";
 
 export default function ProcessAssessment({
   textButton,
@@ -110,6 +122,21 @@ export default function ProcessAssessment({
     setErrorMessage("");
   };
 
+  const appendDictation = useCallback((field: DictatableField, text: string) => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    setForm((current) => {
+      const existing = current[field].trim();
+      const next = existing ? `${existing} ${trimmed}` : trimmed;
+      return {
+        ...current,
+        [field]: next.slice(0, FIELD_MAX[field]),
+      };
+    });
+    setStatus("idle");
+    setErrorMessage("");
+  }, []);
+
   const close = () => {
     if (status !== "submitting") setIsOpen(false);
   };
@@ -164,6 +191,8 @@ export default function ProcessAssessment({
       window.dispatchEvent(new Event(scheduleEvent));
     }, 0);
   };
+
+  const dictationEnabled = isOpen && status !== "submitting";
 
   const modal =
     isOpen && typeof document !== "undefined"
@@ -251,30 +280,44 @@ export default function ProcessAssessment({
                       <span className="text-sm font-medium text-ink">
                         {t("assessment.company")}
                       </span>
-                      <input
-                        ref={firstInputRef}
-                        className={INPUT_CLASS}
-                        value={form.company}
-                        maxLength={120}
-                        autoComplete="organization"
-                        onChange={(event) =>
-                          patchForm({ company: event.currentTarget.value })
-                        }
-                      />
+                      <div className="relative">
+                        <input
+                          ref={firstInputRef}
+                          className={INPUT_CLASS}
+                          value={form.company}
+                          maxLength={120}
+                          autoComplete="organization"
+                          onChange={(event) =>
+                            patchForm({ company: event.currentTarget.value })
+                          }
+                        />
+                        <DictationButton
+                          enabled={dictationEnabled}
+                          onTranscript={(text) =>
+                            appendDictation("company", text)
+                          }
+                        />
+                      </div>
                     </label>
                     <label className="block">
                       <span className="text-sm font-medium text-ink">
                         {t("assessment.role")}
                       </span>
-                      <input
-                        className={INPUT_CLASS}
-                        value={form.role}
-                        maxLength={120}
-                        autoComplete="organization-title"
-                        onChange={(event) =>
-                          patchForm({ role: event.currentTarget.value })
-                        }
-                      />
+                      <div className="relative">
+                        <input
+                          className={INPUT_CLASS}
+                          value={form.role}
+                          maxLength={120}
+                          autoComplete="organization-title"
+                          onChange={(event) =>
+                            patchForm({ role: event.currentTarget.value })
+                          }
+                        />
+                        <DictationButton
+                          enabled={dictationEnabled}
+                          onTranscript={(text) => appendDictation("role", text)}
+                        />
+                      </div>
                     </label>
                   </div>
 
@@ -285,7 +328,7 @@ export default function ProcessAssessment({
                     <input
                       type="email"
                       required
-                      className={INPUT_CLASS}
+                      className="mt-1 w-full rounded-lg border border-hairline-strong bg-paper-2 px-3 py-2.5 text-ink outline-none transition-shadow focus:border-transparent focus:ring-2 focus:ring-accent/30"
                       value={form.clientEmail}
                       maxLength={254}
                       autoComplete="email"
@@ -300,17 +343,25 @@ export default function ProcessAssessment({
                     <span className="text-sm font-medium text-ink">
                       {t("assessment.process")} *
                     </span>
-                    <textarea
-                      required
-                      minLength={20}
-                      maxLength={2000}
-                      className={`${INPUT_CLASS} min-h-[120px] resize-y`}
-                      value={form.process}
-                      placeholder={t("assessment.processPlaceholder")}
-                      onChange={(event) =>
-                        patchForm({ process: event.currentTarget.value })
-                      }
-                    />
+                    <div className="relative">
+                      <textarea
+                        required
+                        minLength={20}
+                        maxLength={2000}
+                        className={`${INPUT_CLASS} min-h-[120px] resize-y`}
+                        value={form.process}
+                        placeholder={t("assessment.processPlaceholder")}
+                        onChange={(event) =>
+                          patchForm({ process: event.currentTarget.value })
+                        }
+                      />
+                      <DictationButton
+                        enabled={dictationEnabled}
+                        onTranscript={(text) =>
+                          appendDictation("process", text)
+                        }
+                      />
+                    </div>
                   </label>
 
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -318,29 +369,45 @@ export default function ProcessAssessment({
                       <span className="text-sm font-medium text-ink">
                         {t("assessment.systems")}
                       </span>
-                      <textarea
-                        maxLength={500}
-                        className={`${INPUT_CLASS} min-h-[84px] resize-y`}
-                        value={form.systems}
-                        placeholder={t("assessment.systemsPlaceholder")}
-                        onChange={(event) =>
-                          patchForm({ systems: event.currentTarget.value })
-                        }
-                      />
+                      <div className="relative">
+                        <textarea
+                          maxLength={500}
+                          className={`${INPUT_CLASS} min-h-[84px] resize-y`}
+                          value={form.systems}
+                          placeholder={t("assessment.systemsPlaceholder")}
+                          onChange={(event) =>
+                            patchForm({ systems: event.currentTarget.value })
+                          }
+                        />
+                        <DictationButton
+                          enabled={dictationEnabled}
+                          onTranscript={(text) =>
+                            appendDictation("systems", text)
+                          }
+                        />
+                      </div>
                     </label>
                     <label className="block">
                       <span className="text-sm font-medium text-ink">
                         {t("assessment.volume")}
                       </span>
-                      <textarea
-                        maxLength={500}
-                        className={`${INPUT_CLASS} min-h-[84px] resize-y`}
-                        value={form.volume}
-                        placeholder={t("assessment.volumePlaceholder")}
-                        onChange={(event) =>
-                          patchForm({ volume: event.currentTarget.value })
-                        }
-                      />
+                      <div className="relative">
+                        <textarea
+                          maxLength={500}
+                          className={`${INPUT_CLASS} min-h-[84px] resize-y`}
+                          value={form.volume}
+                          placeholder={t("assessment.volumePlaceholder")}
+                          onChange={(event) =>
+                            patchForm({ volume: event.currentTarget.value })
+                          }
+                        />
+                        <DictationButton
+                          enabled={dictationEnabled}
+                          onTranscript={(text) =>
+                            appendDictation("volume", text)
+                          }
+                        />
+                      </div>
                     </label>
                   </div>
 

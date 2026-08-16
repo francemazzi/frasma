@@ -73,13 +73,16 @@ Each browser session stores a `conversationId` in `localStorage`. Messages are p
 
 Do not add prices, guaranteed savings, customer secrets, credentials, or personal data about third parties to the knowledge base or diagnostic examples.
 
-Required chat environment variable:
+Required OpenAI environment variable (chat agent + voice dictation on the process assessment form):
 
 ```bash
 OPENAI_API_KEY=your_openai_api_key
 
 # Optional; defaults to gpt-4o-mini
 OPENAI_CHAT_MODEL=gpt-4o-mini
+
+# Optional; defaults to whisper-1 (process assessment voice dictation)
+OPENAI_WHISPER_MODEL=whisper-1
 ```
 
 ### Chat persistence (MongoDB Atlas)

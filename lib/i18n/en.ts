@@ -405,6 +405,12 @@ export const en: Record<string, string> = {
     "If useful, you can already choose a time to discuss the process. Scheduling is optional.",
   "assessment.success.schedule": "Choose date and time",
   "assessment.success.close": "Close and wait for a reply",
+  "assessment.dictate": "Voice dictation",
+  "assessment.dictateStop": "Stop dictation",
+  "assessment.dictateListening": "Transcribing...",
+  "assessment.dictateError": "Dictation failed. Please try again.",
+  "assessment.dictateDenied": "Microphone permission denied",
+  "assessment.dictateUnsupported": "Dictation is not supported in this browser",
 
   // Cal modal
   "cal.title": "Schedule a meeting",
