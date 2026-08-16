@@ -42,14 +42,16 @@ export function BentoCard({
 
   return (
     <div
-      className={`relative flex flex-col overflow-hidden rounded-[28px] border border-white/70 bg-paper/70 shadow-[0_24px_70px_-50px_rgba(27,25,22,0.75)] ${
+      className={`ed-card-hover group relative flex flex-col overflow-hidden rounded-[28px] border border-white/70 bg-paper/70 shadow-[0_24px_70px_-50px_rgba(27,25,22,0.75)] ${
         hasBg ? "min-h-[220px]" : "bg-paper-2"
       } ${className}`}
       {...props}
     >
       {hasBg ? (
-        <div className="h-[165px] overflow-hidden border-b border-white/60 shrink-0">
-          {background}
+        <div className="h-[210px] overflow-hidden border-b border-white/60 shrink-0 sm:h-[266px]">
+          <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]">
+            {background}
+          </div>
         </div>
       ) : null}
 

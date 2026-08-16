@@ -515,7 +515,7 @@ export default function ManifatturaPage() {
               <h2 className="text-2xl font-semibold sm:text-3xl">Chi sono</h2>
               <p className="mt-4 max-w-2xl text-farm-secondary leading-relaxed">
                 <strong>Francesco Saverio</strong> &mdash;{" "}
-                <strong>11 anni</strong> nello sviluppo software, Laurea
+                <strong>10 anni</strong> nello sviluppo software, Laurea
                 Magistrale in Scienze e Tecnologie Agrarie. Lavoro come
                 freelance con aziende manifatturiere, progettando{" "}
                 <strong>soluzioni snelle</strong> partendo dal{" "}

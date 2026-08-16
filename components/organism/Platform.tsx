@@ -1,121 +1,136 @@
 "use client";
 
-import Link from "next/link";
-import { Check } from "lucide-react";
-
+import {
+  Check,
+  CheckCircle2,
+  Database,
+  FileSearch,
+  History,
+  UserCheck,
+} from "lucide-react";
 import { useT } from "../../lib/i18n/context";
 import { BentoCard, BentoGrid } from "../atoms/Bento";
+import { Reveal, RevealGroup, RevealItem, RevealLine } from "../atoms/Reveal";
 
-const AI_PRESENCE_ITEMS = [
-  {
-    number: "01",
-    titleKey: "aiPresence.item1.title",
-    descKey: "aiPresence.item1.desc",
-  },
-  {
-    number: "02",
-    titleKey: "aiPresence.item2.title",
-    descKey: "aiPresence.item2.desc",
-  },
-  {
-    number: "03",
-    titleKey: "aiPresence.item3.title",
-    descKey: "aiPresence.item3.desc",
-  },
+const FLOW_STEPS = [
+  { icon: FileSearch, title: "flow.step1.title", desc: "flow.step1.desc" },
+  { icon: CheckCircle2, title: "flow.step2.title", desc: "flow.step2.desc" },
+  { icon: UserCheck, title: "flow.step3.title", desc: "flow.step3.desc" },
+  { icon: Database, title: "flow.step4.title", desc: "flow.step4.desc" },
+  { icon: History, title: "flow.step5.title", desc: "flow.step5.desc" },
 ] as const;
 
 export default function Platform() {
   const t = useT();
 
   return (
-    <section id="piattaforma" className="ed-section">
+    <section id="come-funziona" className="ed-section">
       <div className="section-farm">
-        <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
-          <div className="ed-kicker">{t("search.eyebrow")}</div>
-          <h2 className="ed-title">{t("search.title")}</h2>
-          <p className="ed-intro mx-auto mt-6">{t("search.description")}</p>
-        </div>
+        <Reveal className="mx-auto mb-14 max-w-3xl text-center sm:mb-20">
+          <div className="ed-kicker">{t("flow.eyebrow")}</div>
+          <h2 className="ed-title">{t("flow.title")}</h2>
+          <p className="ed-intro mx-auto mt-6">{t("flow.subtitle")}</p>
+        </Reveal>
 
-        <BentoGrid>
-          <BentoCard
-            className="lg:col-span-2"
-            name={t("platform.cards.agent.name")}
-            description={t("platform.cards.agent.desc")}
-            background={<AgentMock />}
-          />
-          <BentoCard
-            className="lg:col-span-1"
-            name={t("platform.cards.tickets.name")}
-            description={t("platform.cards.tickets.desc")}
-            background={<TicketsMock />}
-          />
-          <BentoCard
-            className="lg:col-span-1"
-            name={t("platform.cards.workflow.name")}
-            description={t("platform.cards.workflow.desc")}
-            background={<WorkflowMock />}
-          />
-          <BentoCard
-            className="lg:col-span-2"
-            name={t("platform.cards.preventivi.name")}
-            description={t("platform.cards.preventivi.desc")}
-            background={<PreventiviMock />}
-          />
-        </BentoGrid>
+        <FlowRail t={t} />
 
-        <AiPresence t={t} />
+        <Reveal className="mx-auto mb-10 mt-24 max-w-3xl text-center sm:mb-12 sm:mt-32">
+          <div className="ed-kicker">{t("useCases.eyebrow")}</div>
+          <h2 className="ed-title">{t("useCases.title")}</h2>
+          <p className="ed-intro mx-auto mt-6">{t("useCases.subtitle")}</p>
+        </Reveal>
+
+        <RevealGroup stagger={0.12}>
+          <BentoGrid>
+            <RevealItem index={0} className="lg:col-span-2">
+              <BentoCard
+                className="h-full"
+                name={t("platform.cards.agent.name")}
+                description={t("platform.cards.agent.desc")}
+                background={<AgentMock />}
+              />
+            </RevealItem>
+            <RevealItem index={1} className="lg:col-span-1">
+              <BentoCard
+                className="h-full"
+                name={t("platform.cards.tickets.name")}
+                description={t("platform.cards.tickets.desc")}
+                background={<TicketsMock />}
+              />
+            </RevealItem>
+            <RevealItem index={2} className="lg:col-span-1">
+              <BentoCard
+                className="h-full"
+                name={t("platform.cards.workflow.name")}
+                description={t("platform.cards.workflow.desc")}
+                background={<WorkflowMock />}
+              />
+            </RevealItem>
+            <RevealItem index={3} className="lg:col-span-2">
+              <BentoCard
+                className="h-full"
+                name={t("platform.cards.preventivi.name")}
+                description={t("platform.cards.preventivi.desc")}
+                background={<PreventiviMock />}
+              />
+            </RevealItem>
+          </BentoGrid>
+        </RevealGroup>
       </div>
     </section>
   );
 }
 
-function AiPresence({ t }: { t: (key: string) => string }) {
-  return (
-    <div className="mt-20 rounded-[32px] bg-ink p-7 text-paper sm:p-12">
-      <div className="max-w-3xl mb-10">
-        <div className="ed-kicker">{t("aiPresence.eyebrow")}</div>
-        <h3 className="mb-5 text-[34px] font-semibold leading-[1.05] tracking-[-0.045em] text-paper sm:text-[52px]">{t("aiPresence.title")}</h3>
-        <p className="max-w-[58ch] text-[17px] leading-[1.55] text-paper/65">{t("aiPresence.desc")}</p>
-        <p className="mt-6">
-          <Link
-            href="/for-agents"
-            className="text-[14px] font-semibold text-accent underline-offset-2 hover:underline"
-          >
-            {t("footer.forAgents")} →
-          </Link>
-        </p>
-      </div>
+/* ── Flow rail ─────────────────────────────────────────── */
 
-      <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-        {AI_PRESENCE_ITEMS.map((item) => (
-          <div key={item.number} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
-            <span className="mb-6 block text-[11px] font-semibold text-accent">{item.number}</span>
-            <div>
-              <h4 className="text-[15px] font-semibold text-paper mb-2">
-                {t(item.titleKey)}
-              </h4>
-              <p className="text-[14px] leading-[1.55] text-paper/60">
-                {t(item.descKey)}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+function FlowRail({ t }: { t: (key: string) => string }) {
+  return (
+    <div className="relative">
+      <div
+        className="absolute left-[19px] top-4 bottom-4 w-px bg-hairline-strong lg:left-0 lg:right-0 lg:top-[19px] lg:bottom-auto lg:h-px lg:w-auto"
+        aria-hidden="true"
+      />
+      <RevealLine className="absolute left-[19px] top-4 bottom-4 w-px bg-accent/45 lg:left-0 lg:right-0 lg:top-[19px] lg:bottom-auto lg:h-px lg:w-auto" />
+
+      <RevealGroup
+        as="ol"
+        stagger={0.12}
+        className="relative grid grid-cols-1 gap-7 lg:grid-cols-5 lg:gap-6"
+      >
+        {FLOW_STEPS.map((step, index) => {
+          const Icon = step.icon;
+          return (
+            <RevealItem
+              as="li"
+              key={step.title}
+              index={index}
+              className="grid grid-cols-[40px_minmax(0,1fr)] items-start gap-4 lg:block"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline-strong bg-paper text-accent">
+                <Icon size={18} aria-hidden="true" />
+              </span>
+              <div className="lg:mt-5 lg:pr-4">
+                <span className="mb-1 block text-[11px] font-semibold tracking-[0.1em] text-ink-soft">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mb-1.5 text-[17px] font-semibold tracking-[-0.03em] text-ink">
+                  {t(step.title)}
+                </h3>
+                <p className="max-w-[38ch] text-[14px] leading-[1.55] text-ink-soft">
+                  {t(step.desc)}
+                </p>
+              </div>
+            </RevealItem>
+          );
+        })}
+      </RevealGroup>
     </div>
   );
 }
 
 /* ── shared chrome ─────────────────────────────────────── */
 
-function MockHead({
-  label,
-  em,
-  meta,
-}: {
-  label: string;
-  em: string;
-  meta: string;
-}) {
+function MockHead({ label, em, meta }: { label: string; em: string; meta: string }) {
   return (
     <div className="grid grid-cols-[10px_1fr_auto] gap-3 items-center px-[14px] py-[10px] bg-ink text-paper font-mono text-[10.5px] tracking-[0.06em]">
       <span
@@ -130,7 +145,7 @@ function MockHead({
   );
 }
 
-function Shell({ children }: { children: React.ReactNode }) {
+function MockShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-full w-full bg-[#FBF6E5] overflow-hidden flex flex-col">
       {children}
@@ -142,7 +157,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 
 function AgentMock() {
   return (
-    <Shell>
+    <MockShell>
       <MockHead label="DDT · ACQUISIZIONE" em="Mago / TeamSystem" meta="RUN · 00:18" />
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="flex-1 p-4 bg-white border-b sm:border-b-0 sm:border-r border-hairline-strong font-serif text-[11px] leading-[1.6] text-ink-2">
@@ -180,7 +195,7 @@ function AgentMock() {
           </div>
         </div>
       </div>
-    </Shell>
+    </MockShell>
   );
 }
 
@@ -226,13 +241,7 @@ function Field({
   );
 }
 
-function BtnMini({
-  children,
-  ghost,
-}: {
-  children: React.ReactNode;
-  ghost?: boolean;
-}) {
+function BtnMini({ children, ghost }: { children: React.ReactNode; ghost?: boolean }) {
   return (
     <span
       className={`font-mono text-[10px] tracking-[0.06em] uppercase px-[10px] py-[5px] border border-ink ${
@@ -256,7 +265,7 @@ function TicketsMock() {
   ] as const;
 
   return (
-    <Shell>
+    <MockShell>
       <MockHead label="OPERATIONS · TICKETS" em="field service" meta="12 APERTI · 4 IN LAVORO" />
       <div className="px-4 py-2 border-b border-hairline flex gap-[6px] items-center font-mono text-[10px] text-ink-soft tracking-[0.06em]">
         <ChipMini on>Tutti</ChipMini>
@@ -297,7 +306,7 @@ function TicketsMock() {
           </div>
         ))}
       </div>
-    </Shell>
+    </MockShell>
   );
 }
 
@@ -345,7 +354,7 @@ function WorkflowMock() {
   ];
 
   return (
-    <Shell>
+    <MockShell>
       <MockHead label="HACCP · MANUALE" em="autocontrollo" meta="REV 2025.11 · PROC-04" />
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="w-full sm:w-[200px] p-[14px] bg-paper-2 flex flex-col gap-[4px] border-b sm:border-b-0 sm:border-r border-hairline-strong">
@@ -370,11 +379,7 @@ function WorkflowMock() {
                     : "text-ink-soft border-ink-soft"
                 }`}
               >
-                {s.state === "done" ? (
-                  <Check size={10} aria-hidden="true" />
-                ) : (
-                  s.n
-                )}
+                {s.state === "done" ? <Check size={10} aria-hidden="true" /> : s.n}
               </span>
               <span className="text-ink text-[10.5px]">{s.name}</span>
             </div>
@@ -394,7 +399,7 @@ function WorkflowMock() {
           </div>
         </div>
       </div>
-    </Shell>
+    </MockShell>
   );
 }
 
@@ -410,9 +415,7 @@ function WfInput({ label, v, auto }: { label: string; v: string; auto?: boolean 
         }`}
       >
         <span>{v}</span>
-        {auto ? (
-          <span className="text-[9px] text-[#5a8a3f] tracking-[0.05em]">AUTO</span>
-        ) : null}
+        {auto ? <span className="text-[9px] text-[#5a8a3f] tracking-[0.05em]">AUTO</span> : null}
       </div>
     </div>
   );
@@ -428,7 +431,7 @@ function PreventiviMock() {
     { id: "P-26-041", cli: "Studio L.", mat: "Inox 4 mm", qt: "220", eur: "9.870", st: "Bozza" },
   ];
   return (
-    <Shell>
+    <MockShell>
       <MockHead label="PREVENTIVI · 2026" em="lamiere" meta="Q1 · 18 OFFERTE" />
       <div className="flex-1">
         <table className="w-full border-collapse font-mono text-[10.5px]">
@@ -461,7 +464,10 @@ function PreventiviMock() {
               <td colSpan={4} className="px-[14px] py-[10px] border-t-2 border-ink font-medium text-ink">
                 Totale Q1
               </td>
-              <td className="px-[14px] py-[10px] border-t-2 border-ink text-right font-medium text-ink text-[12px]" style={{ fontVariantNumeric: "tabular-nums" }}>
+              <td
+                className="px-[14px] py-[10px] border-t-2 border-ink text-right font-medium text-ink text-[12px]"
+                style={{ fontVariantNumeric: "tabular-nums" }}
+              >
                 29.140
               </td>
               <td className="px-[14px] py-[10px] border-t-2 border-ink" />
@@ -469,7 +475,7 @@ function PreventiviMock() {
           </tbody>
         </table>
       </div>
-    </Shell>
+    </MockShell>
   );
 }
 

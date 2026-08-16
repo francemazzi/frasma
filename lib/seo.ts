@@ -19,9 +19,15 @@ export function absoluteUrl(path = "/"): string {
 }
 
 /** Offer catalog of verified Frasma services (no price list). */
-export function serviceOfferCatalogJsonLd(locale: Locale = "it") {
+export function serviceOfferCatalogJsonLd(
+  locale: Locale = "it",
+  serviceIds?: readonly string[],
+) {
+  const selectedIds = serviceIds ? new Set(serviceIds) : null;
   const services = knowledgeCatalog.entries.filter(
-    (entry) => entry.category === "service",
+    (entry) =>
+      entry.category === "service" &&
+      (!selectedIds || selectedIds.has(entry.id)),
   );
 
   return {
@@ -74,11 +80,10 @@ export const personJsonLd = {
   name: OWNER_NAME,
   alternateName: ["Frasma", "francemazzi"],
   jobTitle: [
-    "Founder & Lead Developer",
-    "Software developer",
-    "Programmatore freelance",
-    "Sviluppatore software",
-    "Informatico freelance",
+    "Founder and Technical Lead",
+    "Business Process Automation Specialist",
+    "Responsabile tecnico",
+    "Specialista in automazione dei processi aziendali",
   ],
   url: SITE_URL,
   image: PROFILE_IMAGE,
@@ -91,22 +96,15 @@ export const personJsonLd = {
     "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
   ],
   knowsAbout: [
-    "Software operativo su misura",
-    "Studio software per PMI",
-    "Automazioni AI per imprese",
-    "Digitalizzazione documentale",
     "Automazione processi aziendali",
+    "Automazione documentale",
+    "Estrazione dati da PDF",
+    "Automazione email aziendali",
     "Integrazioni ERP e API",
     "Software per manifattura",
     "Software per alimentare e HACCP",
     "Software per agronomia",
-    "Presenza su ChatGPT, Claude e Gemini",
-    "Programmazione full stack",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Python",
-    "FastAPI",
+    "AI con validazione umana",
   ],
   address: {
     "@type": "PostalAddress",
@@ -125,7 +123,7 @@ export const professionalServiceJsonLd = {
     "@id": `${SITE_URL}/#person`,
   },
   description:
-    "Software su misura e automazioni AI per processi aziendali e documenti: riduciamo copia-incolla, errori e tempi morti tra email, PDF, Excel ed ERP per PMI.",
+    "Automazione di processi aziendali e documentali per PMI manifatturiere e agroalimentari: colleghiamo email, PDF, Excel ed ERP mantenendo controllo umano e sistemi esistenti.",
   areaServed: [
     {
       "@type": "Country",
