@@ -24,7 +24,7 @@ import {
 } from "../../lib/knowledge";
 import {
   appendMessage,
-  resolveConversationId,
+  requireRegisteredConversation,
 } from "../../lib/chat/persistence";
 import { isValidConversationId } from "../../lib/chat/session";
 import { buildQuoteEmailDraft } from "../../lib/chat/quote-email";
@@ -573,14 +573,15 @@ export default async function handler(
 
   let conversationId: string | null = null;
   try {
-    conversationId = await resolveConversationId(body.conversationId, {
-      lang,
-      timezone: timeZone,
-      pagePath,
-      clientIp: ipKey,
-    });
+    conversationId = await requireRegisteredConversation(body.conversationId);
 
-    if (conversationId && lastUserMessage) {
+    if (!conversationId) {
+      return res.status(401).json({
+        error: "Chat registration required.",
+      });
+    }
+
+    if (lastUserMessage) {
       await appendMessage(conversationId, {
         role: "user",
         content: lastUserMessage.content,
@@ -592,6 +593,12 @@ export default async function handler(
       body.conversationId && isValidConversationId(body.conversationId)
         ? body.conversationId
         : null;
+
+    if (!conversationId) {
+      return res.status(401).json({
+        error: "Chat registration required.",
+      });
+    }
   }
 
   const invokeStartedAt = Date.now();

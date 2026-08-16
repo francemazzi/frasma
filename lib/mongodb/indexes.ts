@@ -15,11 +15,15 @@ export async function ensureChatIndexes(db?: Db | null): Promise<void> {
       .collection("conversations")
       .createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
     database
+      .collection("conversations")
+      .createIndex({ userId: 1, lastMessageAt: -1 }),
+    database
       .collection("messages")
       .createIndex({ conversationId: 1, createdAt: 1 }),
     database
       .collection("events")
       .createIndex({ conversationId: 1, createdAt: -1 }),
+    database.collection("users").createIndex({ email: 1 }, { unique: true }),
   ]);
 
   indexesEnsured = true;

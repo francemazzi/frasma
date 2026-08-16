@@ -392,6 +392,9 @@ export const it: Record<string, string> = {
     "Non inserire credenziali o dati sensibili. Useremo queste informazioni solo per valutare il processo e ricontattarti; gli esempi di documenti potranno essere condivisi successivamente.",
   "assessment.close": "Chiudi",
   "assessment.cancel": "Annulla",
+  "assessment.next": "Avanti",
+  "assessment.back": "Indietro",
+  "assessment.step": "Passo {n} di {total}",
   "assessment.send": "Invia il processo",
   "assessment.sending": "Invio in corso...",
   "assessment.validation.email": "Inserisci un’email valida.",
@@ -458,6 +461,19 @@ export const it: Record<string, string> = {
     "La conversazione viene salvata per migliorare il servizio e riprenderla in un secondo momento.",
   "chat.persistence.restored": "Conversazione precedente ripristinata.",
   "chat.persistence.loading": "Caricamento conversazione...",
+
+  // Chat registration gate
+  "chat.register.intro":
+    "Prima di iniziare, lasciami i tuoi dati. Se hai già scritto, con la stessa email riprendi lo storico.",
+  "chat.register.name": "Nome",
+  "chat.register.email": "Email",
+  "chat.register.company": "Azienda",
+  "chat.register.sector": "Settore",
+  "chat.register.submit": "Inizia la chat",
+  "chat.register.submitting": "Registrazione...",
+  "chat.register.error": "Registrazione non riuscita. Riprova.",
+  "chat.register.invalid": "Compila tutti i campi con un'email valida.",
+  "chat.register.placeholder": "Compila i dati per iniziare",
 
   // Email form in chat
   "chat.email.title": "Bozza Email",

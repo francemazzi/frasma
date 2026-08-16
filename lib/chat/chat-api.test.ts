@@ -3,7 +3,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 vi.mock("../../lib/chat/persistence", () => ({
   appendMessage: vi.fn(async () => undefined),
-  resolveConversationId: vi.fn(async () => "550e8400-e29b-41d4-a716-446655440000"),
+  requireRegisteredConversation: vi.fn(async (id?: string) =>
+    id ? "550e8400-e29b-41d4-a716-446655440000" : null,
+  ),
 }));
 
 vi.mock("@langchain/langgraph/prebuilt", () => ({
@@ -119,6 +121,7 @@ describe("chat API validation", () => {
           lang: "it",
           timezone: "Europe/Rome",
           pagePath: "/",
+          conversationId: "550e8400-e29b-41d4-a716-446655440000",
         },
         "203.0.113.20",
       ),
@@ -132,5 +135,31 @@ describe("chat API validation", () => {
     expect(state.body).toMatchObject({ code: "TIMEOUT" });
     expect((state.body as { response?: string }).response).toContain("EMAIL_FORM");
     expect((state.body as { response?: string }).response).toContain("MEETING_FORM");
+  });
+
+  it("rejects chat without a registered conversation", async () => {
+    process.env.OPENAI_API_KEY = "test-key";
+    const { requireRegisteredConversation } = await import(
+      "../../lib/chat/persistence"
+    );
+    vi.mocked(requireRegisteredConversation).mockResolvedValueOnce(null);
+
+    const { response, state } = createResponse();
+    await handler(
+      request(
+        "POST",
+        {
+          messages: [{ role: "user", content: "Ciao" }],
+          lang: "it",
+          timezone: "Europe/Rome",
+          pagePath: "/",
+        },
+        "203.0.113.21",
+      ),
+      response,
+    );
+
+    expect(state.status).toBe(401);
+    expect(state.body).toEqual({ error: "Chat registration required." });
   });
 });

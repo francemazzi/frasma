@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, type FormEvent } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { X, Send, Loader2, Mail, Calendar } from "lucide-react";
@@ -737,6 +737,208 @@ function InlineDiagnosticForm({
 }
 
 /* ------------------------------------------------------------------ */
+/*  Inline registration form                                           */
+/* ------------------------------------------------------------------ */
+
+type RegisterFormValues = {
+  name: string;
+  email: string;
+  company: string;
+  sector: string;
+};
+
+type RegisterSuccessPayload = {
+  conversationId: string;
+  messages: Message[];
+  returning: boolean;
+};
+
+function InlineRegisterForm({
+  t,
+  lang,
+  pagePath,
+  onSuccess,
+}: {
+  t: (key: string) => string;
+  lang: "it" | "en";
+  pagePath: string;
+  onSuccess: (payload: RegisterSuccessPayload) => void;
+}) {
+  const [values, setValues] = useState<RegisterFormValues>({
+    name: "",
+    email: "",
+    company: "",
+    sector: "",
+  });
+  const [honeypot, setHoneypot] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const updateField = (field: keyof RegisterFormValues, value: string) => {
+    setValues((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (submitting) return;
+
+    const name = values.name.trim();
+    const email = values.email.trim();
+    const company = values.company.trim();
+    const sector = values.sector.trim();
+
+    if (
+      !name ||
+      !email ||
+      !company ||
+      !sector ||
+      !EMAIL_ADDRESS_RE.test(email)
+    ) {
+      setErrorMessage(t("chat.register.invalid"));
+      return;
+    }
+
+    setSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const timezone =
+        typeof Intl !== "undefined"
+          ? Intl.DateTimeFormat().resolvedOptions().timeZone ?? "Europe/Rome"
+          : "Europe/Rome";
+
+      const res = await fetch("/api/chat/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          company,
+          sector,
+          honeypot,
+          lang,
+          timezone,
+          pagePath,
+        }),
+      });
+
+      const json = (await res.json().catch(() => null)) as
+        | {
+            conversationId?: string;
+            messages?: Message[];
+            returning?: boolean;
+            error?: string;
+          }
+        | null;
+
+      if (!res.ok || !json?.conversationId) {
+        setErrorMessage(t("chat.register.error"));
+        return;
+      }
+
+      const restoredMessages = (json.messages ?? []).filter(
+        (message) =>
+          (message.role === "user" || message.role === "assistant") &&
+          typeof message.content === "string" &&
+          message.content.trim().length > 0,
+      );
+
+      onSuccess({
+        conversationId: json.conversationId,
+        messages: restoredMessages,
+        returning: Boolean(json.returning && restoredMessages.length > 0),
+      });
+    } catch {
+      setErrorMessage(t("chat.register.error"));
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <form
+      className="relative mt-3 space-y-3 rounded-xl border border-hairline-strong bg-white/55 p-3"
+      onSubmit={(event) => void handleSubmit(event)}
+    >
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <label>
+          <span className="mb-1 block text-[11px] font-semibold">
+            {t("chat.register.name")}
+          </span>
+          <input
+            value={values.name}
+            onChange={(event) => updateField("name", event.currentTarget.value)}
+            autoComplete="name"
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
+          />
+        </label>
+        <label>
+          <span className="mb-1 block text-[11px] font-semibold">
+            {t("chat.register.email")}
+          </span>
+          <input
+            type="email"
+            value={values.email}
+            onChange={(event) => updateField("email", event.currentTarget.value)}
+            autoComplete="email"
+            className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
+          />
+        </label>
+      </div>
+
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-semibold">
+          {t("chat.register.company")}
+        </span>
+        <input
+          value={values.company}
+          onChange={(event) => updateField("company", event.currentTarget.value)}
+          autoComplete="organization"
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
+        />
+      </label>
+
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-semibold">
+          {t("chat.register.sector")}
+        </span>
+        <input
+          value={values.sector}
+          onChange={(event) => updateField("sector", event.currentTarget.value)}
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
+        />
+      </label>
+
+      <input
+        type="text"
+        name="website"
+        value={honeypot}
+        onChange={(event) => setHoneypot(event.currentTarget.value)}
+        className="absolute h-0 w-0 opacity-0 pointer-events-none"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
+      {errorMessage ? <p className="text-xs text-red-600">{errorMessage}</p> : null}
+
+      <button
+        type="submit"
+        disabled={submitting}
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-ink px-3 py-2 text-xs font-semibold text-paper transition-colors hover:bg-accent disabled:opacity-50"
+      >
+        {submitting ? (
+          <Loader2 size={13} className="animate-spin" />
+        ) : (
+          <Send size={13} />
+        )}
+        {submitting ? t("chat.register.submitting") : t("chat.register.submit")}
+      </button>
+    </form>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Chat widget                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -754,6 +956,7 @@ export default function ChatWidget() {
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [historyRestored, setHistoryRestored] = useState(false);
   const [restoring, setRestoring] = useState(false);
+  const [needsRegistration, setNeedsRegistration] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -764,27 +967,34 @@ export default function ChatWidget() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, loading]);
+  }, [messages, loading, needsRegistration]);
 
   // Focus input when chat opens (skip on touch devices to avoid iOS Safari zoom)
   useEffect(() => {
-    if (!isOpen || !inputRef.current) return;
+    if (!isOpen || needsRegistration || !inputRef.current) return;
     const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
     if (!isCoarsePointer) {
       inputRef.current.focus();
     }
-  }, [isOpen]);
+  }, [isOpen, needsRegistration]);
 
-  // Add welcome message on first open
   const showWelcome = useCallback(() => {
     setMessages([{ role: "assistant", content: t("chat.welcome") }]);
     setHistoryRestored(false);
+    setNeedsRegistration(false);
+  }, [t]);
+
+  const showRegistrationGate = useCallback(() => {
+    setMessages([{ role: "assistant", content: t("chat.register.intro") }]);
+    setHistoryRestored(false);
+    setNeedsRegistration(true);
+    setConversationId(null);
   }, [t]);
 
   const restoreConversation = useCallback(async () => {
     const storedConversationId = readStoredConversationId();
     if (!storedConversationId) {
-      showWelcome();
+      showRegistrationGate();
       return;
     }
 
@@ -794,7 +1004,7 @@ export default function ChatWidget() {
       if (!res.ok) {
         clearStoredConversationId();
         setConversationId(null);
-        showWelcome();
+        showRegistrationGate();
         return;
       }
 
@@ -813,6 +1023,8 @@ export default function ChatWidget() {
       );
 
       if (!restoredMessages?.length) {
+        setConversationId(json?.conversationId ?? storedConversationId);
+        writeStoredConversationId(json?.conversationId ?? storedConversationId);
         showWelcome();
         return;
       }
@@ -821,12 +1033,30 @@ export default function ChatWidget() {
       writeStoredConversationId(json?.conversationId ?? storedConversationId);
       setMessages(restoredMessages);
       setHistoryRestored(true);
+      setNeedsRegistration(false);
     } catch {
-      showWelcome();
+      showRegistrationGate();
     } finally {
       setRestoring(false);
     }
-  }, [showWelcome]);
+  }, [showRegistrationGate, showWelcome]);
+
+  const handleRegisterSuccess = useCallback(
+    (payload: RegisterSuccessPayload) => {
+      setConversationId(payload.conversationId);
+      writeStoredConversationId(payload.conversationId);
+      setNeedsRegistration(false);
+
+      if (payload.returning && payload.messages.length > 0) {
+        setMessages(payload.messages);
+        setHistoryRestored(true);
+        return;
+      }
+
+      showWelcome();
+    },
+    [showWelcome],
+  );
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
@@ -847,7 +1077,7 @@ export default function ChatWidget() {
 
   const sendMessage = useCallback(async () => {
     const text = input.trim();
-    if (!text || loading) return;
+    if (!text || loading || needsRegistration || !conversationId) return;
 
     const userMsg: Message = { role: "user", content: text };
     const nextMessages = [...messages, userMsg];
@@ -869,7 +1099,7 @@ export default function ChatWidget() {
           lang,
           timezone,
           pagePath: router.asPath,
-          ...(conversationId ? { conversationId } : {}),
+          conversationId,
         }),
         signal: AbortSignal.timeout(CHAT_FETCH_TIMEOUT_MS),
       });
@@ -941,7 +1171,7 @@ export default function ChatWidget() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading, messages, lang, router.asPath, t, conversationId]);
+  }, [input, loading, messages, lang, router.asPath, t, conversationId, needsRegistration]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -1126,6 +1356,15 @@ export default function ChatWidget() {
               </div>
             )}
 
+            {needsRegistration && !restoring ? (
+              <InlineRegisterForm
+                t={t}
+                lang={lang}
+                pagePath={router.asPath}
+                onSuccess={handleRegisterSuccess}
+              />
+            ) : null}
+
             {loading && (
               <div className="max-w-full">
                 <div className="font-mono text-[9.5px] tracking-[0.12em] uppercase mb-[6px] text-accent flex items-center gap-1.5">
@@ -1155,14 +1394,23 @@ export default function ChatWidget() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder={t("chat.placeholder")}
-              disabled={loading}
+              placeholder={
+                needsRegistration
+                  ? t("chat.register.placeholder")
+                  : t("chat.placeholder")
+              }
+              disabled={loading || needsRegistration || !conversationId}
               className="min-w-0 flex-1 bg-transparent border-none outline-none font-sans text-[16px] text-ink placeholder:text-ink-faint leading-[1.4] py-[6px]"
             />
             <button
               type="button"
               onClick={() => void sendMessage()}
-              disabled={loading || !input.trim()}
+              disabled={
+                loading ||
+                needsRegistration ||
+                !conversationId ||
+                !input.trim()
+              }
               className="w-9 h-9 rounded-full bg-ink text-paper flex items-center justify-center hover:bg-accent disabled:opacity-35 transition-colors"
               aria-label={t("chat.send")}
             >
