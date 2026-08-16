@@ -459,6 +459,19 @@ export const it: Record<string, string> = {
   "chat.persistence.restored": "Conversazione precedente ripristinata.",
   "chat.persistence.loading": "Caricamento conversazione...",
 
+  // Chat registration gate
+  "chat.register.intro":
+    "Prima di iniziare, lasciami i tuoi dati. Se hai già scritto, con la stessa email riprendi lo storico.",
+  "chat.register.name": "Nome",
+  "chat.register.email": "Email",
+  "chat.register.company": "Azienda",
+  "chat.register.sector": "Settore",
+  "chat.register.submit": "Inizia la chat",
+  "chat.register.submitting": "Registrazione...",
+  "chat.register.error": "Registrazione non riuscita. Riprova.",
+  "chat.register.invalid": "Compila tutti i campi con un'email valida.",
+  "chat.register.placeholder": "Compila i dati per iniziare",
+
   // Email form in chat
   "chat.email.title": "Bozza Email",
   "chat.email.clientEmail": "Email",

@@ -21,6 +21,11 @@ export type CreateConversationInput = {
   timezone: string;
   pagePath: string;
   clientIp?: string;
+  userId?: string;
+  contactEmail?: string;
+  contactName?: string;
+  company?: string;
+  sector?: string;
 };
 
 export type AppendMessageInput = {
@@ -48,8 +53,11 @@ type ConversationDocument = {
   hasDiagnostic: boolean;
   hasEmailSent: boolean;
   hasMeetingScheduled: boolean;
+  userId?: string;
   contactEmail?: string;
   contactName?: string;
+  company?: string;
+  sector?: string;
   clientIpHash?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -121,6 +129,11 @@ export async function createConversation(
     hasDiagnostic: false,
     hasEmailSent: false,
     hasMeetingScheduled: false,
+    ...(input.userId ? { userId: input.userId } : {}),
+    ...(input.contactEmail ? { contactEmail: input.contactEmail } : {}),
+    ...(input.contactName ? { contactName: input.contactName } : {}),
+    ...(input.company ? { company: input.company } : {}),
+    ...(input.sector ? { sector: input.sector } : {}),
     ...(input.clientIp ? { clientIpHash: hashClientIp(input.clientIp) } : {}),
     createdAt: now,
     updatedAt: now,
@@ -129,6 +142,46 @@ export async function createConversation(
   });
 
   return conversationId;
+}
+
+export async function findLatestConversationForUser(
+  userId: string,
+): Promise<string | null> {
+  if (!isPersistenceEnabled() || !userId.trim()) {
+    return null;
+  }
+
+  const db = await getDbWithIndexes();
+  if (!db) return null;
+
+  const conversation = await db
+    .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
+    .find({ userId })
+    .sort({ lastMessageAt: -1 })
+    .limit(1)
+    .next();
+
+  return conversation?._id ?? null;
+}
+
+export async function conversationHasUser(
+  conversationId: string,
+): Promise<boolean> {
+  if (!isPersistenceEnabled() || !isValidConversationId(conversationId)) {
+    return false;
+  }
+
+  const db = await getDbWithIndexes();
+  if (!db) return false;
+
+  const conversation = await db
+    .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
+    .findOne(
+      { _id: conversationId, userId: { $exists: true, $ne: "" } },
+      { projection: { _id: 1 } },
+    );
+
+  return conversation !== null;
 }
 
 export async function conversationExists(
@@ -174,6 +227,22 @@ export async function getConversationMessages(
     role: message.role as MessageRole,
     content: String(message.content ?? ""),
   }));
+}
+
+export async function getRegisteredConversation(
+  conversationId: string,
+): Promise<{ conversationId: string; messages: StoredMessage[] } | null> {
+  if (!isPersistenceEnabled() || !isValidConversationId(conversationId)) {
+    return null;
+  }
+
+  const hasUser = await conversationHasUser(conversationId);
+  if (!hasUser) return null;
+
+  const messages = await getConversationMessages(conversationId);
+  if (messages === null) return null;
+
+  return { conversationId, messages };
 }
 
 export async function appendMessage(
@@ -227,7 +296,23 @@ export async function resolveConversationId(
     if (exists) return conversationId;
   }
 
+  // Anonymous conversations are no longer created from /api/chat.
+  // Registration must go through /api/chat/register with a visitor profile.
+  if (!input.userId) return null;
+
   return createConversation(input);
+}
+
+export async function requireRegisteredConversation(
+  conversationId: string | undefined,
+): Promise<string | null> {
+  if (!isPersistenceEnabled()) return null;
+  if (!conversationId || !isValidConversationId(conversationId)) return null;
+
+  const hasUser = await conversationHasUser(conversationId);
+  if (!hasUser) return null;
+
+  return conversationId;
 }
 
 export async function logConversionEvent(

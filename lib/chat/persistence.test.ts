@@ -1,5 +1,9 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { hashClientIp, isPersistenceEnabled } from "./persistence";
+import {
+  hashClientIp,
+  isPersistenceEnabled,
+  requireRegisteredConversation,
+} from "./persistence";
 import { isValidConversationId } from "./session";
 
 describe("chat persistence helpers", () => {
@@ -27,5 +31,12 @@ describe("chat persistence helpers", () => {
     expect(isValidConversationId("550e8400-e29b-41d4-a716-446655440000")).toBe(
       true,
     );
+  });
+
+  it("rejects unregistered conversations when persistence is off", async () => {
+    await expect(requireRegisteredConversation(undefined)).resolves.toBeNull();
+    await expect(
+      requireRegisteredConversation("550e8400-e29b-41d4-a716-446655440000"),
+    ).resolves.toBeNull();
   });
 });

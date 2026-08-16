@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getConversationMessages } from "../../../../lib/chat/persistence";
+import { getRegisteredConversation } from "../../../../lib/chat/persistence";
 import { isValidConversationId } from "../../../../lib/chat/session";
 import {
   InMemoryFixedWindowRateLimiter,
@@ -31,14 +31,14 @@ export default async function handler(
   }
 
   try {
-    const messages = await getConversationMessages(conversationId);
-    if (messages === null) {
+    const conversation = await getRegisteredConversation(conversationId);
+    if (conversation === null) {
       return res.status(404).json({ error: "Conversation not found." });
     }
 
     return res.status(200).json({
-      conversationId,
-      messages,
+      conversationId: conversation.conversationId,
+      messages: conversation.messages,
     });
   } catch (error) {
     console.error("[conversations] Failed to load conversation.", error);
