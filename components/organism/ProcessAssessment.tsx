@@ -74,7 +74,8 @@ export default function ProcessAssessment({
   const scheduleEvent = `frasma:schedule:${id}`;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
-  const stepFieldRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+  const stepInputRef = useRef<HTMLInputElement>(null);
+  const stepTextareaRef = useRef<HTMLTextAreaElement>(null);
   const wasOpenRef = useRef(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState<Step>(1);
@@ -121,7 +122,10 @@ export default function ProcessAssessment({
 
   useEffect(() => {
     if (!isOpen || status === "success") return;
-    window.setTimeout(() => stepFieldRef.current?.focus(), 0);
+    window.setTimeout(() => {
+      stepInputRef.current?.focus();
+      stepTextareaRef.current?.focus();
+    }, 0);
   }, [isOpen, currentStep, status]);
 
   useEffect(() => {
@@ -391,7 +395,7 @@ export default function ProcessAssessment({
                               {t("assessment.company")}
                             </span>
                             <input
-                              ref={stepFieldRef}
+                              ref={stepInputRef}
                               className={INPUT_CLASS}
                               value={form.company}
                               maxLength={120}
@@ -446,7 +450,7 @@ export default function ProcessAssessment({
                         </span>
                         <div className="relative">
                           <textarea
-                            ref={stepFieldRef}
+                            ref={stepTextareaRef}
                             required
                             minLength={20}
                             maxLength={2000}
@@ -474,7 +478,7 @@ export default function ProcessAssessment({
                         </span>
                         <div className="relative">
                           <textarea
-                            ref={stepFieldRef}
+                            ref={stepTextareaRef}
                             maxLength={500}
                             className={TEXTAREA_CLASS}
                             value={form.systems}
@@ -501,7 +505,7 @@ export default function ProcessAssessment({
                           </span>
                           <div className="relative">
                             <textarea
-                              ref={stepFieldRef}
+                              ref={stepTextareaRef}
                               maxLength={500}
                               className={TEXTAREA_CLASS}
                               value={form.volume}
