@@ -248,6 +248,10 @@
     @apply font-semibold text-farm-text;
   }
 
+  .blog-content img {
+    @apply w-full rounded-2xl border border-farm-border my-8;
+  }
+
   /* Keep page margins intact: only the table wrapper scrolls horizontally. */
   .blog-content .blog-table-scroll {
     display: block;
