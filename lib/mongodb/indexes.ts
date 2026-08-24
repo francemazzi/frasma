@@ -23,7 +23,10 @@ export async function ensureChatIndexes(db?: Db | null): Promise<void> {
     database
       .collection("events")
       .createIndex({ conversationId: 1, createdAt: -1 }),
+    database.collection("events").createIndex({ userId: 1, createdAt: -1 }),
     database.collection("users").createIndex({ email: 1 }, { unique: true }),
+    database.collection("leads").createIndex({ userId: 1, createdAt: -1 }),
+    database.collection("leads").createIndex({ clientEmail: 1, createdAt: -1 }),
   ]);
 
   indexesEnsured = true;

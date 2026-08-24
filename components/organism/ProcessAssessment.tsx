@@ -12,7 +12,6 @@ import {
 import { createPortal } from "react-dom";
 import DictationButton from "../atoms/DictationButton";
 import { useLang, useT } from "../../lib/i18n/context";
-import Cal from "./Cal";
 
 type Props = {
   textButton: string;
@@ -21,6 +20,7 @@ type Props = {
 };
 
 type FormState = {
+  name: string;
   clientEmail: string;
   company: string;
   role: string;
@@ -37,8 +37,10 @@ type Step = 1 | 2 | 3 | 4;
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
 const TOTAL_STEPS = 4;
+const DISCOUNT_PATH = "/discount?conv=contact";
 
 const INITIAL_FORM: FormState = {
+  name: "",
   clientEmail: "",
   company: "",
   role: "",
@@ -71,7 +73,6 @@ export default function ProcessAssessment({
   const t = useT();
   const { lang } = useLang();
   const id = useId();
-  const scheduleEvent = `frasma:schedule:${id}`;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const stepInputRef = useRef<HTMLInputElement>(null);
@@ -159,6 +160,9 @@ export default function ProcessAssessment({
   };
 
   const validateStep = (step: Step): string | null => {
+    if (step === 1 && !form.name.trim()) {
+      return t("assessment.validation.name");
+    }
     if (step === 1 && !isValidEmail(form.clientEmail)) {
       return t("assessment.validation.email");
     }
@@ -193,10 +197,10 @@ export default function ProcessAssessment({
       return;
     }
 
-    const emailError = validateStep(1);
-    if (emailError) {
+    const contactError = validateStep(1);
+    if (contactError) {
       setStatus("error");
-      setErrorMessage(emailError);
+      setErrorMessage(contactError);
       setCurrentStep(1);
       return;
     }
@@ -215,7 +219,7 @@ export default function ProcessAssessment({
       const response = await fetch("/api/request-process-assessment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, lang }),
       });
       const result = (await response.json().catch(() => null)) as
         | { ok: true }
@@ -233,17 +237,13 @@ export default function ProcessAssessment({
       }
 
       setStatus("success");
+      if (typeof window !== "undefined") {
+        window.location.assign(DISCOUNT_PATH);
+      }
     } catch {
       setStatus("error");
       setErrorMessage(t("assessment.error.network"));
     }
-  };
-
-  const openSchedule = () => {
-    setIsOpen(false);
-    window.setTimeout(() => {
-      window.dispatchEvent(new Event(scheduleEvent));
-    }, 0);
   };
 
   const dictationEnabled = isOpen && status !== "submitting";
@@ -362,21 +362,13 @@ export default function ProcessAssessment({
                   <p className="max-w-[54ch] text-[15px] leading-[1.65] text-ink-2">
                     {t("assessment.success.next")}
                   </p>
-                  <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:flex-wrap">
+                  <div className="mt-8">
                     <button
                       type="button"
                       onClick={close}
                       className="btn-ink-ghost w-full sm:w-auto"
                     >
                       {t("assessment.success.close")}
-                    </button>
-                    <button
-                      type="button"
-                      className="btn-ink w-full sm:w-auto"
-                      onClick={openSchedule}
-                    >
-                      {t("assessment.success.schedule")}
-                      <ArrowUpRight size={16} aria-hidden="true" />
                     </button>
                   </div>
                 </div>
@@ -392,10 +384,47 @@ export default function ProcessAssessment({
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                           <label className="block">
                             <span className="text-sm font-medium text-ink">
-                              {t("assessment.company")}
+                              {t("assessment.name")} *
                             </span>
                             <input
                               ref={stepInputRef}
+                              className={INPUT_CLASS}
+                              value={form.name}
+                              maxLength={120}
+                              autoComplete="name"
+                              required
+                              onChange={(event) =>
+                                patchForm({ name: event.currentTarget.value })
+                              }
+                            />
+                          </label>
+                          <label className="block">
+                            <span className="text-sm font-medium text-ink">
+                              {t("assessment.email")} *
+                            </span>
+                            <input
+                              type="email"
+                              required
+                              className={INPUT_CLASS}
+                              value={form.clientEmail}
+                              maxLength={254}
+                              autoComplete="email"
+                              inputMode="email"
+                              placeholder={t("assessment.emailPlaceholder")}
+                              onChange={(event) =>
+                                patchForm({
+                                  clientEmail: event.currentTarget.value,
+                                })
+                              }
+                            />
+                          </label>
+                        </div>
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                          <label className="block">
+                            <span className="text-sm font-medium text-ink">
+                              {t("assessment.company")}
+                            </span>
+                            <input
                               className={INPUT_CLASS}
                               value={form.company}
                               maxLength={120}
@@ -420,26 +449,6 @@ export default function ProcessAssessment({
                             />
                           </label>
                         </div>
-                        <label className="block">
-                          <span className="text-sm font-medium text-ink">
-                            {t("assessment.email")} *
-                          </span>
-                          <input
-                            type="email"
-                            required
-                            className={INPUT_CLASS}
-                            value={form.clientEmail}
-                            maxLength={254}
-                            autoComplete="email"
-                            inputMode="email"
-                            placeholder={t("assessment.emailPlaceholder")}
-                            onChange={(event) =>
-                              patchForm({
-                                clientEmail: event.currentTarget.value,
-                              })
-                            }
-                          />
-                        </label>
                       </>
                     ) : null}
 
@@ -618,11 +627,6 @@ export default function ProcessAssessment({
         ) : null}
       </button>
       {modal}
-      <Cal
-        textButton={t("assessment.success.schedule")}
-        hideTrigger
-        eventName={scheduleEvent}
-      />
     </>
   );
 }

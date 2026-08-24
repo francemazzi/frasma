@@ -2,15 +2,18 @@ import {
   DiagnosticSummarySchema,
   type DiagnosticSummary,
 } from "./diagnostic";
+import type { ProjectBriefFields } from "../processAssessment";
 
 export const EMAIL_FORM = "EMAIL_FORM";
 export const MEETING_FORM = "MEETING_FORM";
 export const DIAGNOSTIC_FORM = "DIAGNOSTIC_FORM";
+export const PROJECT_BRIEF_FORM = "PROJECT_BRIEF_FORM";
 
 export type ChatFormMarker =
   | typeof EMAIL_FORM
   | typeof MEETING_FORM
-  | typeof DIAGNOSTIC_FORM;
+  | typeof DIAGNOSTIC_FORM
+  | typeof PROJECT_BRIEF_FORM;
 
 const MAX_MARKER_PAYLOAD_LENGTH = 50_000;
 
@@ -79,6 +82,35 @@ export function extractDiagnosticForm(
   return result.success ? result.data : null;
 }
 
+function asOptionalText(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  return trimmed || undefined;
+}
+
+export function extractProjectBriefForm(
+  content: string,
+): Partial<ProjectBriefFields> | null {
+  const parsed = extractFormJson<Record<string, unknown>>(
+    content,
+    PROJECT_BRIEF_FORM,
+  );
+  if (!parsed) return null;
+
+  const process = asOptionalText(parsed.process);
+  if (!process) return null;
+
+  return {
+    name: asOptionalText(parsed.name) ?? "",
+    clientEmail: asOptionalText(parsed.clientEmail) ?? "",
+    company: asOptionalText(parsed.company),
+    role: asOptionalText(parsed.role),
+    process,
+    systems: asOptionalText(parsed.systems),
+    volume: asOptionalText(parsed.volume),
+  };
+}
+
 export function wrapForm(
   marker: ChatFormMarker,
   payload: Record<string, unknown>,
@@ -91,8 +123,21 @@ export function wrapDiagnosticForm(summary: DiagnosticSummary): string {
   return wrapForm(DIAGNOSTIC_FORM, validated);
 }
 
+export function wrapProjectBriefForm(
+  brief: Partial<ProjectBriefFields>,
+): string {
+  return wrapForm(PROJECT_BRIEF_FORM, brief);
+}
+
 export function stripFormMarkers(content: string): string {
-  return ([EMAIL_FORM, MEETING_FORM, DIAGNOSTIC_FORM] as const)
+  return (
+    [
+      EMAIL_FORM,
+      MEETING_FORM,
+      DIAGNOSTIC_FORM,
+      PROJECT_BRIEF_FORM,
+    ] as const
+  )
     .reduce(
       (result, marker) => result.replace(markerRegExp(marker, true), ""),
       content,

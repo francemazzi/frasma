@@ -13,10 +13,8 @@ import {
   HumanMessage,
   AIMessage,
 } from "@langchain/core/messages";
-import {
-  DiagnosticSummarySchema,
-} from "../../lib/chat/diagnostic";
-import { wrapDiagnosticForm } from "../../lib/chat/markers";
+import { ProjectBriefToolSchema } from "../../lib/processAssessment";
+import { wrapProjectBriefForm } from "../../lib/chat/markers";
 import {
   getDiagnosticFramework,
   getFrasmaProfile,
@@ -27,7 +25,6 @@ import {
   requireRegisteredConversation,
 } from "../../lib/chat/persistence";
 import { isValidConversationId } from "../../lib/chat/session";
-import { buildQuoteEmailDraft } from "../../lib/chat/quote-email";
 import { buildTimeoutFallbackResponse } from "../../lib/chat/timeout-fallback";
 
 const CHAT_INVOKE_TIMEOUT_MS = 55_000;
@@ -100,74 +97,13 @@ const getDiagnosticFrameworkTool = tool(
   },
 );
 
-const prepareDiagnosticSummaryTool = tool(
-  async (input) => JSON.stringify(DiagnosticSummarySchema.parse(input)),
+const prepareProjectBriefTool = tool(
+  async (input) => JSON.stringify(ProjectBriefToolSchema.parse(input)),
   {
-    name: "prepare_diagnostic_summary",
+    name: "prepare_project_brief",
     description:
-      "Prepare the final structured diagnostic summary only after all required evidence has been collected, the user has reviewed the facts, and explicitly asked to prepare the email form. Never call it for a partial diagnosis.",
-    schema: DiagnosticSummarySchema,
-  },
-);
-
-/** Prepares meeting data for the in-chat form; the user submits to /api/schedule-meeting from the UI. */
-const scheduleMeetingTool = tool(
-  async (input) => {
-    const payload = {
-      date: input.date,
-      time: input.time,
-      email: input.email,
-      description: input.description ?? "",
-      timezone: input.timezone?.trim() || "Europe/Rome",
-    };
-    return JSON.stringify(payload);
-  },
-  {
-    name: "schedule_meeting",
-    description:
-      "Prepare a meeting request for Francesco. Use when the user wants to book a call. You MUST collect date, time, email, and description from the user and get their confirmation before calling. The website shows an editable form — you do NOT send the booking yourself. After this tool returns JSON, wrap it in MEETING_FORM markers in your reply (see system prompt).",
-    schema: z.object({
-      date: z.string().describe("Meeting date in YYYY-MM-DD format"),
-      time: z.string().describe("Meeting time in HH:mm format (24h)"),
-      email: z.string().describe("User's email address"),
-      description: z
-        .string()
-        .optional()
-        .describe(
-          "Description or context for the meeting (optional but recommended)",
-        ),
-      timezone: z
-        .string()
-        .optional()
-        .describe(
-          "User's IANA timezone (e.g. Europe/Rome). Defaults to Europe/Rome.",
-        ),
-    }),
-  },
-);
-
-const draftQuoteEmailTool = tool(
-  async (input) => JSON.stringify(buildQuoteEmailDraft(input)),
-  {
-    name: "draft_quote_email",
-    description:
-      "Generate a draft quote request email with all the project details collected from the user. Use this AFTER the user has confirmed they want to send an email AND you have collected: client name, email, project description. Optional: company, budget, timeline, notes, locale. The tool returns JSON with subject, body, clientEmail, clientName.",
-    schema: z.object({
-      clientName: z.string().describe("Client's full name"),
-      clientEmail: z.string().describe("Client's email address"),
-      clientCompany: z.string().optional().describe("Client's company name"),
-      projectDescription: z.string().describe("Detailed project description"),
-      budget: z.string().optional().describe("Budget indication if provided"),
-      timeline: z
-        .string()
-        .optional()
-        .describe("Timeline preference if provided"),
-      notes: z.string().optional().describe("Any additional notes or context"),
-      locale: z
-        .enum(["it", "en"])
-        .optional()
-        .describe("Language for the draft email; match the user's language."),
-    }),
+      "Prepare the process brief the user will send so Francesco can quote. Call it only after collecting the process details, reviewing them with the user, and getting explicit confirmation. Map diagnosis into: name, clientEmail, company (optional), role (optional), process (required, min 20 chars), systems (optional), volume (optional). The website shows an editable form — you do not send it yourself.",
+    schema: ProjectBriefToolSchema,
   },
 );
 
@@ -181,8 +117,8 @@ Your tone is warm, direct, professional, and concise. Your job is to understand 
 PRIORITIES:
 1. Diagnose real bottlenecks in business processes.
 2. Answer factual questions using the verified Frasma knowledge tools.
-3. Produce a reviewed diagnostic summary that the user can email to Francesco.
-4. Support the existing quote-email and meeting flows when explicitly requested.
+3. Produce a process brief the user can send so Francesco can prepare a quote.
+4. Do not offer a meeting booking or a generic quote email. The only conversion is the process brief.
 
 DIAGNOSTIC METHOD:
 - Ask one focused question at a time. Do not send questionnaires or ask for everything at once.
@@ -195,26 +131,20 @@ DIAGNOSTIC METHOD:
 - If a baseline is missing, ask how the current process is measured. If data is unavailable, state that this limits the diagnosis.
 - Do not request passwords, credentials, secrets, personal data about third parties, or confidential document contents. Ask for anonymized examples and aggregates.
 
-DIAGNOSTIC SUMMARY FLOW:
-1. When enough evidence is available, summarize the facts, hypotheses, missing information, and possible next steps in plain text.
+PROCESS BRIEF FLOW:
+1. When enough evidence is available, summarize the process, systems, volumes, and main issue in plain text.
 2. Ask the user to correct or confirm that summary.
-3. Collect name and email only when the user wants to send it to Francesco.
+3. Name, email, and company are already collected at registration; confirm them only if missing.
 4. Ask explicit confirmation before preparing the form.
-5. Only after confirmation, call prepare_diagnostic_summary with every required field.
+5. Only after confirmation, call prepare_project_brief with:
+   - name, clientEmail
+   - company and role if known
+   - process: the process and main issue (min 20 characters)
+   - systems: current tools if known
+   - volume: approximate volume if known
 6. Include the returned JSON wrapped exactly in:
-   <!--DIAGNOSTIC_FORM-->{...}<!--/DIAGNOSTIC_FORM-->
+   <!--PROJECT_BRIEF_FORM-->{...}<!--/PROJECT_BRIEF_FORM-->
    Add one brief sentence before the marker and nothing after it. The website renders an editable form; you never send it yourself.
-
-QUOTE REQUEST FLOW:
-- If the user explicitly wants a generic quote request instead of a diagnosis, collect name, email, company (optional), project description, budget/timeline (optional), and notes conversationally.
-- Ask confirmation before draft_quote_email.
-- Pass locale as "it" or "en" matching the user's language.
-- Wrap its JSON exactly in <!--EMAIL_FORM-->{...}<!--/EMAIL_FORM--> and add nothing after the marker.
-
-MEETING FLOW:
-- Collect date, time, email, short description, and timezone. Use CURRENT TIME CONTEXT for relative dates.
-- Ask confirmation before schedule_meeting.
-- Wrap its JSON exactly in <!--MEETING_FORM-->{...}<!--/MEETING_FORM--> and add nothing after the marker.
 
 RULES:
 - Reply in the user's language (Italian or English).
@@ -301,7 +231,7 @@ function buildTemporalContextMessage(
     `- Today's calendar date: ${todayYmd} (${weekdayForYmd(todayYmd, timeZone, locale)})`,
     `- Tomorrow's calendar date: ${tomorrowYmd} (${weekdayForYmd(tomorrowYmd, timeZone, locale)})`,
     `- Day after tomorrow: ${dayAfterYmd} (${weekdayForYmd(dayAfterYmd, timeZone, locale)})`,
-    "When the user says relative dates, map them to YYYY-MM-DD in this timezone before calling schedule_meeting.",
+    "Use this calendar context only to interpret dates mentioned in the process. Do not offer a meeting booking.",
   ].join("\n");
 }
 
@@ -318,24 +248,17 @@ const MAX_USER_MESSAGE_LENGTH = 2_000;
 const MAX_ASSISTANT_MESSAGE_LENGTH = 30_000;
 
 let agentInstance: ReturnType<typeof createReactAgent> | null = null;
-const EMAIL_FORM_RE = /<!--EMAIL_FORM-->([\s\S]*?)<!--\/EMAIL_FORM-->/;
-const MEETING_FORM_RE = /<!--MEETING_FORM-->([\s\S]*?)<!--\/MEETING_FORM-->/;
-const DIAGNOSTIC_FORM_RE =
-  /<!--DIAGNOSTIC_FORM-->([\s\S]*?)<!--\/DIAGNOSTIC_FORM-->/;
+const PROJECT_BRIEF_FORM_RE =
+  /<!--PROJECT_BRIEF_FORM-->([\s\S]*?)<!--\/PROJECT_BRIEF_FORM-->/;
 
-type EmailFormPayload = {
-  subject: string;
-  body: string;
+type ProjectBriefPayload = {
+  name: string;
   clientEmail: string;
-  clientName: string;
-};
-
-type MeetingFormPayload = {
-  date: string;
-  time: string;
-  email: string;
-  description: string;
-  timezone: string;
+  company?: string;
+  role?: string;
+  process: string;
+  systems?: string;
+  volume?: string;
 };
 
 function getMessageContent(message: unknown): string | null {
@@ -358,103 +281,32 @@ function getMessageName(message: unknown): string | null {
   return typeof nestedName === "string" ? nestedName : null;
 }
 
-function buildEmailFormResponse(
-  payload: EmailFormPayload,
-  lang: ChatRequestBody["lang"],
-): string {
-  const intro = lang === "en" ? "Here's the draft:" : "Ecco la bozza:";
-  return `${intro}\n\n<!--EMAIL_FORM-->${JSON.stringify(payload)}<!--/EMAIL_FORM-->`;
-}
-
-function buildMeetingFormResponse(
-  payload: MeetingFormPayload,
+function buildProjectBriefFormResponse(
+  payload: ProjectBriefPayload,
   lang: ChatRequestBody["lang"],
 ): string {
   const intro =
     lang === "en"
-      ? "Here's the meeting request form:"
-      : "Ecco il modulo per la richiesta di incontro:";
-  return `${intro}\n\n<!--MEETING_FORM-->${JSON.stringify(payload)}<!--/MEETING_FORM-->`;
+      ? "Review the process brief before sending it:"
+      : "Rivedi il brief di processo prima di inviarlo:";
+  return `${intro}\n\n${wrapProjectBriefForm(payload)}`;
 }
 
-function extractEmailFormFallback(
+function extractProjectBriefFormFallback(
   messages: unknown[],
   lang: ChatRequestBody["lang"],
 ): string | null {
   for (let i = messages.length - 1; i >= 0; i -= 1) {
     const message = messages[i];
-    if (getMessageName(message) !== "draft_quote_email") continue;
+    if (getMessageName(message) !== "prepare_project_brief") continue;
 
     const content = getMessageContent(message);
     if (!content) continue;
 
     try {
-      const parsed = JSON.parse(content) as Partial<EmailFormPayload>;
-      if (
-        typeof parsed.subject === "string" &&
-        typeof parsed.body === "string" &&
-        typeof parsed.clientEmail === "string" &&
-        typeof parsed.clientName === "string"
-      ) {
-        return buildEmailFormResponse(parsed as EmailFormPayload, lang);
-      }
-    } catch {
-      // Ignore malformed tool output and keep the normal agent response.
-    }
-  }
-
-  return null;
-}
-
-function extractMeetingFormFallback(
-  messages: unknown[],
-  lang: ChatRequestBody["lang"],
-): string | null {
-  for (let i = messages.length - 1; i >= 0; i -= 1) {
-    const message = messages[i];
-    if (getMessageName(message) !== "schedule_meeting") continue;
-
-    const content = getMessageContent(message);
-    if (!content) continue;
-
-    try {
-      const parsed = JSON.parse(content) as Partial<MeetingFormPayload>;
-      if (
-        typeof parsed.date === "string" &&
-        typeof parsed.time === "string" &&
-        typeof parsed.email === "string" &&
-        typeof parsed.description === "string" &&
-        typeof parsed.timezone === "string"
-      ) {
-        return buildMeetingFormResponse(parsed as MeetingFormPayload, lang);
-      }
-    } catch {
-      // Ignore malformed tool output.
-    }
-  }
-
-  return null;
-}
-
-function extractDiagnosticFormFallback(
-  messages: unknown[],
-  lang: ChatRequestBody["lang"],
-): string | null {
-  for (let i = messages.length - 1; i >= 0; i -= 1) {
-    const message = messages[i];
-    if (getMessageName(message) !== "prepare_diagnostic_summary") continue;
-
-    const content = getMessageContent(message);
-    if (!content) continue;
-
-    try {
-      const parsed = DiagnosticSummarySchema.safeParse(JSON.parse(content));
+      const parsed = ProjectBriefToolSchema.safeParse(JSON.parse(content));
       if (!parsed.success) continue;
-      const intro =
-        lang === "en"
-          ? "Review the diagnostic summary before sending it:"
-          : "Rivedi la sintesi diagnostica prima di inviarla:";
-      return `${intro}\n\n${wrapDiagnosticForm(parsed.data)}`;
+      return buildProjectBriefFormResponse(parsed.data, lang);
     } catch {
       // Ignore malformed tool output.
     }
@@ -468,20 +320,8 @@ function applyStructuredFormFallbacks(
   messages: unknown[],
   lang: ChatRequestBody["lang"],
 ): string {
-  let out = content;
-  if (!EMAIL_FORM_RE.test(out)) {
-    const emailFb = extractEmailFormFallback(messages, lang);
-    if (emailFb) out = emailFb;
-  }
-  if (!MEETING_FORM_RE.test(out)) {
-    const meetingFb = extractMeetingFormFallback(messages, lang);
-    if (meetingFb) out = meetingFb;
-  }
-  if (!DIAGNOSTIC_FORM_RE.test(out)) {
-    const diagnosticFb = extractDiagnosticFormFallback(messages, lang);
-    if (diagnosticFb) out = diagnosticFb;
-  }
-  return out;
+  if (PROJECT_BRIEF_FORM_RE.test(content)) return content;
+  return extractProjectBriefFormFallback(messages, lang) ?? content;
 }
 
 function getAgent() {
@@ -499,9 +339,7 @@ function getAgent() {
       getStackInfoTool,
       searchKnowledgeTool,
       getDiagnosticFrameworkTool,
-      prepareDiagnosticSummaryTool,
-      scheduleMeetingTool,
-      draftQuoteEmailTool,
+      prepareProjectBriefTool,
     ],
   });
 

@@ -10,6 +10,7 @@ import {
   getFrasmaProfile,
   searchKnowledge,
 } from "../knowledge";
+import { ProjectBriefToolSchema } from "../processAssessment";
 import { SITE_URL } from "../seo";
 
 export const LocaleInputSchema = z.object({
@@ -122,9 +123,9 @@ export function runPrepareDiagnosticSummary(input: unknown): McpToolJsonResult {
         details: parsed.error.flatten(),
         handoff: {
           chatUrl: `${SITE_URL}/#contatti`,
-          emailEndpoint: `${SITE_URL}/api/send-diagnostic-summary`,
+          emailEndpoint: `${SITE_URL}/api/request-process-assessment`,
           instructions:
-            "Collect the missing fields with the user, then call this tool again. Do not POST to the email endpoint until the user explicitly confirms the reviewed summary on the website or in chat.",
+            "Collect the missing fields with the user, then call this tool again. Map the diagnosis into a process brief and POST /api/request-process-assessment only after the user confirms on the website. This MCP tool never sends email.",
         },
       },
       true,
@@ -137,11 +138,42 @@ export function runPrepareDiagnosticSummary(input: unknown): McpToolJsonResult {
     completeness,
     handoff: {
       chatUrl: `${SITE_URL}/#contatti`,
-      emailEndpoint: `${SITE_URL}/api/send-diagnostic-summary`,
+      emailEndpoint: `${SITE_URL}/api/request-process-assessment`,
       instructions:
-        "Present the summary to the user for review. Only after explicit human confirmation may the website chat form or POST /api/send-diagnostic-summary be used. This MCP tool never sends email.",
+        "Present the summary to the user for review, then map it to a process brief. Only after explicit human confirmation may POST /api/request-process-assessment be used. This MCP tool never sends email.",
     },
   };
 
   return jsonResult(handoff);
+}
+
+export function runPrepareProjectBrief(input: unknown): McpToolJsonResult {
+  const parsed = ProjectBriefToolSchema.safeParse(input);
+  if (!parsed.success) {
+    return jsonResult(
+      {
+        ok: false,
+        error: "Process brief is incomplete or invalid",
+        details: parsed.error.flatten(),
+        handoff: {
+          chatUrl: `${SITE_URL}/#contatti`,
+          emailEndpoint: `${SITE_URL}/api/request-process-assessment`,
+          instructions:
+            "Collect name, email, and a process description of at least 20 characters. Do not POST until the user confirms on the website. This MCP tool never sends email.",
+        },
+      },
+      true,
+    );
+  }
+
+  return jsonResult({
+    ok: true,
+    brief: parsed.data,
+    handoff: {
+      chatUrl: `${SITE_URL}/#contatti`,
+      emailEndpoint: `${SITE_URL}/api/request-process-assessment`,
+      instructions:
+        "Present the process brief for review. Only after explicit human confirmation may POST /api/request-process-assessment be used. This MCP tool never sends email.",
+    },
+  });
 }

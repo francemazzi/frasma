@@ -2,10 +2,12 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
 import { DiagnosticSummarySchema } from "../chat/diagnostic";
+import { ProjectBriefToolSchema } from "../processAssessment";
 import {
   runGetDiagnosticFramework,
   runGetFrasmaProfile,
   runPrepareDiagnosticSummary,
+  runPrepareProjectBrief,
   runSearchFrasmaKnowledge,
 } from "./tools";
 
@@ -61,10 +63,21 @@ export function createFrasmaMcpServer(): McpServer {
     {
       title: "Prepare diagnostic summary handoff",
       description:
-        "Validates a complete diagnostic summary and returns a handoff payload. Does not send email. The user must explicitly confirm before any email submission via the website chat or POST /api/send-diagnostic-summary.",
+        "Validates a complete diagnostic summary and returns a handoff payload. Does not send email. Map the diagnosis to a process brief; the user must confirm before POST /api/request-process-assessment.",
       inputSchema: DiagnosticSummarySchema,
     },
     async (input) => runPrepareDiagnosticSummary(input),
+  );
+
+  server.registerTool(
+    "prepare_project_brief",
+    {
+      title: "Prepare process brief handoff",
+      description:
+        "Validates the process brief used for a quote (name, email, process, optional company/role/systems/volume). Does not send email. The user must confirm before POST /api/request-process-assessment.",
+      inputSchema: ProjectBriefToolSchema.shape,
+    },
+    async (input) => runPrepareProjectBrief(input),
   );
 
   return server;

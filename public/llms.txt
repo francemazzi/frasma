@@ -48,8 +48,8 @@
 1. Read /for-agents and search knowledge via MCP tools or the website chat.
 2. Diagnose one process at a time; ask one focused question at a time.
 3. Distinguishing facts from hypotheses; never invent metrics.
-4. After user review, use the website diagnostic form or MCP prepare_diagnostic_summary handoff — email only after explicit human confirmation.
-5. Schedule calls via the website booking flow.
+4. After user review, use the website process brief or MCP prepare_project_brief — POST /api/request-process-assessment only after explicit human confirmation.
+5. Do not treat a call booking as the conversion.
 
 ## Optional
 

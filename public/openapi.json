@@ -3,7 +3,7 @@
   "info": {
     "title": "Frasma Public Website API",
     "version": "0.1.0",
-    "description": "Public API description for Frasma website contact, chat, scheduling, diagnostic summary, MCP, and service status endpoints."
+    "description": "Public API description for Frasma website contact, chat, process brief, MCP, and service status endpoints."
   },
   "servers": [
     {
@@ -117,10 +117,52 @@
         }
       }
     },
+    "/api/request-process-assessment": {
+      "post": {
+        "operationId": "requestProcessAssessment",
+        "summary": "Submit a process brief for a quote",
+        "description": "Canonical conversion endpoint used by the landing form and the chat brief form. Sends email and, when MongoDB is configured, upserts the visitor and stores a lead.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessAssessmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Process brief accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "405": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "429": {
+            "$ref": "#/components/responses/BooleanError"
+          },
+          "500": {
+            "$ref": "#/components/responses/BooleanError"
+          }
+        }
+      }
+    },
     "/api/schedule-meeting": {
       "post": {
         "operationId": "scheduleMeeting",
-        "summary": "Submit a meeting request",
+        "summary": "Submit a meeting request (deprecated)",
+        "deprecated": true,
         "requestBody": {
           "required": true,
           "content": {
@@ -160,7 +202,8 @@
     "/api/send-email": {
       "post": {
         "operationId": "sendQuoteRequestEmail",
-        "summary": "Send a reviewed quote request email",
+        "summary": "Send a reviewed quote request email (deprecated)",
+        "deprecated": true,
         "requestBody": {
           "required": true,
           "content": {
@@ -200,7 +243,8 @@
     "/api/send-diagnostic-summary": {
       "post": {
         "operationId": "sendDiagnosticSummary",
-        "summary": "Send a reviewed process diagnostic summary",
+        "summary": "Send a reviewed process diagnostic summary (deprecated)",
+        "deprecated": true,
         "description": "Validates and emails a user-reviewed diagnostic summary. The endpoint does not persist the payload.",
         "requestBody": {
           "required": true,
@@ -373,7 +417,7 @@
           },
           "response": {
             "type": "string",
-            "description": "Fallback assistant message with EMAIL_FORM and MEETING_FORM markers when the agent times out."
+            "description": "Fallback assistant message with PROJECT_BRIEF_FORM markers when the agent times out."
           },
           "conversationId": {
             "type": "string",
@@ -394,6 +438,54 @@
             "items": {
               "$ref": "#/components/schemas/ChatMessage"
             }
+          }
+        }
+      },
+      "ProcessAssessmentRequest": {
+        "type": "object",
+        "required": ["name", "clientEmail", "process"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "clientEmail": {
+            "type": "string",
+            "format": "email"
+          },
+          "company": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "role": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "process": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 2000
+          },
+          "systems": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "volume": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "conversationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Present when submitted from the chat widget."
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["it", "en"]
+          },
+          "honeypot": {
+            "type": "string",
+            "description": "Spam-prevention field. Leave empty."
           }
         }
       },

@@ -18,15 +18,13 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Meeting scheduler popup (email notification)
+## Process brief (quote request)
 
-The **“Schedule a Meeting Now”** button opens a popup where the user can select:
-- date
-- time
-- email
-- description
+The landing form and the chat widget both submit a **process brief** to `POST /api/request-process-assessment`. Francesco uses that brief to prepare a quote.
 
-On submit, the app calls `POST /api/schedule-meeting` and sends an email notification to `francemazzi@gmail.com` (or a custom destination).
+Fields: name, work email, optional company and role, process (required), optional current tools and volume.
+
+When `MONGODB_URI` is set, the same endpoint upserts `users`, inserts `leads`, and logs `project_brief_submitted`.
 
 ### Required environment variables
 
@@ -64,10 +62,10 @@ The website chat is a process-diagnostic assistant. It uses the bilingual, versi
 - identify operational bottlenecks;
 - collect workflow, systems, volumes, baseline metrics, data, and constraints;
 - map the need to Frasma capabilities;
-- prepare an editable diagnostic summary;
-- email the summary only after explicit user review and confirmation.
+- prepare an editable process brief;
+- submit that brief to `POST /api/request-process-assessment` only after explicit user review.
 
-If the assistant times out, the widget shows a project summary email draft and an inline meeting request form built from the conversation history (no extra LLM call).
+If the assistant times out, the widget shows the same process brief form, prefilled from the conversation history (no extra LLM call).
 
 Each browser session stores a `conversationId` in `localStorage`. Messages are persisted server-side in MongoDB Atlas through the official Node.js driver. On reopen, the widget restores the conversation via `GET /api/conversations/:id`. If MongoDB is not configured, the chat keeps working in stateless mode.
 
@@ -91,7 +89,7 @@ Persistence is optional but recommended in production. When configured, the API 
 
 - conversation metadata (`lang`, `timezone`, `pagePath`, conversion flags);
 - user and assistant messages;
-- conversion events from inline forms (`email_sent`, `meeting_scheduled`, `diagnostic_sent`).
+- conversion events from the process brief (`project_brief_submitted`).
 
 Setup:
 
@@ -153,7 +151,8 @@ Public discovery surfaces for agents and humans:
 - `get_frasma_profile`
 - `search_frasma_knowledge`
 - `get_diagnostic_framework`
-- `prepare_diagnostic_summary` — validates a summary and returns handoff URLs; **never sends email**
+- `prepare_diagnostic_summary` — validates a diagnosis and returns handoff URLs; **never sends email**
+- `prepare_project_brief` — validates the process brief used for a quote; **never sends email**
 
 Example Cursor / Claude Desktop remote config:
 

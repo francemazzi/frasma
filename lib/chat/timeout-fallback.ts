@@ -1,7 +1,9 @@
 import { en } from "../i18n/en";
 import { it } from "../i18n/it";
-import { stripFormMarkers, wrapForm, EMAIL_FORM, MEETING_FORM } from "./markers";
-import { buildQuoteEmailDraft } from "./quote-email";
+import {
+  stripFormMarkers,
+  wrapProjectBriefForm,
+} from "./markers";
 
 export type ChatMessage = {
   role: "user" | "assistant";
@@ -13,6 +15,11 @@ export type TimeoutFallbackInput = {
   lang: "it" | "en";
   timezone: string;
   pagePath?: string;
+  visitor?: {
+    name?: string;
+    email?: string;
+    company?: string;
+  };
 };
 
 export type ContactHints = {
@@ -23,7 +30,7 @@ export type ContactHints = {
 const EMAIL_RE =
   /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
 const MAX_PROJECT_SUMMARY_LENGTH = 2_000;
-const MAX_MEETING_DESCRIPTION_LENGTH = 500;
+const MIN_PROCESS_LENGTH = 20;
 
 function getDictionary(lang: "it" | "en"): Record<string, string> {
   return lang === "en" ? en : it;
@@ -78,8 +85,8 @@ export function buildProjectSummary(
 
   if (userMessages.length === 0) {
     return lang === "en"
-      ? "Project context collected during the chat (no user details captured yet)."
-      : "Contesto progetto raccolto in chat (nessun dettaglio utente ancora disponibile).";
+      ? "Process context collected during the chat (no user details captured yet)."
+      : "Contesto processo raccolto in chat (nessun dettaglio utente ancora disponibile).";
   }
 
   const lines = userMessages.map((content) => `- ${content.replace(/\s+/g, " ")}`);
@@ -92,94 +99,54 @@ export function buildProjectSummary(
   return summary;
 }
 
-function formatDateInTimezone(date: Date, timezone: string): string {
-  return new Intl.DateTimeFormat("en-CA", { timeZone: timezone }).format(date);
-}
-
-function getWeekdayInTimezone(date: Date, timezone: string): number {
-  const weekday = new Intl.DateTimeFormat("en-US", {
-    timeZone: timezone,
-    weekday: "short",
-  }).format(date);
-  const map: Record<string, number> = {
-    Sun: 0,
-    Mon: 1,
-    Tue: 2,
-    Wed: 3,
-    Thu: 4,
-    Fri: 5,
-    Sat: 6,
-  };
-  return map[weekday] ?? 1;
-}
-
-export function getNextBusinessDay(timezone: string): string {
-  for (let offsetDays = 1; offsetDays <= 10; offsetDays += 1) {
-    const candidate = new Date(Date.now() + offsetDays * 86_400_000);
-    const weekday = getWeekdayInTimezone(candidate, timezone);
-    if (weekday >= 1 && weekday <= 5) {
-      return formatDateInTimezone(candidate, timezone);
-    }
+function ensureProcessLength(process: string, lang: "it" | "en"): string {
+  const trimmed = process.trim();
+  if (trimmed.length >= MIN_PROCESS_LENGTH) {
+    return trimmed.slice(0, MAX_PROJECT_SUMMARY_LENGTH);
   }
 
-  return formatDateInTimezone(new Date(Date.now() + 86_400_000), timezone);
-}
-
-function truncateText(value: string, maxLength: number): string {
-  const trimmed = value.trim();
-  if (trimmed.length <= maxLength) return trimmed;
-  return `${trimmed.slice(0, maxLength - 1).trim()}…`;
+  const pad =
+    lang === "en"
+      ? " Process details collected from the chat timeout."
+      : " Dettagli processo raccolti al timeout della chat.";
+  return `${trimmed}${pad}`.trim().slice(0, MAX_PROJECT_SUMMARY_LENGTH);
 }
 
 export function buildTimeoutFallbackResponse(input: TimeoutFallbackInput): string {
   const lang = input.lang ?? "it";
-  const timezone = input.timezone?.trim() || "Europe/Rome";
   const dictionary = getDictionary(lang);
   const intro =
     dictionary["chat.timeout.intro"] ??
     (lang === "en"
-      ? "The reply took too long. I prepared a project summary email draft and suggest booking an online meeting."
-      : "La risposta ha impiegato troppo tempo. Ho preparato un riassunto del progetto da inviare via email e ti propongo un incontro online.");
+      ? "The reply took too long. I prepared a process brief to send for a quote."
+      : "La risposta ha impiegato troppo tempo. Ho preparato il brief di processo da inviare per il preventivo.");
 
   const summary = buildProjectSummary(input.messages, lang);
-  const { email, clientName } = extractContactHints(input.messages, lang);
+  const hints = extractContactHints(input.messages, lang);
+  const name = input.visitor?.name?.trim() || hints.clientName;
+  const email = input.visitor?.email?.trim() || hints.email;
+  const company = input.visitor?.company?.trim();
   const pagePath = input.pagePath?.trim() || "/";
 
   const timeoutNote =
     lang === "en"
-      ? `Assistant reply timed out while processing the chat. Page context: ${pagePath}.`
-      : `Timeout della risposta assistente durante la chat. Pagina visitata: ${pagePath}.`;
+      ? `\nPage context: ${pagePath}.`
+      : `\nPagina visitata: ${pagePath}.`;
 
-  const emailDraft = buildQuoteEmailDraft({
-    clientName,
-    clientEmail: email,
-    projectDescription: summary,
-    notes: timeoutNote,
-    locale: lang,
-  });
-
-  const emailIntro =
-    lang === "en" ? "Here's the draft:" : "Ecco la bozza:";
-  const meetingIntro =
+  const briefIntro =
     lang === "en"
-      ? "Here's the meeting request form:"
-      : "Ecco il modulo per la richiesta di incontro:";
-
-  const meetingPayload = {
-    date: getNextBusinessDay(timezone),
-    time: "10:00",
-    email,
-    description: truncateText(summary, MAX_MEETING_DESCRIPTION_LENGTH),
-    timezone,
-  };
+      ? "Review the process brief before sending it:"
+      : "Rivedi il brief di processo prima di inviarlo:";
 
   return [
     intro,
     "",
-    emailIntro,
-    wrapForm(EMAIL_FORM, emailDraft),
-    "",
-    meetingIntro,
-    wrapForm(MEETING_FORM, meetingPayload),
+    briefIntro,
+    wrapProjectBriefForm({
+      name,
+      clientEmail: email,
+      ...(company ? { company } : {}),
+      process: ensureProcessLength(`${summary}${timeoutNote}`, lang),
+    }),
   ].join("\n");
 }

@@ -133,8 +133,15 @@ describe("chat API validation", () => {
 
     expect(state.status).toBe(200);
     expect(state.body).toMatchObject({ code: "TIMEOUT" });
-    expect((state.body as { response?: string }).response).toContain("EMAIL_FORM");
-    expect((state.body as { response?: string }).response).toContain("MEETING_FORM");
+    expect((state.body as { response?: string }).response).toContain(
+      "PROJECT_BRIEF_FORM",
+    );
+    expect((state.body as { response?: string }).response).not.toContain(
+      "EMAIL_FORM",
+    );
+    expect((state.body as { response?: string }).response).not.toContain(
+      "MEETING_FORM",
+    );
   });
 
   it("rejects chat without a registered conversation", async () => {

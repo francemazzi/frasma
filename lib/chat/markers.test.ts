@@ -5,12 +5,15 @@ import {
   DIAGNOSTIC_FORM,
   EMAIL_FORM,
   MEETING_FORM,
+  PROJECT_BRIEF_FORM,
   extractDiagnosticForm,
   extractEmailForm,
   extractFormJson,
   extractMeetingForm,
+  extractProjectBriefForm,
   stripFormMarkers,
   wrapDiagnosticForm,
+  wrapProjectBriefForm,
 } from "./markers";
 
 const diagnostic: DiagnosticSummary = {
@@ -51,6 +54,23 @@ describe("chat form markers", () => {
     expect(MEETING_FORM).toBe("MEETING_FORM");
   });
 
+  it("extracts a project brief form", () => {
+    const wrapped = wrapProjectBriefForm({
+      name: "Ada Lovelace",
+      clientEmail: "ada@example.com",
+      process: "Orders arrive as PDF attachments and are copied into the ERP.",
+      systems: "Outlook, ERP",
+    });
+
+    expect(wrapped).toContain(`<!--${PROJECT_BRIEF_FORM}-->`);
+    expect(extractProjectBriefForm(wrapped)).toMatchObject({
+      name: "Ada Lovelace",
+      clientEmail: "ada@example.com",
+      process: "Orders arrive as PDF attachments and are copied into the ERP.",
+      systems: "Outlook, ERP",
+    });
+  });
+
   it("tolerates whitespace around marker names and payloads", () => {
     const content =
       '<!--  EMAIL_FORM  -->\n  {"subject":"Hello"}\n<!-- /EMAIL_FORM -->';
@@ -89,6 +109,11 @@ describe("chat form markers", () => {
       '<!--EMAIL_FORM-->{"subject":"Hi"}<!--/EMAIL_FORM-->',
       '<!--MEETING_FORM-->{"date":"2026-07-20"}<!--/MEETING_FORM-->',
       wrapDiagnosticForm(diagnostic),
+      wrapProjectBriefForm({
+        name: "Ada",
+        clientEmail: "ada@example.com",
+        process: "Orders arrive as PDF attachments and are copied into the ERP.",
+      }),
       "After",
     ].join("\n");
 

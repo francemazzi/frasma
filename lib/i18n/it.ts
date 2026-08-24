@@ -377,6 +377,7 @@ export const it: Record<string, string> = {
   "assessment.title": "Descrivi il processo da valutare",
   "assessment.subtitle":
     "Bastano le informazioni essenziali. Gli approfondimenti e gli eventuali documenti arrivano in un secondo momento.",
+  "assessment.name": "Nome",
   "assessment.company": "Azienda (facoltativo)",
   "assessment.role": "Ruolo (facoltativo)",
   "assessment.email": "Email di lavoro",
@@ -397,6 +398,7 @@ export const it: Record<string, string> = {
   "assessment.step": "Passo {n} di {total}",
   "assessment.send": "Invia il processo",
   "assessment.sending": "Invio in corso...",
+  "assessment.validation.name": "Inserisci il tuo nome.",
   "assessment.validation.email": "Inserisci un’email valida.",
   "assessment.validation.process":
     "Descrivi il processo e il problema principale con almeno 20 caratteri.",
@@ -409,9 +411,8 @@ export const it: Record<string, string> = {
   "assessment.success.description":
     "La richiesta è stata inviata. Verrà verificata prima di formulare ipotesi o promesse.",
   "assessment.success.next":
-    "Se vuoi, puoi già scegliere un momento per approfondire il processo. La prenotazione è facoltativa.",
-  "assessment.success.schedule": "Scegli data e ora",
-  "assessment.success.close": "Chiudi e attendi risposta",
+    "Francesco esaminerà il processo e risponderà con un preventivo.",
+  "assessment.success.close": "Chiudi",
   "assessment.dictate": "Dettatura vocale",
   "assessment.dictateStop": "Interrompi dettatura",
   "assessment.dictateListening": "Trascrizione in corso...",
@@ -455,7 +456,7 @@ export const it: Record<string, string> = {
   "chat.timeout":
     "La risposta ha impiegato troppo tempo. Riprova tra qualche secondo.",
   "chat.timeout.intro":
-    "La risposta ha impiegato troppo tempo. Ho preparato un riassunto del progetto da inviarti via email e ti propongo di fissare un incontro online.",
+    "La risposta ha impiegato troppo tempo. Ho preparato il brief di processo da inviare per il preventivo.",
   "chat.timeout.emailPlaceholder": "nome@azienda.it",
   "chat.persistence.notice":
     "La conversazione viene salvata per migliorare il servizio e riprenderla in un secondo momento.",
@@ -474,6 +475,11 @@ export const it: Record<string, string> = {
   "chat.register.error": "Registrazione non riuscita. Riprova.",
   "chat.register.invalid": "Compila tutti i campi con un'email valida.",
   "chat.register.placeholder": "Compila i dati per iniziare",
+
+  "chat.brief.title": "Brief di processo",
+  "chat.brief.send": "Invia il brief",
+  "chat.brief.sent": "Brief inviato. Francesco risponderà con un preventivo.",
+  "chat.brief.error": "Invio non riuscito. Riprova.",
 
   // Email form in chat
   "chat.email.title": "Bozza Email",

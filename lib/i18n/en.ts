@@ -373,6 +373,7 @@ export const en: Record<string, string> = {
   "assessment.title": "Describe the process to assess",
   "assessment.subtitle":
     "The essentials are enough. Detailed questions and any sample documents come later.",
+  "assessment.name": "Name",
   "assessment.company": "Company (optional)",
   "assessment.role": "Role (optional)",
   "assessment.email": "Work email",
@@ -393,6 +394,7 @@ export const en: Record<string, string> = {
   "assessment.step": "Step {n} of {total}",
   "assessment.send": "Send the process",
   "assessment.sending": "Sending...",
+  "assessment.validation.name": "Enter your name.",
   "assessment.validation.email": "Enter a valid email.",
   "assessment.validation.process":
     "Describe the process and main issue using at least 20 characters.",
@@ -405,9 +407,8 @@ export const en: Record<string, string> = {
   "assessment.success.description":
     "Your request has been sent. It will be reviewed before any assumptions or promises are made.",
   "assessment.success.next":
-    "If useful, you can already choose a time to discuss the process. Scheduling is optional.",
-  "assessment.success.schedule": "Choose date and time",
-  "assessment.success.close": "Close and wait for a reply",
+    "Francesco will review the process and reply with a quote.",
+  "assessment.success.close": "Close",
   "assessment.dictate": "Voice dictation",
   "assessment.dictateStop": "Stop dictation",
   "assessment.dictateListening": "Transcribing...",
@@ -450,7 +451,7 @@ export const en: Record<string, string> = {
   "chat.error": "Something went wrong. Please try again.",
   "chat.timeout": "The reply took too long. Please try again in a moment.",
   "chat.timeout.intro":
-    "The reply took too long. I prepared a project summary email draft and suggest booking an online meeting.",
+    "The reply took too long. I prepared a process brief to send for a quote.",
   "chat.timeout.emailPlaceholder": "name@company.com",
   "chat.persistence.notice":
     "This conversation is saved to improve the service and let you resume it later.",
@@ -469,6 +470,11 @@ export const en: Record<string, string> = {
   "chat.register.error": "Registration failed. Please try again.",
   "chat.register.invalid": "Fill in all fields with a valid email.",
   "chat.register.placeholder": "Complete your details to start",
+
+  "chat.brief.title": "Process brief",
+  "chat.brief.send": "Send the brief",
+  "chat.brief.sent": "Brief sent. Francesco will reply with a quote.",
+  "chat.brief.error": "Could not send. Please try again.",
 
   // Email form in chat
   "chat.email.title": "Email Draft",

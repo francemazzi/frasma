@@ -4,6 +4,7 @@ import {
   runGetDiagnosticFramework,
   runGetFrasmaProfile,
   runPrepareDiagnosticSummary,
+  runPrepareProjectBrief,
   runSearchFrasmaKnowledge,
 } from "./tools";
 
@@ -53,7 +54,7 @@ describe("MCP tool handlers", () => {
     expect(payload.ok).toBe(false);
     expect(payload.completeness.score).toBeLessThan(100);
     expect(payload.handoff.emailEndpoint).toContain(
-      "/api/send-diagnostic-summary",
+      "/api/request-process-assessment",
     );
   });
 
@@ -88,5 +89,40 @@ describe("MCP tool handlers", () => {
     expect(payload.ok).toBe(true);
     expect(payload.summary.clientEmail).toBe("ada@example.com");
     expect(payload.handoff.instructions).toContain("never sends email");
+  });
+
+  it("validates a process brief without sending email", () => {
+    const result = runPrepareProjectBrief({
+      name: "Ada Lovelace",
+      clientEmail: "ada@example.com",
+      company: "Analytical Engines",
+      process:
+        "Orders arrive as PDF attachments and are copied manually into the ERP.",
+      systems: "Outlook, ERP",
+      volume: "80 per week",
+    });
+    const payload = JSON.parse(result.content[0]?.text ?? "{}");
+
+    expect(result.isError).toBeUndefined();
+    expect(payload.ok).toBe(true);
+    expect(payload.brief.clientEmail).toBe("ada@example.com");
+    expect(payload.handoff.emailEndpoint).toContain(
+      "/api/request-process-assessment",
+    );
+    expect(payload.handoff.instructions).toContain("never sends email");
+  });
+
+  it("rejects an incomplete process brief", () => {
+    const result = runPrepareProjectBrief({
+      name: "Ada",
+      clientEmail: "not-an-email",
+    });
+    const payload = JSON.parse(result.content[0]?.text ?? "{}");
+
+    expect(result.isError).toBe(true);
+    expect(payload.ok).toBe(false);
+    expect(payload.handoff.emailEndpoint).toContain(
+      "/api/request-process-assessment",
+    );
   });
 });

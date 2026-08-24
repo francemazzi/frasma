@@ -111,13 +111,17 @@ export async function upsertVisitor(
     .findOne({ email });
 
   if (existing) {
+    const nextCompany = company || existing.company;
+    const nextSector =
+      sector && sector !== "unspecified" ? sector : existing.sector;
+
     await db.collection<UserDocument>(USERS_COLLECTION).updateOne(
       { _id: existing._id },
       {
         $set: {
           name,
-          company,
-          sector,
+          company: nextCompany,
+          sector: nextSector,
           updatedAt: now,
         },
       },
@@ -127,8 +131,8 @@ export async function upsertVisitor(
       visitor: toVisitorProfile({
         ...existing,
         name,
-        company,
-        sector,
+        company: nextCompany,
+        sector: nextSector,
         updatedAt: now,
       }),
       created: false,

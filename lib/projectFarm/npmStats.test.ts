@@ -1,5 +1,4 @@
-import assert from "node:assert/strict";
-import { describe, it } from "node:test";
+import { describe, expect, it } from "vitest";
 import {
   fetchNpmStatsForPackages,
   normalizeSparklineFromDownloads,
@@ -42,13 +41,13 @@ const npmMetric: Metric = {
 
 describe("normalizeSparklineFromDownloads", () => {
   it("normalizes daily downloads to 0–1 range", () => {
-    assert.deepEqual(normalizeSparklineFromDownloads(sampleDaily), [
+    expect(normalizeSparklineFromDownloads(sampleDaily)).toEqual([
       0, 1 / 3, 2 / 3, 1,
     ]);
   });
 
   it("returns [0] for empty input", () => {
-    assert.deepEqual(normalizeSparklineFromDownloads([]), [0]);
+    expect(normalizeSparklineFromDownloads([])).toEqual([0]);
   });
 
   it("returns flat line when all values are equal", () => {
@@ -56,13 +55,13 @@ describe("normalizeSparklineFromDownloads", () => {
       { day: "2026-07-07", downloads: 5 },
       { day: "2026-07-08", downloads: 5 },
     ];
-    assert.deepEqual(normalizeSparklineFromDownloads(flat), [0, 0]);
+    expect(normalizeSparklineFromDownloads(flat)).toEqual([0, 0]);
   });
 });
 
 describe("trendFromDailyDownloads", () => {
   it("detects upward trend", () => {
-    assert.equal(trendFromDailyDownloads(sampleDaily), "up");
+    expect(trendFromDailyDownloads(sampleDaily)).toBe("up");
   });
 
   it("detects stable trend", () => {
@@ -72,7 +71,7 @@ describe("trendFromDailyDownloads", () => {
       { day: "2026-07-09", downloads: 10 },
       { day: "2026-07-10", downloads: 10 },
     ];
-    assert.equal(trendFromDailyDownloads(stable), "stable");
+    expect(trendFromDailyDownloads(stable)).toBe("stable");
   });
 
   it("detects downward trend as flat", () => {
@@ -82,7 +81,7 @@ describe("trendFromDailyDownloads", () => {
       { day: "2026-07-09", downloads: 20 },
       { day: "2026-07-10", downloads: 10 },
     ];
-    assert.equal(trendFromDailyDownloads(down), "flat");
+    expect(trendFromDailyDownloads(down)).toBe("flat");
   });
 });
 
@@ -94,17 +93,15 @@ describe("resolveMetricValue", () => {
         dailyDownloads: sampleDaily,
       },
     });
-    assert.equal(value, 312);
+    expect(value).toBe(312);
   });
 
   it("falls back to baseValue when npm stats are missing", () => {
-    const value = resolveMetricValue(npmProject, npmMetric, null);
-    assert.equal(value, 238);
+    expect(resolveMetricValue(npmProject, npmMetric, null)).toBe(238);
   });
 
   it("falls back to baseValue when package is absent from stats map", () => {
-    const value = resolveMetricValue(npmProject, npmMetric, {});
-    assert.equal(value, 238);
+    expect(resolveMetricValue(npmProject, npmMetric, {})).toBe(238);
   });
 });
 
@@ -120,7 +117,7 @@ describe("fetchNpmStatsForPackages", () => {
             end: "2026-07-13",
             package: "worldsim",
           }),
-          { status: 200 }
+          { status: 200 },
         );
       }
       if (url.includes("/range/")) {
@@ -131,20 +128,20 @@ describe("fetchNpmStatsForPackages", () => {
             end: "2026-07-10",
             package: "worldsim",
           }),
-          { status: 200 }
+          { status: 200 },
         );
       }
       return new Response("not found", { status: 404 });
     };
 
     const packages = await fetchNpmStatsForPackages(["worldsim"], fetchImpl);
-    assert.equal(packages.worldsim.weeklyDownloads, 100);
-    assert.equal(packages.worldsim.dailyDownloads.length, 4);
+    expect(packages.worldsim.weeklyDownloads).toBe(100);
+    expect(packages.worldsim.dailyDownloads).toHaveLength(4);
   });
 
   it("omits packages when fetch fails", async () => {
     const fetchImpl = async () => new Response("error", { status: 500 });
     const packages = await fetchNpmStatsForPackages(["worldsim"], fetchImpl);
-    assert.deepEqual(packages, {});
+    expect(packages).toEqual({});
   });
 });

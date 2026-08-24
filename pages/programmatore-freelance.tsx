@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Cal from "../components/organism/Cal";
+import ProcessAssessment from "../components/organism/ProcessAssessment";
 import Footer from "../components/organism/Footer";
 import Header from "../components/organism/Header";
 import Seo from "../components/Seo";
@@ -91,7 +91,7 @@ export default function ProgrammatoreFreelancePage() {
               pronti per l&apos;uso quotidiano.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Cal textButton="Prenota una call gratuita" buttonType="default" />
+              <ProcessAssessment textButton="Prenota una call gratuita" />
               <Link
                 href="/#projects"
                 className="text-sm font-semibold text-sage-600 hover:text-sage-500 transition-colors"
@@ -169,7 +169,7 @@ export default function ProgrammatoreFreelancePage() {
               primo passo sensato.
             </p>
             <div className="mt-8 flex justify-center">
-              <Cal textButton="Parliamo del progetto" buttonType="default" />
+              <ProcessAssessment textButton="Parliamo del progetto" />
             </div>
           </div>
         </section>

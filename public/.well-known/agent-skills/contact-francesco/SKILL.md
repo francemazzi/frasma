@@ -1,6 +1,6 @@
 # Contact Francesco
 
-Use this skill when an agent needs to help a user understand Frasma services, diagnose an operational bottleneck, prepare a reviewed diagnostic summary, or schedule a call with Francesco Saverio Mazzi.
+Use this skill when an agent needs to help a user understand Frasma services, diagnose an operational bottleneck, or prepare a process brief for a quote from Francesco Saverio Mazzi.
 
 ## Capability
 
@@ -12,9 +12,9 @@ Frasma builds custom operational software and AI for small and medium businesses
 2. Identify the business process, trigger, inputs, outputs, people, responsibilities, and current systems.
 3. Ask one focused question at a time about volumes, frequency, manual steps, errors, rework, waiting time, baseline metrics, available data, constraints, and desired outcomes.
 4. Distinguish user-provided facts from hypotheses. Do not infer savings or compatibility without evidence.
-5. When the picture is complete, present a concise diagnostic recap with bottlenecks, missing evidence, possible intervention areas, and next steps.
-6. Ask the user to correct and explicitly confirm the recap before preparing any email form.
-7. Use the website chat, or MCP `prepare_diagnostic_summary` for a structured handoff URL — never send email without explicit human confirmation. The booking flow remains available for scheduling a call.
+5. When the picture is complete, present a concise recap with the process, systems, volumes, bottlenecks, and next steps.
+6. Ask the user to correct and explicitly confirm the recap before preparing the process brief.
+7. Use the website form or chat, or MCP `prepare_project_brief`, then POST https://www.frasma.org/api/request-process-assessment only after explicit human confirmation. Never send email yourself.
 
 ## Public Resources
 
@@ -31,5 +31,5 @@ Frasma builds custom operational software and AI for small and medium businesses
 - Do not invent pricing, delivery estimates, or contractual commitments.
 - Fixed VibeUp packages apply only on https://www.frasma.org/vibeup and not to custom Frasma operational software.
 - Do not request credentials, secrets, unnecessary personal data, or confidential document contents. Ask for anonymized examples and aggregates.
-- Treat the website chat and forms as the official way to submit diagnostic summaries, quote requests, or meeting requests.
+- Treat the website process brief (`POST /api/request-process-assessment`) as the official conversion. Do not book a call as the conversion.
 - Keep responses concise and in the user's language.

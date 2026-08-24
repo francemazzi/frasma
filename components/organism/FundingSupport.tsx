@@ -1,7 +1,7 @@
 "use client";
 
 import { useT } from "../../lib/i18n/context";
-import Cal from "./Cal";
+import ProcessAssessment from "./ProcessAssessment";
 
 export default function FundingSupport() {
   const t = useT();
@@ -20,7 +20,10 @@ export default function FundingSupport() {
           </div>
 
           <div className="mt-10 text-center">
-            <Cal textButton={t("funding.cta")} buttonType="ink" showArrow />
+            <ProcessAssessment
+              textButton={t("funding.cta")}
+              showArrow
+            />
           </div>
         </div>
       </div>

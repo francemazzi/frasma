@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Cal from "../components/organism/Cal";
+import ProcessAssessment from "../components/organism/ProcessAssessment";
 import Seo from "../components/Seo";
 import { breadcrumbJsonLd, SITE_URL } from "../lib/seo";
 import { Laptop, Smartphone, AlertCircle, Hourglass, Bot, Rocket, Lightbulb, MapPin } from "lucide-react";
@@ -276,7 +276,7 @@ export default function VibeUpPage() {
           <span>VIBE UP</span>{" "}
           <span className="text-farm-secondary font-normal">by frasma.org</span>
         </a>
-        <Cal textButton="PRENOTA ORA" buttonType="default" />
+        <ProcessAssessment textButton="PRENOTA ORA" compact />
       </nav>
 
       <main className="min-h-screen bg-farm-bg text-farm-text">
@@ -348,7 +348,7 @@ export default function VibeUpPage() {
               transition={{ duration: 0.5, delay: 0.24 }}
               className="mt-8 flex flex-wrap items-center gap-4"
             >
-              <Cal textButton="PRENOTA LA CALL GRATUITA" buttonType="default" />
+              <ProcessAssessment textButton="PRENOTA LA CALL GRATUITA" />
               <a
                 href="#casi-reali"
                 className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-sage-600 hover:text-sage-500 bg-sage-50 rounded-full transition duration-200"
@@ -622,7 +622,7 @@ export default function VibeUpPage() {
                 </ul>
 
                 <div className="[&>button]:w-full">
-                  <Cal textButton={pkg.ctaText} buttonType="default" />
+                  <ProcessAssessment textButton={pkg.ctaText} />
                 </div>
                 <p className="text-xs text-farm-secondary text-center mt-3">
                   {pkg.note}
@@ -830,10 +830,7 @@ export default function VibeUpPage() {
               Prenota 30 minuti gratuiti. Nessun impegno.
             </p>
             <div className="relative mt-8 flex justify-center">
-              <Cal
-                textButton="PRENOTA LA CALL GRATUITA"
-                buttonType="default"
-              />
+              <ProcessAssessment textButton="PRENOTA LA CALL GRATUITA" />
             </div>
             <p className="relative mt-4 text-sm text-farm-secondary">
               Ti dir&ograve; subito se si risolve in una sessione o se non

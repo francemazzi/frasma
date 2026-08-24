@@ -1,18 +1,10 @@
 import { useState, useRef, useEffect, useCallback, type FormEvent } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { X, Send, Loader2, Mail, Calendar } from "lucide-react";
-import { validateMeetingFormFields } from "../../lib/meetingFormValidation";
+import { X, Send, Loader2, Mail } from "lucide-react";
 import { useT, useLang } from "../../lib/i18n/context";
 import {
-  safeParseDiagnosticSummary,
-  type DiagnosticSummary,
-  type NeedCategory,
-} from "../../lib/chat/diagnostic";
-import {
-  extractDiagnosticForm,
-  extractEmailForm,
-  extractMeetingForm,
+  extractProjectBriefForm,
   stripFormMarkers,
 } from "../../lib/chat/markers";
 import {
@@ -21,25 +13,16 @@ import {
   writeStoredConversationId,
 } from "../../lib/chat/session";
 import { buildTimeoutFallbackResponse } from "../../lib/chat/timeout-fallback";
+import type { ProjectBriefFields } from "../../lib/processAssessment";
 
 type Message = { role: "user" | "assistant"; content: string };
 
-const EMAIL_ADDRESS_RE =
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_ADDRESS_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-type EmailFormData = {
-  subject: string;
-  body: string;
-  clientEmail: string;
-  clientName: string;
-};
-
-type MeetingFormData = {
-  date: string;
-  time: string;
+type VisitorProfile = {
+  name: string;
   email: string;
-  description: string;
-  timezone: string;
+  company: string;
 };
 
 const DISCOUNT_PATH = "/discount?conv=contact";
@@ -52,504 +35,77 @@ function redirectToDiscount(): void {
 
 function parseAssistantMessage(content: string): {
   text: string;
-  emailForm: EmailFormData | null;
-  meetingForm: MeetingFormData | null;
-  diagnosticForm: DiagnosticSummary | null;
+  projectBrief: Partial<ProjectBriefFields> | null;
 } {
-  const emailForm = extractEmailForm<EmailFormData>(content);
-  const meetingForm = extractMeetingForm<MeetingFormData>(content);
-  const diagnosticForm = extractDiagnosticForm(content);
-  const text = stripFormMarkers(content);
-
-  return { text, emailForm, meetingForm, diagnosticForm };
-}
-
-/* ------------------------------------------------------------------ */
-/*  Inline email form                                                  */
-/* ------------------------------------------------------------------ */
-
-function InlineEmailForm({
-  form,
-  onSent,
-  t,
-  conversationId,
-}: {
-  form: EmailFormData;
-  onSent: () => void;
-  t: (key: string) => string;
-  conversationId: string | null;
-}) {
-  const [subject, setSubject] = useState(form.subject);
-  const [body, setBody] = useState(form.body);
-  const [clientEmail, setClientEmail] = useState(form.clientEmail);
-  const needsEmailInput =
-    !form.clientEmail.trim() || !EMAIL_ADDRESS_RE.test(form.clientEmail.trim());
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState(false);
-  const [honeypot, setHoneypot] = useState("");
-
-  const handleSend = async () => {
-    const resolvedEmail = clientEmail.trim();
-    if (needsEmailInput && !EMAIL_ADDRESS_RE.test(resolvedEmail)) {
-      setError(true);
-      return;
-    }
-
-    setSending(true);
-    setError(false);
-    try {
-      const res = await fetch("/api/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          clientEmail: resolvedEmail,
-          subject,
-          body,
-          honeypot,
-          ...(conversationId ? { conversationId } : {}),
-        }),
-      });
-      if (res.ok) {
-        setSent(true);
-        onSent();
-        redirectToDiscount();
-      } else {
-        setError(true);
-      }
-    } catch {
-      setError(true);
-    } finally {
-      setSending(false);
-    }
+  return {
+    text: stripFormMarkers(content),
+    projectBrief: extractProjectBriefForm(content),
   };
-
-  if (sent) {
-    return (
-      <div className="flex items-center gap-2 text-sage-600 text-xs font-medium py-1">
-        <Mail size={14} />
-        {t("chat.email.sent")}
-      </div>
-    );
-  }
-
-  return (
-    <div className="mt-2 rounded-xl border border-sage-200 bg-white p-3 space-y-2">
-      <div className="flex items-center gap-2 text-sage-600 font-semibold text-xs">
-        <Mail size={14} />
-        {t("chat.email.title")}
-      </div>
-
-      {needsEmailInput ? (
-        <div>
-          <label className="block text-[11px] text-farm-secondary mb-0.5">
-            {t("chat.email.clientEmail")}
-          </label>
-          <input
-            type="email"
-            value={clientEmail}
-            onChange={(e) => setClientEmail(e.target.value)}
-            disabled={sending}
-            placeholder={t("chat.timeout.emailPlaceholder")}
-            className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
-          />
-        </div>
-      ) : null}
-
-      <div>
-        <label className="block text-[11px] text-farm-secondary mb-0.5">
-          {t("chat.email.subject")}
-        </label>
-        <input
-          type="text"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
-          disabled={sending}
-          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text focus:outline-none focus:ring-1 focus:ring-sage-300"
-        />
-      </div>
-
-      <div>
-        <label className="block text-[11px] text-farm-secondary mb-0.5">
-          {t("chat.email.body")}
-        </label>
-        <textarea
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          disabled={sending}
-          rows={6}
-          className="w-full rounded-lg border border-farm-border bg-farm-bg px-2.5 py-1.5 text-[16px] text-farm-text leading-relaxed resize-y focus:outline-none focus:ring-1 focus:ring-sage-300"
-        />
-      </div>
-
-      {error && (
-        <p className="text-xs text-red-500">{t("chat.email.error")}</p>
-      )}
-
-      <input
-        type="text"
-        name="website"
-        value={honeypot}
-        onChange={(event) => setHoneypot(event.currentTarget.value)}
-        className="absolute h-0 w-0 opacity-0 pointer-events-none"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-      />
-
-      <div className="flex gap-2 justify-end">
-        <button
-          type="button"
-          onClick={handleSend}
-          disabled={sending || !subject.trim() || !body.trim()}
-          className="flex items-center gap-1.5 rounded-full bg-sage-500 text-white text-xs font-medium px-3 py-1.5 hover:bg-sage-400 disabled:opacity-40 transition-colors"
-        >
-          {sending ? (
-            <>
-              <Loader2 size={12} className="animate-spin" />
-              {t("chat.email.sending")}
-            </>
-          ) : (
-            <>
-              <Send size={12} />
-              {t("chat.email.send")}
-            </>
-          )}
-        </button>
-      </div>
-    </div>
-  );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Inline meeting form (same API body as Cal modal)                   */
-/* ------------------------------------------------------------------ */
-
-function InlineMeetingForm({
+function InlineProjectBriefForm({
   form,
+  visitor,
   onSent,
   t,
   lang,
   conversationId,
 }: {
-  form: MeetingFormData;
+  form: Partial<ProjectBriefFields>;
+  visitor: VisitorProfile | null;
   onSent: () => void;
   t: (key: string) => string;
-  lang: string;
+  lang: "it" | "en";
   conversationId: string | null;
 }) {
-  const [date, setDate] = useState(form.date);
-  const [time, setTime] = useState(form.time);
-  const [email, setEmail] = useState(form.email);
-  const [description, setDescription] = useState(form.description);
-  const [timezone] = useState(() => {
-    const tz = form.timezone?.trim();
-    if (tz) return tz;
-    if (typeof window !== "undefined") {
-      return Intl.DateTimeFormat().resolvedOptions().timeZone || "Europe/Rome";
-    }
-    return "Europe/Rome";
-  });
+  const [name, setName] = useState(form.name?.trim() || visitor?.name || "");
+  const [clientEmail, setClientEmail] = useState(
+    form.clientEmail?.trim() || visitor?.email || "",
+  );
+  const [company, setCompany] = useState(
+    form.company?.trim() || visitor?.company || "",
+  );
+  const [role, setRole] = useState(form.role?.trim() || "");
+  const [process, setProcess] = useState(form.process?.trim() || "");
+  const [systems, setSystems] = useState(form.systems?.trim() || "");
+  const [volume, setVolume] = useState(form.volume?.trim() || "");
   const [honeypot, setHoneypot] = useState("");
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const validationError = validateMeetingFormFields(
-      { date, time, email, description },
-      t
-    );
-    if (validationError) {
-      setErrorMessage(validationError);
-      return;
-    }
-
-    setSending(true);
-    setErrorMessage("");
-
-    try {
-      const res = await fetch("/api/schedule-meeting", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          date,
-          time,
-          email,
-          description,
-          timezone,
-          honeypot,
-          ...(conversationId ? { conversationId } : {}),
-        }),
-      });
-
-      const json = (await res.json().catch(() => null)) as
-        | { ok: true }
-        | { ok: false; error: string }
-        | null;
-
-      if (!res.ok || !json || json.ok !== true) {
-        const msg =
-          json && "error" in json && json.error
-            ? json.error
-            : t("cal.errorFallback");
-        setErrorMessage(msg);
-        return;
-      }
-
-      setSent(true);
-      onSent();
-      redirectToDiscount();
-    } catch {
-      setErrorMessage(t("cal.networkError"));
-    } finally {
-      setSending(false);
-    }
-  };
-
-  if (sent) {
-    return (
-      <div className="flex items-center gap-2 text-sage-600 text-xs font-medium py-1">
-        <Calendar size={14} />
-        {t("cal.success")}
-      </div>
-    );
-  }
-
-  return (
-    <form
-      className="relative mt-2 rounded-xl border border-sage-200 bg-white p-3 space-y-2"
-      lang={lang}
-      onSubmit={(e) => void handleSubmit(e)}
-    >
-      <div className="flex items-center gap-2 text-sage-600 font-semibold text-xs">
-        <Calendar size={14} />
-        {t("chat.meeting.title")}
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <div className="min-w-0">
-          <label className="block text-[11px] text-farm-secondary mb-0.5">
-            {t("cal.date")}
-          </label>
-          <div className="meeting-field-shell mt-0">
-            <input
-              type="date"
-              lang={lang}
-              inputMode="none"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              disabled={sending}
-              className="meeting-datetime-input"
-            />
-          </div>
-        </div>
-        <div className="min-w-0">
-          <label className="block text-[11px] text-farm-secondary mb-0.5">
-            {t("cal.time")}
-          </label>
-          <div className="meeting-field-shell mt-0">
-            <input
-              type="time"
-              lang={lang}
-              inputMode="none"
-              step={900}
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              disabled={sending}
-              className="meeting-datetime-input"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-[11px] text-farm-secondary mb-0.5">
-          {t("cal.email")}
-        </label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          disabled={sending}
-          placeholder={t("cal.emailPlaceholder")}
-          className="meeting-input mt-0"
-        />
-      </div>
-
-      <div>
-        <label className="block text-[11px] text-farm-secondary mb-0.5">
-          {t("cal.description")}
-        </label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          disabled={sending}
-          rows={4}
-          maxLength={2000}
-          placeholder={t("cal.descPlaceholder")}
-          className="meeting-input mt-0 min-h-[88px] leading-relaxed resize-y"
-        />
-        <p className="mt-0.5 text-[10px] text-farm-secondary">
-          {t("cal.timezone")}: <span className="font-medium">{timezone}</span>
-        </p>
-      </div>
-
-      <input
-        type="text"
-        name="website"
-        className="absolute opacity-0 pointer-events-none h-0 w-0"
-        tabIndex={-1}
-        autoComplete="off"
-        value={honeypot}
-        onChange={(e) => setHoneypot(e.target.value)}
-        aria-hidden="true"
-      />
-
-      {errorMessage ? (
-        <p className="text-xs text-red-500">{errorMessage}</p>
-      ) : null}
-
-      <div className="flex gap-2 justify-end">
-        <button
-          type="submit"
-          disabled={sending}
-          className="flex items-center gap-1.5 rounded-full bg-sage-500 text-white text-xs font-medium px-3 py-1.5 hover:bg-sage-400 disabled:opacity-40 transition-colors"
-        >
-          {sending ? (
-            <>
-              <Loader2 size={12} className="animate-spin" />
-              {t("cal.sending")}
-            </>
-          ) : (
-            <>
-              <Send size={12} />
-              {t("cal.send")}
-            </>
-          )}
-        </button>
-      </div>
-    </form>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Inline diagnostic summary                                         */
-/* ------------------------------------------------------------------ */
-
-const NEED_CATEGORIES: NeedCategory[] = [
-  "document_erp",
-  "workflow",
-  "ticketing",
-  "dataset_benchmark",
-  "ai_optimization",
-  "company_wiki",
-  "ai_presence",
-];
-
-type DiagnosticListField =
-  | "bottlenecks"
-  | "currentSystems"
-  | "baselineMetrics"
-  | "dataAvailable"
-  | "constraints"
-  | "desiredOutcomes"
-  | "opportunities"
-  | "recommendations"
-  | "openQuestions"
-  | "nextSteps";
-
-function splitLines(value: string): string[] {
-  return value
-    .split("\n")
-    .map((item) => item.trim())
-    .filter(Boolean);
-}
-
-function DiagnosticListInput({
-  label,
-  value,
-  onChange,
-}: {
-  label: string;
-  value: string[];
-  onChange: (value: string[]) => void;
-}) {
-  return (
-    <label className="block">
-      <span className="mb-1 block text-[11px] font-semibold text-ink">{label}</span>
-      <textarea
-        rows={3}
-        value={value.join("\n")}
-        onChange={(event) => onChange(splitLines(event.currentTarget.value))}
-        className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed text-ink focus:border-accent focus:outline-none"
-      />
-    </label>
-  );
-}
-
-function InlineDiagnosticForm({
-  form,
-  onSent,
-  t,
-  conversationId,
-}: {
-  form: DiagnosticSummary;
-  onSent: () => void;
-  t: (key: string) => string;
-  conversationId: string | null;
-}) {
-  const [summary, setSummary] = useState(form);
-  const [honeypot, setHoneypot] = useState("");
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const updateText = (
-    field:
-      | "clientName"
-      | "clientEmail"
-      | "clientCompany"
-      | "sector"
-      | "process"
-      | "currentWorkflow"
-      | "volumesAndFrequency",
-    value: string,
-  ) => {
-    setSummary((current) => ({ ...current, [field]: value }));
-  };
-
-  const updateList = (field: DiagnosticListField, value: string[]) => {
-    setSummary((current) => ({ ...current, [field]: value }));
-  };
-
-  const toggleCategory = (category: NeedCategory) => {
-    setSummary((current) => ({
-      ...current,
-      needCategories: current.needCategories.includes(category)
-        ? current.needCategories.filter((item) => item !== category)
-        : [...current.needCategories, category],
-    }));
-  };
-
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    setErrorMessage("");
-
-    const parsed = safeParseDiagnosticSummary({ ...summary, honeypot });
-    if (!parsed.success) {
-      setErrorMessage(t("chat.diagnostic.invalid"));
+    if (!name.trim()) {
+      setErrorMessage(t("assessment.validation.name"));
+      return;
+    }
+    if (!EMAIL_ADDRESS_RE.test(clientEmail.trim())) {
+      setErrorMessage(t("assessment.validation.email"));
+      return;
+    }
+    if (process.trim().length < 20) {
+      setErrorMessage(t("assessment.validation.process"));
       return;
     }
 
     setSending(true);
+    setErrorMessage("");
+
     try {
-      const response = await fetch("/api/send-diagnostic-summary", {
+      const response = await fetch("/api/request-process-assessment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...parsed.data,
+          name: name.trim(),
+          clientEmail: clientEmail.trim(),
+          company,
+          role,
+          process,
+          systems,
+          volume,
+          honeypot,
+          lang,
           ...(conversationId ? { conversationId } : {}),
         }),
       });
@@ -559,7 +115,11 @@ function InlineDiagnosticForm({
         | null;
 
       if (!response.ok || !result || result.ok !== true) {
-        setErrorMessage(t("chat.diagnostic.error"));
+        setErrorMessage(
+          response.status === 429
+            ? t("assessment.error.rate")
+            : t("chat.brief.error"),
+        );
         return;
       }
 
@@ -567,7 +127,7 @@ function InlineDiagnosticForm({
       onSent();
       redirectToDiscount();
     } catch {
-      setErrorMessage(t("chat.diagnostic.error"));
+      setErrorMessage(t("assessment.error.network"));
     } finally {
       setSending(false);
     }
@@ -577,7 +137,7 @@ function InlineDiagnosticForm({
     return (
       <div className="mt-2 flex items-center gap-2 text-xs font-medium text-sage-600">
         <Mail size={14} />
-        {t("chat.diagnostic.sent")}
+        {t("chat.brief.sent")}
       </div>
     );
   }
@@ -590,126 +150,99 @@ function InlineDiagnosticForm({
       <div>
         <div className="flex items-center gap-2 text-xs font-semibold text-accent">
           <Mail size={14} />
-          {t("chat.diagnostic.title")}
+          {t("chat.brief.title")}
         </div>
         <p className="mt-1 text-[10.5px] leading-relaxed text-ink-soft">
-          {t("chat.diagnostic.privacy")}
+          {t("assessment.privacy")}
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         <label>
-          <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.name")}</span>
+          <span className="mb-1 block text-[11px] font-semibold">
+            {t("assessment.name")} *
+          </span>
           <input
-            value={summary.clientName}
-            onChange={(event) => updateText("clientName", event.currentTarget.value)}
+            value={name}
+            onChange={(event) => setName(event.currentTarget.value)}
+            autoComplete="name"
             className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
           />
         </label>
         <label>
-          <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.email")}</span>
+          <span className="mb-1 block text-[11px] font-semibold">
+            {t("assessment.email")} *
+          </span>
           <input
             type="email"
-            value={summary.clientEmail}
-            onChange={(event) => updateText("clientEmail", event.currentTarget.value)}
+            value={clientEmail}
+            onChange={(event) => setClientEmail(event.currentTarget.value)}
+            autoComplete="email"
             className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
           />
         </label>
       </div>
-
-      <label className="block">
-        <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.company")}</span>
-        <input
-          value={summary.clientCompany ?? ""}
-          onChange={(event) => updateText("clientCompany", event.currentTarget.value)}
-          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
-        />
-      </label>
 
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         <label>
-          <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.sector")}</span>
+          <span className="mb-1 block text-[11px] font-semibold">
+            {t("assessment.company")}
+          </span>
           <input
-            value={summary.sector}
-            onChange={(event) => updateText("sector", event.currentTarget.value)}
+            value={company}
+            onChange={(event) => setCompany(event.currentTarget.value)}
+            autoComplete="organization"
             className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
           />
         </label>
         <label>
-          <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.process")}</span>
+          <span className="mb-1 block text-[11px] font-semibold">
+            {t("assessment.role")}
+          </span>
           <input
-            value={summary.process}
-            onChange={(event) => updateText("process", event.currentTarget.value)}
+            value={role}
+            onChange={(event) => setRole(event.currentTarget.value)}
+            autoComplete="organization-title"
             className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] focus:border-accent focus:outline-none"
           />
         </label>
       </div>
 
       <label className="block">
-        <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.workflow")}</span>
+        <span className="mb-1 block text-[11px] font-semibold">
+          {t("assessment.process")} *
+        </span>
         <textarea
           rows={4}
-          value={summary.currentWorkflow}
-          onChange={(event) => updateText("currentWorkflow", event.currentTarget.value)}
-          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed focus:border-accent focus:outline-none"
+          value={process}
+          onChange={(event) => setProcess(event.currentTarget.value)}
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed text-ink focus:border-accent focus:outline-none"
         />
       </label>
 
       <label className="block">
-        <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.volumes")}</span>
+        <span className="mb-1 block text-[11px] font-semibold">
+          {t("assessment.systems")}
+        </span>
         <textarea
           rows={2}
-          value={summary.volumesAndFrequency}
-          onChange={(event) => updateText("volumesAndFrequency", event.currentTarget.value)}
-          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed focus:border-accent focus:outline-none"
+          value={systems}
+          onChange={(event) => setSystems(event.currentTarget.value)}
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed text-ink focus:border-accent focus:outline-none"
         />
       </label>
 
-      <div>
-        <span className="mb-1 block text-[11px] font-semibold">{t("chat.diagnostic.categories")}</span>
-        <div className="flex flex-wrap gap-1.5">
-          {NEED_CATEGORIES.map((category) => (
-            <label
-              key={category}
-              className={`cursor-pointer rounded-full border px-2 py-1 text-[10px] ${
-                summary.needCategories.includes(category)
-                  ? "border-accent bg-accent text-paper"
-                  : "border-hairline-strong text-ink-soft"
-              }`}
-            >
-              <input
-                type="checkbox"
-                checked={summary.needCategories.includes(category)}
-                onChange={() => toggleCategory(category)}
-                className="sr-only"
-              />
-              {t(`chat.diagnostic.category.${category}`)}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {(
-        [
-          "bottlenecks",
-          "currentSystems",
-          "baselineMetrics",
-          "dataAvailable",
-          "constraints",
-          "desiredOutcomes",
-          "opportunities",
-          "recommendations",
-          "openQuestions",
-          "nextSteps",
-        ] as DiagnosticListField[]
-      ).map((field) => (
-        <DiagnosticListInput
-          key={field}
-          label={t(`chat.diagnostic.${field}`)}
-          value={summary[field]}
-          onChange={(value) => updateList(field, value)}
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-semibold">
+          {t("assessment.volume")}
+        </span>
+        <textarea
+          rows={2}
+          value={volume}
+          onChange={(event) => setVolume(event.currentTarget.value)}
+          className="w-full rounded-lg border border-hairline-strong bg-paper-2 px-2.5 py-2 text-[16px] leading-relaxed text-ink focus:border-accent focus:outline-none"
         />
-      ))}
+      </label>
 
       <input
         type="text"
@@ -730,15 +263,11 @@ function InlineDiagnosticForm({
         className="flex w-full items-center justify-center gap-2 rounded-full bg-ink px-3 py-2 text-xs font-semibold text-paper transition-colors hover:bg-accent disabled:opacity-50"
       >
         {sending ? <Loader2 size={13} className="animate-spin" /> : <Send size={13} />}
-        {sending ? t("chat.diagnostic.sending") : t("chat.diagnostic.send")}
+        {sending ? t("assessment.sending") : t("chat.brief.send")}
       </button>
     </form>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Inline registration form                                           */
-/* ------------------------------------------------------------------ */
 
 type RegisterFormValues = {
   name: string;
@@ -751,6 +280,7 @@ type RegisterSuccessPayload = {
   conversationId: string;
   messages: Message[];
   returning: boolean;
+  visitor: VisitorProfile;
 };
 
 function InlineRegisterForm({
@@ -827,6 +357,7 @@ function InlineRegisterForm({
             conversationId?: string;
             messages?: Message[];
             returning?: boolean;
+            visitor?: VisitorProfile;
             error?: string;
           }
         | null;
@@ -847,6 +378,7 @@ function InlineRegisterForm({
         conversationId: json.conversationId,
         messages: restoredMessages,
         returning: Boolean(json.returning && restoredMessages.length > 0),
+        visitor: json.visitor ?? { name, email, company },
       });
     } catch {
       setErrorMessage(t("chat.register.error"));
@@ -938,10 +470,6 @@ function InlineRegisterForm({
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Chat widget                                                        */
-/* ------------------------------------------------------------------ */
-
 const CHAT_FETCH_TIMEOUT_MS = 120_000;
 
 export default function ChatWidget() {
@@ -957,19 +485,18 @@ export default function ChatWidget() {
   const [historyRestored, setHistoryRestored] = useState(false);
   const [restoring, setRestoring] = useState(false);
   const [needsRegistration, setNeedsRegistration] = useState(false);
+  const [visitor, setVisitor] = useState<VisitorProfile | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const restoreAttemptedRef = useRef(false);
 
-  // Scroll to bottom on new messages
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, loading, needsRegistration]);
 
-  // Focus input when chat opens (skip on touch devices to avoid iOS Safari zoom)
   useEffect(() => {
     if (!isOpen || needsRegistration || !inputRef.current) return;
     const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
@@ -989,6 +516,7 @@ export default function ChatWidget() {
     setHistoryRestored(false);
     setNeedsRegistration(true);
     setConversationId(null);
+    setVisitor(null);
   }, [t]);
 
   const restoreConversation = useCallback(async () => {
@@ -1046,6 +574,7 @@ export default function ChatWidget() {
       setConversationId(payload.conversationId);
       writeStoredConversationId(payload.conversationId);
       setNeedsRegistration(false);
+      setVisitor(payload.visitor);
 
       if (payload.returning && payload.messages.length > 0) {
         setMessages(payload.messages);
@@ -1121,6 +650,7 @@ export default function ChatWidget() {
             lang,
             timezone,
             pagePath: router.asPath,
+            visitor: visitor ?? undefined,
           });
         setMessages((prev) => [
           ...prev,
@@ -1159,6 +689,7 @@ export default function ChatWidget() {
             lang,
             timezone,
             pagePath: router.asPath,
+            visitor: visitor ?? undefined,
           })
         : (t("chat.error") ?? "Error.");
       setMessages((prev) => [
@@ -1171,7 +702,17 @@ export default function ChatWidget() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading, messages, lang, router.asPath, t, conversationId, needsRegistration]);
+  }, [
+    input,
+    loading,
+    messages,
+    lang,
+    router.asPath,
+    t,
+    conversationId,
+    needsRegistration,
+    visitor,
+  ]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -1180,30 +721,15 @@ export default function ChatWidget() {
     }
   };
 
-  const handleEmailSent = useCallback(() => {
+  const handleBriefSent = useCallback(() => {
     setMessages((prev) => [
       ...prev,
-      { role: "assistant", content: t("chat.email.sent") },
-    ]);
-  }, [t]);
-
-  const handleMeetingSent = useCallback(() => {
-    setMessages((prev) => [
-      ...prev,
-      { role: "assistant", content: t("cal.success") },
-    ]);
-  }, [t]);
-
-  const handleDiagnosticSent = useCallback(() => {
-    setMessages((prev) => [
-      ...prev,
-      { role: "assistant", content: t("chat.diagnostic.sent") },
+      { role: "assistant", content: t("chat.brief.sent") },
     ]);
   }, [t]);
 
   return (
     <>
-      {/* Floating launcher — editorial */}
       {!isOpen && (
         <button
           type="button"
@@ -1226,7 +752,6 @@ export default function ChatWidget() {
         </button>
       )}
 
-      {/* Chat window — editorial paper panel */}
       {isOpen && (
         <div
           className="fixed z-50 flex min-w-0 flex-col overflow-hidden rounded-3xl border border-hairline-strong bg-paper left-3 right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] max-h-[min(34rem,calc(100dvh-1.5rem-env(safe-area-inset-bottom,0px)-env(safe-area-inset-top,0px)))] sm:left-auto sm:right-6 sm:bottom-6 sm:w-[380px] sm:max-h-[540px]"
@@ -1235,7 +760,6 @@ export default function ChatWidget() {
             boxShadow: "0 28px 60px -12px rgba(27,25,22,0.4)",
           }}
         >
-          {/* Header */}
           <div className="px-5 py-[18px] border-b border-hairline bg-paper flex flex-col gap-[6px] relative">
             <div className="flex items-center gap-3 pr-9">
               <Image
@@ -1277,21 +801,15 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          {/* Messages */}
           <div
             ref={scrollRef}
             className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-[22px] py-[18px] flex flex-col gap-[18px]"
           >
             {messages.map((msg, i) => {
-              const { text, emailForm, meetingForm, diagnosticForm } =
+              const { text, projectBrief } =
                 msg.role === "assistant"
                   ? parseAssistantMessage(msg.content)
-                  : {
-                      text: msg.content,
-                      emailForm: null,
-                      meetingForm: null,
-                      diagnosticForm: null,
-                    };
+                  : { text: msg.content, projectBrief: null };
 
               if (msg.role === "user") {
                 return (
@@ -1321,28 +839,13 @@ export default function ChatWidget() {
                   <div className="font-serif text-[16px] leading-[1.5] text-ink whitespace-pre-wrap break-words">
                     {text}
                   </div>
-                  {emailForm ? (
-                    <InlineEmailForm
-                      form={emailForm}
-                      onSent={handleEmailSent}
-                      t={t}
-                      conversationId={conversationId}
-                    />
-                  ) : null}
-                  {meetingForm ? (
-                    <InlineMeetingForm
-                      form={meetingForm}
-                      onSent={handleMeetingSent}
+                  {projectBrief ? (
+                    <InlineProjectBriefForm
+                      form={projectBrief}
+                      visitor={visitor}
+                      onSent={handleBriefSent}
                       t={t}
                       lang={lang}
-                      conversationId={conversationId}
-                    />
-                  ) : null}
-                  {diagnosticForm ? (
-                    <InlineDiagnosticForm
-                      form={diagnosticForm}
-                      onSent={handleDiagnosticSent}
-                      t={t}
                       conversationId={conversationId}
                     />
                   ) : null}
@@ -1386,7 +889,6 @@ export default function ChatWidget() {
             )}
           </div>
 
-          {/* Input */}
           <div className="border-t border-hairline px-[18px] py-4 flex items-end gap-[10px] bg-paper">
             <input
               ref={inputRef}

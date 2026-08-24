@@ -13,7 +13,7 @@ import {
   ClipboardX,
   Unlink,
 } from "lucide-react";
-import Cal from "../components/organism/Cal";
+import ProcessAssessment from "../components/organism/ProcessAssessment";
 import ProblemCard from "../components/organism/ProblemCard";
 import AreaCard from "../components/organism/AreaCard";
 import CaseCard from "../components/organism/CaseCard";
@@ -341,7 +341,7 @@ export default function ManifatturaPage() {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Cal textButton={activeCta.finalPrimary} buttonType="default" />
+              <ProcessAssessment textButton={activeCta.finalPrimary} />
               <a
                 href="#casi-uso"
                 data-cta-id="hero-secondary-cases"
@@ -566,7 +566,7 @@ export default function ManifatturaPage() {
               {activeCta.finalMicrocopy}
             </p>
             <div className="mt-8 flex justify-center">
-              <Cal textButton={activeCta.finalPrimary} buttonType="default" />
+              <ProcessAssessment textButton={activeCta.finalPrimary} />
             </div>
             <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs font-medium text-farm-secondary">
               <span className="rounded-full border border-farm-border bg-farm-surface px-3 py-1">

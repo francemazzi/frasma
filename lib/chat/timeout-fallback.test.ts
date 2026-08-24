@@ -1,20 +1,12 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   buildProjectSummary,
   buildTimeoutFallbackResponse,
   extractContactHints,
-  getNextBusinessDay,
 } from "./timeout-fallback";
-import {
-  extractEmailForm,
-  extractMeetingForm,
-} from "./markers";
+import { extractProjectBriefForm } from "./markers";
 
 describe("timeout fallback", () => {
-  afterEach(() => {
-    vi.useRealTimers();
-  });
-
   it("extracts email and name hints from user messages", () => {
     const hints = extractContactHints(
       [
@@ -41,7 +33,7 @@ describe("timeout fallback", () => {
     expect(summary.endsWith("…")).toBe(true);
   });
 
-  it("builds email and meeting forms for timeout fallback", () => {
+  it("builds a project brief form for timeout fallback", () => {
     const response = buildTimeoutFallbackResponse({
       messages: [
         {
@@ -54,36 +46,48 @@ describe("timeout fallback", () => {
       pagePath: "/manifattura",
     });
 
-    expect(response).toContain("EMAIL_FORM");
-    expect(response).toContain("MEETING_FORM");
-    expect(response).toContain("incontro online");
+    expect(response).toContain("PROJECT_BRIEF_FORM");
+    expect(response).not.toContain("EMAIL_FORM");
+    expect(response).not.toContain("MEETING_FORM");
+    expect(response).toContain("brief di processo");
 
-    const emailForm = extractEmailForm<{
-      subject: string;
-      body: string;
-      clientEmail: string;
-      clientName: string;
-    }>(response);
-    const meetingForm = extractMeetingForm<{
-      date: string;
-      time: string;
-      email: string;
-      description: string;
-      timezone: string;
-    }>(response);
-
-    expect(emailForm?.subject).toContain("Richiesta preventivo");
-    expect(emailForm?.body).toContain("import DDT via email");
-    expect(emailForm?.body).toContain("/manifattura");
-    expect(meetingForm?.time).toBe("10:00");
-    expect(meetingForm?.timezone).toBe("Europe/Rome");
-    expect(meetingForm?.description).toContain("import DDT");
+    const brief = extractProjectBriefForm(response);
+    expect(brief?.process).toContain("import DDT via email");
+    expect(brief?.process).toContain("/manifattura");
   });
 
-  it("returns the next weekday in the requested timezone", () => {
-    vi.useFakeTimers();
-    vi.setSystemTime(new Date("2026-07-18T10:00:00.000Z"));
+  it("prefers registered visitor details over chat hints", () => {
+    const response = buildTimeoutFallbackResponse({
+      messages: [
+        { role: "user", content: "Ciao, sono Mario. Email mario@example.com" },
+      ],
+      lang: "it",
+      timezone: "Europe/Rome",
+      visitor: {
+        name: "Ada Lovelace",
+        email: "ada@example.com",
+        company: "Analytical Engines",
+      },
+    });
 
-    expect(getNextBusinessDay("Europe/Rome")).toBe("2026-07-20");
+    const brief = extractProjectBriefForm(response);
+    expect(brief?.name).toBe("Ada Lovelace");
+    expect(brief?.clientEmail).toBe("ada@example.com");
+    expect(brief?.company).toBe("Analytical Engines");
+  });
+
+  it("builds an English brief and pads a short process", () => {
+    const response = buildTimeoutFallbackResponse({
+      messages: [],
+      lang: "en",
+      timezone: "Europe/Rome",
+      pagePath: "/",
+    });
+
+    expect(response).toContain("process brief");
+    expect(response).not.toContain("EMAIL_FORM");
+    const brief = extractProjectBriefForm(response);
+    expect(brief?.process?.length).toBeGreaterThanOrEqual(20);
+    expect(brief?.name).toBe("Chat visitor");
   });
 });

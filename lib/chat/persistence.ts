@@ -9,7 +9,8 @@ export type MessageRole = "user" | "assistant";
 export type ConversionEventType =
   | "email_sent"
   | "meeting_scheduled"
-  | "diagnostic_sent";
+  | "diagnostic_sent"
+  | "project_brief_submitted";
 
 export type StoredMessage = {
   role: MessageRole;
@@ -37,6 +38,7 @@ export type AppendMessageInput = {
 export type ContactUpdate = {
   contactEmail?: string;
   contactName?: string;
+  userId?: string;
 };
 
 const CONVERSATIONS_COLLECTION = "conversations";
@@ -53,6 +55,7 @@ type ConversationDocument = {
   hasDiagnostic: boolean;
   hasEmailSent: boolean;
   hasMeetingScheduled: boolean;
+  hasProjectBrief: boolean;
   userId?: string;
   contactEmail?: string;
   contactName?: string;
@@ -74,7 +77,8 @@ type MessageDocument = {
 };
 
 type EventDocument = {
-  conversationId: string;
+  conversationId?: string;
+  userId?: string;
   type: ConversionEventType;
   payload: Record<string, unknown>;
   createdAt: Date;
@@ -129,6 +133,7 @@ export async function createConversation(
     hasDiagnostic: false,
     hasEmailSent: false,
     hasMeetingScheduled: false,
+    hasProjectBrief: false,
     ...(input.userId ? { userId: input.userId } : {}),
     ...(input.contactEmail ? { contactEmail: input.contactEmail } : {}),
     ...(input.contactName ? { contactName: input.contactName } : {}),
@@ -322,25 +327,37 @@ export async function logConversionEvent(
   contact?: ContactUpdate,
 ): Promise<void> {
   if (!isPersistenceEnabled()) return;
-  if (!conversationId || !isValidConversationId(conversationId)) return;
+
+  const validConversationId =
+    conversationId && isValidConversationId(conversationId)
+      ? conversationId
+      : undefined;
+  const userId = contact?.userId?.trim() || undefined;
+
+  if (!validConversationId && !userId) return;
 
   const db = await getDbWithIndexes();
   if (!db) return;
 
-  const conversation = await db
-    .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
-    .findOne({ _id: conversationId }, { projection: { _id: 1 } });
+  const conversation = validConversationId
+    ? await db
+        .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
+        .findOne({ _id: validConversationId }, { projection: { _id: 1 } })
+    : null;
 
-  if (!conversation) return;
+  if (validConversationId && !conversation && !userId) return;
 
   const now = new Date();
 
   await db.collection<EventDocument>(EVENTS_COLLECTION).insertOne({
-    conversationId,
+    ...(conversation ? { conversationId: validConversationId } : {}),
+    ...(userId ? { userId } : {}),
     type,
     payload,
     createdAt: now,
   });
+
+  if (!conversation || !validConversationId) return;
 
   const updates: Record<string, unknown> = {
     updatedAt: now,
@@ -353,11 +370,15 @@ export async function logConversionEvent(
     updates.hasDiagnostic = true;
     updates.status = "completed";
   }
+  if (type === "project_brief_submitted") {
+    updates.hasProjectBrief = true;
+    updates.status = "completed";
+  }
 
   if (contact?.contactEmail) updates.contactEmail = contact.contactEmail;
   if (contact?.contactName) updates.contactName = contact.contactName;
 
   await db
     .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
-    .updateOne({ _id: conversationId }, { $set: updates });
+    .updateOne({ _id: validConversationId }, { $set: updates });
 }
