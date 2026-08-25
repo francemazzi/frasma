@@ -10,8 +10,88 @@ import {
   getFrasmaProfile,
   searchKnowledge,
 } from "../knowledge";
+import {
+  DiagnosticFrameworkSchema,
+  FrasmaProfileSchema,
+  SearchResultSchema,
+} from "../knowledge/types";
 import { ProjectBriefToolSchema } from "../processAssessment";
 import { SITE_URL } from "../seo";
+
+export const localeToolField = z
+  .enum(["it", "en"])
+  .optional()
+  .describe("Response language: it or en. Defaults to en.");
+
+export const getFrasmaProfileInputShape = {
+  locale: localeToolField,
+};
+
+export const searchFrasmaKnowledgeInputShape = {
+  query: z
+    .string()
+    .min(1)
+    .max(500)
+    .describe(
+      "Search query for verified Frasma knowledge, e.g. DDT ERP or HACCP procedures.",
+    ),
+  locale: localeToolField,
+  pagePath: z
+    .string()
+    .startsWith("/")
+    .optional()
+    .describe("Optional canonical site path to scope results, e.g. /servizi/ddt-erp."),
+};
+
+export const getDiagnosticFrameworkInputShape = {
+  locale: localeToolField,
+};
+
+const discoveryOutputSchema = z.object({
+  forAgents: z.string(),
+  llmsTxt: z.string(),
+  mcp: z.string(),
+  apiCatalog: z.string(),
+  openapi: z.string(),
+  agentSkills: z.string(),
+  status: z.string(),
+  chat: z.string(),
+});
+
+export const getFrasmaProfileOutputShape = {
+  ...FrasmaProfileSchema.shape,
+  discovery: discoveryOutputSchema,
+};
+
+export const searchFrasmaKnowledgeOutputShape = {
+  results: z
+    .array(SearchResultSchema)
+    .describe("Ranked knowledge matches for the query."),
+};
+
+export const getDiagnosticFrameworkOutputShape = DiagnosticFrameworkSchema.shape;
+
+const handoffOutputSchema = z.object({
+  chatUrl: z.string(),
+  emailEndpoint: z.string(),
+  instructions: z.string(),
+});
+
+export const prepareDiagnosticSummaryOutputShape = {
+  ok: z.literal(true),
+  summary: DiagnosticSummarySchema,
+  completeness: z.object({
+    missingFields: z.array(z.string()),
+    score: z.number(),
+  }),
+  handoff: handoffOutputSchema,
+};
+
+export const prepareProjectBriefOutputShape = {
+  ok: z.literal(true),
+  brief: ProjectBriefToolSchema,
+  handoff: handoffOutputSchema,
+};
 
 export const LocaleInputSchema = z.object({
   locale: z.enum(["it", "en"]).default("en"),
@@ -25,8 +105,17 @@ export const SearchKnowledgeToolInputSchema = z.object({
 
 export type McpToolJsonResult = {
   content: Array<{ type: "text"; text: string }>;
+  structuredContent?: Record<string, unknown>;
   isError?: boolean;
 };
+
+function asStructuredContent(payload: unknown): Record<string, unknown> {
+  if (payload !== null && typeof payload === "object" && !Array.isArray(payload)) {
+    return payload as Record<string, unknown>;
+  }
+
+  return { value: payload } as unknown as Record<string, unknown>;
+}
 
 function jsonResult(payload: unknown, isError = false): McpToolJsonResult {
   return {
@@ -36,6 +125,7 @@ function jsonResult(payload: unknown, isError = false): McpToolJsonResult {
         text: JSON.stringify(payload, null, 2),
       },
     ],
+    structuredContent: asStructuredContent(payload),
     ...(isError ? { isError: true } : {}),
   };
 }
@@ -74,13 +164,13 @@ export function runSearchFrasmaKnowledge(input: unknown): McpToolJsonResult {
     );
   }
 
-  return jsonResult(
-    searchKnowledge({
+  return jsonResult({
+    results: searchKnowledge({
       query: parsed.data.query,
       locale: parsed.data.locale,
       pagePath: parsed.data.pagePath,
     }),
-  );
+  });
 }
 
 export function runGetDiagnosticFramework(input: unknown): McpToolJsonResult {

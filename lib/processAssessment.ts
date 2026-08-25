@@ -13,13 +13,50 @@ export const LeadSourceSchema = z.enum(["form", "chat"]);
 export type LeadSource = z.infer<typeof LeadSourceSchema>;
 
 export const ProjectBriefToolSchema = z.object({
-  name: z.string().trim().min(1).max(120),
-  clientEmail: z.string().trim().email().max(254),
-  company: z.string().trim().max(120).optional(),
-  role: z.string().trim().max(120).optional(),
-  process: z.string().trim().min(20).max(2000),
-  systems: z.string().trim().max(500).optional(),
-  volume: z.string().trim().max(500).optional(),
+  name: z
+    .string()
+    .trim()
+    .min(1)
+    .max(120)
+    .describe("Client full name."),
+  clientEmail: z
+    .string()
+    .trim()
+    .email()
+    .max(254)
+    .describe("Client work email."),
+  company: z
+    .string()
+    .trim()
+    .max(120)
+    .optional()
+    .describe("Client company name, if known."),
+  role: z
+    .string()
+    .trim()
+    .max(120)
+    .optional()
+    .describe("Client role, if known."),
+  process: z
+    .string()
+    .trim()
+    .min(20)
+    .max(2000)
+    .describe(
+      "Process to evaluate, at least 20 characters: trigger, work today, and desired outcome.",
+    ),
+  systems: z
+    .string()
+    .trim()
+    .max(500)
+    .optional()
+    .describe("Systems already in use, e.g. Outlook and ERP."),
+  volume: z
+    .string()
+    .trim()
+    .max(500)
+    .optional()
+    .describe("Volumes or frequency, e.g. 80 documents per week."),
 });
 
 export const ProjectBriefFieldsSchema = z.object({

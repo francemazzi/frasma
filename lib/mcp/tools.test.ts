@@ -15,6 +15,7 @@ describe("MCP tool handlers", () => {
 
     expect(result.isError).toBeUndefined();
     expect(payload.name).toBe("Frasma");
+    expect(result.structuredContent).toMatchObject(payload);
     expect(payload.discovery.mcp).toContain("/api/mcp");
     expect(payload.discovery.forAgents).toContain("/for-agents");
     expect(payload.commercialLimits.join(" ")).toContain("does not promise");
@@ -25,10 +26,11 @@ describe("MCP tool handlers", () => {
       query: "Mago Zucchetti ERP",
       locale: "it",
     });
-    const payload = JSON.parse(result.content[0]?.text ?? "[]");
+    const payload = JSON.parse(result.content[0]?.text ?? "{}");
 
     expect(result.isError).toBeUndefined();
-    expect(payload[0]?.id).toBe("delivery-notes-to-erp");
+    expect(payload.results[0]?.id).toBe("delivery-notes-to-erp");
+    expect(result.structuredContent).toMatchObject(payload);
   });
 
   it("returns the diagnostic framework", () => {
