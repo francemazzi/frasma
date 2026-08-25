@@ -1,4 +1,5 @@
 import { knowledgeCatalog } from "./knowledge/catalog";
+import { canonicalPath } from "./knowledge/paths";
 import type { Locale } from "./knowledge/types";
 
 export const SITE_URL = "https://www.frasma.org";
@@ -9,6 +10,13 @@ export const OWNER_NAME = "Francesco Saverio Mazzi";
 export const BRAND_LOGO_PATH = "/logo-frasma.png";
 export const BRAND_LOGO_IMAGE = `${SITE_URL}${BRAND_LOGO_PATH}`;
 export const PROFILE_IMAGE = `${SITE_URL}/profilo_home.jpg`;
+export const YOUTUBE_URL = "https://www.youtube.com/@frasmatech";
+export const PROFILE_SAME_AS = [
+  "https://github.com/francemazzi",
+  "https://gitlab.com/francesco.mazzi",
+  "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
+  YOUTUBE_URL,
+] as const;
 
 export function absoluteUrl(path = "/"): string {
   if (path.startsWith("http://") || path.startsWith("https://")) {
@@ -38,10 +46,7 @@ export function serviceOfferCatalogJsonLd(
         ? "Servizi Frasma"
         : "Frasma services",
     itemListElement: services.map((entry, index) => {
-      const path =
-        entry.pagePaths.find((p) => !p.includes("#")) ??
-        entry.pagePaths[0] ??
-        "/";
+      const path = canonicalPath(entry);
       return {
         "@type": "Offer",
         position: index + 1,
@@ -90,11 +95,7 @@ export const personJsonLd = {
   worksFor: {
     "@id": `${SITE_URL}/#business`,
   },
-  sameAs: [
-    "https://github.com/francemazzi",
-    "https://gitlab.com/francesco.mazzi",
-    "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
-  ],
+  sameAs: [...PROFILE_SAME_AS],
   knowsAbout: [
     "Automazione processi aziendali",
     "Automazione documentale",
@@ -108,6 +109,8 @@ export const personJsonLd = {
   ],
   address: {
     "@type": "PostalAddress",
+    addressLocality: "Mantova",
+    addressRegion: "Lombardia",
     addressCountry: "IT",
   },
 };
@@ -131,7 +134,11 @@ export const professionalServiceJsonLd = {
     },
     {
       "@type": "AdministrativeArea",
-      name: "Emilia-Romagna",
+      name: "Lombardia",
+    },
+    {
+      "@type": "City",
+      name: "Mantova",
     },
   ],
   priceRange: "EUR",
@@ -139,11 +146,7 @@ export const professionalServiceJsonLd = {
   hasOfferCatalog: {
     "@id": `${SITE_URL}/#offer-catalog`,
   },
-  sameAs: [
-    "https://github.com/francemazzi",
-    "https://gitlab.com/francesco.mazzi",
-    "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
-  ],
+  sameAs: [...PROFILE_SAME_AS],
 };
 
 export const websiteJsonLd = {
@@ -157,3 +160,107 @@ export const websiteJsonLd = {
     "@id": `${SITE_URL}/#business`,
   },
 };
+
+export function faqPageJsonLd(
+  faqs: Array<{ question: string; answer: string }>,
+) {
+  return {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function serviceJsonLd(input: {
+  id: string;
+  name: string;
+  description: string;
+  path: string;
+  serviceType?: string;
+}) {
+  return {
+    "@type": "Service",
+    "@id": `${SITE_URL}/#service-${input.id}`,
+    name: input.name,
+    description: input.description,
+    url: absoluteUrl(input.path),
+    provider: {
+      "@id": `${SITE_URL}/#business`,
+    },
+    serviceType: input.serviceType ?? input.name,
+    areaServed: {
+      "@type": "Country",
+      name: "Italia",
+    },
+  };
+}
+
+export function caseStudyJsonLd(input: {
+  id: string;
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@type": "Article",
+    "@id": `${absoluteUrl(input.path)}#case-study`,
+    headline: input.name,
+    name: input.name,
+    description: input.description,
+    url: absoluteUrl(input.path),
+    inLanguage: "it-IT",
+    author: {
+      "@id": `${SITE_URL}/#person`,
+    },
+    publisher: {
+      "@id": `${SITE_URL}/#business`,
+    },
+    about: {
+      "@id": `${SITE_URL}/#business`,
+    },
+    articleSection: "Case study",
+  };
+}
+
+export function videoObjectJsonLd(input: {
+  name: string;
+  description: string;
+  url: string;
+}) {
+  return {
+    "@type": "VideoObject",
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    embedUrl: input.url,
+    publisher: {
+      "@id": `${SITE_URL}/#business`,
+    },
+  };
+}
+
+export function howToJsonLd(input: {
+  name: string;
+  description: string;
+  url?: string;
+  steps: Array<{ name: string; text: string }>;
+}) {
+  return {
+    "@type": "HowTo",
+    name: input.name,
+    description: input.description,
+    ...(input.url ? { url: input.url } : {}),
+    step: input.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}

@@ -18,6 +18,7 @@ export const it: Record<string, string> = {
   "header.nav.cases": "Casi studio",
   "header.nav.platform": "Come funziona",
   "header.nav.method": "Metodo",
+  "header.nav.services": "Servizi",
   "header.nav.studio": "Studio",
   "header.nav.projects": "Progetti",
   "header.nav.blog": "Blog",
@@ -288,6 +289,7 @@ export const it: Record<string, string> = {
   "platform.cards.preventivi.name": "Preventivi e commesse",
   "platform.cards.preventivi.desc":
     "Listini, stati e importi in un'unica vista, con export verso l'ERP già in uso.",
+  "platform.cards.cta": "Apri il servizio",
 
   // Founder
   "founder.role": "Referente tecnico diretto",
@@ -337,6 +339,36 @@ export const it: Record<string, string> = {
   "cta.risk":
     "Non serve sostituire il gestionale né avere già definito un progetto software. Il primo processo apre un percorso, non chiude una fornitura.",
 
+  "catalog.home": "Home",
+  "catalog.servicesKicker": "Servizi",
+  "catalog.servicesTitle": "Software operativo e AI controllata",
+  "catalog.servicesIntro":
+    "Ogni servizio parte da un processo reale: documenti, workflow, ticket o conoscenza interna, con validazione umana nei passaggi critici.",
+  "catalog.servicesMetaTitle": "Servizi di automazione operativa | Frasma",
+  "catalog.servicesMetaDescription":
+    "Servizi Frasma per PMI: DDT verso ERP, procedure guidate, ticketing, gestionali su misura, wiki aziendale e presenza AI.",
+  "catalog.casesKicker": "Casi studio",
+  "catalog.casesTitle": "Processi reali, perimetro limitato",
+  "catalog.casesIntro":
+    "Casi anonimi su qualità alimentare, documenti ERP, manutenzione impianti e operazioni agri-food.",
+  "catalog.casesMetaTitle": "Casi studio | Frasma",
+  "catalog.casesMetaDescription":
+    "Casi studio Frasma su HACCP, documenti ERP manifatturieri, manutenzione impianti e agri-food.",
+  "catalog.serviceKicker": "Servizio",
+  "catalog.caseKicker": "Caso studio",
+  "catalog.sectorKicker": "Verticale",
+  "catalog.howTitle": "Come lavora il flusso",
+  "catalog.faqTitle": "Domande frequenti",
+  "catalog.relatedTitle": "Collegamenti",
+  "catalog.ctaTitle": "Valuta questo processo",
+  "catalog.ctaBody":
+    "Descrivi l'attività ripetitiva, i sistemi coinvolti e i volumi. La valutazione verifica fattibilità e perimetro, senza listino universale.",
+  "catalog.ctaButton": "Invia un brief",
+  "catalog.videoLabel": "Video",
+  "catalog.articleLabel": "Approfondimento",
+  "catalog.open": "Apri",
+  "results.caseCta": "Apri il caso",
+
   // For agents
   "forAgents.meta.title": "Per agenti AI | Frasma",
   "forAgents.meta.description":
@@ -360,6 +392,7 @@ export const it: Record<string, string> = {
   "forAgents.ctaChat": "Apri la chat diagnostica",
   "forAgents.discoveryTitle": "Endpoint di discovery",
   "forAgents.link.llms": "llms.txt",
+  "forAgents.link.llmsIt": "llms-it.txt",
   "forAgents.link.openapi": "OpenAPI",
   "forAgents.link.apiCatalog": "API catalog",
   "forAgents.link.skills": "Agent skills",
@@ -367,6 +400,9 @@ export const it: Record<string, string> = {
   "forAgents.link.status": "Status",
   "footer.forAgents": "Per agenti",
   "footer.startupStudio": "Startup Studio",
+  "footer.services": "Servizi",
+  "footer.cases": "Casi studio",
+  "footer.manufacturing": "Manifattura",
 
   // Footer
   "footer.info":

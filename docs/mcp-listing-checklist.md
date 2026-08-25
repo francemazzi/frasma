@@ -6,7 +6,9 @@ Use after production deploy of AI discovery + `/api/mcp`.
 
 - [ ] `https://www.frasma.org/for-agents` returns 200
 - [ ] `https://www.frasma.org/llms.txt` returns 200
+- [ ] `https://www.frasma.org/llms-it.txt` returns 200
 - [ ] `curl -H 'Accept: text/markdown' https://www.frasma.org/` returns Frasma markdown
+- [ ] `curl -H 'Accept: text/markdown' https://www.frasma.org/servizi/ddt-erp` returns the DDT service markdown
 - [ ] MCP `initialize` + `tools/list` succeed against `https://www.frasma.org/api/mcp`
 - [ ] Agent skill digest matches `SKILL.md` (`shasum -a 256 public/.well-known/agent-skills/contact-francesco/SKILL.md`)
 
@@ -14,7 +16,7 @@ Use after production deploy of AI discovery + `/api/mcp`.
 
 **Name:** Frasma  
 **URL:** https://www.frasma.org/api/mcp  
-**Description:** Read-only MCP for Frasma operational software and AI: profile, knowledge search, diagnostic framework, and diagnostic summary handoff (no email send). Hub: https://www.frasma.org/for-agents
+**Description:** Read-only MCP for Frasma operational software and AI: profile, knowledge search, diagnostic framework, and diagnostic summary handoff (no email send). Hubs: https://www.frasma.org/for-agents and https://www.frasma.org/servizi
 
 ## Client snippets
 

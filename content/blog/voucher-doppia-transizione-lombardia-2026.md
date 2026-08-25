@@ -165,7 +165,7 @@ Se il bando ti interessa, i passi utili sono pochi:
 
 Se vuoi, possiamo partire da 30 minuti di analisi gratuita sul tuo processo e capire se ha senso strutturare un progetto ammissibile con Frasma come fornitore 4.0.
 
-[Prenota 30 minuti di analisi con Frasma](https://www.frasma.org/)
+[Prenota 30 minuti di analisi con Frasma](https://www.frasma.org/manifattura)
 
 ---
 

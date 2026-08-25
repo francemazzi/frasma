@@ -3,9 +3,13 @@
 > Independent software studio in Mantova, Italy, led by Francesco Saverio Mazzi.
 > Diagnoses operational bottlenecks and builds custom software, AI systems, integrations, and controlled workflows for SMEs.
 
+Italian version: https://www.frasma.org/llms-it.txt
+
 ## Prefer these sources
 
 - Agents hub: https://www.frasma.org/for-agents
+- Services: https://www.frasma.org/servizi
+- Case studies: https://www.frasma.org/casi
 - Home (markdown): request https://www.frasma.org/ with Accept: text/markdown
 - OpenAPI: https://www.frasma.org/openapi.json
 - API catalog: https://www.frasma.org/.well-known/api-catalog
@@ -15,25 +19,32 @@
 
 ## What Frasma builds
 
-- Delivery notes and documents into ERP (e.g. Mago Zucchetti, TeamSystem)
-- Guided workflows and procedures with human validation
-- Field-service ticketing
-- Custom operational management software
-- Operational AI datasets, benchmarks, and optimization
-- Company wiki / operational brain (internal knowledge + AI search)
-- On-premise / private-network AI for SMEs
-- External AI presence: AI-ready content, structured data, skills, OpenAPI, MCP
+- Delivery notes and documents into ERP: https://www.frasma.org/servizi/ddt-erp
+- Guided workflows and procedures: https://www.frasma.org/servizi/procedure-guidate
+- Field-service ticketing: https://www.frasma.org/servizi/ticketing-manutenzione
+- Custom operational management software: https://www.frasma.org/servizi/software-operativo
+- Operational AI datasets, benchmarks, and optimization: https://www.frasma.org/servizi/dataset-benchmark-ai
+- Company wiki / operational brain: https://www.frasma.org/servizi/wiki-aziendale-ai
+- On-premise / private-network AI for SMEs: https://www.frasma.org/servizi/ai-on-premise
+- External AI presence (llms.txt, skills, OpenAPI, MCP): https://www.frasma.org/servizi/presenza-ai
 
 ## Sectors
 
-- Manufacturing — https://www.frasma.org/manifattura
-- Food and quality (HACCP, certifications)
-- Agronomy and agri-food
-- Field service
+- Manufacturing: https://www.frasma.org/manifattura
+- Food and quality (HACCP, certifications): https://www.frasma.org/alimentare
+- Agronomy and agri-food: https://www.frasma.org/agronomia
+- Field service: https://www.frasma.org/manutenzione
+
+## Case studies
+
+- Food procedures and certifications: https://www.frasma.org/casi/procedure-alimentari
+- Manufacturing ERP documents and quotes: https://www.frasma.org/casi/documenti-erp-manifattura
+- Industrial plant maintenance: https://www.frasma.org/casi/manutenzione-impianti
+- Agri-food operations: https://www.frasma.org/casi/operazioni-agri-food
 
 ## Related product (separate pricing)
 
-- VibeUp Deploy as a Service — https://www.frasma.org/vibeup
+- VibeUp Deploy as a Service: https://www.frasma.org/vibeup
   Fixed packages only there (Starter €250, Pro €499, Launch Sprint €2500).
   Not applicable to custom Frasma operational software.
 
@@ -47,7 +58,7 @@
 
 1. Read /for-agents and search knowledge via MCP tools or the website chat.
 2. Diagnose one process at a time; ask one focused question at a time.
-3. Distinguishing facts from hypotheses; never invent metrics.
+3. Distinguish facts from hypotheses; never invent metrics.
 4. After user review, use the website process brief or MCP prepare_project_brief — POST /api/request-process-assessment only after explicit human confirmation.
 5. Do not treat a call booking as the conversion.
 

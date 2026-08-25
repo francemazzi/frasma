@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useT } from "../../lib/i18n/context";
 import { Reveal } from "../atoms/Reveal";
@@ -11,6 +12,7 @@ type Case = {
   pageLabel: string;
   imgSrc: string;
   imgAlt: string;
+  href: string;
   plateKey: string;
   tagKey: string;
   titlePreKey: string;
@@ -28,6 +30,7 @@ const CASES: Case[] = [
     pageLabel: "01",
     imgSrc: "/image/use_case/haccp.png",
     imgAlt: "Controllo qualità alimentare — schizzo tecnico",
+    href: "/casi/procedure-alimentari",
     plateKey: "results.case1.plate",
     tagKey: "results.case1.tag",
     titlePreKey: "results.case1.titlePre",
@@ -43,6 +46,7 @@ const CASES: Case[] = [
     pageLabel: "02",
     imgSrc: "/image/use_case/lamiere.png",
     imgAlt: "Lamiere — schizzo tecnico",
+    href: "/casi/documenti-erp-manifattura",
     plateKey: "results.case2.plate",
     tagKey: "results.case2.tag",
     titlePreKey: "results.case2.titlePre",
@@ -58,6 +62,7 @@ const CASES: Case[] = [
     pageLabel: "03",
     imgSrc: "/image/use_case/impianti-frigo.png",
     imgAlt: "Manutenzione impianti — schizzo tecnico",
+    href: "/casi/manutenzione-impianti",
     plateKey: "results.case4.plate",
     tagKey: "results.case4.tag",
     titlePreKey: "results.case4.titlePre",
@@ -73,6 +78,7 @@ const CASES: Case[] = [
     pageLabel: "04",
     imgSrc: "/image/use_case/agricoltura.png",
     imgAlt: "Agronomia — schizzo tecnico",
+    href: "/casi/operazioni-agri-food",
     plateKey: "results.case3.plate",
     tagKey: "results.case3.tag",
     titlePreKey: "results.case3.titlePre",
@@ -173,6 +179,14 @@ export default function Results() {
                   </p>
                 </div>
                 <p className="text-[14.5px] leading-[1.6] text-ink-soft">{t(c.descKey)}</p>
+                <p className="mt-5">
+                  <Link
+                    href={c.href}
+                    className="text-[14px] font-semibold text-accent underline-offset-2 hover:underline"
+                  >
+                    {t("results.caseCta")}
+                  </Link>
+                </p>
               </div>
             </motion.article>
           ))}

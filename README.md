@@ -139,7 +139,10 @@ Public discovery surfaces for agents and humans:
 | Resource | URL |
 |----------|-----|
 | Agents hub | https://www.frasma.org/for-agents |
+| Services hub | https://www.frasma.org/servizi |
+| Case studies | https://www.frasma.org/casi |
 | llms.txt | https://www.frasma.org/llms.txt |
+| llms-it.txt | https://www.frasma.org/llms-it.txt |
 | Home markdown | `GET /` with `Accept: text/markdown` |
 | OpenAPI | https://www.frasma.org/openapi.json |
 | API catalog | https://www.frasma.org/.well-known/api-catalog |
@@ -181,9 +184,9 @@ For stdio-only clients:
 
 ### Directory listing (after production deploy)
 
-1. Confirm `/for-agents`, `/llms.txt`, and `/api/mcp` respond in production.
-2. Smoke: `curl -H 'Accept: text/markdown' https://www.frasma.org/` and an MCP `initialize` + `tools/list` against `/api/mcp`.
-3. Submit the server to relevant MCP directories with the short description from `/for-agents`.
+1. Confirm `/for-agents`, `/servizi`, `/llms.txt`, `/llms-it.txt`, and `/api/mcp` respond in production.
+2. Smoke: `curl -H 'Accept: text/markdown' https://www.frasma.org/` and `https://www.frasma.org/servizi/ddt-erp`, plus an MCP `initialize` + `tools/list` against `/api/mcp`.
+3. Submit the server to relevant MCP directories with the short description from `/for-agents` (mention the services hub).
 4. Keep the agent-skills digest in sync when `SKILL.md` changes (`shasum -a 256`).
 
 Quality checks:

@@ -1,0 +1,68 @@
+# Frasma
+
+> Studio software indipendente a Mantova, Italia, guidato da Francesco Saverio Mazzi.
+> Diagnostica colli di bottiglia operativi e costruisce software su misura, sistemi AI, integrazioni e workflow controllati per le PMI.
+
+English version: https://www.frasma.org/llms.txt
+
+## Fonti da preferire
+
+- Hub per agenti: https://www.frasma.org/for-agents
+- Servizi: https://www.frasma.org/servizi
+- Casi studio: https://www.frasma.org/casi
+- Home in markdown: richiesta a https://www.frasma.org/ con Accept: text/markdown
+- OpenAPI: https://www.frasma.org/openapi.json
+- Catalogo API: https://www.frasma.org/.well-known/api-catalog
+- Agent skills: https://www.frasma.org/.well-known/agent-skills/index.json
+- MCP (read-only + handoff diagnostico): https://www.frasma.org/api/mcp
+- Status: https://www.frasma.org/api/status
+
+## Cosa costruisce Frasma
+
+- DDT e documenti verso ERP: https://www.frasma.org/servizi/ddt-erp
+- Workflow e procedure guidate: https://www.frasma.org/servizi/procedure-guidate
+- Ticketing per field service: https://www.frasma.org/servizi/ticketing-manutenzione
+- Gestionali operativi su misura: https://www.frasma.org/servizi/software-operativo
+- Dataset, benchmark e ottimizzazione AI: https://www.frasma.org/servizi/dataset-benchmark-ai
+- Wiki e cervello aziendale: https://www.frasma.org/servizi/wiki-aziendale-ai
+- AI in locale / rete privata per PMI: https://www.frasma.org/servizi/ai-on-premise
+- Presenza AI esterna (llms.txt, skill, OpenAPI, MCP): https://www.frasma.org/servizi/presenza-ai
+
+## Settori
+
+- Manifattura: https://www.frasma.org/manifattura
+- Alimentare e qualità (HACCP, certificazioni): https://www.frasma.org/alimentare
+- Agronomia e agroalimentare: https://www.frasma.org/agronomia
+- Servizi sul campo: https://www.frasma.org/manutenzione
+
+## Casi studio
+
+- Procedure e certificazioni alimentari: https://www.frasma.org/casi/procedure-alimentari
+- Documenti ERP e preventivi manifatturieri: https://www.frasma.org/casi/documenti-erp-manifattura
+- Manutenzione di impianti industriali: https://www.frasma.org/casi/manutenzione-impianti
+- Operazioni agri-food: https://www.frasma.org/casi/operazioni-agri-food
+
+## Prodotto correlato (prezzi separati)
+
+- VibeUp Deploy as a Service: https://www.frasma.org/vibeup
+  Pacchetti fissi solo lì (Starter €250, Pro €499, Launch Sprint €2500).
+  Non si applicano al software operativo su misura Frasma.
+
+## Limiti commerciali
+
+- Non esiste un listino universale per i progetti operativi Frasma.
+- Non inventare prezzi, risparmi, tempi di rientro o risultati garantiti.
+- I preventivi richiedono una discovery su processo, dati, integrazioni e vincoli reali.
+
+## Come devono interagire gli agenti
+
+1. Leggere /for-agents e cercare nella knowledge via tool MCP o chat del sito.
+2. Diagnosticare un processo alla volta; una domanda focalizzata alla volta.
+3. Distinguere i fatti dalle ipotesi; non inventare metriche.
+4. Dopo la revisione dell'utente, usare il brief sul sito o MCP prepare_project_brief — POST /api/request-process-assessment solo dopo conferma umana esplicita.
+5. Non trattare la prenotazione di una call come conversione.
+
+## Opzionale
+
+- Blog: https://www.frasma.org/blog
+- Project Farm: https://www.frasma.org/studio

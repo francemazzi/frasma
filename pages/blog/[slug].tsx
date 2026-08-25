@@ -2,6 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import Seo from "../../components/Seo";
 import BlogPostLayout from "../../components/blog/BlogPostLayout";
 import { FEED_URL } from "../../lib/blog/feed";
+import { extraJsonLdForBlogPost } from "../../lib/blog/jsonld";
 import type { BlogPost, BlogPostSummary } from "../../lib/blog/types";
 import { absoluteUrl, breadcrumbJsonLd, SITE_URL } from "../../lib/seo";
 
@@ -55,6 +56,7 @@ export default function BlogPostPage({
             mainEntityOfPage: absoluteUrl(path),
             ...(post.tags?.length ? { keywords: post.tags.join(", ") } : {}),
           },
+          ...extraJsonLdForBlogPost(post.slug),
         ]}
       />
 

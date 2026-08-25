@@ -249,7 +249,7 @@ Una soluzione efficace combina:
 
 Se nella tua azienda i dati vengono ancora copiati manualmente tra email, PDF, Excel ed ERP, possiamo partire da alcuni documenti reali e capire dove un prototipo può ridurre tempi ed errori.
 
-[Prenota 30 minuti di analisi del processo con Frasma](https://www.frasma.org/)
+[Prenota 30 minuti di analisi del processo con Frasma](https://www.frasma.org/servizi/ddt-erp)
 
 ---
 

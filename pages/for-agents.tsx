@@ -8,6 +8,7 @@ import { useLang, useT } from "../lib/i18n/context";
 import {
   getFrasmaProfile,
   knowledgeCatalog,
+  canonicalPath,
 } from "../lib/knowledge";
 import {
   breadcrumbJsonLd,
@@ -20,6 +21,11 @@ const DISCOVERY_LINKS = [
   {
     href: "/llms.txt",
     labelKey: "forAgents.link.llms",
+    external: false,
+  },
+  {
+    href: "/llms-it.txt",
+    labelKey: "forAgents.link.llmsIt",
     external: false,
   },
   {
@@ -114,7 +120,12 @@ export default function ForAgentsPage() {
               {services.map((service) => (
                 <li key={service.id}>
                   <h3 className="text-[17px] font-semibold text-ink">
-                    {service.title[lang]}
+                    <Link
+                      href={canonicalPath(service)}
+                      className="text-accent underline-offset-2 hover:underline"
+                    >
+                      {service.title[lang]}
+                    </Link>
                   </h3>
                   <p className="mt-1 text-[15px] leading-[1.55] text-ink-soft">
                     {service.summary[lang]}

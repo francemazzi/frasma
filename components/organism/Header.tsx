@@ -39,6 +39,11 @@ export default function Header() {
               </Link>
             </li>
             <li>
+              <Link href="/servizi" className="hover:text-accent transition-colors">
+                {t("header.nav.services")}
+              </Link>
+            </li>
+            <li>
               <Link href="/#casi-studio" className="hover:text-accent transition-colors">
                 {t("header.nav.cases")}
               </Link>

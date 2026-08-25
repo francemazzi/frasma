@@ -18,6 +18,7 @@ export const en: Record<string, string> = {
   "header.nav.cases": "Case studies",
   "header.nav.platform": "How it works",
   "header.nav.method": "Method",
+  "header.nav.services": "Services",
   "header.nav.studio": "Studio",
   "header.nav.projects": "Projects",
   "header.nav.blog": "Blog",
@@ -284,6 +285,7 @@ export const en: Record<string, string> = {
   "platform.cards.preventivi.name": "Quotes and job orders",
   "platform.cards.preventivi.desc":
     "Price lists, statuses, and amounts in one view, with export to the ERP already in place.",
+  "platform.cards.cta": "Open the service",
 
   // Founder
   "founder.role": "Your direct technical lead",
@@ -333,6 +335,36 @@ export const en: Record<string, string> = {
   "cta.risk":
     "You do not need to replace your ERP or define a software project in advance. The first process opens a path rather than closing a delivery.",
 
+  "catalog.home": "Home",
+  "catalog.servicesKicker": "Services",
+  "catalog.servicesTitle": "Operational software and controlled AI",
+  "catalog.servicesIntro":
+    "Each service starts from a real process: documents, workflows, tickets, or internal knowledge, with human validation at critical steps.",
+  "catalog.servicesMetaTitle": "Operational automation services | Frasma",
+  "catalog.servicesMetaDescription":
+    "Frasma services for SMEs: delivery notes into ERP, guided procedures, ticketing, custom operational software, company wiki, and AI presence.",
+  "catalog.casesKicker": "Case studies",
+  "catalog.casesTitle": "Real processes, limited scope",
+  "catalog.casesIntro":
+    "Anonymous cases on food quality, ERP documents, plant maintenance, and agri-food operations.",
+  "catalog.casesMetaTitle": "Case studies | Frasma",
+  "catalog.casesMetaDescription":
+    "Frasma case studies on HACCP, manufacturing ERP documents, plant maintenance, and agri-food.",
+  "catalog.serviceKicker": "Service",
+  "catalog.caseKicker": "Case study",
+  "catalog.sectorKicker": "Vertical",
+  "catalog.howTitle": "How the workflow works",
+  "catalog.faqTitle": "Frequently asked questions",
+  "catalog.relatedTitle": "Related",
+  "catalog.ctaTitle": "Assess this process",
+  "catalog.ctaBody":
+    "Describe the repetitive activity, the systems involved, and the volumes. The assessment checks feasibility and scope; there is no universal price list.",
+  "catalog.ctaButton": "Send a brief",
+  "catalog.videoLabel": "Video",
+  "catalog.articleLabel": "Read more",
+  "catalog.open": "Open",
+  "results.caseCta": "Open the case",
+
   // For agents
   "forAgents.meta.title": "For AI agents | Frasma",
   "forAgents.meta.description":
@@ -356,6 +388,7 @@ export const en: Record<string, string> = {
   "forAgents.ctaChat": "Open diagnostic chat",
   "forAgents.discoveryTitle": "Discovery endpoints",
   "forAgents.link.llms": "llms.txt",
+  "forAgents.link.llmsIt": "llms-it.txt",
   "forAgents.link.openapi": "OpenAPI",
   "forAgents.link.apiCatalog": "API catalog",
   "forAgents.link.skills": "Agent skills",
@@ -363,6 +396,9 @@ export const en: Record<string, string> = {
   "forAgents.link.status": "Status",
   "footer.forAgents": "For agents",
   "footer.startupStudio": "Startup Studio",
+  "footer.services": "Services",
+  "footer.cases": "Case studies",
+  "footer.manufacturing": "Manufacturing",
 
   // Footer
   "footer.info":

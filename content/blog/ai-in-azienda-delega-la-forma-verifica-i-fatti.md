@@ -283,6 +283,8 @@ Qual è il primo processo che testereste nella vostra azienda?
 
 Se in accettazione, in qualità o in ufficio tecnico i dati vengono ancora ricopiati a mano, si può partire da lì. Un DDT, una scheda, una non conformità: dieci pezzi veri, un confronto misurabile, una decisione.
 
+Per i Documenti di Trasporto da email il percorso operativo è [DDT verso ERP](/servizi/ddt-erp). Per il contesto manifatturiero, [Frasma per la manifattura](/manifattura).
+
 [Prenota 30 minuti di analisi del processo con Frasma](https://www.frasma.org/manifattura)
 
 ---

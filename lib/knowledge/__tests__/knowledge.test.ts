@@ -1,11 +1,19 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  canonicalPath,
+  caseStudies,
+  faqsForEntry,
   getDiagnosticFramework,
   getFrasmaProfile,
+  getKnowledgeEntry,
   knowledgeCatalog,
   KnowledgeCatalogSchema,
+  markdownForPath,
+  operationalServices,
   searchKnowledge,
+  sectors,
+  VIBEUP_SERVICE_ID,
 } from "../index";
 
 describe("knowledge catalog", () => {
@@ -57,9 +65,37 @@ describe("knowledge catalog", () => {
     );
 
     expect(manufacturing?.pagePaths).toContain("/manifattura");
+    expect(canonicalPath(manufacturing!)).toBe("/manifattura");
     expect(vibeup?.pagePaths).toEqual(["/vibeup"]);
     expect(method?.pagePaths).not.toContain("/studio");
     expect(method?.pagePaths).toContain("/for-agents");
+  });
+
+  it("gives operational services, cases, and sectors indexable canonical URLs", () => {
+    for (const service of operationalServices()) {
+      expect(canonicalPath(service).startsWith("/servizi/")).toBe(true);
+      expect(service.pagePaths[0]).toBe(canonicalPath(service));
+    }
+
+    const vibeup = knowledgeCatalog.entries.find(
+      (entry) => entry.id === VIBEUP_SERVICE_ID,
+    );
+    expect(vibeup?.pagePaths).toEqual(["/vibeup"]);
+
+    for (const study of caseStudies()) {
+      expect(canonicalPath(study).startsWith("/casi/")).toBe(true);
+      expect(study.pagePaths).toContain("/#casi-studio");
+    }
+
+    const sectorPaths = Object.fromEntries(
+      sectors().map((sector) => [sector.id, canonicalPath(sector)]),
+    );
+    expect(sectorPaths).toEqual({
+      manufacturing: "/manifattura",
+      "food-quality": "/alimentare",
+      "agronomy-agri-food": "/agronomia",
+      "field-service": "/manutenzione",
+    });
   });
 
   it("rejects references to unknown entries", () => {
@@ -152,5 +188,38 @@ describe("searchKnowledge", () => {
       searchKnowledge({ query: "xylophone-nebula", locale: "en" }),
     ).toEqual([]);
     expect(searchKnowledge({ query: "?!", locale: "it" })).toEqual([]);
+  });
+});
+
+describe("markdownForPath", () => {
+  it("returns Frasma markdown for home and the DDT service spoke", () => {
+    const home = markdownForPath("/");
+    const ddt = markdownForPath("/servizi/ddt-erp");
+    const missing = markdownForPath("/does-not-exist");
+
+    expect(home).toContain("# Frasma");
+    expect(home).toContain("/servizi/ddt-erp");
+    expect(ddt).toContain("https://www.frasma.org/servizi/ddt-erp");
+    expect(ddt).toContain("youtu.be/22K6TJAXmmE");
+    expect(ddt).toContain("Delegate the form, verify the facts");
+    expect(missing).toBeNull();
+  });
+});
+
+describe("faqsForEntry extras", () => {
+  it("puts method and problem FAQs ahead of generic defaults", () => {
+    const ddt = faqsForEntry(getKnowledgeEntry("delivery-notes-to-erp")!, "it");
+    const procedures = faqsForEntry(
+      getKnowledgeEntry("workflow-procedures")!,
+      "it",
+    );
+    const wiki = faqsForEntry(getKnowledgeEntry("company-wiki-brain")!, "it");
+
+    expect(ddt[0]?.question).toContain("Delega la forma, verifica i fatti");
+    expect(procedures.some((faq) => faq.question.includes("HACCP"))).toBe(true);
+    expect(wiki.some((faq) => faq.question.includes("PDF sparsi"))).toBe(true);
+    expect(
+      procedures.some((faq) => faq.answer.toLowerCase().includes("listino")),
+    ).toBe(true);
   });
 });

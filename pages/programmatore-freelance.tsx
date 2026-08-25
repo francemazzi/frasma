@@ -3,7 +3,12 @@ import ProcessAssessment from "../components/organism/ProcessAssessment";
 import Footer from "../components/organism/Footer";
 import Header from "../components/organism/Header";
 import Seo from "../components/Seo";
-import { breadcrumbJsonLd, SITE_URL } from "../lib/seo";
+import {
+  breadcrumbJsonLd,
+  personJsonLd,
+  professionalServiceJsonLd,
+  SITE_URL,
+} from "../lib/seo";
 
 const services = [
   {
@@ -38,7 +43,7 @@ export default function ProgrammatoreFreelancePage() {
   const title =
     "Programmatore freelance in Italia | Software developer full stack";
   const description =
-    "Cerchi un programmatore freelance, informatico freelance o software developer? Francesco Saverio Mazzi sviluppa software su misura, web app, automazioni e AI agents.";
+    "Cerchi un programmatore freelance, informatico freelance o software developer? Francesco Saverio Mazzi, founder dello studio Frasma, sviluppa software su misura, web app, automazioni e AI agents.";
 
   return (
     <>
@@ -54,6 +59,8 @@ export default function ProgrammatoreFreelancePage() {
               path: "/programmatore-freelance",
             },
           ]),
+          personJsonLd,
+          professionalServiceJsonLd,
           {
             "@type": "Service",
             "@id": `${SITE_URL}/programmatore-freelance#service`,
@@ -85,18 +92,26 @@ export default function ProgrammatoreFreelancePage() {
               misura.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-farm-secondary sm:text-xl">
-              Sono Francesco Saverio Mazzi, informatico freelance e software
-              developer full stack. Aiuto aziende italiane a trasformare
-              processi manuali in strumenti digitali concreti, mantenibili e
-              pronti per l&apos;uso quotidiano.
+              Sono Francesco Saverio Mazzi, founder dello studio{" "}
+              <Link href="/" className="font-semibold text-sage-600 hover:text-sage-500">
+                Frasma
+              </Link>
+              . Come informatico freelance e software developer full stack
+              aiuto aziende italiane a trasformare processi manuali in
+              strumenti digitali concreti, mantenibili e pronti per l&apos;uso
+              quotidiano. I servizi operativi dello studio sono su{" "}
+              <Link href="/servizi" className="font-semibold text-sage-600 hover:text-sage-500">
+                /servizi
+              </Link>
+              .
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <ProcessAssessment textButton="Prenota una call gratuita" />
               <Link
-                href="/#projects"
+                href="/servizi"
                 className="text-sm font-semibold text-sage-600 hover:text-sage-500 transition-colors"
               >
-                Guarda i casi d&apos;uso &rarr;
+                Vedi i servizi Frasma &rarr;
               </Link>
             </div>
           </div>
@@ -168,8 +183,14 @@ export default function ProgrammatoreFreelancePage() {
               domande giuste per capire obiettivo, dati disponibili, vincoli e
               primo passo sensato.
             </p>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 flex justify-center gap-6">
               <ProcessAssessment textButton="Parliamo del progetto" />
+              <Link
+                href="/servizi"
+                className="self-center text-sm font-semibold text-sage-600 hover:text-sage-500 transition-colors"
+              >
+                Servizi operativi Frasma
+              </Link>
             </div>
           </div>
         </section>

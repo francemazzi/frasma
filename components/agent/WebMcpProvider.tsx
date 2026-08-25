@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { getFrasmaProfile, knowledgeCatalog } from "../../lib/knowledge";
+import { agentNavigationPaths } from "../../lib/knowledge/paths";
 
 type ModelContextLike = {
   registerTool?: (...args: unknown[]) => unknown;
@@ -33,17 +34,7 @@ declare global {
   }
 }
 
-const NAVIGATION_PATHS = [
-  "/",
-  "/for-agents",
-  "/progetti",
-  "/studio",
-  "/blog",
-  "/programmatore-freelance",
-  "/manifattura",
-  "/vibeup",
-  "/linktree",
-] as const;
+const NAVIGATION_PATHS = agentNavigationPaths();
 
 const NAVIGATION_PATH_SET = new Set<string>(NAVIGATION_PATHS);
 
@@ -166,7 +157,7 @@ const WEB_MCP_TOOLS: WebMcpTool[] = [
       properties: {
         path: {
           type: "string",
-          enum: NAVIGATION_PATHS,
+          enum: [...NAVIGATION_PATHS],
         },
       },
     },

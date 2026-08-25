@@ -22,6 +22,27 @@ export default function Footer() {
             <p>{t("footer.info")}</p>
           </div>
           <div className="flex gap-5 flex-wrap items-center">
+            <Link
+              href="/servizi"
+              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
+            >
+              {t("footer.services")}
+            </Link>
+            <span className="text-ink-faint">·</span>
+            <Link
+              href="/casi"
+              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
+            >
+              {t("footer.cases")}
+            </Link>
+            <span className="text-ink-faint">·</span>
+            <Link
+              href="/manifattura"
+              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
+            >
+              {t("footer.manufacturing")}
+            </Link>
+            <span className="text-ink-faint">·</span>
             {/* <Link
               href="/programmatore-freelance"
               className="hover:text-accent hover:border-b hover:border-accent transition-colors"

@@ -246,7 +246,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["DDT", "documenti", "ERP", "Mago Zucchetti", "TeamSystem", "fatture", "estrazione dati"],
         en: ["delivery notes", "documents", "ERP", "Mago Zucchetti", "TeamSystem", "invoices", "data extraction"],
       },
-      pagePaths: ["/", "/#come-funziona"],
+      pagePaths: ["/servizi/ddt-erp", "/", "/#come-funziona"],
       relatedIds: ["manufacturing-erp-case", "manufacturing"],
     },
     {
@@ -271,7 +271,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["workflow", "procedure", "pratiche", "validazioni", "documenti", "controlli"],
         en: ["workflow", "procedures", "filings", "validation", "documents", "controls"],
       },
-      pagePaths: ["/", "/#come-funziona"],
+      pagePaths: ["/servizi/procedure-guidate", "/", "/#come-funziona"],
       relatedIds: ["food-quality-case", "agri-food-operations-case"],
     },
     {
@@ -299,7 +299,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["ticket", "field service", "manutenzione", "tecnici", "fornitori", "SLA", "interventi"],
         en: ["tickets", "field service", "maintenance", "technicians", "suppliers", "SLA", "interventions"],
       },
-      pagePaths: ["/", "/#come-funziona"],
+      pagePaths: ["/servizi/ticketing-manutenzione", "/", "/#come-funziona"],
       relatedIds: ["industrial-maintenance-case", "field-service"],
     },
     {
@@ -327,7 +327,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["gestionale", "software su misura", "web app", "ERP", "back office", "integrazioni"],
         en: ["management software", "custom software", "web app", "ERP", "back office", "integrations"],
       },
-      pagePaths: ["/", "/#come-funziona"],
+      pagePaths: ["/servizi/software-operativo", "/", "/#come-funziona"],
       relatedIds: ["delivery-notes-to-erp", "workflow-procedures"],
     },
     {
@@ -355,7 +355,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["dataset", "benchmark", "ottimizzazione AI", "valutazione", "baseline", "test"],
         en: ["dataset", "benchmark", "AI optimization", "evaluation", "baseline", "testing"],
       },
-      pagePaths: ["/", "/for-agents"],
+      pagePaths: ["/servizi/dataset-benchmark-ai", "/", "/for-agents"],
       relatedIds: ["diagnostic-method", "commercial-boundaries"],
     },
     {
@@ -383,7 +383,12 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["wiki", "cervello aziendale", "knowledge base", "procedure", "ricerca AI", "documenti", "ERP", "workflow"],
         en: ["wiki", "company brain", "knowledge base", "procedures", "AI search", "documents", "ERP", "workflow"],
       },
-      pagePaths: ["/", "/#come-funziona", "/for-agents"],
+      pagePaths: [
+        "/servizi/wiki-aziendale-ai",
+        "/",
+        "/#come-funziona",
+        "/for-agents",
+      ],
       relatedIds: ["local-ai-enterprise", "ai-presence", "workflow-procedures"],
     },
     {
@@ -411,7 +416,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["AI in locale", "on-prem", "rete privata", "GDPR", "dati sensibili", "infrastruttura aziendale", "agenti AI"],
         en: ["on-premise AI", "private network", "GDPR", "sensitive data", "company infrastructure", "AI agents", "local AI"],
       },
-      pagePaths: ["/", "/#come-funziona"],
+      pagePaths: ["/servizi/ai-on-premise", "/", "/#come-funziona"],
       relatedIds: ["company-wiki-brain", "ai-datasets-benchmarks"],
     },
     {
@@ -440,7 +445,12 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["presenza AI", "ChatGPT", "Claude", "Gemini", "dati strutturati", "connettori", "MCP", "llms.txt"],
         en: ["AI presence", "ChatGPT", "Claude", "Gemini", "structured data", "connectors", "MCP", "llms.txt"],
       },
-      pagePaths: ["/", "/#come-funziona", "/for-agents"],
+      pagePaths: [
+        "/servizi/presenza-ai",
+        "/",
+        "/#come-funziona",
+        "/for-agents",
+      ],
       relatedIds: ["company-wiki-brain", "local-ai-enterprise", "commercial-boundaries"],
     },
     {
@@ -500,7 +510,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["HACCP", "certificazioni", "alimentare", "qualità", "procedure", "consulente"],
         en: ["HACCP", "certifications", "food", "quality", "procedures", "consultant"],
       },
-      pagePaths: ["/", "/#casi-studio"],
+      pagePaths: ["/casi/procedure-alimentari", "/", "/#casi-studio"],
       relatedIds: ["workflow-procedures", "food-quality"],
     },
     {
@@ -528,7 +538,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["manifattura", "DDT", "fatture", "preventivi", "ERP", "gru", "lamiera"],
         en: ["manufacturing", "delivery notes", "invoices", "quotes", "ERP", "cranes", "sheet metal"],
       },
-      pagePaths: ["/", "/#casi-studio"],
+      pagePaths: ["/casi/documenti-erp-manifattura", "/", "/#casi-studio"],
       relatedIds: ["delivery-notes-to-erp", "manufacturing"],
     },
     {
@@ -556,7 +566,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["manutenzione", "impianti", "ticket", "tecnici", "fornitori", "field service"],
         en: ["maintenance", "plants", "tickets", "technicians", "suppliers", "field service"],
       },
-      pagePaths: ["/", "/#casi-studio"],
+      pagePaths: ["/casi/manutenzione-impianti", "/", "/#casi-studio"],
       relatedIds: ["field-service-ticketing", "field-service"],
     },
     {
@@ -584,7 +594,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["agroalimentare", "agronomia", "pratiche", "multi-azienda", "workflow", "rete"],
         en: ["agri-food", "agronomy", "filings", "multi-company", "workflow", "network"],
       },
-      pagePaths: ["/", "/#casi-studio"],
+      pagePaths: ["/casi/operazioni-agri-food", "/", "/#casi-studio"],
       relatedIds: ["workflow-procedures", "agronomy-agri-food"],
     },
     {
@@ -605,7 +615,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["manifattura", "produzione", "DDT", "ERP", "preventivi"],
         en: ["manufacturing", "production", "delivery notes", "ERP", "quotes"],
       },
-      pagePaths: ["/", "/manifattura"],
+      pagePaths: ["/manifattura", "/"],
       relatedIds: ["delivery-notes-to-erp", "manufacturing-erp-case"],
     },
     {
@@ -626,7 +636,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["alimentare", "qualità", "HACCP", "certificazioni", "controlli"],
         en: ["food", "quality", "HACCP", "certifications", "controls"],
       },
-      pagePaths: ["/"],
+      pagePaths: ["/alimentare", "/"],
       relatedIds: ["food-quality-case", "workflow-procedures"],
     },
     {
@@ -647,7 +657,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["agronomia", "agroalimentare", "tracciabilità", "pratiche", "quaderno di campagna"],
         en: ["agronomy", "agri-food", "traceability", "filings", "field notebook"],
       },
-      pagePaths: ["/"],
+      pagePaths: ["/agronomia", "/"],
       relatedIds: ["agri-food-operations-case", "workflow-procedures"],
     },
     {
@@ -668,7 +678,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         it: ["field service", "servizi sul campo", "manutenzione", "assistenza", "interventi"],
         en: ["field service", "maintenance", "support", "interventions", "technicians"],
       },
-      pagePaths: ["/"],
+      pagePaths: ["/manutenzione", "/"],
       relatedIds: ["field-service-ticketing", "industrial-maintenance-case"],
     },
     {

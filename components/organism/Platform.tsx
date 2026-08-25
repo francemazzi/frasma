@@ -47,6 +47,8 @@ export default function Platform() {
                 className="h-full"
                 name={t("platform.cards.agent.name")}
                 description={t("platform.cards.agent.desc")}
+                href="/servizi/ddt-erp"
+                cta={t("platform.cards.cta")}
                 background={<AgentMock />}
               />
             </RevealItem>
@@ -55,6 +57,8 @@ export default function Platform() {
                 className="h-full"
                 name={t("platform.cards.tickets.name")}
                 description={t("platform.cards.tickets.desc")}
+                href="/servizi/ticketing-manutenzione"
+                cta={t("platform.cards.cta")}
                 background={<TicketsMock />}
               />
             </RevealItem>
@@ -63,6 +67,8 @@ export default function Platform() {
                 className="h-full"
                 name={t("platform.cards.workflow.name")}
                 description={t("platform.cards.workflow.desc")}
+                href="/servizi/procedure-guidate"
+                cta={t("platform.cards.cta")}
                 background={<WorkflowMock />}
               />
             </RevealItem>
@@ -71,6 +77,8 @@ export default function Platform() {
                 className="h-full"
                 name={t("platform.cards.preventivi.name")}
                 description={t("platform.cards.preventivi.desc")}
+                href="/servizi/software-operativo"
+                cta={t("platform.cards.cta")}
                 background={<PreventiviMock />}
               />
             </RevealItem>
