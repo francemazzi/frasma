@@ -199,6 +199,7 @@ describe("markdownForPath", () => {
 
     expect(home).toContain("# Frasma");
     expect(home).toContain("/servizi/ddt-erp");
+    expect(home).toContain("https://smithery.ai/servers/francemazzi/frasma");
     expect(ddt).toContain("https://www.frasma.org/servizi/ddt-erp");
     expect(ddt).toContain("youtu.be/22K6TJAXmmE");
     expect(ddt).toContain("Delegate the form, verify the facts");

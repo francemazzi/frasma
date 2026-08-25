@@ -81,6 +81,15 @@ export default function Footer() {
             </Link>
             <span className="text-ink-faint">·</span>
             <Link
+              href="https://smithery.ai/servers/francemazzi/frasma"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors"
+            >
+              Smithery
+            </Link>
+            <span className="text-ink-faint">·</span>
+            <Link
               href="https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/"
               target="_blank"
               rel="noopener noreferrer"

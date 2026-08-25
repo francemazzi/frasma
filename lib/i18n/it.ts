@@ -398,6 +398,7 @@ export const it: Record<string, string> = {
   "forAgents.link.skills": "Agent skills",
   "forAgents.link.mcp": "MCP endpoint",
   "forAgents.link.status": "Status",
+  "forAgents.link.smithery": "Smithery",
   "footer.forAgents": "Per agenti",
   "footer.startupStudio": "Startup Studio",
   "footer.services": "Servizi",

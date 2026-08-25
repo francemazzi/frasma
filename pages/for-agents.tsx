@@ -15,6 +15,7 @@ import {
   professionalServiceJsonLd,
   serviceOfferCatalogJsonLd,
   SITE_URL,
+  SMITHERY_SERVER_URL,
 } from "../lib/seo";
 
 const DISCOVERY_LINKS = [
@@ -52,6 +53,11 @@ const DISCOVERY_LINKS = [
     href: "/api/status",
     labelKey: "forAgents.link.status",
     external: false,
+  },
+  {
+    href: SMITHERY_SERVER_URL,
+    labelKey: "forAgents.link.smithery",
+    external: true,
   },
 ] as const;
 
@@ -198,7 +204,8 @@ export default function ForAgentsPage() {
                   <Link
                     href={link.href}
                     className="text-[15px] text-accent underline-offset-2 hover:underline"
-                    {...(link.href.endsWith(".json") ||
+                    {...(link.external ||
+                    link.href.endsWith(".json") ||
                     link.href.endsWith(".txt") ||
                     link.href.startsWith("/api/")
                       ? { target: "_blank", rel: "noopener noreferrer" }

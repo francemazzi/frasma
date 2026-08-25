@@ -11,11 +11,14 @@ export const BRAND_LOGO_PATH = "/logo-frasma.png";
 export const BRAND_LOGO_IMAGE = `${SITE_URL}${BRAND_LOGO_PATH}`;
 export const PROFILE_IMAGE = `${SITE_URL}/profilo_home.jpg`;
 export const YOUTUBE_URL = "https://www.youtube.com/@frasmatech";
+export const SMITHERY_SERVER_URL =
+  "https://smithery.ai/servers/francemazzi/frasma";
 export const PROFILE_SAME_AS = [
   "https://github.com/francemazzi",
   "https://gitlab.com/francesco.mazzi",
   "https://www.linkedin.com/in/francesco-saverio-mazzi-1a76b4159/",
   YOUTUBE_URL,
+  SMITHERY_SERVER_URL,
 ] as const;
 
 export function absoluteUrl(path = "/"): string {

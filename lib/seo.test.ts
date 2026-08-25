@@ -9,6 +9,7 @@ import {
   professionalServiceJsonLd,
   serviceJsonLd,
   serviceOfferCatalogJsonLd,
+  SMITHERY_SERVER_URL,
   YOUTUBE_URL,
 } from "./seo";
 import { catalogSitemapEntries } from "./sitemap";
@@ -26,6 +27,8 @@ describe("SEO helpers", () => {
   it("shares YouTube on Person and ProfessionalService sameAs, with Mantova on Person", () => {
     expect(personJsonLd.sameAs).toContain(YOUTUBE_URL);
     expect(professionalServiceJsonLd.sameAs).toContain(YOUTUBE_URL);
+    expect(personJsonLd.sameAs).toContain(SMITHERY_SERVER_URL);
+    expect(professionalServiceJsonLd.sameAs).toContain(SMITHERY_SERVER_URL);
     expect(personJsonLd.address).toMatchObject({
       addressLocality: "Mantova",
       addressRegion: "Lombardia",

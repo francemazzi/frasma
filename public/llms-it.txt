@@ -16,6 +16,7 @@ English version: https://www.frasma.org/llms.txt
 - Agent skills: https://www.frasma.org/.well-known/agent-skills/index.json
 - MCP (read-only + handoff diagnostico): https://www.frasma.org/api/mcp
 - Status: https://www.frasma.org/api/status
+- Listing Smithery: https://smithery.ai/servers/francemazzi/frasma
 
 ## Cosa costruisce Frasma
 
