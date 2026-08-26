@@ -9,6 +9,9 @@ import {
   professionalServiceJsonLd,
   serviceJsonLd,
   serviceOfferCatalogJsonLd,
+  SHARE_IMAGE,
+  SHARE_IMAGE_HEIGHT,
+  SHARE_IMAGE_WIDTH,
   SMITHERY_SERVER_URL,
   YOUTUBE_URL,
 } from "./seo";
@@ -105,5 +108,12 @@ describe("sitemap catalog entries", () => {
     );
 
     expect(canonicalPath(ddt!)).toBe("/servizi/ddt-erp");
+  });
+
+  it("uses a compact share image so WhatsApp shows a thumbnail, not a large card", () => {
+    expect(SHARE_IMAGE).toBe("https://www.frasma.org/og-share.png");
+    expect(SHARE_IMAGE_WIDTH).toBeGreaterThanOrEqual(100);
+    expect(SHARE_IMAGE_WIDTH).toBeLessThan(300);
+    expect(SHARE_IMAGE_HEIGHT).toBe(SHARE_IMAGE_WIDTH);
   });
 });

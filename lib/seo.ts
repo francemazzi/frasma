@@ -9,6 +9,11 @@ export const FEED_URL = `${SITE_URL}/feed.xml`;
 export const OWNER_NAME = "Francesco Saverio Mazzi";
 export const BRAND_LOGO_PATH = "/logo-frasma.png";
 export const BRAND_LOGO_IMAGE = `${SITE_URL}${BRAND_LOGO_PATH}`;
+/** Compact share image: WhatsApp uses a large card when og:image is 300px+. */
+export const SHARE_IMAGE_PATH = "/og-share.png";
+export const SHARE_IMAGE = `${SITE_URL}${SHARE_IMAGE_PATH}`;
+export const SHARE_IMAGE_WIDTH = 256;
+export const SHARE_IMAGE_HEIGHT = 256;
 export const PROFILE_IMAGE = `${SITE_URL}/profilo_home.jpg`;
 export const YOUTUBE_URL = "https://www.youtube.com/@frasmatech";
 export const SMITHERY_SERVER_URL =

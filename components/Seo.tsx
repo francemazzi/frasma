@@ -1,7 +1,9 @@
 import Head from "next/head";
 import {
   absoluteUrl,
-  BRAND_LOGO_IMAGE,
+  SHARE_IMAGE,
+  SHARE_IMAGE_HEIGHT,
+  SHARE_IMAGE_WIDTH,
   SITE_NAME,
   SITE_URL,
 } from "../lib/seo";
@@ -42,7 +44,7 @@ export default function Seo({
   title,
   description,
   path = "/",
-  image = BRAND_LOGO_IMAGE,
+  image = SHARE_IMAGE,
   type = "website",
   noindex = false,
   publishedTime,
@@ -53,6 +55,7 @@ export default function Seo({
 }: SeoProps) {
   const canonicalUrl = absoluteUrl(path);
   const imageUrl = absoluteUrl(image);
+  const isCompactShareImage = imageUrl === SHARE_IMAGE;
   const robots = noindex
     ? "noindex,nofollow"
     : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
@@ -84,8 +87,21 @@ export default function Seo({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={imageUrl} />
       <meta property="og:image:alt" content={title} />
+      {isCompactShareImage && (
+        <>
+          <meta property="og:image:width" content={String(SHARE_IMAGE_WIDTH)} />
+          <meta
+            property="og:image:height"
+            content={String(SHARE_IMAGE_HEIGHT)}
+          />
+          <meta property="og:image:type" content="image/png" />
+        </>
+      )}
 
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:card"
+        content={isCompactShareImage ? "summary" : "summary_large_image"}
+      />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={imageUrl} />
