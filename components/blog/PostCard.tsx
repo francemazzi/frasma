@@ -9,11 +9,11 @@ type PostCardProps = {
 
 export default function PostCard({ post }: PostCardProps) {
   return (
-    <article className="bg-farm-surface rounded-2xl border border-farm-border p-8 hover:shadow-md transition-shadow">
+    <article className="rounded-3xl border border-farm-border bg-farm-surface p-8 transition-colors hover:border-accent/30">
       <time className="text-sm text-farm-secondary">
         {formatItalianDate(post.publishedAt)}
       </time>
-      <h2 className="text-2xl font-semibold text-farm-text mt-2 mb-3">
+      <h2 className="text-2xl font-medium text-farm-text mt-2 mb-3">
         <Link
           href={`/blog/${post.slug}`}
           className="hover:text-sage-600 transition-colors"

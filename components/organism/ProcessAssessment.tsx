@@ -287,7 +287,7 @@ export default function ProcessAssessment({
             />
             <div
               ref={dialogRef}
-              className="relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-hairline-strong bg-paper shadow-2xl sm:rounded-2xl"
+              className="relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-hairline-strong bg-paper sm:rounded-3xl"
             >
               <div className="flex shrink-0 items-start justify-between gap-4 border-b border-hairline p-5 sm:p-6">
                 <div className="min-w-0 flex-1">
@@ -345,7 +345,7 @@ export default function ProcessAssessment({
                   type="button"
                   onClick={close}
                   disabled={status === "submitting"}
-                  className="shrink-0 rounded-lg px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-paper-2"
+                  className="shrink-0 rounded-full px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-paper-2"
                   aria-label={t("assessment.close")}
                 >
                   {t("assessment.close")}

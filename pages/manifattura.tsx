@@ -554,8 +554,8 @@ export default function ManifatturaPage() {
 
         {/* ── CTA finale ── */}
         <section id="prenota" className="section-farm py-20 sm:py-28">
-          <div className="rounded-2xl border-2 border-sage/30 bg-farm-panel p-8 text-center sm:p-14">
-            <h2 className="text-2xl font-semibold sm:text-3xl">
+          <div className="rounded-3xl border border-hairline-strong bg-paper-2 p-8 text-center sm:p-14">
+            <h2 className="text-2xl font-medium sm:text-3xl">
               Processi ancora gestiti tra ERP, Excel, mail e PDF?
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-farm-secondary leading-relaxed">

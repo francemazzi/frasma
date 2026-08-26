@@ -130,7 +130,7 @@ export default function Results() {
         </Reveal>
 
         <div
-          className="overflow-hidden rounded-[32px] border border-white/70 bg-paper-2 shadow-[0_32px_90px_-55px_rgba(27,25,22,0.65)]"
+          className="overflow-hidden rounded-3xl border border-hairline-strong bg-paper-2"
           aria-live="polite"
           onTouchStart={(e) => {
             touchStartX.current = e.touches[0]?.clientX ?? null;
@@ -154,27 +154,27 @@ export default function Results() {
             >
               <div className="relative mx-auto w-full max-w-[440px] overflow-hidden rounded-[24px] bg-paper-2" style={{ aspectRatio: "1122 / 1402" }}>
                 <Image src={c.imgSrc} alt={c.imgAlt} fill sizes="(max-width: 1024px) 90vw, 440px" className="object-cover mix-blend-darken" />
-                <div className="absolute bottom-4 left-4 rounded-full bg-ink/85 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-paper backdrop-blur">
+                <div className="absolute bottom-4 left-4 rounded-full bg-ink/85 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.08em] text-paper backdrop-blur">
                   {t(c.plateKey)}
                 </div>
               </div>
               <div className="min-w-0">
-                <div className="mb-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-accent">
+                <div className="mb-4 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.1em] text-accent">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                   {t(c.tagKey)}
                 </div>
-                <h3 className="mb-5 text-[30px] font-semibold leading-[1.05] tracking-[-0.045em] text-ink sm:text-[42px]">
+                <h3 className="mb-5 text-[30px] font-medium leading-[1.05] tracking-[-0.045em] text-ink sm:text-[42px]">
                   {t(c.titlePreKey)} <span className="text-accent">{t(c.titleEmKey)}</span>
                   {t(c.titlePostKey) ? ` ${t(c.titlePostKey)}` : ""}
                 </h3>
                 <p className="mb-7 text-[17px] font-medium leading-[1.45] text-ink">{t(c.pullKey)}</p>
                 <div className="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  <p className="rounded-xl bg-white/35 p-4 text-[13.5px] leading-[1.55] text-ink-soft">
-                    <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.1em] text-accent">{t("results.beforeLabel")}</span>
+                    <p className="rounded-2xl bg-paper p-4 text-[13.5px] leading-[1.55] text-ink-soft">
+                    <span className="mb-1 block text-[10px] font-medium uppercase tracking-[0.1em] text-accent">{t("results.beforeLabel")}</span>
                     {t(c.beforeKey)}
                   </p>
-                  <p className="rounded-xl bg-white/35 p-4 text-[13.5px] leading-[1.55] text-ink-soft">
-                    <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.1em] text-accent">{t("results.afterLabel")}</span>
+                    <p className="rounded-2xl bg-paper p-4 text-[13.5px] leading-[1.55] text-ink-soft">
+                    <span className="mb-1 block text-[10px] font-medium uppercase tracking-[0.1em] text-accent">{t("results.afterLabel")}</span>
                     {t(c.afterKey)}
                   </p>
                 </div>
@@ -182,7 +182,7 @@ export default function Results() {
                 <p className="mt-5">
                   <Link
                     href={c.href}
-                    className="text-[14px] font-semibold text-accent underline-offset-2 hover:underline"
+                    className="text-[14px] font-medium text-accent underline-offset-2 hover:underline"
                   >
                     {t("results.caseCta")}
                   </Link>

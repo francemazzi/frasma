@@ -734,12 +734,8 @@ export default function ChatWidget() {
         <button
           type="button"
           onClick={handleOpen}
-          className="fixed z-50 inline-flex items-center gap-[10px] rounded-full bg-ink text-paper px-[18px] py-3 pl-[14px] font-sans text-sm font-medium transition-all hover:bg-accent hover:-translate-y-px bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6"
+          className="fixed z-50 inline-flex items-center gap-[10px] rounded-full bg-ink text-paper px-[18px] py-3 pl-[14px] font-sans text-sm font-medium transition-colors hover:bg-accent bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6"
           aria-label={t("chat.title")}
-          style={{
-            boxShadow:
-              "0 12px 28px -8px rgba(27,25,22,0.5), 0 4px 10px -4px rgba(27,25,22,0.3)",
-          }}
         >
           <Image
             src="/logo-frasma.png"
@@ -755,12 +751,8 @@ export default function ChatWidget() {
       {isOpen && (
         <div
           className="fixed z-50 flex min-w-0 flex-col overflow-hidden rounded-3xl border border-hairline-strong bg-paper left-3 right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] max-h-[min(34rem,calc(100dvh-1.5rem-env(safe-area-inset-bottom,0px)-env(safe-area-inset-top,0px)))] sm:left-auto sm:right-6 sm:bottom-6 sm:w-[380px] sm:max-h-[540px]"
-          style={{
-            background: "linear-gradient(180deg, #F4EEDF 0%, #EDE5CF 100%)",
-            boxShadow: "0 28px 60px -12px rgba(27,25,22,0.4)",
-          }}
         >
-          <div className="px-5 py-[18px] border-b border-hairline bg-paper flex flex-col gap-[6px] relative">
+          <div className="relative flex shrink-0 flex-col gap-[6px] border-b border-hairline bg-paper px-5 py-[18px]">
             <div className="flex items-center gap-3 pr-9">
               <Image
                 src="/logo-frasma.png"
@@ -769,8 +761,8 @@ export default function ChatWidget() {
                 height={38}
                 className="h-[38px] w-[38px] rounded-full object-cover"
               />
-              <div className="font-serif text-[20px] font-medium leading-tight tracking-[-0.015em] text-ink">
-                <em className="italic text-accent font-normal">{t("chat.title")}</em>
+              <div className="font-sans text-[18px] font-medium leading-tight tracking-[-0.03em] text-ink">
+                {t("chat.title")}
               </div>
             </div>
             <div className="font-mono text-[10.5px] text-ink-soft tracking-[0.06em] uppercase flex items-center gap-2">
@@ -836,7 +828,7 @@ export default function ChatWidget() {
                     />
                     frasma
                   </div>
-                  <div className="font-serif text-[16px] leading-[1.5] text-ink whitespace-pre-wrap break-words">
+                  <div className="font-sans text-[15px] leading-[1.5] text-ink whitespace-pre-wrap break-words">
                     {text}
                   </div>
                   {projectBrief ? (
@@ -889,7 +881,7 @@ export default function ChatWidget() {
             )}
           </div>
 
-          <div className="border-t border-hairline px-[18px] py-4 flex items-end gap-[10px] bg-paper">
+          <div className="flex shrink-0 items-end gap-[10px] border-t border-hairline bg-paper px-[18px] py-4">
             <input
               ref={inputRef}
               type="text"

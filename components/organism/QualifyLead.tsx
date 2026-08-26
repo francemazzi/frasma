@@ -14,7 +14,7 @@ export default function QualifyLead() {
   const t = useT();
 
   return (
-    <section id="problemi" className="ed-section bg-white/20">
+    <section id="problemi" className="ed-section">
       <div className="section-farm">
         <Reveal className="ed-section-header mx-auto max-w-3xl text-center">
           <div className="ed-kicker">{t("qualify.eyebrow")}</div>
@@ -24,25 +24,25 @@ export default function QualifyLead() {
 
         <RevealGroup
           stagger={0.1}
-          className="mx-auto grid max-w-5xl grid-cols-1 gap-3 sm:grid-cols-2"
+          className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2"
         >
           {ITEMS.map((item, index) => (
             <RevealItem
               as="article"
               key={item.title}
               index={index}
-              className="ed-card-hover relative overflow-hidden rounded-2xl border border-white/70 bg-paper/65 p-6 sm:p-7"
+              className="ed-card-hover relative overflow-hidden rounded-3xl border border-hairline-strong bg-paper-2 p-6 sm:p-7"
             >
               <span
-                className="pointer-events-none absolute -right-1 -top-3 select-none text-[68px] font-semibold leading-none tracking-[-0.05em] text-accent/[0.07]"
+                className="pointer-events-none absolute -right-1 -top-3 select-none text-[68px] font-medium leading-none tracking-[-0.05em] text-accent/[0.08]"
                 aria-hidden="true"
               >
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="mb-6 block text-[11px] font-semibold text-accent">
+              <span className="mb-6 block text-[11px] font-medium text-accent">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="mb-2 text-[20px] font-semibold tracking-[-0.03em] text-ink">
+              <h3 className="mb-2 text-[20px] font-medium tracking-[-0.03em] text-ink">
                 {t(item.title)}
               </h3>
               <p className="text-[15px] leading-[1.6] text-ink-soft">{t(item.desc)}</p>

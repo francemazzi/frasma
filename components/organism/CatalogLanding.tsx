@@ -153,7 +153,7 @@ export default function CatalogLanding({ lookup }: Props) {
 
         <section className="ed-section border-t border-ink/8">
           <div className="section-farm max-w-3xl">
-            <h2 className="mb-6 text-[28px] font-semibold tracking-[-0.03em] sm:text-[34px]">
+            <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
               {t("catalog.howTitle")}
             </h2>
             <ul className="space-y-3">
@@ -207,13 +207,13 @@ export default function CatalogLanding({ lookup }: Props) {
         {faqs.length > 0 ? (
           <section className="ed-section border-t border-ink/8">
             <div className="section-farm max-w-3xl">
-              <h2 className="mb-6 text-[28px] font-semibold tracking-[-0.03em] sm:text-[34px]">
+              <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
                 {t("catalog.faqTitle")}
               </h2>
               <dl className="space-y-5">
                 {faqs.map((faq) => (
                   <div key={faq.question}>
-                    <dt className="text-[17px] font-semibold text-ink">
+                    <dt className="text-[17px] font-medium text-ink">
                       {faq.question}
                     </dt>
                     <dd className="mt-1 text-[15px] leading-[1.55] text-ink-soft">
@@ -229,7 +229,7 @@ export default function CatalogLanding({ lookup }: Props) {
         {related.length > 0 ? (
           <section className="ed-section border-t border-ink/8">
             <div className="section-farm max-w-3xl">
-              <h2 className="mb-6 text-[28px] font-semibold tracking-[-0.03em] sm:text-[34px]">
+              <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
                 {t("catalog.relatedTitle")}
               </h2>
               <ul className="space-y-4">
@@ -237,7 +237,7 @@ export default function CatalogLanding({ lookup }: Props) {
                   <li key={item.id}>
                     <Link
                       href={canonicalPath(item)}
-                      className="text-[16px] font-semibold text-accent underline-offset-2 hover:underline"
+                      className="text-[16px] font-medium text-accent underline-offset-2 hover:underline"
                     >
                       {item.title[lang]}
                     </Link>
@@ -253,7 +253,7 @@ export default function CatalogLanding({ lookup }: Props) {
 
         <section className="ed-section border-t border-ink/8">
           <div className="section-farm max-w-3xl">
-            <h2 className="mb-4 text-[28px] font-semibold tracking-[-0.03em] sm:text-[34px]">
+            <h2 className="mb-4 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
               {t("catalog.ctaTitle")}
             </h2>
             <p className="mb-6 text-[16px] leading-[1.6] text-ink-soft">

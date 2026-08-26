@@ -119,13 +119,13 @@ export default function ForAgentsPage() {
 
         <section className="ed-section border-t border-ink/8">
           <div className="section-farm max-w-3xl">
-            <h2 className="mb-6 text-[28px] font-semibold tracking-[-0.03em] sm:text-[34px]">
+            <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
               {t("forAgents.servicesTitle")}
             </h2>
             <ul className="space-y-5">
               {services.map((service) => (
                 <li key={service.id}>
-                  <h3 className="text-[17px] font-semibold text-ink">
+                  <h3 className="text-[17px] font-medium text-ink">
                     <Link
                       href={canonicalPath(service)}
                       className="text-accent underline-offset-2 hover:underline"
@@ -144,7 +144,7 @@ export default function ForAgentsPage() {
 
         <section className="ed-section border-t border-ink/8">
           <div className="section-farm max-w-3xl">
-            <h2 className="mb-6 text-[28px] font-semibold tracking-[-0.03em] sm:text-[34px]">
+            <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
               {t("forAgents.limitsTitle")}
             </h2>
             <ul className="space-y-3">
@@ -173,7 +173,7 @@ export default function ForAgentsPage() {
 
         <section className="ed-section border-t border-ink/8">
           <div className="section-farm max-w-3xl">
-            <h2 className="mb-6 text-[28px] font-semibold tracking-[-0.03em] sm:text-[34px]">
+            <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
               {t("forAgents.engageTitle")}
             </h2>
             <ol className="list-decimal space-y-3 pl-5 text-[15px] leading-[1.55] text-ink-soft">
@@ -185,7 +185,7 @@ export default function ForAgentsPage() {
             <p className="mt-8">
               <Link
                 href="/#contatti"
-                className="inline-flex rounded-full bg-ink px-5 py-2.5 text-[14px] font-semibold text-paper transition-opacity hover:opacity-90"
+                className="btn-ink no-underline"
               >
                 {t("forAgents.ctaChat")}
               </Link>
@@ -195,7 +195,7 @@ export default function ForAgentsPage() {
 
         <section className="ed-section border-t border-ink/8">
           <div className="section-farm max-w-3xl">
-            <h2 className="mb-6 text-[28px] font-semibold tracking-[-0.03em] sm:text-[34px]">
+            <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
               {t("forAgents.discoveryTitle")}
             </h2>
             <ul className="space-y-2">

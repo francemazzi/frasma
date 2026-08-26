@@ -2,6 +2,7 @@ import Header from "../components/organism/Header";
 import Intro from "../components/organism/Intro";
 import Results from "../components/organism/Results";
 import Platform from "../components/organism/Platform";
+import StageProof from "../components/organism/StageProof";
 import WhyContactMe from "../components/organism/WhyContactMe";
 import Continuity from "../components/organism/Continuity";
 import QualifyLead from "../components/organism/QualifyLead";
@@ -52,6 +53,7 @@ export default function Home() {
         <Intro />
         <QualifyLead />
         <Platform />
+        <StageProof />
         <Results />
         <WhyContactMe />
         <Continuity />

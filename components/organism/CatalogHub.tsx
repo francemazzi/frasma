@@ -74,7 +74,7 @@ export default function CatalogHub({ kind, path, entries }: Props) {
                 <li key={entry.id}>
                   <Link
                     href={canonicalPath(entry)}
-                    className="text-[18px] font-semibold text-ink underline-offset-2 hover:text-accent hover:underline"
+                    className="text-[18px] font-medium text-ink underline-offset-2 hover:text-accent hover:underline"
                   >
                     {entry.title[lang]}
                   </Link>

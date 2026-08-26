@@ -185,6 +185,9 @@ export const en: Record<string, string> = {
   "useCases.title": "The interfaces your team works in",
   "useCases.subtitle":
     "Four workflows already built: data extracted from documents, field jobs, guided procedures, and quotes.",
+  "useCases.previous": "Previous example",
+  "useCases.next": "Next example",
+  "useCases.pageWord": "Example",
 
   // Legacy services
   "search.eyebrow": "Processes we can improve",
@@ -296,6 +299,22 @@ export const en: Record<string, string> = {
     "The same person stays from the first analysis through the maintenance years that follow: whoever answers when a workflow needs updating is whoever built it. Specialist expertise is brought in when the project requires it.",
   "founder.note":
     "Every project starts from a real activity and a metric we want to move.",
+  "founder.stageAlt":
+    "Francesco Mazzi speaking on stage at the Verona Agrifood Innovation Hub",
+
+  "mock.working": "Working",
+
+  "proof.eyebrow": "On stage",
+  "proof.title": "The same problems, said in public",
+  "proof.caption":
+    "Verona Agrifood Innovation Hub: a talk on field data, farm notebooks, and dosage planning.",
+  "proof.photoAlt":
+    "A presentation on field data at the Verona Agrifood Innovation Hub, with the audience in the foreground",
+  "proof.hours": "hours",
+  "proof.stat1":
+    "of technicians say the farm notebook is risky and slow to fill in",
+  "proof.stat2":
+    "a week, on average, to plan pesticide dosages for each managed farm",
 
   // Qualify lead
   "qualify.eyebrow": "Recognizable situations",

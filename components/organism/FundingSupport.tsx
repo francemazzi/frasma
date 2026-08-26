@@ -7,9 +7,9 @@ export default function FundingSupport() {
   const t = useT();
 
   return (
-    <section id="finanza-agevolata" className="ed-section bg-white/20">
+    <section id="finanza-agevolata" className="ed-section">
       <div className="section-farm">
-        <div className="rounded-[32px] border border-white/60 bg-white/25 px-6 py-12 sm:px-10 sm:py-16">
+        <div className="rounded-3xl border border-hairline-strong bg-paper-2 px-6 py-12 sm:px-10 sm:py-16">
           <div className="ed-section-header mx-auto max-w-3xl text-center">
             <div className="ed-kicker">{t("funding.eyebrow")}</div>
             <h2 className="ed-title mb-4">{t("funding.title")}</h2>

@@ -43,19 +43,19 @@ export default function DiscountPage() {
         noindex
       />
 
-      <main className="min-h-screen bg-farm-bg font-poppins px-6 py-16 sm:py-24">
-        <section className="mx-auto max-w-2xl rounded-3xl border border-farm-border bg-farm-surface p-8 sm:p-10 text-center shadow-sm">
+      <main className="min-h-screen bg-paper font-sans px-6 py-16 sm:py-24">
+        <section className="mx-auto max-w-2xl rounded-3xl border border-hairline-strong bg-paper-2 p-8 sm:p-10 text-center">
           <p className="inline-flex items-center rounded-full bg-sage-50 px-4 py-1.5 text-sm font-medium text-sage-600">
             {t("discount.badge")}
           </p>
-          <h1 className="mt-5 text-3xl sm:text-4xl font-bold tracking-tight text-farm-text">
+          <h1 className="mt-5 text-3xl sm:text-4xl font-medium tracking-tight text-farm-text">
             {t("discount.title")}
           </h1>
           <p className="mt-4 text-base sm:text-lg leading-relaxed text-farm-secondary">
             {t("discount.description")}
           </p>
-          <div className="mt-6 rounded-2xl border border-farm-border bg-farm-bg p-5 text-left">
-            <h2 className="text-base font-semibold text-farm-text sm:text-lg">
+          <div className="mt-6 rounded-2xl border border-hairline-strong bg-paper p-5 text-left">
+            <h2 className="text-base font-medium text-farm-text sm:text-lg">
               {t("discount.bringTitle")}
             </h2>
             <ul className="mt-3 space-y-2 text-sm sm:text-base text-farm-secondary">
@@ -73,13 +73,13 @@ export default function DiscountPage() {
             <button
               type="button"
               onClick={handleBack}
-              className="inline-flex items-center rounded-full border border-farm-border bg-farm-bg px-6 py-2.5 text-sm font-semibold text-farm-text hover:bg-farm-panel transition-colors"
+              className="btn-ink-ghost"
             >
               {t("discount.backPrevious")}
             </button>
             <Link
               href="/"
-              className="inline-flex items-center rounded-full bg-sage-500 px-6 py-2.5 text-sm font-semibold text-white hover:bg-sage-400 transition-colors"
+              className="btn-ink no-underline"
             >
               {t("discount.backHome")}
             </Link>

@@ -49,7 +49,7 @@ export default function Blog({ posts }: BlogIndexProps) {
         <Header />
 
         <section className="section-farm py-16 max-w-3xl mx-auto px-4">
-          <h1 className="text-4xl font-bold text-farm-text mb-12">Blog</h1>
+          <h1 className="text-4xl font-medium text-farm-text mb-12">Blog</h1>
 
           <div className="space-y-8">
             {posts.map((post) => (

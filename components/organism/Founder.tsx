@@ -9,32 +9,32 @@ export default function Founder() {
 
   return (
     <section className="section-farm py-20 sm:py-28">
-      <Reveal className="grid grid-cols-1 sm:grid-cols-[240px_minmax(0,1fr)] gap-8 sm:gap-14 items-center rounded-[32px] border border-white/60 bg-white/25 p-6 sm:p-10">
-        <div className="relative aspect-square rounded-[24px] overflow-hidden bg-paper-2 max-w-[240px] sm:max-w-none">
+      <Reveal className="grid grid-cols-1 items-center gap-8 rounded-3xl border border-hairline-strong bg-paper-2 p-6 sm:grid-cols-[240px_minmax(0,1fr)] sm:gap-14 sm:p-8">
+        <div className="relative aspect-square max-w-[240px] overflow-hidden rounded-2xl bg-paper-3 sm:max-w-none">
           <Image
             src="/image/use_case/francesco-mazzi.jpg"
-            alt="Francesco Saverio Mazzi"
+            alt={t("founder.title")}
             fill
-            sizes="(max-width: 640px) 200px, 220px"
+            sizes="(max-width: 640px) 200px, 240px"
             className="object-cover"
             style={{ filter: "saturate(0.95) contrast(1.02)" }}
           />
         </div>
 
         <div className="min-w-0">
-          <div className="text-[11px] font-semibold text-accent tracking-[0.12em] uppercase mb-3">
+          <div className="mb-3 text-[11px] font-medium uppercase tracking-[0.12em] text-accent">
             {t("founder.role")}
           </div>
-          <h2 className="text-[30px] sm:text-[40px] font-semibold tracking-[-0.045em] mb-5 text-ink">
+          <h2 className="mb-5 text-[30px] font-medium tracking-[-0.045em] text-ink sm:text-[40px]">
             {t("founder.title")}
           </h2>
-          <p className="text-[15px] sm:text-[16px] leading-[1.65] text-ink-2 max-w-[64ch] mb-4">
+          <p className="mb-4 max-w-[64ch] text-[15px] leading-[1.65] text-ink-2 sm:text-[16px]">
             {t("founder.bio1")}
           </p>
-          <p className="text-[15px] sm:text-[16px] leading-[1.65] text-ink-2 max-w-[64ch]">
+          <p className="max-w-[64ch] text-[15px] leading-[1.65] text-ink-2 sm:text-[16px]">
             {t("founder.bio2")}
           </p>
-          <p className="text-[15px] font-medium text-accent mt-6 max-w-[56ch]">
+          <p className="mt-6 max-w-[56ch] text-[15px] font-medium text-accent">
             {t("founder.note")}
           </p>
         </div>

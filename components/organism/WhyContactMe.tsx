@@ -34,7 +34,7 @@ export default function WhyContactMe() {
               >
                 <span className="ed-list-num">{step.number}</span>
                 <div>
-                  <h3 className="mb-2 text-[20px] font-semibold leading-[1.2] tracking-[-0.035em] text-ink">
+                  <h3 className="mb-2 text-[20px] font-medium leading-[1.2] tracking-[-0.035em] text-ink">
                     {t(step.titleKey)}
                   </h3>
                   <p className="max-w-[52ch] text-[15px] leading-[1.6] text-ink-soft">

@@ -8,7 +8,7 @@ export default function Footer() {
   const t = useT();
 
   return (
-    <footer className="py-10 pb-20 text-[11px] font-medium text-ink-soft tracking-[0.04em]">
+    <footer className="border-t border-hairline py-10 pb-20 text-[12px] font-medium text-ink-soft">
       <div className="section-farm">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
           <div className="flex items-center gap-3">
@@ -22,52 +22,27 @@ export default function Footer() {
             <p>{t("footer.info")}</p>
           </div>
           <div className="flex gap-5 flex-wrap items-center">
-            <Link
-              href="/servizi"
-              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
-            >
+            <Link href="/servizi" className="hover:text-accent transition-colors">
               {t("footer.services")}
             </Link>
             <span className="text-ink-faint">·</span>
-            <Link
-              href="/casi"
-              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
-            >
+            <Link href="/casi" className="hover:text-accent transition-colors">
               {t("footer.cases")}
             </Link>
             <span className="text-ink-faint">·</span>
-            <Link
-              href="/manifattura"
-              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
-            >
+            <Link href="/manifattura" className="hover:text-accent transition-colors">
               {t("footer.manufacturing")}
             </Link>
             <span className="text-ink-faint">·</span>
-            {/* <Link
-              href="/programmatore-freelance"
-              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
-            >
-              Programmatore freelance
-            </Link> */}
-            {/* <span className="text-ink-faint">·</span> */}
-            <Link
-              href="/for-agents"
-              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
-            >
+            <Link href="/for-agents" className="hover:text-accent transition-colors">
               {t("footer.forAgents")}
             </Link>
             <span className="text-ink-faint">·</span>
-            <Link
-              href="/studio"
-              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
-            >
+            <Link href="/studio" className="hover:text-accent transition-colors">
               {t("footer.startupStudio")}
             </Link>
             <span className="text-ink-faint">·</span>
-            <Link
-              href="/blog"
-              className="hover:text-accent hover:border-b hover:border-accent transition-colors"
-            >
+            <Link href="/blog" className="hover:text-accent transition-colors">
               Blog
             </Link>
             <span className="text-ink-faint">·</span>

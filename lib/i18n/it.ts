@@ -187,6 +187,9 @@ export const it: Record<string, string> = {
   "useCases.title": "Le interfacce che usa il tuo team",
   "useCases.subtitle":
     "Quattro esempi di flussi già costruiti: dati estratti dai documenti, interventi sul campo, procedure guidate e preventivi.",
+  "useCases.previous": "Esempio precedente",
+  "useCases.next": "Esempio successivo",
+  "useCases.pageWord": "Esempio",
 
   // Legacy services
   "search.eyebrow": "Processi che possiamo migliorare",
@@ -300,6 +303,22 @@ export const it: Record<string, string> = {
     "È lo stesso referente dalla prima analisi alla manutenzione degli anni successivi: chi risponde quando un flusso va aggiornato è chi lo ha costruito. Quando il progetto lo richiede, vengono coinvolte competenze specialistiche mirate.",
   "founder.note":
     "Ogni progetto parte da un'attività reale e da una metrica che vogliamo spostare.",
+  "founder.stageAlt":
+    "Francesco Mazzi parla al microfono al Verona Agrifood Innovation Hub",
+
+  "mock.working": "In corso",
+
+  "proof.eyebrow": "Dal palco",
+  "proof.title": "Gli stessi problemi, detti in pubblico",
+  "proof.caption":
+    "Verona Agrifood Innovation Hub: intervento su dati di campo, quaderno di campagna e pianificazione dei dosaggi.",
+  "proof.photoAlt":
+    "Presentazione sui dati di campo all’Agrifood Innovation Hub di Verona, con pubblico in sala",
+  "proof.hours": "ore",
+  "proof.stat1":
+    "dei tecnici trova il quaderno di campagna rischioso e lento da compilare",
+  "proof.stat2":
+    "a settimana, in media, per definire il piano dei dosaggi di un’azienda gestita",
 
   // Qualify lead
   "qualify.eyebrow": "Situazioni riconoscibili",

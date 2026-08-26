@@ -31,7 +31,7 @@ export default function BlogPostLayout({
         <time className="block text-sm text-farm-secondary mt-4">
           {formatItalianDate(post.publishedAt)}
         </time>
-        <h1 className="text-4xl font-bold text-farm-text mt-2 mb-8 break-words">
+          <h1 className="text-4xl font-medium text-farm-text mt-2 mb-8 break-words">
           {post.title}
         </h1>
 

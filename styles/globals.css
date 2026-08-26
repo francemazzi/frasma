@@ -4,25 +4,21 @@
 
 @layer base {
   html {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-satoshi), Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #1B1916;
+    color: #0A0A0A;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: #F1EADA;
-    background-image:
-      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255, 255, 255, 0.65), transparent 72%),
-      radial-gradient(circle at 88% 36%, rgba(168, 65, 43, 0.045), transparent 32%);
-    background-attachment: fixed;
+    background-color: #FFFFFF;
     min-height: 100vh;
   }
 
   ::selection {
-    background: #1B1916;
-    color: #F1EADA;
+    background: #69557B;
+    color: #FFFFFF;
   }
 }
 
@@ -32,30 +28,26 @@
   }
 
   .btn-ink {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink bg-ink text-paper px-5 py-3 text-[14px] font-semibold transition-all duration-300;
-    box-shadow: 0 8px 24px -14px rgba(27, 25, 22, 0.75);
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink bg-ink text-paper px-5 py-3 text-[14px] font-medium transition-all duration-300;
   }
   .btn-ink:hover {
-    background-color: #A8412B;
-    border-color: #A8412B;
-    transform: translateY(-1px);
-    box-shadow: 0 12px 28px -14px rgba(168, 65, 43, 0.75);
+    background-color: #69557B;
+    border-color: #69557B;
   }
   .btn-ink-ghost {
-    @apply inline-flex items-center gap-2 rounded-full border border-hairline-strong bg-white/30 text-ink px-5 py-3 text-[14px] font-semibold transition-all duration-300;
+    @apply inline-flex items-center gap-2 rounded-full border border-hairline-strong bg-transparent text-ink px-5 py-3 text-[14px] font-medium transition-all duration-300;
   }
   .btn-ink-ghost:hover {
-    background-color: #1B1916;
-    color: #F1EADA;
+    background-color: #F9F8F6;
   }
 
   .meeting-input {
-    @apply mt-1 w-full min-w-0 max-w-full rounded-lg border border-hairline-strong bg-paper-2 px-3 py-2 text-[16px] text-ink min-h-[44px];
+    @apply mt-1 w-full min-w-0 max-w-full rounded-xl border border-hairline-strong bg-paper-2 px-3 py-2 text-[16px] text-ink min-h-[44px];
     @apply focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-transparent transition-shadow;
   }
 
   .meeting-field-shell {
-    @apply mt-1 w-full min-w-0 max-w-full overflow-hidden rounded-lg border border-hairline-strong bg-paper-2;
+    @apply mt-1 w-full min-w-0 max-w-full overflow-hidden rounded-xl border border-hairline-strong bg-paper-2;
     @apply focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-transparent transition-shadow;
   }
 
@@ -81,16 +73,16 @@
     @apply py-20 sm:py-28;
   }
   .ed-kicker {
-    @apply text-[12px] font-semibold tracking-[0.12em] uppercase text-accent leading-none mb-4;
+    @apply text-[12px] font-medium tracking-[0.12em] uppercase text-accent leading-none mb-4;
   }
   .ed-title {
-    @apply font-sans font-semibold leading-[1.04] tracking-[-0.045em] text-ink;
+    @apply font-sans font-medium leading-[1.04] tracking-[-0.045em] text-ink;
     font-size: clamp(36px, 4.6vw, 62px);
   }
   .ed-title em {
     font-style: normal;
-    color: #A8412B;
-    font-weight: 600;
+    color: #69557B;
+    font-weight: 500;
   }
   .ed-intro {
     @apply text-[17px] sm:text-[19px] leading-[1.55] text-ink-soft max-w-[58ch];
@@ -99,26 +91,44 @@
     @apply mb-12 sm:mb-16;
   }
   .ed-list-row {
-    @apply grid grid-cols-[42px_minmax(0,1fr)] sm:grid-cols-[52px_minmax(0,1fr)] gap-4 sm:gap-6 p-5 sm:p-7 rounded-2xl border border-white/50 bg-white/25;
-    box-shadow: 0 16px 45px -38px rgba(27, 25, 22, 0.55);
+    @apply grid grid-cols-[42px_minmax(0,1fr)] sm:grid-cols-[52px_minmax(0,1fr)] gap-4 sm:gap-6 p-5 sm:p-7 rounded-3xl border border-hairline-strong bg-paper-2;
   }
   .ed-list-row + .ed-list-row {
     @apply mt-3;
   }
   .ed-list-num {
-    @apply text-[12px] font-semibold tracking-[0.08em] uppercase text-accent pt-1;
+    @apply text-[12px] font-medium tracking-[0.08em] uppercase text-accent pt-1;
   }
   .ed-link-secondary {
-    @apply text-[15px] font-semibold text-ink-2 no-underline transition-colors hover:text-accent;
+    @apply text-[15px] font-medium text-ink-2 no-underline transition-colors hover:text-accent;
   }
 
   .ed-card-hover {
     @apply transition-all duration-300;
   }
   .ed-card-hover:hover {
-    transform: translateY(-3px);
-    border-color: rgba(168, 65, 43, 0.35);
-    box-shadow: 0 22px 50px -34px rgba(27, 25, 22, 0.55);
+    border-color: rgba(105, 85, 123, 0.35);
+  }
+
+  .grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .grain-mesh-peach {
+    background: linear-gradient(135deg, #f6d7c3 0%, #f3e6d0 42%, #e8d0e4 100%);
+  }
+  .grain-mesh-teal {
+    background: linear-gradient(135deg, #d5e8e2 0%, #e8ddd4 48%, #f0d5c8 100%);
+  }
+  .grain-mesh-lavender {
+    background: linear-gradient(135deg, #e4d8ec 0%, #efe6e0 46%, #d9e4e8 100%);
+  }
+  .grain-mesh-mist {
+    background: linear-gradient(135deg, #ece6f2 0%, #efe8e0 50%, #dce8e4 100%);
   }
 
   /* Reveals are hidden only once the class on <html> confirms JS is running,
@@ -210,8 +220,8 @@
 
   .exchange-grid-bg {
     background-image:
-      linear-gradient(rgba(27, 25, 22, 0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(27, 25, 22, 0.07) 1px, transparent 1px);
+      linear-gradient(rgba(10, 10, 10, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 10, 10, 0.06) 1px, transparent 1px);
     background-size: 20px 20px;
   }
 
@@ -220,20 +230,28 @@
     overflow-x: clip;
   }
 
+  .snap-scroller {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .snap-scroller::-webkit-scrollbar {
+    display: none;
+  }
+
   .blog-content p {
     @apply leading-relaxed;
   }
 
   .blog-content h2 {
-    @apply text-2xl font-semibold text-farm-text pt-4;
+    @apply text-2xl font-medium text-farm-text pt-4;
   }
 
   .blog-content h3 {
-    @apply text-xl font-semibold text-farm-text pt-2;
+    @apply text-xl font-medium text-farm-text pt-2;
   }
 
   .blog-content a {
-    @apply text-sage-600 font-semibold hover:text-sage-500 underline transition-colors;
+    @apply text-sage-600 font-medium hover:text-sage-500 underline transition-colors;
   }
 
   .blog-content ul {
@@ -245,11 +263,11 @@
   }
 
   .blog-content strong {
-    @apply font-semibold text-farm-text;
+    @apply font-medium text-farm-text;
   }
 
   .blog-content img {
-    @apply w-full rounded-2xl border border-farm-border my-8;
+    @apply w-full rounded-3xl border border-farm-border my-8;
   }
 
   /* Keep page margins intact: only the table wrapper scrolls horizontally. */
@@ -262,9 +280,9 @@
     overflow-y: hidden;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
-    border: 1px solid #d4ccbc;
-    border-radius: 0.75rem;
-    background-color: #fbf6e5;
+    border: 1px solid #d5d9e2;
+    border-radius: 1.5rem;
+    background-color: #f9f8f6;
   }
 
   .blog-content table {
@@ -278,7 +296,7 @@
   }
 
   .blog-content thead th {
-    @apply border-b border-farm-border bg-paper/70 px-3 py-2.5 font-semibold text-farm-text;
+    @apply border-b border-farm-border bg-paper-2 px-3 py-2.5 font-medium text-farm-text;
     white-space: normal;
   }
 
@@ -293,7 +311,7 @@
   }
 
   .blog-content tbody tr:nth-child(even) td {
-    @apply bg-paper/40;
+    @apply bg-paper-2;
   }
 
   /* Legacy linktree card classes (untouched) */
@@ -352,25 +370,23 @@ canvas {
     box-shadow 0.85s ease;
   backface-visibility: hidden;
   will-change: transform;
-  /* Mobile: single page, no fake spine seam */
-  background: linear-gradient(180deg, #F3EBD3, #ECE3C8);
+  background: linear-gradient(180deg, #f9f8f6, #f3f2ef);
 }
 .book-page.flipped {
   transform: rotateY(-180deg);
   box-shadow: 12px 0 36px -8px rgba(0, 0, 0, 0.32);
 }
-/* Desktop: open-book look with center spine shadow */
 @media (min-width: 1024px) {
   .book-page {
     background: linear-gradient(
       90deg,
-      #EAE0C5 0%,
-      #F3EBD3 5%,
-      #F3EBD3 49%,
-      rgba(27, 25, 22, 0.08) 50%,
-      #F3EBD3 51%,
-      #F3EBD3 95%,
-      #EAE0C5 100%
+      #f3f2ef 0%,
+      #f9f8f6 5%,
+      #f9f8f6 49%,
+      rgba(10, 10, 10, 0.06) 50%,
+      #f9f8f6 51%,
+      #f9f8f6 95%,
+      #f3f2ef 100%
     );
   }
 }

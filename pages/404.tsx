@@ -26,10 +26,6 @@ export default function NotFoundPage() {
               height={96}
               priority
               className="h-24 w-24 rounded-full object-cover farm-sprout"
-              style={{
-                boxShadow:
-                  "0 18px 40px -12px rgba(27,25,22,0.28), 0 0 0 1px rgba(27,25,22,0.08)",
-              }}
             />
           </div>
 

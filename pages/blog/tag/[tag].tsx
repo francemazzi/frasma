@@ -53,7 +53,7 @@ export default function BlogTagPage({ tag, posts }: TagPageProps) {
             ← Torna al blog
           </Link>
 
-          <h1 className="text-4xl font-bold text-farm-text mb-4">{label}</h1>
+          <h1 className="text-4xl font-medium text-farm-text mb-4">{label}</h1>
           <p className="text-farm-secondary mb-12">
             {posts.length}{" "}
             {posts.length === 1 ? "articolo trovato" : "articoli trovati"}
