@@ -1,169 +1,319 @@
 "use client";
 
 import { Check } from "lucide-react";
+import { createContext, useContext, type ReactNode } from "react";
 import GrainMesh, { type GrainVariant } from "../atoms/GrainMesh";
+import {
+  MockHit,
+  MockScene,
+  useMockPlayback,
+  type MockStep,
+} from "../atoms/MockScene";
 
 type MockStageProps = {
   variant: GrainVariant;
   badge?: string;
-  children: React.ReactNode;
-  cursor?: boolean;
+  children: ReactNode;
+  active?: boolean;
 };
+
+const MockChromeContext = createContext<{ badge?: string }>({});
+
+export function MockStatusBadge({ className = "" }: { className?: string }) {
+  const { badge } = useContext(MockChromeContext);
+  if (!badge) return null;
+  return (
+    <span
+      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full bg-paper-2 px-2 py-0.5 text-[10px] font-medium text-ink ${className}`}
+    >
+      <span className="mock-love-pulse inline-block h-1.5 w-1.5 rounded-full bg-working" />
+      {badge}
+    </span>
+  );
+}
 
 export function MockStage({
   variant,
   badge,
   children,
-  cursor = true,
+  active,
 }: MockStageProps) {
   return (
     <div className="relative h-full min-h-[220px] overflow-hidden">
       <GrainMesh variant={variant} />
-      {badge ? (
-        <span className="absolute right-4 top-4 z-10 rounded-full bg-white/85 px-2.5 py-1 text-[11px] font-medium text-ink">
-          <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-working align-middle" />
-          {badge}
-        </span>
-      ) : null}
-      <div className="relative z-[1] flex h-full min-h-0 items-stretch p-4 sm:p-6">
-        <div className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-xl border border-hairline-strong bg-white">
-          {children}
+      <div className="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
+        <span className="mock-love-blob absolute -left-10 top-2 h-44 w-44 rounded-full bg-[#f4b8c8]/70 blur-3xl" />
+        <span className="mock-love-blob-slow absolute right-0 bottom-[-18%] h-48 w-48 rounded-full bg-[#c9b5e0]/65 blur-3xl" />
+        <span className="mock-love-blob absolute left-[36%] top-[40%] h-28 w-28 rounded-full bg-[#ffd9c8]/55 blur-2xl" />
+      </div>
+      <div className="relative z-[2] flex h-full min-h-0 items-stretch p-5 sm:p-7">
+        <div className="relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-2xl border border-white/80 bg-white/95 shadow-[0_22px_50px_-24px_rgba(80,50,90,0.5),0_0_36px_-10px_rgba(244,168,200,0.45)] ring-1 ring-[#f4a8c8]/20">
+          <MockChromeContext.Provider value={{ badge }}>
+            <MockScene active={active}>{children}</MockScene>
+          </MockChromeContext.Provider>
         </div>
       </div>
-      {cursor ? (
-        <span
-          className="pointer-events-none absolute bottom-7 right-9 z-10 h-6 w-6 rounded-full bg-[#f4a8c8]/70"
-          aria-hidden="true"
-        />
-      ) : null}
     </div>
   );
 }
 
 function WindowBar({ label }: { label: string }) {
   return (
-    <div className="flex shrink-0 items-center gap-1.5 border-b border-hairline px-3 py-2">
-      <span className="h-1.5 w-1.5 rounded-full bg-hairline-strong" />
-      <span className="h-1.5 w-1.5 rounded-full bg-hairline-strong" />
-      <span className="h-1.5 w-1.5 rounded-full bg-hairline-strong" />
-      <span className="ml-2 font-mono text-[10px] tracking-[0.04em] text-ink-soft">
+    <div className="flex shrink-0 items-center gap-1.5 border-b border-hairline px-4 py-2">
+      <span className="h-1.5 w-1.5 rounded-full bg-[#f4a8c8] shadow-[0_0_8px_rgba(244,168,200,0.85)]" />
+      <span className="h-1.5 w-1.5 rounded-full bg-[#f0d4a8] shadow-[0_0_8px_rgba(240,212,168,0.7)]" />
+      <span className="h-1.5 w-1.5 rounded-full bg-[#c9b5e0] shadow-[0_0_8px_rgba(201,181,224,0.75)]" />
+      <span className="ml-2 min-w-0 truncate font-mono text-[10px] tracking-[0.04em] text-ink-soft">
         {label}
       </span>
+      <MockStatusBadge className="ml-auto" />
     </div>
   );
 }
 
+type AgentState = {
+  hl: number;
+  numero: string;
+  fornitore: string;
+  data: string;
+  righe: string;
+  totale: string;
+  validated: boolean;
+  loaded: boolean;
+};
+
+const AGENT_INITIAL: AgentState = {
+  hl: 0,
+  numero: "",
+  fornitore: "",
+  data: "",
+  righe: "",
+  totale: "",
+  validated: false,
+  loaded: false,
+};
+
+const AGENT_COMPLETE: AgentState = {
+  hl: 5,
+  numero: "1842",
+  fornitore: "Acciai Lombardi",
+  data: "12/05/2026",
+  righe: "12 articoli",
+  totale: "€ 4.860,00",
+  validated: true,
+  loaded: true,
+};
+
+const AGENT_STEPS: MockStep<AgentState>[] = [
+  { type: "wait", ms: 280 },
+  { type: "move", to: "hl-1" },
+  { type: "click" },
+  { type: "set", patch: { hl: 1 } },
+  { type: "move", to: "hl-2" },
+  { type: "click" },
+  { type: "set", patch: { hl: 2 } },
+  { type: "move", to: "hl-3" },
+  { type: "click" },
+  { type: "set", patch: { hl: 3 } },
+  { type: "move", to: "field-numero" },
+  { type: "click" },
+  { type: "type", key: "numero", text: "1842", msPerChar: 55 },
+  { type: "move", to: "field-fornitore" },
+  { type: "click" },
+  { type: "type", key: "fornitore", text: "Acciai Lombardi", msPerChar: 32 },
+  { type: "move", to: "field-data" },
+  { type: "click" },
+  { type: "type", key: "data", text: "12/05/2026", msPerChar: 38 },
+  { type: "set", patch: { hl: 5, righe: "12 articoli", totale: "€ 4.860,00", validated: true } },
+  { type: "move", to: "btn-carica" },
+  { type: "click" },
+  { type: "set", patch: { loaded: true } },
+  { type: "wait", ms: 700 },
+];
+
 export function AgentMock({ compact = false }: { compact?: boolean }) {
-  if (compact) {
-    return (
-      <div className="flex h-full min-h-0 flex-col">
-        <WindowBar label="DDT · Mago / TeamSystem" />
+  const { state, typingKey } = useMockPlayback(AGENT_INITIAL, AGENT_COMPLETE, AGENT_STEPS);
+
+  return (
+    <div className="flex h-full min-h-0 flex-col">
+      <WindowBar label="DDT · Mago / TeamSystem" />
+      {compact ? (
         <div className="grid min-h-0 flex-1 grid-cols-1 overflow-hidden sm:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)]">
           <div className="min-w-0 overflow-hidden border-b border-hairline p-5 text-[12px] leading-[1.65] text-ink-2 sm:border-b-0 sm:border-r">
             <h6 className="mb-3 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
               Documento di trasporto · PDF
             </h6>
             <p className="mb-2 font-medium text-ink">
-              DDT n. <HL>1842</HL> del <HL>12/05/2026</HL>
+              DDT n. <HL on={state.hl >= 1} hit="hl-1">1842</HL> del{" "}
+              <HL on={state.hl >= 2} hit="hl-2">12/05/2026</HL>
             </p>
             <p className="mb-2">
-              Fornitore: <HL>Acciai Lombardi S.p.A.</HL>
+              Fornitore: <HL on={state.hl >= 3} hit="hl-3">Acciai Lombardi S.p.A.</HL>
             </p>
             <p>
-              <HL>12 righe</HL> · imponibile <HL>€ 4.860,00</HL>
+              <HL on={state.hl >= 4}>12 righe</HL> · imponibile{" "}
+              <HL on={state.hl >= 5}>€ 4.860,00</HL>
             </p>
           </div>
-          <div className="flex min-w-0 flex-col overflow-hidden bg-paper-2 p-5">
-            <h6 className="mb-3 flex justify-between font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
-              <span>Dati per ERP</span>
-              <span className="text-accent">● VALIDATO</span>
+          <AgentFields state={state} typingKey={typingKey} compact />
+        </div>
+      ) : (
+        <div className="grid min-h-0 flex-1 overflow-hidden sm:grid-cols-[minmax(0,1fr)_200px]">
+          <div className="min-w-0 overflow-hidden border-b border-hairline p-4 text-[11px] leading-[1.6] text-ink-2 sm:border-b-0 sm:border-r">
+            <h6 className="mb-3 border-b border-hairline pb-2 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
+              Documento di trasporto · PDF
             </h6>
-            <Field k="Numero DDT" v="1842" conf="0.99" />
-            <Field k="Fornitore" v="Acciai Lombardi" conf="0.98" />
-            <Field k="Data" v="12/05/2026" conf="0.99" last />
-            <div className="mt-auto flex flex-wrap gap-2 pt-4">
-              <BtnMini>Carica ERP</BtnMini>
-              <BtnMini ghost>Modifica</BtnMini>
-            </div>
+            <p className="mb-2 text-[11.5px] font-medium text-ink">
+              DDT n. <HL on={state.hl >= 1} hit="hl-1">1842</HL> del{" "}
+              <HL on={state.hl >= 2} hit="hl-2">12/05/2026</HL>
+            </p>
+            <p className="mb-2 text-[11.5px]">
+              Fornitore: <HL on={state.hl >= 3} hit="hl-3">Acciai Lombardi S.p.A.</HL>. Destinazione:{" "}
+              <HL on={state.hl >= 4}>Magazzino centrale</HL>.
+            </p>
+            <p className="mb-2 text-[11.5px]">
+              <HL on={state.hl >= 5}>12 righe articolo</HL>, imponibile <HL on={state.hl >= 5}>€ 4.860,00</HL>.
+            </p>
+            <p className="text-[10.5px] text-ink-soft">
+              {state.validated ? "Dati letti dal PDF, pronti per la validazione." : "Lettura del PDF in corso…"}
+            </p>
           </div>
+          <AgentFields state={state} typingKey={typingKey} />
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
+}
 
+function AgentFields({
+  state,
+  typingKey,
+  compact = false,
+}: {
+  state: AgentState;
+  typingKey: string | null;
+  compact?: boolean;
+}) {
   return (
-    <div className="flex h-full min-h-0 flex-col">
-      <WindowBar label="DDT · Mago / TeamSystem" />
-      <div className="grid min-h-0 flex-1 overflow-hidden sm:grid-cols-[minmax(0,1fr)_200px]">
-        <div className="min-w-0 overflow-hidden border-b border-hairline p-4 text-[11px] leading-[1.6] text-ink-2 sm:border-b-0 sm:border-r">
-          <h6 className="mb-3 border-b border-hairline pb-2 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
-            Documento di trasporto · PDF
-          </h6>
-          <p className="mb-2 text-[11.5px] font-medium text-ink">
-            DDT n. <HL>1842</HL> del <HL>12/05/2026</HL>
-          </p>
-          <p className="mb-2 text-[11.5px]">
-            Fornitore: <HL>Acciai Lombardi S.p.A.</HL>. Destinazione:{" "}
-            <HL>Magazzino centrale</HL>.
-          </p>
-          <p className="mb-2 text-[11.5px]">
-            <HL>12 righe articolo</HL>, imponibile <HL>€ 4.860,00</HL>.
-          </p>
-          <p className="text-[10.5px] text-ink-soft">
-            Dati letti dal PDF, pronti per la validazione.
-          </p>
-        </div>
-        <div className="flex min-w-0 flex-col overflow-hidden bg-paper-2 p-[14px]">
-          <h6 className="mb-2 flex justify-between border-b border-hairline pb-2 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
-            <span>Dati per ERP</span>
-            <span className="tracking-[0.08em] text-accent">● VALIDATO</span>
-          </h6>
-          <Field k="Numero DDT" v="1842" conf="0.99" />
-          <Field k="Fornitore" v="Acciai Lombardi" conf="0.98" />
-          <Field k="Data" v="12/05/2026" conf="0.99" />
-          <Field k="Righe" v="12 articoli" conf="0.96" />
-          <Field k="Totale" v="€ 4.860,00" conf="0.94" last />
-          <div className="mt-auto flex flex-wrap gap-2 pt-3">
-            <BtnMini>Carica ERP</BtnMini>
-            <BtnMini ghost>Modifica</BtnMini>
-          </div>
-        </div>
+    <div className={`flex min-w-0 flex-col overflow-hidden bg-paper-2 ${compact ? "p-5" : "p-[14px]"}`}>
+      <h6
+        className={`mb-2 flex justify-between font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft ${
+          compact ? "mb-3" : "border-b border-hairline pb-2"
+        }`}
+      >
+        <span>Dati per ERP</span>
+        {state.validated ? (
+          <span className="tracking-[0.08em] text-accent drop-shadow-[0_0_8px_rgba(105,85,123,0.35)]">
+            ● VALIDATO
+          </span>
+        ) : (
+          <span className="tracking-[0.08em] text-working">● IN LETTURA</span>
+        )}
+      </h6>
+      <Field
+        k="Numero DDT"
+        v={state.numero}
+        conf="0.99"
+        hit="field-numero"
+        typing={typingKey === "numero"}
+      />
+      <Field
+        k="Fornitore"
+        v={state.fornitore}
+        conf="0.98"
+        hit="field-fornitore"
+        typing={typingKey === "fornitore"}
+      />
+      <Field
+        k="Data"
+        v={state.data}
+        conf="0.99"
+        hit="field-data"
+        typing={typingKey === "data"}
+        last={compact}
+      />
+      {compact ? null : (
+        <>
+          <Field k="Righe" v={state.righe} conf="0.96" />
+          <Field k="Totale" v={state.totale} conf="0.94" last />
+        </>
+      )}
+      <div className={`mt-auto flex flex-wrap gap-2 ${compact ? "pt-4" : "pt-3"}`}>
+        <MockHit id="btn-carica">
+          <BtnMini>{state.loaded ? "Caricato" : "Carica ERP"}</BtnMini>
+        </MockHit>
+        <BtnMini ghost>Modifica</BtnMini>
       </div>
     </div>
   );
 }
 
+type TicketStatus = "open" | "work" | "done";
+type TicketsState = {
+  filter: "all" | "open";
+  t4129: TicketStatus;
+};
+
+const TICKETS_INITIAL: TicketsState = { filter: "all", t4129: "open" };
+const TICKETS_COMPLETE: TicketsState = { filter: "all", t4129: "work" };
+
+const TICKETS_STEPS: MockStep<TicketsState>[] = [
+  { type: "wait", ms: 400 },
+  { type: "move", to: "filter-open" },
+  { type: "click" },
+  { type: "set", patch: { filter: "open" } },
+  { type: "wait", ms: 420 },
+  { type: "move", to: "ticket-4129" },
+  { type: "click" },
+  { type: "set", patch: { t4129: "work" } },
+  { type: "wait", ms: 500 },
+  { type: "move", to: "filter-all" },
+  { type: "click" },
+  { type: "set", patch: { filter: "all" } },
+  { type: "wait", ms: 800 },
+];
+
 export function TicketsMock() {
-  const rows = [
-    { pri: "high", id: "FRIGO-4129", site: "Coop · cella -22°C", status: "open", own: "MR" },
+  const { state } = useMockPlayback(TICKETS_INITIAL, TICKETS_COMPLETE, TICKETS_STEPS);
+  const rows: {
+    pri: "high" | "med" | "low";
+    id: string;
+    site: string;
+    status: TicketStatus;
+    own: string;
+    hit?: string;
+  }[] = [
+    { pri: "high", id: "FRIGO-4129", site: "Coop · cella -22°C", status: state.t4129, own: "MR", hit: "ticket-4129" },
     { pri: "med", id: "FRIGO-4127", site: "Caseificio · evaporatore", status: "work", own: "AC" },
     { pri: "high", id: "FRIGO-4126", site: "Gelateria · compressore", status: "work", own: "MR" },
     { pri: "low", id: "FRIGO-4120", site: "Mercato · tarature", status: "done", own: "FB" },
-  ] as const;
+  ];
+  const visible = rows.filter((row) => state.filter === "all" || row.status === "open" || row.hit);
 
   return (
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="Operations · tickets" />
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <div className="flex items-center gap-[6px] border-b border-hairline px-4 py-2 font-mono text-[10px] tracking-[0.06em] text-ink-soft">
-          <ChipMini on>Tutti</ChipMini>
-          <ChipMini>Aperti</ChipMini>
+          <MockHit id="filter-all">
+            <ChipMini on={state.filter === "all"}>Tutti</ChipMini>
+          </MockHit>
+          <MockHit id="filter-open">
+            <ChipMini on={state.filter === "open"}>Aperti</ChipMini>
+          </MockHit>
           <ChipMini red>Critici · 3</ChipMini>
         </div>
-        {rows.map((r, i) => (
+        {visible.map((r, i) => (
           <div
             key={r.id}
-            className={`grid grid-cols-[12px_1fr_72px_24px] items-center gap-[10px] px-[14px] py-2 font-mono text-[10.5px] ${
-              i === rows.length - 1 ? "" : "border-b border-hairline"
+            data-mock-hit={r.hit}
+            className={`grid grid-cols-[12px_1fr_72px_24px] items-center gap-[10px] px-[14px] py-2 font-mono text-[10.5px] transition-opacity duration-300 ${
+              i === visible.length - 1 ? "" : "border-b border-hairline"
             }`}
           >
             <span
               className={`h-2 w-2 rounded-full ${
-                r.pri === "high"
-                  ? "bg-accent"
-                  : r.pri === "med"
-                    ? "bg-working"
-                    : "bg-[#6a8a3a]"
+                r.pri === "high" ? "bg-accent" : r.pri === "med" ? "bg-working" : "bg-[#6a8a3a]"
               }`}
             />
             <span className="truncate text-ink">
@@ -181,14 +331,41 @@ export function TicketsMock() {
   );
 }
 
+type WorkflowState = {
+  step: 4 | 5;
+  packing: string;
+  packingAuto: boolean;
+};
+
+const WORKFLOW_INITIAL: WorkflowState = { step: 4, packing: "", packingAuto: false };
+const WORKFLOW_COMPLETE: WorkflowState = {
+  step: 5,
+  packing: "tracciabilità + sigillo",
+  packingAuto: true,
+};
+
+const WORKFLOW_STEPS: MockStep<WorkflowState>[] = [
+  { type: "wait", ms: 400 },
+  { type: "move", to: "wf-step-5" },
+  { type: "click" },
+  { type: "set", patch: { step: 5 } },
+  { type: "wait", ms: 320 },
+  { type: "move", to: "wf-packing" },
+  { type: "click" },
+  { type: "type", key: "packing", text: "tracciabilità + sigillo", msPerChar: 28 },
+  { type: "set", patch: { packingAuto: true } },
+  { type: "wait", ms: 800 },
+];
+
 export function WorkflowMock() {
+  const { state, typingKey } = useMockPlayback(WORKFLOW_INITIAL, WORKFLOW_COMPLETE, WORKFLOW_STEPS);
   const steps = [
-    { n: "1", name: "Dati stabilimento", state: "done" },
-    { n: "2", name: "Diagramma flusso", state: "done" },
-    { n: "3", name: "Pericoli identificati", state: "done" },
-    { n: "4", name: "CCP · monitoraggio", state: "active" },
-    { n: "5", name: "Azioni correttive", state: "" },
-    { n: "6", name: "Allegati e firme", state: "" },
+    { n: "1", name: "Dati stabilimento", state: "done" as const },
+    { n: "2", name: "Diagramma flusso", state: "done" as const },
+    { n: "3", name: "Pericoli identificati", state: "done" as const },
+    { n: "4", name: "CCP · monitoraggio", state: state.step === 4 ? ("active" as const) : ("done" as const) },
+    { n: "5", name: "Azioni correttive", state: state.step === 5 ? ("active" as const) : ("" as const), hit: "wf-step-5" },
+    { n: "6", name: "Allegati e firme", state: "" as const },
   ];
 
   return (
@@ -199,6 +376,7 @@ export function WorkflowMock() {
           {steps.map((s) => (
             <div
               key={s.name}
+              data-mock-hit={s.hit}
               className={`grid grid-cols-[18px_1fr] items-center gap-2 rounded-lg px-2 py-[7px] font-mono text-[10.5px] ${
                 s.state === "done"
                   ? "bg-accent/[0.06] text-ink"
@@ -211,7 +389,9 @@ export function WorkflowMock() {
                 className={`flex h-4 w-4 items-center justify-center rounded-full text-[10px] leading-none ${
                   s.state === "done"
                     ? "bg-accent text-white"
-                    : "border border-hairline-strong text-ink-soft"
+                    : s.state === "active"
+                      ? "border border-accent text-accent"
+                      : "border border-hairline-strong text-ink-soft"
                 }`}
               >
                 {s.state === "done" ? <Check size={10} aria-hidden="true" /> : s.n}
@@ -222,25 +402,64 @@ export function WorkflowMock() {
         </div>
         <div className="flex flex-1 flex-col p-4">
           <h6 className="mb-3 flex justify-between border-b border-hairline pb-2 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
-            <span>CCP · monitoraggio</span>
-            <span className="text-accent">4 / 6</span>
+            <span>{state.step === 5 ? "Azioni correttive" : "CCP · monitoraggio"}</span>
+            <span className="text-accent">{state.step} / 6</span>
           </h6>
           <WfInput label="CCP-02 · Stoccaggio" v="≤ 4°C — controllo giornaliero" auto />
           <WfInput label="CCP-03 · Cottura" v="≥ 75°C al cuore — per lotto" auto />
-          <WfInput label="CCP-04 · Confezionamento" v="tracciabilità + sigillo" />
+          <WfInput
+            label="CCP-04 · Confezionamento"
+            v={state.packing}
+            auto={state.packingAuto}
+            hit="wf-packing"
+            typing={typingKey === "packing"}
+          />
         </div>
       </div>
     </div>
   );
 }
 
+type PreventiviState = {
+  draft: "Bozza" | "In offerta";
+  showNew: boolean;
+  newCli: string;
+};
+
+const PREVENTIVI_INITIAL: PreventiviState = { draft: "Bozza", showNew: false, newCli: "" };
+const PREVENTIVI_COMPLETE: PreventiviState = {
+  draft: "In offerta",
+  showNew: true,
+  newCli: "Lamiere Nord",
+};
+
+const PREVENTIVI_STEPS: MockStep<PreventiviState>[] = [
+  { type: "wait", ms: 400 },
+  { type: "move", to: "row-draft" },
+  { type: "click" },
+  { type: "set", patch: { draft: "In offerta" } },
+  { type: "wait", ms: 380 },
+  { type: "set", patch: { showNew: true } },
+  { type: "wait", ms: 220 },
+  { type: "move", to: "row-new" },
+  { type: "click" },
+  { type: "type", key: "newCli", text: "Lamiere Nord", msPerChar: 36 },
+  { type: "wait", ms: 800 },
+];
+
 export function PreventiviMock() {
+  const { state, typingKey } = useMockPlayback(
+    PREVENTIVI_INITIAL,
+    PREVENTIVI_COMPLETE,
+    PREVENTIVI_STEPS,
+  );
   const rows = [
     { id: "P-26-038", cli: "Officine R.", mat: "Inox 2 mm", eur: "4.860", st: "Vinto" },
     { id: "P-26-039", cli: "FerMec spa", mat: "Acc. galv. 3 mm", eur: "11.220", st: "In offerta" },
     { id: "P-26-040", cli: "Carrozz. P.", mat: "Alluminio 1,5", eur: "3.190", st: "In offerta" },
-    { id: "P-26-041", cli: "Studio L.", mat: "Inox 4 mm", eur: "9.870", st: "Bozza" },
+    { id: "P-26-041", cli: "Studio L.", mat: "Inox 4 mm", eur: "9.870", st: state.draft, hit: "row-draft" },
   ];
+
   return (
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="Preventivi · Q1" />
@@ -257,7 +476,7 @@ export function PreventiviMock() {
           </thead>
           <tbody>
             {rows.map((r) => (
-              <tr key={r.id} className="border-b border-hairline">
+              <tr key={r.id} data-mock-hit={r.hit} className="border-b border-hairline">
                 <Td>
                   <span className="text-accent">{r.id}</span>
                 </Td>
@@ -269,6 +488,24 @@ export function PreventiviMock() {
                 </Td>
               </tr>
             ))}
+            {state.showNew ? (
+              <tr data-mock-hit="row-new" className="border-b border-hairline">
+                <Td>
+                  <span className="text-accent">P-26-042</span>
+                </Td>
+                <Td>
+                  <span>
+                    {state.newCli || "—"}
+                    {typingKey === "newCli" ? <span className="mock-caret" /> : null}
+                  </span>
+                </Td>
+                <Td>Inox 2 mm</Td>
+                <Td right>6.140</Td>
+                <Td>
+                  <TblPill kind="Bozza" />
+                </Td>
+              </tr>
+            ) : null}
           </tbody>
         </table>
       </div>
@@ -276,14 +513,23 @@ export function PreventiviMock() {
   );
 }
 
-function HL({ children }: { children: React.ReactNode }) {
+function HL({
+  children,
+  on = true,
+  hit,
+}: {
+  children: React.ReactNode;
+  on?: boolean;
+  hit?: string;
+}) {
   return (
     <span
-      className="px-[2px]"
-      style={{
-        background: "rgba(105,85,123,0.14)",
-        borderBottom: "1px dotted #69557B",
-      }}
+      data-mock-hit={hit}
+      className={
+        on
+          ? "rounded-[3px] px-[3px] [background:linear-gradient(180deg,rgba(244,168,200,0.28),rgba(105,85,123,0.14))] [box-shadow:inset_0_-1px_0_rgba(105,85,123,0.28)]"
+          : "rounded-[3px] px-[3px]"
+      }
     >
       {children}
     </span>
@@ -295,18 +541,34 @@ function Field({
   v,
   conf,
   last,
+  hit,
+  typing,
 }: {
   k: string;
   v: string;
   conf: string;
   last?: boolean;
+  hit?: string;
+  typing?: boolean;
 }) {
   return (
-    <div className={`flex flex-col gap-[2px] py-2 ${last ? "" : "border-b border-hairline"}`}>
+    <div
+      data-mock-hit={hit}
+      className={`flex flex-col gap-[2px] py-2 ${last ? "" : "border-b border-hairline"}`}
+    >
       <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-ink-soft">{k}</span>
       <span className="flex items-baseline justify-between font-mono text-[11.5px] font-medium text-ink">
-        <span>{v}</span>
-        <span className="text-[9px] tracking-[0.06em] text-accent">{conf}</span>
+        <span>
+          {v || "—"}
+          {typing ? <span className="mock-caret" /> : null}
+        </span>
+        {v ? (
+          <span className="rounded-full bg-accent/10 px-1.5 py-px text-[9px] tracking-[0.06em] text-accent">
+            {conf}
+          </span>
+        ) : (
+          <span className="text-[9px] text-ink-soft">—</span>
+        )}
       </span>
     </div>
   );
@@ -315,10 +577,10 @@ function Field({
 function BtnMini({ children, ghost }: { children: React.ReactNode; ghost?: boolean }) {
   return (
     <span
-      className={`rounded-full px-[10px] py-[5px] font-mono text-[10px] uppercase tracking-[0.06em] ${
+      className={`inline-block rounded-full px-[10px] py-[5px] font-mono text-[10px] uppercase tracking-[0.06em] ${
         ghost
-          ? "border border-hairline-strong bg-transparent text-ink"
-          : "bg-ink text-paper"
+          ? "border border-hairline-strong bg-white/80 text-ink"
+          : "bg-ink text-paper shadow-[0_8px_18px_-10px_rgba(80,50,90,0.8)]"
       }`}
     >
       {children}
@@ -335,7 +597,7 @@ function ChipMini({
   on?: boolean;
   red?: boolean;
 }) {
-  const base = "rounded-full px-2 py-[3px] text-[9.5px] uppercase tracking-[0.06em]";
+  const base = "inline-block rounded-full px-2 py-[3px] text-[9.5px] uppercase tracking-[0.06em]";
   if (on) return <span className={`${base} bg-ink text-paper`}>{children}</span>;
   if (red) return <span className={`${base} bg-white text-accent`}>{children}</span>;
   return <span className={`${base} bg-white text-ink-soft`}>{children}</span>;
@@ -355,16 +617,31 @@ function StatusPill({ kind }: { kind: string }) {
   );
 }
 
-function WfInput({ label, v, auto }: { label: string; v: string; auto?: boolean }) {
+function WfInput({
+  label,
+  v,
+  auto,
+  hit,
+  typing,
+}: {
+  label: string;
+  v: string;
+  auto?: boolean;
+  hit?: string;
+  typing?: boolean;
+}) {
   return (
-    <div className="mb-[10px] flex flex-col gap-1">
+    <div className="mb-[10px] flex flex-col gap-1" data-mock-hit={hit}>
       <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-ink-soft">{label}</span>
       <div
         className={`flex items-baseline justify-between rounded-lg px-[10px] py-[6px] font-mono text-[11px] text-ink ${
           auto ? "bg-accent/[0.06]" : "bg-paper-2"
         }`}
       >
-        <span>{v}</span>
+        <span>
+          {v || "—"}
+          {typing ? <span className="mock-caret" /> : null}
+        </span>
         {auto ? <span className="text-[9px] tracking-[0.05em] text-accent">AUTO</span> : null}
       </div>
     </div>

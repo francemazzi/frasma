@@ -66,8 +66,8 @@ function UseCaseSlider() {
       name: t("platform.cards.agent.name"),
       description: t("platform.cards.agent.desc"),
       href: "/servizi/ddt-erp",
-      background: (
-        <MockStage variant="peach" badge={working}>
+      background: (active: boolean) => (
+        <MockStage variant="peach" badge={working} active={active}>
           <AgentMock />
         </MockStage>
       ),
@@ -76,8 +76,8 @@ function UseCaseSlider() {
       name: t("platform.cards.tickets.name"),
       description: t("platform.cards.tickets.desc"),
       href: "/servizi/ticketing-manutenzione",
-      background: (
-        <MockStage variant="teal" badge={working}>
+      background: (active: boolean) => (
+        <MockStage variant="teal" badge={working} active={active}>
           <TicketsMock />
         </MockStage>
       ),
@@ -86,8 +86,8 @@ function UseCaseSlider() {
       name: t("platform.cards.workflow.name"),
       description: t("platform.cards.workflow.desc"),
       href: "/servizi/procedure-guidate",
-      background: (
-        <MockStage variant="lavender">
+      background: (active: boolean) => (
+        <MockStage variant="lavender" active={active}>
           <WorkflowMock />
         </MockStage>
       ),
@@ -96,13 +96,13 @@ function UseCaseSlider() {
       name: t("platform.cards.preventivi.name"),
       description: t("platform.cards.preventivi.desc"),
       href: "/servizi/software-operativo",
-      background: (
-        <MockStage variant="mist">
+      background: (active: boolean) => (
+        <MockStage variant="mist" active={active}>
           <PreventiviMock />
         </MockStage>
       ),
     },
-  ] as const;
+  ];
 
   const total = slides.length;
 
@@ -159,7 +159,7 @@ function UseCaseSlider() {
           }
         }}
       >
-        {slides.map((slide) => (
+        {slides.map((slide, i) => (
           <article
             key={slide.href}
             className="w-[88%] shrink-0 snap-start sm:w-[min(40rem,86%)]"
@@ -170,7 +170,7 @@ function UseCaseSlider() {
               description={slide.description}
               href={slide.href}
               cta={t("platform.cards.cta")}
-              background={slide.background}
+              background={slide.background(index === i)}
             />
           </article>
         ))}

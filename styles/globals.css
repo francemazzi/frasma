@@ -114,21 +114,104 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
     background-size: 180px 180px;
     mix-blend-mode: overlay;
-    opacity: 0.5;
+    opacity: 0.38;
     pointer-events: none;
   }
 
   .grain-mesh-peach {
-    background: linear-gradient(135deg, #f6d7c3 0%, #f3e6d0 42%, #e8d0e4 100%);
+    background:
+      radial-gradient(circle at 18% 22%, rgba(255, 186, 198, 0.62), transparent 42%),
+      radial-gradient(circle at 86% 78%, rgba(105, 85, 123, 0.28), transparent 46%),
+      linear-gradient(135deg, #f8d4c4 0%, #f7e4d6 42%, #edd0e8 100%);
   }
   .grain-mesh-teal {
-    background: linear-gradient(135deg, #d5e8e2 0%, #e8ddd4 48%, #f0d5c8 100%);
+    background:
+      radial-gradient(circle at 16% 80%, rgba(255, 190, 204, 0.45), transparent 40%),
+      radial-gradient(circle at 78% 18%, rgba(168, 220, 210, 0.55), transparent 44%),
+      linear-gradient(135deg, #d7ebe4 0%, #efe3d8 50%, #f3d3dc 100%);
   }
   .grain-mesh-lavender {
-    background: linear-gradient(135deg, #e4d8ec 0%, #efe6e0 46%, #d9e4e8 100%);
+    background:
+      radial-gradient(circle at 22% 30%, rgba(216, 186, 232, 0.7), transparent 44%),
+      radial-gradient(circle at 84% 72%, rgba(255, 196, 208, 0.5), transparent 42%),
+      linear-gradient(135deg, #ead6f0 0%, #f4e8e2 48%, #dbe7ee 100%);
   }
   .grain-mesh-mist {
-    background: linear-gradient(135deg, #ece6f2 0%, #efe8e0 50%, #dce8e4 100%);
+    background:
+      radial-gradient(circle at 20% 18%, rgba(232, 210, 242, 0.7), transparent 40%),
+      radial-gradient(circle at 78% 82%, rgba(255, 198, 210, 0.48), transparent 46%),
+      linear-gradient(135deg, #efe8f4 0%, #f5ece4 52%, #e4efe8 100%);
+  }
+
+  .mock-love-blob {
+    animation: mock-love-blob 7s ease-in-out infinite;
+  }
+  .mock-love-blob-slow {
+    animation: mock-love-blob 11s ease-in-out infinite reverse;
+  }
+  .mock-love-pulse {
+    animation: mock-love-pulse 1.8s ease-in-out infinite;
+  }
+
+  .mock-caret {
+    display: inline-block;
+    width: 1px;
+    height: 0.85em;
+    margin-left: 1px;
+    vertical-align: -1px;
+    background: #69557b;
+    animation: mock-caret 0.9s steps(1) infinite;
+  }
+
+  .mock-click-ripple {
+    animation: mock-click-ripple 0.35s ease-out forwards;
+  }
+
+  @keyframes mock-love-blob {
+    0%,
+    100% {
+      transform: scale(1) translate(0, 0);
+    }
+    50% {
+      transform: scale(1.14) translate(10px, -8px);
+    }
+  }
+  @keyframes mock-love-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.45;
+      transform: scale(0.82);
+    }
+  }
+  @keyframes mock-caret {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes mock-click-ripple {
+    from {
+      transform: translate(-50%, -50%) scale(0.35);
+      opacity: 0.7;
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1.7);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mock-love-blob,
+    .mock-love-blob-slow,
+    .mock-love-pulse,
+    .mock-caret,
+    .mock-click-ripple {
+      animation: none;
+    }
   }
 
   /* Reveals are hidden only once the class on <html> confirms JS is running,
