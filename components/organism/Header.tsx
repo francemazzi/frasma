@@ -55,12 +55,12 @@ export default function Header() {
             </li>
           </ul>
 
-          <div className="flex items-center gap-4 sm:gap-5">
-            <div className="flex items-center gap-0 text-[10px] font-medium text-ink-soft tracking-[0.04em] sm:text-[11px] sm:tracking-[0.05em]">
+          <div className="flex items-center gap-5 sm:gap-6">
+            <div className="flex items-center gap-0 text-[12px] font-medium text-ink-soft tracking-[0.04em] sm:tracking-[0.05em]">
               <button
                 type="button"
                 onClick={() => setLang("it")}
-                className={`px-[6px] transition-colors ${
+                className={`inline-flex min-h-11 min-w-11 items-center justify-center transition-colors ${
                   lang === "it" ? "text-ink" : "hover:text-ink"
                 }`}
               >
@@ -70,7 +70,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setLang("en")}
-                className={`px-[6px] transition-colors ${
+                className={`inline-flex min-h-11 min-w-11 items-center justify-center transition-colors ${
                   lang === "en" ? "text-ink" : "hover:text-ink"
                 }`}
               >

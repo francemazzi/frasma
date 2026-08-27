@@ -6,6 +6,7 @@ import GrainMesh, { type GrainVariant } from "../atoms/GrainMesh";
 import {
   MockHit,
   MockScene,
+  useMockHitClass,
   useMockPlayback,
   type MockStep,
 } from "../atoms/MockScene";
@@ -24,7 +25,7 @@ export function MockStatusBadge({ className = "" }: { className?: string }) {
   if (!badge) return null;
   return (
     <span
-      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full bg-paper-2 px-2 py-0.5 text-[10px] font-medium text-ink ${className}`}
+      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full bg-paper-2 px-2 py-0.5 text-[12px] font-medium text-ink sm:text-[10px] ${className}`}
     >
       <span className="mock-love-pulse inline-block h-1.5 w-1.5 rounded-full bg-working" />
       {badge}
@@ -46,7 +47,7 @@ export function MockStage({
         <span className="mock-love-blob-slow absolute right-0 bottom-[-18%] h-48 w-48 rounded-full bg-[#c9b5e0]/65 blur-3xl" />
         <span className="mock-love-blob absolute left-[36%] top-[40%] h-28 w-28 rounded-full bg-[#ffd9c8]/55 blur-2xl" />
       </div>
-      <div className="relative z-[2] flex h-full min-h-0 items-stretch p-5 sm:p-7">
+      <div className="relative z-[2] flex h-full min-h-0 items-stretch p-3 sm:p-7">
         <div className="relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-2xl border border-white/80 bg-white/95 shadow-[0_22px_50px_-24px_rgba(80,50,90,0.5),0_0_36px_-10px_rgba(244,168,200,0.45)] ring-1 ring-[#f4a8c8]/20">
           <MockChromeContext.Provider value={{ badge }}>
             <MockScene active={active}>{children}</MockScene>
@@ -63,7 +64,7 @@ function WindowBar({ label }: { label: string }) {
       <span className="h-1.5 w-1.5 rounded-full bg-[#f4a8c8] shadow-[0_0_8px_rgba(244,168,200,0.85)]" />
       <span className="h-1.5 w-1.5 rounded-full bg-[#f0d4a8] shadow-[0_0_8px_rgba(240,212,168,0.7)]" />
       <span className="h-1.5 w-1.5 rounded-full bg-[#c9b5e0] shadow-[0_0_8px_rgba(201,181,224,0.75)]" />
-      <span className="ml-2 min-w-0 truncate font-mono text-[10px] tracking-[0.04em] text-ink-soft">
+      <span className="ml-2 min-w-0 truncate font-mono text-[12px] tracking-[0.04em] text-ink-soft sm:text-[10px]">
         {label}
       </span>
       <MockStatusBadge className="ml-auto" />
@@ -140,7 +141,7 @@ export function AgentMock({ compact = false }: { compact?: boolean }) {
       {compact ? (
         <div className="grid min-h-0 flex-1 grid-cols-1 overflow-hidden sm:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)]">
           <div className="min-w-0 overflow-hidden border-b border-hairline p-5 text-[12px] leading-[1.65] text-ink-2 sm:border-b-0 sm:border-r">
-            <h6 className="mb-3 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
+            <h6 className="mb-3 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
               Documento di trasporto · PDF
             </h6>
             <p className="mb-2 font-medium text-ink">
@@ -159,22 +160,22 @@ export function AgentMock({ compact = false }: { compact?: boolean }) {
         </div>
       ) : (
         <div className="grid min-h-0 flex-1 overflow-hidden sm:grid-cols-[minmax(0,1fr)_200px]">
-          <div className="min-w-0 overflow-hidden border-b border-hairline p-4 text-[11px] leading-[1.6] text-ink-2 sm:border-b-0 sm:border-r">
-            <h6 className="mb-3 border-b border-hairline pb-2 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
+          <div className="min-w-0 overflow-hidden border-b border-hairline p-4 text-[13px] leading-[1.6] text-ink-2 sm:border-b-0 sm:border-r sm:text-[11px]">
+            <h6 className="mb-3 border-b border-hairline pb-2 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
               Documento di trasporto · PDF
             </h6>
-            <p className="mb-2 text-[11.5px] font-medium text-ink">
+            <p className="mb-2 text-[13.5px] font-medium text-ink sm:text-[11.5px]">
               DDT n. <HL on={state.hl >= 1} hit="hl-1">1842</HL> del{" "}
               <HL on={state.hl >= 2} hit="hl-2">12/05/2026</HL>
             </p>
-            <p className="mb-2 text-[11.5px]">
+            <p className="mb-2 text-[13.5px] sm:text-[11.5px]">
               Fornitore: <HL on={state.hl >= 3} hit="hl-3">Acciai Lombardi S.p.A.</HL>. Destinazione:{" "}
               <HL on={state.hl >= 4}>Magazzino centrale</HL>.
             </p>
-            <p className="mb-2 text-[11.5px]">
+            <p className="mb-2 text-[13.5px] sm:text-[11.5px]">
               <HL on={state.hl >= 5}>12 righe articolo</HL>, imponibile <HL on={state.hl >= 5}>€ 4.860,00</HL>.
             </p>
-            <p className="text-[10.5px] text-ink-soft">
+            <p className="text-[12px] text-ink-soft sm:text-[10.5px]">
               {state.validated ? "Dati letti dal PDF, pronti per la validazione." : "Lettura del PDF in corso…"}
             </p>
           </div>
@@ -197,7 +198,7 @@ function AgentFields({
   return (
     <div className={`flex min-w-0 flex-col overflow-hidden bg-paper-2 ${compact ? "p-5" : "p-[14px]"}`}>
       <h6
-        className={`mb-2 flex justify-between font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft ${
+        className={`mb-2 flex justify-between font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px] ${
           compact ? "mb-3" : "border-b border-hairline pb-2"
         }`}
       >
@@ -294,7 +295,7 @@ export function TicketsMock() {
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="Operations · tickets" />
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-        <div className="flex items-center gap-[6px] border-b border-hairline px-4 py-2 font-mono text-[10px] tracking-[0.06em] text-ink-soft">
+        <div className="flex items-center gap-[6px] border-b border-hairline px-4 py-2 font-mono text-[12px] tracking-[0.06em] text-ink-soft sm:text-[10px]">
           <MockHit id="filter-all">
             <ChipMini on={state.filter === "all"}>Tutti</ChipMini>
           </MockHit>
@@ -304,27 +305,11 @@ export function TicketsMock() {
           <ChipMini red>Critici · 3</ChipMini>
         </div>
         {visible.map((r, i) => (
-          <div
+          <TicketRow
             key={r.id}
-            data-mock-hit={r.hit}
-            className={`grid grid-cols-[12px_1fr_72px_24px] items-center gap-[10px] px-[14px] py-2 font-mono text-[10.5px] transition-opacity duration-300 ${
-              i === visible.length - 1 ? "" : "border-b border-hairline"
-            }`}
-          >
-            <span
-              className={`h-2 w-2 rounded-full ${
-                r.pri === "high" ? "bg-accent" : r.pri === "med" ? "bg-working" : "bg-[#6a8a3a]"
-              }`}
-            />
-            <span className="truncate text-ink">
-              <span className="mr-2 font-medium text-accent">{r.id}</span>
-              {r.site}
-            </span>
-            <StatusPill kind={r.status} />
-            <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full bg-ink text-[9px] text-paper">
-              {r.own}
-            </span>
-          </div>
+            row={r}
+            last={i === visible.length - 1}
+          />
         ))}
       </div>
     </div>
@@ -374,34 +359,11 @@ export function WorkflowMock() {
       <div className="grid min-h-0 flex-1 overflow-hidden sm:grid-cols-[190px_minmax(0,1fr)]">
         <div className="flex w-full flex-col gap-[4px] border-b border-hairline bg-paper-2 p-[14px] sm:w-[190px] sm:border-b-0 sm:border-r">
           {steps.map((s) => (
-            <div
-              key={s.name}
-              data-mock-hit={s.hit}
-              className={`grid grid-cols-[18px_1fr] items-center gap-2 rounded-lg px-2 py-[7px] font-mono text-[10.5px] ${
-                s.state === "done"
-                  ? "bg-accent/[0.06] text-ink"
-                  : s.state === "active"
-                    ? "bg-white text-ink"
-                    : "text-ink-soft"
-              }`}
-            >
-              <span
-                className={`flex h-4 w-4 items-center justify-center rounded-full text-[10px] leading-none ${
-                  s.state === "done"
-                    ? "bg-accent text-white"
-                    : s.state === "active"
-                      ? "border border-accent text-accent"
-                      : "border border-hairline-strong text-ink-soft"
-                }`}
-              >
-                {s.state === "done" ? <Check size={10} aria-hidden="true" /> : s.n}
-              </span>
-              <span className="text-[10.5px]">{s.name}</span>
-            </div>
+            <WorkflowStepRow key={s.name} step={s} />
           ))}
         </div>
         <div className="flex flex-1 flex-col p-4">
-          <h6 className="mb-3 flex justify-between border-b border-hairline pb-2 font-mono text-[9.5px] uppercase tracking-[0.12em] text-ink-soft">
+          <h6 className="mb-3 flex justify-between border-b border-hairline pb-2 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
             <span>{state.step === 5 ? "Azioni correttive" : "CCP · monitoraggio"}</span>
             <span className="text-accent">{state.step} / 6</span>
           </h6>
@@ -464,7 +426,7 @@ export function PreventiviMock() {
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="Preventivi · Q1" />
       <div className="flex-1 overflow-x-auto">
-        <table className="w-full border-collapse font-mono text-[10.5px]">
+        <table className="w-full border-collapse font-mono text-[12.5px] sm:text-[10.5px]">
           <thead>
             <tr className="bg-paper-2">
               <Th>N°</Th>
@@ -476,40 +438,140 @@ export function PreventiviMock() {
           </thead>
           <tbody>
             {rows.map((r) => (
-              <tr key={r.id} data-mock-hit={r.hit} className="border-b border-hairline">
-                <Td>
-                  <span className="text-accent">{r.id}</span>
-                </Td>
-                <Td>{r.cli}</Td>
-                <Td>{r.mat}</Td>
-                <Td right>{r.eur}</Td>
-                <Td>
-                  <TblPill kind={r.st} />
-                </Td>
-              </tr>
+              <PreventivoRow key={r.id} row={r} />
             ))}
             {state.showNew ? (
-              <tr data-mock-hit="row-new" className="border-b border-hairline">
-                <Td>
-                  <span className="text-accent">P-26-042</span>
-                </Td>
-                <Td>
-                  <span>
-                    {state.newCli || "—"}
-                    {typingKey === "newCli" ? <span className="mock-caret" /> : null}
-                  </span>
-                </Td>
-                <Td>Inox 2 mm</Td>
-                <Td right>6.140</Td>
-                <Td>
-                  <TblPill kind="Bozza" />
-                </Td>
-              </tr>
+              <PreventivoRow
+                row={{
+                  id: "P-26-042",
+                  cli: state.newCli || "—",
+                  mat: "Inox 2 mm",
+                  eur: "6.140",
+                  st: "Bozza",
+                  hit: "row-new",
+                }}
+                typing={typingKey === "newCli"}
+              />
             ) : null}
           </tbody>
         </table>
       </div>
     </div>
+  );
+}
+
+function TicketRow({
+  row,
+  last,
+}: {
+  row: {
+    pri: "high" | "med" | "low";
+    id: string;
+    site: string;
+    status: TicketStatus;
+    own: string;
+    hit?: string;
+  };
+  last: boolean;
+}) {
+  const className = useMockHitClass(
+    row.hit,
+    `grid grid-cols-[12px_1fr_72px_24px] items-center gap-[10px] px-[14px] py-2 font-mono text-[12.5px] transition-opacity duration-300 sm:text-[10.5px] ${
+      last ? "" : "border-b border-hairline"
+    }`,
+  );
+
+  return (
+    <div data-mock-hit={row.hit} className={className}>
+      <span
+        className={`h-2 w-2 rounded-full ${
+          row.pri === "high" ? "bg-accent" : row.pri === "med" ? "bg-working" : "bg-[#6a8a3a]"
+        }`}
+      />
+      <span className="truncate text-ink">
+        <span className="mr-2 font-medium text-accent">{row.id}</span>
+        {row.site}
+      </span>
+      <StatusPill kind={row.status} />
+      <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full bg-ink text-[11px] text-paper sm:text-[9px]">
+        {row.own}
+      </span>
+    </div>
+  );
+}
+
+function WorkflowStepRow({
+  step,
+}: {
+  step: {
+    n: string;
+    name: string;
+    state: "done" | "active" | "";
+    hit?: string;
+  };
+}) {
+  const className = useMockHitClass(
+    step.hit,
+    `grid grid-cols-[18px_1fr] items-center gap-2 rounded-lg px-2 py-[7px] font-mono text-[12.5px] sm:text-[10.5px] ${
+      step.state === "done"
+        ? "bg-accent/[0.06] text-ink"
+        : step.state === "active"
+          ? "bg-white text-ink"
+          : "text-ink-soft"
+    }`,
+  );
+
+  return (
+    <div data-mock-hit={step.hit} className={className}>
+      <span
+        className={`flex h-4 w-4 items-center justify-center rounded-full text-[10px] leading-none ${
+          step.state === "done"
+            ? "bg-accent text-white"
+            : step.state === "active"
+              ? "border border-accent text-accent"
+              : "border border-hairline-strong text-ink-soft"
+        }`}
+      >
+        {step.state === "done" ? <Check size={10} aria-hidden="true" /> : step.n}
+      </span>
+      <span className="text-[12.5px] sm:text-[10.5px]">{step.name}</span>
+    </div>
+  );
+}
+
+function PreventivoRow({
+  row,
+  typing = false,
+}: {
+  row: {
+    id: string;
+    cli: string;
+    mat: string;
+    eur: string;
+    st: string;
+    hit?: string;
+  };
+  typing?: boolean;
+}) {
+  const className = useMockHitClass(row.hit, "border-b border-hairline");
+
+  return (
+    <tr data-mock-hit={row.hit} className={className}>
+      <Td>
+        <span className="text-accent">{row.id}</span>
+      </Td>
+      <Td>
+        <span>
+          {row.cli}
+          {typing ? <span className="mock-caret" /> : null}
+        </span>
+      </Td>
+      <Td>{row.mat}</Td>
+      <Td right>{row.eur}</Td>
+      <Td>
+        <TblPill kind={row.st} />
+      </Td>
+    </tr>
   );
 }
 
@@ -522,15 +584,15 @@ function HL({
   on?: boolean;
   hit?: string;
 }) {
+  const className = useMockHitClass(
+    hit,
+    on
+      ? "rounded-[3px] px-[3px] [background:linear-gradient(180deg,rgba(244,168,200,0.28),rgba(105,85,123,0.14))] [box-shadow:inset_0_-1px_0_rgba(105,85,123,0.28)]"
+      : "rounded-[3px] px-[3px]",
+  );
+
   return (
-    <span
-      data-mock-hit={hit}
-      className={
-        on
-          ? "rounded-[3px] px-[3px] [background:linear-gradient(180deg,rgba(244,168,200,0.28),rgba(105,85,123,0.14))] [box-shadow:inset_0_-1px_0_rgba(105,85,123,0.28)]"
-          : "rounded-[3px] px-[3px]"
-      }
-    >
+    <span data-mock-hit={hit} className={className}>
       {children}
     </span>
   );
@@ -551,23 +613,25 @@ function Field({
   hit?: string;
   typing?: boolean;
 }) {
+  const className = useMockHitClass(
+    hit,
+    `flex flex-col gap-[2px] py-2 ${last ? "" : "border-b border-hairline"}`,
+  );
+
   return (
-    <div
-      data-mock-hit={hit}
-      className={`flex flex-col gap-[2px] py-2 ${last ? "" : "border-b border-hairline"}`}
-    >
-      <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-ink-soft">{k}</span>
-      <span className="flex items-baseline justify-between font-mono text-[11.5px] font-medium text-ink">
+    <div data-mock-hit={hit} className={className}>
+      <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">{k}</span>
+      <span className="flex items-baseline justify-between font-mono text-[13.5px] font-medium text-ink sm:text-[11.5px]">
         <span>
           {v || "—"}
           {typing ? <span className="mock-caret" /> : null}
         </span>
         {v ? (
-          <span className="rounded-full bg-accent/10 px-1.5 py-px text-[9px] tracking-[0.06em] text-accent">
+          <span className="rounded-full bg-accent/10 px-1.5 py-px text-[11px] tracking-[0.06em] text-accent sm:text-[9px]">
             {conf}
           </span>
         ) : (
-          <span className="text-[9px] text-ink-soft">—</span>
+          <span className="text-[11px] text-ink-soft sm:text-[9px]">—</span>
         )}
       </span>
     </div>
@@ -577,7 +641,7 @@ function Field({
 function BtnMini({ children, ghost }: { children: React.ReactNode; ghost?: boolean }) {
   return (
     <span
-      className={`inline-block rounded-full px-[10px] py-[5px] font-mono text-[10px] uppercase tracking-[0.06em] ${
+      className={`inline-block rounded-full px-[10px] py-[5px] font-mono text-[12px] uppercase tracking-[0.06em] sm:text-[10px] ${
         ghost
           ? "border border-hairline-strong bg-white/80 text-ink"
           : "bg-ink text-paper shadow-[0_8px_18px_-10px_rgba(80,50,90,0.8)]"
@@ -597,7 +661,7 @@ function ChipMini({
   on?: boolean;
   red?: boolean;
 }) {
-  const base = "inline-block rounded-full px-2 py-[3px] text-[9.5px] uppercase tracking-[0.06em]";
+  const base = "inline-block rounded-full px-2 py-[3px] text-[12px] uppercase tracking-[0.06em] sm:text-[9.5px]";
   if (on) return <span className={`${base} bg-ink text-paper`}>{children}</span>;
   if (red) return <span className={`${base} bg-white text-accent`}>{children}</span>;
   return <span className={`${base} bg-white text-ink-soft`}>{children}</span>;
@@ -611,7 +675,7 @@ function StatusPill({ kind }: { kind: string }) {
   };
   const e = map[kind] ?? map.open;
   return (
-    <span className={`rounded-full px-[6px] py-[2px] text-center text-[9px] font-medium uppercase tracking-[0.06em] ${e.cls}`}>
+    <span className={`rounded-full px-[6px] py-[2px] text-center text-[11px] font-medium uppercase tracking-[0.06em] sm:text-[9px] ${e.cls}`}>
       {e.label}
     </span>
   );
@@ -631,10 +695,13 @@ function WfInput({
   typing?: boolean;
 }) {
   return (
-    <div className="mb-[10px] flex flex-col gap-1" data-mock-hit={hit}>
-      <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-ink-soft">{label}</span>
+    <div
+      className={useMockHitClass(hit, "mb-[10px] flex flex-col gap-1")}
+      data-mock-hit={hit}
+    >
+      <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">{label}</span>
       <div
-        className={`flex items-baseline justify-between rounded-lg px-[10px] py-[6px] font-mono text-[11px] text-ink ${
+        className={`flex items-baseline justify-between rounded-lg px-[10px] py-[6px] font-mono text-[13px] text-ink sm:text-[11px] ${
           auto ? "bg-accent/[0.06]" : "bg-paper-2"
         }`}
       >
@@ -642,7 +709,7 @@ function WfInput({
           {v || "—"}
           {typing ? <span className="mock-caret" /> : null}
         </span>
-        {auto ? <span className="text-[9px] tracking-[0.05em] text-accent">AUTO</span> : null}
+        {auto ? <span className="text-[11px] tracking-[0.05em] text-accent sm:text-[9px]">AUTO</span> : null}
       </div>
     </div>
   );
@@ -651,7 +718,7 @@ function WfInput({
 function Th({ children, right }: { children: React.ReactNode; right?: boolean }) {
   return (
     <th
-      className={`border-b border-hairline px-[14px] py-[7px] text-[9px] font-medium uppercase tracking-[0.1em] text-ink-soft ${
+      className={`border-b border-hairline px-[14px] py-[7px] text-[12px] font-medium uppercase tracking-[0.1em] text-ink-soft sm:text-[9px] ${
         right ? "text-right" : "text-left"
       }`}
     >
@@ -679,7 +746,7 @@ function TblPill({ kind }: { kind: string }) {
   };
   const cls = map[kind] ?? map.Bozza;
   return (
-    <span className={`inline-block rounded-full px-[6px] py-[2px] text-[9px] font-medium uppercase tracking-[0.06em] ${cls}`}>
+    <span className={`inline-block rounded-full px-[6px] py-[2px] text-[11px] font-medium uppercase tracking-[0.06em] sm:text-[9px] ${cls}`}>
       {kind}
     </span>
   );

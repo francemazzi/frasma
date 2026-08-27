@@ -27,9 +27,11 @@ type MockSceneValue = {
   playing: boolean;
   reducedMotion: boolean;
   forceComplete: boolean;
+  activeHit: string | null;
   setCursor: (pos: CursorPos) => void;
   setClicking: (value: boolean) => void;
   setCursorVisible: (value: boolean) => void;
+  setActiveHit: (id: string | null) => void;
 };
 
 const MockSceneContext = createContext<MockSceneValue | null>(null);
@@ -78,6 +80,7 @@ export function MockScene({
   const [clicking, setClicking] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(false);
   const [ripple, setRipple] = useState(0);
+  const [activeHit, setActiveHit] = useState<string | null>(null);
 
   const playing = Boolean(inView && active !== false && !reduce);
   const forceComplete = Boolean(reduce || active === false);
@@ -105,11 +108,13 @@ export function MockScene({
       playing,
       reducedMotion: Boolean(reduce),
       forceComplete,
+      activeHit,
       setCursor,
       setClicking,
       setCursorVisible,
+      setActiveHit,
     }),
-    [playing, reduce, forceComplete],
+    [playing, reduce, forceComplete, activeHit],
   );
 
   return (
@@ -168,16 +173,14 @@ function MockPointer({
       {ripple > 0 ? (
         <span
           key={ripple}
-          className="mock-click-ripple absolute left-0 top-0 h-8 w-8 rounded-full border border-[#f4a8c8]"
+          className="mock-click-ripple absolute left-0 top-0 h-10 w-10 rounded-full border border-[#f4a8c8] sm:h-8 sm:w-8"
         />
       ) : null}
-      <span className="absolute -left-2 -top-2 h-6 w-6 rounded-full bg-[#f4a8c8]/25 blur-md" />
+      <span className="absolute -left-2.5 -top-2.5 h-8 w-8 rounded-full bg-[#f4a8c8]/25 blur-md sm:-left-2 sm:-top-2 sm:h-6 sm:w-6" />
       <svg
-        width="18"
-        height="22"
         viewBox="0 0 18 22"
         fill="none"
-        className="relative drop-shadow-[0_2px_6px_rgba(80,50,90,0.35)]"
+        className="relative h-7 w-6 drop-shadow-[0_2px_6px_rgba(80,50,90,0.35)] sm:h-[22px] sm:w-[18px]"
       >
         <path
           d="M1.2 1.2 1.4 16.4 5.7 12.6 8.8 20.2 11.6 19.1 8.4 11.4 14.6 11.2 1.2 1.2Z"
@@ -211,6 +214,7 @@ export function useMockPlayback<T extends Record<string, unknown>>(
         setState(initial);
         setTypingKey(null);
         ctx.setCursorVisible(true);
+        ctx.setActiveHit(null);
         const stage = ctx.stageRef.current;
         if (stage) {
           const box = stage.getBoundingClientRect();
@@ -225,6 +229,7 @@ export function useMockPlayback<T extends Record<string, unknown>>(
           } else if (step.type === "move") {
             const pos = hitCenter(ctx.stageRef.current, step.to);
             if (pos) {
+              ctx.setActiveHit(step.to);
               ctx.setCursor(pos);
               await delay(step.duration ?? MOVE_MS, signal);
             }
@@ -262,11 +267,13 @@ export function useMockPlayback<T extends Record<string, unknown>>(
       setTypingKey(null);
       ctx.setCursorVisible(false);
       ctx.setClicking(false);
+      ctx.setActiveHit(null);
       return;
     }
     if (!playing) {
       ctx.setCursorVisible(false);
       ctx.setClicking(false);
+      ctx.setActiveHit(null);
       return;
     }
 
@@ -278,6 +285,12 @@ export function useMockPlayback<T extends Record<string, unknown>>(
   }, [complete, ctx, forceComplete, playing, reducedMotion, run]);
 
   return { state, typingKey };
+}
+
+export function useMockHitClass(id?: string, className = "") {
+  const ctx = useContext(MockSceneContext);
+  const focused = Boolean(id && ctx?.activeHit === id);
+  return [className, focused ? "mock-hit-active" : ""].filter(Boolean).join(" ");
 }
 
 export function MockHit({
@@ -292,7 +305,7 @@ export function MockHit({
   children: ReactNode;
 }) {
   return (
-    <Tag data-mock-hit={id} className={className}>
+    <Tag data-mock-hit={id} className={useMockHitClass(id, className)}>
       {children}
     </Tag>
   );

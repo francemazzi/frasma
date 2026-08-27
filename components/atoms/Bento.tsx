@@ -37,7 +37,7 @@ export function BentoCard({
 }: BentoCardProps) {
   return (
     <div
-      className={`ed-card-hover group relative flex min-h-0 flex-col overflow-hidden rounded-3xl border border-hairline-strong bg-paper-2 p-6 sm:p-7 ${className}`}
+      className={`ed-card-hover group relative flex min-h-0 flex-col overflow-hidden rounded-3xl border border-hairline-strong bg-paper-2 p-5 sm:p-7 ${className}`}
       {...props}
     >
       <h3 className="text-[22px] font-medium leading-[1.15] tracking-[-0.035em] text-ink">
@@ -57,10 +57,10 @@ export function BentoCard({
         <div className="mt-4">
           <Link
             href={href}
-            className="inline-flex items-center gap-1.5 text-[13px] font-medium text-accent"
+            className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-medium text-accent"
           >
             {cta}
-            <ArrowUpRight className="h-3.5 w-3.5" />
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
       ) : null}

@@ -55,7 +55,7 @@ export default function Intro() {
 
       <Reveal delay={0.2} className="pb-16 sm:pb-24">
         <div className="overflow-hidden rounded-3xl border border-hairline-strong">
-          <div className="h-[320px] sm:h-[420px] lg:h-[520px]">
+          <div className="h-[400px] sm:h-[420px] lg:h-[520px]">
             <MockStage variant="mist" badge={t("mock.working")}>
               <AgentMock compact />
             </MockStage>
