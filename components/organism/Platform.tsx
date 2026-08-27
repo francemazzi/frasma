@@ -165,7 +165,7 @@ function UseCaseSlider() {
             className="w-[92%] shrink-0 snap-start sm:w-[min(40rem,86%)]"
           >
             <BentoCard
-              className="h-auto min-h-[34rem] sm:h-[30rem] sm:min-h-0"
+              className="h-[24rem] sm:h-[30rem]"
               name={slide.name}
               description={slide.description}
               href={slide.href}

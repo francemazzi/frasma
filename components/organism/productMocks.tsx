@@ -40,7 +40,7 @@ export function MockStage({
   active,
 }: MockStageProps) {
   return (
-    <div className="relative h-full min-h-[220px] overflow-hidden">
+    <div className="relative h-full min-h-0 overflow-hidden sm:min-h-[220px]">
       <GrainMesh variant={variant} />
       <div className="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
         <span className="mock-love-blob absolute -left-10 top-2 h-44 w-44 rounded-full bg-[#f4b8c8]/70 blur-3xl" />
@@ -139,8 +139,8 @@ export function AgentMock({ compact = false }: { compact?: boolean }) {
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="DDT · Mago / TeamSystem" />
       {compact ? (
-        <div className="grid min-h-0 flex-1 grid-cols-1 overflow-hidden sm:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)]">
-          <div className="min-w-0 overflow-hidden border-b border-hairline p-5 text-[12px] leading-[1.65] text-ink-2 sm:border-b-0 sm:border-r">
+        <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] overflow-hidden">
+          <div className="min-w-0 overflow-hidden border-r border-hairline p-5 text-[12px] leading-[1.65] text-ink-2">
             <h6 className="mb-3 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
               Documento di trasporto · PDF
             </h6>
@@ -159,8 +159,8 @@ export function AgentMock({ compact = false }: { compact?: boolean }) {
           <AgentFields state={state} typingKey={typingKey} compact />
         </div>
       ) : (
-        <div className="grid min-h-0 flex-1 overflow-hidden sm:grid-cols-[minmax(0,1fr)_200px]">
-          <div className="min-w-0 overflow-hidden border-b border-hairline p-4 text-[13px] leading-[1.6] text-ink-2 sm:border-b-0 sm:border-r sm:text-[11px]">
+        <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1fr)_160px] overflow-hidden sm:grid-cols-[minmax(0,1fr)_200px]">
+          <div className="min-w-0 overflow-hidden border-r border-hairline p-4 text-[13px] leading-[1.6] text-ink-2 sm:text-[11px]">
             <h6 className="mb-3 border-b border-hairline pb-2 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
               Documento di trasporto · PDF
             </h6>
@@ -356,8 +356,8 @@ export function WorkflowMock() {
   return (
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="HACCP · PROC-04" />
-      <div className="grid min-h-0 flex-1 overflow-hidden sm:grid-cols-[190px_minmax(0,1fr)]">
-        <div className="flex w-full flex-col gap-[4px] border-b border-hairline bg-paper-2 p-[14px] sm:w-[190px] sm:border-b-0 sm:border-r">
+      <div className="grid min-h-0 flex-1 grid-cols-[132px_minmax(0,1fr)] overflow-hidden sm:grid-cols-[190px_minmax(0,1fr)]">
+        <div className="flex w-full flex-col gap-[4px] border-r border-hairline bg-paper-2 p-[14px]">
           {steps.map((s) => (
             <WorkflowStepRow key={s.name} step={s} />
           ))}
