@@ -60,7 +60,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setLang("it")}
-                className={`inline-flex min-h-11 min-w-11 items-center justify-center transition-colors ${
+                className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center transition-colors ${
                   lang === "it" ? "text-ink" : "hover:text-ink"
                 }`}
               >
@@ -70,7 +70,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setLang("en")}
-                className={`inline-flex min-h-11 min-w-11 items-center justify-center transition-colors ${
+                className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center transition-colors ${
                   lang === "en" ? "text-ink" : "hover:text-ink"
                 }`}
               >

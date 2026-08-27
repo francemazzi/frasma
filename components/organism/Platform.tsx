@@ -176,18 +176,18 @@ function UseCaseSlider() {
         ))}
       </div>
 
-      <div className="mt-5 flex items-center justify-between gap-4 pb-20 sm:pb-0">
+      <div className="mt-5 flex items-center gap-3 pb-20 pr-16 sm:justify-between sm:gap-4 sm:pb-0 sm:pr-0">
         <button
           type="button"
           onClick={() => goTo(index - 1)}
           disabled={index === 0}
           aria-label={t("useCases.previous")}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-hairline-strong text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
         >
           ←
         </button>
 
-        <div className="flex items-center gap-4">
+        <div className="flex min-w-0 flex-1 items-center justify-center gap-3 sm:flex-none sm:gap-4">
           <div className="flex items-baseline gap-[6px] text-[15px] font-medium leading-none">
             <span className="text-accent">{String(index + 1).padStart(2, "0")}</span>
             <span className="text-[13px] text-ink-faint">/</span>
@@ -216,7 +216,7 @@ function UseCaseSlider() {
           onClick={() => goTo(index + 1)}
           disabled={index === total - 1}
           aria-label={t("useCases.next")}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-hairline-strong text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
         >
           →
         </button>

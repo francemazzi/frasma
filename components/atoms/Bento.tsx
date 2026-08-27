@@ -57,7 +57,7 @@ export function BentoCard({
         <div className="mt-4">
           <Link
             href={href}
-            className="inline-flex min-h-11 items-center gap-1.5 text-[15px] font-medium text-accent"
+            className="inline-flex min-h-[44px] items-center gap-1.5 text-[15px] font-medium text-accent"
           >
             {cta}
             <ArrowUpRight className="h-4 w-4" />

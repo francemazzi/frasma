@@ -734,7 +734,7 @@ export default function ChatWidget() {
         <button
           type="button"
           onClick={handleOpen}
-          className="fixed z-50 inline-flex min-h-11 min-w-11 items-center justify-center gap-[10px] rounded-full bg-ink px-3 py-3 font-sans text-sm font-medium text-paper transition-colors hover:bg-accent bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6 sm:min-w-0 sm:justify-start sm:px-[18px] sm:pl-[14px]"
+          className="fixed z-50 inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-[10px] rounded-full bg-ink px-3 py-3 font-sans text-sm font-medium text-paper transition-colors hover:bg-accent bottom-[max(1rem,env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] sm:bottom-6 sm:right-6 sm:min-w-0 sm:justify-start sm:px-[18px] sm:pl-[14px]"
           aria-label={t("chat.title")}
         >
           <Image
