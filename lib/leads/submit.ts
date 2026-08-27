@@ -29,6 +29,7 @@ export type LeadDocument = {
   process: string;
   systems?: string;
   volume?: string;
+  landing?: string;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -75,6 +76,7 @@ async function persistProjectBrief(
       process: input.process,
       ...(input.systems ? { systems: input.systems } : {}),
       ...(input.volume ? { volume: input.volume } : {}),
+      ...(input.landing ? { landing: input.landing } : {}),
       createdAt: now,
       updatedAt: now,
     };

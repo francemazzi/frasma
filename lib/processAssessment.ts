@@ -74,6 +74,7 @@ export type ProjectBriefFields = z.infer<typeof ProjectBriefFieldsSchema>;
 export const ProcessAssessmentSchema = ProjectBriefFieldsSchema.extend({
   conversationId: optionalText(36),
   lang: z.enum(["it", "en"]).optional(),
+  landing: optionalText(200),
   honeypot: z.string().max(0).optional(),
 }).strict();
 

@@ -105,7 +105,7 @@ export const personJsonLd = {
   },
   sameAs: [...PROFILE_SAME_AS],
   knowsAbout: [
-    "Automazione processi aziendali",
+    "Automazione AI e integrazione ERP",
     "Automazione documentale",
     "Estrazione dati da PDF",
     "Automazione email aziendali",
@@ -134,7 +134,7 @@ export const professionalServiceJsonLd = {
     "@id": `${SITE_URL}/#person`,
   },
   description:
-    "Automazione di processi aziendali e documentali per PMI manifatturiere e agroalimentari: colleghiamo email, PDF, Excel ed ERP mantenendo controllo umano e sistemi esistenti.",
+    "Automazione AI e integrazione ERP per PMI manifatturiere: colleghiamo email, PDF, Excel ed ERP con controlli automatici e approvazione umana, senza sostituire i sistemi esistenti.",
   areaServed: [
     {
       "@type": "Country",

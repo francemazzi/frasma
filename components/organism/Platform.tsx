@@ -73,6 +73,16 @@ function UseCaseSlider() {
       ),
     },
     {
+      name: t("platform.cards.preventivi.name"),
+      description: t("platform.cards.preventivi.desc"),
+      href: "/servizi/software-operativo",
+      background: (active: boolean) => (
+        <MockStage variant="mist" active={active}>
+          <PreventiviMock />
+        </MockStage>
+      ),
+    },
+    {
       name: t("platform.cards.tickets.name"),
       description: t("platform.cards.tickets.desc"),
       href: "/servizi/ticketing-manutenzione",
@@ -89,16 +99,6 @@ function UseCaseSlider() {
       background: (active: boolean) => (
         <MockStage variant="lavender" active={active}>
           <WorkflowMock />
-        </MockStage>
-      ),
-    },
-    {
-      name: t("platform.cards.preventivi.name"),
-      description: t("platform.cards.preventivi.desc"),
-      href: "/servizi/software-operativo",
-      background: (active: boolean) => (
-        <MockStage variant="mist" active={active}>
-          <PreventiviMock />
         </MockStage>
       ),
     },
