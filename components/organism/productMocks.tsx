@@ -141,7 +141,7 @@ export function AgentMock({ compact = false }: { compact?: boolean }) {
       {compact ? (
         <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] overflow-hidden">
           <div className="min-w-0 overflow-hidden border-r border-hairline p-5 text-[12px] leading-[1.65] text-ink-2">
-            <h6 className="mb-3 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
+            <h6 className="mb-3 truncate font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
               Documento di trasporto · PDF
             </h6>
             <p className="mb-2 font-medium text-ink">
@@ -198,17 +198,17 @@ function AgentFields({
   return (
     <div className={`flex min-w-0 flex-col overflow-hidden bg-paper-2 ${compact ? "p-5" : "p-[14px]"}`}>
       <h6
-        className={`mb-2 flex justify-between font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px] ${
+        className={`mb-2 flex justify-between gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px] ${
           compact ? "mb-3" : "border-b border-hairline pb-2"
         }`}
       >
-        <span>Dati per ERP</span>
+        <span className="min-w-0 truncate">Dati per ERP</span>
         {state.validated ? (
-          <span className="tracking-[0.08em] text-accent drop-shadow-[0_0_8px_rgba(105,85,123,0.35)]">
+          <span className="shrink-0 tracking-[0.08em] text-accent drop-shadow-[0_0_8px_rgba(105,85,123,0.35)]">
             ● VALIDATO
           </span>
         ) : (
-          <span className="tracking-[0.08em] text-working">● IN LETTURA</span>
+          <span className="shrink-0 tracking-[0.08em] text-working">● IN LETTURA</span>
         )}
       </h6>
       <Field
@@ -295,7 +295,7 @@ export function TicketsMock() {
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="Operations · tickets" />
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-        <div className="flex items-center gap-[6px] border-b border-hairline px-4 py-2 font-mono text-[12px] tracking-[0.06em] text-ink-soft sm:text-[10px]">
+        <div className="flex min-w-0 items-center gap-[6px] overflow-hidden border-b border-hairline px-3 py-2 font-mono text-[12px] tracking-[0.06em] text-ink-soft sm:px-4 sm:text-[10px]">
           <MockHit id="filter-all">
             <ChipMini on={state.filter === "all"}>Tutti</ChipMini>
           </MockHit>
@@ -356,16 +356,18 @@ export function WorkflowMock() {
   return (
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="HACCP · PROC-04" />
-      <div className="grid min-h-0 flex-1 grid-cols-[132px_minmax(0,1fr)] overflow-hidden sm:grid-cols-[190px_minmax(0,1fr)]">
-        <div className="flex w-full flex-col gap-[4px] border-r border-hairline bg-paper-2 p-[14px]">
+      <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,38%)_minmax(0,1fr)] overflow-hidden sm:grid-cols-[190px_minmax(0,1fr)]">
+        <div className="flex min-w-0 flex-col gap-[4px] overflow-hidden border-r border-hairline bg-paper-2 p-2 sm:p-[14px]">
           {steps.map((s) => (
             <WorkflowStepRow key={s.name} step={s} />
           ))}
         </div>
-        <div className="flex flex-1 flex-col p-4">
-          <h6 className="mb-3 flex justify-between border-b border-hairline pb-2 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
-            <span>{state.step === 5 ? "Azioni correttive" : "CCP · monitoraggio"}</span>
-            <span className="text-accent">{state.step} / 6</span>
+        <div className="flex min-w-0 flex-1 flex-col overflow-hidden p-3 sm:p-4">
+          <h6 className="mb-3 flex justify-between gap-2 border-b border-hairline pb-2 font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
+            <span className="min-w-0 truncate">
+              {state.step === 5 ? "Azioni correttive" : "CCP · monitoraggio"}
+            </span>
+            <span className="shrink-0 text-accent">{state.step} / 6</span>
           </h6>
           <WfInput label="CCP-02 · Stoccaggio" v="≤ 4°C — controllo giornaliero" auto />
           <WfInput label="CCP-03 · Cottura" v="≥ 75°C al cuore — per lotto" auto />
@@ -425,8 +427,8 @@ export function PreventiviMock() {
   return (
     <div className="flex h-full min-h-0 flex-col">
       <WindowBar label="Preventivi · Q1" />
-      <div className="flex-1 overflow-x-auto">
-        <table className="w-full border-collapse font-mono text-[12.5px] sm:text-[10.5px]">
+      <div className="min-w-0 flex-1 overflow-hidden">
+        <table className="w-full min-w-0 table-fixed border-collapse font-mono text-[12.5px] sm:text-[10.5px]">
           <thead>
             <tr className="bg-paper-2">
               <Th>N°</Th>
@@ -512,7 +514,7 @@ function WorkflowStepRow({
 }) {
   const className = useMockHitClass(
     step.hit,
-    `grid grid-cols-[18px_1fr] items-center gap-2 rounded-lg px-2 py-[7px] font-mono text-[12.5px] sm:text-[10.5px] ${
+    `grid min-w-0 grid-cols-[18px_minmax(0,1fr)] items-center gap-1.5 rounded-lg px-1.5 py-[7px] font-mono text-[12.5px] sm:gap-2 sm:px-2 sm:text-[10.5px] ${
       step.state === "done"
         ? "bg-accent/[0.06] text-ink"
         : step.state === "active"
@@ -534,7 +536,7 @@ function WorkflowStepRow({
       >
         {step.state === "done" ? <Check size={10} aria-hidden="true" /> : step.n}
       </span>
-      <span className="text-[12.5px] sm:text-[10.5px]">{step.name}</span>
+      <span className="min-w-0 truncate text-[12.5px] sm:text-[10.5px]">{step.name}</span>
     </div>
   );
 }
@@ -615,23 +617,25 @@ function Field({
 }) {
   const className = useMockHitClass(
     hit,
-    `flex flex-col gap-[2px] py-2 ${last ? "" : "border-b border-hairline"}`,
+    `flex min-w-0 flex-col gap-[2px] py-2 ${last ? "" : "border-b border-hairline"}`,
   );
 
   return (
     <div data-mock-hit={hit} className={className}>
-      <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">{k}</span>
-      <span className="flex items-baseline justify-between font-mono text-[13.5px] font-medium text-ink sm:text-[11.5px]">
-        <span>
+      <span className="truncate font-mono text-[12px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">
+        {k}
+      </span>
+      <span className="flex min-w-0 items-baseline justify-between gap-2 font-mono text-[13.5px] font-medium text-ink sm:text-[11.5px]">
+        <span className="min-w-0 truncate">
           {v || "—"}
           {typing ? <span className="mock-caret" /> : null}
         </span>
         {v ? (
-          <span className="rounded-full bg-accent/10 px-1.5 py-px text-[11px] tracking-[0.06em] text-accent sm:text-[9px]">
+          <span className="shrink-0 rounded-full bg-accent/10 px-1.5 py-px text-[11px] tracking-[0.06em] text-accent sm:text-[9px]">
             {conf}
           </span>
         ) : (
-          <span className="text-[11px] text-ink-soft sm:text-[9px]">—</span>
+          <span className="shrink-0 text-[11px] text-ink-soft sm:text-[9px]">—</span>
         )}
       </span>
     </div>
@@ -696,20 +700,24 @@ function WfInput({
 }) {
   return (
     <div
-      className={useMockHitClass(hit, "mb-[10px] flex flex-col gap-1")}
+      className={useMockHitClass(hit, "mb-[10px] flex min-w-0 flex-col gap-1")}
       data-mock-hit={hit}
     >
-      <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">{label}</span>
+      <span className="truncate font-mono text-[12px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">
+        {label}
+      </span>
       <div
-        className={`flex items-baseline justify-between rounded-lg px-[10px] py-[6px] font-mono text-[13px] text-ink sm:text-[11px] ${
+        className={`flex min-w-0 items-baseline justify-between gap-2 rounded-lg px-[10px] py-[6px] font-mono text-[13px] text-ink sm:text-[11px] ${
           auto ? "bg-accent/[0.06]" : "bg-paper-2"
         }`}
       >
-        <span>
+        <span className="min-w-0 truncate">
           {v || "—"}
           {typing ? <span className="mock-caret" /> : null}
         </span>
-        {auto ? <span className="text-[11px] tracking-[0.05em] text-accent sm:text-[9px]">AUTO</span> : null}
+        {auto ? (
+          <span className="shrink-0 text-[11px] tracking-[0.05em] text-accent sm:text-[9px]">AUTO</span>
+        ) : null}
       </div>
     </div>
   );
@@ -718,7 +726,7 @@ function WfInput({
 function Th({ children, right }: { children: React.ReactNode; right?: boolean }) {
   return (
     <th
-      className={`border-b border-hairline px-[14px] py-[7px] text-[12px] font-medium uppercase tracking-[0.1em] text-ink-soft sm:text-[9px] ${
+      className={`truncate border-b border-hairline px-2 py-[7px] text-[12px] font-medium uppercase tracking-[0.1em] text-ink-soft sm:px-[14px] sm:text-[9px] ${
         right ? "text-right" : "text-left"
       }`}
     >
@@ -730,7 +738,7 @@ function Th({ children, right }: { children: React.ReactNode; right?: boolean })
 function Td({ children, right }: { children: React.ReactNode; right?: boolean }) {
   return (
     <td
-      className={`px-[14px] py-[7px] ${right ? "text-right" : "text-left"}`}
+      className={`truncate px-2 py-[7px] sm:px-[14px] ${right ? "text-right" : "text-left"}`}
       style={right ? { fontVariantNumeric: "tabular-nums" } : undefined}
     >
       {children}
