@@ -68,7 +68,7 @@ function UseCaseSlider() {
       href: "/servizi/ddt-erp",
       background: (active: boolean) => (
         <MockStage variant="peach" badge={working} active={active}>
-          <AgentMock />
+          <AgentMock compact />
         </MockStage>
       ),
     },
@@ -162,10 +162,10 @@ function UseCaseSlider() {
         {slides.map((slide, i) => (
           <article
             key={slide.href}
-            className="w-[88%] shrink-0 snap-start sm:w-[min(40rem,86%)]"
+            className="w-[92%] shrink-0 snap-start sm:w-[min(40rem,86%)]"
           >
             <BentoCard
-              className="h-[28rem] sm:h-[30rem]"
+              className="h-[24rem] sm:h-[30rem]"
               name={slide.name}
               description={slide.description}
               href={slide.href}
@@ -176,18 +176,18 @@ function UseCaseSlider() {
         ))}
       </div>
 
-      <div className="mt-5 flex items-center justify-between gap-4">
+      <div className="mt-5 flex items-center gap-3 pb-20 pr-16 sm:justify-between sm:gap-4 sm:pb-0 sm:pr-0">
         <button
           type="button"
           onClick={() => goTo(index - 1)}
           disabled={index === 0}
           aria-label={t("useCases.previous")}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline-strong text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
         >
           ←
         </button>
 
-        <div className="flex items-center gap-4">
+        <div className="flex min-w-0 flex-1 items-center justify-center gap-3 sm:flex-none sm:gap-4">
           <div className="flex items-baseline gap-[6px] text-[15px] font-medium leading-none">
             <span className="text-accent">{String(index + 1).padStart(2, "0")}</span>
             <span className="text-[13px] text-ink-faint">/</span>
@@ -203,7 +203,7 @@ function UseCaseSlider() {
                 onClick={() => goTo(i)}
                 aria-label={`${t("useCases.pageWord")} ${i + 1}`}
                 aria-current={i === index ? "true" : undefined}
-                className={`h-[3px] rounded-[1px] transition-all ${
+                className={`h-1.5 rounded-[1px] transition-all ${
                   i === index ? "w-8 bg-accent" : "w-6 bg-hairline-strong hover:bg-ink-soft"
                 }`}
               />
@@ -216,7 +216,7 @@ function UseCaseSlider() {
           onClick={() => goTo(index + 1)}
           disabled={index === total - 1}
           aria-label={t("useCases.next")}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline-strong text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-hairline-strong text-[20px] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-30"
         >
           →
         </button>

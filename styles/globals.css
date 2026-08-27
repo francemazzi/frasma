@@ -167,6 +167,23 @@
     animation: mock-click-ripple 0.35s ease-out forwards;
   }
 
+  .mock-hit-active {
+    position: relative;
+    z-index: 1;
+    border-radius: 6px;
+    box-shadow:
+      0 0 0 2px #f4a8c8,
+      0 0 0 6px rgba(244, 168, 200, 0.28);
+  }
+
+  @media (max-width: 639px) {
+    .mock-hit-active {
+      box-shadow: none;
+      outline: 1.5px solid #f4a8c8;
+      outline-offset: -1.5px;
+    }
+  }
+
   @keyframes mock-love-blob {
     0%,
     100% {

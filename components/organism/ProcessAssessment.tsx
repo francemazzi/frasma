@@ -634,7 +634,7 @@ export default function ProcessAssessment({
       <button
         ref={triggerRef}
         type="button"
-        className={`btn-ink ${compact ? "!px-4 !py-2 text-[13px]" : ""}`}
+        className={`btn-ink ${compact ? "!min-h-[44px] !px-4 !py-2 text-[13px]" : ""}`}
         onClick={() => {
           setStatus("idle");
           setErrorMessage("");
