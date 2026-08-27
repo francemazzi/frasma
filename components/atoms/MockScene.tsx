@@ -135,8 +135,14 @@ export function MockScene({
   const [ripple, setRipple] = useState(0);
   const [activeHit, setActiveHit] = useState<string | null>(null);
 
-  const playing = Boolean(inView && active !== false && !reduce);
+  const playing = Boolean(
+    !reduce && active !== false && (active === true || inView),
+  );
   const forceComplete = Boolean(reduce || active === false);
+
+  useEffect(() => {
+    if (active === true) setInView(true);
+  }, [active]);
 
   useEffect(() => {
     const node = stageRef.current;
