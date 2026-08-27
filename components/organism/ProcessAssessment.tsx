@@ -38,6 +38,7 @@ type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
 const TOTAL_STEPS = 4;
 const DISCOUNT_PATH = "/discount?conv=contact";
+const FINAL_SUBMIT_GUARD_MS = 400;
 
 const INITIAL_FORM: FormState = {
   name: "",
@@ -83,6 +84,7 @@ export default function ProcessAssessment({
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [finalSubmitReady, setFinalSubmitReady] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -133,6 +135,18 @@ export default function ProcessAssessment({
     if (wasOpenRef.current && !isOpen) triggerRef.current?.focus();
     wasOpenRef.current = isOpen;
   }, [isOpen]);
+
+  useEffect(() => {
+    if (currentStep !== TOTAL_STEPS) {
+      setFinalSubmitReady(false);
+      return;
+    }
+    setFinalSubmitReady(false);
+    const timer = window.setTimeout(() => {
+      setFinalSubmitReady(true);
+    }, FINAL_SUBMIT_GUARD_MS);
+    return () => window.clearTimeout(timer);
+  }, [currentStep]);
 
   const patchForm = (patch: Partial<FormState>) => {
     setForm((current) => ({ ...current, ...patch }));
@@ -190,12 +204,16 @@ export default function ProcessAssessment({
     setCurrentStep((step) => (step > 1 ? ((step - 1) as Step) : step));
   };
 
-  const submit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (currentStep < TOTAL_STEPS) {
       goNext();
-      return;
     }
+  };
+
+  const sendAssessment = async () => {
+    if (currentStep !== TOTAL_STEPS || !finalSubmitReady) return;
+    if (status === "submitting") return;
 
     const contactError = validateStep(1);
     if (contactError) {
@@ -376,7 +394,7 @@ export default function ProcessAssessment({
                 <form
                   className="flex min-h-0 flex-1 flex-col"
                   lang={lang}
-                  onSubmit={submit}
+                  onSubmit={handleFormSubmit}
                 >
                   <div className="min-h-0 flex-1 space-y-4 overflow-y-auto p-5 sm:p-6">
                     {currentStep === 1 ? (
@@ -590,9 +608,12 @@ export default function ProcessAssessment({
                       </button>
                     ) : (
                       <button
-                        type="submit"
+                        type="button"
                         className="btn-ink w-full disabled:opacity-60 sm:w-auto"
-                        disabled={status === "submitting"}
+                        disabled={status === "submitting" || !finalSubmitReady}
+                        onClick={() => {
+                          void sendAssessment();
+                        }}
                       >
                         {status === "submitting"
                           ? t("assessment.sending")
