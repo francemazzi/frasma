@@ -84,7 +84,7 @@ function hitCenter(stage: HTMLElement | null, id: string): CursorPos | null {
   while (node && node !== stage) {
     x += node.offsetLeft;
     y += node.offsetTop;
-    const parent = node.offsetParent;
+    const parent: Element | null = node.offsetParent;
     if (!(parent instanceof HTMLElement)) {
       return scaledHitCenter(stage, el);
     }
