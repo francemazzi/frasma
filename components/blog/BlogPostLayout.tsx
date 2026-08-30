@@ -4,7 +4,9 @@ import Header from "../organism/Header";
 import Footer from "../organism/Footer";
 import RelatedPosts from "./RelatedPosts";
 import TagList from "./TagList";
+import FundingUseCaseCarousel from "./FundingUseCaseCarousel";
 import { formatItalianDate } from "../../lib/blog/format";
+import { getFundingDemo } from "../../lib/blog/fundingDemos";
 import type { BlogPostSummary } from "../../lib/blog/types";
 
 type BlogPostLayoutProps = {
@@ -16,6 +18,8 @@ export default function BlogPostLayout({
   post,
   relatedPosts = [],
 }: BlogPostLayoutProps) {
+  const fundingDemo = getFundingDemo(post.slug);
+
   return (
     <main className="min-h-screen max-w-[100vw] overflow-x-clip bg-paper font-sans">
       <Header />
@@ -49,6 +53,14 @@ export default function BlogPostLayout({
         )}
 
         {post.tags && post.tags.length > 0 && <TagList tags={post.tags} />}
+
+        {fundingDemo ? (
+          <FundingUseCaseCarousel
+            title={fundingDemo.title}
+            intro={fundingDemo.intro}
+            slides={fundingDemo.slides}
+          />
+        ) : null}
 
         <div
           className="blog-content prose prose-lg max-w-full min-w-0 text-farm-secondary space-y-6"

@@ -4,6 +4,7 @@ title: "Iperammortamento 2026–2028: come usarlo per software AI, server e sist
 seoTitle: "Iperammortamento 2026 software AI e hardware | Frasma"
 seoDescription: "Guida operativa all’iperammortamento 2026–2028: agevolazione fiscale, non contributo. Cosa copre per software AI, agenti, server GPU e interconnessione, con esempi Frasma."
 excerpt: "Il nuovo iperammortamento è un’agevolazione fiscale nazionale, non un contributo in conto. Serve per beni interconnessi, hardware AI e software: è la leva più utile se il cliente è a Mantova o fuori dai territori SI4.0."
+coverImage: /images/blog/cover-iperammortamento-2026.png
 publishedAt: "2026-08-30"
 updatedAt: "2026-08-30"
 tags:
@@ -58,7 +59,7 @@ Non promettiamo che un determinato software “è automaticamente Allegato V”:
 
 ## Esempi concreti di progetto
 
-Gli importi sotto sono illustrativi. Servono a mostrare il mix software + hardware, non a stimare il risparmio fiscale.
+Sopra, il carosello mostra server, documenti e linea. Gli importi sotto sono illustrativi: servono a mostrare il mix software + hardware, non a stimare il risparmio fiscale.
 
 ### 1. AI on-premise: server GPU, RAG interno e collegamento all’ERP
 

@@ -4,6 +4,7 @@ title: "Voucher Cloud e Cybersecurity 2026: cosa copre e cosa può fare Frasma"
 seoTitle: "Voucher Cloud e Cybersecurity 2026 | Frasma"
 seoDescription: "Voucher MIMIT al 50% fino a 20.000 euro per cloud e cybersecurity. Date dello sportello, elenco fornitori accreditati e come si integra un progetto software Frasma."
 excerpt: "Il Voucher Cloud e Cybersecurity rimborsa il 50% di prodotti e servizi accreditati, fino a 20.000 euro. Lo sportello apre il 10 novembre 2026. Frasma non è automaticamente fornitore di questa misura: può occuparsi di tecnica, preventivo e integrazione."
+coverImage: /images/blog/cover-voucher-cloud-2026.png
 publishedAt: "2026-08-30"
 updatedAt: "2026-08-30"
 tags:
@@ -67,7 +68,7 @@ Due modi onesti di usarlo insieme a un intervento Frasma:
 
 ## Esempi concreti di progetto
 
-Importi illustrativi. La quota voucher vale solo se fornitore e codice prodotto sono in elenco.
+Sopra, il carosello separa backup accreditato e integrazione Frasma. Importi illustrativi: la quota voucher vale solo se fornitore e codice prodotto sono in elenco.
 
 ### 1. Backup e continuità, poi integrazione documentale
 

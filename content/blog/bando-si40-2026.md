@@ -4,6 +4,7 @@ title: "Bando SI4.0 2026: contributo al 50% per software, AI e prototipi 4.0"
 seoTitle: "Bando SI4.0 2026 Unioncamere Lombardia | Frasma"
 seoDescription: "Analisi del Bando SI4.0 2026: contributo 50% fino a 30.000 euro, territori ammessi, scadenze e esempi di progetti software e AI con un fornitore iscritto all’Elenco 4.0."
 excerpt: "Il Bando SI4.0 2026 di Unioncamere Lombardia finanzia al 50% progetti di sviluppo 4.0 e AI, con investimento minimo di 25.000 euro. Vale solo per Bergamo, Brescia, Milano, Monza Brianza e Lodi: Mantova è esclusa."
+coverImage: /images/blog/cover-si40-2026.png
 publishedAt: "2026-08-30"
 updatedAt: "2026-08-30"
 tags:
@@ -95,7 +96,7 @@ Il progetto complessivo deve arrivare almeno a **€ 25.000**. Il preventivo di 
 
 ## Esempi concreti di progetto
 
-Gli importi sotto sono illustrativi. Non sono una garanzia di ammissione né un listino.
+Sopra, il carosello mostra le stesse attività con il cursore in movimento. Gli importi sotto sono illustrativi: non sono una garanzia di ammissione né un listino.
 
 ### 1. Manifattura: DDT da email verso ERP, con server in azienda
 

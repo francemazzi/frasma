@@ -4,6 +4,7 @@ title: "Bando Voucher Doppia Transizione Lombardia 2026: cosa finanzia e come us
 seoTitle: "Voucher Doppia Transizione Lombardia 2026 | Frasma"
 seoDescription: "Il Voucher Doppia Transizione Lombardia 2026 è chiuso dal 29 luglio. Resta l’analisi del bando e i rinvii a SI4.0, iperammortamento e Voucher Cloud, con Frasma già iscritto all’Elenco Fornitori 4.0."
 excerpt: "Sportello chiuso il 29 luglio 2026 per esaurimento fondi. Resta la scheda del voucher al 50% e i rinvii alle misure ancora utilizzabili, con Frasma iscritto all’Elenco Fornitori 4.0."
+coverImage: /images/blog/cover-doppia-transizione-2026.png
 publishedAt: "2026-07-27"
 updatedAt: "2026-08-30"
 tags:
@@ -89,7 +90,7 @@ Non sono ammissibili, tra le altre cose: siti web, web advertising, consulenza f
 
 ## Esempi concreti per manifattura e uffici tecnici
 
-Di seguito tre ipotesi di progetto coerenti con il vincolo 30–70% su consulenza/formazione. Sono esempi illustrativi: importi e mix vanno tarati sul preventivo reale e sui requisiti del bando.
+Sopra, il carosello ripete le tre attività in forma animata. Di seguito le ipotesi di progetto coerenti con il vincolo 30–70% su consulenza/formazione. Sono esempi illustrativi: importi e mix vanno tarati sul preventivo reale e sui requisiti del bando.
 
 ### 1. Manifattura: DDT e documenti da email verso Excel/ERP
 

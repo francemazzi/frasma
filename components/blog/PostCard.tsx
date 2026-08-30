@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { formatItalianDate } from "../../lib/blog/format";
 import { formatTagLabel } from "../../lib/blog/tags";
@@ -10,6 +11,17 @@ type PostCardProps = {
 export default function PostCard({ post }: PostCardProps) {
   return (
     <article className="rounded-3xl border border-farm-border bg-farm-surface p-8 transition-colors hover:border-accent/30">
+      {post.coverImage ? (
+        <Link href={`/blog/${post.slug}`} className="relative mb-5 block aspect-[16/9] overflow-hidden rounded-2xl border border-farm-border">
+          <Image
+            src={post.coverImage}
+            alt=""
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 720px"
+          />
+        </Link>
+      ) : null}
       <time className="text-sm text-farm-secondary">
         {formatItalianDate(post.publishedAt)}
       </time>
