@@ -340,7 +340,7 @@ export const en: Record<string, string> = {
   "funding.desc":
     "We assess for free whether your AI project can be funded through active grants, before preparing a quote.",
   "funding.body":
-    "We support companies in digital and AI transformation projects. We are listed among accredited suppliers for the Unioncamere Lombardia Double Transition Voucher program.",
+    "I am listed in the Industry 4.0 Suppliers Register. I can handle the technical work, the quote, and the project sheet for software and AI. The Lombardy Double Transition Voucher 2026 is closed: we now assess SI4.0, hyper-depreciation, and, from November, the Cloud and Cybersecurity Voucher.",
   "funding.cta": "Book a free eligibility call",
 
   // CTA (editorial)

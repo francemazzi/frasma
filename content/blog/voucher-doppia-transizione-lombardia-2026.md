@@ -2,10 +2,10 @@
 slug: voucher-doppia-transizione-lombardia-2026
 title: "Bando Voucher Doppia Transizione Lombardia 2026: cosa finanzia e come usarlo in manifattura"
 seoTitle: "Voucher Doppia Transizione Lombardia 2026 | Frasma"
-seoDescription: "Analisi del bando Unioncamere Lombardia: voucher al 50% fino a 10.000 euro, esempi concreti per manifattura e uffici tecnici, e come lavorare con un fornitore 4.0 accreditato."
-excerpt: "Il bando Voucher Doppia Transizione Lombardia 2026 rimborsa fino al 50% delle spese ammissibili, con un contributo massimo di 10.000 euro. Ecco cosa prevede e tre esempi concreti per manifattura e uffici tecnici."
+seoDescription: "Il Voucher Doppia Transizione Lombardia 2026 è chiuso dal 29 luglio. Resta l’analisi del bando e i rinvii a SI4.0, iperammortamento e Voucher Cloud, con Frasma già iscritto all’Elenco Fornitori 4.0."
+excerpt: "Sportello chiuso il 29 luglio 2026 per esaurimento fondi. Resta la scheda del voucher al 50% e i rinvii alle misure ancora utilizzabili, con Frasma iscritto all’Elenco Fornitori 4.0."
 publishedAt: "2026-07-27"
-updatedAt: "2026-07-27"
+updatedAt: "2026-08-30"
 tags:
   - finanza-agevolata
   - voucher
@@ -15,11 +15,13 @@ tags:
 status: published
 ---
 
-Se hai un’impresa manifatturiera o un ufficio tecnico in Lombardia e stai valutando progetti di digitalizzazione o AI, vale la pena guardare il [Bando Voucher Doppia Transizione Lombardia 2026](https://www.unioncamerelombardia.it/fileadmin/bandi/2026/Bando_voucher_doppia_transizione_Lombardia_2026/Bando_VOUCHER_DOPPIA_TRANSIZIONE_LOMBARDIA_2026.pdf) di Unioncamere Lombardia.
+**Sportello chiuso.** Unioncamere Lombardia ha chiuso ufficialmente la presentazione delle domande **alle 10:09 del 29 luglio 2026** per esaurimento della dotazione e raggiungimento del tetto della lista d’attesa. Questa pagina resta come riferimento. Per un progetto software o AI adesso valuta il [Bando SI4.0 2026](/blog/bando-si40-2026) (solo BG, BS, MI, MB, LO) o l’[iperammortamento](/blog/iperammortamento-2026).
+
+Se hai un’impresa manifatturiera o un ufficio tecnico in Lombardia e stai valutando progetti di digitalizzazione o AI, il testo ufficiale resta il [Bando Voucher Doppia Transizione Lombardia 2026](https://www.unioncamerelombardia.it/fileadmin/bandi/2026/Bando_voucher_doppia_transizione_Lombardia_2026/Bando_VOUCHER_DOPPIA_TRANSIZIONE_LOMBARDIA_2026.pdf) di Unioncamere Lombardia.
 
 La misura sostiene progetti che uniscono **transizione digitale** e **transizione ecologica**: tecnologie, consulenza e formazione per rendere i processi più efficienti, tracciabili e meno dipendenti dal lavoro manuale ripetitivo.
 
-In questo articolo riassumo i punti operativi del bando e propongo esempi concreti in target con manifattura e uffici tecnici. Frasma è tra i fornitori qualificati per questa misura 4.0.
+In questo articolo riassumo i punti operativi del bando e propongo esempi concreti in target con manifattura e uffici tecnici. Sono un fornitore iscritto all’[Elenco Fornitori 4.0](https://www.unioncamerelombardia.it/progetti/dettaglio-progetto/elenco-fornitori-40). Posso occuparmi della parte tecnica, del preventivo e della scheda progetto per clienti interessati a software e AI.
 
 ## I numeri che contano
 
@@ -142,7 +144,7 @@ In tutti e tre i casi il progetto ha senso se parte da un processo reale già in
 
 Per consulenza e formazione il bando impone fornitori qualificati ai sensi dell’art. 6. Tra questi rientrano gli iscritti all’[Elenco pubblico di Fornitori di servizi e tecnologie 4.0](https://www.unioncamerelombardia.it/progetti/dettaglio-progetto/elenco-fornitori-40) di Unioncamere Lombardia.
 
-**Frasma è presente in quell’elenco.** Supportiamo le imprese nella realizzazione di progetti di trasformazione digitale e AI: automazione documentale, workflow operativi, integrazioni con ERP e strumenti su misura per manifattura e uffici tecnici.
+**Sono un fornitore iscritto all’Elenco Fornitori 4.0.** Non serve una nuova iscrizione: quella di Frasma è già attiva. Posso occuparmi della parte tecnica, del preventivo e della scheda progetto per clienti interessati a software e AI. Supportiamo le imprese su automazione documentale, workflow operativi, integrazioni con ERP e strumenti su misura per manifattura e uffici tecnici.
 
 In pratica possiamo aiutarti a:
 
@@ -155,15 +157,14 @@ Non sostituiamo il tuo commercialista o il soggetto che presenta la pratica su R
 
 ## Come muoversi adesso
 
-Se il bando ti interessa, i passi utili sono pochi:
+Lo sportello di questo voucher è chiuso. Se il progetto è ancora da fare, i passi utili sono:
 
-1. verifica i requisiti di impresa e l’eventuale esclusione per il voucher 2025;
-2. individua un processo concreto da migliorare (documenti, RFQ, ufficio tecnico, magazzino);
-3. costruisci un preventivo con tecnologia e servizi nel range 30–70%;
-4. prepara Self i4.0, polizza catastrofale e documentazione richiesta;
-5. presenta la domanda appena apre lo sportello: le risorse si assegnano in ordine di arrivo.
+1. verifica se l’unità operativa è in un territorio SI4.0 (BG, BS, MI, MB, LO) e, in quel caso, leggi la [scheda SI4.0 2026](/blog/bando-si40-2026);
+2. se sei a Mantova o fuori da quei territori, valuta l’[iperammortamento](/blog/iperammortamento-2026);
+3. per cloud, backup o cybersecurity accreditati, segna il [Voucher Cloud e Cybersecurity](/blog/voucher-cloud-cybersecurity-2026) (apertura 10 novembre 2026);
+4. individua comunque un processo concreto da migliorare: il preventivo tecnico serve a tutte le misure.
 
-Se vuoi, possiamo partire da 30 minuti di analisi gratuita sul tuo processo e capire se ha senso strutturare un progetto ammissibile con Frasma come fornitore 4.0.
+Se vuoi, possiamo partire da 30 minuti di analisi gratuita sul tuo processo e capire quale misura ha senso, con Frasma come fornitore 4.0.
 
 [Prenota 30 minuti di analisi con Frasma](https://www.frasma.org/manifattura)
 

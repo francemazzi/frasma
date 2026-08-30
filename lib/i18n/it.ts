@@ -344,7 +344,7 @@ export const it: Record<string, string> = {
   "funding.desc":
     "Analizziamo gratuitamente se il tuo progetto AI può essere finanziato tramite i bandi attivi, prima ancora di preparare il preventivo.",
   "funding.body":
-    "Supportiamo le imprese nella realizzazione di progetti di trasformazione digitale e AI. Siamo presenti nell'elenco dei fornitori accreditati per il bando Voucher Doppia Transizione di Unioncamere Lombardia.",
+    "Sono un fornitore iscritto all'Elenco Fornitori 4.0. Posso occuparmi della parte tecnica, del preventivo e della scheda progetto per clienti interessati a software e AI. Il Voucher Doppia Transizione Lombardia 2026 è chiuso: oggi valutiamo SI4.0, iperammortamento e, da novembre, il Voucher Cloud e Cybersecurity.",
   "funding.cta": "Prenota una verifica gratuita",
 
   // CTA (editorial)
