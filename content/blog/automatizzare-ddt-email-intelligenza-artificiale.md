@@ -2,8 +2,8 @@
 slug: automatizzare-ddt-email-intelligenza-artificiale
 title: "Come automatizzare l'inserimento dei DDT ricevuti via email con l'intelligenza artificiale"
 seoTitle: "Come automatizzare l'inserimento dei DDT ricevuti via email con l'intelligenza artificiale | Frasma"
-seoDescription: "Un esempio pratico per leggere i Documenti di Trasporto allegati alle email, estrarre i dati dai PDF e aggiornare automaticamente un registro Excel."
-excerpt: "Un esempio pratico per leggere i Documenti di Trasporto allegati alle email, estrarre i dati dai PDF e aggiornare automaticamente un registro Excel."
+seoDescription: "Esempio pratico: DDT da email e PDF verso un registro Excel, poi importazione controllata in Mago, TeamSystem o un altro ERP."
+excerpt: "Esempio pratico: DDT da email e PDF verso un registro Excel, poi importazione controllata in Mago, TeamSystem o un altro ERP."
 publishedAt: "2026-07-12"
 updatedAt: "2026-07-12"
 tags:

@@ -7,8 +7,9 @@ Use after production deploy of AI discovery + `/api/mcp`.
 - [ ] `https://www.frasma.org/for-agents` returns 200
 - [ ] `https://www.frasma.org/llms.txt` returns 200
 - [ ] `https://www.frasma.org/llms-it.txt` returns 200
-- [ ] `curl -H 'Accept: text/markdown' https://www.frasma.org/` returns Frasma markdown
-- [ ] `curl -H 'Accept: text/markdown' https://www.frasma.org/servizi/ddt-erp` returns the DDT service markdown
+- [ ] `curl -H 'Accept: text/markdown' -H 'Accept-Language: it' https://www.frasma.org/` returns Italian Frasma markdown
+- [ ] `curl -H 'Accept: text/markdown' -H 'Accept-Language: it' https://www.frasma.org/servizi/ddt-erp` contains DDT/Mago in Italian
+- [ ] `curl -H 'Accept: text/markdown' -H 'Accept-Language: en' https://www.frasma.org/servizi/ddt-erp` returns the English DDT spoke
 - [ ] MCP `initialize` + `tools/list` succeed against `https://www.frasma.org/api/mcp`
 - [ ] Agent skill digest matches `SKILL.md` (`shasum -a 256 public/.well-known/agent-skills/contact-francesco/SKILL.md`)
 
@@ -57,3 +58,5 @@ Via mcp-remote:
 
 - [ ] Verify skill index still reachable
 - [ ] Spot-check a lead path: agent → diagnostic handoff → website confirmation
+
+Off-site SEO/GEO (Search Console, Google Business, monthly probes): [`seo-geo-offsite.md`](seo-geo-offsite.md).

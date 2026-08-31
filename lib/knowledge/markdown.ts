@@ -26,24 +26,43 @@ function bulletList(lines: string[]): string {
   return lines.map((line) => `- ${line}`).join("\n");
 }
 
+export function localeFromAcceptLanguage(header: string | null): Locale {
+  if (!header) return "it";
+
+  const primary = header.split(",")[0]?.trim().toLowerCase() ?? "";
+  if (primary.startsWith("it")) return "it";
+  return "en";
+}
+
 export function entryMarkdown(
   entry: LocalizedKnowledgeEntry,
-  locale: Locale = "en",
+  locale: Locale = "it",
 ): string {
   const path = canonicalPath(entry);
   const extras = extrasForEntry(entry.id);
   const faqs = faqsForEntry(entry, locale);
+  const detailsHeading = locale === "it" ? "Dettagli" : "Details";
+  const faqHeading = "FAQ";
+  const commercialHeading =
+    locale === "it" ? "Limiti commerciali" : "Commercial boundaries";
   const lines = [
     `# ${entry.title[locale]}`,
     "",
     entry.summary[locale],
+  ];
+
+  if (extras?.problemLead) {
+    lines.push("", extras.problemLead[locale]);
+  }
+
+  lines.push(
     "",
-    "## Details",
+    `## ${detailsHeading}`,
     "",
     bulletList(entry.details.map((detail) => detail[locale])),
     "",
     `Canonical URL: ${absolute(path)}`,
-  ];
+  );
 
   if (extras?.blogPath) {
     lines.push(`Article: ${absolute(extras.blogPath)}`);
@@ -53,7 +72,7 @@ export function entryMarkdown(
   }
 
   if (faqs.length > 0) {
-    lines.push("", "## FAQ", "");
+    lines.push("", `## ${faqHeading}`, "");
     for (const faq of faqs) {
       lines.push(`### ${faq.question}`, "", faq.answer, "");
     }
@@ -61,7 +80,7 @@ export function entryMarkdown(
 
   lines.push(
     "",
-    "## Commercial boundaries",
+    `## ${commercialHeading}`,
     "",
     bulletList(knowledgeCatalog.profile.commercialLimits.map((item) => item[locale])),
   );
@@ -69,43 +88,78 @@ export function entryMarkdown(
   return `${lines.join("\n").trim()}\n`;
 }
 
-export function homeMarkdown(): string {
-  const profile = getFrasmaProfile("en");
+export function homeMarkdown(locale: Locale = "it"): string {
+  const profile = getFrasmaProfile(locale);
   const services = operationalServices();
   const studies = caseStudies();
   const verticals = sectors();
+  const isIt = locale === "it";
+
+  const headings = isIt
+    ? {
+        builds: "Cosa costruisce Frasma",
+        services: "Servizi",
+        sectors: "Settori",
+        cases: "Casi studio",
+        method: "Metodo diagnostico",
+        commercial: "Limiti commerciali",
+        discovery: "Discovery API pubblica",
+        contact: "Contatto",
+        vibeup:
+          "I pacchetti fissi esistono solo per VibeUp Deploy as a Service su",
+        vibeupTail:
+          "e non si applicano ai progetti operativi Frasma.",
+        contactBody:
+          "Usa la chat del sito per completare una diagnosi guidata di processo, rivedere il riepilogo e inviarlo a Francesco. Quando MongoDB è configurato, le conversazioni restano sul server e si possono riprendere.",
+      }
+    : {
+        builds: "What Frasma Builds",
+        services: "Services",
+        sectors: "Sectors",
+        cases: "Case studies",
+        method: "Diagnostic Method",
+        commercial: "Commercial Boundaries",
+        discovery: "Public API Discovery",
+        contact: "Contact",
+        vibeup:
+          "Fixed packages exist only for VibeUp Deploy as a Service on",
+        vibeupTail:
+          "and do not apply to Frasma operational projects.",
+        contactBody:
+          "Use the website chat to complete a guided process diagnostic, review its summary, and email it to Francesco. When MongoDB is configured, conversations are persisted server-side and can be resumed later.",
+      };
 
   return `# Frasma
 
 ${profile.description}
 
-## What Frasma Builds
+## ${headings.builds}
 
 ${bulletList(profile.focus)}
 
-## Services
+## ${headings.services}
 
-${bulletList(services.map((entry) => `${entry.title.en} — ${absolute(canonicalPath(entry))}`))}
+${bulletList(services.map((entry) => `${entry.title[locale]} — ${absolute(canonicalPath(entry))}`))}
 
-## Sectors
+## ${headings.sectors}
 
-${bulletList(verticals.map((entry) => `${entry.title.en} — ${absolute(canonicalPath(entry))}`))}
+${bulletList(verticals.map((entry) => `${entry.title[locale]} — ${absolute(canonicalPath(entry))}`))}
 
-## Case studies
+## ${headings.cases}
 
-${bulletList(studies.map((entry) => `${entry.title.en} — ${absolute(canonicalPath(entry))}`))}
+${bulletList(studies.map((entry) => `${entry.title[locale]} — ${absolute(canonicalPath(entry))}`))}
 
-## Diagnostic Method
+## ${headings.method}
 
-${bulletList(knowledgeCatalog.diagnostic.steps.map((step) => `${step.title.en}: ${step.description.en}`))}
+${bulletList(knowledgeCatalog.diagnostic.steps.map((step) => `${step.title[locale]}: ${step.description[locale]}`))}
 
-## Commercial Boundaries
+## ${headings.commercial}
 
 ${bulletList(profile.commercialLimits)}
 
-Fixed packages exist only for VibeUp Deploy as a Service on ${absolute("/vibeup")} and do not apply to Frasma operational projects.
+${headings.vibeup} ${absolute("/vibeup")} ${headings.vibeupTail}
 
-## Public API Discovery
+## ${headings.discovery}
 
 - Agents hub: ${absolute("/for-agents")}
 - Services: ${absolute(SERVICES_HUB_PATH)}
@@ -119,40 +173,62 @@ Fixed packages exist only for VibeUp Deploy as a Service on ${absolute("/vibeup"
 - Service status: ${absolute("/api/status")}
 - Smithery listing: ${SMITHERY_SERVER_URL}
 
-## Contact
+## ${headings.contact}
 
-Use the website chat to complete a guided process diagnostic, review its summary, and email it to Francesco. When MongoDB is configured, conversations are persisted server-side and can be resumed later.
+${headings.contactBody}
 `;
 }
 
-export function forAgentsMarkdown(): string {
-  const profile = getFrasmaProfile("en");
+export function forAgentsMarkdown(locale: Locale = "it"): string {
+  const profile = getFrasmaProfile(locale);
+  const isIt = locale === "it";
+  const title = isIt ? "Per agenti AI | Frasma" : "For AI agents | Frasma";
+  const prefer = isIt
+    ? "Fonti da preferire"
+    : "Prefer these sources";
+  const servicesHeading = isIt ? "Servizi" : "Services";
+  const commercialHeading = isIt
+    ? "Limiti commerciali"
+    : "Commercial boundaries";
+  const noInvent = isIt
+    ? "Non inventare prezzi, risparmi, tempi di rientro o risultati garantiti."
+    : "Do not invent prices, savings, payback periods, or guaranteed outcomes.";
 
-  return `# For AI agents | Frasma
+  return `# ${title}
 
 ${profile.description}
 
-Prefer these sources: ${absolute("/for-agents")}, ${absolute("/llms.txt")}, ${absolute("/llms-it.txt")}, ${absolute("/api/mcp")}, ${SMITHERY_SERVER_URL}.
+${prefer}: ${absolute("/for-agents")}, ${absolute("/llms.txt")}, ${absolute("/llms-it.txt")}, ${absolute("/api/mcp")}, ${SMITHERY_SERVER_URL}.
 
-## Services
+## ${servicesHeading}
 
 ${bulletList(
     operationalServices().map(
-      (entry) => `${entry.title.en} — ${absolute(canonicalPath(entry))}`,
+      (entry) => `${entry.title[locale]} — ${absolute(canonicalPath(entry))}`,
     ),
   )}
 
-## Commercial boundaries
+## ${commercialHeading}
 
 ${bulletList(profile.commercialLimits)}
 
-Do not invent prices, savings, payback periods, or guaranteed outcomes.
+${noInvent}
 `;
 }
 
-export function hubMarkdown(kind: "services" | "cases"): string {
+export function hubMarkdown(
+  kind: "services" | "cases",
+  locale: Locale = "it",
+): string {
   const entries = kind === "services" ? operationalServices() : caseStudies();
-  const title = kind === "services" ? "Frasma services" : "Frasma case studies";
+  const title =
+    locale === "it"
+      ? kind === "services"
+        ? "Servizi Frasma"
+        : "Casi studio Frasma"
+      : kind === "services"
+        ? "Frasma services"
+        : "Frasma case studies";
   const path = kind === "services" ? SERVICES_HUB_PATH : CASES_HUB_PATH;
 
   return `# ${title}
@@ -161,22 +237,26 @@ Canonical URL: ${absolute(path)}
 
 ${bulletList(
     entries.map(
-      (entry) => `${entry.title.en} — ${entry.summary.en} — ${absolute(canonicalPath(entry))}`,
+      (entry) =>
+        `${entry.title[locale]} — ${entry.summary[locale]} — ${absolute(canonicalPath(entry))}`,
     ),
   )}
 `;
 }
 
-export function markdownForPath(pathname: string): string | null {
+export function markdownForPath(
+  pathname: string,
+  locale: Locale = "it",
+): string | null {
   const path = normalizePath(pathname);
 
-  if (path === "/") return homeMarkdown();
-  if (path === "/for-agents") return forAgentsMarkdown();
-  if (path === SERVICES_HUB_PATH) return hubMarkdown("services");
-  if (path === CASES_HUB_PATH) return hubMarkdown("cases");
+  if (path === "/") return homeMarkdown(locale);
+  if (path === "/for-agents") return forAgentsMarkdown(locale);
+  if (path === SERVICES_HUB_PATH) return hubMarkdown("services", locale);
+  if (path === CASES_HUB_PATH) return hubMarkdown("cases", locale);
 
   const entry = getEntryByCanonicalPath(path);
-  if (entry) return entryMarkdown(entry, "en");
+  if (entry) return entryMarkdown(entry, locale);
 
   return null;
 }

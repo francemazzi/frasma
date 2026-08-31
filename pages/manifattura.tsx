@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import {
   FileSpreadsheet,
@@ -446,6 +447,47 @@ export default function ManifatturaPage() {
               />
             ))}
           </div>
+        </section>
+
+        <section className="section-farm pb-8 sm:pb-10">
+          <h2 className="text-2xl font-semibold sm:text-3xl">
+            Servizi collegati
+          </h2>
+          <p className="mt-3 max-w-2xl text-farm-secondary leading-relaxed">
+            Preventivi, commesse e Excel restano su questa pagina. I Documenti
+            di Trasporto verso l&apos;ERP e i gestionali di back office hanno
+            ciascuno una pagina propria.
+          </p>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+            <li>
+              <Link
+                href="/servizi/ddt-erp"
+                className="block rounded-xl border border-farm-border bg-farm-surface p-5 hover:border-sage/40"
+              >
+                <span className="font-semibold text-farm-text">
+                  Automatizzare i DDT verso Mago e TeamSystem
+                </span>
+                <span className="mt-2 block text-sm text-farm-secondary">
+                  Ciclo passivo: bolle e PDF da email, validazione, import
+                  nell&apos;ERP già in uso.
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/servizi/software-operativo"
+                className="block rounded-xl border border-farm-border bg-farm-surface p-5 hover:border-sage/40"
+              >
+                <span className="font-semibold text-farm-text">
+                  Gestionali personalizzati
+                </span>
+                <span className="mt-2 block text-sm text-farm-secondary">
+                  Web app su commesse, stati e ruoli, con export verso i
+                  sistemi esistenti.
+                </span>
+              </Link>
+            </li>
+          </ul>
         </section>
 
         {/* ── Come lavoro ── */}

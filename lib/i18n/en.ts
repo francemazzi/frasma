@@ -282,9 +282,9 @@ export const en: Record<string, string> = {
   "platform.cards.tickets.name": "Operations & ticketing",
   "platform.cards.tickets.desc":
     "Field tickets, priorities, and SLAs — visibility on open, in progress, and closed.",
-  "platform.cards.workflow.name": "Workflows & procedures",
+  "platform.cards.workflow.name": "HACCP and quality procedures",
   "platform.cards.workflow.desc":
-    "Guided procedures with validations and document generation for daily users.",
+    "Guided procedures for HACCP, certifications, and controls, with visible exceptions.",
   "platform.cards.preventivi.name": "Quotes and job orders",
   "platform.cards.preventivi.desc":
     "Price lists, statuses, and amounts in one view, with export to the ERP already in place.",

@@ -10,6 +10,7 @@ import {
   knowledgeCatalog,
   KnowledgeCatalogSchema,
   markdownForPath,
+  localeFromAcceptLanguage,
   operationalServices,
   searchKnowledge,
   sectors,
@@ -158,7 +159,7 @@ describe("searchKnowledge", () => {
     expect(results.length).toBeGreaterThan(0);
     expect(results.length).toBeLessThanOrEqual(5);
     expect(results.every((result) => result.score > 0)).toBe(true);
-    expect(results.some((result) => result.title.includes("Delivery"))).toBe(
+    expect(results.some((result) => /delivery notes|Mago/i.test(result.title))).toBe(
       true,
     );
   });
@@ -192,18 +193,37 @@ describe("searchKnowledge", () => {
 });
 
 describe("markdownForPath", () => {
-  it("returns Frasma markdown for home and the DDT service spoke", () => {
+  it("returns Italian markdown by default for home and the DDT spoke", () => {
     const home = markdownForPath("/");
     const ddt = markdownForPath("/servizi/ddt-erp");
     const missing = markdownForPath("/does-not-exist");
 
     expect(home).toContain("# Frasma");
+    expect(home).toContain("Cosa costruisce Frasma");
     expect(home).toContain("/servizi/ddt-erp");
     expect(home).toContain("https://smithery.ai/servers/francemazzi/frasma");
     expect(ddt).toContain("https://www.frasma.org/servizi/ddt-erp");
     expect(ddt).toContain("youtu.be/22K6TJAXmmE");
-    expect(ddt).toContain("Delegate the form, verify the facts");
+    expect(ddt).toContain("Mago o TeamSystem");
+    expect(ddt).toContain("ciclo passivo");
     expect(missing).toBeNull();
+  });
+
+  it("returns English markdown when locale is en", () => {
+    const ddt = markdownForPath("/servizi/ddt-erp", "en");
+    expect(ddt).toContain("Mago and TeamSystem");
+    expect(ddt).toContain("Delegate the form, verify the facts");
+  });
+});
+
+describe("localeFromAcceptLanguage", () => {
+  it("defaults to Italian when the header is missing or Italian", () => {
+    expect(localeFromAcceptLanguage(null)).toBe("it");
+    expect(localeFromAcceptLanguage("it-IT,it;q=0.9")).toBe("it");
+  });
+
+  it("returns English for non-Italian Accept-Language", () => {
+    expect(localeFromAcceptLanguage("en-US,en;q=0.8")).toBe("en");
   });
 });
 
@@ -216,7 +236,10 @@ describe("faqsForEntry extras", () => {
     );
     const wiki = faqsForEntry(getKnowledgeEntry("company-wiki-brain")!, "it");
 
-    expect(ddt[0]?.question).toContain("Delega la forma, verifica i fatti");
+    expect(ddt[0]?.question).toContain("Mago o TeamSystem");
+    expect(ddt.some((faq) => faq.question.includes("Delega la forma"))).toBe(
+      true,
+    );
     expect(procedures.some((faq) => faq.question.includes("HACCP"))).toBe(true);
     expect(wiki.some((faq) => faq.question.includes("PDF sparsi"))).toBe(true);
     expect(

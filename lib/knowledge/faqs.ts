@@ -13,8 +13,8 @@ function defaultFaqs(entry: LocalizedKnowledgeEntry): PageFaq[] {
   return [
     {
       question: {
-        it: `Cosa fa Frasma su ${entry.title.it}?`,
-        en: `What does Frasma do for ${entry.title.en}?`,
+        it: "Cosa copre questa pagina?",
+        en: "What does this page cover?",
       },
       answer: {
         it: entry.summary.it,

@@ -9,6 +9,14 @@ import {
 } from "./tools";
 
 describe("MCP tool handlers", () => {
+  it("defaults profile locale to Italian", () => {
+    const result = runGetFrasmaProfile({});
+    const payload = JSON.parse(result.content[0]?.text ?? "{}");
+
+    expect(result.isError).toBeUndefined();
+    expect(payload.description).toContain("lavoro manuale");
+  });
+
   it("returns a localized profile with discovery URLs", () => {
     const result = runGetFrasmaProfile({ locale: "en" });
     const payload = JSON.parse(result.content[0]?.text ?? "{}");

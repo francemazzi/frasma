@@ -6,6 +6,7 @@ export type PageFaq = {
 };
 
 export type PageExtras = {
+  problemLead?: LocalizedText;
   videoUrl?: string;
   videoTitle?: LocalizedText;
   blogPath?: string;
@@ -17,6 +18,10 @@ const text = (it: string, en: string): LocalizedText => ({ it, en });
 
 export const PAGE_EXTRAS: Record<string, PageExtras> = {
   "delivery-notes-to-erp": {
+    problemLead: text(
+      "Per chi registra ancora DDT e bolle a mano nel ciclo passivo, da email o PDF, verso Mago, Mago4, TeamSystem o un altro ERP già in azienda.",
+      "For teams still typing delivery notes and packing slips by hand in the purchase cycle, from email or PDF, into Mago, Mago4, TeamSystem, or another ERP already in the company.",
+    ),
     videoUrl: "https://youtu.be/22K6TJAXmmE",
     videoTitle: text(
       "Automatizzare l'inserimento dei DDT con l'intelligenza artificiale",
@@ -28,16 +33,6 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
       "How to automate delivery notes received by email",
     ),
     faqs: [
-      {
-        question: text(
-          "Cosa significa “Delega la forma, verifica i fatti”?",
-          "What does “Delegate the form, verify the facts” mean?",
-        ),
-        answer: text(
-          "L'AI può strutturare email, PDF e tabelle; una persona verifica i fatti prima che i dati entrino in ERP o in un registro ufficiale. Non c'è un listino universale e non deleghiamo importazioni cieche.",
-          "AI can structure emails, PDFs, and tables; a person verifies the facts before data enter the ERP or an official register. There is no universal price list, and we do not delegate blind imports.",
-        ),
-      },
       {
         question: text(
           "Potete leggere i DDT da email o PDF e prepararli per Mago o TeamSystem?",
@@ -64,13 +59,27 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "Is there a public tutorial for this process?",
         ),
         answer: text(
-          "Sì: un articolo e un video YouTube mostrano un esempio su email, PDF DDT e registro Excel, come base per un flusso verso ERP.",
-          "Yes: an article and a YouTube video show an example with email, delivery-note PDFs, and an Excel register, as a basis for an ERP workflow.",
+          "Sì: un articolo e un video YouTube mostrano un esempio su email, PDF DDT e registro Excel, come base per un flusso verso Mago, TeamSystem o un altro ERP.",
+          "Yes: an article and a YouTube video show an example with email, delivery-note PDFs, and an Excel register, as a basis for a flow into Mago, TeamSystem, or another ERP.",
+        ),
+      },
+      {
+        question: text(
+          "Cosa significa “Delega la forma, verifica i fatti”?",
+          "What does “Delegate the form, verify the facts” mean?",
+        ),
+        answer: text(
+          "L'AI può strutturare email, PDF e tabelle; una persona verifica i fatti prima che i dati entrino in ERP o in un registro ufficiale. Non c'è un listino universale e non deleghiamo importazioni cieche.",
+          "AI can structure emails, PDFs, and tables; a person verifies the facts before data enter the ERP or an official register. There is no universal price list, and we do not delegate blind imports.",
         ),
       },
     ],
   },
   "workflow-procedures": {
+    problemLead: text(
+      "Per chi gestisce HACCP, certificazioni o controlli qualità ancora su moduli, email e cartelle, con eccezioni che nessuno vede.",
+      "For teams still running HACCP, certifications, or quality controls on forms, email, and folders, with exceptions nobody sees.",
+    ),
     faqs: [
       {
         question: text(
@@ -94,7 +103,23 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
       },
     ],
   },
+  "field-service-ticketing": {
+    problemLead: text(
+      "Per chi coordina tecnici e interventi ancora da telefono ed email, senza uno storico condiviso di ticket e SLA.",
+      "For teams still coordinating technicians and interventions by phone and email, without a shared history of tickets and SLAs.",
+    ),
+  },
+  "custom-management-software": {
+    problemLead: text(
+      "Per un processo di back office che l'ERP non copre: tabelle, stati e ruoli sul lavoro reale, con export verso i sistemi già in uso.",
+      "For a back-office process the ERP does not cover: tables, states, and roles on the real work, with exports into systems already in use.",
+    ),
+  },
   "company-wiki-brain": {
+    problemLead: text(
+      "Per procedure e know-how che oggi stanno in PDF e chat, e che il team deve poter cercare citando la fonte.",
+      "For procedures and know-how that today live in PDFs and chat, and that the team must be able to search with a cited source.",
+    ),
     faqs: [
       {
         question: text(
@@ -117,6 +142,36 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         ),
       },
     ],
+  },
+  "local-ai-enterprise": {
+    problemLead: text(
+      "Per dati e documenti che non possono uscire dall'azienda: modelli e agenti sulla rete privata, con vincoli GDPR espliciti.",
+      "For data and documents that cannot leave the company: models and agents on the private network, with explicit GDPR constraints.",
+    ),
+  },
+  "ai-presence": {
+    problemLead: text(
+      "Per far trovare l'azienda a ChatGPT, Claude e Gemini con fatti strutturati, non con un copy generico sulla home.",
+      "For making the company findable by ChatGPT, Claude, and Gemini with structured facts, not generic homepage copy.",
+    ),
+  },
+  "food-quality": {
+    problemLead: text(
+      "Il verticale alimentare di Frasma è su HACCP, certificazioni e controlli — procedure guidate, non un MES di stabilimento.",
+      "Frasma's food vertical is HACCP, certifications, and controls — guided procedures, not a plant MES.",
+    ),
+  },
+  "agronomy-agri-food": {
+    problemLead: text(
+      "Pratiche, tracciabilità e quaderni di campagna tra più aziende della stessa rete, con eccezioni esplicite.",
+      "Filings, traceability, and field notebooks across several companies in the same network, with explicit exceptions.",
+    ),
+  },
+  "field-service": {
+    problemLead: text(
+      "Manutenzione e assistenza sul campo: dalla richiesta all'intervento chiuso, con tecnici e fornitori nello stesso flusso.",
+      "Field maintenance and support: from the request to a closed intervention, with technicians and suppliers in the same workflow.",
+    ),
   },
 };
 

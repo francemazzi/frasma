@@ -156,6 +156,11 @@ export default function CatalogLanding({ lookup }: Props) {
             <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
               {t("catalog.howTitle")}
             </h2>
+            {extras?.problemLead ? (
+              <p className="mb-6 text-[16px] leading-[1.6] text-ink-soft">
+                {extras.problemLead[lang]}
+              </p>
+            ) : null}
             <ul className="space-y-3">
               {entry.details.map((detail) => (
                 <li

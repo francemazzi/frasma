@@ -21,7 +21,7 @@ import { SITE_URL } from "../seo";
 export const localeToolField = z
   .enum(["it", "en"])
   .optional()
-  .describe("Response language: it or en. Defaults to en.");
+  .describe("Response language: it or en. Defaults to it.");
 
 export const getFrasmaProfileInputShape = {
   locale: localeToolField,
@@ -94,12 +94,12 @@ export const prepareProjectBriefOutputShape = {
 };
 
 export const LocaleInputSchema = z.object({
-  locale: z.enum(["it", "en"]).default("en"),
+  locale: z.enum(["it", "en"]).default("it"),
 });
 
 export const SearchKnowledgeToolInputSchema = z.object({
   query: z.string().min(1).max(500),
-  locale: z.enum(["it", "en"]).default("en"),
+  locale: z.enum(["it", "en"]).default("it"),
   pagePath: z.string().startsWith("/").optional(),
 });
 

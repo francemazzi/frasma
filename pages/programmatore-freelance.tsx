@@ -41,9 +41,9 @@ const stacks = [
 
 export default function ProgrammatoreFreelancePage() {
   const title =
-    "Programmatore freelance in Italia | Software developer full stack";
+    "Programmatore freelance a Mantova | Software developer full stack";
   const description =
-    "Cerchi un programmatore freelance, informatico freelance o software developer? Francesco Saverio Mazzi, founder dello studio Frasma, sviluppa software su misura, web app, automazioni e AI agents.";
+    "Cerchi un programmatore freelance a Mantova? Francesco Saverio Mazzi, founder dello studio Frasma, sviluppa software su misura, web app, automazioni e AI agents per aziende italiane.";
 
   return (
     <>
@@ -85,11 +85,11 @@ export default function ProgrammatoreFreelancePage() {
         <section className="section-farm py-16 sm:py-24">
           <div className="max-w-4xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-sage-500">
-              Sviluppo software freelance
+              Sviluppo software freelance · Mantova
             </p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Programmatore freelance per web app, automazioni e software su
-              misura.
+              Programmatore freelance a Mantova per web app, automazioni e
+              software su misura.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-farm-secondary sm:text-xl">
               Sono Francesco Saverio Mazzi, founder dello studio{" "}

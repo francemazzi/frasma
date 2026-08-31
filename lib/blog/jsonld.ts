@@ -1,3 +1,4 @@
+import { getKnowledgeEntry } from "../knowledge";
 import {
   absoluteUrl,
   howToJsonLd,
@@ -43,8 +44,11 @@ export function extraJsonLdForBlogPost(slug: string) {
     }),
     serviceJsonLd({
       id: "delivery-notes-to-erp",
-      name: "DDT e documenti verso ERP",
+      name:
+        getKnowledgeEntry("delivery-notes-to-erp")?.title.it ??
+        "Automatizzare i DDT verso Mago e TeamSystem",
       description:
+        getKnowledgeEntry("delivery-notes-to-erp")?.summary.it ??
         "Lettura di DDT e documenti da email o PDF, preparazione dei campi e importazione controllata nell'ERP già in uso.",
       path: "/servizi/ddt-erp",
       serviceType: "Automazione documentale verso ERP",

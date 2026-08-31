@@ -1,5 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { markdownForPath } from "./lib/knowledge/markdown";
+import {
+  localeFromAcceptLanguage,
+  markdownForPath,
+} from "./lib/knowledge/markdown";
 
 const DISCOVERY_LINK_HEADER = [
   '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',
@@ -39,8 +42,9 @@ function addVary(headers: Headers, value: string): void {
 }
 
 export function proxy(req: NextRequest) {
+  const locale = localeFromAcceptLanguage(req.headers.get("accept-language"));
   const markdown = acceptsMarkdown(req.headers.get("accept"))
-    ? markdownForPath(req.nextUrl.pathname)
+    ? markdownForPath(req.nextUrl.pathname, locale)
     : null;
 
   if (markdown) {
@@ -49,7 +53,7 @@ export function proxy(req: NextRequest) {
       headers: {
         "Content-Type": "text/markdown; charset=utf-8",
         Link: DISCOVERY_LINK_HEADER,
-        Vary: "Accept",
+        Vary: "Accept, Accept-Language",
         "x-markdown-tokens": estimateMarkdownTokens(markdown),
       },
     });
@@ -58,6 +62,7 @@ export function proxy(req: NextRequest) {
   const res = NextResponse.next();
   res.headers.set("Link", DISCOVERY_LINK_HEADER);
   addVary(res.headers, "Accept");
+  addVary(res.headers, "Accept-Language");
   return res;
 }
 

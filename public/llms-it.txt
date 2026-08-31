@@ -20,9 +20,9 @@ English version: https://www.frasma.org/llms.txt
 
 ## Cosa costruisce Frasma
 
-- DDT e documenti verso ERP: https://www.frasma.org/servizi/ddt-erp
-- Workflow e procedure guidate: https://www.frasma.org/servizi/procedure-guidate
-- Ticketing per field service: https://www.frasma.org/servizi/ticketing-manutenzione
+- Automatizzare i DDT verso Mago e TeamSystem: https://www.frasma.org/servizi/ddt-erp
+- Procedure HACCP, qualità e certificazioni: https://www.frasma.org/servizi/procedure-guidate
+- Ticketing per manutenzione e interventi sul campo: https://www.frasma.org/servizi/ticketing-manutenzione
 - Gestionali operativi su misura: https://www.frasma.org/servizi/software-operativo
 - Dataset, benchmark e ottimizzazione AI: https://www.frasma.org/servizi/dataset-benchmark-ai
 - Wiki e cervello aziendale: https://www.frasma.org/servizi/wiki-aziendale-ai

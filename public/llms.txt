@@ -20,9 +20,9 @@ Italian version: https://www.frasma.org/llms-it.txt
 
 ## What Frasma builds
 
-- Delivery notes and documents into ERP: https://www.frasma.org/servizi/ddt-erp
-- Guided workflows and procedures: https://www.frasma.org/servizi/procedure-guidate
-- Field-service ticketing: https://www.frasma.org/servizi/ticketing-manutenzione
+- Automate delivery notes into Mago and TeamSystem: https://www.frasma.org/servizi/ddt-erp
+- HACCP, quality, and certification procedures: https://www.frasma.org/servizi/procedure-guidate
+- Ticketing for field maintenance and interventions: https://www.frasma.org/servizi/ticketing-manutenzione
 - Custom operational management software: https://www.frasma.org/servizi/software-operativo
 - Operational AI datasets, benchmarks, and optimization: https://www.frasma.org/servizi/dataset-benchmark-ai
 - Company wiki / operational brain: https://www.frasma.org/servizi/wiki-aziendale-ai

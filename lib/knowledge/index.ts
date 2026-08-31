@@ -8,6 +8,7 @@ export {
   entryMarkdown,
   forAgentsMarkdown,
   homeMarkdown,
+  localeFromAcceptLanguage,
   markdownForPath,
 } from "./markdown";
 export { extrasForEntry, PAGE_EXTRAS } from "./page-extras";

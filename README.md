@@ -189,7 +189,7 @@ For stdio-only clients:
 ### Directory listing (after production deploy)
 
 1. Confirm `/for-agents`, `/servizi`, `/llms.txt`, `/llms-it.txt`, and `/api/mcp` respond in production.
-2. Smoke: `curl -H 'Accept: text/markdown' https://www.frasma.org/` and `https://www.frasma.org/servizi/ddt-erp`, plus an MCP `initialize` + `tools/list` against `/api/mcp`.
+2. Smoke: `curl -H 'Accept: text/markdown' -H 'Accept-Language: it' https://www.frasma.org/servizi/ddt-erp` (Italian DDT/Mago copy), plus an MCP `initialize` + `tools/list` against `/api/mcp`.
 3. Submit the server to relevant MCP directories with the short description from `/for-agents` (mention the services hub).
 4. Keep the agent-skills digest in sync when `SKILL.md` changes (`shasum -a 256`).
 
