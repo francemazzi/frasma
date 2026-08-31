@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.francemazzi/frasma",
+  "title": "Frasma",
+  "description": "Read-only Frasma MCP: profile, knowledge search, diagnostic handoff. No email.",
+  "version": "1.0.0",
+  "websiteUrl": "https://www.frasma.org/for-agents",
+  "repository": {
+    "url": "https://github.com/francemazzi/frasma",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://www.frasma.org/api/mcp"
+    }
+  ]
+}

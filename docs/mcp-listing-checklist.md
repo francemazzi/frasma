@@ -12,6 +12,20 @@ Use after production deploy of AI discovery + `/api/mcp`.
 - [ ] MCP `initialize` + `tools/list` succeed against `https://www.frasma.org/api/mcp`
 - [ ] Agent skill digest matches `SKILL.md` (`shasum -a 256 public/.well-known/agent-skills/contact-francesco/SKILL.md`)
 
+## Official MCP Registry
+
+Remote server metadata lives in [`server.json`](../server.json) (`io.github.francemazzi/frasma`).
+
+```bash
+brew install mcp-publisher
+cd /path/to/frasma
+mcp-publisher login github   # device code in the browser; JWT lasts ~1h
+mcp-publisher publish
+curl "https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.francemazzi/frasma"
+```
+
+PulseMCP and other aggregators ingest from this registry. Do not add a `packages` block: Frasma is Streamable HTTP only.
+
 ## Listing copy (short)
 
 **Name:** Frasma  
