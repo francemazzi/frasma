@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import Header from "../../../components/organism/Header";
 import Footer from "../../../components/organism/Footer";
-import PostCard from "../../../components/blog/PostCard";
+import PostList from "../../../components/blog/PostList";
 import Seo from "../../../components/Seo";
 import { FEED_URL } from "../../../lib/blog/feed";
 import { formatTagLabel } from "../../../lib/blog/tags";
@@ -45,7 +45,7 @@ export default function BlogTagPage({ tag, posts }: TagPageProps) {
       <main className="min-h-screen bg-paper font-sans">
         <Header />
 
-        <section className="section-farm py-16 max-w-3xl mx-auto px-4">
+        <section className="section-farm py-16">
           <Link
             href="/blog"
             className="text-sage-600 hover:text-sage-500 transition-colors mb-8 inline-block"
@@ -59,11 +59,7 @@ export default function BlogTagPage({ tag, posts }: TagPageProps) {
             {posts.length === 1 ? "articolo trovato" : "articoli trovati"}
           </p>
 
-          <div className="space-y-8">
-            {posts.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
+          <PostList posts={posts} />
         </section>
 
         <Footer />

@@ -1,7 +1,7 @@
 import type { GetStaticProps } from "next";
 import Header from "../../components/organism/Header";
 import Footer from "../../components/organism/Footer";
-import PostCard from "../../components/blog/PostCard";
+import PostList from "../../components/blog/PostList";
 import Seo from "../../components/Seo";
 import { FEED_URL } from "../../lib/blog/feed";
 import type { BlogPostSummary } from "../../lib/blog/types";
@@ -48,14 +48,10 @@ export default function Blog({ posts }: BlogIndexProps) {
       <main className="min-h-screen bg-paper font-sans">
         <Header />
 
-        <section className="section-farm py-16 max-w-3xl mx-auto px-4">
+        <section className="section-farm py-16">
           <h1 className="text-4xl font-medium text-farm-text mb-12">Blog</h1>
 
-          <div className="space-y-8">
-            {posts.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
+          <PostList posts={posts} />
         </section>
 
         <Footer />
