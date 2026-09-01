@@ -14,6 +14,7 @@ import { buildProcessAssessmentEmail } from "../email/processAssessment";
 import { getMongoDb, isMongoConfigured } from "../mongodb/client";
 import { ensureChatIndexes } from "../mongodb/indexes";
 import type { LeadSource, ProcessAssessment } from "../processAssessment";
+import { createRicercaClientiLead } from "./notion";
 
 export const LEADS_COLLECTION = "leads";
 
@@ -123,5 +124,6 @@ export async function submitProjectBrief(
   });
 
   const leadId = await persistProjectBrief(input, source);
+  await createRicercaClientiLead({ ...input, source, leadId });
   return { leadId };
 }

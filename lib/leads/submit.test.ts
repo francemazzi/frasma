@@ -6,12 +6,14 @@ const {
   logConversionEvent,
   getMongoDb,
   isMongoConfigured,
+  createRicercaClientiLead,
 } = vi.hoisted(() => ({
   deliverNotificationEmail: vi.fn(async () => undefined),
   upsertVisitor: vi.fn(),
   logConversionEvent: vi.fn(async () => undefined),
   getMongoDb: vi.fn(),
   isMongoConfigured: vi.fn(() => false),
+  createRicercaClientiLead: vi.fn(async () => undefined),
 }));
 
 vi.mock("../email/deliver", () => ({
@@ -38,6 +40,10 @@ vi.mock("../mongodb/indexes", () => ({
   ensureChatIndexes: vi.fn(async () => undefined),
 }));
 
+vi.mock("./notion", () => ({
+  createRicercaClientiLead,
+}));
+
 import { inferLeadSource, submitProjectBrief } from "./submit";
 import { ProcessAssessmentSchema } from "../processAssessment";
 
@@ -58,6 +64,7 @@ describe("submitProjectBrief", () => {
     upsertVisitor.mockReset();
     logConversionEvent.mockReset();
     getMongoDb.mockReset();
+    createRicercaClientiLead.mockClear();
     isMongoConfigured.mockReturnValue(false);
   });
 
@@ -74,6 +81,13 @@ describe("submitProjectBrief", () => {
     const result = await submitProjectBrief(brief, "form");
 
     expect(deliverNotificationEmail).toHaveBeenCalledOnce();
+    expect(createRicercaClientiLead).toHaveBeenCalledWith(
+      expect.objectContaining({
+        clientEmail: "ada@example.com",
+        source: "form",
+        leadId: undefined,
+      }),
+    );
     expect(result.leadId).toBeUndefined();
     expect(upsertVisitor).not.toHaveBeenCalled();
   });
@@ -121,6 +135,7 @@ describe("submitProjectBrief", () => {
     await expect(submitProjectBrief(brief, "form")).rejects.toThrow("SMTP down");
     expect(upsertVisitor).not.toHaveBeenCalled();
     expect(logConversionEvent).not.toHaveBeenCalled();
+    expect(createRicercaClientiLead).not.toHaveBeenCalled();
   });
 
   it("still returns after persist errors once email is sent", async () => {
@@ -211,5 +226,11 @@ describe("submitProjectBrief", () => {
       expect.objectContaining({ userId: "user-1" }),
     );
     expect(result.leadId).toEqual(expect.any(String));
+    expect(createRicercaClientiLead).toHaveBeenCalledWith(
+      expect.objectContaining({
+        source: "chat",
+        leadId: result.leadId,
+      }),
+    );
   });
 });

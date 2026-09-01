@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:email": "node scripts/email-integration-test.mjs",
     "check:mongodb": "node scripts/check-mongodb.mjs"
   },
   "dependencies": {
