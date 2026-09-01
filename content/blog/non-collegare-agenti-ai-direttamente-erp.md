@@ -4,6 +4,7 @@ title: "Non collegare gli agenti AI direttamente all'ERP"
 seoTitle: "Come collegare l'AI all'ERP senza sostituire il gestionale | Frasma"
 seoDescription: "Perché un agente non deve scrivere nel gestionale in diretta, e come partire da un processo (DDT, validazione, import tracciato) verso Mago o TeamSystem."
 excerpt: "La richiesta «integrare l'ERP con l'AI» parte dal posto sbagliato. Si sceglie un processo, si valida, poi si importa nel gestionale già in uso."
+coverImage: /images/blog/cover-agenti-ai-erp.png
 publishedAt: "2026-09-01"
 updatedAt: "2026-09-01"
 tags:
