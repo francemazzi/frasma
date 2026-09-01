@@ -206,6 +206,12 @@ describe("markdownForPath", () => {
     expect(ddt).toContain("youtu.be/22K6TJAXmmE");
     expect(ddt).toContain("Mago o TeamSystem");
     expect(ddt).toContain("ciclo passivo");
+    expect(ddt).toContain(
+      "https://www.frasma.org/blog/automatizzare-ddt-email-intelligenza-artificiale",
+    );
+    expect(ddt).toContain(
+      "https://www.frasma.org/blog/non-collegare-agenti-ai-direttamente-erp",
+    );
     expect(missing).toBeNull();
   });
 
@@ -237,6 +243,9 @@ describe("faqsForEntry extras", () => {
     const wiki = faqsForEntry(getKnowledgeEntry("company-wiki-brain")!, "it");
 
     expect(ddt[0]?.question).toContain("Mago o TeamSystem");
+    expect(
+      ddt.some((faq) => faq.question.includes("agente AI direttamente")),
+    ).toBe(true);
     expect(ddt.some((faq) => faq.question.includes("Delega la forma"))).toBe(
       true,
     );

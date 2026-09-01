@@ -8,6 +8,7 @@ import Seo from "../Seo";
 import { useLang, useT } from "../../lib/i18n/context";
 import {
   canonicalPath,
+  articlesForExtras,
   extrasForEntry,
   faqsForEntry,
   getCaseBySlug,
@@ -79,6 +80,7 @@ export default function CatalogLanding({ lookup }: Props) {
   const description = entry.summary[lang];
   const faqs = faqsForEntry(entry, lang);
   const extras = extrasForEntry(entry.id);
+  const articles = articlesForExtras(extras);
   const related = relatedEntries(entry).filter(
     (item) => canonicalPath(item) !== path,
   );
@@ -174,10 +176,10 @@ export default function CatalogLanding({ lookup }: Props) {
           </div>
         </section>
 
-        {extras?.videoUrl || extras?.blogPath ? (
+        {extras?.videoUrl || articles.length > 0 ? (
           <section className="ed-section border-t border-ink/8">
             <div className="section-farm max-w-3xl space-y-3">
-              {extras.videoUrl && extras.videoTitle ? (
+              {extras?.videoUrl && extras.videoTitle ? (
                 <p className="text-[16px] leading-[1.6] text-ink-soft">
                   <span className="font-semibold text-ink">
                     {t("catalog.videoLabel")}:{" "}
@@ -192,19 +194,22 @@ export default function CatalogLanding({ lookup }: Props) {
                   </Link>
                 </p>
               ) : null}
-              {extras.blogPath && extras.blogTitle ? (
-                <p className="text-[16px] leading-[1.6] text-ink-soft">
+              {articles.map((article) => (
+                <p
+                  key={article.path}
+                  className="text-[16px] leading-[1.6] text-ink-soft"
+                >
                   <span className="font-semibold text-ink">
                     {t("catalog.articleLabel")}:{" "}
                   </span>
                   <Link
-                    href={extras.blogPath}
+                    href={article.path}
                     className="text-accent underline-offset-2 hover:underline"
                   >
-                    {extras.blogTitle[lang]}
+                    {article.title[lang]}
                   </Link>
                 </p>
-              ) : null}
+              ))}
             </div>
           </section>
         ) : null}

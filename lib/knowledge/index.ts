@@ -11,7 +11,7 @@ export {
   localeFromAcceptLanguage,
   markdownForPath,
 } from "./markdown";
-export { extrasForEntry, PAGE_EXTRAS } from "./page-extras";
+export { articlesForExtras, extrasForEntry, PAGE_EXTRAS } from "./page-extras";
 export {
   agentNavigationPaths,
   CASES_HUB_PATH,

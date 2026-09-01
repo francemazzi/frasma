@@ -1,7 +1,7 @@
 import { SITE_URL, SMITHERY_SERVER_URL } from "../seo";
 import { getFrasmaProfile, knowledgeCatalog } from "./catalog";
 import { faqsForEntry } from "./faqs";
-import { extrasForEntry } from "./page-extras";
+import { articlesForExtras, extrasForEntry } from "./page-extras";
 import {
   CASES_HUB_PATH,
   canonicalPath,
@@ -64,8 +64,8 @@ export function entryMarkdown(
     `Canonical URL: ${absolute(path)}`,
   );
 
-  if (extras?.blogPath) {
-    lines.push(`Article: ${absolute(extras.blogPath)}`);
+  for (const article of articlesForExtras(extras)) {
+    lines.push(`Article: ${absolute(article.path)}`);
   }
   if (extras?.videoUrl) {
     lines.push(`Video: ${extras.videoUrl}`);

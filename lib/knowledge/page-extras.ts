@@ -5,12 +5,16 @@ export type PageFaq = {
   answer: LocalizedText;
 };
 
+export type PageArticle = {
+  path: string;
+  title: LocalizedText;
+};
+
 export type PageExtras = {
   problemLead?: LocalizedText;
   videoUrl?: string;
   videoTitle?: LocalizedText;
-  blogPath?: string;
-  blogTitle?: LocalizedText;
+  articles?: PageArticle[];
   faqs?: PageFaq[];
 };
 
@@ -27,11 +31,22 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
       "Automatizzare l'inserimento dei DDT con l'intelligenza artificiale",
       "Automating delivery-note entry with AI",
     ),
-    blogPath: "/blog/automatizzare-ddt-email-intelligenza-artificiale",
-    blogTitle: text(
-      "Come automatizzare i DDT ricevuti via email",
-      "How to automate delivery notes received by email",
-    ),
+    articles: [
+      {
+        path: "/blog/automatizzare-ddt-email-intelligenza-artificiale",
+        title: text(
+          "Come automatizzare i DDT ricevuti via email",
+          "How to automate delivery notes received by email",
+        ),
+      },
+      {
+        path: "/blog/non-collegare-agenti-ai-direttamente-erp",
+        title: text(
+          "Non collegare gli agenti AI direttamente all'ERP",
+          "Do not connect AI agents directly to the ERP",
+        ),
+      },
+    ],
     faqs: [
       {
         question: text(
@@ -41,6 +56,16 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         answer: text(
           "Sì, su un perimetro definito: il flusso legge il documento, struttura i campi e segnala quelli da verificare prima dell'importazione nell'ERP già in uso. Non sostituiamo il gestionale.",
           "Yes, on a defined scope: the workflow reads the document, structures fields, and flags those that need review before import into the ERP already in use. We do not replace the management system.",
+        ),
+      },
+      {
+        question: text(
+          "Si può collegare un agente AI direttamente all'ERP?",
+          "Can you connect an AI agent directly to the ERP?",
+        ),
+        answer: text(
+          "No. L'AI legge e prepara; una persona valida prima dell'import tracciato. Il percorso operativo è DDT verso ERP. La tesi è in https://www.frasma.org/blog/non-collegare-agenti-ai-direttamente-erp",
+          "No. AI reads and prepares; a person validates before the traced import. The operational path is delivery notes into ERP. The argument is at https://www.frasma.org/blog/non-collegare-agenti-ai-direttamente-erp",
         ),
       },
       {
@@ -177,4 +202,10 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
 
 export function extrasForEntry(entryId: string): PageExtras | undefined {
   return PAGE_EXTRAS[entryId];
+}
+
+export function articlesForExtras(
+  extras: PageExtras | undefined,
+): PageArticle[] {
+  return extras?.articles ?? [];
 }

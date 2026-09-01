@@ -7,6 +7,7 @@ On-site density lives in the knowledge catalog. These steps are outside the repo
 Request indexing (URL inspection) for:
 
 - `https://www.frasma.org/servizi/ddt-erp`
+- `https://www.frasma.org/blog/non-collegare-agenti-ai-direttamente-erp`
 - `https://www.frasma.org/servizi`
 - `https://www.frasma.org/manifattura`
 - `https://www.frasma.org/alimentare`
@@ -14,6 +15,8 @@ Request indexing (URL inspection) for:
 - `https://www.frasma.org/servizi/ticketing-manutenzione`
 
 Confirm the DDT spoke is indexed as its own URL, not only the homepage.
+
+After the thesis article is indexed, check AI Overview on «vorrei integrare il mio erp con l'ai» only as a citation probe (Frasma cited yes/no). Do **not** add that query to the monthly ranking list below.
 
 ## Google Business Profile
 

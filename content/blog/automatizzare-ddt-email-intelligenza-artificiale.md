@@ -1,7 +1,7 @@
 ---
 slug: automatizzare-ddt-email-intelligenza-artificiale
 title: "Come automatizzare l'inserimento dei DDT ricevuti via email con l'intelligenza artificiale"
-seoTitle: "Come automatizzare l'inserimento dei DDT ricevuti via email con l'intelligenza artificiale | Frasma"
+seoTitle: "Come automatizzare l'inserimento dei DDT ricevuti via email, poi import in Mago | Frasma"
 seoDescription: "Esempio pratico: DDT da email e PDF verso un registro Excel, poi importazione controllata in Mago, TeamSystem o un altro ERP."
 excerpt: "Esempio pratico: DDT da email e PDF verso un registro Excel, poi importazione controllata in Mago, TeamSystem o un altro ERP."
 publishedAt: "2026-07-12"
@@ -221,7 +221,7 @@ Prima della messa in produzione conviene confrontare i dati estratti automaticam
 
 ## Excel può essere il punto di partenza, non necessariamente quello di arrivo
 
-Per un primo test, Excel è spesso la soluzione più rapida: è conosciuto dal personale, può essere verificato facilmente e non richiede di modificare subito il gestionale.
+Per un primo test, Excel è spesso la soluzione più rapida: è conosciuto dal personale, può essere verificato facilmente e non richiede di modificare subito il gestionale. Resta il registro di controllo. L'arrivo è l'importazione tracciata nell'ERP, dopo la conferma di una persona — non un agente che scrive nel gestionale in diretta. Il perché è in [Non collegare gli agenti AI direttamente all'ERP](/blog/non-collegare-agenti-ai-direttamente-erp).
 
 Quando il processo diventa stabile, lo stesso flusso può essere collegato direttamente a:
 
