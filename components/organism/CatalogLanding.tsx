@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import ProcessAssessment from "./ProcessAssessment";
 import Seo from "../Seo";
+import { MaintenanceCaseDemos, MaintenanceCaseHero } from "./MaintenanceCaseVisuals";
 import { useLang, useT } from "../../lib/i18n/context";
 import {
   canonicalPath,
@@ -153,6 +154,8 @@ export default function CatalogLanding({ lookup }: Props) {
           </div>
         </section>
 
+        {entry.id === "industrial-maintenance-case" ? <MaintenanceCaseHero /> : null}
+
         <section className="ed-section border-t border-ink/8">
           <div className="section-farm max-w-3xl">
             <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
@@ -175,6 +178,8 @@ export default function CatalogLanding({ lookup }: Props) {
             </ul>
           </div>
         </section>
+
+        {entry.id === "industrial-maintenance-case" ? <MaintenanceCaseDemos /> : null}
 
         {extras?.videoUrl || articles.length > 0 ? (
           <section className="ed-section border-t border-ink/8">

@@ -386,6 +386,17 @@ export const it: Record<string, string> = {
   "catalog.videoLabel": "Video",
   "catalog.articleLabel": "Approfondimento",
   "catalog.open": "Apri",
+  "catalog.maintenance.imageAlt": "Manutenzione impianti — schizzo tecnico",
+  "catalog.maintenance.demoKicker": "Come si usa",
+  "catalog.maintenance.demoTitle": "Ticket, assegnazione e chiusura",
+  "catalog.maintenance.demoIntro":
+    "Il cursore ripete un intervento tipo: la coda condivisa, il tecnico assegnato, la nota e la chiusura. Non è il software del cliente, è il pezzo operativo del flusso.",
+  "catalog.maintenance.queueName": "Coda interventi",
+  "catalog.maintenance.queueDesc":
+    "Richieste, priorità e stati in un elenco condiviso al posto di email e telefono.",
+  "catalog.maintenance.assignName": "Assegnazione e chiusura",
+  "catalog.maintenance.assignDesc":
+    "Il ticket va a un tecnico, resta in corso, poi si chiude con esito e nota.",
   "results.caseCta": "Apri il caso",
 
   // For agents

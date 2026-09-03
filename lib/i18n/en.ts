@@ -382,6 +382,17 @@ export const en: Record<string, string> = {
   "catalog.videoLabel": "Video",
   "catalog.articleLabel": "Read more",
   "catalog.open": "Open",
+  "catalog.maintenance.imageAlt": "Plant maintenance — technical sketch",
+  "catalog.maintenance.demoKicker": "How it is used",
+  "catalog.maintenance.demoTitle": "Tickets, assignment, and closure",
+  "catalog.maintenance.demoIntro":
+    "The cursor replays a typical intervention: the shared queue, the assigned technician, the note, and the close. This is not the client's software; it is the operational piece of the workflow.",
+  "catalog.maintenance.queueName": "Intervention queue",
+  "catalog.maintenance.queueDesc":
+    "Requests, priorities, and states in one shared list instead of email and phone.",
+  "catalog.maintenance.assignName": "Assignment and closure",
+  "catalog.maintenance.assignDesc":
+    "The ticket goes to a technician, stays in progress, then closes with an outcome and a note.",
   "results.caseCta": "Open the case",
 
   // For agents

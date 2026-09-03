@@ -316,6 +316,154 @@ export function TicketsMock() {
   );
 }
 
+type AssignState = {
+  tech: string;
+  picker: boolean;
+  status: TicketStatus;
+  note: string;
+};
+
+const ASSIGN_INITIAL: AssignState = {
+  tech: "",
+  picker: false,
+  status: "open",
+  note: "",
+};
+
+const ASSIGN_COMPLETE: AssignState = {
+  tech: "Marco R.",
+  picker: false,
+  status: "done",
+  note: "Cella -22°C, valvola sostituita",
+};
+
+const ASSIGN_STEPS: MockStep<AssignState>[] = [
+  { type: "wait", ms: 360 },
+  { type: "move", to: "fa-tech" },
+  { type: "click" },
+  { type: "set", patch: { picker: true } },
+  { type: "wait", ms: 280 },
+  { type: "move", to: "fa-tech-mr" },
+  { type: "click" },
+  { type: "set", patch: { tech: "Marco R.", picker: false } },
+  { type: "wait", ms: 280 },
+  { type: "move", to: "fa-take" },
+  { type: "click" },
+  { type: "set", patch: { status: "work" } },
+  { type: "wait", ms: 300 },
+  { type: "move", to: "fa-note" },
+  { type: "click" },
+  { type: "type", key: "note", text: "Cella -22°C, valvola sostituita", msPerChar: 26 },
+  { type: "move", to: "fa-close" },
+  { type: "click" },
+  { type: "set", patch: { status: "done" } },
+  { type: "wait", ms: 800 },
+];
+
+export function FieldAssignMock() {
+  const { state, typingKey } = useMockPlayback(
+    ASSIGN_INITIAL,
+    ASSIGN_COMPLETE,
+    ASSIGN_STEPS,
+  );
+
+  return (
+    <div className="flex h-full min-h-0 flex-col">
+      <WindowBar label="FRIGO-4129 · intervento" />
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden p-3 sm:p-4">
+        <div className="mb-3 flex items-start justify-between gap-2 border-b border-hairline pb-2">
+          <div className="min-w-0">
+            <p className="truncate font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft sm:text-[9.5px]">
+              Ticket
+            </p>
+            <p className="truncate text-[14px] font-medium text-ink sm:text-[13px]">
+              FRIGO-4129
+            </p>
+          </div>
+          <StatusPill kind={state.status} />
+        </div>
+
+        <AssignRow label="Impianto" value="Coop · cella -22°C" />
+        <AssignRow label="Priorità" value="Alta" accent />
+
+        <div className="relative mb-2 border-b border-hairline py-2">
+          <p className="truncate font-mono text-[12px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">
+            Tecnico
+          </p>
+          <MockHit id="fa-tech">
+            <span className="mt-0.5 flex min-h-[22px] items-center justify-between gap-2 font-mono text-[13.5px] font-medium text-ink sm:text-[11.5px]">
+              <span className="truncate">{state.tech || "Non assegnato"}</span>
+              <span className="shrink-0 text-[11px] uppercase tracking-[0.06em] text-accent sm:text-[9px]">
+                {state.tech ? "MR" : "Assegna"}
+              </span>
+            </span>
+          </MockHit>
+          {state.picker ? (
+            <div className="absolute left-0 right-0 top-full z-10 mt-1 overflow-hidden rounded-xl border border-hairline-strong bg-white shadow-[0_12px_28px_-16px_rgba(80,50,90,0.45)]">
+              <MockHit id="fa-tech-mr" as="div" className="px-3 py-2">
+                <span className="flex items-center justify-between font-mono text-[12.5px] text-ink sm:text-[11px]">
+                  Marco R.
+                  <span className="text-[10px] uppercase tracking-[0.06em] text-ink-soft">
+                    Campo
+                  </span>
+                </span>
+              </MockHit>
+              <div className="border-t border-hairline px-3 py-2 font-mono text-[12.5px] text-ink-soft sm:text-[11px]">
+                Anna C.
+              </div>
+            </div>
+          ) : null}
+        </div>
+
+        <div
+          className={useMockHitClass("fa-note", "mb-3 flex min-w-0 flex-col gap-1")}
+          data-mock-hit="fa-note"
+        >
+          <span className="truncate font-mono text-[12px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">
+            Nota intervento
+          </span>
+          <div className="min-h-[40px] rounded-lg bg-paper-2 px-[10px] py-[6px] font-mono text-[13px] text-ink sm:text-[11px]">
+            {state.note || "—"}
+            {typingKey === "note" ? <span className="mock-caret" /> : null}
+          </div>
+        </div>
+
+        <div className="mt-auto flex flex-wrap gap-2 pt-1">
+          <MockHit id="fa-take">
+            <BtnMini ghost={state.status !== "open"}>
+              {state.status === "open" ? "Prendi in carico" : "In carico"}
+            </BtnMini>
+          </MockHit>
+          <MockHit id="fa-close">
+            <BtnMini ghost={state.status !== "work"}>
+              {state.status === "done" ? "Chiuso" : "Chiudi intervento"}
+            </BtnMini>
+          </MockHit>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AssignRow({
+  label,
+  value,
+  accent,
+}: {
+  label: string;
+  value: string;
+  accent?: boolean;
+}) {
+  return (
+    <div className="flex min-w-0 items-baseline justify-between gap-3 border-b border-hairline py-2 font-mono text-[13px] sm:text-[11px]">
+      <span className="truncate uppercase tracking-[0.08em] text-ink-soft">{label}</span>
+      <span className={`truncate font-medium ${accent ? "text-accent" : "text-ink"}`}>
+        {value}
+      </span>
+    </div>
+  );
+}
+
 type WorkflowState = {
   step: 4 | 5;
   packing: string;

@@ -198,6 +198,12 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
       "Field maintenance and support: from the request to a closed intervention, with technicians and suppliers in the same workflow.",
     ),
   },
+  "industrial-maintenance-case": {
+    problemLead: text(
+      "Caso reale anonimo: dalla richiesta su email o telefono a ticket, assegnazione e chiusura, con clienti, tecnici e fornitori nello stesso flusso.",
+      "Anonymous real case: from a request by email or phone to ticket, assignment, and closure, with customers, technicians, and suppliers in the same workflow.",
+    ),
+  },
 };
 
 export function extrasForEntry(entryId: string): PageExtras | undefined {
