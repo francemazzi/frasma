@@ -4,7 +4,17 @@ import type { NextApiRequest, NextApiResponse } from "next";
 vi.mock("../../lib/chat/persistence", () => ({
   appendMessage: vi.fn(async () => undefined),
   requireRegisteredConversation: vi.fn(async (id?: string) =>
-    id ? "550e8400-e29b-41d4-a716-446655440000" : null,
+    id
+      ? {
+          conversationId: "550e8400-e29b-41d4-a716-446655440000",
+          visitor: {
+            name: "Francesco",
+            email: "francesco@example.com",
+            company: "Test",
+            sector: "lamiera",
+          },
+        }
+      : null,
   ),
 }));
 
@@ -81,6 +91,58 @@ describe("chat API validation", () => {
     );
     expect(state.status).toBe(400);
     expect(state.body).toEqual({ error: "Message too long." });
+  });
+
+  it("accepts long conversations below the raised message cap", async () => {
+    const { response, state } = createResponse();
+    const messages = Array.from({ length: 25 }, (_, index) => ({
+      role: index % 2 === 0 ? ("user" as const) : ("assistant" as const),
+      content: `message ${index}`,
+    }));
+
+    await handler(
+      request(
+        "POST",
+        {
+          messages,
+          lang: "it",
+          timezone: "Europe/Rome",
+          pagePath: "/",
+          conversationId: "550e8400-e29b-41d4-a716-446655440000",
+        },
+        "203.0.113.14",
+      ),
+      response,
+    );
+
+    expect(state.status).not.toBe(400);
+    expect(state.body).not.toEqual({ error: "Too many messages." });
+  });
+
+  it("rejects conversations above the raised message cap", async () => {
+    const { response, state } = createResponse();
+    const messages = Array.from({ length: 61 }, (_, index) => ({
+      role: index % 2 === 0 ? ("user" as const) : ("assistant" as const),
+      content: `message ${index}`,
+    }));
+
+    await handler(
+      request(
+        "POST",
+        {
+          messages,
+          lang: "it",
+          timezone: "Europe/Rome",
+          pagePath: "/",
+          conversationId: "550e8400-e29b-41d4-a716-446655440000",
+        },
+        "203.0.113.15",
+      ),
+      response,
+    );
+
+    expect(state.status).toBe(400);
+    expect(state.body).toEqual({ error: "Too many messages." });
   });
 
   it("returns 500 when OpenAI is not configured", async () => {

@@ -41,6 +41,19 @@ export type ContactUpdate = {
   userId?: string;
 };
 
+export type RegisteredVisitorContext = {
+  name: string;
+  email: string;
+  company: string;
+  sector: string;
+};
+
+export type RegisteredConversationResult = {
+  conversationId: string;
+  messages: StoredMessage[];
+  visitor: RegisteredVisitorContext | null;
+};
+
 const CONVERSATIONS_COLLECTION = "conversations";
 const MESSAGES_COLLECTION = "messages";
 const EVENTS_COLLECTION = "events";
@@ -234,9 +247,54 @@ export async function getConversationMessages(
   }));
 }
 
+function toRegisteredVisitorContext(
+  conversation: Pick<
+    ConversationDocument,
+    "contactName" | "contactEmail" | "company" | "sector"
+  >,
+): RegisteredVisitorContext | null {
+  const name = conversation.contactName?.trim() ?? "";
+  const email = conversation.contactEmail?.trim() ?? "";
+  const company = conversation.company?.trim() ?? "";
+  const sector = conversation.sector?.trim() ?? "";
+
+  if (!name || !email) return null;
+
+  return { name, email, company, sector };
+}
+
+export async function getConversationVisitorContact(
+  conversationId: string,
+): Promise<RegisteredVisitorContext | null> {
+  if (!isPersistenceEnabled() || !isValidConversationId(conversationId)) {
+    return null;
+  }
+
+  const db = await getDbWithIndexes();
+  if (!db) return null;
+
+  const conversation = await db
+    .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
+    .findOne(
+      { _id: conversationId, userId: { $exists: true, $ne: "" } },
+      {
+        projection: {
+          contactName: 1,
+          contactEmail: 1,
+          company: 1,
+          sector: 1,
+        },
+      },
+    );
+
+  if (!conversation) return null;
+
+  return toRegisteredVisitorContext(conversation);
+}
+
 export async function getRegisteredConversation(
   conversationId: string,
-): Promise<{ conversationId: string; messages: StoredMessage[] } | null> {
+): Promise<RegisteredConversationResult | null> {
   if (!isPersistenceEnabled() || !isValidConversationId(conversationId)) {
     return null;
   }
@@ -244,11 +302,19 @@ export async function getRegisteredConversation(
   const hasUser = await conversationHasUser(conversationId);
   if (!hasUser) return null;
 
-  const messages = await getConversationMessages(conversationId);
+  const [messages, visitor] = await Promise.all([
+    getConversationMessages(conversationId),
+    getConversationVisitorContact(conversationId),
+  ]);
   if (messages === null) return null;
 
-  return { conversationId, messages };
+  return { conversationId, messages, visitor };
 }
+
+export type RequireRegisteredConversationResult = {
+  conversationId: string;
+  visitor: RegisteredVisitorContext | null;
+};
 
 export async function appendMessage(
   conversationId: string,
@@ -310,14 +376,16 @@ export async function resolveConversationId(
 
 export async function requireRegisteredConversation(
   conversationId: string | undefined,
-): Promise<string | null> {
+): Promise<RequireRegisteredConversationResult | null> {
   if (!isPersistenceEnabled()) return null;
   if (!conversationId || !isValidConversationId(conversationId)) return null;
 
   const hasUser = await conversationHasUser(conversationId);
   if (!hasUser) return null;
 
-  return conversationId;
+  const visitor = await getConversationVisitorContact(conversationId);
+
+  return { conversationId, visitor };
 }
 
 export async function logConversionEvent(

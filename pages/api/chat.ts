@@ -23,9 +23,14 @@ import {
 import {
   appendMessage,
   requireRegisteredConversation,
+  type RegisteredVisitorContext,
 } from "../../lib/chat/persistence";
 import { isValidConversationId } from "../../lib/chat/session";
 import { buildTimeoutFallbackResponse } from "../../lib/chat/timeout-fallback";
+import {
+  buildRegisteredVisitorContextMessage,
+  mergeBriefWithVisitor,
+} from "../../lib/chat/visitor-context";
 
 const CHAT_INVOKE_TIMEOUT_MS = 55_000;
 
@@ -134,11 +139,12 @@ DIAGNOSTIC METHOD:
 PROCESS BRIEF FLOW:
 1. When enough evidence is available, summarize the process, systems, volumes, and main issue in plain text.
 2. Ask the user to correct or confirm that summary.
-3. Name, email, and company are already collected at registration; confirm them only if missing.
+3. Name, email, company, and sector are already collected at registration (see REGISTERED VISITOR context). Never ask for them again.
 4. Ask explicit confirmation before preparing the form.
 5. Only after confirmation, call prepare_project_brief with:
-   - name, clientEmail
-   - company and role if known
+   - name and clientEmail from REGISTERED VISITOR (unless the user corrected them in chat)
+   - company from REGISTERED VISITOR or chat corrections
+   - role if the user mentioned it in chat (optional)
    - process: the process and main issue (min 20 characters)
    - systems: current tools if known
    - volume: approximate volume if known
@@ -243,7 +249,8 @@ function normalizePagePath(value: unknown): string {
 
 const chatIpRateLimiter = new InMemoryFixedWindowRateLimiter(10, 60_000); // 10 per minute per IP
 
-const MAX_MESSAGES = 20;
+const MAX_MESSAGES = 60;
+const MAX_MESSAGES_FOR_AGENT = 24;
 const MAX_USER_MESSAGE_LENGTH = 2_000;
 const MAX_ASSISTANT_MESSAGE_LENGTH = 30_000;
 
@@ -284,17 +291,25 @@ function getMessageName(message: unknown): string | null {
 function buildProjectBriefFormResponse(
   payload: ProjectBriefPayload,
   lang: ChatRequestBody["lang"],
+  visitor: RegisteredVisitorContext | null,
 ): string {
+  const merged = mergeBriefWithVisitor(payload, visitor);
   const intro =
     lang === "en"
       ? "Review the process brief before sending it:"
       : "Rivedi il brief di processo prima di inviarlo:";
-  return `${intro}\n\n${wrapProjectBriefForm(payload)}`;
+  return `${intro}\n\n${wrapProjectBriefForm(merged)}`;
+}
+
+function windowMessagesForAgent(messages: ChatMessage[]): ChatMessage[] {
+  if (messages.length <= MAX_MESSAGES_FOR_AGENT) return messages;
+  return messages.slice(-MAX_MESSAGES_FOR_AGENT);
 }
 
 function extractProjectBriefFormFallback(
   messages: unknown[],
   lang: ChatRequestBody["lang"],
+  visitor: RegisteredVisitorContext | null,
 ): string | null {
   for (let i = messages.length - 1; i >= 0; i -= 1) {
     const message = messages[i];
@@ -306,7 +321,7 @@ function extractProjectBriefFormFallback(
     try {
       const parsed = ProjectBriefToolSchema.safeParse(JSON.parse(content));
       if (!parsed.success) continue;
-      return buildProjectBriefFormResponse(parsed.data, lang);
+      return buildProjectBriefFormResponse(parsed.data, lang, visitor);
     } catch {
       // Ignore malformed tool output.
     }
@@ -319,9 +334,10 @@ function applyStructuredFormFallbacks(
   content: string,
   messages: unknown[],
   lang: ChatRequestBody["lang"],
+  visitor: RegisteredVisitorContext | null,
 ): string {
   if (PROJECT_BRIEF_FORM_RE.test(content)) return content;
-  return extractProjectBriefFormFallback(messages, lang) ?? content;
+  return extractProjectBriefFormFallback(messages, lang, visitor) ?? content;
 }
 
 function getAgent() {
@@ -410,14 +426,18 @@ export default async function handler(
     .find((message) => message.role === "user");
 
   let conversationId: string | null = null;
+  let registeredVisitor: RegisteredVisitorContext | null = null;
   try {
-    conversationId = await requireRegisteredConversation(body.conversationId);
+    const registration = await requireRegisteredConversation(body.conversationId);
 
-    if (!conversationId) {
+    if (!registration) {
       return res.status(401).json({
         error: "Chat registration required.",
       });
     }
+
+    conversationId = registration.conversationId;
+    registeredVisitor = registration.visitor;
 
     if (lastUserMessage) {
       await appendMessage(conversationId, {
@@ -439,6 +459,8 @@ export default async function handler(
     }
   }
 
+  const agentMessages = windowMessagesForAgent(body.messages);
+
   const invokeStartedAt = Date.now();
 
   try {
@@ -450,7 +472,10 @@ export default async function handler(
       new SystemMessage(
         `PUBLIC PAGE CONTEXT: the user is currently visiting "${pagePath}". Use this only as a hint when searching verified knowledge; never assume intent from the route alone.`,
       ),
-      ...body.messages.map((m) =>
+      ...(registeredVisitor
+        ? [new SystemMessage(buildRegisteredVisitorContextMessage(registeredVisitor))]
+        : []),
+      ...agentMessages.map((m) =>
         m.role === "user"
           ? new HumanMessage(m.content)
           : new AIMessage(m.content),
@@ -470,6 +495,7 @@ export default async function handler(
       content,
       result.messages,
       lang,
+      registeredVisitor,
     );
 
     if (conversationId && responseText) {
@@ -489,10 +515,11 @@ export default async function handler(
   } catch (e) {
     if (e instanceof Error && e.message === "TIMEOUT") {
       const fallback = buildTimeoutFallbackResponse({
-        messages: body.messages,
+        messages: agentMessages,
         lang,
         timezone: timeZone,
         pagePath,
+        visitor: registeredVisitor ?? undefined,
       });
 
       if (conversationId) {

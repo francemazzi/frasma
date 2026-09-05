@@ -13,6 +13,7 @@ import {
   writeStoredConversationId,
 } from "../../lib/chat/session";
 import { buildTimeoutFallbackResponse } from "../../lib/chat/timeout-fallback";
+import { renderChatMarkdown } from "../../lib/chat/markdown";
 import type { ProjectBriefFields } from "../../lib/processAssessment";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -26,6 +27,23 @@ type VisitorProfile = {
 };
 
 const DISCOUNT_PATH = "/discount?conv=contact";
+
+function isTransientAssistantError(content: string, errorText: string): boolean {
+  const normalized = content.trim();
+  return (
+    normalized === errorText.trim() ||
+    normalized === "Error." ||
+    normalized === "Something went wrong. Please try again."
+  );
+}
+
+function messagesForApi(messages: Message[], errorText: string): Message[] {
+  return messages.filter(
+    (message) =>
+      message.role === "user" ||
+      !isTransientAssistantError(message.content, errorText),
+  );
+}
 
 function redirectToDiscount(): void {
   if (typeof window !== "undefined") {
@@ -486,6 +504,7 @@ export default function ChatWidget() {
   const [restoring, setRestoring] = useState(false);
   const [needsRegistration, setNeedsRegistration] = useState(false);
   const [visitor, setVisitor] = useState<VisitorProfile | null>(null);
+  const [sendError, setSendError] = useState<string | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -540,6 +559,7 @@ export default function ChatWidget() {
         | {
             conversationId?: string;
             messages?: Message[];
+            visitor?: VisitorProfile;
           }
         | null;
 
@@ -559,6 +579,9 @@ export default function ChatWidget() {
 
       setConversationId(json?.conversationId ?? storedConversationId);
       writeStoredConversationId(json?.conversationId ?? storedConversationId);
+      if (json?.visitor) {
+        setVisitor(json.visitor);
+      }
       setMessages(restoredMessages);
       setHistoryRestored(true);
       setNeedsRegistration(false);
@@ -613,6 +636,10 @@ export default function ChatWidget() {
     setMessages(nextMessages);
     setInput("");
     setLoading(true);
+    setSendError(null);
+
+    const errorText = t("chat.error") ?? "Error.";
+    const apiMessages = messagesForApi(nextMessages, errorText);
 
     try {
       const timezone =
@@ -624,7 +651,7 @@ export default function ChatWidget() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: nextMessages,
+          messages: apiMessages,
           lang,
           timezone,
           pagePath: router.asPath,
@@ -646,7 +673,7 @@ export default function ChatWidget() {
         const timeoutContent =
           json.response?.trim() ||
           buildTimeoutFallbackResponse({
-            messages: nextMessages,
+            messages: apiMessages,
             lang,
             timezone,
             pagePath: router.asPath,
@@ -668,13 +695,7 @@ export default function ChatWidget() {
           { role: "assistant", content: json.response as string },
         ]);
       } else {
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "assistant",
-            content: t("chat.error") ?? "Error.",
-          },
-        ]);
+        setSendError(errorText);
       }
     } catch (e) {
       const isAbort =
@@ -683,22 +704,21 @@ export default function ChatWidget() {
         typeof Intl !== "undefined"
           ? Intl.DateTimeFormat().resolvedOptions().timeZone ?? "Europe/Rome"
           : "Europe/Rome";
-      const fallback = isAbort
-        ? buildTimeoutFallbackResponse({
-            messages: nextMessages,
-            lang,
-            timezone,
-            pagePath: router.asPath,
-            visitor: visitor ?? undefined,
-          })
-        : (t("chat.error") ?? "Error.");
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: fallback,
-        },
-      ]);
+      if (isAbort) {
+        const fallback = buildTimeoutFallbackResponse({
+          messages: apiMessages,
+          lang,
+          timezone,
+          pagePath: router.asPath,
+          visitor: visitor ?? undefined,
+        });
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: fallback },
+        ]);
+      } else {
+        setSendError(errorText);
+      }
     } finally {
       setLoading(false);
     }
@@ -828,8 +848,8 @@ export default function ChatWidget() {
                     />
                     frasma
                   </div>
-                  <div className="font-sans text-[15px] leading-[1.5] text-ink whitespace-pre-wrap break-words">
-                    {text}
+                  <div className="font-sans text-[15px] leading-[1.5] text-ink break-words">
+                    {renderChatMarkdown(text)}
                   </div>
                   {projectBrief ? (
                     <InlineProjectBriefForm
@@ -880,6 +900,12 @@ export default function ChatWidget() {
               </div>
             )}
           </div>
+
+          {sendError ? (
+            <div className="shrink-0 border-t border-hairline bg-red-50 px-[18px] py-2 text-[12px] leading-relaxed text-red-700">
+              {sendError}
+            </div>
+          ) : null}
 
           <div className="flex shrink-0 items-end gap-[10px] border-t border-hairline bg-paper px-[18px] py-4">
             <input

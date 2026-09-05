@@ -39,6 +39,7 @@ export default async function handler(
     return res.status(200).json({
       conversationId: conversation.conversationId,
       messages: conversation.messages,
+      ...(conversation.visitor ? { visitor: conversation.visitor } : {}),
     });
   } catch (error) {
     console.error("[conversations] Failed to load conversation.", error);
