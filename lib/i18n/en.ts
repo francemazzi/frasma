@@ -1,8 +1,8 @@
 export const en: Record<string, string> = {
   // Meta
-  "meta.title": "Business process and document automation for SMEs | Frasma",
+  "meta.title": "AI automation and ERP integration for manufacturing SMEs | Frasma",
   "meta.description":
-    "Frasma automates work between documents, email, Excel, and ERP for manufacturing and food SMEs, without replacing existing business systems.",
+    "Connect email, PDFs, Excel, and ERP with custom software, automatic checks, and human approval. We start from one measurable process.",
 
   // Top rule (editorial)
   "topRule.studio": "Frasma · Structured AI agency · Mantova — Italy",
@@ -13,7 +13,7 @@ export const en: Record<string, string> = {
 
   // Header
   "header.book": "Book",
-  "header.schedule": "Assess a process",
+  "header.schedule": "Let's review a process",
   "header.companion": "",
   "header.nav.cases": "Case studies",
   "header.nav.platform": "How it works",
@@ -24,14 +24,14 @@ export const en: Record<string, string> = {
   "header.nav.blog": "Blog",
 
   // Hero (editorial)
-  "hero.eyebrow": "Automation for manufacturing and food SMEs",
-  "hero.title1": "Automate the",
-  "hero.titleEm": "work",
-  "hero.title2": "between documents, email, and ERP.",
+  "hero.eyebrow": "Automation for manufacturing SMEs",
+  "hero.title1": "The ERP",
+  "hero.titleEm": "is there.",
+  "hero.title2": "Orders and delivery notes still live in email, PDFs, and Excel.",
   "hero.subtitle":
-    "Frasma designs workflows that read documents, check data, and update the software you already use, with approval from your team.",
+    "Frasma connects these steps to your ERP with custom software, automatic checks, and human approval. Cut manual entry, errors, and handling time without replacing the systems you already use.",
   "hero.risk":
-    "Start with one bounded process, keeping your current ERP. The assessment checks feasibility and operational value. The workflow then stays in service, maintained and evolved over time.",
+    "We start from one concrete activity and check data, integrations, and a measurable result.",
   "hero.point1":
     "Custom software and AI for quotes, delivery notes, technical sheets, and tickets",
   "hero.point2": "Less copy-paste between Excel, PDF, email, and ERP",
@@ -41,8 +41,8 @@ export const en: Record<string, string> = {
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
   "hero.brand":
     "Frasma, the Lagotto in the brand, represents the conversational and first-contact support experience.",
-  "hero.cta": "Assess a process to automate",
-  "hero.secondary": "See how it works",
+  "hero.cta": "Let's review a process",
+  "hero.secondary": "Request an assessment",
   "hero.projects": "See real examples",
   "hero.card.title": "Studio — card",
   "hero.card.studioKey": "Studio",
@@ -82,7 +82,7 @@ export const en: Record<string, string> = {
     "Quotes, filings, and documents ready to use.",
   "results.case1.pull":
     "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
-  "results.case1.plate": "CS · 01 — Food · Quality & documents",
+  "results.case1.plate": "CS · 03 — Food · Quality & documents",
   "results.case1.m1n": "4×",
   "results.case1.m1l":
     "On repetitive document filings, with final consultant validation",
@@ -96,17 +96,17 @@ export const en: Record<string, string> = {
   "results.case1.m2n": "Parallel cases",
   "results.case1.m2l": "Handled in parallel by the same team",
   "results.case2.pull":
-    "From invoices, delivery notes, and technical specs to quotes: data read, checked, and pushed into systems without copy-paste.",
-  "results.case2.plate": "CS · 02 — Manufacturing · ERP & Quoting",
-  "results.case2.m1n": "−60%",
+    "In a machine shop, quoting depended on Excel and handoffs between teams. Data is read from documents, checked, and pushed into systems: quote prep from 2 days to 20 minutes, without copy-paste.",
+  "results.case2.plate": "CS · 01 — Manufacturing · ERP & quoting",
+  "results.case2.m1n": "20 min",
   "results.case2.m1l":
-    "On time spent preparing quotes and ERP documents (invoices, delivery notes, technical sheets)",
+    "Quote preparation time, down from 2 days (anonymous real case)",
   "results.case2.before":
-    "Data copied from delivery notes, invoices, and technical sheets into ERP and quotes.",
+    "Data copied from delivery notes, invoices, technical sheets, and Excel into ERP and quotes.",
   "results.case2.after":
     "Automatic reading, human review, quote ready and fully tracked.",
-  "results.case2.titlePre": "ERP documents and quotes for",
-  "results.case2.titleEm": "cranes and sheet metal",
+  "results.case2.titlePre": "Quotes from 2 days to",
+  "results.case2.titleEm": "20 minutes",
   "results.case2.titlePost": "",
   "results.case2.m2n": "1 flow",
   "results.case2.m2l": "From ERP document to quote",
@@ -127,7 +127,7 @@ export const en: Record<string, string> = {
   "results.case3.m2l": "Single process across a distributed network",
   "results.case4.pull":
     "From request to closed intervention: clients, technicians, and suppliers in the same operational workflow.",
-  "results.case4.plate": "CS · 03 — Maintenance · Field service",
+  "results.case4.plate": "CS · 02 — Maintenance · Field service",
   "results.case4.m1n": "1 platform",
   "results.case4.m1l": "From client request to closed field intervention",
   "results.case4.before":
@@ -147,12 +147,12 @@ export const en: Record<string, string> = {
     "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
   "results.case1.desc":
     "Guided HACCP and certifications: fewer repetitive forms, consultant always in the loop.",
-  "results.case2.tag": "Manufacturing / ERP & AI",
-  "results.case2.title": "ERP documents and quotes for cranes and sheet metal",
+  "results.case2.tag": "Manufacturing / ERP and quotes",
+  "results.case2.title": "Quotes from 2 days to 20 minutes",
   "results.case2.impact":
-    "From invoices, delivery notes, and technical specs to quotes: data read, checked, and pushed into systems without copy-paste.",
+    "In a machine shop, quoting depended on Excel and handoffs between teams. Data is read, checked, and pushed into systems without copy-paste.",
   "results.case2.desc":
-    "Data extraction from invoices, delivery notes, and technical sheets into ERP and quotes — no copy-paste.",
+    "Anonymous real case: quote preparation from 2 days to 20 minutes, with human review before the ERP is updated.",
   "results.case3.tag": "Agri-food / Operations",
   "results.case3.title": "Multi-company agri-food filings",
   "results.case3.impact":
@@ -168,23 +168,23 @@ export const en: Record<string, string> = {
 
   // Controlled workflow and use cases
   "flow.eyebrow": "From document to ERP",
-  "flow.title": "A controlled workflow, not a black box",
+  "flow.title": "AI prepares the work. Rules and people decide what enters your systems.",
   "flow.subtitle":
-    "We connect the tools already in place. AI prepares the work; business rules and people decide what enters company systems.",
-  "flow.step1.title": "Read inputs",
-  "flow.step1.desc": "PDFs, email, spreadsheets, and attachments enter one workflow.",
-  "flow.step2.title": "Check data",
-  "flow.step2.desc": "Business rules flag missing fields, anomalies, and mismatches.",
-  "flow.step3.title": "Request approval",
-  "flow.step3.desc": "Your team reviews steps that require human responsibility.",
-  "flow.step4.title": "Update systems",
-  "flow.step4.desc": "Validated data reaches the ERP and tools already in use.",
-  "flow.step5.title": "Keep an audit trail",
-  "flow.step5.desc": "Inputs, checks, and decisions remain available for review.",
+    "We connect the tools already in place. AI prepares the work; business rules and people decide what can enter company systems.",
+  "flow.step1.title": "Capture",
+  "flow.step1.desc": "Documents, email, and data enter one workflow.",
+  "flow.step2.title": "Structure",
+  "flow.step2.desc": "It identifies the information the process actually needs.",
+  "flow.step3.title": "Check",
+  "flow.step3.desc": "It verifies fields, rules, and exceptions. We do not promise zero errors: we flag what does not add up.",
+  "flow.step4.title": "Ask for confirmation",
+  "flow.step4.desc": "Critical actions stay with your team when a human decision is required.",
+  "flow.step5.title": "Update",
+  "flow.step5.desc": "The ERP and other systems receive only validated data. Inputs, checks, and decisions stay traceable.",
   "useCases.eyebrow": "What it looks like",
   "useCases.title": "The interfaces your team works in",
   "useCases.subtitle":
-    "Four workflows already built: data extracted from documents, field jobs, guided procedures, and quotes.",
+    "Two workflows already built for manufacturing: delivery notes into ERP, and job quotes. Other services stay available separately.",
   "useCases.previous": "Previous example",
   "useCases.next": "Next example",
   "useCases.pageWord": "Example",
@@ -214,23 +214,24 @@ export const en: Record<string, string> = {
 
   // How we work
   "how.eyebrow": "Method",
-  "how.title": "From process to pilot",
-  "how.subtitle": "A focused path to verify value before extending the solution.",
-  "how.title1": "Process analysis",
+  "how.title": "We start from a process, not a generic AI project",
+  "how.subtitle":
+    "The first conversation checks whether the activity is worth automating, which systems are involved, and which result to measure.",
+  "how.title1": "Assessment",
   "how.desc1":
-    "We map activities, exceptions, ownership, and the starting baseline.",
-  "how.title2": "Data and integrations",
+    "We identify activities, volumes, systems, errors, and the metric to improve. You leave with a scope, a baseline, and whether a pilot project makes sense.",
+  "how.title2": "Pilot project",
   "how.desc2":
-    "We verify documents, data quality, and access to the systems involved.",
-  "how.title3": "Bounded pilot",
+    "We build the minimum workflow on the chosen process, with the people who do the work every day.",
+  "how.title3": "Measurement",
   "how.desc3":
-    "We build the workflow on a limited scope using real cases.",
-  "how.title4": "Measurement",
-  "how.desc4":
     "We compare time, errors, and manual workload with the starting point.",
-  "how.title5": "Production",
+  "how.title4": "Go-live",
+  "how.desc4":
+    "We fold the system into daily work without replacing the ERP.",
+  "how.title5": "Evolution",
   "how.desc5":
-    "Only if the pilot holds up, the workflow goes live on real volumes.",
+    "The same technical lead stays, the existing workflow is updated, and new processes are added when they have a measurable return.",
 
   // Life after go-live
   "continuity.eyebrow": "After go-live",
@@ -294,7 +295,7 @@ export const en: Record<string, string> = {
   "founder.role": "Your direct technical lead",
   "founder.title": "Francesco Saverio Mazzi",
   "founder.bio1":
-    "Francesco Mazzi leads analysis, architecture, and implementation at Frasma, with experience in operational software and data integrations for manufacturing, food, and agritech.",
+    "Francesco Mazzi leads analysis, architecture, and implementation at Frasma, with experience in operational software and data integrations for manufacturing SMEs.",
   "founder.bio2":
     "The same person stays from the first analysis through the maintenance years that follow: whoever answers when a workflow needs updating is whoever built it. Specialist expertise is brought in when the project requires it.",
   "founder.note":
@@ -318,18 +319,18 @@ export const en: Record<string, string> = {
 
   // Qualify lead
   "qualify.eyebrow": "Recognizable situations",
-  "qualify.title": "Where time is lost every day",
+  "qualify.title": "Where work stays manual even if you already have an ERP",
   "qualify.subtitle":
-    "The starting point is not a software brief. It is a repetitive task that slows work down.",
-  "qualify.item1.title": "Orders copied from email",
+    "The starting point is not a software brief. It is a repetitive task between email, documents, and ERP.",
+  "qualify.item1.title": "Delivery notes and orders",
   "qualify.item1.desc":
-    "Attachments and order lines are read and entered manually into the ERP.",
-  "qualify.item2.title": "Delivery notes and invoices checked by hand",
+    "Documents arrive by email. Someone reads lines, codes, and quantities, checks the data, and copies it into the ERP.",
+  "qualify.item2.title": "Quotes and job orders",
   "qualify.item2.desc":
-    "Numbers, items, and quantities are verified across PDFs, spreadsheets, and ERP.",
-  "qualify.item3.title": "Quotes assembled from separate files",
+    "Technical and commercial information is spread across PDFs, spreadsheets, email, and company history. Building a proposal means searching and copy-paste.",
+  "qualify.item3.title": "Quality and non-conformities",
   "qualify.item3.desc":
-    "Price lists, specifications, and job history depend on searches and copy-paste.",
+    "Reports, photos, and documents stay scattered. Reconstructing the issue and updating the right systems takes time.",
   "qualify.item4.title": "Complaints managed in email and spreadsheets",
   "qualify.item4.desc":
     "Non-conformities, evidence, and corrective actions stay fragmented and hard to trace.",
@@ -344,15 +345,15 @@ export const en: Record<string, string> = {
   "funding.cta": "Book a free eligibility call",
 
   // CTA (editorial)
-  "cta.title1": "Start with one",
-  "cta.titleEm": "real process",
-  "cta.title2": ".",
+  "cta.title1": "Is there still a",
+  "cta.titleEm": "process",
+  "cta.title2": " living between email, Excel, and the ERP?",
   "cta.desc":
-    "Describe a repetitive task, the tools involved, and the main issue. The first assessment checks whether the data and conditions support a measurable pilot.",
-  "cta.button": "Assess a process to automate",
-  "cta.secondary": "See the method",
+    "Describe it in a few lines. We check whether it is worth automating, which systems are involved, and which result would make sense to measure.",
+  "cta.button": "Request an assessment",
+  "cta.secondary": "Let's review a process",
   "cta.risk":
-    "You do not need to replace your ERP or define a software project in advance. The first process opens a path rather than closing a delivery.",
+    "You do not need to replace your ERP or define a software project in advance. The first assessment opens a path rather than closing a delivery.",
 
   "catalog.home": "Home",
   "catalog.servicesKicker": "Services",
@@ -430,25 +431,54 @@ export const en: Record<string, string> = {
   "footer.services": "Services",
   "footer.cases": "Case studies",
   "footer.manufacturing": "Manufacturing",
+  "footer.solutions": "Solutions",
+  "footer.resources": "Resources",
+  "footer.lab": "Lab",
+  "footer.company": "Company",
+  "footer.food": "Agri-food",
+  "footer.docs": "Document automation",
+  "footer.erp": "ERP integrations",
+  "footer.about": "About",
+  "footer.oss": "Open source",
+  "footer.experiments": "Experimental projects",
+  "footer.contact": "Contact",
 
   // Footer
   "footer.info":
     "Frasma — independent software studio of Francesco Saverio Mazzi · VAT 02750410207",
 
+  // Trust / data
+  "trust.eyebrow": "Data and integrations",
+  "trust.title": "Company data is not a project detail",
+  "trust.subtitle":
+    "Before we integrate a process we define which data is read, where it is processed, which systems can be updated, and which actions need approval.",
+  "trust.item1.title": "What is read",
+  "trust.item1.desc":
+    "Only the documents, emails, and fields needed for the chosen process. No credentials or extra data in the first assessment.",
+  "trust.item2.title": "Where it is processed",
+  "trust.item2.desc":
+    "The architecture follows the client's constraints. We use local models when data must stay inside; external providers only where they make sense.",
+  "trust.item3.title": "What can be updated",
+  "trust.item3.desc":
+    "The ERP and tools already in use stay the system of record. Critical actions go through rules and, when needed, human approval.",
+  "trust.item4.title": "Access and audit trail",
+  "trust.item4.desc":
+    "Access and operations stay limited to what is needed. Inputs, checks, exceptions, and decisions remain reviewable. We do not promise zero errors: we promise control.",
+
   // Process assessment
   "assessment.eyebrow": "Initial assessment",
-  "assessment.title": "Describe the process to assess",
+  "assessment.title": "Which activity do you want to stop handling by hand?",
   "assessment.subtitle":
-    "The essentials are enough. Detailed questions and any sample documents come later.",
+    "Describe a concrete process: what comes in, who checks it, where the data is copied, and which system should be updated.",
   "assessment.name": "Name",
   "assessment.company": "Company (optional)",
   "assessment.role": "Role (optional)",
   "assessment.email": "Work email",
   "assessment.emailPlaceholder": "name@company.com",
-  "assessment.process": "Process and main issue",
+  "assessment.process": "Process to improve",
   "assessment.processPlaceholder":
-    "Example: we receive PDF orders by email and manually copy lines, codes, and quantities into our ERP...",
-  "assessment.systems": "Current tools (optional)",
+    "Example: we receive about 80 delivery notes a week by email; two people check lines and quantities and enter them into the ERP...",
+  "assessment.systems": "ERP and systems involved (optional)",
   "assessment.systemsPlaceholder": "ERP, spreadsheets, email inbox, portals...",
   "assessment.volume": "Approximate volume (optional)",
   "assessment.volumePlaceholder": "Example: 80 documents per week",
@@ -459,7 +489,7 @@ export const en: Record<string, string> = {
   "assessment.next": "Continue",
   "assessment.back": "Back",
   "assessment.step": "Step {n} of {total}",
-  "assessment.send": "Send the process",
+  "assessment.send": "Request an assessment",
   "assessment.sending": "Sending...",
   "assessment.validation.name": "Enter your name.",
   "assessment.validation.email": "Enter a valid email.",

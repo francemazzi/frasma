@@ -2,11 +2,9 @@ import Header from "../components/organism/Header";
 import Intro from "../components/organism/Intro";
 import Results from "../components/organism/Results";
 import Platform from "../components/organism/Platform";
-import StageProof from "../components/organism/StageProof";
 import WhyContactMe from "../components/organism/WhyContactMe";
-import Continuity from "../components/organism/Continuity";
 import QualifyLead from "../components/organism/QualifyLead";
-import FundingSupport from "../components/organism/FundingSupport";
+import Trust from "../components/organism/Trust";
 import Founder from "../components/organism/Founder";
 import CallToAction from "../components/organism/CallToAction";
 import Footer from "../components/organism/Footer";
@@ -52,12 +50,10 @@ export default function Home() {
         <Header />
         <Intro />
         <QualifyLead />
-        <Platform />
-        <StageProof />
         <Results />
+        <Platform />
         <WhyContactMe />
-        <Continuity />
-        <FundingSupport />
+        <Trust />
         <Founder />
         <CallToAction />
         <Footer />

@@ -11,12 +11,14 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import DictationButton from "../atoms/DictationButton";
+import { currentLandingPath, trackFormEvent } from "../../lib/analytics";
 import { useLang, useT } from "../../lib/i18n/context";
 
 type Props = {
   textButton: string;
   showArrow?: boolean;
   compact?: boolean;
+  variant?: "primary" | "ghost";
 };
 
 type FormState = {
@@ -70,6 +72,7 @@ export default function ProcessAssessment({
   textButton,
   showArrow = false,
   compact = false,
+  variant = "primary",
 }: Props) {
   const t = useT();
   const { lang } = useLang();
@@ -237,7 +240,11 @@ export default function ProcessAssessment({
       const response = await fetch("/api/request-process-assessment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, lang }),
+        body: JSON.stringify({
+          ...form,
+          lang,
+          landing: currentLandingPath(),
+        }),
       });
       const result = (await response.json().catch(() => null)) as
         | { ok: true }
@@ -255,6 +262,7 @@ export default function ProcessAssessment({
       }
 
       setStatus("success");
+      trackFormEvent("form_submit", currentLandingPath());
       if (typeof window !== "undefined") {
         window.location.assign(DISCOUNT_PATH);
       }
@@ -556,6 +564,11 @@ export default function ProcessAssessment({
                     ) : null}
 
                     <input
+                      type="hidden"
+                      name="landing"
+                      value={currentLandingPath()}
+                    />
+                    <input
                       type="text"
                       name="website"
                       tabIndex={-1}
@@ -634,12 +647,13 @@ export default function ProcessAssessment({
       <button
         ref={triggerRef}
         type="button"
-        className={`btn-ink ${compact ? "!min-h-[44px] !px-4 !py-2 text-[13px]" : ""}`}
+        className={`${variant === "ghost" ? "btn-ink-ghost" : "btn-ink"} ${compact ? "!min-h-[44px] !px-4 !py-2 text-[13px]" : ""}`}
         onClick={() => {
           setStatus("idle");
           setErrorMessage("");
           setCurrentStep(1);
           setIsOpen(true);
+          trackFormEvent("form_start", currentLandingPath());
         }}
       >
         <span>{textButton}</span>
