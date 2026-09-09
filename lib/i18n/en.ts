@@ -393,6 +393,37 @@ export const en: Record<string, string> = {
   "catalog.maintenance.assignName": "Assignment and closure",
   "catalog.maintenance.assignDesc":
     "The ticket goes to a technician, stays in progress, then closes with an outcome and a note.",
+  "catalog.maintenance.channelsName": "From split channels to one ticket",
+  "catalog.maintenance.channelsDesc":
+    "The cursor opens email and phone, then merges them into a ticket with customer, technician, and supplier.",
+  "catalog.maintenance.flowKicker": "Before and after",
+  "catalog.maintenance.flowIntro":
+    "Same intervention, two visibilities. The cursor shows why email and phone stay blind, and how shared history keeps the actors together.",
+  "catalog.maintenance.beforeName": "Before · split channels",
+  "catalog.maintenance.beforeDesc":
+    "Requests by email and phone, with no queue or status. The cursor asks who is going and gets no answer.",
+  "catalog.maintenance.afterName": "After · shared history",
+  "catalog.maintenance.afterDesc":
+    "The cursor walks request, ticket, technician, and closure. Customer, field, and supplier see the same thread.",
+  "catalog.maintenance.faqIntro":
+    "The answers stay written. Beside them the cursor opens the same questions about the workflow, without inventing prices.",
+  "catalog.maintenance.faqName": "The cursor reads the FAQ",
+  "catalog.maintenance.faqDesc":
+    "It opens scope, workflow, and how to start. This is the operational example of the questions, not a price list.",
+  "catalog.maintenance.briefName": "Assessment brief",
+  "catalog.maintenance.briefDesc":
+    "The cursor fills activity, systems, and volumes for a cold-room intervention. Then it sends, with no price.",
+  "catalog.maintenance.relatedIntro":
+    "Same craft, two doors: the ticketing service and the field-service vertical.",
+  "catalog.maintenance.relatedName": "The cursor opens the links",
+  "catalog.maintenance.relatedDesc":
+    "It moves from the ticket service to the field vertical. Not another product — the same workflow.",
+  "catalog.maintenance.briefCtaName": "Your process",
+  "catalog.maintenance.briefCtaDesc":
+    "Describe the real activity. The assessment covers feasibility and scope, not a guaranteed outcome.",
+  "catalog.maintenance.briefPoint1": "Repetitive work: tickets, assignments, closures.",
+  "catalog.maintenance.briefPoint2": "Systems today: email, phone, spreadsheets, ERP.",
+  "catalog.maintenance.briefPoint3": "Volumes: interventions per month and who can see them.",
   "results.caseCta": "Open the case",
 
   // For agents

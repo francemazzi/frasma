@@ -397,6 +397,37 @@ export const it: Record<string, string> = {
   "catalog.maintenance.assignName": "Assegnazione e chiusura",
   "catalog.maintenance.assignDesc":
     "Il ticket va a un tecnico, resta in corso, poi si chiude con esito e nota.",
+  "catalog.maintenance.channelsName": "Dalla richiesta spezzata al ticket unico",
+  "catalog.maintenance.channelsDesc":
+    "Il cursore apre email e telefono, poi li unisce in un ticket con cliente, tecnico e fornitore.",
+  "catalog.maintenance.flowKicker": "Prima e dopo",
+  "catalog.maintenance.flowIntro":
+    "Stesso intervento, due visibilità. Il cursore mostra perché email e telefono restano ciechi, e come lo storico condiviso tiene insieme gli attori.",
+  "catalog.maintenance.beforeName": "Prima · canali spezzati",
+  "catalog.maintenance.beforeDesc":
+    "Richieste via email e telefono, senza coda né stato. Il cursore chiede chi ci va e non ottiene risposta.",
+  "catalog.maintenance.afterName": "Dopo · storico condiviso",
+  "catalog.maintenance.afterDesc":
+    "Il cursore percorre richiesta, ticket, tecnico e chiusura. Clienti, campo e fornitore vedono lo stesso filo.",
+  "catalog.maintenance.faqIntro":
+    "Le risposte restano testuali. A fianco il cursore apre le stesse domande sul flusso, senza inventare prezzi.",
+  "catalog.maintenance.faqName": "Il cursore legge le FAQ",
+  "catalog.maintenance.faqDesc":
+    "Apre perimetro, flusso e come si parte. È l'esempio operativo delle domande, non un listino.",
+  "catalog.maintenance.briefName": "Brief di valutazione",
+  "catalog.maintenance.briefDesc":
+    "Il cursore compila attività, sistemi e volumi di un intervento celle. Poi invia, senza prezzo.",
+  "catalog.maintenance.relatedIntro":
+    "Stesso mestiere, due ingressi: il servizio di ticketing e il verticale field service.",
+  "catalog.maintenance.relatedName": "Il cursore apre i collegamenti",
+  "catalog.maintenance.relatedDesc":
+    "Passa dal servizio ticket al verticale sul campo. Non è un altro prodotto, è lo stesso flusso.",
+  "catalog.maintenance.briefCtaName": "Il tuo processo",
+  "catalog.maintenance.briefCtaDesc":
+    "Descrivi l'attività reale. La valutazione copre fattibilità e perimetro, non un esito garantito.",
+  "catalog.maintenance.briefPoint1": "Attività ripetitiva: ticket, assegnazioni, chiusure.",
+  "catalog.maintenance.briefPoint2": "Sistemi oggi: email, telefono, fogli, gestionale.",
+  "catalog.maintenance.briefPoint3": "Volumi: interventi al mese e chi li vede.",
   "results.caseCta": "Apri il caso",
 
   // For agents

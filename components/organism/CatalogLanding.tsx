@@ -5,7 +5,14 @@ import Footer from "./Footer";
 import Header from "./Header";
 import ProcessAssessment from "./ProcessAssessment";
 import Seo from "../Seo";
-import { MaintenanceCaseDemos, MaintenanceCaseHero } from "./MaintenanceCaseVisuals";
+import {
+  MaintenanceCaseCta,
+  MaintenanceCaseDemos,
+  MaintenanceCaseFaq,
+  MaintenanceCaseFlow,
+  MaintenanceCaseHero,
+  MaintenanceCaseRelated,
+} from "./MaintenanceCaseVisuals";
 import { useLang, useT } from "../../lib/i18n/context";
 import {
   canonicalPath,
@@ -156,28 +163,32 @@ export default function CatalogLanding({ lookup }: Props) {
 
         {entry.id === "industrial-maintenance-case" ? <MaintenanceCaseHero /> : null}
 
-        <section className="ed-section border-t border-ink/8">
-          <div className="section-farm max-w-3xl">
-            <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
-              {t("catalog.howTitle")}
-            </h2>
-            {extras?.problemLead ? (
-              <p className="mb-6 text-[16px] leading-[1.6] text-ink-soft">
-                {extras.problemLead[lang]}
-              </p>
-            ) : null}
-            <ul className="space-y-3">
-              {entry.details.map((detail) => (
-                <li
-                  key={detail.it}
-                  className="text-[16px] leading-[1.6] text-ink-soft"
-                >
-                  {detail[lang]}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        {entry.id === "industrial-maintenance-case" ? (
+          <MaintenanceCaseFlow />
+        ) : (
+          <section className="ed-section border-t border-ink/8">
+            <div className="section-farm max-w-3xl">
+              <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
+                {t("catalog.howTitle")}
+              </h2>
+              {extras?.problemLead ? (
+                <p className="mb-6 text-[16px] leading-[1.6] text-ink-soft">
+                  {extras.problemLead[lang]}
+                </p>
+              ) : null}
+              <ul className="space-y-3">
+                {entry.details.map((detail) => (
+                  <li
+                    key={detail.it}
+                    className="text-[16px] leading-[1.6] text-ink-soft"
+                  >
+                    {detail[lang]}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         {entry.id === "industrial-maintenance-case" ? <MaintenanceCaseDemos /> : null}
 
@@ -219,7 +230,11 @@ export default function CatalogLanding({ lookup }: Props) {
           </section>
         ) : null}
 
-        {faqs.length > 0 ? (
+        {faqs.length > 0 && entry.id === "industrial-maintenance-case" ? (
+          <MaintenanceCaseFaq faqs={faqs} />
+        ) : null}
+
+        {faqs.length > 0 && entry.id !== "industrial-maintenance-case" ? (
           <section className="ed-section border-t border-ink/8">
             <div className="section-farm max-w-3xl">
               <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
@@ -241,7 +256,17 @@ export default function CatalogLanding({ lookup }: Props) {
           </section>
         ) : null}
 
-        {related.length > 0 ? (
+        {related.length > 0 && entry.id === "industrial-maintenance-case" ? (
+          <MaintenanceCaseRelated
+            items={related.map((item) => ({
+              href: canonicalPath(item),
+              title: item.title[lang],
+              summary: item.summary[lang],
+            }))}
+          />
+        ) : null}
+
+        {related.length > 0 && entry.id !== "industrial-maintenance-case" ? (
           <section className="ed-section border-t border-ink/8">
             <div className="section-farm max-w-3xl">
               <h2 className="mb-6 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
@@ -266,17 +291,21 @@ export default function CatalogLanding({ lookup }: Props) {
           </section>
         ) : null}
 
-        <section className="ed-section border-t border-ink/8">
-          <div className="section-farm max-w-3xl">
-            <h2 className="mb-4 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
-              {t("catalog.ctaTitle")}
-            </h2>
-            <p className="mb-6 text-[16px] leading-[1.6] text-ink-soft">
-              {t("catalog.ctaBody")}
-            </p>
-            <ProcessAssessment textButton={t("catalog.ctaButton")} showArrow />
-          </div>
-        </section>
+        {entry.id === "industrial-maintenance-case" ? (
+          <MaintenanceCaseCta />
+        ) : (
+          <section className="ed-section border-t border-ink/8">
+            <div className="section-farm max-w-3xl">
+              <h2 className="mb-4 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
+                {t("catalog.ctaTitle")}
+              </h2>
+              <p className="mb-6 text-[16px] leading-[1.6] text-ink-soft">
+                {t("catalog.ctaBody")}
+              </p>
+              <ProcessAssessment textButton={t("catalog.ctaButton")} showArrow />
+            </div>
+          </section>
+        )}
 
         <Footer />
       </main>

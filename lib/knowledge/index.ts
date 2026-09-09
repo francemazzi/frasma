@@ -4,6 +4,7 @@ export {
   knowledgeCatalog,
 } from "./catalog";
 export { faqsForEntry } from "./faqs";
+export type { ResolvedFaq } from "./faqs";
 export {
   entryMarkdown,
   forAgentsMarkdown,

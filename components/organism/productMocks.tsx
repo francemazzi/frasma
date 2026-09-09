@@ -58,7 +58,7 @@ export function MockStage({
   );
 }
 
-function WindowBar({ label }: { label: string }) {
+export function WindowBar({ label }: { label: string }) {
   return (
     <div className="flex shrink-0 items-center gap-1.5 border-b border-hairline px-4 py-2">
       <span className="h-1.5 w-1.5 rounded-full bg-[#f4a8c8] shadow-[0_0_8px_rgba(244,168,200,0.85)]" />
@@ -790,7 +790,7 @@ function Field({
   );
 }
 
-function BtnMini({ children, ghost }: { children: React.ReactNode; ghost?: boolean }) {
+export function BtnMini({ children, ghost }: { children: React.ReactNode; ghost?: boolean }) {
   return (
     <span
       className={`inline-block rounded-full px-[10px] py-[5px] font-mono text-[12px] uppercase tracking-[0.06em] sm:text-[10px] ${
@@ -804,7 +804,7 @@ function BtnMini({ children, ghost }: { children: React.ReactNode; ghost?: boole
   );
 }
 
-function ChipMini({
+export function ChipMini({
   children,
   on,
   red,
@@ -819,7 +819,7 @@ function ChipMini({
   return <span className={`${base} bg-white text-ink-soft`}>{children}</span>;
 }
 
-function StatusPill({ kind }: { kind: string }) {
+export function StatusPill({ kind }: { kind: string }) {
   const map: Record<string, { cls: string; label: string }> = {
     open: { cls: "text-accent bg-accent/10", label: "Aperto" },
     work: { cls: "text-working bg-working/10", label: "In corso" },
