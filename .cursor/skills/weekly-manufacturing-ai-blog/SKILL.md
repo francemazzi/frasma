@@ -32,6 +32,7 @@ Already covered — pick a different problem:
 - `ai-in-azienda-delega-la-forma-verifica-i-fatti` — webinar: delegate form, verify facts
 - `bando-si40-2026`, `voucher-cloud-cybersecurity-2026`, `voucher-doppia-transizione-lombardia-2026`, `iperammortamento-2026` — funding instruments
 - `smartcaricrop-dss-fertilizzazione-caraibi`, `seminai`, `freelancedev` — product/project posts
+- `wiki-aziendale-ai-non-e-chatbot-su-pdf` — company brain is not a chatbot on a PDF folder
 
 Also skip any topic listed in Memories from previous weekly runs.
 

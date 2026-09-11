@@ -145,6 +145,15 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
       "Per procedure e know-how che oggi stanno in PDF e chat, e che il team deve poter cercare citando la fonte.",
       "For procedures and know-how that today live in PDFs and chat, and that the team must be able to search with a cited source.",
     ),
+    articles: [
+      {
+        path: "/blog/wiki-aziendale-ai-non-e-chatbot-su-pdf",
+        title: text(
+          "Wiki aziendale con AI: non è un chatbot sulla cartella dei PDF",
+          "Company wiki with AI: not a chatbot on a PDF folder",
+        ),
+      },
+    ],
     faqs: [
       {
         question: text(
