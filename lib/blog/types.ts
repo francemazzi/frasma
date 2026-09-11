@@ -17,7 +17,12 @@ export type BlogPostSummary = BlogPostFrontmatter & {
   slug: string;
 };
 
+export type BlogContentBlock =
+  | { type: "html"; html: string }
+  | { type: "demo"; id: string };
+
 export type BlogPost = BlogPostSummary & {
   content: string;
   htmlContent: string;
+  contentBlocks: BlogContentBlock[];
 };

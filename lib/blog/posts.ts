@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { markdownToHtml } from "./markdown";
+import { htmlFromContentBlocks, markdownToContentBlocks } from "./markdown";
 import type { BlogPost, BlogPostFrontmatter, BlogPostSummary } from "./types";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
@@ -66,12 +66,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     return null;
   }
 
-  const htmlContent = await markdownToHtml(content);
+  const contentBlocks = await markdownToContentBlocks(content);
 
   return {
     ...frontmatter,
     content,
-    htmlContent,
+    htmlContent: htmlFromContentBlocks(contentBlocks),
+    contentBlocks,
   };
 }
 

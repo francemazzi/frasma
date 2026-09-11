@@ -5,12 +5,16 @@ import Footer from "../organism/Footer";
 import RelatedPosts from "./RelatedPosts";
 import TagList from "./TagList";
 import FundingUseCaseCarousel from "./FundingUseCaseCarousel";
+import HarnessConceptDemo from "./HarnessConceptDemo";
 import { formatItalianDate } from "../../lib/blog/format";
 import { getFundingDemo } from "../../lib/blog/fundingDemos";
-import type { BlogPostSummary } from "../../lib/blog/types";
+import type { BlogContentBlock, BlogPostSummary } from "../../lib/blog/types";
 
 type BlogPostLayoutProps = {
-  post: BlogPostSummary & { htmlContent: string };
+  post: BlogPostSummary & {
+    htmlContent: string;
+    contentBlocks?: BlogContentBlock[];
+  };
   relatedPosts?: BlogPostSummary[];
 };
 
@@ -19,6 +23,7 @@ export default function BlogPostLayout({
   relatedPosts = [],
 }: BlogPostLayoutProps) {
   const fundingDemo = getFundingDemo(post.slug);
+  const blocks = post.contentBlocks;
 
   return (
     <main className="min-h-screen max-w-[100vw] overflow-x-clip bg-paper font-sans">
@@ -62,10 +67,25 @@ export default function BlogPostLayout({
           />
         ) : null}
 
-        <div
-          className="blog-content prose prose-lg max-w-full min-w-0 text-farm-secondary space-y-6"
-          dangerouslySetInnerHTML={{ __html: post.htmlContent }}
-        />
+        {blocks && blocks.length > 0 ? (
+          <div className="blog-content prose prose-lg max-w-full min-w-0 text-farm-secondary space-y-6">
+            {blocks.map((block, index) =>
+              block.type === "demo" ? (
+                <HarnessConceptDemo key={`${block.id}-${index}`} id={block.id} />
+              ) : (
+                <div
+                  key={`html-${index}`}
+                  dangerouslySetInnerHTML={{ __html: block.html }}
+                />
+              ),
+            )}
+          </div>
+        ) : (
+          <div
+            className="blog-content prose prose-lg max-w-full min-w-0 text-farm-secondary space-y-6"
+            dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+          />
+        )}
 
         <aside className="mt-12 rounded-2xl border border-farm-border bg-farm-surface p-6">
           <p className="text-farm-secondary leading-relaxed">

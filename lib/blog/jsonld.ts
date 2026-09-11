@@ -11,6 +11,37 @@ export const DDT_TUTORIAL_SLUG =
 
 export const ERP_AI_THESIS_SLUG = "non-collegare-agenti-ai-direttamente-erp";
 
+export const HARNESS_OFFICINA_SLUG =
+  "ai-manifattura-officina-intorno-al-modello";
+
+const HARNESS_OFFICINA_FAQS = [
+  {
+    question: "Cos’è l’officina intorno all’AI?",
+    answer:
+      "È tutto quello che sta intorno al modello: quali documenti può vedere, quali attrezzi può usare, cosa ricorda, quali procedure segue e chi conferma prima di un’azione sul gestionale. Il nome tecnico è harness. In azienda è il banco, non la chat.",
+  },
+  {
+    question: "Basta cambiare modello per lavorare meglio in officina?",
+    answer:
+      "No. Un modello più nuovo completa meglio il testo. Non apre da solo il DDT, non consulta l’anagrafica e non tiene il taccuino. Quello è lavoro dell’officina. Il modello si può sostituire; il processo e i controlli restano.",
+  },
+  {
+    question: "L’agente può scrivere da solo nel gestionale?",
+    answer:
+      "No. Una proposta può essere sbagliata in modo convincente. Un movimento di magazzino o una riga in contabilità, una volta scritti, sono già nel sistema. L’AI legge e struttura. Una persona conferma. Poi arriva un import tracciato.",
+  },
+  {
+    question: "Da dove si parte in una PMI manifatturiera?",
+    answer:
+      "Da un processo ripetitivo, con documenti reali. Per molte officine è l’accettazione: DDT, bolle, email dei fornitori. Si misura il lavoro attuale, si prova su un perimetro piccolo, si decide se estendere. Lo stesso schema vale per collaudo, RFQ e non conformità.",
+  },
+  {
+    question: "L’AI impara da sola dai nostri errori?",
+    answer:
+      "Solo se lasciate una lezione da qualche parte. Una correzione in chat muore con quella risposta. Un taccuino, una procedura o una prova automatica restano. Senza quella memoria, ogni documento riparte da zero.",
+  },
+];
+
 const ERP_AI_THESIS_FAQS = [
   {
     question: "Si può collegare ChatGPT, Claude o Gemini direttamente all'ERP?",
@@ -92,6 +123,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === ERP_AI_THESIS_SLUG) {
     return [faqPageJsonLd(ERP_AI_THESIS_FAQS), ddtErpServiceJsonLd()];
+  }
+
+  if (slug === HARNESS_OFFICINA_SLUG) {
+    return [faqPageJsonLd(HARNESS_OFFICINA_FAQS), ddtErpServiceJsonLd()];
   }
 
   return [];

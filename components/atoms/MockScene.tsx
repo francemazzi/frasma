@@ -384,14 +384,31 @@ export function MockHit({
   as: Tag = "span",
   className,
   children,
+  onClick,
 }: {
   id: string;
   as?: "span" | "div" | "tr" | "button";
   className?: string;
   children: ReactNode;
+  onClick?: () => void;
 }) {
+  const hitClass = useMockHitClass(id, className);
+
+  if (Tag === "button") {
+    return (
+      <button
+        type="button"
+        data-mock-hit={id}
+        className={hitClass}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
-    <Tag data-mock-hit={id} className={useMockHitClass(id, className)}>
+    <Tag data-mock-hit={id} className={hitClass} onClick={onClick}>
       {children}
     </Tag>
   );
