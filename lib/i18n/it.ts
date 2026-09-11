@@ -428,6 +428,22 @@ export const it: Record<string, string> = {
   "catalog.maintenance.briefPoint1": "Attività ripetitiva: ticket, assegnazioni, chiusure.",
   "catalog.maintenance.briefPoint2": "Sistemi oggi: email, telefono, fogli, gestionale.",
   "catalog.maintenance.briefPoint3": "Volumi: interventi al mese e chi li vede.",
+  "catalog.wiki.imageAlt": "Wiki aziendale — schizzo di procedure e fonti in officina",
+  "catalog.wiki.tag": "Wiki / cervello aziendale",
+  "catalog.wiki.plate": "Wiki · procedure con fonte",
+  "catalog.wiki.pull":
+    "Il cervello aziendale non è ChatGPT sulla cartella dei PDF. È una base ricercabile: fonti versionate, un owner, e la citazione di dove sta scritto.",
+  "catalog.wiki.before":
+    "Procedure in chat, PDF sparsi e «chiedi a Marco». La risposta arriva tardi, o arriva senza fonte.",
+  "catalog.wiki.after":
+    "Si cerca la procedura, si apre la versione in vigore, si vede chi la aggiorna. La persona valida, non il modello.",
+  "catalog.wiki.demoKicker": "Come si usa",
+  "catalog.wiki.demoTitle": "Cerca, apri, cita la fonte",
+  "catalog.wiki.demoIntro":
+    "Il cursore cerca una procedura, apre il risultato e mostra la citazione. Non è il software del cliente: è il pezzo operativo della wiki.",
+  "catalog.wiki.searchName": "Ricerca con citazione",
+  "catalog.wiki.searchDesc":
+    "Il cursore digita la query, apre PROC-04 e lascia visibili versione e owner. Trovare è il lavoro; decidere resta alle persone.",
   "results.caseCta": "Apri il caso",
 
   // For agents

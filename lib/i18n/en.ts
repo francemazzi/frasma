@@ -424,6 +424,22 @@ export const en: Record<string, string> = {
   "catalog.maintenance.briefPoint1": "Repetitive work: tickets, assignments, closures.",
   "catalog.maintenance.briefPoint2": "Systems today: email, phone, spreadsheets, ERP.",
   "catalog.maintenance.briefPoint3": "Volumes: interventions per month and who can see them.",
+  "catalog.wiki.imageAlt": "Company wiki — sketch of shop-floor procedures and sources",
+  "catalog.wiki.tag": "Wiki / company brain",
+  "catalog.wiki.plate": "Wiki · sourced procedures",
+  "catalog.wiki.pull":
+    "A company brain is not ChatGPT on a shared PDF folder. It is a searchable base: versioned sources, an owner, and a citation of where it is written.",
+  "catalog.wiki.before":
+    "Procedures in chat, scattered PDFs, and “ask Marco”. The answer arrives late, or arrives with no source.",
+  "catalog.wiki.after":
+    "You search the procedure, open the current version, and see who updates it. A person validates; the model does not decide.",
+  "catalog.wiki.demoKicker": "How it is used",
+  "catalog.wiki.demoTitle": "Search, open, cite the source",
+  "catalog.wiki.demoIntro":
+    "The cursor searches a procedure, opens the result, and shows the citation. This is not the client's software; it is the operational piece of the wiki.",
+  "catalog.wiki.searchName": "Search with a citation",
+  "catalog.wiki.searchDesc":
+    "The cursor types the query, opens PROC-04, and leaves version and owner visible. Finding is the work; deciding stays with people.",
   "results.caseCta": "Open the case",
 
   // For agents

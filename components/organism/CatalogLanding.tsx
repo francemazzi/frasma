@@ -6,6 +6,10 @@ import Header from "./Header";
 import ProcessAssessment from "./ProcessAssessment";
 import Seo from "../Seo";
 import {
+  CompanyWikiDemos,
+  CompanyWikiHero,
+} from "./CompanyWikiVisuals";
+import {
   MaintenanceCaseCta,
   MaintenanceCaseDemos,
   MaintenanceCaseFaq,
@@ -162,6 +166,7 @@ export default function CatalogLanding({ lookup }: Props) {
         </section>
 
         {entry.id === "industrial-maintenance-case" ? <MaintenanceCaseHero /> : null}
+        {entry.id === "company-wiki-brain" ? <CompanyWikiHero /> : null}
 
         {entry.id === "industrial-maintenance-case" ? (
           <MaintenanceCaseFlow />
@@ -191,6 +196,7 @@ export default function CatalogLanding({ lookup }: Props) {
         )}
 
         {entry.id === "industrial-maintenance-case" ? <MaintenanceCaseDemos /> : null}
+        {entry.id === "company-wiki-brain" ? <CompanyWikiDemos /> : null}
 
         {extras?.videoUrl || articles.length > 0 ? (
           <section className="ed-section border-t border-ink/8">

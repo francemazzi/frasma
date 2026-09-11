@@ -521,6 +521,7 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
       },
       pagePaths: [
         "/servizi/wiki-aziendale-ai",
+        "/blog/wiki-aziendale-ai-non-e-chatbot-su-pdf",
         "/",
         "/#come-funziona",
         "/for-agents",
