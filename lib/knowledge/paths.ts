@@ -5,6 +5,50 @@ export const VIBEUP_SERVICE_ID = "vibeup-deploy-service";
 export const SERVICES_HUB_PATH = "/servizi";
 export const CASES_HUB_PATH = "/casi";
 
+export const SERVICE_FAMILY_IDS = [
+  "operations",
+  "field-knowledge",
+  "ai-how",
+] as const;
+
+export type ServiceFamilyId = (typeof SERVICE_FAMILY_IDS)[number];
+
+export type ServiceFamily = {
+  id: ServiceFamilyId;
+  titleKey: string;
+  introKey: string;
+  serviceIds: readonly string[];
+};
+
+export const SERVICE_FAMILIES: readonly ServiceFamily[] = [
+  {
+    id: "operations",
+    titleKey: "catalog.family.operations.title",
+    introKey: "catalog.family.operations.intro",
+    serviceIds: ["delivery-notes-to-erp", "custom-management-software"],
+  },
+  {
+    id: "field-knowledge",
+    titleKey: "catalog.family.fieldKnowledge.title",
+    introKey: "catalog.family.fieldKnowledge.intro",
+    serviceIds: [
+      "workflow-procedures",
+      "field-service-ticketing",
+      "company-wiki-brain",
+    ],
+  },
+  {
+    id: "ai-how",
+    titleKey: "catalog.family.aiHow.title",
+    introKey: "catalog.family.aiHow.intro",
+    serviceIds: [
+      "ai-datasets-benchmarks",
+      "local-ai-enterprise",
+      "ai-presence",
+    ],
+  },
+];
+
 const INDEXABLE_CATEGORIES = new Set([
   "service",
   "case-study",
@@ -33,6 +77,31 @@ export function operationalServices(): LocalizedKnowledgeEntry[] {
     (entry) =>
       entry.category === "service" && entry.id !== VIBEUP_SERVICE_ID,
   );
+}
+
+export function groupedOperationalServices(
+  entries: LocalizedKnowledgeEntry[] = operationalServices(),
+): Array<{ family: ServiceFamily; entries: LocalizedKnowledgeEntry[] }> {
+  const byId = new Map(entries.map((entry) => [entry.id, entry]));
+
+  return SERVICE_FAMILIES.map((family) => ({
+    family,
+    entries: family.serviceIds
+      .map((id) => byId.get(id))
+      .filter((entry): entry is LocalizedKnowledgeEntry => Boolean(entry)),
+  })).filter((group) => group.entries.length > 0);
+}
+
+export function ungroupedOperationalServiceIds(
+  entries: LocalizedKnowledgeEntry[] = operationalServices(),
+): string[] {
+  const groupedIds = new Set(
+    SERVICE_FAMILIES.flatMap((family) => family.serviceIds),
+  );
+
+  return entries
+    .map((entry) => entry.id)
+    .filter((id) => !groupedIds.has(id));
 }
 
 export function caseStudies(): LocalizedKnowledgeEntry[] {

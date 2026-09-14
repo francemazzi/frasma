@@ -455,7 +455,7 @@ export default function ManifatturaPage() {
           </h2>
           <p className="mt-3 max-w-2xl text-farm-secondary leading-relaxed">
             Preventivi, commesse e Excel restano su questa pagina. I Documenti
-            di Trasporto verso l&apos;ERP e i gestionali di back office hanno
+            di Trasporto verso l&apos;ERP e le applicazioni sul processo hanno
             ciascuno una pagina propria.
           </p>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -479,11 +479,11 @@ export default function ManifatturaPage() {
                 className="block rounded-xl border border-farm-border bg-farm-surface p-5 hover:border-sage/40"
               >
                 <span className="font-semibold text-farm-text">
-                  Gestionali personalizzati
+                  Applicazioni operative sul processo
                 </span>
                 <span className="mt-2 block text-sm text-farm-secondary">
-                  Web app su commesse, stati e ruoli, con export verso i
-                  sistemi esistenti.
+                  Tabelle, stati e ruoli sul lavoro reale, con export verso il
+                  gestionale già in uso.
                 </span>
               </Link>
             </li>

@@ -7,6 +7,7 @@ import {
   getDiagnosticFramework,
   getFrasmaProfile,
   getKnowledgeEntry,
+  groupedOperationalServices,
   knowledgeCatalog,
   KnowledgeCatalogSchema,
   markdownForPath,
@@ -14,6 +15,8 @@ import {
   operationalServices,
   searchKnowledge,
   sectors,
+  SERVICE_FAMILIES,
+  ungroupedOperationalServiceIds,
   VIBEUP_SERVICE_ID,
 } from "../index";
 
@@ -70,6 +73,24 @@ describe("knowledge catalog", () => {
     expect(vibeup?.pagePaths).toEqual(["/vibeup"]);
     expect(method?.pagePaths).not.toContain("/studio");
     expect(method?.pagePaths).toContain("/for-agents");
+  });
+
+  it("groups every operational service into exactly one family", () => {
+    const groupedIds = SERVICE_FAMILIES.flatMap((family) => family.serviceIds);
+    const operationalIds = operationalServices().map((entry) => entry.id);
+
+    expect(new Set(groupedIds).size).toBe(groupedIds.length);
+    expect([...groupedIds].sort()).toEqual([...operationalIds].sort());
+    expect(ungroupedOperationalServiceIds()).toEqual([]);
+    expect(groupedOperationalServices().map((group) => group.family.id)).toEqual(
+      ["operations", "field-knowledge", "ai-how"],
+    );
+    expect(getKnowledgeEntry("custom-management-software")?.title.it).toBe(
+      "Applicazioni operative sul processo",
+    );
+    expect(getKnowledgeEntry("delivery-notes-to-erp")?.title.it).toBe(
+      "Automatizzare i DDT verso Mago e TeamSystem",
+    );
   });
 
   it("gives operational services, cases, and sectors indexable canonical URLs", () => {
@@ -219,6 +240,23 @@ describe("markdownForPath", () => {
     const ddt = markdownForPath("/servizi/ddt-erp", "en");
     expect(ddt).toContain("Mago and TeamSystem");
     expect(ddt).toContain("Delegate the form, verify the facts");
+  });
+
+  it("groups the services hub by family with the public intro", () => {
+    const hub = markdownForPath("/servizi");
+    const english = markdownForPath("/servizi", "en");
+
+    expect(hub).toContain("L'AI prepara, il team conferma.");
+    expect(hub).toContain("Meno copia-incolla");
+    expect(hub).toContain("Processi verso il gestionale");
+    expect(hub).toContain("Campo, qualità, conoscenza");
+    expect(hub).toContain("Come e dove gira l'AI");
+    expect(hub).toContain("Automatizzare i DDT verso Mago e TeamSystem");
+    expect(hub).toContain("Applicazioni operative sul processo");
+    expect(hub).not.toContain("Gestionali personalizzati");
+    expect(hub).toContain("https://www.frasma.org/servizi/ddt-erp");
+    expect(english).toContain("AI prepares. The team confirms.");
+    expect(english).toContain("Operational apps on the process");
   });
 });
 

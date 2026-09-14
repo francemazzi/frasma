@@ -229,8 +229,8 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         "Automate delivery notes into Mago and TeamSystem",
       ),
       summary: text(
-        "Lettura di Documenti di Trasporto, bolle e fatture da email o PDF, con campi preparati per Mago Zucchetti, Mago4, TeamSystem o l'ERP già in uso.",
-        "Reading delivery notes, packing slips, and invoices from email or PDF, with fields prepared for Mago Zucchetti, Mago4, TeamSystem, or the ERP already in use.",
+        "Niente inserimento a mano di bolle e DDT: i campi escono da email o PDF, una persona conferma, poi Mago, TeamSystem o l'ERP già in uso riceve l'import.",
+        "No more typing delivery notes by hand: fields come from email or PDF, a person confirms, then Mago, TeamSystem, or the ERP already in use receives the import.",
       ),
       details: [
         text(
@@ -296,8 +296,8 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         "HACCP, quality, and certification procedures",
       ),
       summary: text(
-        "Procedure guidate per HACCP, controlli qualità e certificazioni: stati, regole, documenti e eccezioni visibili.",
-        "Guided procedures for HACCP, quality controls, and certifications: states, rules, documents, and visible exceptions.",
+        "Procedure HACCP, qualità e certificazioni con stati, scadenze e documenti visibili: la firma e la verifica restano del team.",
+        "HACCP, quality, and certification procedures with visible states, deadlines, and documents: signatures and checks stay with the team.",
       ),
       details: [
         text(
@@ -350,8 +350,8 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         "Ticketing for field maintenance and interventions",
       ),
       summary: text(
-        "Richieste, priorità, tecnici, fornitori, SLA e chiusura interventi in un flusso condiviso tra cliente, campo e back office.",
-        "Requests, priorities, technicians, suppliers, SLAs, and intervention closure in one workflow across customer, field, and back office.",
+        "Richieste, tecnici e chiusure sullo stesso filo tra cliente, campo e back office, invece di telefono ed email.",
+        "Requests, technicians, and closures on one thread across customer, field, and back office, instead of phone and email.",
       ),
       details: [
         text(
@@ -400,12 +400,12 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
       id: "custom-management-software",
       category: "service",
       title: text(
-        "Gestionali personalizzati",
-        "Custom management software",
+        "Applicazioni operative sul processo",
+        "Operational apps on the process",
       ),
       summary: text(
-        "Web app operative su misura con tabelle, stati, ruoli, controlli ed export verso i sistemi esistenti.",
-        "Custom operational web apps with tables, states, roles, checks, and exports into existing systems.",
+        "Tabelle, stati e ruoli sul lavoro reale — preventivi, distinte, commesse — con export verso il gestionale già in uso, senza sostituirlo.",
+        "Tables, states, and roles on the real work — quotes, bills of materials, jobs — with exports into the management system already in use, without replacing it.",
       ),
       details: [
         text(
@@ -458,8 +458,8 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         "AI datasets, benchmarks, and optimization",
       ),
       summary: text(
-        "Preparazione di dataset operativi e benchmark per confrontare configurazioni AI su criteri verificabili.",
-        "Preparation of operational datasets and benchmarks to compare AI configurations against verifiable criteria.",
+        "Si misura l'AI sul vostro campione — casi normali ed eccezioni — prima di parlare di accuratezza.",
+        "AI is measured on your sample — normal cases and exceptions — before anyone talks about accuracy.",
       ),
       details: [
         text(
@@ -494,8 +494,8 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         "Company wiki and AI brain",
       ),
       summary: text(
-        "Procedure, documenti e know-how in una base ricercabile con AI, collegata a ERP, workflow e lavoro quotidiano.",
-        "Procedures, documents, and know-how in an AI-searchable base connected to ERP, workflows, and daily work.",
+        "Procedure e know-how in una base ricercabile: ogni risposta cita la fonte e chi la aggiorna.",
+        "Procedures and know-how in a searchable base: every answer cites the source and who updates it.",
       ),
       details: [
         text(
@@ -536,8 +536,8 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
         "On-premise and private-network AI",
       ),
       summary: text(
-        "Modelli e agenti AI su infrastruttura aziendale o rete privata, con dati sensibili che restano in sede.",
-        "AI models and agents on company infrastructure or a private network, with sensitive data kept on site.",
+        "Quando i dati non devono uscire: modelli e agenti sulla rete aziendale, stesso ciclo di verifica umana.",
+        "When data must not leave the premises: models and agents on the company network, with the same human-review loop.",
       ),
       details: [
         text(
@@ -569,8 +569,8 @@ export const knowledgeCatalog = KnowledgeCatalogSchema.parse({
       category: "service",
       title: text("Presenza AI esterna", "External AI presence"),
       summary: text(
-        "Visibilità verso assistenti esterni come ChatGPT, Claude e Gemini: contenuti strutturati, connettori e hub per agenti.",
-        "Visibility to external assistants such as ChatGPT, Claude, and Gemini: structured content, connectors, and an agents hub.",
+        "Come l'azienda appare agli assistenti esterni (ChatGPT, Claude, Gemini): distinta dal cervello interno.",
+        "How the company appears to external assistants such as ChatGPT, Claude, and Gemini: distinct from the internal company brain.",
       ),
       details: [
         text(

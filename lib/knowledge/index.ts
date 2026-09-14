@@ -23,14 +23,18 @@ export {
   getEntryByCanonicalPath,
   getKnowledgeEntry,
   getServiceBySlug,
+  groupedOperationalServices,
   indexableCatalogPaths,
   operationalServices,
   relatedEntries,
   sectors,
+  SERVICE_FAMILIES,
   SERVICES_HUB_PATH,
   slugFromPath,
+  ungroupedOperationalServiceIds,
   VIBEUP_SERVICE_ID,
 } from "./paths";
+export type { ServiceFamily, ServiceFamilyId } from "./paths";
 export { searchKnowledge } from "./search";
 export {
   DiagnosticFrameworkSchema,

@@ -2,16 +2,23 @@ import { SITE_URL, SMITHERY_SERVER_URL } from "../seo";
 import { getFrasmaProfile, knowledgeCatalog } from "./catalog";
 import { faqsForEntry } from "./faqs";
 import { articlesForExtras, extrasForEntry } from "./page-extras";
+import { en as enCopy } from "../i18n/en";
+import { it as itCopy } from "../i18n/it";
 import {
   CASES_HUB_PATH,
   canonicalPath,
   caseStudies,
   getEntryByCanonicalPath,
+  groupedOperationalServices,
   operationalServices,
   sectors,
   SERVICES_HUB_PATH,
 } from "./paths";
 import type { Locale, LocalizedKnowledgeEntry } from "./types";
+
+function hubCopy(locale: Locale, key: string): string {
+  return (locale === "it" ? itCopy : enCopy)[key] ?? key;
+}
 
 function absolute(path: string): string {
   return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
@@ -220,27 +227,60 @@ export function hubMarkdown(
   kind: "services" | "cases",
   locale: Locale = "it",
 ): string {
-  const entries = kind === "services" ? operationalServices() : caseStudies();
-  const title =
-    locale === "it"
-      ? kind === "services"
-        ? "Servizi Frasma"
-        : "Casi studio Frasma"
-      : kind === "services"
-        ? "Frasma services"
-        : "Frasma case studies";
   const path = kind === "services" ? SERVICES_HUB_PATH : CASES_HUB_PATH;
 
-  return `# ${title}
+  if (kind === "cases") {
+    const title =
+      locale === "it" ? "Casi studio Frasma" : "Frasma case studies";
+
+    return `# ${title}
 
 Canonical URL: ${absolute(path)}
 
 ${bulletList(
-    entries.map(
-      (entry) =>
-        `${entry.title[locale]} — ${entry.summary[locale]} — ${absolute(canonicalPath(entry))}`,
+      caseStudies().map(
+        (entry) =>
+          `${entry.title[locale]} — ${entry.summary[locale]} — ${absolute(canonicalPath(entry))}`,
+      ),
+    )}
+`;
+  }
+
+  const title = hubCopy(locale, "catalog.servicesTitle");
+  const intro = hubCopy(locale, "catalog.servicesIntro");
+  const benefitsTitle = hubCopy(locale, "catalog.benefitsTitle");
+  const benefits = [
+    hubCopy(locale, "catalog.benefit1"),
+    hubCopy(locale, "catalog.benefit2"),
+    hubCopy(locale, "catalog.benefit3"),
+    hubCopy(locale, "catalog.benefit4"),
+  ];
+
+  const familyBlocks = groupedOperationalServices().flatMap((group) => [
+    `## ${hubCopy(locale, group.family.titleKey)}`,
+    "",
+    hubCopy(locale, group.family.introKey),
+    "",
+    bulletList(
+      group.entries.map(
+        (entry) =>
+          `${entry.title[locale]} — ${entry.summary[locale]} — ${absolute(canonicalPath(entry))}`,
+      ),
     ),
-  )}
+    "",
+  ]);
+
+  return `# ${title}
+
+${intro}
+
+Canonical URL: ${absolute(path)}
+
+## ${benefitsTitle}
+
+${bulletList(benefits)}
+
+${familyBlocks.join("\n").trim()}
 `;
 }
 

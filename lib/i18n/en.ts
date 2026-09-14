@@ -356,12 +356,33 @@ export const en: Record<string, string> = {
 
   "catalog.home": "Home",
   "catalog.servicesKicker": "Services",
-  "catalog.servicesTitle": "Operational software and controlled AI",
+  "catalog.servicesTitle": "AI prepares. The team confirms.",
   "catalog.servicesIntro":
-    "Each service starts from a real process: documents, workflows, tickets, or internal knowledge, with human validation at critical steps.",
+    "One process at a time: documents, bills of materials, tickets, or procedures. A person validates before data reaches the management system already in use.",
   "catalog.servicesMetaTitle": "Operational automation services | Frasma",
   "catalog.servicesMetaDescription":
-    "Frasma services for SMEs: delivery notes into ERP, guided procedures, ticketing, custom operational software, company wiki, and AI presence.",
+    "AI prepares, the team confirms. Delivery notes into ERP, procedures, ticketing, and apps on the process — without replacing the management system.",
+  "catalog.benefitsTitle": "What changes for the team",
+  "catalog.benefit1":
+    "Less copy-paste between email, PDFs, spreadsheets, and the ERP.",
+  "catalog.benefit2":
+    "The management system stays: we prepare the fields, we do not replace the software.",
+  "catalog.benefit3": "Exceptions stay visible and assigned, not in chat.",
+  "catalog.benefit4":
+    "The next process reuses the same way of working, not a new piece of software.",
+  "catalog.family.operations.title": "Processes into the management system",
+  "catalog.family.operations.intro":
+    "Documents and back-office work, with exports into the ERP already in use.",
+  "catalog.family.fieldKnowledge.title": "Field, quality, knowledge",
+  "catalog.family.fieldKnowledge.intro":
+    "Procedures, interventions, and the place where it is written what to do.",
+  "catalog.family.aiHow.title": "How and where AI runs",
+  "catalog.family.aiHow.intro":
+    "Measurement, data boundaries, and visibility to external assistants — not the first purchase.",
+  "catalog.servicesHowLink": "How the flow works",
+  "catalog.servicesCtaTitle": "Start from a real process",
+  "catalog.servicesCtaBody":
+    "Describe the repetitive activity, the systems involved, and the volumes. The assessment checks feasibility and scope; there is no universal price list.",
   "catalog.casesKicker": "Case studies",
   "catalog.casesTitle": "Real processes, limited scope",
   "catalog.casesIntro":

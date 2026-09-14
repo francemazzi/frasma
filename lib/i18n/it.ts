@@ -360,12 +360,32 @@ export const it: Record<string, string> = {
 
   "catalog.home": "Home",
   "catalog.servicesKicker": "Servizi",
-  "catalog.servicesTitle": "Software operativo e AI controllata",
+  "catalog.servicesTitle": "L'AI prepara, il team conferma.",
   "catalog.servicesIntro":
-    "Ogni servizio parte da un processo reale: documenti, workflow, ticket o conoscenza interna, con validazione umana nei passaggi critici.",
+    "Un processo alla volta: documenti, distinte, ticket o procedure. Una persona valida prima che i dati arrivino al gestionale già in uso.",
   "catalog.servicesMetaTitle": "Servizi di automazione operativa | Frasma",
   "catalog.servicesMetaDescription":
-    "Servizi Frasma per PMI: DDT verso ERP, procedure guidate, ticketing, gestionali su misura, wiki aziendale e presenza AI.",
+    "L'AI prepara, il team conferma. DDT verso ERP, procedure, ticketing e app sul processo, senza sostituire il gestionale.",
+  "catalog.benefitsTitle": "Cosa cambia per il team",
+  "catalog.benefit1": "Meno copia-incolla tra email, PDF, Excel ed ERP.",
+  "catalog.benefit2":
+    "Il gestionale resta: si preparano i campi, non si sostituisce il software.",
+  "catalog.benefit3": "Eccezioni visibili e assegnate, non in chat.",
+  "catalog.benefit4":
+    "Il processo successivo riusa lo stesso modo di lavorare, non un software nuovo.",
+  "catalog.family.operations.title": "Processi verso il gestionale",
+  "catalog.family.operations.intro":
+    "Documenti e lavoro di back office, con export verso l'ERP già in uso.",
+  "catalog.family.fieldKnowledge.title": "Campo, qualità, conoscenza",
+  "catalog.family.fieldKnowledge.intro":
+    "Procedure, interventi e il posto in cui sta scritto cosa fare.",
+  "catalog.family.aiHow.title": "Come e dove gira l'AI",
+  "catalog.family.aiHow.intro":
+    "Misura, vincolo sui dati e visibilità verso assistenti esterni — non il primo acquisto.",
+  "catalog.servicesHowLink": "Come funziona il flusso",
+  "catalog.servicesCtaTitle": "Partiamo da un processo reale",
+  "catalog.servicesCtaBody":
+    "Descrivi l'attività ripetitiva, i sistemi coinvolti e i volumi. La valutazione verifica fattibilità e perimetro, senza listino universale.",
   "catalog.casesKicker": "Casi studio",
   "catalog.casesTitle": "Processi reali, perimetro limitato",
   "catalog.casesIntro":
