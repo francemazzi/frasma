@@ -22,7 +22,10 @@ export default function Footer() {
             <p>{t("footer.info")}</p>
           </div>
           <div className="flex gap-5 flex-wrap items-center">
-            <Link href="/servizi" className="hover:text-accent transition-colors">
+            <Link
+              href="/servizi"
+              className="hover:text-accent transition-colors"
+            >
               {t("footer.services")}
             </Link>
             <span className="text-ink-faint">·</span>
@@ -30,17 +33,23 @@ export default function Footer() {
               {t("footer.cases")}
             </Link>
             <span className="text-ink-faint">·</span>
-            <Link href="/manifattura" className="hover:text-accent transition-colors">
+            <Link
+              href="/manifattura"
+              className="hover:text-accent transition-colors"
+            >
               {t("footer.manufacturing")}
             </Link>
             <span className="text-ink-faint">·</span>
-            <Link href="/for-agents" className="hover:text-accent transition-colors">
+            <Link
+              href="/for-agents"
+              className="hover:text-accent transition-colors"
+            >
               {t("footer.forAgents")}
             </Link>
-            <span className="text-ink-faint">·</span>
+            {/* <span className="text-ink-faint">·</span>
             <Link href="/studio" className="hover:text-accent transition-colors">
               {t("footer.startupStudio")}
-            </Link>
+            </Link> */}
             <span className="text-ink-faint">·</span>
             <Link href="/blog" className="hover:text-accent transition-colors">
               Blog
