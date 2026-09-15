@@ -40,9 +40,10 @@ export default function Intro() {
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
           <ProcessAssessment textButton={t("hero.cta")} showArrow />
-          <a href="#come-funziona" className="btn-ink-ghost">
-            {t("hero.secondary")}
-          </a>
+          <ProcessAssessment
+            textButton={t("hero.secondary")}
+            variant="ghost"
+          />
         </Reveal>
         <Reveal
           as="p"

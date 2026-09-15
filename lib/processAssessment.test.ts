@@ -54,16 +54,18 @@ describe("ProcessAssessmentSchema", () => {
     ).toBe(false);
   });
 
-  it("keeps a chat conversation id and language", () => {
+  it("keeps a chat conversation id, language, and landing path", () => {
     expect(
       ProcessAssessmentSchema.parse({
         ...validAssessment,
         conversationId: "550e8400-e29b-41d4-a716-446655440000",
         lang: "en",
+        landing: "/manifattura",
       }),
     ).toMatchObject({
       conversationId: "550e8400-e29b-41d4-a716-446655440000",
       lang: "en",
+      landing: "/manifattura",
     });
   });
 
@@ -117,6 +119,7 @@ describe("buildProcessAssessmentEmail", () => {
     expect(email.text).toContain("Nome: Ada Lovelace");
     expect(email.text).toContain("Fonte: Form landing");
     expect(email.text).toContain("Ruolo: Operations manager");
+    expect(email.text).toContain("Landing: —");
     expect(email.text).toContain("Outlook, Excel, ERP");
     expect(email.text).toContain("About 80 orders per week");
     expect(email.text).not.toContain("<html");

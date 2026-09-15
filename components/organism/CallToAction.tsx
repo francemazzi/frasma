@@ -20,9 +20,10 @@ export default function CallToAction() {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <ProcessAssessment textButton={t("cta.button")} showArrow />
-          <a href="#metodo" className="btn-ink-ghost">
-            {t("cta.secondary")}
-          </a>
+          <ProcessAssessment
+            textButton={t("cta.secondary")}
+            variant="ghost"
+          />
         </div>
         <p className="mx-auto mt-6 max-w-[60ch] text-[12px] leading-[1.55] text-ink-soft">
           {t("cta.risk")}
