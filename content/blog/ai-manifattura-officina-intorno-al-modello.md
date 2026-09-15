@@ -22,7 +22,7 @@ La regola è la stessa del webinar [L’AI in azienda: delega la forma, verifica
 
 ## Un operaio senza banco non fa accettazione
 
-![Un piccolo robot da solo con una nuvoletta vuota, accanto a un camion, scatoloni e un DDT per terra](/image/blog/harness-officina/01-operaio-senza-banco.webp)
+![Operatore in baia di carico, senza attrezzi, con camion, scatoloni e un DDT a terra](/image/blog/harness-officina/01-operaio-senza-banco.webp)
 
 Una chat completa il testo. Non apre il PDF. Non consulta l’ERP. Non ricorda che il fornitore Rossi indica le quantità in confezioni. Non ha un semaforo rosso.
 
@@ -40,7 +40,7 @@ L’officina è il software — e le regole — che stanno *intorno* al modello:
 - **le procedure:** il metodo scritto, non reinventato ogni volta;
 - **il collaudo:** come si misura se il lavoro è andato a buon fine, e chi conferma.
 
-![Un piccolo robot al centro, collegato a un taccuino, una cassetta degli attrezzi, una checklist e un semaforo](/image/blog/harness-officina/02-sistema.webp)
+![Operatore al banco completo: taccuino, cassetta degli attrezzi, checklist e semaforo](/image/blog/harness-officina/02-sistema.webp)
 
 *Figura rielaborata dal working paper Frasma, 9 settembre 2026. Il modello è una parte. La capacità utile è del sistema.*
 
@@ -56,7 +56,7 @@ La differenza è un attrezzo. Aprire il PDF. Cercare l’articolo in anagrafica.
 
 È lo stesso motivo per cui [non si collega un agente direttamente all’ERP](/blog/non-collegare-agenti-ai-direttamente-erp): una proposta linguistica non è un movimento di magazzino.
 
-![A sinistra il robot inventa un codice; a destra legge il DDT e misura il pezzo con il calibro](/image/blog/harness-officina/03-andare-a-leggere.webp)
+![A sinistra un operatore inventa i dati al computer; a destra un collega legge il DDT e misura il pezzo col calibro](/image/blog/harness-officina/03-andare-a-leggere.webp)
 
 In pratica, tre attrezzi tornano spesso:
 
@@ -74,7 +74,7 @@ Immaginate il fornitore Rossi. Sul DDT scrive «5». In azienda «5» vuol dire 
 
 Ci sono tre modi di «correggersi», e non sono la stessa cosa.
 
-![Tre disegni: un ciclo agisci e guarda, un foglio che si rifà, un taccuino che tiene la lezione](/image/blog/harness-officina/04-tre-cicli.webp)
+![Tre banchi in officina: controllare il pezzo, ristampare un foglio, annotare la lezione sul taccuino](/image/blog/harness-officina/04-tre-cicli.webp)
 
 *Figura rielaborata dal working paper Frasma, 9 settembre 2026.*
 
@@ -84,7 +84,7 @@ Ci sono tre modi di «correggersi», e non sono la stessa cosa.
 
 In qualità è lo stesso meccanismo. Una non conformità sul lotto X: se resta solo in una chat, la volta dopo si riricopia. Se entra in un taccuino di processo, l’ufficio non riparte da zero.
 
-![Il robot scrive sul taccuino accanto a due DDT e a delle viti in confezione](/image/blog/harness-officina/05-taccuino.webp)
+![Operatore che scrive sul taccuino accanto a due DDT e a viti in confezione](/image/blog/harness-officina/05-taccuino.webp)
 
 :::demo memoria
 
@@ -114,7 +114,7 @@ Il percorso che serve in azienda è corto e visibile:
 
 Sotto la verifica stanno tre cose poco poetiche e molto utili: controlli automatici (il codice esiste?), un segnale se il rischio è alto, l’ok di una persona.
 
-![Nastro di documenti: la verifica con la lente, poi l’ERP; i dubbi escono di lato](/image/blog/harness-officina/07-validazione.webp)
+![Tavolo di accettazione: verifica dei DDT con la lente, poi il computer ERP, con i documenti dubbi da parte](/image/blog/harness-officina/07-validazione.webp)
 
 *Figura rielaborata dal working paper Frasma, 9 settembre 2026.*
 
@@ -134,7 +134,7 @@ Se ogni settimana cambiate chat, non accumulate niente. Il miglioramento resta d
 | Istruzioni del sistema | Come chiedere il lavoro, con prove | Finché non aggiornate le regole |
 | Il modello | Riaddestrare la macchina | Costoso, raro, spesso inutile |
 
-![Pila verticale: testa del robot, programma, istruzioni, checklist, taccuino e nuvoletta di chat](/image/blog/harness-officina/06-dove-resta.webp)
+![Banco con raccoglitore di procedure, checklist, taccuino e computer](/image/blog/harness-officina/06-dove-resta.webp)
 
 *Figura rielaborata dal working paper Frasma, 9 settembre 2026.*
 
@@ -151,7 +151,7 @@ Non serve un progetto infinito. Serve un caso abbastanza piccolo da misurare.
 
 Il primo attrezzo è spesso il documento. L’arrivo, dopo la persona, è l’ERP già in uso — [DDT verso Mago o TeamSystem](/servizi/ddt-erp). Il contesto è quello delle [PMI manifatturiere](/manifattura).
 
-![Sei tappe da sinistra a destra: dal robot che parla da solo al banco completo intorno a lui](/image/blog/harness-officina/08-evoluzione.webp)
+![Stesso capannone da sinistra a destra: dal banco vuoto al posto di accettazione completo](/image/blog/harness-officina/08-evoluzione.webp)
 
 *Mappa del percorso, rielaborata dal working paper Frasma, 9 settembre 2026. Non è una moda: è lo spostamento della capacità dal modello all’officina.*
 

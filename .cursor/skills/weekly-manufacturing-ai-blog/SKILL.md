@@ -80,8 +80,8 @@ Voice:
 
 ## Cover
 
-1. Generate a 16:9 illustration (`GenerateImage`, `aspect_ratio: "16:9"`).
-2. Style: vintage hand-drawn workshop illustration, parchment/sepia, like `public/images/blog/cover-agenti-ai-erp.png`. Little or no text. If text is needed, Italian only, short labels.
+1. Generate a 16:9 workplace scene (`GenerateImage`, `aspect_ratio: "16:9"`).
+2. Style: copy the four home case cards in `public/image/use_case/` (`caso-01-alimentare.jpg`, `caso-02-lamiera.jpg`, `caso-03-cella-frigo.jpg`, `caso-04-agricoltura.jpg`). Pass all four as `reference_image_paths`. Technical ink line drawing, muted steel / paper / sage / earth fills, operators and real machines. No cartoon robots, parchment, sepia infographics, or English text. Italian labels only if essential, and tiny.
 3. Save as `public/images/blog/cover-{slug}.png`.
 4. Set `coverImage: /images/blog/cover-{slug}.png`.
 

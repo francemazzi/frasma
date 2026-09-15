@@ -19,7 +19,7 @@ A fine giugno, al [Joint CIGR–EurAgEng World Congress 2026](https://www.cigr-e
 
 Il lavoro nasce da CREA e FAO. Il problema da cui partiamo non è un modello agronomico da inventare: è un workflow già validato, rimasto chiuso in fogli Excel difficili da condividere, aggiornare e usare in campo.
 
-![Collage di SmartCariCrop: interfaccia di calcolo fertilizzanti al centro e tecnici e agricoltori che usano sensori, smartphone e laptop in serra e in campo](/image/blog/smartcaricrop/cover.webp)
+![Tecnici e agricoltori in serra e in campo, con sensori e un laptop sul tavolo](/image/blog/smartcaricrop/cover.webp)
 
 ## Il collo di bottiglia è lo strumento, non il modello
 

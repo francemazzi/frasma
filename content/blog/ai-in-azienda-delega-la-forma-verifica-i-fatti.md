@@ -47,7 +47,7 @@ Spesso la risposta non sta nel bilancio. Sta nelle persone che tengono in piedi 
 
 ## L’AI non elimina il lavoro. Sposta la verifica
 
-![Un piccolo robot consegna un documento e una mano lo controlla con la lente, trovando un segno di verifica](/image/blog/ai-manifattura/04-delega-verifica.webp)
+![Un operatore consegna un documento e un supervisore lo controlla con la lente e lo timbra](/image/blog/ai-manifattura/04-delega-verifica.webp)
 
 Questa è la tesi del webinar, e la regola con cui leggere ogni esempio che segue.
 
@@ -59,7 +59,7 @@ La macchina lavora. L’uomo decide sulle eccezioni.
 
 ## Dalla carta ai dati che rispondono
 
-![Un documento che passa da un modello AI al cloud, a un database e a una macchina di produzione](/image/blog/ai-manifattura/05-percorso.webp)
+![Un documento che passa dal banco al computer e poi alla macchina di produzione](/image/blog/ai-manifattura/05-percorso.webp)
 
 Il percorso non è «scegliere l’AI e poi vedere». È una progressione:
 
@@ -72,7 +72,7 @@ La demo, più avanti, è il punto in cui questa sequenza diventa verificabile. L
 
 ## Un LLM completa il testo. Il resto emerge da lì
 
-![Nastro con blocchi identici che attraversano una macchina: uno viene selezionato e cambia colore](/image/blog/ai-manifattura/06-llm-previsione.webp)
+![Nastro con pezzi identici: uno viene sollevato e ispezionato sotto la lampada](/image/blog/ai-manifattura/06-llm-previsione.webp)
 
 Un large language model non «pensa» come una persona. Ha letto moltissimo e prevede la prossima parola, una scelta alla volta.
 
@@ -84,7 +84,7 @@ Il meccanismo è sempre lo stesso: **ingresso → previsione → uscita**.
 
 ## L’AI struttura ciò che arriva disordinato
 
-![Imbuto che riceve disegni, tabelle, mail e checklist e restituisce tabelle, cartelle e report](/image/blog/ai-manifattura/07-struttura-disordine.webp)
+![Banco di accettazione: disegni, tabelle, buste e checklist vengono ordinati in cartelle](/image/blog/ai-manifattura/07-struttura-disordine.webp)
 
 Nel mondo manifatturiero l’ingresso è variabile. L’uscita deve essere utilizzabile.
 
@@ -113,7 +113,7 @@ La prima domanda non è «quale AI?». È: **come sono messi i dati?**
 
 ## Sbaglia anche quando sembra sicura
 
-![Un robot mostra un disegno tecnico mentre un calibro misura il pezzo, con un segnale di attenzione](/image/blog/ai-manifattura/09-allucinazioni.webp)
+![Un tecnico tiene un disegno mentre un collega misura il pezzo col calibro: i due non coincidono](/image/blog/ai-manifattura/09-allucinazioni.webp)
 
 Tre famiglie di errore tornano spesso, e non spariscono scegliendo il modello del momento:
 
@@ -125,7 +125,7 @@ Il tono non misura l’affidabilità. Sono caratteristiche strutturali, da gesti
 
 ## L’automazione buona manda all’uomo solo le eccezioni
 
-![Nastro di documenti che passa da una macchina AI: uno viene deviato sotto una lente, poi tutti finiscono nel gestionale](/image/blog/ai-manifattura/10-eccezioni.webp)
+![Fila di DDT sul tavolo: uno viene fermato sotto la lampada, gli altri vanno al computer del gestionale](/image/blog/ai-manifattura/10-eccezioni.webp)
 
 Il flusso corretto non è «l’AI fa tutto». È:
 
@@ -140,7 +140,7 @@ Su venti documenti, un esempio realistico è questo: **17 passano lisci, 3 chied
 
 ## Un prompt efficace è una procedura, non una domanda
 
-![Stesso modello: a sinistra un foglio sgualcito produce un risultato confuso, a destra documenti ordinati producono una tabella](/image/blog/ai-manifattura/11-prompt-procedura.webp)
+![Due banchi: a sinistra un foglio sgualcito e un lavoro confuso, a destra documenti ordinati e una tabella pulita](/image/blog/ai-manifattura/11-prompt-procedura.webp)
 
 La stessa AI dà risultati diversi a seconda dell’istruzione.
 
@@ -159,7 +159,7 @@ Un prompt scritto così non è una domanda a un oracolo. È una procedura operat
 
 ## Tre regole battono il modello del momento
 
-![Una scatola sostenuta da tre basi: documenti, database con checklist, occhio di verifica](/image/blog/ai-manifattura/12-tre-regole.webp)
+![Cassa di pezzi in officina, con documenti, computer e un supervisore che controlla](/image/blog/ai-manifattura/12-tre-regole.webp)
 
 Prima di inseguire l’ultimo modello, tre condizioni pesano di più:
 
@@ -171,7 +171,7 @@ In molte aziende una di queste tre è più debole delle altre. Vale la pena nomi
 
 ## «E i miei dati dove finiscono?»
 
-![Dentro il perimetro aziendale disegni, anagrafiche e una cassaforte; fuori, un cavo staccato verso il cloud](/image/blog/ai-manifattura/13-dove-finiscono-dati.webp)
+![Dentro lo stabilimento disegni, anagrafiche e una cassaforte; fuori dal recinto un cavo staccato](/image/blog/ai-manifattura/13-dove-finiscono-dati.webp)
 
 L’obiezione è legittima. Disegni tecnici, listini, dati clienti, ricette di produzione.
 
@@ -179,7 +179,7 @@ La risposta non è «niente cloud» né «tutto cloud». Bisogna conoscere la **
 
 ## Il cloud offre capacità senza comprare hardware
 
-![Una nuvola sorride sopra una fabbrica e cala una cassetta degli attrezzi, un manometro, una checklist e uno scudo](/image/blog/ai-manifattura/14-cloud.webp)
+![Armadio server in un ufficio di officina, con cassetta degli attrezzi, manometro, checklist e scudo](/image/blog/ai-manifattura/14-cloud.webp)
 
 Il cloud è potenza a noleggio: nessun hardware da comprare, modelli aggiornati, costi a consumo. Ha senso quando il compito è complesso, i volumi variano, serve la massima qualità.
 
@@ -205,7 +205,7 @@ Un modello piccolo, ben istruito, spesso basta. Non perché sia «più intellige
 
 ## Locale significa un compromesso diverso, non migliore
 
-![Un piccolo robot fatica a trainare scatoloni davanti a un documento piegato a labirinto, con chiave inglese e bilancia](/image/blog/ai-manifattura/16-limiti-locale.webp)
+![Operatore che tira scatoloni davanti a un documento piegato a labirinto, con chiave inglese e bilancia](/image/blog/ai-manifattura/16-limiti-locale.webp)
 
 I modelli piccoli faticano con ragionamenti lunghi, documenti ambigui e lingue miste. Servono configurazione e manutenzione. Per usi sporadici, il cloud può costare meno.
 
@@ -213,7 +213,7 @@ Locale non è automaticamente più sicuro né automaticamente più economico. È
 
 ## Sensibilità e complessità decidono lo strumento
 
-![Matrice a quattro quadranti: sensibilità del dato in verticale, complessità del compito in orizzontale](/image/blog/ai-manifattura/17-matrice-dati.webp)
+![Due banchi: a sinistra un armadio di carte riservate, a destra un lavoro complesso sulla macchina](/image/blog/ai-manifattura/17-matrice-dati.webp)
 
 Si legge la matrice partendo dal dato, non dal fornitore.
 
@@ -226,7 +226,7 @@ Dato sensibile e compito semplice: si resta in azienda. Dato non sensibile e com
 
 ## E se bastasse chiedere ai dati in italiano?
 
-![Un tecnico parla: la domanda diventa elenco, imbuto e tabella, poi entra in un database e torna come report verificabile](/image/blog/ai-manifattura/18-verso-demo.webp)
+![Un tecnico parla, un collega scrive un elenco, poi un vassoio di carte e un report dal computer](/image/blog/ai-manifattura/18-verso-demo.webp)
 
 Fin qui l’AI legge documenti. Il passo successivo è un agente che riceve una domanda in italiano, la traduce in una query, la esegue e mostra come è arrivato al risultato.
 
@@ -234,7 +234,7 @@ Non «chiedi e spera». Chiedi, e vedi il percorso.
 
 ## Nella demo, ogni risposta lascia una traccia
 
-![Cinque icone in fila: persona, agente, query, database in cloud, risposta](/image/blog/ai-manifattura/19-traccia-query.webp)
+![Cinque postazioni in ufficio: chi chiede, chi interroga il computer, l’elenco, l’armadio server, la risposta stampata](/image/blog/ai-manifattura/19-traccia-query.webp)
 
 Nel webinar il dataset è fittizio ma realistico: lotti, non conformità, giacenze.
 
@@ -244,7 +244,7 @@ La regola della demo è che ogni risposta mostra anche la query generata. La ris
 
 ## Tecnologia globale, radici vicine
 
-![Mappa del Nord Italia collegata, attraverso un database, a un globo con fabbriche e dispositivi](/image/blog/ai-manifattura/20-sqlite-cloud.webp)
+![Ufficio di officina collegato a una vista di altri stabilimenti e campi all’orizzonte](/image/blog/ai-manifattura/20-sqlite-cloud.webp)
 
 SQLite è il motore di database più usato al mondo. È integrato nei dispositivi Android e negli iPhone.
 
@@ -254,7 +254,7 @@ Una tecnologia globale può nascere anche qui. Non è un dettaglio folkloristico
 
 ## Un processo verificabile, non una magia
 
-![Dalla lente su un rotolo di dati alla query, alla checklist, fino a un robot fermo a un bivio](/image/blog/ai-manifattura/21-processo-verificabile.webp)
+![Lente su un rotolo di documenti, computer con checklist, operatore fermo al bivio del magazzino](/image/blog/ai-manifattura/21-processo-verificabile.webp)
 
 Riletta in tre passaggi, la demo dice la stessa cosa della tesi iniziale:
 
@@ -266,7 +266,7 @@ La macchina lavora. L’uomo può verificare.
 
 ## Domani: un processo, dieci documenti, un test
 
-![Quattro passaggi: un processo, una pila di documenti, il confronto tra tempi manuali e assistiti, la decisione di estendere](/image/blog/ai-manifattura/22-primo-test.webp)
+![Quattro banchi: un processo, una pila di documenti, il confronto dei tempi, una riunione per decidere se estendere](/image/blog/ai-manifattura/22-primo-test.webp)
 
 Non serve un progetto infinito. Serve un caso abbastanza piccolo da misurare subito.
 

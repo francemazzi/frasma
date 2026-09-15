@@ -1,0 +1,16 @@
+---
+description: Unique Frasma illustration style copied from the four home case-study cards.
+alwaysApply: true
+---
+
+# Frasma illustration style
+
+Match `public/image/use_case/caso-01-alimentare.jpg`, `caso-02-lamiera.jpg`, `caso-03-cella-frigo.jpg`, and `caso-04-agricoltura.jpg`.
+
+- Technical architectural line drawing: even ink outlines, muted fills (steel, paper white, sage, earth, safety yellow).
+- Observational workplace scenes: operators, real machines, factory / warehouse / field. People in workwear, realistic proportions.
+- Translate diagrams into scenes (a funnel becomes a bench with incoming documents; a matrix becomes two desks).
+- Blog covers and inline figures: 16:9. Pass those four JPGs as `reference_image_paths` on GenerateImage.
+- No text, or rare tiny Italian labels only.
+
+Never: cartoon robots or mascots, parchment/sepia paper, infographic flowcharts, English labels, or `public/images/blog/cover-agenti-ai-erp.png` as a style reference.
