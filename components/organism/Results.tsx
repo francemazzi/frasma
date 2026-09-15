@@ -11,7 +11,7 @@ type Case = {
   idx: number;
   pageLabel: string;
   imgSrc: string;
-  imgAlt: string;
+  imgAltKey: string;
   href: string;
   plateKey: string;
   tagKey: string;
@@ -20,6 +20,10 @@ type Case = {
   titlePostKey: string;
   pullKey: string;
   descKey: string;
+  m1nKey: string;
+  m1lKey: string;
+  m2nKey: string;
+  m2lKey: string;
   beforeKey: string;
   afterKey: string;
 };
@@ -28,8 +32,8 @@ const CASES: Case[] = [
   {
     idx: 0,
     pageLabel: "01",
-    imgSrc: "/image/use_case/haccp.png",
-    imgAlt: "Controllo qualità alimentare — schizzo tecnico",
+    imgSrc: "/image/use_case/caso-01-alimentare.jpg",
+    imgAltKey: "results.case1.imgAlt",
     href: "/casi/procedure-alimentari",
     plateKey: "results.case1.plate",
     tagKey: "results.case1.tag",
@@ -38,14 +42,18 @@ const CASES: Case[] = [
     titlePostKey: "results.case1.titlePost",
     pullKey: "results.case1.pull",
     descKey: "results.case1.desc",
+    m1nKey: "results.case1.m1n",
+    m1lKey: "results.case1.m1l",
+    m2nKey: "results.case1.m2n",
+    m2lKey: "results.case1.m2l",
     beforeKey: "results.case1.before",
     afterKey: "results.case1.after",
   },
   {
     idx: 1,
     pageLabel: "02",
-    imgSrc: "/image/use_case/lamiere.png",
-    imgAlt: "Lamiere — schizzo tecnico",
+    imgSrc: "/image/use_case/caso-02-lamiera.jpg",
+    imgAltKey: "results.case2.imgAlt",
     href: "/casi/documenti-erp-manifattura",
     plateKey: "results.case2.plate",
     tagKey: "results.case2.tag",
@@ -54,14 +62,18 @@ const CASES: Case[] = [
     titlePostKey: "results.case2.titlePost",
     pullKey: "results.case2.pull",
     descKey: "results.case2.desc",
+    m1nKey: "results.case2.m1n",
+    m1lKey: "results.case2.m1l",
+    m2nKey: "results.case2.m2n",
+    m2lKey: "results.case2.m2l",
     beforeKey: "results.case2.before",
     afterKey: "results.case2.after",
   },
   {
     idx: 2,
     pageLabel: "03",
-    imgSrc: "/image/use_case/impianti-frigo.png",
-    imgAlt: "Manutenzione impianti — schizzo tecnico",
+    imgSrc: "/image/use_case/caso-03-cella-frigo.jpg",
+    imgAltKey: "results.case4.imgAlt",
     href: "/casi/manutenzione-impianti",
     plateKey: "results.case4.plate",
     tagKey: "results.case4.tag",
@@ -70,14 +82,18 @@ const CASES: Case[] = [
     titlePostKey: "results.case4.titlePost",
     pullKey: "results.case4.pull",
     descKey: "results.case4.desc",
+    m1nKey: "results.case4.m1n",
+    m1lKey: "results.case4.m1l",
+    m2nKey: "results.case4.m2n",
+    m2lKey: "results.case4.m2l",
     beforeKey: "results.case4.before",
     afterKey: "results.case4.after",
   },
   {
     idx: 3,
     pageLabel: "04",
-    imgSrc: "/image/use_case/agricoltura.png",
-    imgAlt: "Agronomia — schizzo tecnico",
+    imgSrc: "/image/use_case/caso-04-agricoltura.jpg",
+    imgAltKey: "results.case3.imgAlt",
     href: "/casi/operazioni-agri-food",
     plateKey: "results.case3.plate",
     tagKey: "results.case3.tag",
@@ -86,6 +102,10 @@ const CASES: Case[] = [
     titlePostKey: "results.case3.titlePost",
     pullKey: "results.case3.pull",
     descKey: "results.case3.desc",
+    m1nKey: "results.case3.m1n",
+    m1lKey: "results.case3.m1l",
+    m2nKey: "results.case3.m2n",
+    m2lKey: "results.case3.m2l",
     beforeKey: "results.case3.before",
     afterKey: "results.case3.after",
   },
@@ -153,7 +173,7 @@ export default function Results() {
               {...slideMotion}
             >
               <div className="relative mx-auto w-full max-w-[440px] overflow-hidden rounded-[24px] bg-paper-2" style={{ aspectRatio: "1122 / 1402" }}>
-                <Image src={c.imgSrc} alt={c.imgAlt} fill sizes="(max-width: 1024px) 90vw, 440px" className="object-cover mix-blend-darken" />
+                <Image src={c.imgSrc} alt={t(c.imgAltKey)} fill sizes="(max-width: 1024px) 90vw, 440px" className="object-cover" />
                 <div className="absolute bottom-4 left-4 rounded-full bg-ink/85 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.08em] text-paper backdrop-blur">
                   {t(c.plateKey)}
                 </div>
@@ -167,6 +187,29 @@ export default function Results() {
                   {t(c.titlePreKey)} <span className="text-accent">{t(c.titleEmKey)}</span>
                   {t(c.titlePostKey) ? ` ${t(c.titlePostKey)}` : ""}
                 </h3>
+                <div className="mb-7">
+                  <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.1em] text-accent">
+                    {t("results.metricsLabel")}
+                  </p>
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <p className="rounded-2xl bg-paper p-4">
+                      <span className="mb-2 block text-[28px] font-medium leading-none tracking-[-0.04em] text-ink">
+                        {t(c.m1nKey)}
+                      </span>
+                      <span className="block text-[13.5px] leading-[1.55] text-ink-soft">
+                        {t(c.m1lKey)}
+                      </span>
+                    </p>
+                    <p className="rounded-2xl bg-paper p-4">
+                      <span className="mb-2 block text-[28px] font-medium leading-none tracking-[-0.04em] text-ink">
+                        {t(c.m2nKey)}
+                      </span>
+                      <span className="block text-[13.5px] leading-[1.55] text-ink-soft">
+                        {t(c.m2lKey)}
+                      </span>
+                    </p>
+                  </div>
+                </div>
                 <p className="mb-7 text-[17px] font-medium leading-[1.45] text-ink">{t(c.pullKey)}</p>
                 <div className="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <p className="rounded-2xl bg-paper p-4 text-[13.5px] leading-[1.55] text-ink-soft">

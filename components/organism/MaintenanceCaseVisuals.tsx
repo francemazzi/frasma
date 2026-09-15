@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MockScene } from "../atoms/MockScene";
 import { BentoCard, BentoGrid } from "../atoms/Bento";
 import { useT } from "../../lib/i18n/context";
 import type { ResolvedFaq } from "../../lib/knowledge";
@@ -12,7 +11,6 @@ import {
   ChannelMergeMock,
   FaqExploreMock,
   InboxChaosMock,
-  PlantPinsMock,
   RelatedPickMock,
   SharedTimelineMock,
 } from "./maintenanceMocks";
@@ -36,15 +34,12 @@ export function MaintenanceCaseHero() {
             style={{ aspectRatio: "1122 / 1402" }}
           >
             <Image
-              src="/image/use_case/impianti-frigo.png"
+              src="/image/use_case/caso-03-cella-frigo.jpg"
               alt={t("catalog.maintenance.imageAlt")}
               fill
               sizes="(max-width: 1024px) 90vw, 440px"
-              className="object-cover mix-blend-darken"
+              className="object-cover"
             />
-            <MockScene>
-              <PlantPinsMock />
-            </MockScene>
             <div className="pointer-events-none absolute bottom-4 left-4 z-10 rounded-full bg-ink/85 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.08em] text-paper backdrop-blur">
               {t("results.case4.plate")}
             </div>

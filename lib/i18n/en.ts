@@ -139,8 +139,13 @@ export const en: Record<string, string> = {
   "results.case4.titlePost": "",
   "results.case4.m2n": "100%",
   "results.case4.m2l": "Visibility for clients and suppliers",
+  "results.metricsLabel": "Success metrics",
   "results.beforeLabel": "Before",
   "results.afterLabel": "After",
+  "results.case1.imgAlt": "Food production line with operators and a conveyor oven",
+  "results.case2.imgAlt": "Sheet-metal workshop with press brake and overhead crane",
+  "results.case3.imgAlt": "Orchard rows with a tractor and farm operators",
+  "results.case4.imgAlt": "Cold storage room with pallets and operators in white coats",
   "results.case1.tag": "Food / Quality & documents",
   "results.case1.title": "Food procedures, controls & certifications",
   "results.case1.impact":
@@ -409,7 +414,7 @@ export const en: Record<string, string> = {
   "catalog.videoLabel": "Video",
   "catalog.articleLabel": "Read more",
   "catalog.open": "Open",
-  "catalog.maintenance.imageAlt": "Plant maintenance — technical sketch",
+  "catalog.maintenance.imageAlt": "Cold storage room with pallets and operators in white coats",
   "catalog.maintenance.demoKicker": "How it is used",
   "catalog.maintenance.demoTitle": "Tickets, assignment, and closure",
   "catalog.maintenance.demoIntro":
