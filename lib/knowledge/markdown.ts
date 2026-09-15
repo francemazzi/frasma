@@ -5,6 +5,14 @@ import { articlesForExtras, extrasForEntry } from "./page-extras";
 import { en as enCopy } from "../i18n/en";
 import { it as itCopy } from "../i18n/it";
 import {
+  APPS_SERVICE_ID,
+  cadCamExamples,
+  DDT_SERVICE_ID,
+  erpExamples,
+  examplesForService,
+  formatExampleLine,
+} from "./erp-examples";
+import {
   CASES_HUB_PATH,
   canonicalPath,
   caseStudies,
@@ -67,6 +75,42 @@ export function entryMarkdown(
     `## ${detailsHeading}`,
     "",
     bulletList(entry.details.map((detail) => detail[locale])),
+  );
+
+  const exampleGroups =
+    entry.id === DDT_SERVICE_ID || entry.id === APPS_SERVICE_ID
+      ? examplesForService(entry.id)
+      : null;
+
+  if (exampleGroups) {
+    lines.push(
+      "",
+      `## ${hubCopy(locale, "catalog.examples.erpTitle")}`,
+      "",
+      hubCopy(locale, "catalog.examples.intro"),
+      "",
+      bulletList(
+        exampleGroups.erp.map((example) => formatExampleLine(example, locale)),
+      ),
+    );
+
+    if (exampleGroups.cadCam.length > 0) {
+      lines.push(
+        "",
+        `## ${hubCopy(locale, "catalog.examples.cadTitle")}`,
+        "",
+        bulletList(
+          exampleGroups.cadCam.map((example) =>
+            formatExampleLine(example, locale),
+          ),
+        ),
+      );
+    }
+
+    lines.push("", hubCopy(locale, "catalog.examples.also"));
+  }
+
+  lines.push(
     "",
     `Canonical URL: ${absolute(path)}`,
   );
@@ -256,19 +300,46 @@ ${bulletList(
     hubCopy(locale, "catalog.benefit4"),
   ];
 
-  const familyBlocks = groupedOperationalServices().flatMap((group) => [
-    `## ${hubCopy(locale, group.family.titleKey)}`,
-    "",
-    hubCopy(locale, group.family.introKey),
-    "",
-    bulletList(
-      group.entries.map(
-        (entry) =>
-          `${entry.title[locale]} — ${entry.summary[locale]} — ${absolute(canonicalPath(entry))}`,
+  const familyBlocks = groupedOperationalServices().flatMap((group) => {
+    const lines = [
+      `## ${hubCopy(locale, group.family.titleKey)}`,
+      "",
+      hubCopy(locale, group.family.introKey),
+      "",
+      bulletList(
+        group.entries.map(
+          (entry) =>
+            `${entry.title[locale]} — ${entry.summary[locale]} — ${absolute(canonicalPath(entry))}`,
+        ),
       ),
-    ),
-    "",
-  ]);
+      "",
+    ];
+
+    if (group.family.id === "operations") {
+      lines.push(
+        `### ${hubCopy(locale, "catalog.examples.erpTitle")}`,
+        "",
+        hubCopy(locale, "catalog.examples.intro"),
+        "",
+        bulletList(
+          erpExamples().map((example) => formatExampleLine(example, locale)),
+        ),
+        "",
+        `### ${hubCopy(locale, "catalog.examples.cadTitle")}`,
+        "",
+        bulletList(
+          cadCamExamples().map((example) =>
+            formatExampleLine(example, locale),
+          ),
+        ),
+        "",
+        hubCopy(locale, "catalog.examples.also"),
+        "",
+      );
+    }
+
+    return lines;
+  });
 
   return `# ${title}
 

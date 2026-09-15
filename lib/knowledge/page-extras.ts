@@ -23,8 +23,8 @@ const text = (it: string, en: string): LocalizedText => ({ it, en });
 export const PAGE_EXTRAS: Record<string, PageExtras> = {
   "delivery-notes-to-erp": {
     problemLead: text(
-      "Per chi registra ancora DDT e bolle a mano nel ciclo passivo, da email o PDF, verso Mago, Mago4, TeamSystem o un altro ERP già in azienda.",
-      "For teams still typing delivery notes and packing slips by hand in the purchase cycle, from email or PDF, into Mago, Mago4, TeamSystem, or another ERP already in the company.",
+      "Per chi registra ancora DDT e bolle a mano nel ciclo passivo, da email o PDF, verso Mago, TeamSystem, Zucchetti, eSolver, FullWORK o un altro ERP già in azienda.",
+      "For teams still typing delivery notes and packing slips by hand in the purchase cycle, from email or PDF, into Mago, TeamSystem, Zucchetti, eSolver, FullWORK, or another ERP already in the company.",
     ),
     videoUrl: "https://youtu.be/22K6TJAXmmE",
     videoTitle: text(
@@ -54,8 +54,8 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "Can you read delivery notes from email or PDF and prepare them for Mago or TeamSystem?",
         ),
         answer: text(
-          "Sì, su un perimetro definito: il flusso legge il documento, struttura i campi e segnala quelli da verificare prima dell'importazione nell'ERP già in uso. Non sostituiamo il gestionale.",
-          "Yes, on a defined scope: the workflow reads the document, structures fields, and flags those that need review before import into the ERP already in use. We do not replace the management system.",
+          "Sì, su un perimetro definito: il flusso legge il documento, struttura i campi e segnala quelli da verificare prima dell'importazione in Mago, TeamSystem, Zucchetti, eSolver, FullWORK o un altro ERP già in uso. L'export si definisce sul tracciato reale. Non sostituiamo il gestionale.",
+          "Yes, on a defined scope: the workflow reads the document, structures fields, and flags those that need review before import into Mago, TeamSystem, Zucchetti, eSolver, FullWORK, or another ERP already in use. The export is defined on the real file layout. We do not replace the management system.",
         ),
       },
       {
@@ -84,8 +84,8 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "Is there a public tutorial for this process?",
         ),
         answer: text(
-          "Sì: un articolo e un video YouTube mostrano un esempio su email, PDF DDT e registro Excel, come base per un flusso verso Mago, TeamSystem o un altro ERP.",
-          "Yes: an article and a YouTube video show an example with email, delivery-note PDFs, and an Excel register, as a basis for a flow into Mago, TeamSystem, or another ERP.",
+          "Sì: un articolo e un video YouTube mostrano un esempio su email, PDF DDT e registro Excel, come base per un flusso verso Mago, TeamSystem, Zucchetti, eSolver, FullWORK o un altro ERP.",
+          "Yes: an article and a YouTube video show an example with email, delivery-note PDFs, and an Excel register, as a basis for a flow into Mago, TeamSystem, Zucchetti, eSolver, FullWORK, or another ERP.",
         ),
       },
       {
@@ -136,8 +136,8 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
   },
   "custom-management-software": {
     problemLead: text(
-      "Per un processo di back office che l'ERP non copre: tabelle, stati e ruoli sul lavoro reale, con export verso i sistemi già in uso.",
-      "For a back-office process the ERP does not cover: tables, states, and roles on the real work, with exports into systems already in use.",
+      "Per un processo di back office che l'ERP non copre: tabelle, stati e ruoli sul lavoro reale, con export verso Arca, FullWORK, Gesco, Six o i sistemi già in uso, senza sostituire Inventor o Bystronic.",
+      "For a back-office process the ERP does not cover: tables, states, and roles on the real work, with exports into Arca, FullWORK, Gesco, Six, or systems already in use, without replacing Inventor or Bystronic.",
     ),
   },
   "company-wiki-brain": {

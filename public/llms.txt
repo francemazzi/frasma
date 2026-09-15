@@ -21,9 +21,11 @@ Italian version: https://www.frasma.org/llms-it.txt
 ## What Frasma builds
 
 - Automate delivery notes into Mago and TeamSystem: https://www.frasma.org/servizi/ddt-erp
+  Example exports into Zucchetti, eSolver, FullWORK, and other ERPs already in use; Inventor CAD and Bystronic machines (BySoft, ByCut, ByTube, ByBend) stay in place.
 - HACCP, quality, and certification procedures: https://www.frasma.org/servizi/procedure-guidate
 - Ticketing for field maintenance and interventions: https://www.frasma.org/servizi/ticketing-manutenzione
 - Operational apps on the process: https://www.frasma.org/servizi/software-operativo
+  Bills of materials and back office into Arca, FullWORK, Gesco, Six; Inventor and Bystronic are not replaced. Sage X3, TeamSystem Enterprise, Odoo, and TeamSystem Manufacturing / MES are defined on the real file layout.
 - Operational AI datasets, benchmarks, and optimization: https://www.frasma.org/servizi/dataset-benchmark-ai
 - Company wiki / operational brain: https://www.frasma.org/servizi/wiki-aziendale-ai
 - On-premise / private-network AI for SMEs: https://www.frasma.org/servizi/ai-on-premise

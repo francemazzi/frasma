@@ -3,6 +3,20 @@ export {
   getFrasmaProfile,
   knowledgeCatalog,
 } from "./catalog";
+export {
+  APPS_SERVICE_ID,
+  cadCamExamples,
+  DDT_SERVICE_ID,
+  erpExamples,
+  examplesForService,
+  formatExampleLine,
+  SYSTEM_EXAMPLES,
+} from "./erp-examples";
+export type {
+  OperationsServiceId,
+  SystemExample,
+  SystemExampleKind,
+} from "./erp-examples";
 export { faqsForEntry } from "./faqs";
 export type { ResolvedFaq } from "./faqs";
 export {

@@ -19,8 +19,10 @@ import {
 } from "./MaintenanceCaseVisuals";
 import { useLang, useT } from "../../lib/i18n/context";
 import {
+  APPS_SERVICE_ID,
   canonicalPath,
   articlesForExtras,
+  DDT_SERVICE_ID,
   extrasForEntry,
   faqsForEntry,
   getCaseBySlug,
@@ -28,6 +30,7 @@ import {
   getServiceBySlug,
   relatedEntries,
 } from "../../lib/knowledge";
+import OperationsSystemExamples from "./OperationsSystemExamples";
 import type { LocalizedKnowledgeEntry } from "../../lib/knowledge";
 import {
   breadcrumbJsonLd,
@@ -191,6 +194,12 @@ export default function CatalogLanding({ lookup }: Props) {
                   </li>
                 ))}
               </ul>
+              {entry.id === DDT_SERVICE_ID ? (
+                <OperationsSystemExamples variant={DDT_SERVICE_ID} />
+              ) : null}
+              {entry.id === APPS_SERVICE_ID ? (
+                <OperationsSystemExamples variant={APPS_SERVICE_ID} />
+              ) : null}
             </div>
           </section>
         )}

@@ -376,6 +376,12 @@ export const it: Record<string, string> = {
   "catalog.family.operations.title": "Processi verso il gestionale",
   "catalog.family.operations.intro":
     "Documenti e lavoro di back office, con export verso l'ERP già in uso.",
+  "catalog.examples.erpTitle": "Esempi verso gestionali già in uso",
+  "catalog.examples.cadTitle": "CAD e macchine già in officina",
+  "catalog.examples.intro":
+    "Processi emersi dalle conversazioni. L'import si definisce sul tracciato reale; non sostituiamo ERP, CAD o macchina.",
+  "catalog.examples.also":
+    "L'export si definisce sul tracciato reale, anche verso Sage X3, TeamSystem Enterprise, Odoo, TeamSystem Manufacturing / MES, Mago e TeamSystem.",
   "catalog.family.fieldKnowledge.title": "Campo, qualità, conoscenza",
   "catalog.family.fieldKnowledge.intro":
     "Procedure, interventi e il posto in cui sta scritto cosa fare.",

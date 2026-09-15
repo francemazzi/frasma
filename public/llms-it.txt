@@ -21,9 +21,11 @@ English version: https://www.frasma.org/llms.txt
 ## Cosa costruisce Frasma
 
 - Automatizzare i DDT verso Mago e TeamSystem: https://www.frasma.org/servizi/ddt-erp
+  Esempi di export verso Zucchetti, eSolver, FullWORK e altri ERP già in uso; CAD Inventor e macchine Bystronic (BySoft, ByCut, ByTube, ByBend) restano al loro posto.
 - Procedure HACCP, qualità e certificazioni: https://www.frasma.org/servizi/procedure-guidate
 - Ticketing per manutenzione e interventi sul campo: https://www.frasma.org/servizi/ticketing-manutenzione
 - Applicazioni operative sul processo: https://www.frasma.org/servizi/software-operativo
+  Distinte e back office verso Arca, FullWORK, Gesco, Six; Inventor e Bystronic non si sostituiscono. Sage X3, TeamSystem Enterprise, Odoo e TeamSystem Manufacturing / MES si definiscono sul tracciato reale.
 - Dataset, benchmark e ottimizzazione AI: https://www.frasma.org/servizi/dataset-benchmark-ai
 - Wiki e cervello aziendale: https://www.frasma.org/servizi/wiki-aziendale-ai
 - AI in locale / rete privata per PMI: https://www.frasma.org/servizi/ai-on-premise

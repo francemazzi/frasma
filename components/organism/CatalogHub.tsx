@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Footer from "./Footer";
 import Header from "./Header";
+import OperationsSystemExamples from "./OperationsSystemExamples";
 import ProcessAssessment from "./ProcessAssessment";
 import Seo from "../Seo";
 import { useLang, useT } from "../../lib/i18n/context";
@@ -153,6 +154,9 @@ export default function CatalogHub({ kind, path, entries }: Props) {
                   {t(group.family.introKey)}
                 </p>
                 <EntryList entries={group.entries} lang={lang} />
+                {group.family.id === "operations" ? (
+                  <OperationsSystemExamples variant="hub" />
+                ) : null}
               </div>
             </section>
           ))

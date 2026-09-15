@@ -257,6 +257,42 @@ describe("markdownForPath", () => {
     expect(hub).toContain("https://www.frasma.org/servizi/ddt-erp");
     expect(english).toContain("AI prepares. The team confirms.");
     expect(english).toContain("Operational apps on the process");
+    expect(hub).toContain("FullWORK");
+    expect(hub).toContain("Inventor (Autodesk)");
+    expect(hub).toContain("BySoft");
+    expect(hub).toContain("Sage X3");
+    expect(hub).toContain("Zucchetti");
+    expect(hub).toContain("eSolver");
+    expect(hub).toContain("Arca");
+    expect(hub).toContain("Gesco");
+    expect(hub).toContain("Six (Planet Group)");
+    expect(hub).not.toContain("BTRAM");
+    expect(hub).not.toContain("Cremonini");
+    expect(hub).not.toContain("Ceglia");
+    expect(hub).not.toContain("Abbati");
+    expect(hub).not.toContain("Saber");
+  });
+
+  it("puts ERP examples on the DDT landing and CAD examples on operational apps", () => {
+    const ddt = markdownForPath("/servizi/ddt-erp");
+    const apps = markdownForPath("/servizi/software-operativo");
+
+    expect(ddt).toContain("Automatizzare i DDT verso Mago e TeamSystem");
+    expect(ddt).toContain("Zucchetti");
+    expect(ddt).toContain("eSolver");
+    expect(ddt).toContain("FullWORK");
+    expect(ddt).not.toContain("Inventor (Autodesk)");
+    expect(ddt).not.toContain("BySoft");
+    expect(ddt).not.toContain("BTRAM");
+    expect(apps).toContain("Arca");
+    expect(apps).toContain("Gesco");
+    expect(apps).toContain("FullWORK");
+    expect(apps).toContain("Inventor (Autodesk)");
+    expect(apps).toContain("ByCut");
+    expect(apps).toContain("ByTube");
+    expect(apps).toContain("ByBend");
+    expect(apps).not.toContain("BTRAM");
+    expect(apps).not.toContain("Cremonini");
   });
 });
 

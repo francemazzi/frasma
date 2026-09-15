@@ -373,6 +373,12 @@ export const en: Record<string, string> = {
   "catalog.family.operations.title": "Processes into the management system",
   "catalog.family.operations.intro":
     "Documents and back-office work, with exports into the ERP already in use.",
+  "catalog.examples.erpTitle": "Examples into management systems already in use",
+  "catalog.examples.cadTitle": "CAD and machines already on the shop floor",
+  "catalog.examples.intro":
+    "Processes that came up in conversations. The import is defined on the real file layout; we do not replace ERP, CAD, or the machine.",
+  "catalog.examples.also":
+    "The export is defined on the real file layout, including Sage X3, TeamSystem Enterprise, Odoo, TeamSystem Manufacturing / MES, Mago, and TeamSystem.",
   "catalog.family.fieldKnowledge.title": "Field, quality, knowledge",
   "catalog.family.fieldKnowledge.intro":
     "Procedures, interventions, and the place where it is written what to do.",
