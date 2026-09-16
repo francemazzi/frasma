@@ -1,6 +1,6 @@
-[![smithery badge](https://smithery.ai/badge/francemazzi/frasma)](https://smithery.ai/servers/francemazzi/frasma)
+[![LightNow MCP capabilities](https://lightnow.ai/badge/io.github.francemazzi/frasma)](https://lightnow.ai/servers/io.github.francemazzi/frasma)
 
-[Frasma on Smithery](https://smithery.ai/servers/francemazzi/frasma)
+[Frasma on LightNow](https://lightnow.ai/servers/io.github.francemazzi/frasma)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
