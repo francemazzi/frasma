@@ -8,7 +8,6 @@ const steps = [
   { number: "02", titleKey: "how.title2", descKey: "how.desc2" },
   { number: "03", titleKey: "how.title3", descKey: "how.desc3" },
   { number: "04", titleKey: "how.title4", descKey: "how.desc4" },
-  { number: "05", titleKey: "how.title5", descKey: "how.desc5" },
 ];
 
 export default function WhyContactMe() {

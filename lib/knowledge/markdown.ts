@@ -1,3 +1,4 @@
+import { CONTACT, whatsappHref } from "../contact";
 import { SITE_URL, SMITHERY_SERVER_URL } from "../seo";
 import { getFrasmaProfile, knowledgeCatalog } from "./catalog";
 import { faqsForEntry } from "./faqs";
@@ -161,7 +162,7 @@ export function homeMarkdown(locale: Locale = "it"): string {
         vibeupTail:
           "e non si applicano ai progetti operativi Frasma.",
         contactBody:
-          "Usa la chat del sito per completare una diagnosi guidata di processo, rivedere il riepilogo e inviarlo a Francesco. Quando MongoDB è configurato, le conversazioni restano sul server e si possono riprendere.",
+          `Telefono e WhatsApp: ${CONTACT.phoneDisplay} (${whatsappHref("it")}). Email: ${CONTACT.email}. In alternativa usa la chat del sito per completare una diagnosi guidata di processo, rivedere il riepilogo e inviarlo a Francesco. Quando MongoDB è configurato, le conversazioni restano sul server e si possono riprendere.`,
       }
     : {
         builds: "What Frasma Builds",
@@ -177,7 +178,7 @@ export function homeMarkdown(locale: Locale = "it"): string {
         vibeupTail:
           "and do not apply to Frasma operational projects.",
         contactBody:
-          "Use the website chat to complete a guided process diagnostic, review its summary, and email it to Francesco. When MongoDB is configured, conversations are persisted server-side and can be resumed later.",
+          `Phone and WhatsApp: ${CONTACT.phoneDisplay} (${whatsappHref("en")}). Email: ${CONTACT.email}. Alternatively, use the website chat to complete a guided process diagnostic, review its summary, and email it to Francesco. When MongoDB is configured, conversations are persisted server-side and can be resumed later.`,
       };
 
   return `# Frasma

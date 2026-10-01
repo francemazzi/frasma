@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useT } from "../../lib/i18n/context";
+import ContactLinks from "../molecols/ContactLinks";
 
 export default function Footer() {
   const t = useT();
@@ -11,15 +12,18 @@ export default function Footer() {
     <footer className="border-t border-hairline py-10 pb-20 text-[12px] font-medium text-ink-soft">
       <div className="section-farm">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/logo-frasma.png"
-              alt="Frasma"
-              width={36}
-              height={36}
-              className="h-8 w-8 rounded-full object-cover"
-            />
-            <p>{t("footer.info")}</p>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <Image
+                src="/logo-frasma.png"
+                alt="Frasma"
+                width={36}
+                height={36}
+                className="h-8 w-8 rounded-full object-cover"
+              />
+              <p>{t("footer.info")}</p>
+            </div>
+            <ContactLinks />
           </div>
           <div className="flex gap-5 flex-wrap items-center">
             <Link
@@ -89,6 +93,17 @@ export default function Footer() {
               className="hover:text-accent transition-colors"
             >
               YouTube
+            </Link>
+            <span className="text-ink-faint">·</span>
+            <Link href="/privacy" className="hover:text-accent transition-colors">
+              {t("footer.privacy")}
+            </Link>
+            <span className="text-ink-faint">·</span>
+            <Link
+              href="/cookie-policy"
+              className="hover:text-accent transition-colors"
+            >
+              {t("footer.cookies")}
             </Link>
           </div>
         </div>

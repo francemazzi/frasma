@@ -1,3 +1,4 @@
+import { CONTACT, whatsappHref } from "./contact";
 import { knowledgeCatalog } from "./knowledge/catalog";
 import { canonicalPath } from "./knowledge/paths";
 import type { Locale } from "./knowledge/types";
@@ -100,6 +101,8 @@ export const personJsonLd = {
   ],
   url: SITE_URL,
   image: PROFILE_IMAGE,
+  telephone: CONTACT.phoneE164,
+  email: CONTACT.email,
   worksFor: {
     "@id": `${SITE_URL}/#business`,
   },
@@ -151,6 +154,19 @@ export const professionalServiceJsonLd = {
   ],
   priceRange: "EUR",
   taxID: "02750410207",
+  telephone: CONTACT.phoneE164,
+  email: CONTACT.email,
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      telephone: CONTACT.phoneE164,
+      email: CONTACT.email,
+      url: whatsappHref("it"),
+      availableLanguage: ["it", "en"],
+      areaServed: "IT",
+    },
+  ],
   hasOfferCatalog: {
     "@id": `${SITE_URL}/#offer-catalog`,
   },

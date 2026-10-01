@@ -1,11 +1,14 @@
 "use client";
 
-import { useT } from "../../lib/i18n/context";
+import { MessageCircle } from "lucide-react";
+import { useLang, useT } from "../../lib/i18n/context";
+import { CONTACT, PHONE_HREF, whatsappHref } from "../../lib/contact";
 import ProcessAssessment from "./ProcessAssessment";
 import { Reveal } from "../atoms/Reveal";
 
 export default function CallToAction() {
   const t = useT();
+  const { lang } = useLang();
 
   return (
     <section id="contact" className="section-farm py-10 sm:py-14">
@@ -20,10 +23,25 @@ export default function CallToAction() {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <ProcessAssessment textButton={t("cta.button")} showArrow />
+          <a
+            href={whatsappHref(lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ink-ghost"
+          >
+            <MessageCircle size={16} aria-hidden="true" />
+            {t("contact.whatsapp")}
+          </a>
           <a href="#metodo" className="btn-ink-ghost">
             {t("cta.secondary")}
           </a>
         </div>
+        <p className="mt-4 text-[14px] text-ink-soft">
+          {t("contact.orCall")}{" "}
+          <a href={PHONE_HREF} className="font-medium text-ink hover:text-accent">
+            {CONTACT.phoneDisplay}
+          </a>
+        </p>
         <p className="mx-auto mt-6 max-w-[60ch] text-[12px] leading-[1.55] text-ink-soft">
           {t("cta.risk")}
         </p>

@@ -550,7 +550,15 @@ export default function ProcessAssessment({
                           </div>
                         </label>
                         <p className="text-xs leading-[1.55] text-ink-soft">
-                          {t("assessment.privacy")}
+                          {t("assessment.privacy")}{" "}
+                          <a
+                            href="/privacy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline underline-offset-2 hover:text-accent"
+                          >
+                            {t("assessment.privacyLink")}
+                          </a>
                         </p>
                       </>
                     ) : null}

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { X, Send, Loader2, Mail } from "lucide-react";
 import { useT, useLang } from "../../lib/i18n/context";
+import { whatsappHref } from "../../lib/contact";
 import {
   extractProjectBriefForm,
   stripFormMarkers,
@@ -484,6 +485,17 @@ function InlineRegisterForm({
         )}
         {submitting ? t("chat.register.submitting") : t("chat.register.submit")}
       </button>
+      <p className="text-[10.5px] leading-relaxed text-ink-faint">
+        {t("chat.register.privacy")}{" "}
+        <a
+          href="/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 hover:text-accent"
+        >
+          {t("chat.register.privacyLink")}
+        </a>
+      </p>
     </form>
   );
 }
@@ -796,7 +808,15 @@ export default function ChatWidget() {
               {t("chat.status")}
             </div>
             <p className="text-[10.5px] leading-relaxed text-ink-soft">
-              {t("chat.persistence.notice")}
+              {t("chat.persistence.notice")}{" "}
+              <a
+                href={whatsappHref(lang)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-ink underline underline-offset-2 hover:text-accent"
+              >
+                {t("contact.chatAlt")}
+              </a>
             </p>
             {historyRestored ? (
               <p className="text-[10px] leading-relaxed text-ink-faint">

@@ -168,6 +168,8 @@ export const EXTRA_SITEMAP_PATHS = [
   "/studio",
   "/programmatore-freelance",
   "/blog",
+  "/privacy",
+  "/cookie-policy",
 ] as const;
 
 export function agentNavigationPaths(): string[] {

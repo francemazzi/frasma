@@ -65,6 +65,13 @@ Italian version: https://www.frasma.org/llms-it.txt
 4. After user review, use the website process brief or MCP prepare_project_brief — POST /api/request-process-assessment only after explicit human confirmation.
 5. Do not treat a call booking as the conversion.
 
+## Direct contact
+
+- Phone and WhatsApp: +39 331 742 4341 — https://wa.me/393317424341
+- Email: frasma@frasma.org
+- Hours: Mon–Fri, 9am–6pm CET
+- Privacy: https://www.frasma.org/privacy · Cookies: https://www.frasma.org/cookie-policy
+
 ## Optional
 
 - Blog: https://www.frasma.org/blog

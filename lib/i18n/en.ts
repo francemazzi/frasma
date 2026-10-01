@@ -24,24 +24,24 @@ export const en: Record<string, string> = {
   "header.nav.blog": "Blog",
 
   // Hero (editorial)
-  "hero.eyebrow": "Automation for manufacturing and food SMEs",
-  "hero.title1": "Automate the",
-  "hero.titleEm": "work",
-  "hero.title2": "between documents, email, and ERP.",
+  "hero.eyebrow": "For manufacturing and food companies",
+  "hero.title1": "Hours lost",
+  "hero.titleEm": "copying data?",
+  "hero.title2": "We give them back.",
   "hero.subtitle":
-    "Frasma designs workflows that read documents, check data, and update the software you already use, with approval from your team.",
+    "We read delivery notes, orders, email, and PDFs, check the data, and enter it into the business software you already use. Someone on your team approves, the software does the rest.",
   "hero.risk":
-    "Start with one bounded process, keeping your current ERP. The assessment checks feasibility and operational value. The workflow then stays in service, maintained and evolved over time.",
+    "Start from one real process, without changing your business software. Try first, then decide.",
   "hero.point1":
-    "Custom software and AI for quotes, delivery notes, technical sheets, and tickets",
-  "hero.point2": "Less copy-paste between Excel, PDF, email, and ERP",
-  "hero.point3": "Prototype on your data, starting from a real process",
+    "Custom software and AI for quotes, delivery notes, technical sheets, and service requests",
+  "hero.point2": "Less copy-paste between Excel, PDF, email, and your business software",
+  "hero.point3": "Trial on your data, starting from a real process",
   "hero.presence":
     "Presence on ChatGPT, Claude, and Gemini.",
   "hero.focus": "Verticals: manufacturing, food, agronomy, field services.",
   "hero.brand":
     "Frasma, the Lagotto in the brand, represents the conversational and first-contact support experience.",
-  "hero.cta": "Assess a process to automate",
+  "hero.cta": "Tell me about a process",
   "hero.secondary": "See how it works",
   "hero.projects": "See real examples",
   "hero.card.title": "Studio — card",
@@ -73,10 +73,10 @@ export const en: Record<string, string> = {
   "results.thread.title": "A concrete method: input, control, result.",
   "results.thread.input.title": "Fragmented input",
   "results.thread.input.desc":
-    "PDFs, delivery notes, certifications, technical sheets, and ERP data.",
+    "PDFs, delivery notes, certifications, technical sheets, and business software data.",
   "results.thread.flow.title": "Controlled flow",
   "results.thread.flow.desc":
-    "Rules, states, and checks: AI prepares, the team validates.",
+    "Rules, states, and checks: AI prepares, the team approves.",
   "results.thread.output.title": "Operational output",
   "results.thread.output.desc":
     "Quotes, filings, and documents ready to use.",
@@ -90,8 +90,8 @@ export const en: Record<string, string> = {
     "HACCP and certification filings done by hand, scattered documents, and slow reviews.",
   "results.case1.after":
     "Guided steps, controlled documents, and the consultant always leading verification.",
-  "results.case1.titlePre": "Food procedures, controls &",
-  "results.case1.titleEm": "certifications",
+  "results.case1.titlePre": "HACCP filings",
+  "results.case1.titleEm": "without retyping",
   "results.case1.titlePost": "",
   "results.case1.m2n": "Parallel cases",
   "results.case1.m2l": "Handled in parallel by the same team",
@@ -105,8 +105,8 @@ export const en: Record<string, string> = {
     "Data copied from delivery notes, invoices, and technical sheets into ERP and quotes.",
   "results.case2.after":
     "Automatic reading, human review, quote ready and fully tracked.",
-  "results.case2.titlePre": "ERP documents and quotes for",
-  "results.case2.titleEm": "cranes and sheet metal",
+  "results.case2.titlePre": "Quotes from delivery notes,",
+  "results.case2.titleEm": "automatically",
   "results.case2.titlePost": "",
   "results.case2.m2n": "1 flow",
   "results.case2.m2l": "From ERP document to quote",
@@ -120,8 +120,8 @@ export const en: Record<string, string> = {
     "Different agri-food filings per company, manual steps, and little standardization.",
   "results.case3.after":
     "Single process across a distributed network, fewer manual steps, and more companies per team.",
-  "results.case3.titlePre": "Multi-company agri-food",
-  "results.case3.titleEm": "filings",
+  "results.case3.titlePre": "More farms,",
+  "results.case3.titleEm": "same team",
   "results.case3.titlePost": "",
   "results.case3.m2n": "1 standard",
   "results.case3.m2l": "Single process across a distributed network",
@@ -134,8 +134,8 @@ export const en: Record<string, string> = {
     "Requests over email and phone, with technicians and suppliers lacking shared visibility.",
   "results.case4.after":
     "Clients, technicians, and suppliers in one operational flow, from ticket open to close.",
-  "results.case4.titlePre": "Industrial plant",
-  "results.case4.titleEm": "maintenance",
+  "results.case4.titlePre": "Service jobs tracked",
+  "results.case4.titleEm": "from request to closure",
   "results.case4.titlePost": "",
   "results.case4.m2n": "100%",
   "results.case4.m2l": "Visibility for clients and suppliers",
@@ -151,41 +151,41 @@ export const en: Record<string, string> = {
   "results.case1.impact":
     "The same method applied to food quality: guided data, controlled documents, fewer errors, and the consultant still leading verification.",
   "results.case1.desc":
-    "Guided HACCP and certifications: fewer repetitive forms, consultant always in the loop.",
+    "Food procedures, controls, and certifications with guided steps: fewer repetitive forms, consultant always in the loop.",
   "results.case2.tag": "Manufacturing / ERP & AI",
   "results.case2.title": "ERP documents and quotes for cranes and sheet metal",
   "results.case2.impact":
     "From invoices, delivery notes, and technical specs to quotes: data read, checked, and pushed into systems without copy-paste.",
   "results.case2.desc":
-    "Data extraction from invoices, delivery notes, and technical sheets into ERP and quotes — no copy-paste.",
+    "Crane and sheet-metal workshop: data read from invoices, delivery notes, and technical sheets, pushed into the business software and the quote with no copy-paste.",
   "results.case3.tag": "Agri-food / Operations",
   "results.case3.title": "Multi-company agri-food filings",
   "results.case3.impact":
     "Standardized agri-food filings: fewer manual steps and more companies handled by the same team.",
   "results.case3.desc":
-    "Document automation and agronomic workflows: the same team follows many more farms.",
+    "Agri-food filings for many farms: documents automated, the same team follows many more of them.",
   "results.case4.tag": "Maintenance / Field service",
   "results.case4.title": "Industrial plant maintenance",
   "results.case4.impact":
     "From request to closed intervention: clients, technicians, and suppliers in the same operational workflow.",
   "results.case4.desc":
-    "Tickets, technicians, and suppliers in one flow — from request to closed intervention.",
+    "Industrial plant maintenance: requests, technicians, and suppliers in one flow, from report to closed job.",
 
   // Controlled workflow and use cases
-  "flow.eyebrow": "From document to ERP",
-  "flow.title": "A controlled workflow, not a black box",
+  "flow.eyebrow": "From document to business software",
+  "flow.title": "You always see what it does and why",
   "flow.subtitle":
-    "We connect the tools already in place. AI prepares the work; business rules and people decide what enters company systems.",
-  "flow.step1.title": "Read inputs",
+    "We connect the tools you already have. AI prepares the work; your company rules and your people decide what goes into the system.",
+  "flow.step1.title": "Reads the documents",
   "flow.step1.desc": "PDFs, email, spreadsheets, and attachments enter one workflow.",
-  "flow.step2.title": "Check data",
-  "flow.step2.desc": "Business rules flag missing fields, anomalies, and mismatches.",
-  "flow.step3.title": "Request approval",
-  "flow.step3.desc": "Your team reviews steps that require human responsibility.",
-  "flow.step4.title": "Update systems",
-  "flow.step4.desc": "Validated data reaches the ERP and tools already in use.",
-  "flow.step5.title": "Keep an audit trail",
-  "flow.step5.desc": "Inputs, checks, and decisions remain available for review.",
+  "flow.step2.title": "Checks the data",
+  "flow.step2.desc": "Your company rules flag missing fields, errors, and numbers that do not add up.",
+  "flow.step3.title": "Asks for confirmation",
+  "flow.step3.desc": "Someone on your team approves the steps that matter.",
+  "flow.step4.title": "Updates the system",
+  "flow.step4.desc": "Approved data reaches your business software (ERP) and the tools already in use.",
+  "flow.step5.title": "Keeps a record",
+  "flow.step5.desc": "Documents, checks, and decisions remain available for review.",
   "useCases.eyebrow": "What it looks like",
   "useCases.title": "The interfaces your team works in",
   "useCases.subtitle":
@@ -219,40 +219,38 @@ export const en: Record<string, string> = {
 
   // How we work
   "how.eyebrow": "Method",
-  "how.title": "From process to pilot",
-  "how.subtitle": "A focused path to verify value before extending the solution.",
-  "how.title1": "Process analysis",
+  "how.title": "How we work, in four steps",
+  "how.subtitle":
+    "We trial on one real process before scaling up. You see the value before you invest.",
+  "how.title1": "We listen",
   "how.desc1":
-    "We map activities, exceptions, ownership, and the starting baseline.",
-  "how.title2": "Data and integrations",
+    "We sit with the people doing the work every day: what comes in, what gets copied by hand, where time is lost, who decides.",
+  "how.title2": "We build",
   "how.desc2":
-    "We verify documents, data quality, and access to the systems involved.",
-  "how.title3": "Bounded pilot",
+    "We set up the workflow on a single process, with your real documents. Then we compare time and errors with the starting point.",
+  "how.title3": "We connect",
   "how.desc3":
-    "We build the workflow on a limited scope using real cases.",
-  "how.title4": "Measurement",
+    "We hook it up to the business software and tools you already use, in the format they accept. No software change.",
+  "how.title4": "We keep it alive",
   "how.desc4":
-    "We compare time, errors, and manual workload with the starting point.",
-  "how.title5": "Production",
-  "how.desc5":
-    "Only if the pilot holds up, the workflow goes live on real volumes.",
+    "When suppliers, versions, or regulations change, we update the workflow. Whoever built it is who answers.",
 
   // Life after go-live
-  "continuity.eyebrow": "After go-live",
-  "continuity.title": "A pilot is a beginning, not a handover",
+  "continuity.eyebrow": "Once the workflow is in use",
+  "continuity.title": "The trial is a beginning, not a handover",
   "continuity.subtitle":
-    "A workflow that touches ERPs, documents, and suppliers changes as the company changes. It needs someone to keep it alive, not just to build it.",
-  "continuity.item1.title": "The workflow is updated, not rebuilt",
+    "A workflow that touches business software, documents, and suppliers changes as the company changes. It needs someone to keep it alive, not just to build it.",
+  "continuity.item1.title": "Updated, not rebuilt",
   "continuity.item1.desc":
-    "When file formats, suppliers, ERP versions, or regulations change, we work on the existing workflow.",
-  "continuity.item2.title": "The same technical lead stays",
+    "When suppliers, document formats, software versions, or regulations change, we work on the workflow you already have.",
+  "continuity.item2.title": "Always the same person",
   "continuity.item2.desc":
-    "Whoever built the workflow is the person who maintains it. No handover to a helpdesk.",
+    "Whoever built the workflow is the one who maintains it. No handover to a call center.",
   "continuity.item3.title": "The second process costs less than the first",
   "continuity.item3.desc":
-    "Integrations, access, and rules already in production get reused when you automate the next activity.",
+    "Connections, access, and rules already in use get reused when you automate the next activity.",
   "continuity.proof":
-    "This is not a statement of intent: Frasma workflows running in production are covered by active maintenance agreements. Duration and service levels are set per process.",
+    "This is not a promise: Frasma workflows in use are covered by active maintenance agreements. Duration and service levels are set per process.",
 
   // Projects (R&D / open source)
   "projects.eyebrow": "R&D and public products",
@@ -303,7 +301,7 @@ export const en: Record<string, string> = {
   "founder.bio2":
     "The same person stays from the first analysis through the maintenance years that follow: whoever answers when a workflow needs updating is whoever built it. Specialist expertise is brought in when the project requires it.",
   "founder.note":
-    "Every project starts from a real activity and a metric we want to move.",
+    "One person to talk to, from the first meeting to the years after. Whoever builds the workflow is who picks up the phone.",
   "founder.stageAlt":
     "Francesco Mazzi speaking on stage at the Verona Agrifood Innovation Hub",
 
@@ -322,22 +320,22 @@ export const en: Record<string, string> = {
     "a week, on average, to plan pesticide dosages for each managed farm",
 
   // Qualify lead
-  "qualify.eyebrow": "Recognizable situations",
-  "qualify.title": "Where time is lost every day",
+  "qualify.eyebrow": "Sound familiar?",
+  "qualify.title": "Where the hours go, every day",
   "qualify.subtitle":
-    "The starting point is not a software brief. It is a repetitive task that slows work down.",
-  "qualify.item1.title": "Orders copied from email",
+    "We do not start from a software project. We start from a repetitive task that slows work down.",
+  "qualify.item1.title": "Orders retyped from email",
   "qualify.item1.desc":
-    "Attachments and order lines are read and entered manually into the ERP.",
+    "Attachments and order lines are read and entered by hand into the business software.",
   "qualify.item2.title": "Delivery notes and invoices checked by hand",
   "qualify.item2.desc":
-    "Numbers, items, and quantities are verified across PDFs, spreadsheets, and ERP.",
+    "Numbers, items, and quantities are checked across PDFs, spreadsheets, and the business software.",
   "qualify.item3.title": "Quotes assembled from separate files",
   "qualify.item3.desc":
     "Price lists, specifications, and job history depend on searches and copy-paste.",
   "qualify.item4.title": "Complaints managed in email and spreadsheets",
   "qualify.item4.desc":
-    "Non-conformities, evidence, and corrective actions stay fragmented and hard to trace.",
+    "Non-conformities, evidence, and corrective actions stay scattered and hard to find again.",
 
   // Funding support
   "funding.eyebrow": "Incentivized financing",
@@ -349,15 +347,15 @@ export const en: Record<string, string> = {
   "funding.cta": "Book a free eligibility call",
 
   // CTA (editorial)
-  "cta.title1": "Start with one",
-  "cta.titleEm": "real process",
-  "cta.title2": ".",
+  "cta.title1": "How many hours did your team",
+  "cta.titleEm": "lose today",
+  "cta.title2": "?",
   "cta.desc":
-    "Describe a repetitive task, the tools involved, and the main issue. The first assessment checks whether the data and conditions support a measurable pilot.",
-  "cta.button": "Assess a process to automate",
+    "Tell me about a repetitive task, the tools you use, and what slows you down. In a free 30-minute call we find out whether it is worth a trial.",
+  "cta.button": "Tell me about a process",
   "cta.secondary": "See the method",
   "cta.risk":
-    "You do not need to replace your ERP or define a software project in advance. The first process opens a path rather than closing a delivery.",
+    "You do not need to change your business software or have a project in mind. The first process opens a path rather than closing a delivery.",
 
   "catalog.home": "Home",
   "catalog.servicesKicker": "Services",
@@ -513,6 +511,18 @@ export const en: Record<string, string> = {
   // Footer
   "footer.info":
     "Frasma — independent software studio of Francesco Saverio Mazzi · VAT 02750410207",
+  "footer.privacy": "Privacy",
+  "footer.cookies": "Cookies",
+
+  // Direct contact
+  "contact.whatsapp": "Message me on WhatsApp",
+  "contact.whatsappShort": "WhatsApp",
+  "contact.call": "Call",
+  "contact.orCall": "or call",
+  "contact.email": "Email",
+  "contact.hours": "Mon–Fri, 9am–6pm CET",
+  "contact.heroLine": "Prefer to talk it through? Message me on WhatsApp.",
+  "contact.chatAlt": "Prefer WhatsApp?",
 
   // Process assessment
   "assessment.eyebrow": "Initial assessment",
@@ -533,6 +543,7 @@ export const en: Record<string, string> = {
   "assessment.volumePlaceholder": "Example: 80 documents per week",
   "assessment.privacy":
     "Do not include credentials or sensitive data. We will use this information only to assess the process and contact you; sample documents can be shared later.",
+  "assessment.privacyLink": "How we handle data",
   "assessment.close": "Close",
   "assessment.cancel": "Cancel",
   "assessment.next": "Continue",
@@ -616,6 +627,8 @@ export const en: Record<string, string> = {
   "chat.register.error": "Registration failed. Please try again.",
   "chat.register.invalid": "Fill in all fields with a valid email.",
   "chat.register.placeholder": "Complete your details to start",
+  "chat.register.privacy": "The conversation is saved so you can resume it.",
+  "chat.register.privacyLink": "Privacy",
 
   "chat.brief.title": "Process brief",
   "chat.brief.send": "Send the brief",
