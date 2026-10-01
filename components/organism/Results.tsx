@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useT } from "../../lib/i18n/context";
 import { Reveal } from "../atoms/Reveal";
+import ProcessAssessment from "./ProcessAssessment";
 
 type Case = {
   idx: number;
@@ -282,6 +283,9 @@ export default function Results() {
               →
             </button>
           </div>
+        </div>
+        <div className="mt-8 flex justify-center">
+          <ProcessAssessment textButton={t("results.assessCta")} showArrow />
         </div>
       </div>
     </section>

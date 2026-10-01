@@ -1,14 +1,12 @@
 "use client";
 
-import { useLang, useT } from "../../lib/i18n/context";
-import { whatsappHref } from "../../lib/contact";
+import { useT } from "../../lib/i18n/context";
 import { Reveal } from "../atoms/Reveal";
 import ProcessAssessment from "./ProcessAssessment";
 import { AgentMock, MockStage } from "./productMocks";
 
 export default function Intro() {
   const t = useT();
-  const { lang } = useLang();
 
   return (
     <section id="top" className="section-farm">
@@ -42,26 +40,6 @@ export default function Intro() {
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
           <ProcessAssessment textButton={t("hero.cta")} showArrow />
-          <a href="#come-funziona" className="btn-ink-ghost">
-            {t("hero.secondary")}
-          </a>
-        </Reveal>
-        <Reveal
-          as="p"
-          delay={0.3}
-          className="mx-auto mt-6 max-w-[68ch] text-[13px] leading-[1.55] text-ink-soft"
-        >
-          {t("hero.risk")}
-        </Reveal>
-        <Reveal as="p" delay={0.34} className="mt-3 text-[13px] text-ink-soft">
-          <a
-            href={whatsappHref(lang)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-ink underline decoration-hairline-strong underline-offset-4 hover:text-accent"
-          >
-            {t("contact.heroLine")}
-          </a>
         </Reveal>
       </div>
 

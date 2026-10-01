@@ -310,12 +310,12 @@ export const it: Record<string, string> = {
 
   "mock.working": "In corso",
 
-  "proof.eyebrow": "Dal palco",
-  "proof.title": "Gli stessi problemi, detti in pubblico",
+  "proof.eyebrow": "",
+  "proof.title": "Trattamenti e dosaggi, senza rifarli a mano",
   "proof.caption":
-    "Verona Agrifood Innovation Hub: intervento su dati di campo, quaderno di campagna e pianificazione dei dosaggi.",
+    "Un esempio in agroalimentare: agenti AI collegati ai dati di campo propongono trattamenti e dosaggi. Il tecnico controlla, il piano è pronto. Meno ore sul quaderno, più aziende seguite.",
   "proof.photoAlt":
-    "Presentazione sui dati di campo all’Agrifood Innovation Hub di Verona, con pubblico in sala",
+    "Esempio di lavoro sui dati di campo per trattamenti e dosaggi in agroalimentare",
   "proof.hours": "ore",
   "proof.stat1":
     "dei tecnici trova il quaderno di campagna rischioso e lento da compilare",
@@ -473,6 +473,7 @@ export const it: Record<string, string> = {
   "catalog.wiki.searchDesc":
     "Il cursore digita la query, apre PROC-04 e lascia visibili versione e owner. Trovare è il lavoro; decidere resta alle persone.",
   "results.caseCta": "Apri il caso",
+  "results.assessCta": "Valuta un processo",
 
   // For agents
   "forAgents.meta.title": "Per agenti AI | Frasma",
@@ -518,6 +519,8 @@ export const it: Record<string, string> = {
 
   // Direct contact
   "contact.whatsapp": "Scrivimi su WhatsApp",
+  "contact.tellWhatsapp": "Raccontalo su WhatsApp",
+  "contact.callMe": "o chiamami al",
   "contact.whatsappShort": "WhatsApp",
   "contact.call": "Chiama",
   "contact.orCall": "oppure chiama il",

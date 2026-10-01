@@ -3,7 +3,6 @@
 import { MessageCircle } from "lucide-react";
 import { useLang, useT } from "../../lib/i18n/context";
 import { CONTACT, PHONE_HREF, whatsappHref } from "../../lib/contact";
-import ProcessAssessment from "./ProcessAssessment";
 import { Reveal } from "../atoms/Reveal";
 
 export default function CallToAction() {
@@ -18,32 +17,22 @@ export default function CallToAction() {
           <span className="text-accent">{t("cta.titleEm")}</span>
           {t("cta.title2")}
         </h2>
-        <p className="mx-auto mb-10 mt-6 max-w-[58ch] text-[17px] leading-[1.6] text-ink-soft">
-          {t("cta.desc")}
-        </p>
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <ProcessAssessment textButton={t("cta.button")} showArrow />
+        <div className="mt-10 flex justify-center">
           <a
             href={whatsappHref(lang)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-ink-ghost"
+            className="btn-ink"
           >
             <MessageCircle size={16} aria-hidden="true" />
-            {t("contact.whatsapp")}
-          </a>
-          <a href="#metodo" className="btn-ink-ghost">
-            {t("cta.secondary")}
+            {t("contact.tellWhatsapp")}
           </a>
         </div>
         <p className="mt-4 text-[14px] text-ink-soft">
-          {t("contact.orCall")}{" "}
+          {t("contact.callMe")}{" "}
           <a href={PHONE_HREF} className="font-medium text-ink hover:text-accent">
             {CONTACT.phoneDisplay}
           </a>
-        </p>
-        <p className="mx-auto mt-6 max-w-[60ch] text-[12px] leading-[1.55] text-ink-soft">
-          {t("cta.risk")}
         </p>
       </Reveal>
     </section>

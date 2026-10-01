@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useT, useLang } from "../../lib/i18n/context";
@@ -9,9 +10,21 @@ export default function Header() {
   const t = useT();
   const { lang, setLang } = useLang();
   const companion = t("header.companion");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-paper/80 backdrop-blur-xl">
+    <header
+      className={`sticky top-0 z-50 border-b bg-paper/80 backdrop-blur-xl transition-colors ${
+        scrolled ? "border-hairline" : "border-transparent"
+      }`}
+    >
         <nav className="section-farm py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 no-underline">
             <Image

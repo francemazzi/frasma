@@ -11,7 +11,6 @@ export default function StageProof() {
     <section className="ed-section">
       <div className="section-farm">
         <Reveal className="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
-          <div className="ed-kicker">{t("proof.eyebrow")}</div>
           <h2 className="ed-title">{t("proof.title")}</h2>
           <p className="ed-intro mx-auto mt-6">{t("proof.caption")}</p>
         </Reveal>
