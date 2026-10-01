@@ -73,8 +73,7 @@ export default function FundingUseCaseCarousel({
 
   return (
     <section className="not-prose my-10" aria-label={title}>
-      <p className="ed-kicker">Esempi concreti</p>
-      <h2 className="mt-2 text-[1.65rem] font-medium tracking-[-0.03em] text-farm-text">
+      <h2 className="text-[1.65rem] font-medium tracking-[-0.03em] text-farm-text">
         {title}
       </h2>
       <p className="mt-3 max-w-[58ch] text-[15px] leading-[1.6] text-ink-soft">{intro}</p>

@@ -13,7 +13,6 @@ export default function ExchangeHeader() {
           ◈
         </span>
         <div>
-          <p className="ed-kicker text-exchange-ticker">Mercato progetti</p>
           <h1 className="font-serif text-2xl font-medium tracking-[-0.02em] text-ink sm:text-3xl">
             Frasma Studio
           </h1>

@@ -58,12 +58,6 @@ function resolveEntry(
   return getKnowledgeEntry(lookup.entryId);
 }
 
-function kickerKey(entry: LocalizedKnowledgeEntry): string {
-  if (entry.category === "service") return "catalog.serviceKicker";
-  if (entry.category === "case-study") return "catalog.caseKicker";
-  return "catalog.sectorKicker";
-}
-
 function breadcrumbs(
   entry: LocalizedKnowledgeEntry,
   path: string,
@@ -150,7 +144,6 @@ export default function CatalogLanding({ lookup }: Props) {
 
         <section className="ed-section">
           <div className="section-farm max-w-3xl">
-            <div className="ed-kicker">{t(kickerKey(entry))}</div>
             <h1 className="ed-title mb-6">{entry.title[lang]}</h1>
             <p className="ed-intro">{entry.summary[lang]}</p>
             {entry.keywords[lang].length > 0 ? (

@@ -12,12 +12,6 @@ export default function Intro() {
     <section id="top" className="section-farm">
       <div className="pt-20 sm:pt-28 lg:pt-32 pb-10 sm:pb-14 text-center">
         <Reveal
-          as="p"
-          className="mb-7 inline-flex rounded-full border border-hairline-strong bg-paper-2 px-4 py-2 text-[11px] font-medium tracking-[0.1em] uppercase text-accent"
-        >
-          {t("hero.eyebrow")}
-        </Reveal>
-        <Reveal
           as="h1"
           delay={0.08}
           className="mx-auto mb-8 max-w-[16ch] font-sans font-medium text-ink leading-[0.98] tracking-[-0.06em] [text-wrap:balance] [font-size:clamp(48px,7vw,96px)]"

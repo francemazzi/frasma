@@ -29,8 +29,7 @@ export default function NotFoundPage() {
             />
           </div>
 
-          <p className="ed-kicker">{t("notFound.kicker")}</p>
-          <h1 className="ed-title mt-3 mb-5">{t("notFound.title")}</h1>
+          <h1 className="ed-title mb-5">{t("notFound.title")}</h1>
           <p className="ed-intro mx-auto mb-10">{t("notFound.description")}</p>
 
           <Link href="/" className="btn-ink no-underline">

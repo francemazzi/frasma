@@ -64,7 +64,6 @@ export function CompanyWikiDemos() {
   return (
     <section className="ed-section border-t border-ink/8">
       <div className="section-farm">
-        <div className="ed-kicker">{t("catalog.wiki.demoKicker")}</div>
         <h2 className="mb-3 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
           {t("catalog.wiki.demoTitle")}
         </h2>

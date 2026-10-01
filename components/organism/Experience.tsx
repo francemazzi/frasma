@@ -63,9 +63,6 @@ export default function Experience() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-sm font-semibold uppercase tracking-widest text-sage-500 mb-3">
-            {t("projects.eyebrow")}
-          </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-farm-text tracking-tight mb-4">
             {t("projects.title")}
           </h2>

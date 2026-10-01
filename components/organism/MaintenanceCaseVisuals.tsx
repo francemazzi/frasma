@@ -96,7 +96,6 @@ export function MaintenanceCaseFlow() {
   return (
     <section className="ed-section border-t border-ink/8">
       <div className="section-farm">
-        <div className="ed-kicker">{t("catalog.maintenance.flowKicker")}</div>
         <h2 className="mb-3 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
           {t("catalog.howTitle")}
         </h2>
@@ -138,7 +137,6 @@ export function MaintenanceCaseDemos() {
   return (
     <section className="ed-section border-t border-ink/8">
       <div className="section-farm">
-        <div className="ed-kicker">{t("catalog.maintenance.demoKicker")}</div>
         <h2 className="mb-3 text-[28px] font-medium tracking-[-0.03em] sm:text-[34px]">
           {t("catalog.maintenance.demoTitle")}
         </h2>

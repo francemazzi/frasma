@@ -34,7 +34,6 @@ export default function Platform() {
     <section id="come-funziona" className="ed-section">
       <div className="section-farm">
         <Reveal className="mx-auto mb-14 max-w-3xl text-center sm:mb-20">
-          <div className="ed-kicker">{t("flow.eyebrow")}</div>
           <h2 className="ed-title">{t("flow.title")}</h2>
           <p className="ed-intro mx-auto mt-6">{t("flow.subtitle")}</p>
         </Reveal>
@@ -42,7 +41,6 @@ export default function Platform() {
         <FlowRail t={t} />
 
         <Reveal className="mx-auto mb-10 mt-24 max-w-3xl text-center sm:mb-12 sm:mt-32">
-          <div className="ed-kicker">{t("useCases.eyebrow")}</div>
           <h2 className="ed-title">{t("useCases.title")}</h2>
           <p className="ed-intro mx-auto mt-6">{t("useCases.subtitle")}</p>
         </Reveal>

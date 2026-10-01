@@ -17,7 +17,6 @@ export default function QualifyLead() {
     <section id="problemi" className="ed-section">
       <div className="section-farm">
         <Reveal className="ed-section-header mx-auto max-w-3xl text-center">
-          <div className="ed-kicker">{t("qualify.eyebrow")}</div>
           <h2 className="ed-title">{t("qualify.title")}</h2>
           <p className="ed-intro mx-auto mt-6">{t("qualify.subtitle")}</p>
         </Reveal>

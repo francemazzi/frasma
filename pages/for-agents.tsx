@@ -108,7 +108,6 @@ export default function ForAgentsPage() {
 
         <section className="ed-section">
           <div className="section-farm max-w-3xl">
-            <div className="ed-kicker">{t("forAgents.eyebrow")}</div>
             <h1 className="ed-title mb-6">{t("forAgents.title")}</h1>
             <p className="ed-intro mb-4">{profile.description}</p>
             <p className="text-[16px] leading-[1.6] text-ink-soft">

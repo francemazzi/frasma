@@ -22,9 +22,6 @@ export default function Founder() {
         </div>
 
         <div className="min-w-0">
-          <div className="mb-3 text-[11px] font-medium uppercase tracking-[0.12em] text-accent">
-            {t("founder.role")}
-          </div>
           <h2 className="mb-5 text-[30px] font-medium tracking-[-0.045em] text-ink sm:text-[40px]">
             {t("founder.title")}
           </h2>

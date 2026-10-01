@@ -16,8 +16,7 @@ export default function Continuity() {
     <section id="continuita" className="section-farm pb-20 sm:pb-28">
       <Reveal className="rounded-3xl border border-hairline-strong bg-paper-2 px-6 py-12 sm:px-12 sm:py-16">
         <div className="mx-auto max-w-[58ch] text-center">
-          <div className="ed-kicker">{t("continuity.eyebrow")}</div>
-          <h2 className="ed-title mt-4">{t("continuity.title")}</h2>
+          <h2 className="ed-title">{t("continuity.title")}</h2>
           <p className="ed-intro mx-auto mt-5">{t("continuity.subtitle")}</p>
         </div>
 

@@ -57,9 +57,6 @@ export default function LegalPage({ path, copy }: Props) {
             <span className="mx-2 text-ink-faint">/</span>
             <span>{c.title}</span>
           </nav>
-          <p className="mb-5 inline-flex rounded-full border border-hairline-strong bg-paper-2 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.1em] text-accent">
-            {c.kicker}
-          </p>
           <h1 className="max-w-[20ch] text-[38px] font-medium leading-[1.02] tracking-[-0.05em] text-ink sm:text-[56px] [text-wrap:balance]">
             {c.title}
           </h1>

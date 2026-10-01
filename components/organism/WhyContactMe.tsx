@@ -18,7 +18,6 @@ export default function WhyContactMe() {
       <div className="section-farm">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <Reveal className="lg:sticky lg:top-28 lg:self-start">
-            <div className="ed-kicker">{t("how.eyebrow")}</div>
             <h2 className="ed-title">{t("how.title")}</h2>
             <p className="ed-intro mt-6">{t("how.subtitle")}</p>
           </Reveal>

@@ -94,9 +94,6 @@ export default function CatalogHub({ kind, path, entries }: Props) {
 
         <section className="ed-section">
           <div className="section-farm max-w-3xl">
-            <div className="ed-kicker">
-              {t(isServices ? "catalog.servicesKicker" : "catalog.casesKicker")}
-            </div>
             <h1 className="ed-title mb-6">
               {t(isServices ? "catalog.servicesTitle" : "catalog.casesTitle")}
             </h1>

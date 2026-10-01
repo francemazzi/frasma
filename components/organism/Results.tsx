@@ -142,7 +142,6 @@ export default function Results() {
     <section id="casi-studio" className="ed-section bg-white/20">
       <div className="section-farm">
         <Reveal className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
-          <div className="ed-kicker">{t("results.eyebrow")}</div>
           <h2 className="ed-title">
             {t("results.title1")} <em>{t("results.titleEm")}</em>
             {t("results.title2")}
@@ -180,10 +179,6 @@ export default function Results() {
                 </div>
               </div>
               <div className="min-w-0">
-                <div className="mb-4 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.1em] text-accent">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  {t(c.tagKey)}
-                </div>
                 <h3 className="mb-5 text-[30px] font-medium leading-[1.05] tracking-[-0.045em] text-ink sm:text-[42px]">
                   {t(c.titlePreKey)} <span className="text-accent">{t(c.titleEmKey)}</span>
                   {t(c.titlePostKey) ? ` ${t(c.titlePostKey)}` : ""}
