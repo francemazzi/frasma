@@ -333,6 +333,19 @@
   .snap-scroller {
     scrollbar-width: none;
     -ms-overflow-style: none;
+    scroll-behavior: auto;
+  }
+  /* Lets the last card snap to the start instead of springing back out of view. */
+  .use-case-scroller::after {
+    content: "";
+    flex: none;
+    width: 8%;
+    scroll-snap-align: none;
+  }
+  @media (min-width: 640px) {
+    .use-case-scroller::after {
+      width: max(14%, calc(100% - 40rem));
+    }
   }
   .snap-scroller::-webkit-scrollbar {
     display: none;

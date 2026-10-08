@@ -199,6 +199,11 @@ export const en: Record<string, string> = {
   "useCases.previous": "Previous example",
   "useCases.next": "Next example",
   "useCases.pageWord": "Example",
+  "systems.eyebrow": "Systems already in use",
+  "systems.title": "The system stays. We connect the process.",
+  "systems.body":
+    "Arca, Gesco, Zucchetti, Mago, TeamSystem, AutoCAD, Inventor, and the ERPs most common on the shop floor: we prepare the data for import, with a check before anything is written.",
+  "systems.logosLabel": "Management systems and CAD already in use",
 
   // Legacy services
   "search.eyebrow": "Processes we can improve",

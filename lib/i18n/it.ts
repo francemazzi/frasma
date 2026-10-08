@@ -201,6 +201,11 @@ export const it: Record<string, string> = {
   "useCases.previous": "Esempio precedente",
   "useCases.next": "Esempio successivo",
   "useCases.pageWord": "Esempio",
+  "systems.eyebrow": "Sistemi già in uso",
+  "systems.title": "Il gestionale resta. Colleghiamo il processo.",
+  "systems.body":
+    "Arca, Gesco, Zucchetti, Mago, TeamSystem, AutoCAD, Inventor e gli ERP più diffusi in officina: prepariamo i dati per l'import, con validazione prima della scrittura.",
+  "systems.logosLabel": "Gestionali e CAD già in uso",
 
   // Legacy services
   "search.eyebrow": "Processi che possiamo migliorare",
