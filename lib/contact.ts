@@ -1,8 +1,8 @@
 /** Public contact channels shown on the site and exposed to agents. */
 export const CONTACT = {
-  phoneDisplay: "+39 331 742 4341",
-  phoneE164: "+393317424341",
-  whatsappNumber: "393317424341",
+  phoneDisplay: "+39 379 3671312",
+  phoneE164: "+393793671312",
+  whatsappNumber: "393793671312",
   email: "frasma@frasma.org",
 } as const;
 
