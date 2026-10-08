@@ -1,6 +1,5 @@
 import Header from "../components/organism/Header";
 import Intro from "../components/organism/Intro";
-import IntegrationLogos from "../components/organism/IntegrationLogos";
 import Results from "../components/organism/Results";
 import Platform from "../components/organism/Platform";
 import StageProof from "../components/organism/StageProof";
@@ -52,7 +51,6 @@ export default function Home() {
       <main className="min-h-screen bg-paper font-sans">
         <Header />
         <Intro />
-        <IntegrationLogos />
         <QualifyLead />
         <Platform />
         <StageProof />

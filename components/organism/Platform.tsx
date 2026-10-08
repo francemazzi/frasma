@@ -11,6 +11,7 @@ import {
 import { useT } from "../../lib/i18n/context";
 import { BentoCard } from "../atoms/Bento";
 import { Reveal, RevealGroup, RevealItem, RevealLine } from "../atoms/Reveal";
+import IntegrationLogos from "./IntegrationLogos";
 import {
   AgentMock,
   MockStage,
@@ -48,9 +49,9 @@ export default function Platform() {
         <Reveal>
           <UseCaseSlider />
         </Reveal>
-
-        <SystemsInUse />
       </div>
+
+      <IntegrationLogos />
     </section>
   );
 }
@@ -221,92 +222,6 @@ function UseCaseSlider() {
         </button>
       </div>
     </div>
-  );
-}
-
-const SYSTEM_LOGOS = [
-  "Mexal",
-  "Odoo",
-  "SAP",
-  "Business Central",
-  "AutoCAD",
-  "Inventor",
-] as const;
-
-function SystemsInUse() {
-  const t = useT();
-
-  return (
-    <Reveal className="mt-20 sm:mt-28">
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-soft">
-          {t("systems.eyebrow")}
-        </p>
-        <h3 className="mx-auto mt-4 max-w-[16ch] font-sans text-[clamp(32px,4vw,48px)] font-medium leading-[1.05] tracking-[-0.045em] text-ink">
-          {t("systems.title")}
-        </h3>
-        <p className="ed-intro mx-auto mt-5 text-center">{t("systems.body")}</p>
-      </div>
-      <ul
-        className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6 sm:gap-x-14"
-        aria-label={t("systems.logosLabel")}
-      >
-        {SYSTEM_LOGOS.map((name) => (
-          <li key={name}>
-            <SystemLogo name={name} />
-          </li>
-        ))}
-      </ul>
-    </Reveal>
-  );
-}
-
-function SystemLogo({ name }: { name: (typeof SYSTEM_LOGOS)[number] }) {
-  if (name === "Odoo") {
-    return (
-      <span className="inline-flex h-9 items-center text-[26px] font-medium lowercase tracking-[-0.04em] text-ink-2">
-        odoo
-      </span>
-    );
-  }
-
-  if (name === "SAP") {
-    return (
-      <span className="inline-flex h-9 items-center text-[22px] font-semibold tracking-[0.16em] text-ink-2">
-        SAP
-      </span>
-    );
-  }
-
-  if (name === "Business Central") {
-    return (
-      <span className="inline-flex h-9 items-center gap-2 text-ink-2">
-        <span className="grid grid-cols-2 gap-[2px]" aria-hidden="true">
-          <span className="h-[7px] w-[7px] bg-current" />
-          <span className="h-[7px] w-[7px] bg-current" />
-          <span className="h-[7px] w-[7px] bg-current" />
-          <span className="h-[7px] w-[7px] bg-current" />
-        </span>
-        <span className="text-[15px] font-semibold tracking-[-0.03em]">Business Central</span>
-      </span>
-    );
-  }
-
-  if (name === "AutoCAD" || name === "Inventor") {
-    return (
-      <span className="inline-flex h-9 items-center gap-1.5 text-ink-2">
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M2.2 13.5 8 1.8l5.8 11.7H10.6L8 8.1l-2.6 5.4H2.2Z" fill="currentColor" />
-        </svg>
-        <span className="text-[18px] font-medium tracking-[-0.03em]">{name}</span>
-      </span>
-    );
-  }
-
-  return (
-    <span className="inline-flex h-9 items-center text-[20px] font-semibold tracking-[-0.04em] text-ink-2">
-      {name}
-    </span>
   );
 }
 

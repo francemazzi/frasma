@@ -53,7 +53,7 @@ export default function IntegrationLogos() {
   const t = useT();
 
   return (
-    <section className="pb-16 sm:pb-24" aria-labelledby="integrations-title">
+    <section className="mt-16 sm:mt-24" aria-labelledby="integrations-title">
       <div className="section-farm">
         <Reveal className="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
           <div className="ed-kicker">{t("integrations.eyebrow")}</div>
