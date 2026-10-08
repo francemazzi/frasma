@@ -43,6 +43,12 @@ export const it: Record<string, string> = {
   "hero.brand":
     "Frasma, il lagotto del brand, accompagna la parte conversazionale e l'assistenza iniziale ai clienti.",
   "hero.cta": "Raccontami un processo",
+  "integrations.eyebrow": "Sistemi già in uso",
+  "integrations.title": "Il gestionale resta. Colleghiamo il processo.",
+  "integrations.caption":
+    "Arca, Gesco, Zucchetti, Mago, TeamSystem, AutoCAD, Inventor e gli ERP più diffusi in officina: prepariamo i dati per l'import, con validazione prima della scrittura.",
+  "integrations.railLabel":
+    "Sistemi gestionali e CAD con cui ci colleghiamo",
   "hero.secondary": "Guarda come funziona",
   "hero.projects": "Guarda esempi reali",
   "hero.card.title": "Studio — scheda",

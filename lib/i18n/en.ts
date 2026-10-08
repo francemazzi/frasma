@@ -42,6 +42,12 @@ export const en: Record<string, string> = {
   "hero.brand":
     "Frasma, the Lagotto in the brand, represents the conversational and first-contact support experience.",
   "hero.cta": "Tell me about a process",
+  "integrations.eyebrow": "Systems already in use",
+  "integrations.title": "The management system stays. We connect the process.",
+  "integrations.caption":
+    "Arca, Gesco, Zucchetti, Mago, TeamSystem, AutoCAD, Inventor, and the ERPs most used on the shop floor: we prepare the data for import, with validation before writing.",
+  "integrations.railLabel":
+    "Management systems and CAD we connect to",
   "hero.secondary": "See how it works",
   "hero.projects": "See real examples",
   "hero.card.title": "Studio — card",

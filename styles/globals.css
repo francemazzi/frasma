@@ -462,6 +462,93 @@ canvas {
   background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
 }
 
+.integration-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.integration-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: integration-marquee 42s linear infinite;
+}
+
+.integration-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 3.25rem;
+  padding-right: 3.25rem;
+  list-style: none;
+  margin: 0;
+}
+
+.integration-logo-img {
+  display: block;
+  height: 36px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.72;
+}
+
+.integration-logo-wordmark {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #1a1a1a;
+  opacity: 0.72;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .integration-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .integration-marquee-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .integration-marquee-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.75rem 2.5rem;
+    padding: 0 1.25rem;
+  }
+
+  .integration-marquee-group[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+@keyframes integration-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Book carousel page-flip animation */
 .book-page {
   transform-origin: left center;
