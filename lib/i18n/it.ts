@@ -584,29 +584,6 @@ export const it: Record<string, string> = {
   "assessment.dictateDenied": "Permesso microfono negato",
   "assessment.dictateUnsupported": "Dettatura non supportata su questo browser",
 
-  // Cal modal
-  "cal.title": "Prenota un incontro",
-  "cal.subtitle": "Seleziona data e ora, poi lascia i tuoi contatti.",
-  "cal.date": "Data",
-  "cal.time": "Ora",
-  "cal.email": "La tua email",
-  "cal.emailPlaceholder": "tu@esempio.com",
-  "cal.description": "Descrizione",
-  "cal.descPlaceholder": "Dimmi di cosa hai bisogno e il contesto utile...",
-  "cal.timezone": "Fuso orario",
-  "cal.close": "Chiudi",
-  "cal.cancel": "Annulla",
-  "cal.send": "Invia",
-  "cal.sending": "Invio...",
-  "cal.success": "Richiesta inviata! Ti risponderò a breve.",
-  "cal.errorFallback": "Qualcosa è andato storto nell'invio della richiesta.",
-  "cal.networkError": "Errore di rete. Riprova.",
-  "cal.validDate": "Seleziona una data.",
-  "cal.validTime": "Seleziona un orario.",
-  "cal.validEmail": "Inserisci la tua email.",
-  "cal.validEmailFormat": "Inserisci un'email valida.",
-  "cal.validDesc": "La descrizione è troppo lunga.",
-
   // Chat widget
   "chat.title": "Chatta con Frasma",
   "chat.welcome":

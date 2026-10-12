@@ -582,29 +582,6 @@ export const en: Record<string, string> = {
   "assessment.dictateDenied": "Microphone permission denied",
   "assessment.dictateUnsupported": "Dictation is not supported in this browser",
 
-  // Cal modal
-  "cal.title": "Schedule a meeting",
-  "cal.subtitle": "Select a date and time, then leave your contact details.",
-  "cal.date": "Date",
-  "cal.time": "Time",
-  "cal.email": "Your email",
-  "cal.emailPlaceholder": "you@example.com",
-  "cal.description": "Description",
-  "cal.descPlaceholder": "Tell me what you need and any helpful context...",
-  "cal.timezone": "Timezone",
-  "cal.close": "Close",
-  "cal.cancel": "Cancel",
-  "cal.send": "Send",
-  "cal.sending": "Sending...",
-  "cal.success": "Request sent! We’ll get back to you shortly.",
-  "cal.errorFallback": "Something went wrong while sending your request.",
-  "cal.networkError": "Network error. Please try again.",
-  "cal.validDate": "Please select a date.",
-  "cal.validTime": "Please select a time.",
-  "cal.validEmail": "Please enter your email.",
-  "cal.validEmailFormat": "Please enter a valid email.",
-  "cal.validDesc": "Description is too long.",
-
   // Chat widget
   "chat.title": "Chat with Frasma",
   "chat.welcome":
