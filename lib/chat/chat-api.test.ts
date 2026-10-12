@@ -18,13 +18,20 @@ vi.mock("../../lib/chat/persistence", () => ({
   ),
 }));
 
+// Shared by every agent instance the route caches: never resolves by default
+// (timeout tests), individual tests queue a resolved value when they need one.
+const { agentInvoke } = vi.hoisted(() => ({
+  agentInvoke: vi.fn(() => new Promise<unknown>(() => {})),
+}));
+
 vi.mock("@langchain/langgraph/prebuilt", () => ({
   createReactAgent: vi.fn(() => ({
-    invoke: vi.fn(() => new Promise(() => {})),
+    invoke: agentInvoke,
   })),
 }));
 
 import handler from "../../pages/api/chat";
+import { appendMessage } from "../../lib/chat/persistence";
 
 function createResponse() {
   const state: { status?: number; body?: unknown; headers: Record<string, string> } = {
@@ -230,5 +237,80 @@ describe("chat API validation", () => {
 
     expect(state.status).toBe(401);
     expect(state.body).toEqual({ error: "Chat registration required." });
+  });
+});
+
+describe("chat API persistence of the assistant reply", () => {
+  const body = {
+    messages: [{ role: "user", content: "Ciao" }],
+    lang: "it",
+    timezone: "Europe/Rome",
+    pagePath: "/",
+    conversationId: "550e8400-e29b-41d4-a716-446655440000",
+  };
+
+  beforeEach(() => {
+    vi.useRealTimers();
+    process.env.OPENAI_API_KEY = "test-key";
+    vi.mocked(appendMessage).mockReset();
+    vi.mocked(appendMessage).mockResolvedValue(undefined);
+  });
+
+  it("waits for the reply to be persisted before responding", async () => {
+    agentInvoke.mockResolvedValueOnce({ messages: [{ content: "Risposta" }] });
+    let finishPersist: (() => void) | undefined;
+    vi.mocked(appendMessage)
+      .mockResolvedValueOnce(undefined) // the user message
+      .mockImplementationOnce(
+        () =>
+          new Promise<void>((resolve) => {
+            finishPersist = resolve;
+          }),
+      );
+
+    const { response, state } = createResponse();
+    const handlerPromise = handler(
+      request("POST", body, "203.0.113.30"),
+      response,
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(finishPersist).toBeDefined();
+    expect(response.json).not.toHaveBeenCalled();
+
+    finishPersist?.();
+    await handlerPromise;
+
+    expect(state.status).toBe(200);
+    expect(state.body).toMatchObject({
+      response: "Risposta",
+      conversationId: body.conversationId,
+    });
+    expect(appendMessage).toHaveBeenNthCalledWith(
+      2,
+      body.conversationId,
+      expect.objectContaining({ role: "assistant", content: "Risposta" }),
+    );
+  });
+
+  it("still returns the reply when persisting it fails", async () => {
+    agentInvoke.mockResolvedValueOnce({ messages: [{ content: "Risposta" }] });
+    vi.mocked(appendMessage)
+      .mockResolvedValueOnce(undefined)
+      .mockRejectedValueOnce(new Error("mongo down"));
+    const consoleError = vi
+      .spyOn(console, "error")
+      .mockImplementation(() => undefined);
+
+    const { response, state } = createResponse();
+    await handler(request("POST", body, "203.0.113.31"), response);
+
+    expect(state.status).toBe(200);
+    expect(state.body).toMatchObject({ response: "Risposta" });
+    expect(consoleError).toHaveBeenCalledWith(
+      "[chat] Persistence error after invoke:",
+      expect.any(Error),
+    );
+    consoleError.mockRestore();
   });
 });

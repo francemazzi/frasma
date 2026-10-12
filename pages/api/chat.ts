@@ -498,14 +498,18 @@ export default async function handler(
       registeredVisitor,
     );
 
+    // Awaited on purpose: a serverless function may be frozen as soon as the
+    // response is sent, so a fire-and-forget write could be lost.
     if (conversationId && responseText) {
-      void appendMessage(conversationId, {
-        role: "assistant",
-        content: responseText,
-        latencyMs: Date.now() - invokeStartedAt,
-      }).catch((persistError) => {
+      try {
+        await appendMessage(conversationId, {
+          role: "assistant",
+          content: responseText,
+          latencyMs: Date.now() - invokeStartedAt,
+        });
+      } catch (persistError) {
         console.error("[chat] Persistence error after invoke:", persistError);
-      });
+      }
     }
 
     return res.status(200).json({
@@ -523,12 +527,17 @@ export default async function handler(
       });
 
       if (conversationId) {
-        void appendMessage(conversationId, {
-          role: "assistant",
-          content: fallback,
-        }).catch((persistError) => {
-          console.error("[chat] Persistence error on timeout fallback:", persistError);
-        });
+        try {
+          await appendMessage(conversationId, {
+            role: "assistant",
+            content: fallback,
+          });
+        } catch (persistError) {
+          console.error(
+            "[chat] Persistence error on timeout fallback:",
+            persistError,
+          );
+        }
       }
 
       return res.status(200).json({

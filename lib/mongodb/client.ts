@@ -6,6 +6,12 @@ declare global {
 
 const MONGO_TIMEOUT_MS = 10_000;
 const MONGO_PING_TIMEOUT_MS = 5_000;
+/**
+ * Each serverless instance keeps its own pool; the driver default (100) times
+ * many concurrent instances would exhaust the 500-connection cap of an Atlas
+ * M0 cluster. A request never needs more than a handful of connections.
+ */
+const MONGO_MAX_POOL_SIZE = 10;
 
 export function isMongoConfigured(): boolean {
   return Boolean(process.env.MONGODB_URI?.trim());
@@ -25,6 +31,7 @@ function createMongoClient(): MongoClient {
   return new MongoClient(uri, {
     serverSelectionTimeoutMS: MONGO_TIMEOUT_MS,
     connectTimeoutMS: MONGO_TIMEOUT_MS,
+    maxPoolSize: MONGO_MAX_POOL_SIZE,
   });
 }
 
@@ -70,7 +77,11 @@ export async function checkMongoConnection(): Promise<boolean> {
     return connected;
   } catch (error) {
     console.error("[mongodb] Connection check failed.", error);
+    // Drop the cached client so the next call reconnects, and close the
+    // discarded one instead of leaking its sockets.
+    const stale = global._mongoClientPromise;
     global._mongoClientPromise = undefined;
+    stale?.then((client) => client.close()).catch(() => undefined);
     return false;
   }
 }
