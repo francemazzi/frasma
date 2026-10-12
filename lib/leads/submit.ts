@@ -48,11 +48,16 @@ async function persistProjectBrief(
   if (!isMongoConfigured()) return undefined;
 
   try {
+    // The brief carries a job role, not a sector: "unspecified" keeps the
+    // sector a returning chat visitor already gave (upsertVisitor never
+    // overwrites with that placeholder).
+    const role = input.role?.trim();
     const upserted = await upsertVisitor({
       email: input.clientEmail,
       name: input.name,
       company: input.company ?? "",
-      sector: input.role?.trim() || "unspecified",
+      sector: "unspecified",
+      ...(role ? { role } : {}),
     });
     if (!upserted) return undefined;
 

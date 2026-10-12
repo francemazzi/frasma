@@ -1,9 +1,11 @@
 import { randomUUID } from "node:crypto";
+import type { ModifyResult } from "mongodb";
 import { z } from "zod";
 import { getMongoDb, isMongoConfigured } from "../mongodb/client";
 import { USERS_COLLECTION } from "../mongodb/collections";
 import { ensureChatIndexes } from "../mongodb/indexes";
 import {
+  buildExpiresAt,
   createConversation,
   findLatestConversationForUser,
   getConversationMessages,
@@ -35,6 +37,8 @@ export type VisitorProfile = {
   name: string;
   company: string;
   sector: string;
+  /** Job role from the process brief form, when the visitor gave one. */
+  role?: string;
   lastConversationId?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -45,6 +49,7 @@ export type UpsertVisitorInput = {
   name: string;
   company: string;
   sector: string;
+  role?: string;
 };
 
 export type UpsertVisitorResult = {
@@ -58,6 +63,7 @@ type UserDocument = {
   name: string;
   company: string;
   sector: string;
+  role?: string;
   lastConversationId?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -88,6 +94,7 @@ function toVisitorProfile(doc: UserDocument): VisitorProfile {
     name: doc.name,
     company: doc.company,
     sector: doc.sector,
+    ...(doc.role ? { role: doc.role } : {}),
     ...(doc.lastConversationId
       ? { lastConversationId: doc.lastConversationId }
       : {}),
@@ -96,6 +103,23 @@ function toVisitorProfile(doc: UserDocument): VisitorProfile {
   };
 }
 
+function isDuplicateKeyError(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    (error as { code?: unknown }).code === 11000
+  );
+}
+
+/**
+ * Creates or updates the visitor keyed by email in ONE atomic upsert, so two
+ * concurrent registrations with the same email cannot race a find-then-insert
+ * into a duplicate-key error.
+ *
+ * Overwrite rules on an existing visitor: `name` always; `company` only when
+ * non-empty; `sector` only when it is not the "unspecified" placeholder;
+ * `role` only when non-empty.
+ */
 export async function upsertVisitor(
   input: UpsertVisitorInput,
 ): Promise<UpsertVisitorResult | null> {
@@ -108,57 +132,52 @@ export async function upsertVisitor(
   const name = input.name.trim();
   const company = input.company.trim();
   const sector = input.sector.trim();
+  const role = input.role?.trim() ?? "";
   const now = new Date();
 
-  const existing = await db
-    .collection<UserDocument>(USERS_COLLECTION)
-    .findOne({ email });
+  const set: Partial<UserDocument> = { name, updatedAt: now };
+  if (company) set.company = company;
+  if (sector && sector !== "unspecified") set.sector = sector;
+  if (role) set.role = role;
 
-  if (existing) {
-    const nextCompany = company || existing.company;
-    const nextSector =
-      sector && sector !== "unspecified" ? sector : existing.sector;
+  // Insert-only fields. MongoDB rejects a key present in both $set and
+  // $setOnInsert, so company/sector land here only when not overwritten.
+  const setOnInsert: Partial<UserDocument> = {
+    _id: randomUUID(),
+    email,
+    createdAt: now,
+  };
+  if (!("company" in set)) setOnInsert.company = company;
+  if (!("sector" in set)) setOnInsert.sector = sector;
 
-    await db.collection<UserDocument>(USERS_COLLECTION).updateOne(
-      { _id: existing._id },
-      {
-        $set: {
-          name,
-          company: nextCompany,
-          sector: nextSector,
-          updatedAt: now,
-        },
-      },
-    );
+  const update = {
+    $set: set,
+    $setOnInsert: setOnInsert,
+    $max: { expiresAt: buildExpiresAt(now) },
+  };
+  const options = {
+    upsert: true,
+    returnDocument: "after",
+    includeResultMetadata: true,
+  } as const;
+  const users = db.collection<UserDocument>(USERS_COLLECTION);
 
-    return {
-      visitor: toVisitorProfile({
-        ...existing,
-        name,
-        company: nextCompany,
-        sector: nextSector,
-        updatedAt: now,
-      }),
-      created: false,
-    };
+  let result: ModifyResult<UserDocument>;
+  try {
+    result = await users.findOneAndUpdate({ email }, update, options);
+  } catch (error) {
+    if (!isDuplicateKeyError(error)) throw error;
+    // Lost the insert race: the row exists now, so the retry updates it.
+    result = await users.findOneAndUpdate({ email }, update, options);
   }
 
-  const userId = randomUUID();
-  const document: UserDocument = {
-    _id: userId,
-    email,
-    name,
-    company,
-    sector,
-    createdAt: now,
-    updatedAt: now,
-  };
-
-  await db.collection<UserDocument>(USERS_COLLECTION).insertOne(document);
+  if (!result.value) {
+    throw new Error("Visitor upsert returned no document.");
+  }
 
   return {
-    visitor: toVisitorProfile(document),
-    created: true,
+    visitor: toVisitorProfile(result.value),
+    created: Boolean(result.lastErrorObject?.upserted),
   };
 }
 

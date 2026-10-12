@@ -198,7 +198,8 @@ describe("submitProjectBrief", () => {
         email: "ada@example.com",
         name: "Ada Lovelace",
         company: "Analytical Engines",
-        sector: "Operations",
+        sector: "Manufacturing",
+        role: "Operations",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -218,13 +219,27 @@ describe("submitProjectBrief", () => {
     );
 
     expect(deliverNotificationEmail).toHaveBeenCalledOnce();
+    // The brief's role is a job title: it must never overwrite the sector a
+    // returning chat visitor already gave.
     expect(upsertVisitor).toHaveBeenCalledWith({
       email: "ada@example.com",
       name: "Ada Lovelace",
       company: "Analytical Engines",
-      sector: "Operations",
+      sector: "unspecified",
+      role: "Operations",
     });
     expect(insertOne).toHaveBeenCalledOnce();
+    expect(insertOne).toHaveBeenCalledWith(
+      expect.objectContaining({
+        userId: "user-1",
+        source: "chat",
+        conversationId: "550e8400-e29b-41d4-a716-446655440000",
+        clientEmail: "ada@example.com",
+        role: "Operations",
+        createdAt: expect.any(Date),
+        expiresAt: expect.any(Date),
+      }),
+    );
     expect(logConversionEvent).toHaveBeenCalledWith(
       "550e8400-e29b-41d4-a716-446655440000",
       "project_brief_submitted",
