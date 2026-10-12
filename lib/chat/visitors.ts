@@ -1,16 +1,18 @@
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { getMongoDb, isMongoConfigured } from "../mongodb/client";
+import { USERS_COLLECTION } from "../mongodb/collections";
 import { ensureChatIndexes } from "../mongodb/indexes";
 import {
   createConversation,
   findLatestConversationForUser,
   getConversationMessages,
+  touchRetention,
   type StoredMessage,
 } from "./persistence";
 import { isValidConversationId } from "./session";
 
-export const USERS_COLLECTION = "users";
+export { USERS_COLLECTION };
 
 export const ChatRegisterSchema = z
   .object({
@@ -59,6 +61,8 @@ type UserDocument = {
   lastConversationId?: string;
   createdAt: Date;
   updatedAt: Date;
+  /** Retention deadline; absent on documents created before the policy. */
+  expiresAt?: Date;
 };
 
 export function normalizeVisitorEmail(email: string): string {
@@ -178,6 +182,10 @@ export async function setVisitorLastConversation(
       },
     },
   );
+
+  // A returning visitor re-registering is a contact: extend the deadline of
+  // the conversation they resume and of everything they own.
+  await touchRetention(db, { conversationId, userId }, now);
 }
 
 export type RegisterChatSessionInput = UpsertVisitorInput & {

@@ -27,9 +27,15 @@ vi.mock("../chat/visitors", () => ({
   normalizeVisitorEmail: (email: string) => email.trim().toLowerCase(),
 }));
 
-vi.mock("../chat/persistence", () => ({
-  logConversionEvent,
-}));
+vi.mock("../chat/persistence", async () => {
+  const actual = await vi.importActual<typeof import("../chat/persistence")>(
+    "../chat/persistence",
+  );
+  return {
+    ...actual,
+    logConversionEvent,
+  };
+});
 
 vi.mock("../mongodb/client", () => ({
   getMongoDb,

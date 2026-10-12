@@ -108,10 +108,19 @@ Setup:
 
 ```bash
 MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/frasma_chat?retryWrites=true&w=majority
-CHAT_RETENTION_DAYS=90
+# Optional. Days from the last contact; defaults to 730 and is capped at 730
+# (24 months), the retention promised by the privacy policy.
+CHAT_RETENTION_DAYS=730
 ```
 
-Indexes and a TTL policy on `conversations.expiresAt` are created automatically on first use.
+Indexes and a TTL policy on `expiresAt` are created automatically on first use for `conversations`, `messages`, `events`, `leads` and `users`. Every contact (registration, message, process brief) extends the deadline of the conversation and of everything the visitor owns, so data expires `CHAT_RETENTION_DAYS` after the last contact.
+
+Databases created before this policy have documents without `expiresAt`, which a TTL index never deletes. Backfill them once (idempotent, `--dry-run` prints counts only):
+
+```bash
+node scripts/backfill-retention.mjs --dry-run
+npm run backfill:retention
+```
 
 Without `MONGODB_URI`, `POST /api/chat` and the form APIs continue to work; persistence calls are skipped silently.
 

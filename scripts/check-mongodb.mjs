@@ -32,6 +32,15 @@ if (!configured) {
   process.exit(1);
 }
 
+const RETAINED_COLLECTIONS = [
+  "conversations",
+  "messages",
+  "events",
+  "users",
+  "leads",
+];
+const MISSING_EXPIRES_AT = { expiresAt: { $not: { $type: "date" } } };
+
 const client = new MongoClient(uri, {
   serverSelectionTimeoutMS: 10_000,
   connectTimeoutMS: 10_000,
@@ -43,11 +52,20 @@ try {
   const db = client.db();
   await db.command({ ping: 1 });
 
-  const [conversations, messages, events] = await Promise.all([
-    db.collection("conversations").countDocuments(),
-    db.collection("messages").countDocuments(),
-    db.collection("events").countDocuments(),
-  ]);
+  const collections = {};
+  for (const name of RETAINED_COLLECTIONS) {
+    const collection = db.collection(name);
+    const [count, missingExpiresAt, indexes] = await Promise.all([
+      collection.countDocuments(),
+      collection.countDocuments(MISSING_EXPIRES_AT),
+      collection.indexes().catch(() => []),
+    ]);
+    const ttlIndex = indexes.some(
+      (index) =>
+        index.key?.expiresAt === 1 && index.expireAfterSeconds !== undefined,
+    );
+    collections[name] = { count, missingExpiresAt, ttlIndex };
+  }
 
   console.log(
     JSON.stringify(
@@ -56,7 +74,7 @@ try {
         connected: true,
         latencyMs: Date.now() - started,
         database: db.databaseName,
-        collections: { conversations, messages, events },
+        collections,
       },
       null,
       2,

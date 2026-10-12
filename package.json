@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:email": "node scripts/email-integration-test.mjs",
-    "check:mongodb": "node scripts/check-mongodb.mjs"
+    "check:mongodb": "node scripts/check-mongodb.mjs",
+    "backfill:retention": "node scripts/backfill-retention.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

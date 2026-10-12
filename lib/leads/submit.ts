@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { logConversionEvent } from "../chat/persistence";
+import { buildExpiresAt, logConversionEvent } from "../chat/persistence";
 import { isValidConversationId } from "../chat/session";
 import {
   normalizeVisitorEmail,
@@ -12,11 +12,12 @@ import {
 } from "../email/deliver";
 import { buildProcessAssessmentEmail } from "../email/processAssessment";
 import { getMongoDb, isMongoConfigured } from "../mongodb/client";
+import { LEADS_COLLECTION } from "../mongodb/collections";
 import { ensureChatIndexes } from "../mongodb/indexes";
 import type { LeadSource, ProcessAssessment } from "../processAssessment";
 import { createRicercaClientiLead } from "./notion";
 
-export const LEADS_COLLECTION = "leads";
+export { LEADS_COLLECTION };
 
 export type LeadDocument = {
   _id: string;
@@ -32,6 +33,8 @@ export type LeadDocument = {
   volume?: string;
   createdAt: Date;
   updatedAt: Date;
+  /** Retention deadline, extended on every later contact by touchRetention. */
+  expiresAt: Date;
 };
 
 export type SubmitProjectBriefResult = {
@@ -78,6 +81,7 @@ async function persistProjectBrief(
       ...(input.volume ? { volume: input.volume } : {}),
       createdAt: now,
       updatedAt: now,
+      expiresAt: buildExpiresAt(now),
     };
 
     await db.collection<LeadDocument>(LEADS_COLLECTION).insertOne(document);

@@ -1,5 +1,13 @@
 import { createHash, randomUUID } from "node:crypto";
+import type { Db, Filter } from "mongodb";
 import { getMongoDb, isMongoConfigured } from "../mongodb/client";
+import {
+  CONVERSATIONS_COLLECTION,
+  EVENTS_COLLECTION,
+  LEADS_COLLECTION,
+  MESSAGES_COLLECTION,
+  USERS_COLLECTION,
+} from "../mongodb/collections";
 import { ensureChatIndexes } from "../mongodb/indexes";
 import { isValidConversationId } from "./session";
 
@@ -54,10 +62,6 @@ export type RegisteredConversationResult = {
   visitor: RegisteredVisitorContext | null;
 };
 
-const CONVERSATIONS_COLLECTION = "conversations";
-const MESSAGES_COLLECTION = "messages";
-const EVENTS_COLLECTION = "events";
-
 type ConversationDocument = {
   _id: string;
   lang: ConversationLang;
@@ -86,6 +90,7 @@ type MessageDocument = {
   role: MessageRole;
   content: string;
   createdAt: Date;
+  expiresAt: Date;
   latencyMs?: number;
 };
 
@@ -95,19 +100,101 @@ type EventDocument = {
   type: ConversionEventType;
   payload: Record<string, unknown>;
   createdAt: Date;
+  expiresAt: Date;
 };
 
-function getRetentionDays(): number {
-  const raw = Number(process.env.CHAT_RETENTION_DAYS ?? "90");
-  if (!Number.isFinite(raw) || raw <= 0) return 90;
-  return Math.min(Math.floor(raw), 365);
+/* ------------------------------------------------------------------ */
+/*  Retention                                                          */
+/* ------------------------------------------------------------------ */
+
+/**
+ * The privacy policy promises deletion "up to 24 months from the last
+ * contact". CHAT_RETENTION_DAYS may shorten that window but never exceed it.
+ */
+export const DEFAULT_RETENTION_DAYS = 730;
+export const MAX_RETENTION_DAYS = 730;
+
+export function getRetentionDays(): number {
+  const raw = Number(process.env.CHAT_RETENTION_DAYS ?? DEFAULT_RETENTION_DAYS);
+  if (!Number.isFinite(raw) || raw <= 0) return DEFAULT_RETENTION_DAYS;
+  return Math.min(Math.floor(raw), MAX_RETENTION_DAYS);
 }
 
-function buildExpiresAt(from = new Date()): Date {
+export function buildExpiresAt(from = new Date()): Date {
   const expiresAt = new Date(from);
   expiresAt.setDate(expiresAt.getDate() + getRetentionDays());
   return expiresAt;
 }
+
+export type RetentionScope = {
+  conversationId?: string;
+  userId?: string;
+};
+
+/**
+ * Extends the retention deadline of everything touched by a contact: the
+ * conversation and its messages/events, and the owning user with their leads.
+ *
+ * `users.expiresAt` uses `$max` so a user never expires before anything they
+ * own, even if CHAT_RETENTION_DAYS is lowered later.
+ */
+export async function touchRetention(
+  db: Db,
+  scope: RetentionScope,
+  now = new Date(),
+): Promise<Date> {
+  const expiresAt = buildExpiresAt(now);
+  const conversationId = scope.conversationId?.trim() || undefined;
+  const userId = scope.userId?.trim() || undefined;
+  const ops: Promise<unknown>[] = [];
+
+  if (conversationId) {
+    ops.push(
+      db
+        .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
+        .updateOne({ _id: conversationId }, { $set: { expiresAt } }),
+      db
+        .collection<MessageDocument>(MESSAGES_COLLECTION)
+        .updateMany({ conversationId }, { $set: { expiresAt } }),
+    );
+  }
+
+  const eventFilters: Filter<EventDocument>[] = [];
+  if (conversationId) eventFilters.push({ conversationId });
+  if (userId) eventFilters.push({ userId });
+  if (eventFilters.length > 0) {
+    ops.push(
+      db
+        .collection<EventDocument>(EVENTS_COLLECTION)
+        .updateMany(
+          eventFilters.length === 1 ? eventFilters[0] : { $or: eventFilters },
+          { $set: { expiresAt } },
+        ),
+    );
+  }
+
+  if (userId) {
+    ops.push(
+      db
+        .collection<RetainedLeadDocument>(LEADS_COLLECTION)
+        .updateMany({ userId }, { $set: { expiresAt } }),
+      db
+        .collection<RetainedUserDocument>(USERS_COLLECTION)
+        .updateOne({ _id: userId }, { $max: { expiresAt } }),
+    );
+  }
+
+  await Promise.all(ops);
+  return expiresAt;
+}
+
+/** The subset of users/leads fields that retention touches. */
+type RetainedUserDocument = { _id: string; expiresAt?: Date };
+type RetainedLeadDocument = { _id: string; userId: string; expiresAt?: Date };
+
+/* ------------------------------------------------------------------ */
+/*  Helpers                                                            */
+/* ------------------------------------------------------------------ */
 
 export function hashClientIp(ip: string): string {
   return createHash("sha256").update(ip).digest("hex").slice(0, 8);
@@ -124,6 +211,10 @@ async function getDbWithIndexes() {
   await ensureChatIndexes(db);
   return db;
 }
+
+/* ------------------------------------------------------------------ */
+/*  Conversations                                                      */
+/* ------------------------------------------------------------------ */
 
 export async function createConversation(
   input: CreateConversationInput,
@@ -158,6 +249,10 @@ export async function createConversation(
     lastMessageAt: now,
     expiresAt: buildExpiresAt(now),
   });
+
+  if (input.userId) {
+    await touchRetention(db, { userId: input.userId }, now);
+  }
 
   return conversationId;
 }
@@ -316,6 +411,10 @@ export type RequireRegisteredConversationResult = {
   visitor: RegisteredVisitorContext | null;
 };
 
+/* ------------------------------------------------------------------ */
+/*  Messages                                                           */
+/* ------------------------------------------------------------------ */
+
 export async function appendMessage(
   conversationId: string,
   input: AppendMessageInput,
@@ -327,7 +426,7 @@ export async function appendMessage(
 
   const conversation = await db
     .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
-    .findOne({ _id: conversationId }, { projection: { _id: 1 } });
+    .findOne({ _id: conversationId }, { projection: { _id: 1, userId: 1 } });
 
   if (!conversation) return;
 
@@ -338,6 +437,7 @@ export async function appendMessage(
     role: input.role,
     content: input.content,
     createdAt: now,
+    expiresAt: buildExpiresAt(now),
     ...(typeof input.latencyMs === "number"
       ? { latencyMs: input.latencyMs }
       : {}),
@@ -350,9 +450,14 @@ export async function appendMessage(
       $set: {
         updatedAt: now,
         lastMessageAt: now,
-        expiresAt: buildExpiresAt(now),
       },
     },
+  );
+
+  await touchRetention(
+    db,
+    { conversationId, userId: conversation.userId || undefined },
+    now,
   );
 }
 
@@ -388,6 +493,10 @@ export async function requireRegisteredConversation(
   return { conversationId, visitor };
 }
 
+/* ------------------------------------------------------------------ */
+/*  Conversion events                                                  */
+/* ------------------------------------------------------------------ */
+
 export async function logConversionEvent(
   conversationId: string | undefined,
   type: ConversionEventType,
@@ -410,43 +519,54 @@ export async function logConversionEvent(
   const conversation = validConversationId
     ? await db
         .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
-        .findOne({ _id: validConversationId }, { projection: { _id: 1 } })
+        .findOne(
+          { _id: validConversationId },
+          { projection: { _id: 1, userId: 1 } },
+        )
     : null;
 
   if (validConversationId && !conversation && !userId) return;
 
   const now = new Date();
+  const eventConversationId = conversation ? validConversationId : undefined;
 
   await db.collection<EventDocument>(EVENTS_COLLECTION).insertOne({
-    ...(conversation ? { conversationId: validConversationId } : {}),
+    ...(eventConversationId ? { conversationId: eventConversationId } : {}),
     ...(userId ? { userId } : {}),
     type,
     payload,
     createdAt: now,
+    expiresAt: buildExpiresAt(now),
   });
 
-  if (!conversation || !validConversationId) return;
+  if (conversation && validConversationId) {
+    const updates: Record<string, unknown> = { updatedAt: now };
 
-  const updates: Record<string, unknown> = {
-    updatedAt: now,
-    expiresAt: buildExpiresAt(now),
-  };
+    if (type === "email_sent") updates.hasEmailSent = true;
+    if (type === "meeting_scheduled") updates.hasMeetingScheduled = true;
+    if (type === "diagnostic_sent") {
+      updates.hasDiagnostic = true;
+      updates.status = "completed";
+    }
+    if (type === "project_brief_submitted") {
+      updates.hasProjectBrief = true;
+      updates.status = "completed";
+    }
 
-  if (type === "email_sent") updates.hasEmailSent = true;
-  if (type === "meeting_scheduled") updates.hasMeetingScheduled = true;
-  if (type === "diagnostic_sent") {
-    updates.hasDiagnostic = true;
-    updates.status = "completed";
+    if (contact?.contactEmail) updates.contactEmail = contact.contactEmail;
+    if (contact?.contactName) updates.contactName = contact.contactName;
+
+    await db
+      .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
+      .updateOne({ _id: validConversationId }, { $set: updates });
   }
-  if (type === "project_brief_submitted") {
-    updates.hasProjectBrief = true;
-    updates.status = "completed";
-  }
 
-  if (contact?.contactEmail) updates.contactEmail = contact.contactEmail;
-  if (contact?.contactName) updates.contactName = contact.contactName;
-
-  await db
-    .collection<ConversationDocument>(CONVERSATIONS_COLLECTION)
-    .updateOne({ _id: validConversationId }, { $set: updates });
+  await touchRetention(
+    db,
+    {
+      conversationId: eventConversationId,
+      userId: userId ?? (conversation?.userId || undefined),
+    },
+    now,
+  );
 }
