@@ -140,9 +140,13 @@ export function MockScene({
   );
   const forceComplete = Boolean(reduce || active === false);
 
-  useEffect(() => {
+  // An explicit `active` also counts as "in view". Derived during render (the
+  // React "adjust state when a prop changes" pattern) instead of in an effect.
+  const [lastActive, setLastActive] = useState(active);
+  if (lastActive !== active) {
+    setLastActive(active);
     if (active === true) setInView(true);
-  }, [active]);
+  }
 
   useEffect(() => {
     const node = stageRef.current;
@@ -168,9 +172,12 @@ export function MockScene({
     };
   }, []);
 
-  useEffect(() => {
-    if (clicking) setRipple((n) => n + 1);
-  }, [clicking]);
+  // Every press starts a new ripple. The playback loop only ever calls
+  // setClicking(true) from the released state, so each call is a transition.
+  const setClickingWithRipple = useCallback((value: boolean) => {
+    setClicking(value);
+    if (value) setRipple((n) => n + 1);
+  }, []);
 
   const playback = useMemo<MockPlaybackValue>(
     () => ({
@@ -179,11 +186,11 @@ export function MockScene({
       reducedMotion: Boolean(reduce),
       forceComplete,
       setCursor,
-      setClicking,
+      setClicking: setClickingWithRipple,
       setCursorVisible,
       setActiveHit,
     }),
-    [playing, reduce, forceComplete],
+    [playing, reduce, forceComplete, setClickingWithRipple],
   );
 
   return (
@@ -275,13 +282,19 @@ export function useMockPlayback<T extends Record<string, unknown>>(
 ) {
   const ctx = useContext(MockPlaybackContext);
   const ctxRef = useRef(ctx);
-  ctxRef.current = ctx;
   const initialRef = useRef(initial);
   const stepsRef = useRef(steps);
   const completeRef = useRef(complete);
-  initialRef.current = initial;
-  stepsRef.current = steps;
-  completeRef.current = complete;
+
+  // Refs are synced after commit, not during render. This effect is declared
+  // before the playback effect below, so that one (and the async `run` loop
+  // it starts) always reads the latest values.
+  useEffect(() => {
+    ctxRef.current = ctx;
+    initialRef.current = initial;
+    stepsRef.current = steps;
+    completeRef.current = complete;
+  });
 
   const [state, setState] = useState<T>(ctx?.reducedMotion ? complete : initial);
   const [typingKey, setTypingKey] = useState<string | null>(null);

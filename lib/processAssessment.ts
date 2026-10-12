@@ -1,12 +1,15 @@
 import { z } from "zod";
 
+// `.optional()` is the outermost schema so the key is optional in the inferred
+// type (Zod 4 makes it required when a transform follows `.optional()`).
+// Runtime is unchanged: undefined short-circuits, "" becomes undefined.
 const optionalText = (max: number) =>
   z
     .string()
     .trim()
     .max(max)
-    .optional()
-    .transform((value) => value || undefined);
+    .transform((value) => value || undefined)
+    .optional();
 
 export const LeadSourceSchema = z.enum(["form", "chat"]);
 

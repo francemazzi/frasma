@@ -27,7 +27,7 @@ export function mergeBriefWithVisitor<T extends {
 }>(
   brief: T,
   visitor: RegisteredVisitorContext | null,
-): T {
+): T & { name?: string; clientEmail?: string; company?: string } {
   if (!visitor) return brief;
 
   return {

@@ -84,7 +84,16 @@ export default function ProcessAssessment({
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [finalSubmitReady, setFinalSubmitReady] = useState(false);
+  // Guards the final submit for FINAL_SUBMIT_GUARD_MS after reaching the last
+  // step. Keyed by step so it re-arms during render whenever the step changes.
+  const [submitGuard, setSubmitGuard] = useState<{ step: Step; ready: boolean }>(
+    { step: 1, ready: false },
+  );
+  if (submitGuard.step !== currentStep) {
+    setSubmitGuard({ step: currentStep, ready: false });
+  }
+  const finalSubmitReady =
+    submitGuard.step === TOTAL_STEPS && submitGuard.ready;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -137,13 +146,9 @@ export default function ProcessAssessment({
   }, [isOpen]);
 
   useEffect(() => {
-    if (currentStep !== TOTAL_STEPS) {
-      setFinalSubmitReady(false);
-      return;
-    }
-    setFinalSubmitReady(false);
+    if (currentStep !== TOTAL_STEPS) return;
     const timer = window.setTimeout(() => {
-      setFinalSubmitReady(true);
+      setSubmitGuard({ step: TOTAL_STEPS, ready: true });
     }, FINAL_SUBMIT_GUARD_MS);
     return () => window.clearTimeout(timer);
   }, [currentStep]);

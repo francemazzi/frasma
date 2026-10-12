@@ -228,11 +228,17 @@ export function useVoiceDictation({
     void start();
   }, [start, status, stop]);
 
+  // When dictation is disabled mid-recording, only talk to the external
+  // recorder here: its `onstop` handler owns the state transitions
+  // (resetRecorder + transcribe), exactly as a manual stop() would.
   useEffect(() => {
-    if (!enabled && (status === "recording" || mediaRecorderRef.current)) {
-      stop();
-    }
-  }, [enabled, status, stop]);
+    if (enabled) return;
+    const recorder = mediaRecorderRef.current;
+    if (status !== "recording" && !recorder) return;
+    if (!recorder || recorder.state === "inactive") return;
+    clearStopTimer();
+    recorder.stop();
+  }, [enabled, status, clearStopTimer]);
 
   useEffect(() => {
     return () => {

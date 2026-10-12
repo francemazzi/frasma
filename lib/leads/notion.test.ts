@@ -85,14 +85,15 @@ describe("ricerca_clienti Notion mapping", () => {
 
   it("creates a ricerca_clienti page when Notion is configured", async () => {
     process.env.NOTION_TOKEN = "ntn_test";
-    const fetchMock = vi.fn(async () =>
-      new Response(
-        JSON.stringify({
-          id: "page-1",
-          url: "https://www.notion.so/page-1",
-        }),
-        { status: 200 },
-      ),
+    const fetchMock = vi.fn<typeof fetch>(
+      async () =>
+        new Response(
+          JSON.stringify({
+            id: "page-1",
+            url: "https://www.notion.so/page-1",
+          }),
+          { status: 200 },
+        ),
     );
     vi.stubGlobal("fetch", fetchMock);
 

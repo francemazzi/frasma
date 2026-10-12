@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { MockHit, useMockPlayback, type MockStep } from "../atoms/MockScene";
 import { MockStatusBadge } from "../organism/productMocks";
 
@@ -20,15 +20,13 @@ export function isHarnessDemoId(id: string): id is HarnessDemoId {
 
 function useManualOverride<T extends string>(auto: T, initial: T): { value: T; choose: (next: T) => void } {
   const [manual, setManual] = useState<T | null>(null);
-  const wasInitial = useRef(true);
-
-  useEffect(() => {
-    const nowInitial = auto === initial;
-    if (nowInitial && !wasInitial.current) {
-      setManual(null);
-    }
-    wasInitial.current = nowInitial;
-  }, [auto, initial]);
+  // Derived during render: when the playback loops back to its initial value,
+  // drop the manual pick so the demo visibly restarts.
+  const [lastAuto, setLastAuto] = useState(auto);
+  if (lastAuto !== auto) {
+    setLastAuto(auto);
+    if (auto === initial && manual !== null) setManual(null);
+  }
 
   return { value: manual ?? auto, choose: setManual };
 }
