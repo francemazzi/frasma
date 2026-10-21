@@ -1,8 +1,15 @@
+import { homeEn } from "./home-copy";
+
 export const en: Record<string, string> = {
+  ...homeEn,
   // Meta
   "meta.title": "Business process and document automation for SMEs | Frasma",
   "meta.description":
     "Frasma automates work between documents, email, Excel, and ERP for manufacturing and food SMEs, without replacing existing business systems.",
+  "meta.ogTitle":
+    "Frasma — More control over your processes. Without replacing your ERP.",
+  "meta.ogDescription":
+    "Connect documents, products, production and tasks to the software you already use. Start with one process, with Frasma.",
 
   // Top rule (editorial)
   "topRule.studio": "Frasma · Structured AI agency · Mantova — Italy",
@@ -15,8 +22,13 @@ export const en: Record<string, string> = {
   "header.book": "Book",
   "header.schedule": "Assess a process",
   "header.companion": "",
+  "header.menu": "Menu",
+  "header.menuClose": "Close",
   "header.nav.cases": "Case studies",
   "header.nav.platform": "How it works",
+  "header.nav.modules": "Modules",
+  "header.nav.start": "How to start",
+  "header.nav.integrations": "Integrations",
   "header.nav.method": "Method",
   "header.nav.services": "Services",
   "header.nav.studio": "Studio",
@@ -516,6 +528,10 @@ export const en: Record<string, string> = {
   "footer.manufacturing": "Manufacturing",
 
   // Footer
+  "footer.product":
+    "Frasma — AI operations platform for connecting documents, products, production and tasks to business software.",
+  "footer.legal":
+    "Francesco Saverio Mazzi · independent software studio · VAT 02750410207",
   "footer.info":
     "Frasma — independent software studio of Francesco Saverio Mazzi · VAT 02750410207",
   "footer.privacy": "Privacy",

@@ -11,6 +11,8 @@ import {
 type SeoProps = {
   title: string;
   description: string;
+  ogTitle?: string;
+  ogDescription?: string;
   path?: string;
   image?: string;
   type?: "website" | "article";
@@ -43,6 +45,8 @@ function buildJsonLd(
 export default function Seo({
   title,
   description,
+  ogTitle,
+  ogDescription,
   path = "/",
   image = SHARE_IMAGE,
   type = "website",
@@ -53,6 +57,8 @@ export default function Seo({
   feedUrl,
   jsonLd,
 }: SeoProps) {
+  const socialTitle = ogTitle || title;
+  const socialDescription = ogDescription || description;
   const canonicalUrl = absoluteUrl(path);
   const imageUrl = absoluteUrl(image);
   const isCompactShareImage = imageUrl === SHARE_IMAGE;
@@ -82,11 +88,11 @@ export default function Seo({
       <meta property="og:locale" content="it_IT" />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={socialTitle} />
+      <meta property="og:description" content={socialDescription} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={imageUrl} />
-      <meta property="og:image:alt" content={title} />
+      <meta property="og:image:alt" content={socialTitle} />
       {isCompactShareImage && (
         <>
           <meta property="og:image:width" content={String(SHARE_IMAGE_WIDTH)} />
@@ -102,8 +108,8 @@ export default function Seo({
         name="twitter:card"
         content={isCompactShareImage ? "summary" : "summary_large_image"}
       />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={socialTitle} />
+      <meta name="twitter:description" content={socialDescription} />
       <meta name="twitter:image" content={imageUrl} />
 
       {type === "article" && publishedTime && (

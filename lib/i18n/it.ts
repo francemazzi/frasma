@@ -1,8 +1,15 @@
+import { homeIt } from "./home-copy";
+
 export const it: Record<string, string> = {
+  ...homeIt,
   // Meta
   "meta.title": "Automazione processi aziendali e documentali per PMI | Frasma",
   "meta.description":
     "Frasma automatizza attività tra documenti, email, Excel ed ERP per PMI manifatturiere e agroalimentari, senza sostituire il gestionale esistente.",
+  "meta.ogTitle":
+    "Frasma — Più controllo sui processi. Senza cambiare gestionale.",
+  "meta.ogDescription":
+    "Collega documenti, prodotti, produzione e attività ai software che usi già. Parti da un processo, con Frasma.",
 
   // Top rule (editorial)
   "topRule.studio": "", //Frasma · Agenzia AI strutturata · Mantova — Italia
@@ -15,8 +22,13 @@ export const it: Record<string, string> = {
   "header.book": "Prenota",
   "header.schedule": "Valuta un processo",
   "header.companion": "",
+  "header.menu": "Menu",
+  "header.menuClose": "Chiudi",
   "header.nav.cases": "Casi studio",
   "header.nav.platform": "Come funziona",
+  "header.nav.modules": "Moduli",
+  "header.nav.start": "Come iniziare",
+  "header.nav.integrations": "Integrazioni",
   "header.nav.method": "Metodo",
   "header.nav.services": "Servizi",
   "header.nav.studio": "Studio",
@@ -518,6 +530,10 @@ export const it: Record<string, string> = {
   "footer.manufacturing": "Manifattura",
 
   // Footer
+  "footer.product":
+    "Frasma — piattaforma operativa AI per collegare documenti, prodotti, produzione e attività ai software aziendali.",
+  "footer.legal":
+    "Francesco Saverio Mazzi · studio software indipendente · P.IVA 02750410207",
   "footer.info":
     "Frasma — studio software indipendente di Francesco Saverio Mazzi · P.IVA 02750410207",
   "footer.privacy": "Privacy",

@@ -790,6 +790,63 @@ function Field({
   );
 }
 
+type CustomersState = {
+  filter: "all" | "new";
+  followed: boolean;
+};
+
+const CUSTOMERS_INITIAL: CustomersState = { filter: "all", followed: false };
+const CUSTOMERS_COMPLETE: CustomersState = { filter: "new", followed: true };
+const CUSTOMERS_STEPS: MockStep<CustomersState>[] = [
+  { type: "wait", ms: 420 },
+  { type: "move", to: "cust-new" },
+  { type: "click" },
+  { type: "set", patch: { filter: "new" } },
+  { type: "wait", ms: 320 },
+  { type: "move", to: "cust-follow" },
+  { type: "click" },
+  { type: "set", patch: { followed: true } },
+  { type: "wait", ms: 800 },
+];
+
+export function CustomersMock() {
+  const { state } = useMockPlayback(CUSTOMERS_INITIAL, CUSTOMERS_COMPLETE, CUSTOMERS_STEPS);
+  const rows = [
+    { id: "bianchi", name: "Bianchi Meccanica", kind: "Nuovo", next: state.followed ? "Seguito" : "Da richiamare", hit: "cust-follow" },
+    { id: "rosa", name: "Latteria Rosa", kind: "Cliente", next: "Ordine aperto" },
+    { id: "metal", name: "Metalform", kind: "Nuovo", next: "Primo contatto" },
+  ].filter((row) => state.filter === "all" || row.kind === "Nuovo");
+
+  return (
+    <div className="flex h-full min-h-0 flex-col">
+      <WindowBar label="Clienti" />
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        <div className="flex items-center gap-[6px] border-b border-hairline px-3 py-2 font-mono text-[12px] tracking-[0.06em] text-ink-soft sm:px-4 sm:text-[10px]">
+          <ChipMini on={state.filter === "all"}>Tutti</ChipMini>
+          <MockHit id="cust-new">
+            <ChipMini on={state.filter === "new"}>Nuovi</ChipMini>
+          </MockHit>
+        </div>
+        {rows.map((row) => (
+          <div key={row.id} className="flex items-center justify-between gap-3 border-b border-hairline px-3 py-2.5 sm:px-4">
+            <div className="min-w-0">
+              <p className="truncate text-[14px] font-medium text-ink sm:text-[13px]">{row.name}</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-soft sm:text-[9px]">{row.kind}</p>
+            </div>
+            {row.hit ? (
+              <MockHit id={row.hit}>
+                <ChipMini on={state.followed}>{row.next}</ChipMini>
+              </MockHit>
+            ) : (
+              <ChipMini>{row.next}</ChipMini>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function BtnMini({ children, ghost }: { children: React.ReactNode; ghost?: boolean }) {
   return (
     <span
