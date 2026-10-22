@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  DDT_READING_SLUG,
   DDT_TUTORIAL_SLUG,
   ERP_AI_THESIS_SLUG,
   HARNESS_OFFICINA_SLUG,
@@ -44,6 +45,24 @@ describe("extraJsonLdForBlogPost", () => {
     });
     expect(extraJsonLdForBlogPost(ERP_AI_THESIS_SLUG)[0]).not.toMatchObject({
       "@type": "HowTo",
+    });
+  });
+
+  it("adds FAQPage and Service schema on the DDT reading guide", () => {
+    const extras = extraJsonLdForBlogPost(DDT_READING_SLUG);
+
+    expect(extras).toHaveLength(2);
+    const faqPage = extras[0] as {
+      "@type": string;
+      mainEntity: Array<{ name: string }>;
+    };
+
+    expect(faqPage["@type"]).toBe("FAQPage");
+    expect(faqPage.mainEntity).toHaveLength(5);
+    expect(faqPage.mainEntity[0]?.name).toContain("lettura automatica dei DDT");
+    expect(extras[1]).toMatchObject({
+      "@type": "Service",
+      url: "https://www.frasma.org/servizi/ddt-erp",
     });
   });
 

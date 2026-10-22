@@ -14,6 +14,36 @@ export const ERP_AI_THESIS_SLUG = "non-collegare-agenti-ai-direttamente-erp";
 export const HARNESS_OFFICINA_SLUG =
   "ai-manifattura-officina-intorno-al-modello";
 
+export const DDT_READING_SLUG = "lettura-automatica-ddt";
+
+const DDT_READING_FAQS = [
+  {
+    question: "La lettura automatica dei DDT sostituisce chi registra i documenti?",
+    answer:
+      "No. Sostituisce il copia-incolla sui documenti leggibili. Chi registra continua a confermare, a gestire le eccezioni e a rispondere quando un valore non torna. La responsabilità del carico resta umana.",
+  },
+  {
+    question: "Si possono leggere sia i PDF nativi sia le scansioni?",
+    answer:
+      "Sì, con perimetri diversi. Un PDF generato dal gestionale del fornitore è il caso più semplice. Una scansione o una foto chiede un passaggio in più e produce più eccezioni. Si prova su entrambi, non si promette lo stesso risultato.",
+  },
+  {
+    question: "I dati finiscono da soli in Mago o TeamSystem?",
+    answer:
+      "No. L'AI propone i campi. Una persona conferma. Poi si importa nel gestionale già in uso, sul tracciato che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce Mago o TeamSystem.",
+  },
+  {
+    question: "Cosa si fa se un campo non è leggibile?",
+    answer:
+      "Si marca «da verificare» o «illeggibile». Non si completa a indovinare. Il PDF resta agganciato alla riga, così chi controlla vede la fonte.",
+  },
+  {
+    question: "Da dove si parte, in pratica?",
+    answer:
+      "Da un insieme piccolo di DDT reali e dall'elenco dei campi che già inserite. Si misura cosa viene letto bene, si tiene la persona nel punto di conferma, si decide se allargare.",
+  },
+];
+
 const HARNESS_OFFICINA_FAQS = [
   {
     question: "Cos’è l’officina intorno all’AI?",
@@ -127,6 +157,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === HARNESS_OFFICINA_SLUG) {
     return [faqPageJsonLd(HARNESS_OFFICINA_FAQS), ddtErpServiceJsonLd()];
+  }
+
+  if (slug === DDT_READING_SLUG) {
+    return [faqPageJsonLd(DDT_READING_FAQS), ddtErpServiceJsonLd()];
   }
 
   return [];
