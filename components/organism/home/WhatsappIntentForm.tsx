@@ -8,16 +8,58 @@ import { buildWhatsappIntentHref } from "../../../lib/whatsappIntent";
 const LEAD_TRACKED_KEY = "frasma.lead_tracked";
 const LEAD_MARKER = "ordini-ddt";
 
-/** Queued by the pixel stub in the document head. Sent once per browser session. */
+function readCookie(name: string): string {
+  const prefix = `${name}=`;
+  const part = document.cookie.split("; ").find((item) => item.startsWith(prefix));
+  if (!part) return "";
+  try {
+    return decodeURIComponent(part.slice(prefix.length));
+  } catch {
+    return "";
+  }
+}
+
+function newEventId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  return `lead_${Date.now()}_${Math.random().toString(36).slice(2, 12)}`;
+}
+
+/**
+ * Same lead, two paths: the pixel in the browser and the Conversions API on
+ * the server. Both use this event id so OpenAI counts it once.
+ */
 function measureLeadCreated() {
   try {
     if (window.sessionStorage.getItem(LEAD_TRACKED_KEY) === LEAD_MARKER) return;
   } catch {
     // Storage can be blocked. Still send the event for this click.
   }
+
+  const eventId = newEventId();
+  const oppref = new URLSearchParams(window.location.search).get("oppref") || readCookie("__oppref");
+  const obref = readCookie("__obref");
+  void fetch("/api/measure-lead", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    keepalive: true,
+    body: JSON.stringify({
+      eventId,
+      sourceUrl: window.location.href,
+      ...(oppref ? { oppref } : {}),
+      ...(obref ? { obref } : {}),
+    }),
+  }).catch(() => undefined);
+
   const pixel = (window as Window & { oaiq?: (...args: unknown[]) => void }).oaiq;
   if (typeof pixel === "function") {
-    pixel("measure", "lead_created", { type: "customer_action" });
+    pixel(
+      "measure",
+      "lead_created",
+      { type: "customer_action" },
+      { event_id: eventId },
+    );
   }
   try {
     window.sessionStorage.setItem(LEAD_TRACKED_KEY, LEAD_MARKER);
