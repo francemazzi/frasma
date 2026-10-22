@@ -1,8 +1,8 @@
 import LegalPage, { type LegalCopy } from "../components/organism/LegalPage";
 import { CONTACT } from "../lib/contact";
 
-const UPDATED = "1 ottobre 2026";
-const UPDATED_EN = "October 1, 2026";
+const UPDATED = "12 ottobre 2026";
+const UPDATED_EN = "October 12, 2026";
 
 const it: LegalCopy = {
   metaTitle: "Cookie policy | Frasma",
@@ -32,12 +32,24 @@ const it: LegalCopy = {
       bullets: [
         "_ga, _ga_*: distinguono i visitatori e le sessioni. Durano fino a 13 mesi.",
         "Fornitore: Google Ireland Ltd. Informativa: policies.google.com/privacy.",
+        "Microsoft Clarity (_clck, _clsk, fino a 12 mesi) e Contentsquare registrano in forma anonima come vengono usate le pagine (scorrimento, clic), per capire dove il sito è poco chiaro. Fornitori: Microsoft Ireland Operations Ltd., Contentsquare SAS.",
+      ],
+    },
+    {
+      title: "Cookie di misurazione delle campagne",
+      paragraphs: [
+        "Quando pubblichiamo annunci in ChatGPT, il pixel di misurazione di OpenAI ci dice se una richiesta inviata dal sito è arrivata da uno di quegli annunci. Non serve a mostrarti pubblicità: serve a capire se la campagna porta richieste reali.",
+      ],
+      bullets: [
+        "__oppref: identificativo del clic sull'annuncio, letto dall'indirizzo della pagina di arrivo. Dura 30 giorni.",
+        "__obref: riferimento casuale del browser su questo sito. Dura 12 mesi.",
+        "Fornitore: OpenAI. Informativa: openai.com/policies/privacy-policy. Il pixel è attivo solo quando una campagna è in corso.",
       ],
     },
     {
       title: "Cookie di terze parti",
       paragraphs: [
-        "Il sito non incorpora social network, video o pubblicità che impostano cookie propri. I link a YouTube, LinkedIn, GitHub e WhatsApp aprono i rispettivi siti, con le loro regole.",
+        "Il sito non incorpora social network. I video YouTube si caricano solo se premi play, nella versione a privacy rafforzata (youtube-nocookie.com): fino a quel momento YouTube non imposta cookie. I link a YouTube, LinkedIn, GitHub e WhatsApp aprono i rispettivi siti, con le loro regole.",
       ],
     },
     {
@@ -45,6 +57,7 @@ const it: LegalCopy = {
       bullets: [
         "Puoi bloccare o cancellare i cookie dalle impostazioni del browser (Chrome, Safari, Firefox, Edge). Il sito continua a funzionare; perderai solo la lingua salvata e la ripresa della chat.",
         "Per Google Analytics puoi installare il componente di disattivazione: tools.google.com/dlpage/gaoptout.",
+        "Il pixel di misurazione di OpenAI, Clarity e Contentsquare si bloccano dalle impostazioni del browser o con un'estensione che blocca i tracker: il sito continua a funzionare.",
       ],
     },
     {
@@ -84,12 +97,24 @@ const en: LegalCopy = {
       bullets: [
         "_ga, _ga_*: tell visitors and sessions apart. They last up to 13 months.",
         "Provider: Google Ireland Ltd. Policy: policies.google.com/privacy.",
+        "Microsoft Clarity (_clck, _clsk, up to 12 months) and Contentsquare record anonymously how pages are used (scrolling, clicks), to see where the site is unclear. Providers: Microsoft Ireland Operations Ltd., Contentsquare SAS.",
+      ],
+    },
+    {
+      title: "Campaign measurement cookies",
+      paragraphs: [
+        "When we run ads in ChatGPT, OpenAI's measurement pixel tells us whether a request sent from the site came from one of those ads. It does not show you advertising: it tells us whether the campaign brings real requests.",
+      ],
+      bullets: [
+        "__oppref: identifier of the ad click, read from the landing page address. Lasts 30 days.",
+        "__obref: random browser reference for this site. Lasts 12 months.",
+        "Provider: OpenAI. Policy: openai.com/policies/privacy-policy. The pixel is active only while a campaign is running.",
       ],
     },
     {
       title: "Third-party cookies",
       paragraphs: [
-        "The site does not embed social networks, videos, or ads that set their own cookies. Links to YouTube, LinkedIn, GitHub, and WhatsApp open those sites, under their own rules.",
+        "The site does not embed social networks. YouTube videos load only when you press play, in the privacy-enhanced version (youtube-nocookie.com): until then YouTube sets no cookies. Links to YouTube, LinkedIn, GitHub, and WhatsApp open those sites, under their own rules.",
       ],
     },
     {
@@ -97,6 +122,7 @@ const en: LegalCopy = {
       bullets: [
         "You can block or delete cookies from your browser settings (Chrome, Safari, Firefox, Edge). The site keeps working; you only lose the saved language and chat resume.",
         "For Google Analytics you can install the opt-out add-on: tools.google.com/dlpage/gaoptout.",
+        "OpenAI's measurement pixel, Clarity and Contentsquare can be blocked from browser settings or with a tracker-blocking extension: the site keeps working.",
       ],
     },
     {

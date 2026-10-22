@@ -40,7 +40,7 @@ const it: LegalCopy = {
         "Per riprendere una conversazione già iniziata in chat.",
         "Per organizzare un incontro o una call.",
         "Per capire quali pagine del sito vengono lette e migliorarle.",
-        "Non vendiamo i tuoi dati, non li usiamo per pubblicità e non inviamo newsletter senza che tu lo chieda.",
+        "Non vendiamo i tuoi dati e non inviamo newsletter senza che tu lo chieda. Se arrivi da un annuncio in ChatGPT, misuriamo solo che la richiesta è partita da quell'annuncio, senza profilarti.",
       ],
     },
     {
@@ -53,7 +53,7 @@ const it: LegalCopy = {
       title: "Chi può vederli",
       bullets: [
         `Solo ${OWNER}. Non ci sono dipendenti o call center.`,
-        "Fornitori tecnici che ospitano il sito e i dati: Vercel (hosting), MongoDB Atlas (database della chat), il provider email per l'invio dei messaggi, OpenAI per generare le risposte della chat e trascrivere la dettatura. Google per le statistiche di navigazione.",
+        "Fornitori tecnici che ospitano il sito e i dati: Vercel (hosting), MongoDB Atlas (database della chat), il provider email per l'invio dei messaggi, OpenAI per generare le risposte della chat, trascrivere la dettatura e misurare le richieste arrivate dagli annunci in ChatGPT. Google, Microsoft Clarity e Contentsquare per le statistiche di navigazione.",
         "Questi fornitori trattano i dati per nostro conto e possono trovarsi fuori dall'Unione Europea; in quel caso si applicano le clausole contrattuali standard previste dal GDPR.",
       ],
     },
@@ -120,7 +120,7 @@ const en: LegalCopy = {
         "To resume a chat conversation you already started.",
         "To arrange a meeting or a call.",
         "To see which pages are read and improve them.",
-        "We do not sell your data, do not use it for advertising, and do not send newsletters unless you ask.",
+        "We do not sell your data and do not send newsletters unless you ask. If you arrive from an ad in ChatGPT, we only measure that the request started from that ad, without profiling you.",
       ],
     },
     {
@@ -133,7 +133,7 @@ const en: LegalCopy = {
       title: "Who can see it",
       bullets: [
         `Only ${OWNER}. There are no employees or call centers.`,
-        "Technical providers hosting the site and data: Vercel (hosting), MongoDB Atlas (chat database), the email provider for sending messages, OpenAI for generating chat replies and transcribing dictation. Google for browsing statistics.",
+        "Technical providers hosting the site and data: Vercel (hosting), MongoDB Atlas (chat database), the email provider for sending messages, OpenAI for generating chat replies, transcribing dictation and measuring requests that came from ads in ChatGPT. Google, Microsoft Clarity and Contentsquare for browsing statistics.",
         "These providers process data on our behalf and may be located outside the European Union; in that case the standard contractual clauses required by GDPR apply.",
       ],
     },

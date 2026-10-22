@@ -5,6 +5,27 @@ import { FIELD_LABEL_CLASS, INPUT_CLASS } from "../../atoms/formClasses";
 import { useLang, useT } from "../../../lib/i18n/context";
 import { buildWhatsappIntentHref } from "../../../lib/whatsappIntent";
 
+const LEAD_TRACKED_KEY = "frasma.lead_tracked";
+const LEAD_MARKER = "ordini-ddt";
+
+/** Queued by the pixel stub in the document head. Sent once per browser session. */
+function measureLeadCreated() {
+  try {
+    if (window.sessionStorage.getItem(LEAD_TRACKED_KEY) === LEAD_MARKER) return;
+  } catch {
+    // Storage can be blocked. Still send the event for this click.
+  }
+  const pixel = (window as Window & { oaiq?: (...args: unknown[]) => void }).oaiq;
+  if (typeof pixel === "function") {
+    pixel("measure", "lead_created", { type: "customer_action" });
+  }
+  try {
+    window.sessionStorage.setItem(LEAD_TRACKED_KEY, LEAD_MARKER);
+  } catch {
+    // Ignore quota or privacy-mode errors.
+  }
+}
+
 const INTENTS = ["ddt", "quotes", "bom", "sheets", "other"] as const;
 type IntentId = (typeof INTENTS)[number];
 
@@ -46,6 +67,7 @@ export default function WhatsappIntentForm({ id }: Props) {
       company,
       intentLabel: intent === "other" ? custom : t(`home.whatsapp.intent.${intent}`),
     });
+    measureLeadCreated();
     const opened = window.open(href, "_blank", "noopener,noreferrer");
     if (!opened) window.location.assign(href);
   }

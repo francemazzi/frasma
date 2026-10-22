@@ -1,10 +1,24 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+/**
+ * OpenAI Ads Measurement Pixel. One init per page, near the start of head, so the
+ * landing page stores the `oppref` click reference. A valid NEXT_PUBLIC_OAI_PIXEL_ID
+ * overrides the campaign pixel.
+ */
+const CONFIGURED_PIXEL_ID = process.env.NEXT_PUBLIC_OAI_PIXEL_ID ?? "";
+const OAI_PIXEL_ID = /^[A-Za-z0-9_-]{1,64}$/.test(CONFIGURED_PIXEL_ID)
+  ? CONFIGURED_PIXEL_ID
+  : "486zF127dHBQWpfKXd4umE";
+
+const OAI_PIXEL_SNIPPET = `!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"${OAI_PIXEL_ID}",debug:true});`;
+
 class MyDocument extends Document {
   render() {
     return (
       <Html lang="it">
         <Head>
+          {/* OpenAI Ads Measurement Pixel */}
+          <script dangerouslySetInnerHTML={{ __html: OAI_PIXEL_SNIPPET }} />
           {/* Scroll reveals stay opt-in: without this class every section renders visible. */}
           <script
             dangerouslySetInnerHTML={{
