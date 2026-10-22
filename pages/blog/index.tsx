@@ -12,9 +12,9 @@ type BlogIndexProps = {
 };
 
 export default function Blog({ posts }: BlogIndexProps) {
-  const title = "Blog sviluppo software freelance | Frasma";
+  const title = "Blog sviluppo software e automazioni | Frasma";
   const description =
-    "Articoli di Frasma su programmazione freelance, sviluppo software, automazioni AI e progetti tech.";
+    "Articoli di Frasma su sviluppo software, automazioni AI e progetti tech.";
 
   return (
     <>

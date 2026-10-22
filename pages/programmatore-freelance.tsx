@@ -41,9 +41,9 @@ const stacks = [
 
 export default function ProgrammatoreFreelancePage() {
   const title =
-    "Programmatore freelance a Mantova | Software developer full stack";
+    "Programmatore software a Mantova | Sviluppo su misura";
   const description =
-    "Cerchi un programmatore freelance a Mantova? Francesco Saverio Mazzi, founder dello studio Frasma, sviluppa software su misura, web app, automazioni e AI agents per aziende italiane.";
+    "Cerchi un programmatore software a Mantova? Francesco Saverio Mazzi, founder dello studio Frasma, sviluppa software su misura, web app, automazioni e AI agents per aziende italiane.";
 
   return (
     <>
@@ -55,7 +55,7 @@ export default function ProgrammatoreFreelancePage() {
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
             {
-              name: "Programmatore freelance",
+              name: "Programmatore software",
               path: "/programmatore-freelance",
             },
           ]),
@@ -64,7 +64,7 @@ export default function ProgrammatoreFreelancePage() {
           {
             "@type": "Service",
             "@id": `${SITE_URL}/programmatore-freelance#service`,
-            name: "Programmatore freelance e software developer full stack",
+            name: "Programmatore software e software developer full stack",
             description,
             provider: {
               "@id": `${SITE_URL}/#business`,
@@ -85,10 +85,10 @@ export default function ProgrammatoreFreelancePage() {
         <section className="section-farm py-16 sm:py-24">
           <div className="max-w-4xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-sage-500">
-              Sviluppo software freelance · Mantova
+              Sviluppo software su misura · Mantova
             </p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Programmatore freelance a Mantova per web app, automazioni e
+              Programmatore software a Mantova per web app, automazioni e
               software su misura.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-farm-secondary sm:text-xl">
@@ -96,8 +96,8 @@ export default function ProgrammatoreFreelancePage() {
               <Link href="/" className="font-semibold text-sage-600 hover:text-sage-500">
                 Frasma
               </Link>
-              . Come informatico freelance e software developer full stack
-              aiuto aziende italiane a trasformare processi manuali in
+              . Come sviluppatore software full stack dello studio aiuto
+              aziende italiane a trasformare processi manuali in
               strumenti digitali concreti, mantenibili e pronti per l&apos;uso
               quotidiano. I servizi operativi dello studio sono su{" "}
               <Link href="/servizi" className="font-semibold text-sage-600 hover:text-sage-500">
@@ -121,7 +121,7 @@ export default function ProgrammatoreFreelancePage() {
           <div className="section-farm">
             <div className="mb-10 max-w-3xl">
               <h2 className="text-3xl font-bold tracking-tight text-farm-text sm:text-4xl">
-                Cosa posso sviluppare come freelance
+                Cosa sviluppo per le aziende
               </h2>
               <p className="mt-4 text-base leading-relaxed text-farm-secondary sm:text-lg">
                 Lavoro su progetti dove serve un referente tecnico capace di
@@ -176,7 +176,7 @@ export default function ProgrammatoreFreelancePage() {
         <section className="bg-farm-panel py-16 sm:py-20">
           <div className="section-farm text-center">
             <h2 className="text-3xl font-bold tracking-tight text-farm-text sm:text-4xl">
-              Cerchi un software developer freelance?
+              Cerchi uno sviluppatore software su misura?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-farm-secondary sm:text-lg">
               Raccontami il processo che vuoi migliorare. Ti rispondo con le

@@ -89,8 +89,7 @@ export default function BlogPostLayout({
 
         <aside className="mt-12 rounded-2xl border border-farm-border bg-farm-surface p-6">
           <p className="text-farm-secondary leading-relaxed">
-            Cerchi supporto su software su misura, automazioni o sviluppo
-            freelance? Scopri{" "}
+            Cerchi supporto su software su misura o automazioni? Scopri{" "}
             <Link href="/studio" className="text-sage-600 font-semibold hover:text-sage-500 underline">
               Frasma Studio
             </Link>{" "}
@@ -99,7 +98,7 @@ export default function BlogPostLayout({
               href="/programmatore-freelance"
               className="text-sage-600 font-semibold hover:text-sage-500 underline"
             >
-              programmatore freelance
+              programmatore software a Mantova
             </Link>
             .
           </p>

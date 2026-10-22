@@ -2,7 +2,7 @@
 slug: freelancedev
 title: "Trovami su FreelanceDEV: la piattaforma per freelancer italiani"
 seoTitle: "Trovami su FreelanceDEV: freelancer italiani per progetti tech | Frasma"
-seoDescription: "Sono disponibile su FreelanceDEV: sviluppatore freelance per web app, cloud, automazioni e software su misura."
+seoDescription: "Frasma su FreelanceDEV: software su misura, web app, cloud e automazioni per progetti tech."
 excerpt: "Come funziona FreelanceDEV e perché è una piattaforma interessante per trovare il freelancer giusto per i tuoi progetti tech."
 publishedAt: "2026-03-06"
 updatedAt: "2026-05-12"

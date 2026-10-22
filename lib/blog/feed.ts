@@ -31,7 +31,7 @@ export function buildRssFeed(posts: BlogPostSummary[]): string {
   <channel>
     <title>${escapeXml(`${SITE_NAME} Blog`)}</title>
     <link>${absoluteUrl("/blog")}</link>
-    <description>${escapeXml(`Articoli di ${OWNER_NAME} su sviluppo software, freelance e automazioni AI.`)}</description>
+    <description>${escapeXml(`Articoli di ${OWNER_NAME} su sviluppo software e automazioni AI.`)}</description>
     <language>it-it</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${SITE_FEED_URL}" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom" />
