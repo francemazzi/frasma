@@ -27,6 +27,8 @@ type Case = {
   m2lKey: string;
   beforeKey: string;
   afterKey: string;
+  guideHref?: string;
+  guideKey?: string;
 };
 
 const CASES: Case[] = [
@@ -69,6 +71,8 @@ const CASES: Case[] = [
     m2lKey: "results.case2.m2l",
     beforeKey: "results.case2.before",
     afterKey: "results.case2.after",
+    guideHref: "/blog/lettura-automatica-ddt",
+    guideKey: "results.case2.guide",
   },
   {
     idx: 2,
@@ -226,6 +230,16 @@ export default function Results() {
                     {t("results.caseCta")}
                   </Link>
                 </p>
+                {c.guideHref && c.guideKey ? (
+                  <p className="mt-2">
+                    <Link
+                      href={c.guideHref}
+                      className="text-[14px] text-ink-soft underline-offset-2 hover:underline"
+                    >
+                      {t(c.guideKey)}
+                    </Link>
+                  </p>
+                ) : null}
               </div>
             </motion.article>
           ))}

@@ -236,6 +236,14 @@ describe("markdownForPath", () => {
     expect(missing).toBeNull();
   });
 
+  it("links the DDT reading guide from the manufacturing ERP case", () => {
+    const study = markdownForPath("/casi/documenti-erp-manifattura");
+
+    expect(study).toContain(
+      "https://www.frasma.org/blog/lettura-automatica-ddt",
+    );
+  });
+
   it("returns English markdown when locale is en", () => {
     const ddt = markdownForPath("/servizi/ddt-erp", "en");
     expect(ddt).toContain("Mago and TeamSystem");

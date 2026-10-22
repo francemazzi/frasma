@@ -491,6 +491,7 @@ export const it: Record<string, string> = {
   "catalog.wiki.searchDesc":
     "Il cursore digita la query, apre PROC-04 e lascia visibili versione e owner. Trovare è il lavoro; decidere resta alle persone.",
   "results.caseCta": "Apri il caso",
+  "results.case2.guide": "Guida: lettura automatica dei DDT",
   "results.assessCta": "Valuta un processo",
 
   // For agents

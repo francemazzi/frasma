@@ -489,6 +489,7 @@ export const en: Record<string, string> = {
   "catalog.wiki.searchDesc":
     "The cursor types the query, opens PROC-04, and leaves version and owner visible. Finding is the work; deciding stays with people.",
   "results.caseCta": "Open the case",
+  "results.case2.guide": "Guide: automatic reading of delivery notes",
   "results.assessCta": "Assess a process",
 
   // For agents

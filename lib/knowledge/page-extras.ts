@@ -207,6 +207,17 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
       "Field maintenance and support: from the request to a closed intervention, with technicians and suppliers in the same workflow.",
     ),
   },
+  "manufacturing-erp-case": {
+    articles: [
+      {
+        path: "/blog/lettura-automatica-ddt",
+        title: text(
+          "Lettura automatica dei DDT: cosa estrarre e chi conferma",
+          "Automatic reading of delivery notes: what to extract and who confirms",
+        ),
+      },
+    ],
+  },
   "industrial-maintenance-case": {
     problemLead: text(
       "Caso reale anonimo: dalla richiesta su email o telefono a ticket, assegnazione e chiusura, con clienti, tecnici e fornitori nello stesso flusso.",
