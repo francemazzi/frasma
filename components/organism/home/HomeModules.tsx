@@ -1,10 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import { useT } from "../../../lib/i18n/context";
 import { Reveal } from "../../atoms/Reveal";
 import { BentoCard } from "../../atoms/Bento";
-import ProcessAssessment from "../ProcessAssessment";
 import {
   AgentMock,
   CustomersMock,
@@ -215,7 +215,9 @@ export default function HomeModules() {
         </div>
 
         <div className="mt-6">
-          <ProcessAssessment textButton={t("home.hero.cta")} showArrow />
+          <Link href="#contatti" className="btn-ink">
+            {t("home.hero.cta")}
+          </Link>
         </div>
       </div>
     </section>

@@ -14,7 +14,7 @@ export const homeIt: Record<string, string> = {
   "home.lp.ogTitle": "Ordini, DDT e distinte nel gestionale. Senza ricopiarli a mano.",
   "home.lp.ogDescription":
     "Per l'ufficio tecnico, il magazzino e l'amministrazione. Il gestionale resta.",
-  "home.hero.cta": "Richiedi la verifica di fattibilità",
+  "home.hero.cta": "Scrivimi su WhatsApp",
   "home.hero.secondary": "Scopri come si integra",
   "home.hero.micro": "Si parte dal documento che oggi ricopiate più spesso. Il gestionale resta.",
   "home.hero.strip1": "Ordini e DDT letti da email e PDF",
@@ -204,7 +204,7 @@ export const homeIt: Record<string, string> = {
   "home.integrations.dataTitle": "Dati e infrastruttura",
   "home.integrations.data":
     "Valutiamo l’installazione e i servizi necessari in base ai dati e al processo. Prima dell’avvio definiamo accessi, eventuali servizi esterni, backup ed esportazione delle informazioni.",
-  "home.integrations.cta": "Richiedi la verifica di fattibilità",
+  "home.integrations.cta": "Scrivimi su WhatsApp",
 
   "home.faq.title": "Domande frequenti",
   "home.faq.q1": "Devo cambiare gestionale?",
@@ -233,13 +233,31 @@ export const homeIt: Record<string, string> = {
   "home.faq.a8":
     "Partiamo da un caso reale e da pochi indicatori condivisi: tempo richiesto, passaggi manuali, correzioni e visibilità sul lavoro. Il primo progetto deve avere un perimetro e un risultato verificabile.",
 
-  "home.contact.title": "Quale processo vuoi rendere più semplice?",
+  "home.contact.title": "Scrivici cosa volete portare nel gestionale",
   "home.contact.text":
-    "Un ordine da inserire, un’etichetta da aggiornare, una commessa da seguire o un intervento da organizzare. Raccontaci come lavori oggi e quali software utilizzi: valutiamo un primo perimetro, senza chiederti di cambiare tutto.",
-  "home.contact.cta": "Richiedi la verifica di fattibilità",
+    "Nome, azienda e il documento. Si apre WhatsApp con il messaggio già scritto: lo inviate voi.",
+  "home.contact.cta": "Apri WhatsApp",
   "home.contact.secondary": "Scrivici",
   "home.contact.micro":
-    "Per il primo contatto bastano una descrizione del flusso e il nome dei software. Non inviare database o documenti riservati.",
+    "Nel messaggio ci sono nome, azienda e cosa volete portare nel gestionale.",
+
+  "home.whatsapp.lead": "Nome, azienda e cosa volete portare nel gestionale.",
+  "home.whatsapp.name": "Nome",
+  "home.whatsapp.company": "Azienda",
+  "home.whatsapp.intent": "Da portare nel gestionale",
+  "home.whatsapp.intent.placeholder": "Scegli",
+  "home.whatsapp.intent.ddt": "DDT e ordini",
+  "home.whatsapp.intent.quotes": "Preventivi dai disegni",
+  "home.whatsapp.intent.bom": "Distinte da disegni o Excel",
+  "home.whatsapp.intent.sheets": "Conformità schede tecniche",
+  "home.whatsapp.intent.other": "Altro",
+  "home.whatsapp.custom": "Scrivilo qui",
+  "home.whatsapp.error.custom": "Scrivi cosa portare nel gestionale.",
+  "home.whatsapp.submit": "Apri WhatsApp",
+  "home.whatsapp.note": "Si apre WhatsApp con il messaggio già scritto. Lo inviate voi.",
+  "home.whatsapp.error.name": "Scrivi il nome.",
+  "home.whatsapp.error.company": "Scrivi l'azienda.",
+  "home.whatsapp.error.intent": "Scegli cosa portare nel gestionale.",
 };
 
 export const homeEn: Record<string, string> = {
@@ -256,7 +274,7 @@ export const homeEn: Record<string, string> = {
   "home.lp.ogTitle": "Orders, delivery notes and BOMs into your ERP. Without retyping them.",
   "home.lp.ogDescription":
     "For the technical office, warehouse and admin. Your ERP stays.",
-  "home.hero.cta": "Request a feasibility check",
+  "home.hero.cta": "Message me on WhatsApp",
   "home.hero.secondary": "How integration works",
   "home.hero.micro": "Start with the document you retype most often. Your ERP stays.",
   "home.hero.strip1": "Orders and delivery notes read from email and PDF",
@@ -444,7 +462,7 @@ export const homeEn: Record<string, string> = {
   "home.integrations.dataTitle": "Data and infrastructure",
   "home.integrations.data":
     "We assess the installation and the services the data and the process need. Before go-live we define access, any external services, backup and export of the information.",
-  "home.integrations.cta": "Request a feasibility check",
+  "home.integrations.cta": "Message me on WhatsApp",
 
   "home.faq.title": "Common questions",
   "home.faq.q1": "Do I have to replace my ERP?",
@@ -472,11 +490,29 @@ export const homeEn: Record<string, string> = {
   "home.faq.a8":
     "We start from a real case and a few shared indicators: time required, manual steps, corrections and visibility of the work. The first project needs a defined scope and a result you can check.",
 
-  "home.contact.title": "Which process do you want to make simpler?",
+  "home.contact.title": "Tell us what you want in the ERP",
   "home.contact.text":
-    "An order to enter, a label to update, a job to follow or a visit to organize. Tell us how you work today and which software you use: we look at a first scope, without asking you to change everything.",
-  "home.contact.cta": "Request a feasibility check",
+    "Name, company and the document. WhatsApp opens with the message already written: you send it.",
+  "home.contact.cta": "Open WhatsApp",
   "home.contact.secondary": "Write to us",
   "home.contact.micro":
-    "For a first contact, a description of the flow and the names of the software are enough. Do not send databases or confidential documents.",
+    "The message includes your name, company and what you want in the ERP.",
+
+  "home.whatsapp.lead": "Your name, company and what you want in the ERP.",
+  "home.whatsapp.name": "Name",
+  "home.whatsapp.company": "Company",
+  "home.whatsapp.intent": "To bring into the ERP",
+  "home.whatsapp.intent.placeholder": "Choose",
+  "home.whatsapp.intent.ddt": "Delivery notes and orders",
+  "home.whatsapp.intent.quotes": "Quotes from drawings",
+  "home.whatsapp.intent.bom": "BOMs from drawings or spreadsheets",
+  "home.whatsapp.intent.sheets": "Technical data sheet compliance",
+  "home.whatsapp.intent.other": "Other",
+  "home.whatsapp.custom": "Write it here",
+  "home.whatsapp.error.custom": "Write what should go into the ERP.",
+  "home.whatsapp.submit": "Open WhatsApp",
+  "home.whatsapp.note": "WhatsApp opens with the message already written. You send it.",
+  "home.whatsapp.error.name": "Enter your name.",
+  "home.whatsapp.error.company": "Enter the company.",
+  "home.whatsapp.error.intent": "Choose what should go into the ERP.",
 };

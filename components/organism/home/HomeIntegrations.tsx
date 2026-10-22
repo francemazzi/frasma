@@ -2,7 +2,7 @@
 
 import { useT } from "../../../lib/i18n/context";
 import { Reveal } from "../../atoms/Reveal";
-import ProcessAssessment from "../ProcessAssessment";
+import Link from "next/link";
 
 export default function HomeIntegrations() {
   const t = useT();
@@ -16,7 +16,9 @@ export default function HomeIntegrations() {
         </Reveal>
 
         <div className="mt-8">
-          <ProcessAssessment textButton={t("home.integrations.cta")} showArrow />
+          <Link href="#contatti" className="btn-ink">
+            {t("home.integrations.cta")}
+          </Link>
         </div>
       </div>
     </section>

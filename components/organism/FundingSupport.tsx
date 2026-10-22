@@ -3,7 +3,12 @@
 import { useT } from "../../lib/i18n/context";
 import ProcessAssessment from "./ProcessAssessment";
 
-export default function FundingSupport() {
+type Props = {
+  ctaHref?: string;
+  ctaLabel?: string;
+};
+
+export default function FundingSupport({ ctaHref, ctaLabel }: Props = {}) {
   const t = useT();
 
   return (
@@ -19,10 +24,13 @@ export default function FundingSupport() {
           </div>
 
           <div className="mt-10 text-center">
-            <ProcessAssessment
-              textButton={t("funding.cta")}
-              showArrow
-            />
+            {ctaHref ? (
+              <a href={ctaHref} className="btn-ink">
+                {ctaLabel || t("funding.cta")}
+              </a>
+            ) : (
+              <ProcessAssessment textButton={t("funding.cta")} showArrow />
+            )}
           </div>
         </div>
       </div>

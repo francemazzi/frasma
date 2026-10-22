@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useT } from "../../../lib/i18n/context";
 import { Reveal } from "../../atoms/Reveal";
-import ProcessAssessment from "../ProcessAssessment";
 import { AgentMock, MockStage } from "../productMocks";
+import WhatsappIntentForm from "./WhatsappIntentForm";
 
 const STRIP = ["home.hero.strip1", "home.hero.strip2", "home.hero.strip3"] as const;
 
@@ -21,14 +21,13 @@ export default function Intro() {
         {t("home.hero.title1")}
         <span className="mt-1 block text-accent">{t("home.hero.title2")}</span>
       </Reveal>
-      <Reveal
-        delay={0.16}
-        className="mt-8 flex flex-wrap items-center gap-3"
-      >
-        <ProcessAssessment textButton={t("home.hero.cta")} showArrow />
+      <Reveal delay={0.16} className="mt-8">
+        <WhatsappIntentForm id="contatti" />
+      </Reveal>
+      <Reveal delay={0.2} className="mt-4">
         <Link
           href="#integrazioni"
-          className="btn-ink-ghost focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="text-[14px] font-medium text-ink-soft underline-offset-4 hover:text-ink hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           {t("home.hero.secondary")}
         </Link>

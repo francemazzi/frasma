@@ -28,7 +28,7 @@ const ChatWidget = dynamic(
   { ssr: false, loading: () => null }
 );
 
-const HIDE_CHAT_PATHS = ["/manifattura", "/vibeup"];
+const HIDE_CHAT_PATHS = ["/manifattura", "/vibeup", "/lp/ordini-ddt"];
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

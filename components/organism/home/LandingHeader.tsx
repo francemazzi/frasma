@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useT, useLang } from "../../../lib/i18n/context";
-import ProcessAssessment from "../ProcessAssessment";
 
 const NAV = [
   { href: "#moduli", label: "header.nav.modules" },
@@ -20,7 +19,6 @@ export default function Header() {
   const { lang, setLang } = useLang();
   const companion = t("header.companion");
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -28,15 +26,6 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
 
   return (
     <header
@@ -99,46 +88,11 @@ export default function Header() {
                 EN
               </button>
             </div>
-            <div className="hidden sm:block">
-              <ProcessAssessment
-                textButton={t("home.hero.cta")}
-                showArrow
-                compact
-              />
-            </div>
-            <button
-              type="button"
-              className="inline-flex min-h-[44px] items-center rounded-full border border-hairline-strong px-4 text-[13px] font-medium text-ink lg:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              aria-expanded={open}
-              aria-controls="site-menu"
-              onClick={() => setOpen((value) => !value)}
-            >
-              {open ? t("header.menuClose") : t("header.menu")}
-            </button>
+            <Link href="#contatti" className="btn-ink px-4">
+              {t("home.hero.cta")}
+            </Link>
           </div>
         </div>
-
-        {open ? (
-          <ul
-            id="site-menu"
-            className="mt-2 flex list-none flex-col gap-1 border-t border-hairline pt-3 text-[16px] font-medium text-ink lg:hidden"
-          >
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`block py-3 ${linkClass}`}
-                  onClick={() => setOpen(false)}
-                >
-                  {t(item.label)}
-                </Link>
-              </li>
-            ))}
-            <li className="py-2 sm:hidden">
-              <ProcessAssessment textButton={t("home.hero.cta")} showArrow />
-            </li>
-          </ul>
-        ) : null}
       </nav>
     </header>
   );

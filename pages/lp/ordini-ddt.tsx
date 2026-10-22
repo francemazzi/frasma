@@ -54,7 +54,7 @@ export default function OrdiniDdtLanding() {
         <HomeIntegrations />
         <HomeFaq />
         <LandingCallToAction />
-        <FundingSupport />
+        <FundingSupport ctaHref="#contatti" ctaLabel={t("home.hero.cta")} />
         <LandingFounder />
         <LandingFooter />
       </main>
