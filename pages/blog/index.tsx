@@ -1,4 +1,5 @@
 import type { GetStaticProps } from "next";
+import Link from "next/link";
 import Header from "../../components/organism/Header";
 import Footer from "../../components/organism/Footer";
 import PostList from "../../components/blog/PostList";
@@ -49,7 +50,18 @@ export default function Blog({ posts }: BlogIndexProps) {
         <Header />
 
         <section className="section-farm py-16">
-          <h1 className="text-4xl font-medium text-farm-text mb-12">Blog</h1>
+          <h1 className="text-4xl font-medium text-farm-text mb-6">Blog</h1>
+          <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
+            L&apos;ultimo approfondimento riguarda la{" "}
+            <Link
+              href="/blog/lettura-automatica-ddt"
+              className="text-accent underline-offset-2 hover:underline"
+            >
+              lettura automatica dei DDT
+            </Link>
+            : campi da estrarre da PDF o email, controllo umano e limiti prima
+            dell&apos;import nel gestionale.
+          </p>
 
           <PostList posts={posts} />
         </section>

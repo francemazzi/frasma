@@ -29,6 +29,7 @@ Already covered — pick a different problem:
 
 - `non-collegare-agenti-ai-direttamente-erp` — do not write AI agents straight into the ERP
 - `automatizzare-ddt-email-intelligenza-artificiale` — DDT from email → Excel → ERP
+- `lettura-automatica-ddt` — automatic DDT reading: fields, human review, limits
 - `ai-in-azienda-delega-la-forma-verifica-i-fatti` — webinar: delegate form, verify facts
 - `bando-si40-2026`, `voucher-cloud-cybersecurity-2026`, `voucher-doppia-transizione-lombardia-2026`, `iperammortamento-2026` — funding instruments
 - `smartcaricrop-dss-fertilizzazione-caraibi`, `seminai`, `freelancedev` — product/project posts
