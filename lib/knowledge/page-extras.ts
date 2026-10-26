@@ -216,6 +216,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "Automatic reading of delivery notes: what to extract and who confirms",
         ),
       },
+      {
+        path: "/blog/distinta-base-autocad",
+        title: text(
+          "Distinta base da AutoCAD: DATAEXTRACTION, Excel e gestionale",
+          "Bill of materials from AutoCAD: DATAEXTRACTION, Excel, and ERP",
+        ),
+      },
     ],
   },
   "industrial-maintenance-case": {

@@ -242,6 +242,9 @@ describe("markdownForPath", () => {
     expect(study).toContain(
       "https://www.frasma.org/blog/lettura-automatica-ddt",
     );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/distinta-base-autocad",
+    );
   });
 
   it("returns English markdown when locale is en", () => {

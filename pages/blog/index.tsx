@@ -54,13 +54,13 @@ export default function Blog({ posts }: BlogIndexProps) {
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
             L&apos;ultimo approfondimento riguarda la{" "}
             <Link
-              href="/blog/lettura-automatica-ddt"
+              href="/blog/distinta-base-autocad"
               className="text-accent underline-offset-2 hover:underline"
             >
-              lettura automatica dei DDT
+              distinta base da AutoCAD
             </Link>
-            : campi da estrarre da PDF o email, controllo umano e limiti prima
-            dell&apos;import nel gestionale.
+            : attributi di blocco e DATAEXTRACTION verso Excel, controllo umano
+            e import nel gestionale già in uso.
           </p>
 
           <PostList posts={posts} />

@@ -34,6 +34,9 @@ Already covered — pick a different problem:
 - `bando-si40-2026`, `voucher-cloud-cybersecurity-2026`, `voucher-doppia-transizione-lombardia-2026`, `iperammortamento-2026` — funding instruments
 - `smartcaricrop-dss-fertilizzazione-caraibi`, `seminai`, `freelancedev` — product/project posts
 - `wiki-aziendale-ai-non-e-chatbot-su-pdf` — company brain is not a chatbot on a PDF folder
+- `distinta-da-disegno-non-e-un-carico` — assembling a BOM when the customer sends only the assembly
+- `ciclo-e-revisione-non-escono-dallo-step` — tolerances, revision and cycle are not in the STEP
+- `distinta-base-autocad` — AutoCAD DATAEXTRACTION / attributes → Excel → human check → ERP import
 
 Also skip any topic listed in Memories from previous weekly runs.
 
