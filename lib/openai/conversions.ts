@@ -1,5 +1,7 @@
 /** OpenAI Ads Conversions API. The key stays on the server. */
 
+import { createHash } from "crypto";
+
 export const OAI_PIXEL_ID = "486zF127dHBQWpfKXd4umE";
 export const OAI_CONVERSIONS_KEY_ENV = "OPENAI_ADS_CONVERSIONS_API_KEY";
 
@@ -14,6 +16,8 @@ export type LeadCreatedInput = {
   obref?: string;
   ipAddress?: string;
   userAgent?: string;
+  /** SHA-256 of the trimmed, lowercased work email. Never the raw address. */
+  emailSha256?: string;
 };
 
 export function isEventId(value: string): boolean {
@@ -47,11 +51,21 @@ export function landingSourceUrl(value: unknown): string | undefined {
   return url.toString();
 }
 
+export function hashEmailForConversion(email: string): string {
+  return createHash("sha256").update(email.trim().toLowerCase(), "utf8").digest("hex");
+}
+
 export function leadCreatedPayload(event: LeadCreatedInput) {
-  const user: { obref?: string; ip_address?: string; user_agent?: string } = {};
+  const user: {
+    obref?: string;
+    ip_address?: string;
+    user_agent?: string;
+    emails_sha256?: string[];
+  } = {};
   if (event.obref) user.obref = event.obref;
   if (event.ipAddress) user.ip_address = event.ipAddress;
   if (event.userAgent) user.user_agent = event.userAgent;
+  if (event.emailSha256) user.emails_sha256 = [event.emailSha256];
 
   return {
     validate_only: false,

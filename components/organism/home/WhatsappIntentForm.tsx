@@ -5,11 +5,9 @@ import { FIELD_LABEL_CLASS, INPUT_CLASS } from "../../atoms/formClasses";
 import { useLang, useT } from "../../../lib/i18n/context";
 import { buildWhatsappIntentHref } from "../../../lib/whatsappIntent";
 
-function contactLooksValid(value: string): boolean {
-  const trimmed = value.trim();
-  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) return true;
-  const digits = trimmed.replace(/\D/g, "");
-  return digits.length >= 8 && digits.length <= 15 && /^[+\d\s()./-]+$/.test(trimmed);
+function emailLooksValid(value: string): boolean {
+  const email = value.trim().toLowerCase();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 120;
 }
 
 function readCookie(name: string): string {
@@ -41,7 +39,7 @@ type FieldErrors = {
   company?: string;
   intent?: string;
   custom?: string;
-  contact?: string;
+  email?: string;
 };
 
 export default function WhatsappIntentForm({ id }: Props) {
@@ -52,7 +50,7 @@ export default function WhatsappIntentForm({ id }: Props) {
   const [company, setCompany] = useState("");
   const [intent, setIntent] = useState<IntentId | "">("");
   const [custom, setCustom] = useState("");
-  const [contact, setContact] = useState("");
+  const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
 
@@ -76,9 +74,9 @@ export default function WhatsappIntentForm({ id }: Props) {
     if (intent === "other" && custom.trim().length < 2) {
       next.custom = t("home.whatsapp.error.custom");
     }
-    if (!contactLooksValid(contact)) next.contact = t("home.whatsapp.error.contact");
+    if (!emailLooksValid(email)) next.email = t("home.whatsapp.error.email");
     setErrors(next);
-    if (next.name || next.company || next.intent || next.custom || next.contact || !intent) return;
+    if (next.name || next.company || next.intent || next.custom || next.email || !intent) return;
 
     const formData = new FormData(event.currentTarget);
     const website = formData.get("website");
@@ -93,7 +91,7 @@ export default function WhatsappIntentForm({ id }: Props) {
           company,
           intent,
           custom,
-          contact,
+          email,
           sourceUrl: window.location.href,
           ...(oppref ? { oppref } : {}),
           website: typeof website === "string" ? website : "",
@@ -203,23 +201,24 @@ export default function WhatsappIntentForm({ id }: Props) {
         </div>
       ) : null}
       <div className="mt-4 max-w-md">
-        <label htmlFor={`${uid}-contact`} className={FIELD_LABEL_CLASS}>
-          {t("home.whatsapp.contact")}
+        <label htmlFor={`${uid}-email`} className={FIELD_LABEL_CLASS}>
+          {t("home.whatsapp.email")}
         </label>
         <input
-          id={`${uid}-contact`}
-          name="contact"
+          id={`${uid}-email`}
+          name="email"
+          type="email"
           autoComplete="email"
           inputMode="email"
-          value={contact}
-          onChange={(event) => setContact(event.target.value)}
-          aria-invalid={errors.contact ? true : undefined}
-          aria-describedby={errors.contact ? `${uid}-contact-error` : undefined}
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          aria-invalid={errors.email ? true : undefined}
+          aria-describedby={errors.email ? `${uid}-email-error` : undefined}
           className={INPUT_CLASS}
         />
-        {errors.contact ? (
-          <p id={`${uid}-contact-error`} className="mt-1 text-[13px] text-accent">
-            {errors.contact}
+        {errors.email ? (
+          <p id={`${uid}-email-error`} className="mt-1 text-[13px] text-accent">
+            {errors.email}
           </p>
         ) : null}
       </div>

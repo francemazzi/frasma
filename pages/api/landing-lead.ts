@@ -10,6 +10,7 @@ import { landingLeadMessage, parseLandingLead } from "../../lib/landingLead";
 import {
   OAI_CONVERSIONS_KEY_ENV,
   cleanOpaqueRef,
+  hashEmailForConversion,
   landingSourceUrl,
   sendLeadCreatedEvent,
 } from "../../lib/openai/conversions";
@@ -59,7 +60,7 @@ export default async function handler(
     company?: unknown;
     intent?: unknown;
     custom?: unknown;
-    contact?: unknown;
+    email?: unknown;
     sourceUrl?: unknown;
     oppref?: unknown;
     website?: unknown;
@@ -105,6 +106,7 @@ export default async function handler(
           sourceUrl,
           oppref,
           obref,
+          emailSha256: hashEmailForConversion(lead.email),
           userAgent: cleanOpaqueRef(
             Array.isArray(userAgentHeader) ? userAgentHeader[0] : userAgentHeader,
             512,

@@ -1,5 +1,3 @@
-import { CONTACT } from "./contact";
-
 export const LANDING_INTENTS = ["ddt", "quotes", "bom", "sheets", "other"] as const;
 export type LandingIntent = (typeof LANDING_INTENTS)[number];
 
@@ -16,8 +14,7 @@ export type LandingLead = {
   company: string;
   intent: LandingIntent;
   intentLabel: string;
-  contact: string;
-  contactKind: "email" | "phone";
+  email: string;
 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,42 +28,34 @@ function isIntent(value: string): value is LandingIntent {
   return (LANDING_INTENTS as readonly string[]).includes(value);
 }
 
+export function normalizeWorkEmail(value: unknown): string | undefined {
+  const email = cleanLine(value, 120).toLowerCase();
+  if (!email || !EMAIL_PATTERN.test(email)) return undefined;
+  return email;
+}
+
 export function parseLandingLead(body: {
   name?: unknown;
   company?: unknown;
   intent?: unknown;
   custom?: unknown;
-  contact?: unknown;
+  email?: unknown;
 }): LandingLead | undefined {
   const name = cleanLine(body.name, 80);
   const company = cleanLine(body.company, 80);
   const intentRaw = cleanLine(body.intent, 20);
   const custom = cleanLine(body.custom, 80);
-  const contact = cleanLine(body.contact, 120);
-  if (name.length < 2 || company.length < 2 || !isIntent(intentRaw)) return undefined;
+  const email = normalizeWorkEmail(body.email);
+  if (name.length < 2 || company.length < 2 || !isIntent(intentRaw) || !email) return undefined;
   if (intentRaw === "other" && custom.length < 2) return undefined;
-
-  const contactKind = contactKindOf(contact);
-  if (!contactKind) return undefined;
 
   return {
     name,
     company,
     intent: intentRaw,
     intentLabel: intentRaw === "other" ? custom : INTENT_LABELS[intentRaw],
-    contact,
-    contactKind,
+    email,
   };
-}
-
-export function contactKindOf(value: string): "email" | "phone" | undefined {
-  const trimmed = value.trim();
-  if (EMAIL_PATTERN.test(trimmed) && trimmed.length <= 120) return "email";
-  const digits = trimmed.replace(/\D/g, "");
-  if (digits.length >= 8 && digits.length <= 15 && /^[+\d\s()./-]+$/.test(trimmed)) {
-    return "phone";
-  }
-  return undefined;
 }
 
 export function landingLeadMessage(
@@ -81,13 +70,13 @@ export function landingLeadMessage(
     `Nome: ${lead.name}`,
     `Azienda: ${lead.company}`,
     `Da portare nel gestionale: ${lead.intentLabel}`,
-    `Recapito: ${lead.contact}`,
+    `Email: ${lead.email}`,
     `Pagina: ${sourceUrl}`,
   ];
   if (oppref) lines.push(`Clic annuncio: ${oppref}`);
   return {
     subject,
     text: lines.join("\n"),
-    replyTo: lead.contactKind === "email" ? lead.contact : CONTACT.email,
+    replyTo: lead.email,
   };
 }
