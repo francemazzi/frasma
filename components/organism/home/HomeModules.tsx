@@ -15,7 +15,7 @@ import {
   WorkflowMock,
 } from "../productMocks";
 
-const NAMES = [6, 1, 2, 3, 4, 5] as const;
+const NAMES = [1, 2, 3, 4, 5, 6] as const;
 
 export default function HomeModules() {
   const t = useT();
@@ -24,16 +24,6 @@ export default function HomeModules() {
   const [index, setIndex] = useState(0);
 
   const slides = [
-    {
-      id: "customers",
-      name: t("home.modules.6.title"),
-      description: t("home.modules.6.short"),
-      background: (active: boolean) => (
-        <MockStage variant="mist" badge={working} active={active}>
-          <CustomersMock />
-        </MockStage>
-      ),
-    },
     {
       id: "orders",
       name: t("home.modules.1.title"),
@@ -81,6 +71,16 @@ export default function HomeModules() {
       background: (active: boolean) => (
         <MockStage variant="peach" badge={working} active={active}>
           <TicketsMock />
+        </MockStage>
+      ),
+    },
+    {
+      id: "customers",
+      name: t("home.modules.6.title"),
+      description: t("home.modules.6.short"),
+      background: (active: boolean) => (
+        <MockStage variant="mist" badge={working} active={active}>
+          <CustomersMock />
         </MockStage>
       ),
     },

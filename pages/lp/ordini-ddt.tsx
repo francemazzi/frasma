@@ -48,9 +48,9 @@ export default function OrdiniDdtLanding() {
       <main className="min-h-screen bg-paper font-sans" lang={lang}>
         <LandingHeader />
         <LandingIntro />
-        <HomeModules />
         <HomeExamples />
         <HomeAdoption />
+        <HomeModules />
         <HomeIntegrations />
         <HomeFaq />
         <LandingCallToAction />
