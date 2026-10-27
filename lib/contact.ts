@@ -9,12 +9,23 @@ export const CONTACT = {
 export const PHONE_HREF = `tel:${CONTACT.phoneE164}`;
 export const EMAIL_HREF = `mailto:${CONTACT.email}`;
 
-const WHATSAPP_PREFILL: Record<"it" | "en", string> = {
-  it: "Ciao Francesco, vorrei parlare di un processo da automatizzare.",
-  en: "Hi Francesco, I would like to talk about a process to automate.",
+export type WhatsappTopic = "generic" | "ddt";
+
+const WHATSAPP_PREFILL: Record<WhatsappTopic, Record<"it" | "en", string>> = {
+  generic: {
+    it: "Ciao Francesco, vorrei parlare di un processo da automatizzare.",
+    en: "Hi Francesco, I would like to talk about a process to automate.",
+  },
+  ddt: {
+    it: "Ciao Francesco, vorrei parlare dei DDT da portare nel nostro gestionale.",
+    en: "Hi Francesco, I would like to talk about getting our delivery notes into our ERP.",
+  },
 };
 
-export function whatsappHref(lang: "it" | "en" = "it"): string {
-  const text = encodeURIComponent(WHATSAPP_PREFILL[lang]);
+export function whatsappHref(
+  lang: "it" | "en" = "it",
+  topic: WhatsappTopic = "generic",
+): string {
+  const text = encodeURIComponent(WHATSAPP_PREFILL[topic][lang]);
   return `https://wa.me/${CONTACT.whatsappNumber}?text=${text}`;
 }

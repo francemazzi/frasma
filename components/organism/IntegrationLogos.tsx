@@ -2,6 +2,7 @@
 
 import { useT } from "../../lib/i18n/context";
 import {
+  INTEGRATION_LOGO_IMAGES_ENABLED,
   INTEGRATION_LOGOS,
   type IntegrationLogo,
 } from "../../lib/integrations/logos";
@@ -14,7 +15,7 @@ function LogoMark({
   logo: IntegrationLogo;
   decorative?: boolean;
 }) {
-  if (logo.src) {
+  if (INTEGRATION_LOGO_IMAGES_ENABLED && logo.src) {
     return (
       // SVGs stay local and keep their own viewBox; next/image is a poor fit.
       // eslint-disable-next-line @next/next/no-img-element
@@ -49,6 +50,23 @@ function LogoRow({
   );
 }
 
+export function IntegrationLogoRail() {
+  const t = useT();
+
+  return (
+    <div
+      className="integration-marquee"
+      role="region"
+      aria-label={t("integrations.railLabel")}
+    >
+      <div className="integration-marquee-track">
+        <LogoRow />
+        <LogoRow decorative />
+      </div>
+    </div>
+  );
+}
+
 export default function IntegrationLogos() {
   const t = useT();
 
@@ -67,16 +85,7 @@ export default function IntegrationLogos() {
         </Reveal>
       </div>
 
-      <div
-        className="integration-marquee"
-        role="region"
-        aria-label={t("integrations.railLabel")}
-      >
-        <div className="integration-marquee-track">
-          <LogoRow />
-          <LogoRow decorative />
-        </div>
-      </div>
+      <IntegrationLogoRail />
     </section>
   );
 }

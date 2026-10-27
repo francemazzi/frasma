@@ -323,3 +323,65 @@ describe("request process assessment API", () => {
     expect(submitProjectBrief).toHaveBeenCalledTimes(2);
   });
 });
+
+describe("request process assessment API attribution", () => {
+  beforeEach(() => {
+    submitProjectBrief.mockReset();
+    submitProjectBrief.mockResolvedValue({ leadId: undefined });
+    inferLeadSource.mockClear();
+  });
+
+  it("passes attribution fields through to submitProjectBrief", async () => {
+    const attribution = {
+      landingPath: "/ddt",
+      utmSource: "chatgpt",
+      utmMedium: "ads",
+      utmCampaign: "ddt-2026",
+      utmContent: "variant-a",
+    };
+    const { response, state } = createResponse();
+    await handler(
+      request(
+        "POST",
+        {
+          ...validBrief,
+          clientEmail: "ada.ads@example.com",
+          lang: "it",
+          ...attribution,
+        },
+        "198.51.100.30",
+      ),
+      response,
+    );
+
+    expect(state.status).toBe(200);
+    expect(state.body).toEqual({ ok: true });
+    expect(submitProjectBrief).toHaveBeenCalledWith(
+      expect.objectContaining({
+        clientEmail: "ada.ads@example.com",
+        ...attribution,
+      }),
+      "form",
+    );
+  });
+
+  it("rejects a landing path that is not a site path", async () => {
+    const { response, state } = createResponse();
+    await handler(
+      request(
+        "POST",
+        {
+          ...validBrief,
+          clientEmail: "ada.badpath@example.com",
+          landingPath: "https://evil.example/",
+        },
+        "198.51.100.31",
+      ),
+      response,
+    );
+
+    expect(state.status).toBe(400);
+    expect(state.body).toEqual({ ok: false, error: "invalid" });
+    expect(submitProjectBrief).not.toHaveBeenCalled();
+  });
+});

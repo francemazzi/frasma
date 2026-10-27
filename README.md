@@ -55,6 +55,10 @@ SMTP_PASS=your_gmail_app_password
 # Notion: inbound leads go to ricerca_clienti (Frasma view)
 # NOTION_TOKEN=ntn_your_integration_token
 # NOTION_LEADS_DATABASE_ID=32e90196-c414-80b3-9a53-c00ffe4019c9
+
+# OpenAI Ads Measurement Pixel (ChatGPT Ads conversions). Public, inlined at build
+# time: set it in Vercel before the deploy that should carry the pixel.
+# NEXT_PUBLIC_OAI_PIXEL_ID=your_pixel_id
 ```
 
 Notes:

@@ -74,10 +74,30 @@ export const ProjectBriefFieldsSchema = z.object({
 
 export type ProjectBriefFields = z.infer<typeof ProjectBriefFieldsSchema>;
 
+// Captured on the client by lib/attribution.ts and sent with every brief so
+// the lead carries its acquisition channel (see lib/leads/channel.ts).
+export const LeadAttributionSchema = z.object({
+  // A site path only, never a full URL; "" becomes undefined like the rest.
+  landingPath: z
+    .string()
+    .trim()
+    .max(200)
+    .regex(/^(\/[^\s]*)?$/)
+    .transform((value) => value || undefined)
+    .optional(),
+  utmSource: optionalText(100),
+  utmMedium: optionalText(100),
+  utmCampaign: optionalText(100),
+  utmContent: optionalText(100),
+});
+
+export type LeadAttribution = z.infer<typeof LeadAttributionSchema>;
+
 export const ProcessAssessmentSchema = ProjectBriefFieldsSchema.extend({
   conversationId: optionalText(36),
   lang: z.enum(["it", "en"]).optional(),
   honeypot: z.string().max(0).optional(),
+  ...LeadAttributionSchema.shape,
 }).strict();
 
 export type ProcessAssessment = z.infer<typeof ProcessAssessmentSchema>;

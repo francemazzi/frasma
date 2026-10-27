@@ -1,4 +1,11 @@
 import type { LeadSource, ProcessAssessment } from "../processAssessment";
+import {
+  describeChannel,
+  deriveLeadChannel,
+  hasAttribution,
+  landingUrl,
+  type LeadChannel,
+} from "./channel";
 
 export const RICERCA_CLIENTI_DATABASE_ID =
   "32e90196-c414-80b3-9a53-c00ffe4019c9";
@@ -15,7 +22,13 @@ export type NotionLeadPage = {
 export type NotionLeadInput = ProcessAssessment & {
   source: LeadSource;
   leadId?: string;
+  /** Defaults to the channel derived from the source and utm attribution. */
+  channel?: LeadChannel;
 };
+
+function resolveChannel(input: NotionLeadInput): LeadChannel {
+  return input.channel ?? deriveLeadChannel(input, input.source);
+}
 
 function singleLine(value: string): string {
   return value.replace(/[\r\n]+/g, " ").trim();
@@ -55,6 +68,8 @@ export function buildRicercaClientiDescription(input: NotionLeadInput): string {
   return clip(
     [
       `Fonte: ${sourceLabel}`,
+      `Canale: ${describeChannel(resolveChannel(input), "it")}`,
+      hasAttribution(input) ? `Landing: ${landingUrl(input)}` : undefined,
       `Nome: ${singleLine(input.name)}`,
       `Email: ${input.clientEmail}`,
       `Ruolo: ${valueOrDash(input.role)}`,
@@ -113,13 +128,18 @@ export function buildRicercaClientiProperties(input: NotionLeadInput): Record<
       select: { name: "no" },
     },
     "Modalità primo contatto": {
-      multi_select: [{ name: "email dal sito" }],
+      multi_select: [
+        { name: "email dal sito" },
+        ...(resolveChannel(input) === "chatgpt_ads"
+          ? [{ name: "annuncio ChatGPT" }]
+          : []),
+      ],
     },
     "Data primo contatto": {
       date: { start: todayDate() },
     },
     url: {
-      url: "https://www.frasma.org",
+      url: landingUrl(input),
     },
   };
 

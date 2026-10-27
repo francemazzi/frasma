@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  INTEGRATION_LOGO_IMAGES_ENABLED,
   INTEGRATION_LOGOS,
   hasForbiddenIntegrationLogo,
   integrationLogoIds,
@@ -22,6 +23,10 @@ describe("INTEGRATION_LOGOS", () => {
     expect(
       INTEGRATION_LOGOS.some((logo) => /bitlam|fullwork|btram/i.test(logo.name)),
     ).toBe(false);
+  });
+
+  it("keeps third-party marks as names until there is a written license", () => {
+    expect(INTEGRATION_LOGO_IMAGES_ENABLED).toBe(false);
   });
 
   it("gives Gesco a typographic wordmark instead of an image", () => {

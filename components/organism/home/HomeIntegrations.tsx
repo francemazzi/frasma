@@ -3,6 +3,7 @@
 import { useT } from "../../../lib/i18n/context";
 import { Reveal } from "../../atoms/Reveal";
 import Link from "next/link";
+import { IntegrationLogoRail } from "../IntegrationLogos";
 
 export default function HomeIntegrations() {
   const t = useT();
@@ -14,7 +15,13 @@ export default function HomeIntegrations() {
           <h2 className="ed-title">{t("home.integrations.title")}</h2>
           <p className="ed-intro mt-6">{t("home.integrations.text")}</p>
         </Reveal>
+      </div>
 
+      <div className="mt-10 sm:mt-12">
+        <IntegrationLogoRail />
+      </div>
+
+      <div className="section-farm">
         <div className="mt-8">
           <Link href="#contatti" className="btn-ink">
             {t("home.integrations.cta")}

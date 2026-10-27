@@ -255,3 +255,126 @@ describe("submitProjectBrief", () => {
     );
   });
 });
+
+describe("submitProjectBrief attribution", () => {
+  const chatgptBrief = {
+    ...brief,
+    landingPath: "/ddt",
+    utmSource: "chatgpt",
+    utmMedium: "ads",
+    utmCampaign: "ddt-2026",
+    utmContent: "variant-a",
+  };
+  const visitor = {
+    id: "user-4",
+    email: "ada@example.com",
+    name: "Ada Lovelace",
+    company: "Analytical Engines",
+    sector: "unspecified",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+
+  beforeEach(() => {
+    deliverNotificationEmail.mockClear();
+    upsertVisitor.mockReset();
+    logConversionEvent.mockReset();
+    getMongoDb.mockReset();
+    createRicercaClientiLead.mockClear();
+    isMongoConfigured.mockReturnValue(false);
+  });
+
+  it("stores the channel and attribution on the lead and conversion event", async () => {
+    isMongoConfigured.mockReturnValue(true);
+    upsertVisitor.mockResolvedValue({ visitor, created: true });
+    const insertOne = vi.fn<
+      (document: Record<string, unknown>) => Promise<{ acknowledged: boolean }>
+    >(async () => ({ acknowledged: true }));
+    getMongoDb.mockResolvedValue({ collection: () => ({ insertOne }) });
+
+    await submitProjectBrief(chatgptBrief, "form");
+
+    const attribution = {
+      landingPath: "/ddt",
+      utmSource: "chatgpt",
+      utmMedium: "ads",
+      utmCampaign: "ddt-2026",
+      utmContent: "variant-a",
+    };
+    expect(insertOne).toHaveBeenCalledWith(
+      expect.objectContaining({
+        source: "form",
+        channel: "chatgpt_ads",
+        ...attribution,
+      }),
+    );
+    expect(logConversionEvent).toHaveBeenCalledWith(
+      undefined,
+      "project_brief_submitted",
+      expect.objectContaining({
+        source: "form",
+        channel: "chatgpt_ads",
+        landingPath: "/ddt",
+        utmSource: "chatgpt",
+        utmCampaign: "ddt-2026",
+        utmContent: "variant-a",
+      }),
+      expect.objectContaining({ userId: "user-4" }),
+    );
+    expect(createRicercaClientiLead).toHaveBeenCalledWith(
+      expect.objectContaining({
+        source: "form",
+        channel: "chatgpt_ads",
+        ...attribution,
+      }),
+    );
+    expect(deliverNotificationEmail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        subject: expect.stringContaining("(annuncio ChatGPT)"),
+      }),
+    );
+  });
+
+  it("omits absent attribution keys and derives the channel from the source", async () => {
+    isMongoConfigured.mockReturnValue(true);
+    upsertVisitor.mockResolvedValue({ visitor, created: false });
+    const insertOne = vi.fn<
+      (document: Record<string, unknown>) => Promise<{ acknowledged: boolean }>
+    >(async () => ({ acknowledged: true }));
+    getMongoDb.mockResolvedValue({ collection: () => ({ insertOne }) });
+
+    await submitProjectBrief(brief, "chat");
+
+    const stored = insertOne.mock.calls[0]?.[0] ?? {};
+    expect(stored.channel).toBe("chat");
+    for (const key of [
+      "landingPath",
+      "utmSource",
+      "utmMedium",
+      "utmCampaign",
+      "utmContent",
+    ]) {
+      expect(stored).not.toHaveProperty(key);
+    }
+    expect(logConversionEvent).toHaveBeenCalledWith(
+      undefined,
+      "project_brief_submitted",
+      expect.not.objectContaining({ landingPath: expect.anything() }),
+      expect.objectContaining({ userId: "user-4" }),
+    );
+    expect(createRicercaClientiLead).toHaveBeenCalledWith(
+      expect.objectContaining({ source: "chat", channel: "chat" }),
+    );
+  });
+
+  it("passes the channel to Notion even without MongoDB", async () => {
+    await submitProjectBrief(
+      { ...brief, utmSource: "linkedin", utmMedium: "cpc" },
+      "form",
+    );
+
+    expect(createRicercaClientiLead).toHaveBeenCalledWith(
+      expect.objectContaining({ channel: "paid_other", leadId: undefined }),
+    );
+  });
+});

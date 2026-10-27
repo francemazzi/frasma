@@ -31,11 +31,15 @@ import {
   relatedEntries,
 } from "../../lib/knowledge";
 import OperationsSystemExamples from "./OperationsSystemExamples";
+import DdtLanding from "./ddt-landing/DdtLanding";
+import { campaignLandingFor } from "../../lib/campaign";
 import type { LocalizedKnowledgeEntry } from "../../lib/knowledge";
 import {
+  absoluteUrl,
   breadcrumbJsonLd,
   caseStudyJsonLd,
   faqPageJsonLd,
+  howToJsonLd,
   professionalServiceJsonLd,
   serviceJsonLd,
   videoObjectJsonLd,
@@ -125,13 +129,59 @@ export default function CatalogLanding({ lookup }: Props) {
     jsonLd.push(faqPageJsonLd(faqs));
   }
 
+  const landing = campaignLandingFor(entry.id);
+
   if (extras?.videoUrl && extras.videoTitle) {
     jsonLd.push(
       videoObjectJsonLd({
         name: extras.videoTitle[lang],
         description,
         url: extras.videoUrl,
+        ...(landing?.video
+          ? {
+              embedUrl: `https://www.youtube-nocookie.com/embed/${landing.video.youtubeId}`,
+              thumbnailUrl: `https://i.ytimg.com/vi/${landing.video.youtubeId}/hqdefault.jpg`,
+            }
+          : {}),
       }),
+    );
+  }
+
+  if (landing) {
+    jsonLd.push(
+      howToJsonLd({
+        name: entry.title[lang],
+        description,
+        url: absoluteUrl(path),
+        steps: landing.howItWorks.map((step) => ({
+          name: step.title[lang],
+          text: step.body[lang],
+        })),
+      }),
+    );
+
+    return (
+      <>
+        <Seo title={title} description={description} path={path} jsonLd={jsonLd} />
+
+        <main className="min-h-screen bg-paper font-sans text-ink">
+          <Header />
+          <DdtLanding
+            entry={entry}
+            landing={landing}
+            extras={extras}
+            articles={articles}
+            faqs={faqs}
+            related={related.map((item) => ({
+              href: canonicalPath(item),
+              title: item.title[lang],
+              summary: item.summary[lang],
+            }))}
+            lang={lang}
+          />
+          <Footer />
+        </main>
+      </>
     );
   }
 

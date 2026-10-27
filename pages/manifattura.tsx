@@ -265,17 +265,17 @@ type CtaVariant = {
 
 const ctaVariants: Record<CtaVariantKey, CtaVariant> = {
   a: {
-    finalPrimary: "Prenota analisi gratuita",
+    finalPrimary: "Richiedi la verifica di fattibilità",
     finalMicrocopy:
       "Porta un processo reale: in 30 minuti identifichiamo colli di bottiglia, priorita e prossimo passo operativo.",
   },
   b: {
-    finalPrimary: "Blocca la tua call di 30 minuti",
+    finalPrimary: "Richiedi la verifica di fattibilità",
     finalMicrocopy:
       "Confronto operativo sul tuo caso: usciamo con una direzione pratica, non con una proposta generica.",
   },
   c: {
-    finalPrimary: "Richiedi analisi sul tuo caso",
+    finalPrimary: "Richiedi la verifica di fattibilità",
     finalMicrocopy:
       "Analizziamo un flusso reale e definiamo dove intervenire prima, con impatto misurabile.",
   },

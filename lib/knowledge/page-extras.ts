@@ -98,6 +98,23 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "AI can structure emails, PDFs, and tables; a person verifies the facts before data enter the ERP or an official register. There is no universal price list, and we do not delegate blind imports.",
         ),
       },
+      {
+        question: text(
+          "Cosa succede dopo il contatto?",
+          "What happens after you get in touch?",
+        ),
+        answer: text(
+          "Francesco risponde via email, poi una call di 20 minuti per capire volumi, gestionale e chi valida i dati. Segue una verifica di fattibilità su un campione di DDT reali e, se regge, una proposta di progetto con il perimetro.",
+          "Francesco replies by email, then a 20-minute call to understand volumes, the ERP and who validates data. A feasibility check on a sample of real delivery notes follows and, if it holds, a project proposal with the scope.",
+        ),
+      },
+      {
+        question: text("Quanto costa?", "How much does it cost?"),
+        answer: text(
+          "Il preventivo si costruisce sul perimetro: un progetto una tantum (sviluppo, configurazione sul tracciato del vostro ERP, collaudo, formazione di base) più una manutenzione mensile con ore di assistenza incluse. Le cifre si vedono in call dopo la verifica di fattibilità, non via email né tramite agenti.",
+          "The quote is built on the scope: a one-off project (development, configuration on your ERP layout, acceptance test, basic training) plus a monthly maintenance with support hours included. Figures are shown in a call after the feasibility check, not by email nor through agents.",
+        ),
+      },
     ],
   },
   "workflow-procedures": {
