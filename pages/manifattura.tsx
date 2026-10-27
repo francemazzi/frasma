@@ -369,7 +369,16 @@ export default function ManifatturaPage() {
               In una lavorazione meccanica, la preventivazione dipendeva da
               fogli Excel complessi e passaggi tra reparti. Abbiamo
               centralizzato dati tecnici e logica di calcolo in un flusso
-              guidato, riducendo tempi, errori e dipendenza da file locali.
+              guidato, riducendo tempi, errori e dipendenza da file locali. Il
+              problema sul banco — disegno, tempi, conferma prima dell&apos;invio
+              — è nella guida sul{" "}
+              <Link
+                href="/blog/software-preventivi-lavorazioni-meccaniche"
+                className="text-sage-700 underline-offset-2 hover:underline"
+              >
+                software preventivi lavorazioni meccaniche
+              </Link>
+              .
             </p>
             <a
               href="#progetti"

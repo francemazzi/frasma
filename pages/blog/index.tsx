@@ -52,15 +52,15 @@ export default function Blog({ posts }: BlogIndexProps) {
         <section className="section-farm py-16">
           <h1 className="text-4xl font-medium text-farm-text mb-6">Blog</h1>
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
-            L&apos;ultimo approfondimento riguarda la{" "}
+            L&apos;ultimo approfondimento riguarda il{" "}
             <Link
-              href="/blog/lettura-automatica-ddt"
+              href="/blog/software-preventivi-lavorazioni-meccaniche"
               className="text-accent underline-offset-2 hover:underline"
             >
-              lettura automatica dei DDT
+              software per i preventivi di lavorazioni meccaniche
             </Link>
-            : campi da estrarre da PDF o email, controllo umano e limiti prima
-            dell&apos;import nel gestionale.
+            : dal disegno (PDF, DXF, STEP) a tempi, materiale e prezzo, con
+            conferma umana prima dell&apos;invio.
           </p>
 
           <PostList posts={posts} />

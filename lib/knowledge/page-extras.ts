@@ -216,6 +216,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "Automatic reading of delivery notes: what to extract and who confirms",
         ),
       },
+      {
+        path: "/blog/software-preventivi-lavorazioni-meccaniche",
+        title: text(
+          "Software preventivi lavorazioni meccaniche: dal disegno al prezzo",
+          "Machining quotation software: from the drawing to the price",
+        ),
+      },
     ],
   },
   "industrial-maintenance-case": {

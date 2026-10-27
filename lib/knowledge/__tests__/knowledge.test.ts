@@ -242,6 +242,9 @@ describe("markdownForPath", () => {
     expect(study).toContain(
       "https://www.frasma.org/blog/lettura-automatica-ddt",
     );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/software-preventivi-lavorazioni-meccaniche",
+    );
   });
 
   it("returns English markdown when locale is en", () => {

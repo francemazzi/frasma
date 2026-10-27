@@ -53,6 +53,8 @@ Se il codice è nuovo, la sequenza è questa.
 3. **Una persona dell'ufficio tecnico conferma** codici e quantità. I dubbi restano aperti finché qualcuno non li chiude. Le conferme restano: la volta dopo la proposta è più stretta sui casi già visti.
 4. **Solo dopo si creano anagrafica e distinta** nel gestionale già in uso. Un minuto a codice, quando la lista è vera. Prima no.
 
+Quando i particolari ci sono già e manca il prezzo — tempi, materiale, offerta da mandare — il lavoro è un altro: sta in [software preventivi lavorazioni meccaniche](/blog/software-preventivi-lavorazioni-meccaniche).
+
 ## Questa settimana
 
 Prendi una commessa vera, meglio se il cliente ha mandato solo l'assieme. Sul tavolo tieni tre pile: ordine, modello, disegno quotato. Conta quanti particolari non hanno un disegno proprio, e quanti minuti servono — solo dopo — per creare il codice. Se la settimana sta nella prima colonna, il problema è la scomposizione. L'import è il passo corto, in fondo.
