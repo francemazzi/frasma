@@ -16,6 +16,9 @@ export const HARNESS_OFFICINA_SLUG =
 
 export const DDT_READING_SLUG = "lettura-automatica-ddt";
 
+export const MACHINING_QUOTES_SLUG =
+  "software-preventivi-lavorazioni-meccaniche";
+
 const DDT_READING_FAQS = [
   {
     question: "La lettura automatica dei DDT sostituisce chi registra i documenti?",
@@ -69,6 +72,34 @@ const HARNESS_OFFICINA_FAQS = [
     question: "L’AI impara da sola dai nostri errori?",
     answer:
       "Solo se lasciate una lezione da qualche parte. Una correzione in chat muore con quella risposta. Un taccuino, una procedura o una prova automatica restano. Senza quella memoria, ogni documento riparte da zero.",
+  },
+];
+
+const MACHINING_QUOTES_FAQS = [
+  {
+    question: "Un software di preventivi sostituisce chi fa le offerte?",
+    answer:
+      "No. Sostituisce il copia-incolla sui pezzi già visti e sui campi leggibili. Chi quota continua a confermare, a gestire le eccezioni e a decidere il margine. La responsabilità del prezzo mandato al cliente resta umana.",
+  },
+  {
+    question: "Si può partire da PDF, DXF e STEP insieme?",
+    answer:
+      "Sì, tenendoli separati. Il PDF porta quote e note. Lo STEP porta la forma. Il DXF, se c'è, porta geometria 2D. Trattarli come un unico file da importare butta via la parte che decide il ciclo. Si prova sui vostri disegni, non si promette lo stesso risultato su una scansione storta e su uno STEP pulito.",
+  },
+  {
+    question: "I prezzi finiscono da soli nel gestionale o in mail al cliente?",
+    answer:
+      "No. Il sistema propone tempi, materiale e prezzo. Una persona conferma. Poi si scrive l'offerta. Se il lavoro viene accettato, si importa nel gestionale già in uso, sul tracciato che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce Mago, TeamSystem o Danea.",
+  },
+  {
+    question: "Cosa si fa se il tempo o il materiale non sono chiari?",
+    answer:
+      "Si marca «da verificare». Non si completa a indovinare. Il disegno e, se c'è, il ciclo precedente restano agganciati alla riga, così chi controlla vede la fonte.",
+  },
+  {
+    question: "Da dove si parte, in pratica?",
+    answer:
+      "Da un insieme piccolo di richieste reali e dall'elenco di ciò che già mettete in offerta: materiale, operazioni, minuti, prezzo. Si misura cosa la proposta indovina e cosa no. Si tiene la persona nel punto di conferma. Si decide se allargare.",
   },
 ];
 
@@ -161,6 +192,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === DDT_READING_SLUG) {
     return [faqPageJsonLd(DDT_READING_FAQS), ddtErpServiceJsonLd()];
+  }
+
+  if (slug === MACHINING_QUOTES_SLUG) {
+    return [faqPageJsonLd(MACHINING_QUOTES_FAQS)];
   }
 
   return [];
