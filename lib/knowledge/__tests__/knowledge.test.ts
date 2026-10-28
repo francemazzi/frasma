@@ -245,6 +245,17 @@ describe("markdownForPath", () => {
     expect(study).toContain(
       "https://www.frasma.org/blog/software-preventivi-lavorazioni-meccaniche",
     );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/gestionale-magazzino-excel",
+    );
+  });
+
+  it("links the warehouse Excel guide from operational apps", () => {
+    const apps = markdownForPath("/servizi/software-operativo");
+
+    expect(apps).toContain(
+      "https://www.frasma.org/blog/gestionale-magazzino-excel",
+    );
   });
 
   it("returns English markdown when locale is en", () => {
