@@ -16,10 +16,40 @@ export const HARNESS_OFFICINA_SLUG =
 
 export const DDT_READING_SLUG = "lettura-automatica-ddt";
 
+export const AUTOCAD_BOM_SLUG = "distinta-base-autocad";
+
 export const MACHINING_QUOTES_SLUG =
   "software-preventivi-lavorazioni-meccaniche";
 
 export const WAREHOUSE_EXCEL_SLUG = "gestionale-magazzino-excel";
+
+const AUTOCAD_BOM_FAQS = [
+  {
+    question: "DATAEXTRACTION produce già la distinta nel gestionale?",
+    answer:
+      "No. Produce una tabella o un file (XLSX, CSV, MDB, TXT). La distinta in anagrafica nasce dopo: una persona conferma le righe, poi si importa nel gestionale già in uso.",
+  },
+  {
+    question: "Funziona anche con AutoCAD LT?",
+    answer:
+      "DATAEXTRACTION no: Autodesk lo limita ad AutoCAD completo. In LT si usa ATTEXT, con un file di modello, verso un testo da aprire in Excel. Il controllo umano resta.",
+  },
+  {
+    question: "Cosa succede se i blocchi non hanno attributi?",
+    answer:
+      "Escono nome del blocco e proprietà grafiche, non un codice articolo. Quelle righe restano «da verificare». Non si completano a indovinare.",
+  },
+  {
+    question: "I dati finiscono da soli in Mago o TeamSystem?",
+    answer:
+      "No. L'export prepara il foglio. Una persona conferma. Poi si importa sul tracciato che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce Mago o TeamSystem.",
+  },
+  {
+    question: "Da dove si parte, se il cliente ha mandato solo il complessivo?",
+    answer:
+      "Dalla scomposizione, non dall'export. Se i particolari non esistono ancora, il lavoro è ricostruire la distinta dal disegno. DATAEXTRACTION serve quando i blocchi e gli attributi ci sono già.",
+  },
+];
 
 const DDT_READING_FAQS = [
   {
@@ -222,6 +252,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === DDT_READING_SLUG) {
     return [faqPageJsonLd(DDT_READING_FAQS), ddtErpServiceJsonLd()];
+  }
+
+  if (slug === AUTOCAD_BOM_SLUG) {
+    return [faqPageJsonLd(AUTOCAD_BOM_FAQS)];
   }
 
   if (slug === MACHINING_QUOTES_SLUG) {

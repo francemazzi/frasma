@@ -243,6 +243,9 @@ describe("markdownForPath", () => {
       "https://www.frasma.org/blog/lettura-automatica-ddt",
     );
     expect(study).toContain(
+      "https://www.frasma.org/blog/distinta-base-autocad",
+    );
+    expect(study).toContain(
       "https://www.frasma.org/blog/software-preventivi-lavorazioni-meccaniche",
     );
     expect(study).toContain(

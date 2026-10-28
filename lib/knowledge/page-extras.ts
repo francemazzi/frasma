@@ -243,6 +243,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         ),
       },
       {
+        path: "/blog/distinta-base-autocad",
+        title: text(
+          "Distinta base da AutoCAD: DATAEXTRACTION, Excel e gestionale",
+          "Bill of materials from AutoCAD: DATAEXTRACTION, Excel, and ERP",
+        ),
+      },
+      {
         path: "/blog/software-preventivi-lavorazioni-meccaniche",
         title: text(
           "Software preventivi lavorazioni meccaniche: dal disegno al prezzo",
