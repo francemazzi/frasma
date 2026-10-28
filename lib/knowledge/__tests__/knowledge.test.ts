@@ -245,6 +245,20 @@ describe("markdownForPath", () => {
     expect(study).toContain(
       "https://www.frasma.org/blog/distinta-base-autocad",
     );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/software-preventivi-lavorazioni-meccaniche",
+    );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/gestionale-magazzino-excel",
+    );
+  });
+
+  it("links the warehouse Excel guide from operational apps", () => {
+    const apps = markdownForPath("/servizi/software-operativo");
+
+    expect(apps).toContain(
+      "https://www.frasma.org/blog/gestionale-magazzino-excel",
+    );
   });
 
   it("returns English markdown when locale is en", () => {
@@ -339,5 +353,34 @@ describe("faqsForEntry extras", () => {
     expect(
       procedures.some((faq) => faq.answer.toLowerCase().includes("listino")),
     ).toBe(true);
+  });
+});
+
+describe("campaign landing content on the DDT service", () => {
+  it("appends the next-steps and pricing FAQs without moving the pinned ones", () => {
+    const ddt = faqsForEntry(getKnowledgeEntry("delivery-notes-to-erp")!, "it");
+    const questions = ddt.map((faq) => faq.question);
+
+    expect(questions[0]).toContain("Mago o TeamSystem");
+    expect(questions.some((q) => q.includes("Cosa succede dopo il contatto"))).toBe(true);
+    expect(questions.some((q) => q.includes("Quanto costa"))).toBe(true);
+    expect(questions.some((q) => q.includes("Delega la forma"))).toBe(true);
+    expect(ddt.length).toBeLessThanOrEqual(8);
+
+    const pricing = ddt.find((faq) => faq.question.includes("Quanto costa"));
+    expect(pricing?.answer).not.toMatch(/€|\d+\s*%/);
+    expect(pricing?.answer.toLowerCase()).toContain("in call");
+  });
+
+  it("exposes the next steps, quote model and needs in the agent markdown", () => {
+    const it = markdownForPath("/servizi/ddt-erp");
+    const en = markdownForPath("/servizi/ddt-erp", "en");
+
+    expect(it).toContain("## Cosa succede dopo il contatto");
+    expect(it).toContain("## Come si forma il preventivo");
+    expect(it).toContain("## Cosa serve da parte vostra");
+    expect(it).not.toMatch(/€/);
+    expect(en).toContain("## What happens after you get in touch");
+    expect(en).toContain("## How the quote is built");
   });
 });

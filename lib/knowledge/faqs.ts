@@ -2,6 +2,9 @@ import { knowledgeCatalog } from "./catalog";
 import { extrasForEntry, type PageFaq } from "./page-extras";
 import type { Locale, LocalizedKnowledgeEntry } from "./types";
 
+/** Campaign landings carry up to eight FAQs: custom ones first, then defaults. */
+export const MAX_FAQS = 8;
+
 export type ResolvedFaq = {
   question: string;
   answer: string;
@@ -73,7 +76,10 @@ export function faqsForEntry(
   locale: Locale,
 ): ResolvedFaq[] {
   const extras = extrasForEntry(entry.id)?.faqs ?? [];
-  const merged = uniqueFaqs([...extras, ...defaultFaqs(entry)]).slice(0, 6);
+  const merged = uniqueFaqs([...extras, ...defaultFaqs(entry)]).slice(
+    0,
+    MAX_FAQS,
+  );
 
   return merged.map((faq) => ({
     question: faq.question[locale],

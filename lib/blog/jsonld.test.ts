@@ -6,6 +6,8 @@ import {
   DDT_TUTORIAL_SLUG,
   ERP_AI_THESIS_SLUG,
   HARNESS_OFFICINA_SLUG,
+  MACHINING_QUOTES_SLUG,
+  WAREHOUSE_EXCEL_SLUG,
   extraJsonLdForBlogPost,
 } from "./jsonld";
 
@@ -81,6 +83,40 @@ describe("extraJsonLdForBlogPost", () => {
     expect(faqPage.mainEntity[0]?.name).toContain("DATAEXTRACTION");
     expect(extras[0]).not.toMatchObject({
       "@type": "Service",
+    });
+  });
+
+  it("adds FAQPage schema on the machining quotes guide", () => {
+    const extras = extraJsonLdForBlogPost(MACHINING_QUOTES_SLUG);
+
+    expect(extras).toHaveLength(1);
+    const faqPage = extras[0] as {
+      "@type": string;
+      mainEntity: Array<{ name: string }>;
+    };
+
+    expect(faqPage["@type"]).toBe("FAQPage");
+    expect(faqPage.mainEntity).toHaveLength(5);
+    expect(faqPage.mainEntity[0]?.name).toContain("software di preventivi");
+    expect(extras[0]).not.toMatchObject({
+      "@type": "HowTo",
+    });
+  });
+
+  it("adds FAQPage schema on the warehouse Excel guide", () => {
+    const extras = extraJsonLdForBlogPost(WAREHOUSE_EXCEL_SLUG);
+
+    expect(extras).toHaveLength(1);
+    const faqPage = extras[0] as {
+      "@type": string;
+      mainEntity: Array<{ name: string }>;
+    };
+
+    expect(faqPage["@type"]).toBe("FAQPage");
+    expect(faqPage.mainEntity).toHaveLength(5);
+    expect(faqPage.mainEntity[0]?.name).toContain("gestionale di magazzino");
+    expect(extras[0]).not.toMatchObject({
+      "@type": "HowTo",
     });
   });
 

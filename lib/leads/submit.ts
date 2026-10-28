@@ -15,6 +15,7 @@ import { getMongoDb, isMongoConfigured } from "../mongodb/client";
 import { LEADS_COLLECTION } from "../mongodb/collections";
 import { ensureChatIndexes } from "../mongodb/indexes";
 import type { LeadSource, ProcessAssessment } from "../processAssessment";
+import { deriveLeadChannel, type LeadChannel } from "./channel";
 import { createRicercaClientiLead } from "./notion";
 
 export { LEADS_COLLECTION };
@@ -23,6 +24,8 @@ export type LeadDocument = {
   _id: string;
   userId: string;
   source: LeadSource;
+  /** Acquisition channel derived from the source and utm attribution. */
+  channel: LeadChannel;
   conversationId?: string;
   name: string;
   clientEmail: string;
@@ -31,6 +34,11 @@ export type LeadDocument = {
   process: string;
   systems?: string;
   volume?: string;
+  landingPath?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
   createdAt: Date;
   updatedAt: Date;
   /** Retention deadline, extended on every later contact by touchRetention. */
@@ -41,9 +49,20 @@ export type SubmitProjectBriefResult = {
   leadId?: string;
 };
 
+function pickAttribution(input: ProcessAssessment) {
+  return {
+    ...(input.landingPath ? { landingPath: input.landingPath } : {}),
+    ...(input.utmSource ? { utmSource: input.utmSource } : {}),
+    ...(input.utmMedium ? { utmMedium: input.utmMedium } : {}),
+    ...(input.utmCampaign ? { utmCampaign: input.utmCampaign } : {}),
+    ...(input.utmContent ? { utmContent: input.utmContent } : {}),
+  };
+}
+
 async function persistProjectBrief(
   input: ProcessAssessment,
   source: LeadSource,
+  channel: LeadChannel,
 ): Promise<string | undefined> {
   if (!isMongoConfigured()) return undefined;
 
@@ -72,10 +91,12 @@ async function persistProjectBrief(
       ? input.conversationId
       : undefined;
 
+    const attribution = pickAttribution(input);
     const document: LeadDocument = {
       _id: leadId,
       userId: upserted.visitor.id,
       source,
+      channel,
       ...(conversationId ? { conversationId } : {}),
       name: input.name,
       clientEmail: normalizeVisitorEmail(input.clientEmail),
@@ -84,6 +105,7 @@ async function persistProjectBrief(
       process: input.process,
       ...(input.systems ? { systems: input.systems } : {}),
       ...(input.volume ? { volume: input.volume } : {}),
+      ...attribution,
       createdAt: now,
       updatedAt: now,
       expiresAt: buildExpiresAt(now),
@@ -97,7 +119,9 @@ async function persistProjectBrief(
       {
         leadId,
         source,
+        channel,
         processLength: input.process.length,
+        ...attribution,
       },
       {
         contactEmail: normalizeVisitorEmail(input.clientEmail),
@@ -122,7 +146,8 @@ export async function submitProjectBrief(
   source: LeadSource = inferLeadSource(input.conversationId),
 ): Promise<SubmitProjectBriefResult> {
   const lang = input.lang === "en" ? "en" : "it";
-  const email = buildProcessAssessmentEmail(input, { source, lang });
+  const channel = deriveLeadChannel(input, source);
+  const email = buildProcessAssessmentEmail(input, { source, lang, channel });
 
   await deliverNotificationEmail({
     to: getNotificationRecipient(),
@@ -132,7 +157,7 @@ export async function submitProjectBrief(
     text: email.text,
   });
 
-  const leadId = await persistProjectBrief(input, source);
-  await createRicercaClientiLead({ ...input, source, leadId });
+  const leadId = await persistProjectBrief(input, source, channel);
+  await createRicercaClientiLead({ ...input, source, channel, leadId });
   return { leadId };
 }

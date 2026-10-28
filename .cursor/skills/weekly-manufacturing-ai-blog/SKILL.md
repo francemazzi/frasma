@@ -37,6 +37,8 @@ Already covered — pick a different problem:
 - `distinta-da-disegno-non-e-un-carico` — assembling a BOM when the customer sends only the assembly
 - `ciclo-e-revisione-non-escono-dallo-step` — tolerances, revision and cycle are not in the STEP
 - `distinta-base-autocad` — AutoCAD DATAEXTRACTION / attributes → Excel → human check → ERP import
+- `software-preventivi-lavorazioni-meccaniche` — quoting machining jobs from the drawing (PDF/DXF/STEP), human check before send
+- `gestionale-magazzino-excel` — warehouse Excel as a control register, not as the ERP of record
 
 Also skip any topic listed in Memories from previous weekly runs.
 

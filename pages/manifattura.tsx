@@ -158,7 +158,15 @@ const casiTipici = [
     testo: (
       <>
         Il gestionale c&apos;e, ma la parte operativa si regge su{" "}
-        <strong>file locali, messaggi e passaggi manuali</strong>.
+        <strong>file locali, messaggi e passaggi manuali</strong>. Quando il
+        foglio è il magazzino, la guida è{" "}
+        <Link
+          href="/blog/gestionale-magazzino-excel"
+          className="text-sage-700 underline-offset-2 hover:underline"
+        >
+          gestionale magazzino Excel
+        </Link>
+        .
       </>
     ),
   },
@@ -265,17 +273,17 @@ type CtaVariant = {
 
 const ctaVariants: Record<CtaVariantKey, CtaVariant> = {
   a: {
-    finalPrimary: "Prenota analisi gratuita",
+    finalPrimary: "Richiedi la verifica di fattibilità",
     finalMicrocopy:
       "Porta un processo reale: in 30 minuti identifichiamo colli di bottiglia, priorita e prossimo passo operativo.",
   },
   b: {
-    finalPrimary: "Blocca la tua call di 30 minuti",
+    finalPrimary: "Richiedi la verifica di fattibilità",
     finalMicrocopy:
       "Confronto operativo sul tuo caso: usciamo con una direzione pratica, non con una proposta generica.",
   },
   c: {
-    finalPrimary: "Richiedi analisi sul tuo caso",
+    finalPrimary: "Richiedi la verifica di fattibilità",
     finalMicrocopy:
       "Analizziamo un flusso reale e definiamo dove intervenire prima, con impatto misurabile.",
   },
@@ -369,7 +377,16 @@ export default function ManifatturaPage() {
               In una lavorazione meccanica, la preventivazione dipendeva da
               fogli Excel complessi e passaggi tra reparti. Abbiamo
               centralizzato dati tecnici e logica di calcolo in un flusso
-              guidato, riducendo tempi, errori e dipendenza da file locali.
+              guidato, riducendo tempi, errori e dipendenza da file locali. Il
+              problema sul banco — disegno, tempi, conferma prima dell&apos;invio
+              — è nella guida sul{" "}
+              <Link
+                href="/blog/software-preventivi-lavorazioni-meccaniche"
+                className="text-sage-700 underline-offset-2 hover:underline"
+              >
+                software preventivi lavorazioni meccaniche
+              </Link>
+              .
             </p>
             <a
               href="#progetti"

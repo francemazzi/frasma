@@ -16,6 +16,7 @@ import {
 import { buildTimeoutFallbackResponse } from "../../lib/chat/timeout-fallback";
 import { renderChatMarkdown } from "../../lib/chat/markdown";
 import type { ProjectBriefFields } from "../../lib/processAssessment";
+import { readAttribution } from "../../lib/attribution";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -126,6 +127,7 @@ function InlineProjectBriefForm({
           honeypot,
           lang,
           ...(conversationId ? { conversationId } : {}),
+          ...(readAttribution() ?? {}),
         }),
       });
       const result = (await response.json().catch(() => null)) as

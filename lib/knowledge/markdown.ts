@@ -1,6 +1,7 @@
 import { CONTACT, whatsappHref } from "../contact";
 import { SITE_URL, SMITHERY_SERVER_URL } from "../seo";
 import { getFrasmaProfile, knowledgeCatalog } from "./catalog";
+import { campaignLandingFor } from "../campaign";
 import { faqsForEntry } from "./faqs";
 import { articlesForExtras, extrasForEntry } from "./page-extras";
 import { en as enCopy } from "../i18n/en";
@@ -109,6 +110,31 @@ export function entryMarkdown(
     }
 
     lines.push("", hubCopy(locale, "catalog.examples.also"));
+  }
+
+  const landing = campaignLandingFor(entry.id);
+  if (landing) {
+    const nextHeading =
+      locale === "it"
+        ? "Cosa succede dopo il contatto"
+        : "What happens after you get in touch";
+    lines.push(
+      "",
+      `## ${nextHeading}`,
+      "",
+      ...landing.nextSteps.map(
+        (step, index) =>
+          `${index + 1}. ${step.title[locale]}: ${step.body[locale]}`,
+      ),
+      "",
+      `## ${landing.quoteModel.title[locale]}`,
+      "",
+      bulletList(landing.quoteModel.bullets.map((item) => item[locale])),
+      "",
+      `## ${landing.needs.title[locale]}`,
+      "",
+      bulletList(landing.needs.items.map((item) => item[locale])),
+    );
   }
 
   lines.push(

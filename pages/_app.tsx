@@ -5,7 +5,9 @@ import Head from "next/head";
 import localFont from "next/font/local";
 import { Geist_Mono } from "next/font/google";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import WebMcpProvider from "../components/agent/WebMcpProvider";
+import { captureAttribution } from "../lib/attribution";
 import { LanguageProvider } from "../lib/i18n/context";
 
 const satoshi = localFont({
@@ -33,6 +35,10 @@ const HIDE_CHAT_PATHS = ["/manifattura", "/vibeup", "/lp/ordini-ddt"];
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const showChat = !HIDE_CHAT_PATHS.includes(router.pathname);
+
+  useEffect(() => {
+    captureAttribution();
+  }, []);
 
   return (
     <LanguageProvider>

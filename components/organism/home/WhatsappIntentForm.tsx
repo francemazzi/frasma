@@ -5,8 +5,10 @@ import { FIELD_LABEL_CLASS, INPUT_CLASS } from "../../atoms/formClasses";
 import { useLang, useT } from "../../../lib/i18n/context";
 import { buildWhatsappIntentHref } from "../../../lib/whatsappIntent";
 
-const LEAD_TRACKED_KEY = "frasma.lead_tracked";
-const LEAD_MARKER = "ordini-ddt";
+function emailLooksValid(value: string): boolean {
+  const email = value.trim().toLowerCase();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 120;
+}
 
 function readCookie(name: string): string {
   const prefix = `${name}=`;
@@ -19,53 +21,10 @@ function readCookie(name: string): string {
   }
 }
 
-function newEventId(): string {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
-    return crypto.randomUUID();
-  }
-  return `lead_${Date.now()}_${Math.random().toString(36).slice(2, 12)}`;
-}
-
-/**
- * Same lead, two paths: the pixel in the browser and the Conversions API on
- * the server. Both use this event id so OpenAI counts it once.
- */
-function measureLeadCreated() {
-  try {
-    if (window.sessionStorage.getItem(LEAD_TRACKED_KEY) === LEAD_MARKER) return;
-  } catch {
-    // Storage can be blocked. Still send the event for this click.
-  }
-
-  const eventId = newEventId();
-  const oppref = new URLSearchParams(window.location.search).get("oppref") || readCookie("__oppref");
-  const obref = readCookie("__obref");
-  void fetch("/api/measure-lead", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    keepalive: true,
-    body: JSON.stringify({
-      eventId,
-      sourceUrl: window.location.href,
-      ...(oppref ? { oppref } : {}),
-      ...(obref ? { obref } : {}),
-    }),
-  }).catch(() => undefined);
-
+function measureLeadCreated(eventId: string) {
   const pixel = (window as Window & { oaiq?: (...args: unknown[]) => void }).oaiq;
-  if (typeof pixel === "function") {
-    pixel(
-      "measure",
-      "lead_created",
-      { type: "customer_action" },
-      { event_id: eventId },
-    );
-  }
-  try {
-    window.sessionStorage.setItem(LEAD_TRACKED_KEY, LEAD_MARKER);
-  } catch {
-    // Ignore quota or privacy-mode errors.
-  }
+  if (typeof pixel !== "function") return;
+  pixel("measure", "lead_created", { type: "customer_action" }, { event_id: eventId });
 }
 
 const INTENTS = ["ddt", "quotes", "bom", "sheets", "other"] as const;
@@ -80,6 +39,7 @@ type FieldErrors = {
   company?: string;
   intent?: string;
   custom?: string;
+  email?: string;
 };
 
 export default function WhatsappIntentForm({ id }: Props) {
@@ -90,9 +50,22 @@ export default function WhatsappIntentForm({ id }: Props) {
   const [company, setCompany] = useState("");
   const [intent, setIntent] = useState<IntentId | "">("");
   const [custom, setCustom] = useState("");
+  const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  const intentLabel = intent
+    ? intent === "other"
+      ? custom
+      : t(`home.whatsapp.intent.${intent}`)
+    : "";
+  const whatsappHref = buildWhatsappIntentHref(lang, {
+    name,
+    company,
+    intentLabel,
+  });
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const next: FieldErrors = {};
     if (name.trim().length < 2) next.name = t("home.whatsapp.error.name");
@@ -101,17 +74,39 @@ export default function WhatsappIntentForm({ id }: Props) {
     if (intent === "other" && custom.trim().length < 2) {
       next.custom = t("home.whatsapp.error.custom");
     }
+    if (!emailLooksValid(email)) next.email = t("home.whatsapp.error.email");
     setErrors(next);
-    if (next.name || next.company || next.intent || next.custom || !intent) return;
+    if (next.name || next.company || next.intent || next.custom || next.email || !intent) return;
 
-    const href = buildWhatsappIntentHref(lang, {
-      name,
-      company,
-      intentLabel: intent === "other" ? custom : t(`home.whatsapp.intent.${intent}`),
-    });
-    measureLeadCreated();
-    const opened = window.open(href, "_blank", "noopener,noreferrer");
-    if (!opened) window.location.assign(href);
+    const formData = new FormData(event.currentTarget);
+    const website = formData.get("website");
+    setStatus("submitting");
+    const oppref = new URLSearchParams(window.location.search).get("oppref") || readCookie("__oppref");
+    try {
+      const response = await fetch("/api/landing-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          company,
+          intent,
+          custom,
+          email,
+          sourceUrl: window.location.href,
+          ...(oppref ? { oppref } : {}),
+          website: typeof website === "string" ? website : "",
+        }),
+      });
+      const payload = (await response.json()) as { ok?: boolean; eventId?: string };
+      if (!response.ok || !payload.ok) {
+        setStatus("error");
+        return;
+      }
+      if (payload.eventId) measureLeadCreated(payload.eventId);
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -205,14 +200,62 @@ export default function WhatsappIntentForm({ id }: Props) {
           ) : null}
         </div>
       ) : null}
-      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <button type="submit" className="btn-ink">
-          {t("home.whatsapp.submit")}
-        </button>
-        <p className="max-w-[42ch] text-[14px] leading-[1.5] text-ink-soft">
-          {t("home.whatsapp.note")}
-        </p>
+      <div className="mt-4 max-w-md">
+        <label htmlFor={`${uid}-email`} className={FIELD_LABEL_CLASS}>
+          {t("home.whatsapp.email")}
+        </label>
+        <input
+          id={`${uid}-email`}
+          name="email"
+          type="email"
+          autoComplete="email"
+          inputMode="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          aria-invalid={errors.email ? true : undefined}
+          aria-describedby={errors.email ? `${uid}-email-error` : undefined}
+          className={INPUT_CLASS}
+        />
+        {errors.email ? (
+          <p id={`${uid}-email-error`} className="mt-1 text-[13px] text-accent">
+            {errors.email}
+          </p>
+        ) : null}
       </div>
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute h-0 w-0 overflow-hidden opacity-0"
+        defaultValue=""
+      />
+      {status === "sent" ? (
+        <div className="mt-4">
+          <p className="text-[16px] font-medium text-ink">{t("home.whatsapp.success")}</p>
+          <p className="mt-2 max-w-[46ch] text-[14px] leading-[1.5] text-ink-soft">
+            {t("home.whatsapp.successNote")}
+          </p>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex text-[14px] font-medium text-ink underline-offset-4 hover:underline"
+          >
+            {t("home.whatsapp.secondary")}
+          </a>
+        </div>
+      ) : (
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <button type="submit" className="btn-ink" disabled={status === "submitting"}>
+            {status === "submitting" ? t("home.whatsapp.sending") : t("home.whatsapp.submit")}
+          </button>
+          <p className="max-w-[42ch] text-[14px] leading-[1.5] text-ink-soft">
+            {status === "error" ? t("home.whatsapp.error.send") : t("home.whatsapp.note")}
+          </p>
+        </div>
+      )}
     </form>
   );
 }

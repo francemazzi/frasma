@@ -1,5 +1,7 @@
+import { createHash } from "crypto";
 import { describe, expect, it, vi } from "vitest";
 import {
+  hashEmailForConversion,
   isEventId,
   landingSourceUrl,
   leadCreatedPayload,
@@ -15,6 +17,16 @@ const event = {
   ipAddress: "203.0.113.8",
   userAgent: "Mozilla/5.0",
 };
+
+describe("hashEmailForConversion", () => {
+  it("hashes the trimmed lowercase address and not the raw text", () => {
+    const hash = hashEmailForConversion("  Anna@Bianchi.it ");
+    expect(hash).toBe(
+      createHash("sha256").update("anna@bianchi.it", "utf8").digest("hex"),
+    );
+    expect(hash).not.toContain("Anna");
+  });
+});
 
 describe("leadCreatedPayload", () => {
   it("matches the Conversions API lead event", () => {
@@ -37,6 +49,17 @@ describe("leadCreatedPayload", () => {
         },
       ],
     });
+  });
+
+  it("sends the hashed email without the address", () => {
+    const payload = leadCreatedPayload({
+      ...event,
+      emailSha256: hashEmailForConversion("anna@bianchi.it"),
+    });
+    expect(payload.events[0].user).toMatchObject({
+      emails_sha256: [hashEmailForConversion("anna@bianchi.it")],
+    });
+    expect(JSON.stringify(payload)).not.toContain("anna@bianchi.it");
   });
 
   it("omits attribution fields that were not captured", () => {

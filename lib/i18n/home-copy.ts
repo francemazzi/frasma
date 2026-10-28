@@ -14,7 +14,7 @@ export const homeIt: Record<string, string> = {
   "home.lp.ogTitle": "Ordini, DDT e distinte nel gestionale. Senza ricopiarli a mano.",
   "home.lp.ogDescription":
     "Per l'ufficio tecnico, il magazzino e l'amministrazione. Il gestionale resta.",
-  "home.hero.cta": "Scrivimi su WhatsApp",
+  "home.hero.cta": "Richiedi la verifica",
   "home.hero.secondary": "Scopri come si integra",
   "home.hero.micro": "Si parte dal documento che oggi ricopiate più spesso. Il gestionale resta.",
   "home.hero.strip1": "Ordini e DDT letti da email e PDF",
@@ -204,7 +204,7 @@ export const homeIt: Record<string, string> = {
   "home.integrations.dataTitle": "Dati e infrastruttura",
   "home.integrations.data":
     "Valutiamo l’installazione e i servizi necessari in base ai dati e al processo. Prima dell’avvio definiamo accessi, eventuali servizi esterni, backup ed esportazione delle informazioni.",
-  "home.integrations.cta": "Scrivimi su WhatsApp",
+  "home.integrations.cta": "Richiedi la verifica",
 
   "home.faq.title": "Domande frequenti",
   "home.faq.q1": "Devo cambiare gestionale?",
@@ -235,11 +235,11 @@ export const homeIt: Record<string, string> = {
 
   "home.contact.title": "Scrivici cosa volete portare nel gestionale",
   "home.contact.text":
-    "Nome, azienda e il documento. Si apre WhatsApp con il messaggio già scritto: lo inviate voi.",
-  "home.contact.cta": "Apri WhatsApp",
+    "Nome, azienda, il documento e un'email. La richiesta arriva a Frasma e la risposta torna a quell'indirizzo.",
+  "home.contact.cta": "Invia la richiesta",
   "home.contact.secondary": "Scrivici",
   "home.contact.micro":
-    "Nel messaggio ci sono nome, azienda e cosa volete portare nel gestionale.",
+    "Nella richiesta ci sono nome, azienda, il processo e l'email.",
 
   "home.whatsapp.lead": "Nome, azienda e cosa volete portare nel gestionale.",
   "home.whatsapp.name": "Nome",
@@ -253,8 +253,15 @@ export const homeIt: Record<string, string> = {
   "home.whatsapp.intent.other": "Altro",
   "home.whatsapp.custom": "Scrivilo qui",
   "home.whatsapp.error.custom": "Scrivi cosa portare nel gestionale.",
-  "home.whatsapp.submit": "Apri WhatsApp",
-  "home.whatsapp.note": "Si apre WhatsApp con il messaggio già scritto. Lo inviate voi.",
+  "home.whatsapp.email": "Email",
+  "home.whatsapp.error.email": "Scrivi un'email.",
+  "home.whatsapp.submit": "Invia la richiesta",
+  "home.whatsapp.sending": "Invio in corso",
+  "home.whatsapp.note": "La richiesta arriva a Frasma. Rispondiamo a questa email, sul processo che indicate.",
+  "home.whatsapp.success": "Richiesta ricevuta.",
+  "home.whatsapp.successNote": "Rispondiamo a questa email. Guardiamo il processo che avete indicato e come sta nel gestionale.",
+  "home.whatsapp.secondary": "Preferisci scrivere su WhatsApp",
+  "home.whatsapp.error.send": "La richiesta non è partita. Riprovate tra poco.",
   "home.whatsapp.error.name": "Scrivi il nome.",
   "home.whatsapp.error.company": "Scrivi l'azienda.",
   "home.whatsapp.error.intent": "Scegli cosa portare nel gestionale.",
@@ -274,7 +281,7 @@ export const homeEn: Record<string, string> = {
   "home.lp.ogTitle": "Orders, delivery notes and BOMs into your ERP. Without retyping them.",
   "home.lp.ogDescription":
     "For the technical office, warehouse and admin. Your ERP stays.",
-  "home.hero.cta": "Message me on WhatsApp",
+  "home.hero.cta": "Request a check",
   "home.hero.secondary": "How integration works",
   "home.hero.micro": "Start with the document you retype most often. Your ERP stays.",
   "home.hero.strip1": "Orders and delivery notes read from email and PDF",
@@ -462,7 +469,7 @@ export const homeEn: Record<string, string> = {
   "home.integrations.dataTitle": "Data and infrastructure",
   "home.integrations.data":
     "We assess the installation and the services the data and the process need. Before go-live we define access, any external services, backup and export of the information.",
-  "home.integrations.cta": "Message me on WhatsApp",
+  "home.integrations.cta": "Request a check",
 
   "home.faq.title": "Common questions",
   "home.faq.q1": "Do I have to replace my ERP?",
@@ -492,11 +499,11 @@ export const homeEn: Record<string, string> = {
 
   "home.contact.title": "Tell us what you want in the ERP",
   "home.contact.text":
-    "Name, company and the document. WhatsApp opens with the message already written: you send it.",
-  "home.contact.cta": "Open WhatsApp",
+    "Name, company, the document and an email. The request reaches Frasma and the answer comes back to that address.",
+  "home.contact.cta": "Send the request",
   "home.contact.secondary": "Write to us",
   "home.contact.micro":
-    "The message includes your name, company and what you want in the ERP.",
+    "The request includes your name, company, the process and the email.",
 
   "home.whatsapp.lead": "Your name, company and what you want in the ERP.",
   "home.whatsapp.name": "Name",
@@ -510,8 +517,15 @@ export const homeEn: Record<string, string> = {
   "home.whatsapp.intent.other": "Other",
   "home.whatsapp.custom": "Write it here",
   "home.whatsapp.error.custom": "Write what should go into the ERP.",
-  "home.whatsapp.submit": "Open WhatsApp",
-  "home.whatsapp.note": "WhatsApp opens with the message already written. You send it.",
+  "home.whatsapp.email": "Email",
+  "home.whatsapp.error.email": "Enter an email.",
+  "home.whatsapp.submit": "Send the request",
+  "home.whatsapp.sending": "Sending",
+  "home.whatsapp.note": "The request reaches Frasma. We reply to this email, about the process you named.",
+  "home.whatsapp.success": "Request received.",
+  "home.whatsapp.successNote": "We reply to this email. We look at the process you named and how it sits in your ERP.",
+  "home.whatsapp.secondary": "Prefer to write on WhatsApp",
+  "home.whatsapp.error.send": "The request did not go through. Try again in a moment.",
   "home.whatsapp.error.name": "Enter your name.",
   "home.whatsapp.error.company": "Enter the company.",
   "home.whatsapp.error.intent": "Choose what should go into the ERP.",

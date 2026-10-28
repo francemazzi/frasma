@@ -52,15 +52,16 @@ export default function Blog({ posts }: BlogIndexProps) {
         <section className="section-farm py-16">
           <h1 className="text-4xl font-medium text-farm-text mb-6">Blog</h1>
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
-            L&apos;ultimo approfondimento riguarda la{" "}
+            L&apos;ultimo approfondimento riguarda il{" "}
             <Link
-              href="/blog/distinta-base-autocad"
+              href="/blog/gestionale-magazzino-excel"
               className="text-accent underline-offset-2 hover:underline"
             >
-              distinta base da AutoCAD
+              gestionale magazzino Excel
             </Link>
-            : attributi di blocco e DATAEXTRACTION verso Excel, controllo umano
-            e import nel gestionale già in uso.
+            : quando il foglio delle scorte basta, quando si rompe, e come
+            tenerlo come registro prima dell&apos;import nel gestionale già in
+            uso.
           </p>
 
           <PostList posts={posts} />

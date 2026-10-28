@@ -3,7 +3,9 @@ import { knowledgeCatalog } from "./knowledge/catalog";
 import { canonicalPath } from "./knowledge/paths";
 import type { Locale } from "./knowledge/types";
 
-export const SITE_URL = "https://www.frasma.org";
+import { SITE_URL } from "./site";
+
+export { SITE_URL };
 export const SITE_NAME = "Frasma";
 export const SITEMAP_URL = `${SITE_URL}/sitemap.xml`;
 export const FEED_URL = `${SITE_URL}/feed.xml`;
@@ -256,13 +258,18 @@ export function videoObjectJsonLd(input: {
   name: string;
   description: string;
   url: string;
+  embedUrl?: string;
+  thumbnailUrl?: string;
+  uploadDate?: string;
 }) {
   return {
     "@type": "VideoObject",
     name: input.name,
     description: input.description,
     url: input.url,
-    embedUrl: input.url,
+    embedUrl: input.embedUrl ?? input.url,
+    ...(input.thumbnailUrl ? { thumbnailUrl: input.thumbnailUrl } : {}),
+    ...(input.uploadDate ? { uploadDate: input.uploadDate } : {}),
     publisher: {
       "@id": `${SITE_URL}/#business`,
     },

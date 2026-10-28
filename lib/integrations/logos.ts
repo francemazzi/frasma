@@ -1,3 +1,10 @@
+/**
+ * Third-party marks stay hidden until there is a written brand license
+ * or a partner-kit asset. The marquee shows the product name only.
+ * Flip this when that written clearance exists for a given mark.
+ */
+export const INTEGRATION_LOGO_IMAGES_ENABLED = false;
+
 export type IntegrationLogoKind = "erp" | "cad";
 
 export type IntegrationLogo = {

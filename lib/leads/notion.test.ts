@@ -133,3 +133,74 @@ describe("ricerca_clienti Notion mapping", () => {
     ).resolves.toBeUndefined();
   });
 });
+
+describe("ricerca_clienti attribution", () => {
+  const chatgptLead = {
+    ...brief,
+    source: "form" as const,
+    channel: "chatgpt_ads" as const,
+    landingPath: "/ddt",
+    utmSource: "chatgpt",
+    utmMedium: "ads",
+    utmCampaign: "ddt-2026",
+    utmContent: "variant-a",
+  };
+  const chatgptUrl =
+    "https://www.frasma.org/ddt?utm_source=chatgpt&utm_medium=ads&utm_campaign=ddt-2026&utm_content=variant-a";
+
+  it("tags ChatGPT ad leads and links the landing url", () => {
+    const properties = buildRicercaClientiProperties(chatgptLead);
+
+    expect(properties["Modalità primo contatto"]).toEqual({
+      multi_select: [{ name: "email dal sito" }, { name: "annuncio ChatGPT" }],
+    });
+    expect(properties.url).toEqual({ url: chatgptUrl });
+
+    const description = buildRicercaClientiDescription(chatgptLead);
+    expect(description).toContain(
+      `Fonte: Form landing\nCanale: annuncio ChatGPT\nLanding: ${chatgptUrl}\nNome:`,
+    );
+  });
+
+  it("derives the channel when the caller does not pass one", () => {
+    const { channel: _channel, ...withoutChannel } = chatgptLead;
+
+    expect(
+      buildRicercaClientiProperties(withoutChannel)["Modalità primo contatto"],
+    ).toEqual({
+      multi_select: [{ name: "email dal sito" }, { name: "annuncio ChatGPT" }],
+    });
+  });
+
+  it("keeps plain leads on the site url with a single contact mode", () => {
+    const plainLead = { ...brief, source: "chat" as const, channel: "chat" as const };
+    const properties = buildRicercaClientiProperties(plainLead);
+
+    expect(properties["Modalità primo contatto"]).toEqual({
+      multi_select: [{ name: "email dal sito" }],
+    });
+    expect(properties.url).toEqual({ url: "https://www.frasma.org" });
+
+    const description = buildRicercaClientiDescription(plainLead);
+    expect(description).toContain("Fonte: Chat\nCanale: chat\nNome:");
+    expect(description).not.toContain("Landing:");
+  });
+
+  it("links the landing page for other paid channels", () => {
+    const properties = buildRicercaClientiProperties({
+      ...brief,
+      source: "form",
+      channel: "paid_other",
+      landingPath: "/manifattura",
+      utmSource: "linkedin",
+      utmMedium: "paid_social",
+    });
+
+    expect(properties["Modalità primo contatto"]).toEqual({
+      multi_select: [{ name: "email dal sito" }],
+    });
+    expect(properties.url).toEqual({
+      url: "https://www.frasma.org/manifattura?utm_source=linkedin&utm_medium=paid_social",
+    });
+  });
+});

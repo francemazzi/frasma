@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { buildProcessAssessmentEmail } from "./email/processAssessment";
-import { ProcessAssessmentSchema } from "./processAssessment";
+import {
+  LeadAttributionSchema,
+  ProcessAssessmentSchema,
+  ProjectBriefToolSchema,
+} from "./processAssessment";
 
 const validAssessment = {
   name: "Ada Lovelace",
@@ -157,5 +161,153 @@ describe("buildProcessAssessmentEmail", () => {
 
     expect(email.subject).toBe("Valutazione processo — Ada Lovelace");
     expect(email.text).toContain("Azienda: —");
+  });
+});
+
+describe("LeadAttributionSchema", () => {
+  const attribution = {
+    landingPath: "/ddt",
+    utmSource: "chatgpt",
+    utmMedium: "ads",
+    utmCampaign: "ddt-2026",
+    utmContent: "variant-a",
+  };
+
+  it("accepts attribution fields on a brief", () => {
+    expect(LeadAttributionSchema.parse(attribution)).toEqual(attribution);
+    expect(
+      ProcessAssessmentSchema.parse({ ...validAssessment, ...attribution }),
+    ).toMatchObject(attribution);
+  });
+
+  it("turns empty attribution strings into undefined", () => {
+    expect(
+      ProcessAssessmentSchema.parse({
+        ...validAssessment,
+        landingPath: "",
+        utmSource: " ",
+        utmMedium: "",
+        utmCampaign: "",
+        utmContent: " ",
+      }),
+    ).toMatchObject({
+      landingPath: undefined,
+      utmSource: undefined,
+      utmMedium: undefined,
+      utmCampaign: undefined,
+      utmContent: undefined,
+    });
+  });
+
+  it("rejects a landing path that is not a site path", () => {
+    for (const landingPath of ["ddt", "https://evil.example/x", "/ddt page"]) {
+      expect(
+        ProcessAssessmentSchema.safeParse({ ...validAssessment, landingPath })
+          .success,
+      ).toBe(false);
+    }
+  });
+
+  it("rejects oversized values and unknown keys", () => {
+    expect(
+      ProcessAssessmentSchema.safeParse({
+        ...validAssessment,
+        utmSource: "x".repeat(101),
+      }).success,
+    ).toBe(false);
+    expect(
+      ProcessAssessmentSchema.safeParse({
+        ...validAssessment,
+        landingPath: `/${"p".repeat(200)}`,
+      }).success,
+    ).toBe(false);
+    expect(
+      ProcessAssessmentSchema.safeParse({
+        ...validAssessment,
+        ...attribution,
+        gclid: "abc",
+      }).success,
+    ).toBe(false);
+  });
+
+  it("keeps attribution out of the MCP tool schema", () => {
+    expect(Object.keys(ProjectBriefToolSchema.shape)).toEqual([
+      "name",
+      "clientEmail",
+      "company",
+      "role",
+      "process",
+      "systems",
+      "volume",
+    ]);
+  });
+});
+
+describe("buildProcessAssessmentEmail attribution", () => {
+  const chatgptLead = ProcessAssessmentSchema.parse({
+    ...validAssessment,
+    landingPath: "/ddt",
+    utmSource: "chatgpt",
+    utmMedium: "ads",
+    utmCampaign: "ddt-2026",
+    utmContent: "variant-a",
+  });
+
+  it("flags ChatGPT ad leads in the subject and body", () => {
+    const email = buildProcessAssessmentEmail(chatgptLead, {
+      source: "form",
+      lang: "it",
+    });
+
+    expect(email.subject).toBe(
+      "Valutazione processo — Example Manufacturing (annuncio ChatGPT)",
+    );
+    expect(email.text).toContain(
+      [
+        "Fonte: Form landing",
+        "Canale: annuncio ChatGPT (utm_campaign=ddt-2026, utm_content=variant-a)",
+        "Pagina: /ddt",
+        "Nome: Ada Lovelace",
+      ].join("\n"),
+    );
+  });
+
+  it("labels the channel in English", () => {
+    const email = buildProcessAssessmentEmail(chatgptLead, {
+      source: "chat",
+      lang: "en",
+    });
+
+    expect(email.subject).toBe(
+      "Process assessment — Example Manufacturing (ChatGPT ad)",
+    );
+    expect(email.text).toContain(
+      [
+        "Source: Chat",
+        "Channel: ChatGPT ad (utm_campaign=ddt-2026, utm_content=variant-a)",
+        "Page: /ddt",
+      ].join("\n"),
+    );
+  });
+
+  it("derives the channel from the source and keeps the subject for plain leads", () => {
+    const email = buildProcessAssessmentEmail(
+      ProcessAssessmentSchema.parse(validAssessment),
+      { source: "chat", lang: "it" },
+    );
+
+    expect(email.subject).toBe("Valutazione processo — Example Manufacturing");
+    expect(email.text).toContain("Fonte: Chat\nCanale: chat\nNome:");
+    expect(email.text).not.toContain("Pagina:");
+  });
+
+  it("honours an explicit channel without touching the subject", () => {
+    const email = buildProcessAssessmentEmail(
+      ProcessAssessmentSchema.parse({ ...validAssessment, landingPath: "/" }),
+      { source: "form", lang: "en", channel: "paid_other" },
+    );
+
+    expect(email.subject).toBe("Process assessment — Example Manufacturing");
+    expect(email.text).toContain("Channel: other paid channel\nPage: /");
   });
 });

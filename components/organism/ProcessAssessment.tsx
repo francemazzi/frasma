@@ -11,6 +11,8 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import DictationButton from "../atoms/DictationButton";
+import { INPUT_CLASS, TEXTAREA_CLASS } from "../atoms/formClasses";
+import { readAttribution } from "../../lib/attribution";
 import { useLang, useT } from "../../lib/i18n/context";
 
 type Props = {
@@ -59,10 +61,6 @@ const FIELD_MAX: Record<DictatableField, number> = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const INPUT_CLASS =
-  "mt-1 w-full rounded-lg border border-hairline-strong bg-paper-2 px-3 py-2.5 text-[16px] text-ink outline-none transition-shadow focus:border-transparent focus:ring-2 focus:ring-accent/30";
-
-const TEXTAREA_CLASS = `${INPUT_CLASS} min-h-[160px] resize-y pr-11`;
 
 const isValidEmail = (value: string) => EMAIL_PATTERN.test(value.trim());
 
@@ -242,7 +240,7 @@ export default function ProcessAssessment({
       const response = await fetch("/api/request-process-assessment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, lang }),
+        body: JSON.stringify({ ...form, lang, ...(readAttribution() ?? {}) }),
       });
       const result = (await response.json().catch(() => null)) as
         | { ok: true }

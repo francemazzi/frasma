@@ -18,6 +18,11 @@ export const DDT_READING_SLUG = "lettura-automatica-ddt";
 
 export const AUTOCAD_BOM_SLUG = "distinta-base-autocad";
 
+export const MACHINING_QUOTES_SLUG =
+  "software-preventivi-lavorazioni-meccaniche";
+
+export const WAREHOUSE_EXCEL_SLUG = "gestionale-magazzino-excel";
+
 const AUTOCAD_BOM_FAQS = [
   {
     question: "DATAEXTRACTION produce già la distinta nel gestionale?",
@@ -99,6 +104,62 @@ const HARNESS_OFFICINA_FAQS = [
     question: "L’AI impara da sola dai nostri errori?",
     answer:
       "Solo se lasciate una lezione da qualche parte. Una correzione in chat muore con quella risposta. Un taccuino, una procedura o una prova automatica restano. Senza quella memoria, ogni documento riparte da zero.",
+  },
+];
+
+const MACHINING_QUOTES_FAQS = [
+  {
+    question: "Un software di preventivi sostituisce chi fa le offerte?",
+    answer:
+      "No. Sostituisce il copia-incolla sui pezzi già visti e sui campi leggibili. Chi quota continua a confermare, a gestire le eccezioni e a decidere il margine. La responsabilità del prezzo mandato al cliente resta umana.",
+  },
+  {
+    question: "Si può partire da PDF, DXF e STEP insieme?",
+    answer:
+      "Sì, tenendoli separati. Il PDF porta quote e note. Lo STEP porta la forma. Il DXF, se c'è, porta geometria 2D. Trattarli come un unico file da importare butta via la parte che decide il ciclo. Si prova sui vostri disegni, non si promette lo stesso risultato su una scansione storta e su uno STEP pulito.",
+  },
+  {
+    question: "I prezzi finiscono da soli nel gestionale o in mail al cliente?",
+    answer:
+      "No. Il sistema propone tempi, materiale e prezzo. Una persona conferma. Poi si scrive l'offerta. Se il lavoro viene accettato, si importa nel gestionale già in uso, sul tracciato che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce Mago, TeamSystem o Danea.",
+  },
+  {
+    question: "Cosa si fa se il tempo o il materiale non sono chiari?",
+    answer:
+      "Si marca «da verificare». Non si completa a indovinare. Il disegno e, se c'è, il ciclo precedente restano agganciati alla riga, così chi controlla vede la fonte.",
+  },
+  {
+    question: "Da dove si parte, in pratica?",
+    answer:
+      "Da un insieme piccolo di richieste reali e dall'elenco di ciò che già mettete in offerta: materiale, operazioni, minuti, prezzo. Si misura cosa la proposta indovina e cosa no. Si tiene la persona nel punto di conferma. Si decide se allargare.",
+  },
+];
+
+const WAREHOUSE_EXCEL_FAQS = [
+  {
+    question: "Excel può restare il gestionale di magazzino?",
+    answer:
+      "No. Può restare il registro di lavoro: scorte del giorno, eccezioni, controllo. Il gestionale già in uso resta il punto di registrazione. Quando il foglio è l'unico posto in cui esiste la quantità, non avete un magazzino. Avete un file.",
+  },
+  {
+    question: "Serve buttare Excel e comprare un altro software di magazzino?",
+    answer:
+      "No. Si parte da quello che già c'è. Si tiene un registro unico, si conferma, si importa in Mago, TeamSystem o nell'ERP corrente. Un secondo gestionale raddoppia i dati.",
+  },
+  {
+    question: "L'intelligenza artificiale può aggiornare le scorte da sola?",
+    answer:
+      "No. Può leggere un DDT, proporre una riga, segnalare un dubbio. Una persona conferma. Poi si importa. Non si apre una scrittura diretta e non si delega il magazzino a una chat.",
+  },
+  {
+    question: "Cosa si fa se foglio e gestionale non coincidono?",
+    answer:
+      "Si marca «da verificare». Non si sistema una cella per far tornare il totale. Si cerca il documento del movimento. Se il documento non c'è, il dubbio resta visibile.",
+  },
+  {
+    question: "Da dove si parte, in pratica?",
+    answer:
+      "Da un insieme piccolo di articoli reali e dall'elenco dei movimenti che già fate: carico, scarico, reso, inventario. Si misura dove nasce il numero. Si tiene la persona nel punto di conferma. Si decide se allargare.",
   },
 ];
 
@@ -195,6 +256,14 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === AUTOCAD_BOM_SLUG) {
     return [faqPageJsonLd(AUTOCAD_BOM_FAQS)];
+  }
+
+  if (slug === MACHINING_QUOTES_SLUG) {
+    return [faqPageJsonLd(MACHINING_QUOTES_FAQS)];
+  }
+
+  if (slug === WAREHOUSE_EXCEL_SLUG) {
+    return [faqPageJsonLd(WAREHOUSE_EXCEL_FAQS)];
   }
 
   return [];
