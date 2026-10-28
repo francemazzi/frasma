@@ -19,6 +19,8 @@ export const DDT_READING_SLUG = "lettura-automatica-ddt";
 export const MACHINING_QUOTES_SLUG =
   "software-preventivi-lavorazioni-meccaniche";
 
+export const WAREHOUSE_EXCEL_SLUG = "gestionale-magazzino-excel";
+
 const DDT_READING_FAQS = [
   {
     question: "La lettura automatica dei DDT sostituisce chi registra i documenti?",
@@ -100,6 +102,34 @@ const MACHINING_QUOTES_FAQS = [
     question: "Da dove si parte, in pratica?",
     answer:
       "Da un insieme piccolo di richieste reali e dall'elenco di ciò che già mettete in offerta: materiale, operazioni, minuti, prezzo. Si misura cosa la proposta indovina e cosa no. Si tiene la persona nel punto di conferma. Si decide se allargare.",
+  },
+];
+
+const WAREHOUSE_EXCEL_FAQS = [
+  {
+    question: "Excel può restare il gestionale di magazzino?",
+    answer:
+      "No. Può restare il registro di lavoro: scorte del giorno, eccezioni, controllo. Il gestionale già in uso resta il punto di registrazione. Quando il foglio è l'unico posto in cui esiste la quantità, non avete un magazzino. Avete un file.",
+  },
+  {
+    question: "Serve buttare Excel e comprare un altro software di magazzino?",
+    answer:
+      "No. Si parte da quello che già c'è. Si tiene un registro unico, si conferma, si importa in Mago, TeamSystem o nell'ERP corrente. Un secondo gestionale raddoppia i dati.",
+  },
+  {
+    question: "L'intelligenza artificiale può aggiornare le scorte da sola?",
+    answer:
+      "No. Può leggere un DDT, proporre una riga, segnalare un dubbio. Una persona conferma. Poi si importa. Non si apre una scrittura diretta e non si delega il magazzino a una chat.",
+  },
+  {
+    question: "Cosa si fa se foglio e gestionale non coincidono?",
+    answer:
+      "Si marca «da verificare». Non si sistema una cella per far tornare il totale. Si cerca il documento del movimento. Se il documento non c'è, il dubbio resta visibile.",
+  },
+  {
+    question: "Da dove si parte, in pratica?",
+    answer:
+      "Da un insieme piccolo di articoli reali e dall'elenco dei movimenti che già fate: carico, scarico, reso, inventario. Si misura dove nasce il numero. Si tiene la persona nel punto di conferma. Si decide se allargare.",
   },
 ];
 
@@ -196,6 +226,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === MACHINING_QUOTES_SLUG) {
     return [faqPageJsonLd(MACHINING_QUOTES_FAQS)];
+  }
+
+  if (slug === WAREHOUSE_EXCEL_SLUG) {
+    return [faqPageJsonLd(WAREHOUSE_EXCEL_FAQS)];
   }
 
   return [];

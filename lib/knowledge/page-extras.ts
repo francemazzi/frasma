@@ -156,6 +156,15 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
       "Per un processo di back office che l'ERP non copre: tabelle, stati e ruoli sul lavoro reale, con export verso Arca, FullWORK, Gesco, Six o i sistemi già in uso, senza sostituire Inventor o Bystronic.",
       "For a back-office process the ERP does not cover: tables, states, and roles on the real work, with exports into Arca, FullWORK, Gesco, Six, or systems already in use, without replacing Inventor or Bystronic.",
     ),
+    articles: [
+      {
+        path: "/blog/gestionale-magazzino-excel",
+        title: text(
+          "Gestionale magazzino Excel: quando il foglio basta, e quando va collegato",
+          "Warehouse Excel vs management software: when the sheet is enough, and when to connect it",
+        ),
+      },
+    ],
   },
   "company-wiki-brain": {
     problemLead: text(
@@ -238,6 +247,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         title: text(
           "Software preventivi lavorazioni meccaniche: dal disegno al prezzo",
           "Machining quotation software: from the drawing to the price",
+        ),
+      },
+      {
+        path: "/blog/gestionale-magazzino-excel",
+        title: text(
+          "Gestionale magazzino Excel: quando il foglio basta, e quando va collegato",
+          "Warehouse Excel vs management software: when the sheet is enough, and when to connect it",
         ),
       },
     ],

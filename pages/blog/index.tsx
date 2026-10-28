@@ -54,13 +54,14 @@ export default function Blog({ posts }: BlogIndexProps) {
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
             L&apos;ultimo approfondimento riguarda il{" "}
             <Link
-              href="/blog/software-preventivi-lavorazioni-meccaniche"
+              href="/blog/gestionale-magazzino-excel"
               className="text-accent underline-offset-2 hover:underline"
             >
-              software per i preventivi di lavorazioni meccaniche
+              gestionale magazzino Excel
             </Link>
-            : dal disegno (PDF, DXF, STEP) a tempi, materiale e prezzo, con
-            conferma umana prima dell&apos;invio.
+            : quando il foglio delle scorte basta, quando si rompe, e come
+            tenerlo come registro prima dell&apos;import nel gestionale già in
+            uso.
           </p>
 
           <PostList posts={posts} />

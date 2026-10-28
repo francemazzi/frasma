@@ -158,7 +158,15 @@ const casiTipici = [
     testo: (
       <>
         Il gestionale c&apos;e, ma la parte operativa si regge su{" "}
-        <strong>file locali, messaggi e passaggi manuali</strong>.
+        <strong>file locali, messaggi e passaggi manuali</strong>. Quando il
+        foglio è il magazzino, la guida è{" "}
+        <Link
+          href="/blog/gestionale-magazzino-excel"
+          className="text-sage-700 underline-offset-2 hover:underline"
+        >
+          gestionale magazzino Excel
+        </Link>
+        .
       </>
     ),
   },

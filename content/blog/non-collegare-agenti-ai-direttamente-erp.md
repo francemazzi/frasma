@@ -41,7 +41,7 @@ Il collegamento utile sta *intorno* all'ERP, non dentro.
 3. **Una persona valida.** I campi incerti restano visibili. Non c'è carico cieco in magazzino o in contabilità.
 4. **Si importa nel gestionale già in uso.** File di import, API o tracciato verso Mago o TeamSystem, con lo stesso perimetro che usereste per un import manuale controllato.
 
-Excel può essere il primo registro di controllo. Non è l'arrivo. L'arrivo è l'ERP, dopo la conferma.
+Excel può essere il primo registro di controllo — anche per il [magazzino sul foglio](/blog/gestionale-magazzino-excel). Non è l'arrivo. L'arrivo è l'ERP, dopo la conferma.
 
 I permessi seguono il ruolo: l'automazione legge documenti e prepara righe; non invia email, non cancella movimenti, non cambia anagrafiche. Le eccezioni restano assegnate a qualcuno, non in una conversazione.
 
