@@ -39,6 +39,7 @@ Already covered — pick a different problem:
 - `distinta-base-autocad` — AutoCAD DATAEXTRACTION / attributes → Excel → human check → ERP import
 - `software-preventivi-lavorazioni-meccaniche` — quoting machining jobs from the drawing (PDF/DXF/STEP), human check before send
 - `gestionale-magazzino-excel` — warehouse Excel as a control register, not as the ERP of record
+- `agenti-ai-per-aziende` — panoramic guide: what AI agents are in a manufacturing SME, where they prepare work, human approval before ERP or customers
 
 Also skip any topic listed in Memories from previous weekly runs.
 

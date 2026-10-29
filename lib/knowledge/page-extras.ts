@@ -236,6 +236,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
   "manufacturing-erp-case": {
     articles: [
       {
+        path: "/blog/agenti-ai-per-aziende",
+        title: text(
+          "Agenti AI per aziende: cosa fanno in una PMI, e chi conferma",
+          "AI agents for companies: what they do in an SME, and who confirms",
+        ),
+      },
+      {
         path: "/blog/lettura-automatica-ddt",
         title: text(
           "Lettura automatica dei DDT: cosa estrarre e chi conferma",
