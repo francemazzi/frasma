@@ -23,6 +23,8 @@ export const MACHINING_QUOTES_SLUG =
 
 export const WAREHOUSE_EXCEL_SLUG = "gestionale-magazzino-excel";
 
+export const AGENTS_FOR_COMPANIES_SLUG = "agenti-ai-per-aziende";
+
 const AUTOCAD_BOM_FAQS = [
   {
     question: "DATAEXTRACTION produce già la distinta nel gestionale?",
@@ -163,6 +165,34 @@ const WAREHOUSE_EXCEL_FAQS = [
   },
 ];
 
+const AGENTS_FOR_COMPANIES_FAQS = [
+  {
+    question: "Un agente AI sostituisce chi fa accettazione o preventivi?",
+    answer:
+      "No. Sostituisce il copia-incolla sui documenti leggibili e sui pezzi già visti. Chi registra o chi quota continua a confermare, a gestire le eccezioni e a decidere. La responsabilità del carico o del prezzo mandato al cliente resta umana.",
+  },
+  {
+    question: "Si può collegare un agente direttamente a Mago o TeamSystem?",
+    answer:
+      "No. L'agente legge e prepara. Una persona valida. Poi arriva un import tracciato, sul perimetro che il gestionale già accetta. Non si apre una scrittura diretta.",
+  },
+  {
+    question: "Serve cambiare gestionale per usare gli agenti AI in azienda?",
+    answer:
+      "No. Si parte dal sistema già in azienda. L'AI lavora sui documenti e sui passaggi manuali. Mago, TeamSystem o l'ERP corrente restano il punto di registrazione.",
+  },
+  {
+    question: "I dati devono uscire dall'azienda?",
+    answer:
+      "No, non per forza. Se il documento è poco sensibile, un modello in cloud può bastare. Se disegni, listini o anagrafiche non possono uscire, si valuta un modello on-premise. La scelta parte dalla sensibilità del dato, non dal fornitore.",
+  },
+  {
+    question: "Da dove si parte in una PMI manifatturiera?",
+    answer:
+      "Da un processo ripetitivo, con documenti reali. Per molte officine è il ciclo passivo: DDT, bolle, email dei fornitori. Lo stesso schema vale per distinta, preventivo e foglio di magazzino. Si misura il lavoro attuale, si prova su un perimetro piccolo, si decide se estendere.",
+  },
+];
+
 const ERP_AI_THESIS_FAQS = [
   {
     question: "Si può collegare ChatGPT, Claude o Gemini direttamente all'ERP?",
@@ -264,6 +294,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === WAREHOUSE_EXCEL_SLUG) {
     return [faqPageJsonLd(WAREHOUSE_EXCEL_FAQS)];
+  }
+
+  if (slug === AGENTS_FOR_COMPANIES_SLUG) {
+    return [faqPageJsonLd(AGENTS_FOR_COMPANIES_FAQS)];
   }
 
   return [];

@@ -52,16 +52,15 @@ export default function Blog({ posts }: BlogIndexProps) {
         <section className="section-farm py-16">
           <h1 className="text-4xl font-medium text-farm-text mb-6">Blog</h1>
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
-            L&apos;ultimo approfondimento riguarda il{" "}
+            L&apos;ultimo approfondimento riguarda gli{" "}
             <Link
-              href="/blog/gestionale-magazzino-excel"
+              href="/blog/agenti-ai-per-aziende"
               className="text-accent underline-offset-2 hover:underline"
             >
-              gestionale magazzino Excel
+              agenti AI per aziende
             </Link>
-            : quando il foglio delle scorte basta, quando si rompe, e come
-            tenerlo come registro prima dell&apos;import nel gestionale già in
-            uso.
+            : cosa fanno in una PMI manifatturiera, dove si usano e perché una
+            persona conferma prima che il risultato arrivi a ERP o clienti.
           </p>
 
           <PostList posts={posts} />

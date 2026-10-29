@@ -7,6 +7,7 @@ import {
   ERP_AI_THESIS_SLUG,
   HARNESS_OFFICINA_SLUG,
   MACHINING_QUOTES_SLUG,
+  AGENTS_FOR_COMPANIES_SLUG,
   WAREHOUSE_EXCEL_SLUG,
   extraJsonLdForBlogPost,
 } from "./jsonld";
@@ -115,6 +116,23 @@ describe("extraJsonLdForBlogPost", () => {
     expect(faqPage["@type"]).toBe("FAQPage");
     expect(faqPage.mainEntity).toHaveLength(5);
     expect(faqPage.mainEntity[0]?.name).toContain("gestionale di magazzino");
+    expect(extras[0]).not.toMatchObject({
+      "@type": "HowTo",
+    });
+  });
+
+  it("adds FAQPage schema on the AI agents for companies guide", () => {
+    const extras = extraJsonLdForBlogPost(AGENTS_FOR_COMPANIES_SLUG);
+
+    expect(extras).toHaveLength(1);
+    const faqPage = extras[0] as {
+      "@type": string;
+      mainEntity: Array<{ name: string }>;
+    };
+
+    expect(faqPage["@type"]).toBe("FAQPage");
+    expect(faqPage.mainEntity).toHaveLength(5);
+    expect(faqPage.mainEntity[0]?.name).toContain("accettazione o preventivi");
     expect(extras[0]).not.toMatchObject({
       "@type": "HowTo",
     });

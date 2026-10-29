@@ -29,6 +29,8 @@ type Case = {
   afterKey: string;
   guideHref?: string;
   guideKey?: string;
+  guideHref2?: string;
+  guideKey2?: string;
 };
 
 const CASES: Case[] = [
@@ -73,6 +75,8 @@ const CASES: Case[] = [
     afterKey: "results.case2.after",
     guideHref: "/blog/lettura-automatica-ddt",
     guideKey: "results.case2.guide",
+    guideHref2: "/blog/agenti-ai-per-aziende",
+    guideKey2: "results.case2.guideAgents",
   },
   {
     idx: 2,
@@ -237,6 +241,16 @@ export default function Results() {
                       className="text-[14px] text-ink-soft underline-offset-2 hover:underline"
                     >
                       {t(c.guideKey)}
+                    </Link>
+                  </p>
+                ) : null}
+                {c.guideHref2 && c.guideKey2 ? (
+                  <p className="mt-2">
+                    <Link
+                      href={c.guideHref2}
+                      className="text-[14px] text-ink-soft underline-offset-2 hover:underline"
+                    >
+                      {t(c.guideKey2)}
                     </Link>
                   </p>
                 ) : null}

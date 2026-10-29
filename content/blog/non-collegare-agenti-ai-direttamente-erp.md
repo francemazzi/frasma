@@ -22,7 +22,7 @@ Il gestionale è il sistema di registrazione: magazzino, contabilità, ordini. N
 
 Si parte da un processo ripetitivo, non dal connettore. L'ERP resta dove sta. L'AI legge, struttura e segnala. Una persona conferma. Poi arriva un import tracciato.
 
-È la stessa regola del webinar [L'AI in azienda: delega la forma, verifica i fatti](/blog/ai-in-azienda-delega-la-forma-verifica-i-fatti).
+È la stessa regola del webinar [L'AI in azienda: delega la forma, verifica i fatti](/blog/ai-in-azienda-delega-la-forma-verifica-i-fatti). Se la domanda è più larga — cosa sono gli **agenti AI per aziende**, dove si usano in una PMI e come si tiene il controllo — la mappa è in [agenti AI per aziende](/blog/agenti-ai-per-aziende).
 
 ## Cosa non fare
 

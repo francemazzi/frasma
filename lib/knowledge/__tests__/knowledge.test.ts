@@ -251,6 +251,9 @@ describe("markdownForPath", () => {
     expect(study).toContain(
       "https://www.frasma.org/blog/gestionale-magazzino-excel",
     );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/agenti-ai-per-aziende",
+    );
   });
 
   it("links the warehouse Excel guide from operational apps", () => {
