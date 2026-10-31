@@ -40,6 +40,7 @@ Already covered — pick a different problem:
 - `software-preventivi-lavorazioni-meccaniche` — quoting machining jobs from the drawing (PDF/DXF/STEP), human check before send
 - `gestionale-magazzino-excel` — warehouse Excel as a control register, not as the ERP of record
 - `agenti-ai-per-aziende` — panoramic guide: what AI agents are in a manufacturing SME, where they prepare work, human approval before ERP or customers
+- `registrazione-ddt-in-entrata` — registering supplier DDTs in the ERP: header checks, purchase-order matching, quantity differences, common errors, when to automate with human confirmation
 
 Also skip any topic listed in Memories from previous weekly runs.
 

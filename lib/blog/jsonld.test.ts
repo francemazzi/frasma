@@ -8,6 +8,7 @@ import {
   HARNESS_OFFICINA_SLUG,
   MACHINING_QUOTES_SLUG,
   AGENTS_FOR_COMPANIES_SLUG,
+  INCOMING_DDT_SLUG,
   WAREHOUSE_EXCEL_SLUG,
   extraJsonLdForBlogPost,
 } from "./jsonld";
@@ -135,6 +136,24 @@ describe("extraJsonLdForBlogPost", () => {
     expect(faqPage.mainEntity[0]?.name).toContain("accettazione o preventivi");
     expect(extras[0]).not.toMatchObject({
       "@type": "HowTo",
+    });
+  });
+
+  it("adds FAQPage and Service schema on the incoming DDT registration guide", () => {
+    const extras = extraJsonLdForBlogPost(INCOMING_DDT_SLUG);
+
+    expect(extras).toHaveLength(2);
+    const faqPage = extras[0] as {
+      "@type": string;
+      mainEntity: Array<{ name: string }>;
+    };
+
+    expect(faqPage["@type"]).toBe("FAQPage");
+    expect(faqPage.mainEntity).toHaveLength(5);
+    expect(faqPage.mainEntity[0]?.name).toContain("registrare il DDT");
+    expect(extras[1]).toMatchObject({
+      "@type": "Service",
+      url: "https://www.frasma.org/servizi/ddt-erp",
     });
   });
 

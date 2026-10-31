@@ -254,6 +254,9 @@ describe("markdownForPath", () => {
     expect(study).toContain(
       "https://www.frasma.org/blog/agenti-ai-per-aziende",
     );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/registrazione-ddt-in-entrata",
+    );
   });
 
   it("links the warehouse Excel guide from operational apps", () => {

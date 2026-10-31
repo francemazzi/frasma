@@ -27,10 +27,7 @@ type Case = {
   m2lKey: string;
   beforeKey: string;
   afterKey: string;
-  guideHref?: string;
-  guideKey?: string;
-  guideHref2?: string;
-  guideKey2?: string;
+  guides?: { href: string; key: string }[];
 };
 
 const CASES: Case[] = [
@@ -73,10 +70,11 @@ const CASES: Case[] = [
     m2lKey: "results.case2.m2l",
     beforeKey: "results.case2.before",
     afterKey: "results.case2.after",
-    guideHref: "/blog/lettura-automatica-ddt",
-    guideKey: "results.case2.guide",
-    guideHref2: "/blog/agenti-ai-per-aziende",
-    guideKey2: "results.case2.guideAgents",
+    guides: [
+      { href: "/blog/registrazione-ddt-in-entrata", key: "results.case2.guideIncoming" },
+      { href: "/blog/lettura-automatica-ddt", key: "results.case2.guide" },
+      { href: "/blog/agenti-ai-per-aziende", key: "results.case2.guideAgents" },
+    ],
   },
   {
     idx: 2,
@@ -234,26 +232,16 @@ export default function Results() {
                     {t("results.caseCta")}
                   </Link>
                 </p>
-                {c.guideHref && c.guideKey ? (
-                  <p className="mt-2">
+                {c.guides?.map((guide) => (
+                  <p key={guide.href} className="mt-2">
                     <Link
-                      href={c.guideHref}
+                      href={guide.href}
                       className="text-[14px] text-ink-soft underline-offset-2 hover:underline"
                     >
-                      {t(c.guideKey)}
+                      {t(guide.key)}
                     </Link>
                   </p>
-                ) : null}
-                {c.guideHref2 && c.guideKey2 ? (
-                  <p className="mt-2">
-                    <Link
-                      href={c.guideHref2}
-                      className="text-[14px] text-ink-soft underline-offset-2 hover:underline"
-                    >
-                      {t(c.guideKey2)}
-                    </Link>
-                  </p>
-                ) : null}
+                ))}
               </div>
             </motion.article>
           ))}
@@ -307,6 +295,14 @@ export default function Results() {
             </button>
           </div>
         </div>
+        <p className="mt-6 text-center text-[14px] text-ink-soft">
+          <Link
+            href="/blog/registrazione-ddt-in-entrata"
+            className="underline-offset-2 hover:text-accent hover:underline"
+          >
+            {t("results.featuredGuide")}
+          </Link>
+        </p>
         <div className="mt-8 flex justify-center">
           <ProcessAssessment textButton={t("results.assessCta")} showArrow />
         </div>

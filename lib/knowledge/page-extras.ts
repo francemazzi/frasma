@@ -236,6 +236,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
   "manufacturing-erp-case": {
     articles: [
       {
+        path: "/blog/registrazione-ddt-in-entrata",
+        title: text(
+          "Registrazione DDT in entrata: controlli, abbinamento all'ordine e differenze di quantità",
+          "Registering incoming delivery notes: checks, purchase-order matching, and quantity differences",
+        ),
+      },
+      {
         path: "/blog/agenti-ai-per-aziende",
         title: text(
           "Agenti AI per aziende: cosa fanno in una PMI, e chi conferma",

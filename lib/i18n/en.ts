@@ -491,6 +491,8 @@ export const en: Record<string, string> = {
   "results.caseCta": "Open the case",
   "results.case2.guide": "Guide: automatic reading of delivery notes",
   "results.case2.guideAgents": "Guide: AI agents for companies",
+  "results.case2.guideIncoming": "Guide: registering incoming delivery notes",
+  "results.featuredGuide": "Practical guide: registering incoming delivery notes in the ERP",
   "results.assessCta": "Assess a process",
 
   // For agents
