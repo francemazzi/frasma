@@ -493,6 +493,8 @@ export const it: Record<string, string> = {
   "results.caseCta": "Apri il caso",
   "results.case2.guide": "Guida: lettura automatica dei DDT",
   "results.case2.guideAgents": "Guida: agenti AI per aziende",
+  "results.case2.guideIncoming": "Guida: registrazione dei DDT in entrata",
+  "results.featuredGuide": "Guida pratica: registrazione dei DDT in entrata nel gestionale",
   "results.assessCta": "Valuta un processo",
 
   // For agents

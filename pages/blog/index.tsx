@@ -52,15 +52,16 @@ export default function Blog({ posts }: BlogIndexProps) {
         <section className="section-farm py-16">
           <h1 className="text-4xl font-medium text-farm-text mb-6">Blog</h1>
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
-            L&apos;ultimo approfondimento riguarda gli{" "}
+            L&apos;ultimo approfondimento riguarda la{" "}
             <Link
-              href="/blog/agenti-ai-per-aziende"
+              href="/blog/registrazione-ddt-in-entrata"
               className="text-accent underline-offset-2 hover:underline"
             >
-              agenti AI per aziende
+              registrazione dei DDT in entrata
             </Link>
-            : cosa fanno in una PMI manifatturiera, dove si usano e perché una
-            persona conferma prima che il risultato arrivi a ERP o clienti.
+            : controlli sul documento, abbinamento all&apos;ordine fornitore,
+            differenze di quantità e quando automatizzare con una persona che
+            conferma prima dell&apos;import nel gestionale.
           </p>
 
           <PostList posts={posts} />

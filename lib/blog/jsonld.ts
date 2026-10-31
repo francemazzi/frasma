@@ -25,6 +25,8 @@ export const WAREHOUSE_EXCEL_SLUG = "gestionale-magazzino-excel";
 
 export const AGENTS_FOR_COMPANIES_SLUG = "agenti-ai-per-aziende";
 
+export const INCOMING_DDT_SLUG = "registrazione-ddt-in-entrata";
+
 const AUTOCAD_BOM_FAQS = [
   {
     question: "DATAEXTRACTION produce già la distinta nel gestionale?",
@@ -193,6 +195,36 @@ const AGENTS_FOR_COMPANIES_FAQS = [
   },
 ];
 
+const INCOMING_DDT_FAQS = [
+  {
+    question:
+      "Che differenza c'è tra registrare il DDT e registrare la fattura del fornitore?",
+    answer:
+      "Il DDT registra il movimento della merce: cosa è entrato in magazzino e quale ordine ha evaso. La fattura registra il debito verso il fornitore. Sono due momenti diversi, spesso in giorni diversi. Una registrazione corretta del DDT è ciò che permette, dopo, di controllare la fattura.",
+  },
+  {
+    question: "Si carica la quantità scritta sul DDT o quella contata?",
+    answer:
+      "Lo decide l'azienda, e la regola va scritta. L'importante è che le tre quantità — ordinata, dichiarata, ricevuta — restino distinte e che la differenza resti visibile, invece di sparire correggendo un numero.",
+  },
+  {
+    question: "Cosa si fa se il DDT non riporta il numero d'ordine?",
+    answer:
+      "Si cerca tra gli ordini aperti di quel fornitore, per articolo e quantità residua. Se gli ordini possibili sono più di uno, si segue una regola decisa prima, per esempio l'ordine più vecchio o quello della commessa indicata. Se nessun ordine torna, la riga resta in sospeso e passa all'ufficio acquisti.",
+  },
+  {
+    question:
+      "Si può automatizzare la registrazione dei DDT in entrata senza cambiare gestionale?",
+    answer:
+      "Sì. L'automazione lavora intorno al gestionale: legge il documento, propone l'abbinamento all'ordine, mette in evidenza le differenze. Una persona conferma, poi si importa nell'ERP già in uso. Non serve sostituire Mago, TeamSystem o il gestionale attuale.",
+  },
+  {
+    question: "Da dove si parte, in pratica?",
+    answer:
+      "Da un campione di DDT reali, compresi quelli difficili, e dalle regole che oggi vivono a voce: quale quantità si carica, come si sceglie l'ordine, chi chiude le differenze. Una volta scritte, si vede quale parte della registrazione conviene preparare in automatico e quale deve restare a una persona.",
+  },
+];
+
 const ERP_AI_THESIS_FAQS = [
   {
     question: "Si può collegare ChatGPT, Claude o Gemini direttamente all'ERP?",
@@ -298,6 +330,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === AGENTS_FOR_COMPANIES_SLUG) {
     return [faqPageJsonLd(AGENTS_FOR_COMPANIES_FAQS)];
+  }
+
+  if (slug === INCOMING_DDT_SLUG) {
+    return [faqPageJsonLd(INCOMING_DDT_FAQS), ddtErpServiceJsonLd()];
   }
 
   return [];
