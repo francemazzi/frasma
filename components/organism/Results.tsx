@@ -74,6 +74,10 @@ const CASES: Case[] = [
       { href: "/blog/registrazione-ddt-in-entrata", key: "results.case2.guideIncoming" },
       { href: "/blog/lettura-automatica-ddt", key: "results.case2.guide" },
       { href: "/blog/agenti-ai-per-aziende", key: "results.case2.guideAgents" },
+      {
+        href: "/blog/software-calcolo-costi-produzione-officina",
+        key: "results.case2.guideCosting",
+      },
     ],
   },
   {
@@ -301,6 +305,14 @@ export default function Results() {
             className="underline-offset-2 hover:text-accent hover:underline"
           >
             {t("results.featuredGuide")}
+          </Link>
+        </p>
+        <p className="mt-2 text-center text-[14px] text-ink-soft">
+          <Link
+            href="/blog/software-calcolo-costi-produzione-officina"
+            className="underline-offset-2 hover:text-accent hover:underline"
+          >
+            {t("results.featuredGuideCosting")}
           </Link>
         </p>
         <div className="mt-8 flex justify-center">

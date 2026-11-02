@@ -41,6 +41,7 @@ Already covered — pick a different problem:
 - `gestionale-magazzino-excel` — warehouse Excel as a control register, not as the ERP of record
 - `agenti-ai-per-aziende` — panoramic guide: what AI agents are in a manufacturing SME, where they prepare work, human approval before ERP or customers
 - `registrazione-ddt-in-entrata` — registering supplier DDTs in the ERP: header checks, purchase-order matching, quantity differences, common errors, when to automate with human confirmation
+- `software-calcolo-costi-produzione-officina` — real production cost of a machined piece (machine hours, material, setup, external work), not the customer quote
 
 Also skip any topic listed in Memories from previous weekly runs.
 

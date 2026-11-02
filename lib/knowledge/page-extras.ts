@@ -208,6 +208,15 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
       "Per dati e documenti che non possono uscire dall'azienda: modelli e agenti sulla rete privata, con vincoli GDPR espliciti.",
       "For data and documents that cannot leave the company: models and agents on the private network, with explicit GDPR constraints.",
     ),
+    articles: [
+      {
+        path: "/blog/software-calcolo-costi-produzione-officina",
+        title: text(
+          "Software calcolo costi produzione officina: ore, materiale e setup, oltre Excel",
+          "Shop production costing software: machine hours, material, and setup, beyond Excel",
+        ),
+      },
+    ],
   },
   "ai-presence": {
     problemLead: text(
@@ -275,6 +284,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         title: text(
           "Gestionale magazzino Excel: quando il foglio basta, e quando va collegato",
           "Warehouse Excel vs management software: when the sheet is enough, and when to connect it",
+        ),
+      },
+      {
+        path: "/blog/software-calcolo-costi-produzione-officina",
+        title: text(
+          "Software calcolo costi produzione officina: ore, materiale e setup, oltre Excel",
+          "Shop production costing software: machine hours, material, and setup, beyond Excel",
         ),
       },
     ],

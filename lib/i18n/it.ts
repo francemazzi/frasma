@@ -494,7 +494,11 @@ export const it: Record<string, string> = {
   "results.case2.guide": "Guida: lettura automatica dei DDT",
   "results.case2.guideAgents": "Guida: agenti AI per aziende",
   "results.case2.guideIncoming": "Guida: registrazione dei DDT in entrata",
+  "results.case2.guideCosting":
+    "Guida: software calcolo costi produzione officina",
   "results.featuredGuide": "Guida pratica: registrazione dei DDT in entrata nel gestionale",
+  "results.featuredGuideCosting":
+    "Guida: calcolo dei costi di produzione in officina, oltre Excel",
   "results.assessCta": "Valuta un processo",
 
   // For agents
