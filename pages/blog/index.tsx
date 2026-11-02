@@ -52,16 +52,16 @@ export default function Blog({ posts }: BlogIndexProps) {
         <section className="section-farm py-16">
           <h1 className="text-4xl font-medium text-farm-text mb-6">Blog</h1>
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
-            L&apos;ultimo approfondimento riguarda la{" "}
+            L&apos;ultimo approfondimento è il{" "}
             <Link
-              href="/blog/registrazione-ddt-in-entrata"
+              href="/blog/software-calcolo-costi-produzione-officina"
               className="text-accent underline-offset-2 hover:underline"
             >
-              registrazione dei DDT in entrata
+              software per il calcolo dei costi di produzione in officina
             </Link>
-            : controlli sul documento, abbinamento all&apos;ordine fornitore,
-            differenze di quantità e quando automatizzare con una persona che
-            conferma prima dell&apos;import nel gestionale.
+            : ore macchina, materiale, setup e lavorazioni esterne, oltre
+            Excel, con una persona che conferma il consuntivo prima che il
+            numero finisca in commessa.
           </p>
 
           <PostList posts={posts} />

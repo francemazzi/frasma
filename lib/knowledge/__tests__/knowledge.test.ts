@@ -257,6 +257,17 @@ describe("markdownForPath", () => {
     expect(study).toContain(
       "https://www.frasma.org/blog/registrazione-ddt-in-entrata",
     );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/software-calcolo-costi-produzione-officina",
+    );
+  });
+
+  it("links the shop production costing guide from on-premise AI", () => {
+    const onPrem = markdownForPath("/servizi/ai-on-premise");
+
+    expect(onPrem).toContain(
+      "https://www.frasma.org/blog/software-calcolo-costi-produzione-officina",
+    );
   });
 
   it("links the warehouse Excel guide from operational apps", () => {

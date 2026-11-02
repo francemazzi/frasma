@@ -64,6 +64,8 @@ Nelle PMI manifatturiere italiane il posto utile è quasi sempre un passaggio ri
 
 **Preventivi da disegno.** Arriva un PDF, a volte uno STEP o un DXF. Oggi i tempi nascono a occhio e il prezzo parte da Excel. Un agente può proporre materiale, operazioni, minuti e cifra, usando i cicli *di questa* officina. Non spedisce. Chi quota conferma, poi si scrive l'offerta. Il dettaglio è in [software preventivi lavorazioni meccaniche](/blog/software-preventivi-lavorazioni-meccaniche).
 
+**Costo reale del pezzo.** Il preventivo è il prezzo mandato. Il costo è quanto il pezzo è costato in casa: ore macchina, materiale, setup, lavori dati fuori. Oggi quel numero sta su un foglio, con una tariffa unica. Un agente può proporre le voci dai rapportini e dai prelievi. Non chiude il consuntivo. Chi ha il ruolo conferma. Il dettaglio è in [software calcolo costi produzione officina](/blog/software-calcolo-costi-produzione-officina).
+
 **DDT verso l'ERP.** Il Documento di Trasporto arriva in email o dal banco. L'agente estrae fornitore, numero, date, righe. Una persona valida. Poi il tracciato verso Mago o TeamSystem. La lettura sta in [lettura automatica dei DDT](/blog/lettura-automatica-ddt); il tutorial operativo in [DDT da email verso Excel](/blog/automatizzare-ddt-email-intelligenza-artificiale); il percorso di servizio in [DDT verso ERP](/servizi/ddt-erp).
 
 **Excel e gestionale.** Il foglio è spesso il registro di lavoro: magazzino del giorno, eccezioni, controllo. Non è l'ERP. L'agente può preparare le righe dal documento. Il foglio resta unico, con uno stato. Una persona conferma. Poi si importa. Quando il foglio è il magazzino, la guida è [gestionale magazzino Excel](/blog/gestionale-magazzino-excel).

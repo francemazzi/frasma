@@ -492,7 +492,11 @@ export const en: Record<string, string> = {
   "results.case2.guide": "Guide: automatic reading of delivery notes",
   "results.case2.guideAgents": "Guide: AI agents for companies",
   "results.case2.guideIncoming": "Guide: registering incoming delivery notes",
+  "results.case2.guideCosting":
+    "Guide: shop production costing software",
   "results.featuredGuide": "Practical guide: registering incoming delivery notes in the ERP",
+  "results.featuredGuideCosting":
+    "Guide: production costing on the shop floor, beyond Excel",
   "results.assessCta": "Assess a process",
 
   // For agents

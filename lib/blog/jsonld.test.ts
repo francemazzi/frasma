@@ -9,6 +9,7 @@ import {
   MACHINING_QUOTES_SLUG,
   AGENTS_FOR_COMPANIES_SLUG,
   INCOMING_DDT_SLUG,
+  PRODUCTION_COSTING_SLUG,
   WAREHOUSE_EXCEL_SLUG,
   extraJsonLdForBlogPost,
 } from "./jsonld";
@@ -154,6 +155,23 @@ describe("extraJsonLdForBlogPost", () => {
     expect(extras[1]).toMatchObject({
       "@type": "Service",
       url: "https://www.frasma.org/servizi/ddt-erp",
+    });
+  });
+
+  it("adds FAQPage schema on the shop production costing guide", () => {
+    const extras = extraJsonLdForBlogPost(PRODUCTION_COSTING_SLUG);
+
+    expect(extras).toHaveLength(1);
+    const faqPage = extras[0] as {
+      "@type": string;
+      mainEntity: Array<{ name: string }>;
+    };
+
+    expect(faqPage["@type"]).toBe("FAQPage");
+    expect(faqPage.mainEntity).toHaveLength(5);
+    expect(faqPage.mainEntity[0]?.name).toContain("calcolo costi");
+    expect(extras[0]).not.toMatchObject({
+      "@type": "HowTo",
     });
   });
 

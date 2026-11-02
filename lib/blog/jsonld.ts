@@ -27,6 +27,9 @@ export const AGENTS_FOR_COMPANIES_SLUG = "agenti-ai-per-aziende";
 
 export const INCOMING_DDT_SLUG = "registrazione-ddt-in-entrata";
 
+export const PRODUCTION_COSTING_SLUG =
+  "software-calcolo-costi-produzione-officina";
+
 const AUTOCAD_BOM_FAQS = [
   {
     question: "DATAEXTRACTION produce già la distinta nel gestionale?",
@@ -225,6 +228,34 @@ const INCOMING_DDT_FAQS = [
   },
 ];
 
+const PRODUCTION_COSTING_FAQS = [
+  {
+    question: "Un software di calcolo costi sostituisce chi chiude i consuntivi?",
+    answer:
+      "No. Sostituisce il copia-incolla sulle voci già viste e sui campi leggibili. Chi chiude il costo continua a confermare, a recuperare il setup mancante e a decidere cosa entra nella tariffa. La responsabilità del numero che finisce in commessa resta umana.",
+  },
+  {
+    question: "Excel può restare il programma costi produzione officina meccanica?",
+    answer:
+      "Può restare il registro di lavoro. Non è la fonte. Un foglio con una tariffa unica e tre versioni sul desktop non è un costo. È una conversazione. Si tiene un registro, si conferma, si importa nel gestionale già in uso.",
+  },
+  {
+    question: "I costi finiscono da soli nel gestionale?",
+    answer:
+      "No. Il sistema propone voci e totale. Una persona conferma. Poi si importa nel gestionale già in uso, sul tracciato che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce Mago, TeamSystem o Danea.",
+  },
+  {
+    question: "Cosa si fa se manca il setup o il lavoro esterno?",
+    answer:
+      "Si marca «da verificare». Non si completa a indovinare. Il rapportino, il prelievo e, se c'è, la fattura del terzista restano agganciati alla riga, così chi controlla vede la fonte.",
+  },
+  {
+    question: "Da dove si parte, in pratica?",
+    answer:
+      "Da un insieme piccolo di commesse reali e dall'elenco di ciò che già mettete nel costo: materiale, operazioni, minuti, setup, esterni. Si misura cosa la proposta ricostruisce e cosa no. Si tiene la persona nel punto di conferma. Si decide se allargare.",
+  },
+];
+
 const ERP_AI_THESIS_FAQS = [
   {
     question: "Si può collegare ChatGPT, Claude o Gemini direttamente all'ERP?",
@@ -334,6 +365,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === INCOMING_DDT_SLUG) {
     return [faqPageJsonLd(INCOMING_DDT_FAQS), ddtErpServiceJsonLd()];
+  }
+
+  if (slug === PRODUCTION_COSTING_SLUG) {
+    return [faqPageJsonLd(PRODUCTION_COSTING_FAQS)];
   }
 
   return [];
