@@ -33,6 +33,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
     ),
     articles: [
       {
+        path: "/blog/erp-ddt-cosa-fa-il-gestionale",
+        title: text(
+          "ERP e DDT: cosa fa il gestionale, cosa resta manuale e dove si perde tempo",
+          "ERP and delivery notes: what the system does, what stays manual, and where time is lost",
+        ),
+      },
+      {
         path: "/blog/automatizzare-ddt-email-intelligenza-artificiale",
         title: text(
           "Come automatizzare i DDT ricevuti via email",
@@ -210,6 +217,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
     ),
     articles: [
       {
+        path: "/blog/erp-ddt-cosa-fa-il-gestionale",
+        title: text(
+          "ERP e DDT: cosa fa il gestionale, cosa resta manuale e dove si perde tempo",
+          "ERP and delivery notes: what the system does, what stays manual, and where time is lost",
+        ),
+      },
+      {
         path: "/blog/software-calcolo-costi-produzione-officina",
         title: text(
           "Software calcolo costi produzione officina: ore, materiale e setup, oltre Excel",
@@ -244,6 +258,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
   },
   "manufacturing-erp-case": {
     articles: [
+      {
+        path: "/blog/erp-ddt-cosa-fa-il-gestionale",
+        title: text(
+          "ERP e DDT: cosa fa il gestionale, cosa resta manuale e dove si perde tempo",
+          "ERP and delivery notes: what the system does, what stays manual, and where time is lost",
+        ),
+      },
       {
         path: "/blog/registrazione-ddt-in-entrata",
         title: text(

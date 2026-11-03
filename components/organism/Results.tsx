@@ -71,6 +71,7 @@ const CASES: Case[] = [
     beforeKey: "results.case2.before",
     afterKey: "results.case2.after",
     guides: [
+      { href: "/blog/erp-ddt-cosa-fa-il-gestionale", key: "results.case2.guideErpDdt" },
       { href: "/blog/registrazione-ddt-in-entrata", key: "results.case2.guideIncoming" },
       { href: "/blog/lettura-automatica-ddt", key: "results.case2.guide" },
       { href: "/blog/agenti-ai-per-aziende", key: "results.case2.guideAgents" },
@@ -301,7 +302,7 @@ export default function Results() {
         </div>
         <p className="mt-6 text-center text-[14px] text-ink-soft">
           <Link
-            href="/blog/registrazione-ddt-in-entrata"
+            href="/blog/erp-ddt-cosa-fa-il-gestionale"
             className="underline-offset-2 hover:text-accent hover:underline"
           >
             {t("results.featuredGuide")}

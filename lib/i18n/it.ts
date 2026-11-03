@@ -491,12 +491,14 @@ export const it: Record<string, string> = {
   "catalog.wiki.searchDesc":
     "Il cursore digita la query, apre PROC-04 e lascia visibili versione e owner. Trovare è il lavoro; decidere resta alle persone.",
   "results.caseCta": "Apri il caso",
+  "results.case2.guideErpDdt": "Guida: ERP e DDT in entrata e in uscita",
   "results.case2.guide": "Guida: lettura automatica dei DDT",
   "results.case2.guideAgents": "Guida: agenti AI per aziende",
   "results.case2.guideIncoming": "Guida: registrazione dei DDT in entrata",
   "results.case2.guideCosting":
     "Guida: software calcolo costi produzione officina",
-  "results.featuredGuide": "Guida pratica: registrazione dei DDT in entrata nel gestionale",
+  "results.featuredGuide":
+    "Guida: ERP e DDT — cosa fa il gestionale e dove si perde tempo",
   "results.featuredGuideCosting":
     "Guida: calcolo dei costi di produzione in officina, oltre Excel",
   "results.assessCta": "Valuta un processo",
