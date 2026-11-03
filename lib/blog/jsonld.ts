@@ -30,6 +30,8 @@ export const INCOMING_DDT_SLUG = "registrazione-ddt-in-entrata";
 export const PRODUCTION_COSTING_SLUG =
   "software-calcolo-costi-produzione-officina";
 
+export const ERP_DDT_MAP_SLUG = "erp-ddt-cosa-fa-il-gestionale";
+
 const AUTOCAD_BOM_FAQS = [
   {
     question: "DATAEXTRACTION produce già la distinta nel gestionale?",
@@ -228,6 +230,34 @@ const INCOMING_DDT_FAQS = [
   },
 ];
 
+const ERP_DDT_MAP_FAQS = [
+  {
+    question: "Il gestionale legge da solo i PDF dei DDT?",
+    answer:
+      "No. Legge dati che gli passate — digitazione, import da file, integrazione. La lettura del PDF sta prima, in un flusso che estrae campi e chiede conferma.",
+  },
+  {
+    question: "Serve un software gestionale DDT diverso da Mago o TeamSystem?",
+    answer:
+      "Di rado. Serve un flusso intorno al gestionale già in uso: documento, registro di controllo, persona, import tracciato. Sostituire l'ERP raddoppia il problema.",
+  },
+  {
+    question: "Cosa cambia tra DDT in entrata e in uscita nell'ERP?",
+    answer:
+      "In entrata il documento arriva dall'esterno e voi registrarne il carico e l'evasione ordine fornitore. In uscita il documento descrive ciò che spedite; l'ERP scala giacenza ed evade l'ordine cliente.",
+  },
+  {
+    question: "Si può automatizzare solo l'entrata?",
+    answer:
+      "Sì, ed è spesso il primo passo in officina. L'uscita si affronta quando picking, lotti e bolle cliente sono già allineati al gestionale.",
+  },
+  {
+    question: "Dove finisce la guida e dove inizia il percorso operativo?",
+    answer:
+      "La guida è la mappa tra ERP e DDT. Il percorso concreto di lettura, validazione e import verso il tracciato del gestionale è il servizio DDT verso ERP.",
+  },
+];
+
 const PRODUCTION_COSTING_FAQS = [
   {
     question: "Un software di calcolo costi sostituisce chi chiude i consuntivi?",
@@ -369,6 +399,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === PRODUCTION_COSTING_SLUG) {
     return [faqPageJsonLd(PRODUCTION_COSTING_FAQS)];
+  }
+
+  if (slug === ERP_DDT_MAP_SLUG) {
+    return [faqPageJsonLd(ERP_DDT_MAP_FAQS), ddtErpServiceJsonLd()];
   }
 
   return [];

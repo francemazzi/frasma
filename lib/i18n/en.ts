@@ -489,12 +489,14 @@ export const en: Record<string, string> = {
   "catalog.wiki.searchDesc":
     "The cursor types the query, opens PROC-04, and leaves version and owner visible. Finding is the work; deciding stays with people.",
   "results.caseCta": "Open the case",
+  "results.case2.guideErpDdt": "Guide: ERP and delivery notes in and out",
   "results.case2.guide": "Guide: automatic reading of delivery notes",
   "results.case2.guideAgents": "Guide: AI agents for companies",
   "results.case2.guideIncoming": "Guide: registering incoming delivery notes",
   "results.case2.guideCosting":
     "Guide: shop production costing software",
-  "results.featuredGuide": "Practical guide: registering incoming delivery notes in the ERP",
+  "results.featuredGuide":
+    "Guide: ERP and delivery notes — what the system does and where time is lost",
   "results.featuredGuideCosting":
     "Guide: production costing on the shop floor, beyond Excel",
   "results.assessCta": "Assess a process",

@@ -228,6 +228,9 @@ describe("markdownForPath", () => {
     expect(ddt).toContain("Mago o TeamSystem");
     expect(ddt).toContain("ciclo passivo");
     expect(ddt).toContain(
+      "https://www.frasma.org/blog/erp-ddt-cosa-fa-il-gestionale",
+    );
+    expect(ddt).toContain(
       "https://www.frasma.org/blog/automatizzare-ddt-email-intelligenza-artificiale",
     );
     expect(ddt).toContain(
@@ -239,6 +242,9 @@ describe("markdownForPath", () => {
   it("links the DDT reading guide from the manufacturing ERP case", () => {
     const study = markdownForPath("/casi/documenti-erp-manifattura");
 
+    expect(study).toContain(
+      "https://www.frasma.org/blog/erp-ddt-cosa-fa-il-gestionale",
+    );
     expect(study).toContain(
       "https://www.frasma.org/blog/lettura-automatica-ddt",
     );
@@ -265,6 +271,9 @@ describe("markdownForPath", () => {
   it("links the shop production costing guide from on-premise AI", () => {
     const onPrem = markdownForPath("/servizi/ai-on-premise");
 
+    expect(onPrem).toContain(
+      "https://www.frasma.org/blog/erp-ddt-cosa-fa-il-gestionale",
+    );
     expect(onPrem).toContain(
       "https://www.frasma.org/blog/software-calcolo-costi-produzione-officina",
     );

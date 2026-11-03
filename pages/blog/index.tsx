@@ -52,16 +52,15 @@ export default function Blog({ posts }: BlogIndexProps) {
         <section className="section-farm py-16">
           <h1 className="text-4xl font-medium text-farm-text mb-6">Blog</h1>
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
-            L&apos;ultimo approfondimento è il{" "}
+            L&apos;ultimo approfondimento è la guida{" "}
             <Link
-              href="/blog/software-calcolo-costi-produzione-officina"
+              href="/blog/erp-ddt-cosa-fa-il-gestionale"
               className="text-accent underline-offset-2 hover:underline"
             >
-              software per il calcolo dei costi di produzione in officina
+              ERP e DDT: cosa fa il gestionale e dove si perde tempo
             </Link>
-            : ore macchina, materiale, setup e lavorazioni esterne, oltre
-            Excel, con una persona che conferma il consuntivo prima che il
-            numero finisca in commessa.
+            — entrata e uscita, lavoro manuale intorno a Mago o TeamSystem e
+            quando ha senso automatizzare con conferma umana.
           </p>
 
           <PostList posts={posts} />
