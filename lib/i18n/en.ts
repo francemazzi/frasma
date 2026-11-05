@@ -495,10 +495,14 @@ export const en: Record<string, string> = {
   "results.case2.guideIncoming": "Guide: registering incoming delivery notes",
   "results.case2.guideCosting":
     "Guide: shop production costing software",
+  "results.case2.guideSteelQuotes":
+    "Guide: steel fabrication quoting software",
   "results.featuredGuide":
     "Guide: ERP and delivery notes — what the system does and where time is lost",
   "results.featuredGuideCosting":
     "Guide: production costing on the shop floor, beyond Excel",
+  "results.featuredGuideSteelQuotes":
+    "Guide: steel fabrication quotes from the drawing",
   "results.assessCta": "Assess a process",
 
   // For agents

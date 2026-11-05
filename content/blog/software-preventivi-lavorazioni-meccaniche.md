@@ -20,6 +20,8 @@ Chi cerca un **software preventivi lavorazioni meccaniche** sta chiedendo questo
 
 Non è un listino che si applica da solo. Non è «l'AI che fa il preventivo». E non è un secondo gestionale. Il gestionale già in uso resta il sistema di registrazione: ordine, magazzino, fattura. Il preventivo, prima, è un lavoro di officina.
 
+Se invece quotate **carpenteria metallica** — profili, piatti, taglio, saldatura, montaggio — dal DWG o dal PDF, la query e i campi cambiano. Il focus lì è peso, lunghezze di taglio e ore saldatura, non il ciclo CNC di un particolare. La guida dedicata è [software preventivi carpenteria metallica](/blog/software-preventivi-carpenteria-metallica).
+
 ## Cosa si intende per software preventivi lavorazioni meccaniche
 
 La query è commerciale. In officina il lavoro è più stretto.

@@ -53,6 +53,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "Do not connect AI agents directly to the ERP",
         ),
       },
+      {
+        path: "/blog/software-preventivi-carpenteria-metallica",
+        title: text(
+          "Software preventivi carpenteria metallica: peso, tagli, saldature e ore dal disegno",
+          "Steel fabrication quoting software: weight, cuts, welds, and hours from the drawing",
+        ),
+      },
     ],
     faqs: [
       {

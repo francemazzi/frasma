@@ -90,7 +90,7 @@ Chi conferma non «revisiona l'export». Controlla i fatti che, una volta scritt
 
 È la stessa regola di [non collegare un agente in scrittura diretta sull'ERP](/blog/non-collegare-agenti-ai-direttamente-erp): si prepara, si conferma, poi arriva un import tracciato. Qui non c'è un movimento di magazzino. C'è una struttura tecnica che, se sbagliata, tira dietro acquisti e ciclo.
 
-Il caso [Documenti ERP e preventivi manifatturieri](/casi/documenti-erp-manifattura) parte da lì: documenti e dati tecnici letti, controllati da una persona, poi usati per ERP e preventivo. La distinta da AutoCAD è lo stesso banco, con il DWG al posto del PDF.
+Il caso [Documenti ERP e preventivi manifatturieri](/casi/documenti-erp-manifattura) parte da lì: documenti e dati tecnici letti, controllati da una persona, poi usati per ERP e preventivo. La distinta da AutoCAD è lo stesso banco, con il DWG al posto del PDF. Quando la lista è chiusa ma manca ancora l'offerta — peso, tagli, saldature, ore — il lavoro successivo in carpenteria sta in [software preventivi carpenteria metallica](/blog/software-preventivi-carpenteria-metallica).
 
 ## Il gestionale riceve la lista già chiusa
 
