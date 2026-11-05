@@ -96,6 +96,13 @@ export const DDT_LANDING: CampaignLanding = CampaignLandingSchema.parse({
         label: text("Caso anonimo: documenti ERP e preventivi manifatturieri", "Anonymous case: manufacturing ERP documents and quotes"),
         href: "/casi/documenti-erp-manifattura",
       },
+      {
+        label: text(
+          "Articolo: software preventivi carpenteria metallica",
+          "Article: steel fabrication quoting software",
+        ),
+        href: "/blog/software-preventivi-carpenteria-metallica",
+      },
     ],
   },
   nextSteps: [

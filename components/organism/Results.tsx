@@ -79,6 +79,10 @@ const CASES: Case[] = [
         href: "/blog/software-calcolo-costi-produzione-officina",
         key: "results.case2.guideCosting",
       },
+      {
+        href: "/blog/software-preventivi-carpenteria-metallica",
+        key: "results.case2.guideSteelQuotes",
+      },
     ],
   },
   {
@@ -314,6 +318,14 @@ export default function Results() {
             className="underline-offset-2 hover:text-accent hover:underline"
           >
             {t("results.featuredGuideCosting")}
+          </Link>
+        </p>
+        <p className="mt-2 text-center text-[14px] text-ink-soft">
+          <Link
+            href="/blog/software-preventivi-carpenteria-metallica"
+            className="underline-offset-2 hover:text-accent hover:underline"
+          >
+            {t("results.featuredGuideSteelQuotes")}
           </Link>
         </p>
         <div className="mt-8 flex justify-center">

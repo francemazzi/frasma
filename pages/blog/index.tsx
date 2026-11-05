@@ -54,13 +54,21 @@ export default function Blog({ posts }: BlogIndexProps) {
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
             L&apos;ultimo approfondimento è la guida{" "}
             <Link
+              href="/blog/software-preventivi-carpenteria-metallica"
+              className="text-accent underline-offset-2 hover:underline"
+            >
+              Software preventivi carpenteria metallica: peso, tagli, saldature
+              e ore dal disegno
+            </Link>
+            — preventivo da DWG o PDF con conferma umana prima dell&apos;invio.
+            Per il ciclo passivo resta utile anche{" "}
+            <Link
               href="/blog/erp-ddt-cosa-fa-il-gestionale"
               className="text-accent underline-offset-2 hover:underline"
             >
               ERP e DDT: cosa fa il gestionale e dove si perde tempo
             </Link>
-            — entrata e uscita, lavoro manuale intorno a Mago o TeamSystem e
-            quando ha senso automatizzare con conferma umana.
+            .
           </p>
 
           <PostList posts={posts} />

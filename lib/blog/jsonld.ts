@@ -30,6 +30,9 @@ export const INCOMING_DDT_SLUG = "registrazione-ddt-in-entrata";
 export const PRODUCTION_COSTING_SLUG =
   "software-calcolo-costi-produzione-officina";
 
+export const STEEL_FAB_QUOTES_SLUG =
+  "software-preventivi-carpenteria-metallica";
+
 export const ERP_DDT_MAP_SLUG = "erp-ddt-cosa-fa-il-gestionale";
 
 const AUTOCAD_BOM_FAQS = [
@@ -141,6 +144,34 @@ const MACHINING_QUOTES_FAQS = [
     question: "Da dove si parte, in pratica?",
     answer:
       "Da un insieme piccolo di richieste reali e dall'elenco di ciò che già mettete in offerta: materiale, operazioni, minuti, prezzo. Si misura cosa la proposta indovina e cosa no. Si tiene la persona nel punto di conferma. Si decide se allargare.",
+  },
+];
+
+const STEEL_FAB_QUOTES_FAQS = [
+  {
+    question: "Un software di preventivi sostituisce chi fa le offerte in carpenteria?",
+    answer:
+      "No. Sostituisce il copia-incolla sui telai già visti e sui campi leggibili dal disegno. Chi quota continua a confermare, a gestire le eccezioni e a decidere il margine. La responsabilità del prezzo mandato al cliente resta umana.",
+  },
+  {
+    question: "Si può partire da DWG, PDF e DXF insieme?",
+    answer:
+      "Sì, tenendoli separati. Il DWG o il DXF porta profili e geometria. Il PDF porta note, saldature e trattamenti. Trattarli come un unico file da importare butta via la parte che decide taglio e saldatura. Si prova sui vostri disegni, non si promette lo stesso risultato su un PDF rasterizzato e su un DWG pulito.",
+  },
+  {
+    question: "I prezzi finiscono da soli nel gestionale o in mail al cliente?",
+    answer:
+      "No. Il sistema propone peso, tagli, saldature, ore e prezzo. Una persona conferma. Poi si scrive l'offerta. Se il lavoro viene accettato, si importa nel gestionale già in uso, sul tracciato che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce Mago, TeamSystem o Danea.",
+  },
+  {
+    question: "Cosa si fa se peso, saldatura o trattamento non sono chiari?",
+    answer:
+      "Si marca «da verificare». Non si completa a indovinare. Il disegno e, se c'è, la commessa precedente restano agganciati alla riga, così chi controlla vede la fonte.",
+  },
+  {
+    question: "Da dove si parte, in pratica?",
+    answer:
+      "Da un insieme piccolo di richieste reali e dall'elenco di ciò che già mettete in offerta: materiale, peso, tagli, saldature, montaggio, prezzo. Si misura cosa la proposta ricostruisce e cosa no. Si tiene la persona nel punto di conferma. Si decide se allargare.",
   },
 ];
 
@@ -383,6 +414,10 @@ export function extraJsonLdForBlogPost(slug: string) {
 
   if (slug === MACHINING_QUOTES_SLUG) {
     return [faqPageJsonLd(MACHINING_QUOTES_FAQS)];
+  }
+
+  if (slug === STEEL_FAB_QUOTES_SLUG) {
+    return [faqPageJsonLd(STEEL_FAB_QUOTES_FAQS)];
   }
 
   if (slug === WAREHOUSE_EXCEL_SLUG) {
