@@ -275,7 +275,7 @@ const ERP_DDT_MAP_FAQS = [
   {
     question: "Cosa cambia tra DDT in entrata e in uscita nell'ERP?",
     answer:
-      "In entrata il documento arriva dall'esterno e voi registrarne il carico e l'evasione ordine fornitore. In uscita il documento descrive ciò che spedite; l'ERP scala giacenza ed evade l'ordine cliente.",
+      "In entrata il documento arriva dall'esterno e voi ne registrate il carico e l'evasione dell'ordine fornitore. In uscita il documento descrive ciò che spedite; l'ERP scala giacenza ed evade l'ordine cliente.",
   },
   {
     question: "Si può automatizzare solo l'entrata?",

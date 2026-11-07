@@ -501,6 +501,8 @@ export const it: Record<string, string> = {
     "Guida: software preventivi carpenteria metallica",
   "results.featuredGuide":
     "Guida: ERP e DDT — cosa fa il gestionale e dove si perde tempo",
+  "results.featuredGuideIncoming":
+    "Guida: registrazione dei DDT in entrata — controlli, ordine, differenze di quantità",
   "results.featuredGuideCosting":
     "Guida: calcolo dei costi di produzione in officina, oltre Excel",
   "results.featuredGuideSteelQuotes":

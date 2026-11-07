@@ -499,6 +499,8 @@ export const en: Record<string, string> = {
     "Guide: steel fabrication quoting software",
   "results.featuredGuide":
     "Guide: ERP and delivery notes — what the system does and where time is lost",
+  "results.featuredGuideIncoming":
+    "Guide: registering incoming delivery notes — checks, order matching, quantity differences",
   "results.featuredGuideCosting":
     "Guide: production costing on the shop floor, beyond Excel",
   "results.featuredGuideSteelQuotes":
