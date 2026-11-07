@@ -314,6 +314,14 @@ export default function Results() {
         </p>
         <p className="mt-2 text-center text-[14px] text-ink-soft">
           <Link
+            href="/blog/registrazione-ddt-in-entrata"
+            className="underline-offset-2 hover:text-accent hover:underline"
+          >
+            {t("results.featuredGuideIncoming")}
+          </Link>
+        </p>
+        <p className="mt-2 text-center text-[14px] text-ink-soft">
+          <Link
             href="/blog/software-calcolo-costi-produzione-officina"
             className="underline-offset-2 hover:text-accent hover:underline"
           >

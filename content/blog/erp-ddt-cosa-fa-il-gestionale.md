@@ -6,7 +6,7 @@ seoDescription: "ERP e DDT in entrata e in uscita: cosa registra il gestionale, 
 excerpt: "Il gestionale non «fa» il DDT: collega movimenti, ordini e fatture. Qui la mappa di entrata e uscita, del lavoro manuale e del tempo che si può togliere senza scrivere al posto vostro."
 coverImage: /images/blog/cover-erp-ddt-cosa-fa-il-gestionale.png
 publishedAt: "2026-11-03"
-updatedAt: "2026-11-03"
+updatedAt: "2026-11-07"
 tags:
   - ddt
   - erp
@@ -28,7 +28,7 @@ In manifattura il Documento di Trasporto compare in due direzioni.
 
 **In entrata (ciclo passivo)** il fornitore consegna merce e lascia una bolla. Voi dovete dire al gestionale: cosa è arrivato, a fronte di quale ordine, in che quantità, in quale deposito. Il DDT è in forma libera — layout, codici e riferimenti ordine dipendono da chi lo stampa. Il gestionale, invece, lavora con **i vostri** codici, unità di misura e ordini già aperti.
 
-**In uscita (ciclo attivo)** spedite al cliente. Il DDT (o la bolla di accompagnamento collegata alla fattura) descrive cosa esce dal magazzino. L'ERP deve allineare **prelievo**, **giacenza**, **ordine cliente** e, quando serve, **lotto** o **matricola**. Spesso il documento lo stampa il gestionale; a volte lo completa qualcuno al banco spedizioni con etichette e pesi che il sistema non ha ancora.
+**In uscita (ciclo attivo)** spedite al cliente. Il DDT descrive cosa esce dal magazzino. L'ERP deve allineare **prelievo**, **giacenza**, **ordine cliente** e, quando serve, **lotto** o **matricola**. Spesso il documento lo stampa il gestionale; a volte lo completa qualcuno al banco spedizioni con etichette e pesi che il sistema non ha ancora.
 
 Stesso software, due flussi. Confonderli è uno dei modi più rapidi per perdere tempo: chi cerca «DDT ERP» pensando solo agli acquisti dimentica che metà delle bolle esce dal vostro magazzino verso la produzione o il cliente.
 
@@ -38,15 +38,11 @@ Il gestionale non «legge» il PDF. Fa operazioni controllate quando **qualcuno*
 
 ### Sul passivo: dal DDT del fornitore al magazzino
 
-Di solito, quando un DDT in entrata è registrato correttamente, l'ERP:
-
-1. crea un **movimento di carico** (o mette la merce in un deposito di controllo, se serve collaudo);
-2. **evade**, in tutto o in parte, le righe dell'ordine fornitore;
-3. lascia un **riferimento** che servirà quando arriva la fattura del fornitore — collegamento che la normativa ha sempre distinto tra documento di trasporto e fattura.
+Quando un DDT in entrata è registrato bene, l'ERP fa tre cose: **carica** la merce (o la mette in un deposito di controllo, se serve collaudo), **evade** in tutto o in parte le righe dell'ordine fornitore e lascia il **riferimento** per controllare la fattura del fornitore, che in caso di fatturazione differita richiama data e numero dei DDT. Controlli, abbinamento all'ordine e differenze di quantità, passo per passo, sono nella guida alla [registrazione DDT in entrata](/blog/registrazione-ddt-in-entrata).
 
 Se manca uno di questi tre effetti, il problema non è «il PDF non si apre». È che magazzino, acquisti e amministrazione stanno guardando numeri diversi.
 
-### Sul attivo: dall'ordine cliente al DDT in uscita
+### Sull'attivo: dall'ordine cliente al DDT in uscita
 
 In uscita il gestionale fa il percorso inverso, ma con la stessa logica:
 
@@ -96,12 +92,7 @@ Molte officine misurano il tempo **solo** sulla maschera del gestionale. Il temp
 - la **conferma** prima che un movimento diventi giacenza ufficiale;
 - la **gestione anagrafica**: creare un fornitore nuovo al volo per chiudere in fretta è un errore che paga interessi.
 
-**Si può preparare in automatico**, con una persona che conferma:
-
-- estrazione di testata e righe da PDF o email — come nella guida alla [lettura automatica dei DDT](/blog/lettura-automatica-ddt);
-- controllo duplicati su fornitore + numero + data;
-- proposta di abbinamento ordine–riga, con codice interno e unità già convertita dove le regole ci sono;
-- evidenza dei campi illeggibili o incoerenti, senza completarli a sentimento.
+**Si può preparare in automatico**, con una persona che conferma, il lavoro di trascrizione e di ricerca: estrarre testata e righe dal PDF, come nella guida alla [lettura automatica dei DDT](/blog/lettura-automatica-ddt), controllare i duplicati, proporre l'abbinamento alla riga d'ordine e segnalare i campi illeggibili senza completarli a sentimento. La sequenza completa, con cosa resta alla persona, è in [registrazione DDT in entrata](/blog/registrazione-ddt-in-entrata).
 
 È lo stesso schema del tutorial [DDT da email verso Excel](/blog/automatizzare-ddt-email-intelligenza-artificiale) e del caso [Documenti ERP e preventivi manifatturieri](/casi/documenti-erp-manifattura): documento → campi controllabili → persona → import tracciato. Il perché tecnico del confine con il gestionale sta in [non collegare gli agenti AI direttamente all'ERP](/blog/non-collegare-agenti-ai-direttamente-erp).
 
@@ -118,7 +109,7 @@ Ha senso quando:
 
 Ha **meno** senso quando:
 
-- i documenti sono pochi e chi li registra conosce ogni fornitore;
+- i volumi sono bassi e la digitazione occupa una parte piccola della giornata;
 - il problema vero è l'anagrafica sporca o gli ordini mai chiusi — prima si sistema il processo, poi lo si accelera;
 - cercate un gestionale nuovo «con l'AI dentro» in sostituzione di Mago o TeamSystem. Il punto di partenza resta l'ERP già in azienda.
 
@@ -159,7 +150,7 @@ Di rado. Serve un **flusso** intorno al gestionale già in uso: documento, regis
 
 ### Cosa cambia tra DDT in entrata e in uscita nell'ERP?
 
-In entrata il documento arriva dall'esterno e voi registrarne il carico e l'evasione ordine fornitore. In uscita il documento descrive ciò che **voi** spedite; l'ERP scala giacenza ed evade l'ordine cliente. I campi obbligatori sulla carta sono simili; il lavoro manuale intorno al sistema cambia.
+In entrata il documento arriva dall'esterno e voi ne registrate il carico e l'evasione dell'ordine fornitore. In uscita il documento descrive ciò che **voi** spedite; l'ERP scala giacenza ed evade l'ordine cliente. I campi obbligatori sulla carta sono simili; il lavoro manuale intorno al sistema cambia.
 
 ### Si può automatizzare solo l'entrata?
 
@@ -169,8 +160,10 @@ Sì, ed è spesso il primo passo in officina. L'uscita si affronta quando pickin
 
 Questa pagina è divulgativa: mappa ERP, DDT, tempo manuale. Il percorso concreto di lettura, validazione e import verso il vostro tracciato è [DDT verso ERP](/servizi/ddt-erp). Non c'è un prezzo qui né un impegno: c'è il modo in cui lavoriamo sul ciclo passivo.
 
+[Prenota 30 minuti di analisi del processo con Frasma](/manifattura)
+
 ---
 
-**Autore:** Francesco Saverio Mazzi — Frasma
+**Fonti:** Ministero delle finanze, Dipartimento delle entrate, *Circolare n. 225/E del 16 settembre 1996*, sul D.P.R. 14 agosto 1996, n. 472 (documento di trasporto in forma libera, numerazione progressiva, richiamo di data e numero nella fattura differita), testo consultabile su <https://www.edizionieuropee.it/LAW/HTML/71/zn98_01_036323.html>. In caso di differenza tra questo articolo e il testo originale, prevale il testo originale.
 
-[Prenota 30 minuti di analisi del processo con Frasma](/manifattura)
+**Autore:** Francesco Saverio Mazzi — Frasma
