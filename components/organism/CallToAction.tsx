@@ -1,13 +1,13 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
-import { useLang, useT } from "../../lib/i18n/context";
-import { CONTACT, PHONE_HREF, whatsappHref } from "../../lib/contact";
+import { useT } from "../../lib/i18n/context";
+import { CONTACT, PHONE_HREF } from "../../lib/contact";
 import { Reveal } from "../atoms/Reveal";
+import WhatsappAltLink from "../molecols/WhatsappAltLink";
+import ProcessAssessment from "./ProcessAssessment";
 
 export default function CallToAction() {
   const t = useT();
-  const { lang } = useLang();
 
   return (
     <section id="contact" className="section-farm py-10 sm:py-14">
@@ -17,16 +17,9 @@ export default function CallToAction() {
           <span className="text-accent">{t("cta.titleEm")}</span>
           {t("cta.title2")}
         </h2>
-        <div className="mt-10 flex justify-center">
-          <a
-            href={whatsappHref(lang)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-ink"
-          >
-            <MessageCircle size={16} aria-hidden="true" />
-            {t("contact.tellWhatsapp")}
-          </a>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+          <ProcessAssessment textButton={t("cta.button")} showArrow />
+          <WhatsappAltLink position="cta" />
         </div>
         <p className="mt-4 text-[14px] text-ink-soft">
           {t("contact.callMe")}{" "}

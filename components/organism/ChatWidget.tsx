@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { X, Send, Loader2, Mail } from "lucide-react";
 import { useT, useLang } from "../../lib/i18n/context";
+import { trackWhatsappClick } from "../../lib/analytics/events";
 import { whatsappHref } from "../../lib/contact";
 import {
   extractProjectBriefForm,
@@ -815,6 +816,7 @@ export default function ChatWidget() {
                 href={whatsappHref(lang)}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsappClick("chat")}
                 className="font-medium text-ink underline underline-offset-2 hover:text-accent"
               >
                 {t("contact.chatAlt")}

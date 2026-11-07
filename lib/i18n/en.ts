@@ -555,6 +555,7 @@ export const en: Record<string, string> = {
 
   // Direct contact
   "contact.whatsapp": "Message me on WhatsApp",
+  "contact.orWhatsapp": "or message me on WhatsApp",
   "contact.tellWhatsapp": "Tell me on WhatsApp",
   "contact.callMe": "or call me at",
   "contact.whatsappShort": "WhatsApp",
