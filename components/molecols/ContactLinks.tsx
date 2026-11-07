@@ -1,15 +1,18 @@
 "use client";
 
 import { Mail, MessageCircle, Phone } from "lucide-react";
+import { trackWhatsappClick, type WhatsappPosition } from "../../lib/analytics/events";
 import { useLang, useT } from "../../lib/i18n/context";
 import { CONTACT, EMAIL_HREF, PHONE_HREF, whatsappHref } from "../../lib/contact";
 
 type Props = {
   className?: string;
+  /** Reported with WhatsApp taps so footer clicks are told apart from the rest. */
+  position?: WhatsappPosition;
 };
 
-/** Phone, WhatsApp and email links, used in the footer and the CTA block. */
-export default function ContactLinks({ className = "" }: Props) {
+/** Phone, WhatsApp and email links, used in the site and landing footers. */
+export default function ContactLinks({ className = "", position = "footer" }: Props) {
   const t = useT();
   const { lang } = useLang();
 
@@ -21,6 +24,7 @@ export default function ContactLinks({ className = "" }: Props) {
         href={whatsappHref(lang)}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackWhatsappClick(position)}
         className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
       >
         <MessageCircle size={15} aria-hidden="true" />

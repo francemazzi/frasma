@@ -557,6 +557,7 @@ export const it: Record<string, string> = {
 
   // Direct contact
   "contact.whatsapp": "Scrivimi su WhatsApp",
+  "contact.orWhatsapp": "oppure scrivimi su WhatsApp",
   "contact.tellWhatsapp": "Raccontalo su WhatsApp",
   "contact.callMe": "o chiamami al",
   "contact.whatsappShort": "WhatsApp",

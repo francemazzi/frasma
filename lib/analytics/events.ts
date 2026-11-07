@@ -3,6 +3,7 @@ export type AnalyticsWindow = {
   gtag?: (...args: unknown[]) => void;
   dataLayer?: unknown[];
   oaiq?: (...args: unknown[]) => void;
+  location?: { pathname?: string };
 };
 
 function browserWindow(): AnalyticsWindow | undefined {
@@ -30,4 +31,21 @@ export function trackEvent(
     // Analytics must never break the page.
   }
   return false;
+}
+
+/** Where a site-wide WhatsApp link sits on the page. */
+export type WhatsappPosition = "hero" | "cta" | "chat" | "footer";
+
+/**
+ * Records a tap on a WhatsApp link as the GA4 event `contact_whatsapp`.
+ * `landing` is "home" on the homepage and the path elsewhere. It is a click,
+ * not a lead: the OpenAI pixel is not fired.
+ */
+export function trackWhatsappClick(
+  position: WhatsappPosition,
+  win: AnalyticsWindow | undefined = browserWindow(),
+): boolean {
+  const path = win?.location?.pathname || "/";
+  const landing = path === "/" ? "home" : path;
+  return trackEvent("contact_whatsapp", { landing, position }, win);
 }

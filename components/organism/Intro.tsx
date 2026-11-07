@@ -2,6 +2,7 @@
 
 import { useT } from "../../lib/i18n/context";
 import { Reveal } from "../atoms/Reveal";
+import WhatsappAltLink from "../molecols/WhatsappAltLink";
 import ProcessAssessment from "./ProcessAssessment";
 import { AgentMock, MockStage } from "./productMocks";
 
@@ -31,9 +32,10 @@ export default function Intro() {
 
         <Reveal
           delay={0.24}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-3"
         >
           <ProcessAssessment textButton={t("hero.cta")} showArrow />
+          <WhatsappAltLink position="hero" />
         </Reveal>
       </div>
 
