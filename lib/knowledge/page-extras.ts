@@ -33,6 +33,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
     ),
     articles: [
       {
+        path: "/blog/programma-per-ddt-come-scegliere",
+        title: text(
+          "Programma per DDT: come scegliere tra stampa, gestionale e lettura automatica",
+          "Delivery-note software: how to choose printing, ERP, or automatic reading",
+        ),
+      },
+      {
         path: "/blog/erp-ddt-cosa-fa-il-gestionale",
         title: text(
           "ERP e DDT: cosa fa il gestionale, cosa resta manuale e dove si perde tempo",

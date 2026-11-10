@@ -118,7 +118,7 @@ Sì, tenendoli separati. Il PDF porta quote e note. Lo STEP porta la forma. Il D
 
 ### I prezzi finiscono da soli nel gestionale o in mail al cliente?
 
-No. Il sistema propone tempi, materiale e prezzo. Una persona conferma. Poi si scrive l'offerta. Se il lavoro viene accettato, si importa nel gestionale già in uso, sul tracciato che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce Mago, TeamSystem o Danea.
+No. Il sistema propone tempi, materiale e prezzo. Una persona conferma. Poi si scrive l'offerta. Se il lavoro viene accettato, si importa nel gestionale già in uso, sul tracciato che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce Mago, TeamSystem o Danea. La stessa regola vale se il dubbio è sul lato bolle: [programma per DDT: come scegliere](/blog/programma-per-ddt-come-scegliere) separa stampa, gestionale e lettura in entrata.
 
 ### Cosa si fa se il tempo o il materiale non sono chiari?
 

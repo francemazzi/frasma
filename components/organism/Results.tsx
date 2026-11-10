@@ -71,6 +71,10 @@ const CASES: Case[] = [
     beforeKey: "results.case2.before",
     afterKey: "results.case2.after",
     guides: [
+      {
+        href: "/blog/programma-per-ddt-come-scegliere",
+        key: "results.case2.guideProgrammaDdt",
+      },
       { href: "/blog/erp-ddt-cosa-fa-il-gestionale", key: "results.case2.guideErpDdt" },
       { href: "/blog/registrazione-ddt-in-entrata", key: "results.case2.guideIncoming" },
       { href: "/blog/lettura-automatica-ddt", key: "results.case2.guide" },
@@ -305,6 +309,14 @@ export default function Results() {
           </div>
         </div>
         <p className="mt-6 text-center text-[14px] text-ink-soft">
+          <Link
+            href="/blog/programma-per-ddt-come-scegliere"
+            className="underline-offset-2 hover:text-accent hover:underline"
+          >
+            {t("results.featuredGuideProgrammaDdt")}
+          </Link>
+        </p>
+        <p className="mt-2 text-center text-[14px] text-ink-soft">
           <Link
             href="/blog/erp-ddt-cosa-fa-il-gestionale"
             className="underline-offset-2 hover:text-accent hover:underline"
