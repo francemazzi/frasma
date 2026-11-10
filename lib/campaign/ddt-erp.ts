@@ -89,6 +89,13 @@ export const DDT_LANDING: CampaignLanding = CampaignLandingSchema.parse({
         href: "https://youtu.be/22K6TJAXmmE",
       },
       {
+        label: text(
+          "Guida: programma per DDT — come scegliere lo strumento",
+          "Guide: delivery-note software — how to choose the right tool",
+        ),
+        href: "/blog/programma-per-ddt-come-scegliere",
+      },
+      {
         label: text("Articolo: come automatizzare i DDT ricevuti via email", "Article: how to automate delivery notes received by email"),
         href: "/blog/automatizzare-ddt-email-intelligenza-artificiale",
       },

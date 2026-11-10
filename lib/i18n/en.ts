@@ -489,6 +489,8 @@ export const en: Record<string, string> = {
   "catalog.wiki.searchDesc":
     "The cursor types the query, opens PROC-04, and leaves version and owner visible. Finding is the work; deciding stays with people.",
   "results.caseCta": "Open the case",
+  "results.case2.guideProgrammaDdt":
+    "Guide: delivery-note software — printing, ERP, or automatic reading",
   "results.case2.guideErpDdt": "Guide: ERP and delivery notes in and out",
   "results.case2.guide": "Guide: automatic reading of delivery notes",
   "results.case2.guideAgents": "Guide: AI agents for companies",
@@ -497,6 +499,8 @@ export const en: Record<string, string> = {
     "Guide: shop production costing software",
   "results.case2.guideSteelQuotes":
     "Guide: steel fabrication quoting software",
+  "results.featuredGuideProgrammaDdt":
+    "Guide: delivery-note software — how to choose the right tool",
   "results.featuredGuide":
     "Guide: ERP and delivery notes — what the system does and where time is lost",
   "results.featuredGuideIncoming":

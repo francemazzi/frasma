@@ -19,6 +19,8 @@ In molte aziende manifatturiere i Documenti di Trasporto arrivano ancora come PD
 
 È un'attività semplice, ma ripetitiva. Richiede tempo e può generare errori di trascrizione, documenti duplicati o registrazioni incomplete.
 
+Se state ancora cercando **quale programma per DDT** usare — gestionale, software di stampa o lettura automatica — partite dalla guida [programma per DDT: come scegliere](/blog/programma-per-ddt-come-scegliere). Questo articolo è il tutorial operativo **dopo** che avete deciso che il collo di bottiglia è email, PDF e copia-incolla.
+
 In questo tutorial mostro un piccolo flusso di automazione che utilizza l'intelligenza artificiale per:
 
 1. controllare le email provenienti dai fornitori autorizzati;

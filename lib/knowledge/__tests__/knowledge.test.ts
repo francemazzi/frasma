@@ -228,6 +228,9 @@ describe("markdownForPath", () => {
     expect(ddt).toContain("Mago o TeamSystem");
     expect(ddt).toContain("ciclo passivo");
     expect(ddt).toContain(
+      "https://www.frasma.org/blog/programma-per-ddt-come-scegliere",
+    );
+    expect(ddt).toContain(
       "https://www.frasma.org/blog/erp-ddt-cosa-fa-il-gestionale",
     );
     expect(ddt).toContain(
