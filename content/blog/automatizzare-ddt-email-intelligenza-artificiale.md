@@ -225,6 +225,8 @@ Prima della messa in produzione conviene confrontare i dati estratti automaticam
 
 Per un primo test, Excel è spesso la soluzione più rapida: è conosciuto dal personale, può essere verificato facilmente e non richiede di modificare subito il gestionale. Resta il registro di controllo. L'arrivo è l'importazione tracciata nell'ERP, dopo la conferma di una persona — non un agente che scrive nel gestionale in diretta. Il perché è in [Non collegare gli agenti AI direttamente all'ERP](/blog/non-collegare-agenti-ai-direttamente-erp). Quando il foglio è il magazzino — giacenze, prelievi, file doppi — il discorso è in [gestionale magazzino Excel](/blog/gestionale-magazzino-excel).
 
+In officina, i DDT dei **terzisti** che non si agganciano alla commessa sono uno dei motivi per cui il margine «sparisce» a consuntivo. Il quadro è in [costi nascosti officina metalmeccanica per commessa](/blog/costi-nascosti-commessa-officina-metalmeccanica).
+
 Quando il processo diventa stabile, lo stesso flusso può essere collegato direttamente a:
 
 - ERP aziendale;

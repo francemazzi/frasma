@@ -499,6 +499,8 @@ export const it: Record<string, string> = {
   "results.case2.guideIncoming": "Guida: registrazione dei DDT in entrata",
   "results.case2.guideCosting":
     "Guida: software calcolo costi produzione officina",
+  "results.case2.guideHiddenCosts":
+    "Guida: costi nascosti per commessa in officina metalmeccanica",
   "results.case2.guideSteelQuotes":
     "Guida: software preventivi carpenteria metallica",
   "results.featuredGuideProgrammaDdt":
@@ -509,6 +511,8 @@ export const it: Record<string, string> = {
     "Guida: registrazione dei DDT in entrata — controlli, ordine, differenze di quantità",
   "results.featuredGuideCosting":
     "Guida: calcolo dei costi di produzione in officina, oltre Excel",
+  "results.featuredGuideHiddenCosts":
+    "Guida: costi nascosti per commessa — terzisti, tempi e margine",
   "results.featuredGuideSteelQuotes":
     "Guida: preventivi in carpenteria metallica dal disegno",
   "results.assessCta": "Valuta un processo",
