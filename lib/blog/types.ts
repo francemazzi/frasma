@@ -8,6 +8,7 @@ export type BlogPostFrontmatter = {
   seoDescription?: string;
   coverImage?: string;
   tags?: string[];
+  related?: string[];
   publishedAt: string;
   updatedAt?: string;
   status?: BlogPostStatus;

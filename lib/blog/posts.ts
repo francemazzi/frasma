@@ -100,10 +100,24 @@ export function getRelatedPosts(
   post: BlogPostSummary,
   limit = 2
 ): BlogPostSummary[] {
+  const summaries = getAllPostSummaries().filter(
+    (candidate) => candidate.slug !== post.slug
+  );
+
+  if (post.related?.length) {
+    const bySlug = new Map(
+      summaries.map((candidate) => [candidate.slug, candidate])
+    );
+
+    return post.related
+      .map((slug) => bySlug.get(slug))
+      .filter((candidate): candidate is BlogPostSummary => Boolean(candidate))
+      .slice(0, limit);
+  }
+
   const postTags = new Set(post.tags ?? []);
 
-  return getAllPostSummaries()
-    .filter((candidate) => candidate.slug !== post.slug)
+  return summaries
     .map((candidate) => ({
       candidate,
       score: (candidate.tags ?? []).filter((tag) => postTags.has(tag)).length,

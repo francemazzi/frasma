@@ -2,7 +2,7 @@
 slug: computer-per-intelligenza-artificiale-in-locale
 title: "Quale computer scegliere per l'intelligenza artificiale in locale in azienda"
 seoTitle: "Computer per AI in locale: hardware, modelli e costi per PMI | Frasma"
-seoDescription: "Guida all'hardware per LLM in locale: memoria, banda, quantizzazione, Mac, NVIDIA DGX Spark, RTX 5090, Ryzen AI Max+ 395 e modelli open per documenti e agenti in PMI manifatturiera."
+seoDescription: "Memoria e banda decidono il computer per l'AI in locale: Mac, DGX Spark o RTX, in una PMI manifatturiera."
 excerpt: "Per l'AI in locale il limite è quasi sempre memoria e banda, non i core: ecco come scegliere PC, mini server e modelli senza comprare hardware in eccesso."
 coverImage: /images/blog/cover-computer-per-intelligenza-artificiale-in-locale.png
 publishedAt: "2026-11-13"
@@ -11,6 +11,9 @@ tags:
   - intelligenza-artificiale
   - manifattura
   - automazione-documentale
+related:
+  - ai-in-azienda-delega-la-forma-verifica-i-fatti
+  - ai-manifattura-officina-intorno-al-modello
 status: published
 ---
 
@@ -20,24 +23,26 @@ La **quantizzazione a 4 bit** è il compromesso usuale tra occupazione di memori
 
 I **modelli MoE** (mixture of experts) caricano tutti i pesi in memoria ma, per ogni token, attivano solo una frazione degli esperti: su macchine con tanta memoria ma banda media (NVIDIA GB10, AMD Strix Halo) spesso rendono molto meglio dei modelli **densi** della stessa «categoria commerciale».
 
-**Sui prezzi:** Francesco ha chiesto esplicitamente i listini hardware di terzi. Qui sotto compaiono come **indicativi**, con fonte e con la dicitura «rilevato il 13/11/2026» dove il dossier lo consente. Dal primo trimestre 2026 la crisi delle memorie DRAM («RAMpocalypse») ha spostato configurazioni e prezzi: il Mac Studio M3 Ultra da 512 GB è stato tolto dal configuratore Apple ([macitynet, 06/03/2026](https://www.macitynet.it/mac-studio-con-512gb-ram/)); il Framework Desktop da 128 GB è passato da 2.329 € a 3.449 € in venti mesi ([BlogiPhone, 08/10/2026](https://www.blogiphone.fr/5250-framework-desktop-prix-en-precommande-des-7-659-eur-3-449-eur-avant.html)). **Non riporto** prezzi segnati nel dossier come calcolati o non verificati: per Mac Studio M5 Ultra da 256 GB o Mac mini / Studio con RAM massima scrivete «da verificare sul configuratore Apple». Nessun prezzo di servizi Frasma in questa pagina.
+**Sui prezzi.** Le cifre sotto sono **indicative**: ognuna ha una fonte e, dove l'ho controllata il 13/11/2026, la data. Dal primo trimestre 2026 la crisi delle memorie DRAM («RAMpocalypse») ha spostato configurazioni e listini: il Mac Studio M3 Ultra da 512 GB è stato tolto dal configuratore Apple ([macitynet, 06/03/2026](https://www.macitynet.it/mac-studio-con-512gb-ram/)); il Framework Desktop da 128 GB è passato da 2.329 € a 3.449 € in venti mesi ([BlogiPhone, 08/10/2026](https://www.blogiphone.fr/5250-framework-desktop-prix-en-precommande-des-7-659-eur-3-449-eur-avant.html)). Per il Mac Studio M5 Ultra da 256 GB, e per Mac mini o Studio con la RAM massima, non ho un prezzo letto sul configuratore Apple: lì scrivo «da verificare sul configuratore».
 
 Il computer è il mezzo. Il lavoro, in azienda, resta trasformare disegni, DDT, ordini e procedure in dati controllabili verso il gestionale — non sostituirlo. Per l'architettura e l'integrazione rimanda a [AI on-premise](/servizi/ai-on-premise); per «locale o cloud» a [L'AI in azienda: delega la forma, verifica i fatti](/blog/ai-in-azienda-delega-la-forma-verifica-i-fatti).
 
 ## Memoria e banda contano più dei core
 
-Dettmers e Zettlemoyer, in oltre 35.000 esperimenti, concludono che a parità di memoria disponibile la **precisione a 4 bit è quasi sempre ottimale** per l'inferenza ([arXiv:2212.09720](https://arxiv.org/abs/2212.09720)). Non è solo teoria: nella [discussione ufficiale llama.cpp #4167](https://github.com/ggml-org/llama.cpp/discussions/4167) (tabella del primo post, letta il 13/11/2026), con **Llama 2 7B Q4_0** la generazione (`tg`, token/s in uscita) scala con la banda:
+Dettmers e Zettlemoyer, in oltre 35.000 esperimenti, concludono che a parità di memoria disponibile la **precisione a 4 bit è quasi sempre ottimale** per l'inferenza ([arXiv:2212.09720](https://arxiv.org/abs/2212.09720)). Nella [discussione ufficiale llama.cpp #4167](https://github.com/ggml-org/llama.cpp/discussions/4167) (tabella del primo post, letta il 13/11/2026), con **Llama 2 7B Q4_0** la generazione (`tg`, token/s in uscita) e la lettura del prompt (`pp`) non si muovono allo stesso modo. Per DDT e tavole conta il tempo di lettura. Sull'M5 Pro il salto rispetto all'M4 Pro è nella lettura (circa 1.621 contro circa 440 tok/s), non nella generazione (66 contro 51):
 
-| Chip | Banda (GB/s) | GPU core | tg Q4_0 |
-| --- | --- | --- | --- |
-| M6 (Mac mini base) | 170 | 8 | 35,7 |
-| M4 Pro | 273 | 20 | 50,7 |
-| M5 Pro | 307 | 20 | 66,3 |
-| M3 Ultra | 800 | 80 | 92,1 |
-| M5 Max | 614 | 40 | 119,9 |
-| M5 Ultra | 1.228 | 80 | 179,1 |
+| Chip | Banda (GB/s) | GPU core | pp Q4_0 | tg Q4_0 |
+| --- | --- | --- | --- | --- |
+| M6 a 170 GB/s (24 o 32 GB) | 170 | 8 | 988,9 | 35,7 |
+| M4 Pro | 273 | 20 | 439,8 | 50,7 |
+| M5 Pro | 307 | 20 | 1.620,6 | 66,3 |
+| M3 Ultra | 800 | 80 | 1.471,2 | 92,1 |
+| M5 Max | 614 | 40 | 3.220,0 | 119,9 |
+| M5 Ultra | 1.228 | 80 | 4.944,7 | 179,1 |
 
-Due chip di generazioni diverse con banda simile tendono a dare velocità simili: è un'osservazione ragionevole su quella tabella, non una legge fisica. M5 Max e M3 Ultra non seguono alla lettera la regola perché su M5 entrano in gioco i Neural Accelerator nella GPU.
+Il Mac mini M6 da 1.079 €, sulle [specifiche Apple](https://www.apple.com/it/mac-mini/specs/), è un'altra config: 16 GB, GPU 12-core, 153 GB/s. In #4167 quella riga non ha una misura compilata. I 35,7 tok/s valgono per la config a 170 GB/s.
+
+Due chip di generazioni diverse con banda simile tendono a dare velocità simili in generazione: è un'osservazione ragionevole su quella tabella, non una legge fisica. M5 Max e M3 Ultra non seguono alla lettera la regola perché su M5 entrano in gioco i Neural Accelerator nella GPU, e il divario si vede soprattutto in lettura.
 
 Sul **NVIDIA DGX Spark** (GB10, 273 GB/s), il [file benchmark ufficiale llama.cpp](https://github.com/ggml-org/llama.cpp/blob/master/benches/dgx-spark/dgx-spark.md) mostra un punto didattico:
 
@@ -46,7 +51,7 @@ Sul **NVIDIA DGX Spark** (GB10, 273 GB/s), il [file benchmark ufficiale llama.cp
 | gpt-oss-120b MXFP4 | 59,0 GiB | 58,7 | 42,8 |
 | Qwen2.5-Coder-7B Q8_0 (denso) | 7,5 GiB | 29,4 | 22,5 |
 
-Il **modello denso da 7B va più piano del MoE da 120B** (29 contro 59 tok/s nelle condizioni di quel test). Il denso deve attraversare tutti i pesi a ogni token; il MoE attiva solo gli esperti necessari ([scheda gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b): circa 5,1B parametri attivi su 117B totali).
+Il file mette un denso da 7B in **Q8** accanto a un MoE da 120B in **MXFP4** (29 contro 59 tok/s). Il Q8 sposta circa il doppio dei byte per parametro: a 4 bit, a pari banda, quel 7B starebbe intorno ai 58 tok/s, come i 58,7 del MoE. La differenza utile è la capacità. Il MoE tiene in memoria un modello molto più capace alla stessa velocità, perché per token ne attiva circa 5,1 miliardi su 117 ([scheda gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b)).
 
 Anche la **KV cache** pesa: con modelli grandi e contesti lunghi, la memoria oltre i pesi può riempire la scheda. Su RTX 5090, Hardware Corner riporta **Qwen3 14B con 131K di contesto a 31 GB di VRAM** su 8,5 GiB di pesi ([benchmark RTX 5090](https://www.hardware-corner.net/rtx-5090-llm-benchmarks/)) — concetto allineato a [PagedAttention / vLLM](https://arxiv.org/abs/2309.06180).
 
@@ -54,17 +59,17 @@ Anche la **KV cache** pesa: con modelli grandi e contesti lunghi, la memoria olt
 
 Senza entrare in ingegneria del training, per una PMI servono tre idee:
 
-1. **4 bit (Q4_K_M e affini)** — dimensione dei pesi ridotta, qualità in genere accettabile per estrazione e chat operative ([GPTQ](https://arxiv.org/abs/2210.17323), [AWQ](https://arxiv.org/abs/2306.00978)).
-2. **8 bit** — metà memoria rispetto a FP16 senza perdita dichiarata fino a modelli molto grandi ([LLM.int8()](https://arxiv.org/abs/2208.07339)).
+1. **4 bit in GGUF (Q4_K_M e affini)** — pesi più piccoli, qualità in genere accettabile per estrazione e chat operative. Q4_K_M è un k-quant di llama.cpp. [GPTQ](https://arxiv.org/abs/2210.17323) e [AWQ](https://arxiv.org/abs/2306.00978) sono altri procedimenti a 4 bit, con lo stesso ordine di grandezza in memoria.
+2. **8 bit** — metà memoria rispetto a FP16. La quantizzazione a 8 bit ingenua perde qualità sui modelli grandi, per gli outlier. [LLM.int8()](https://arxiv.org/abs/2208.07339) isola quegli outlier e evita quella perdita.
 3. **Formati nativi come MXFP4** su alcuni modelli open (es. gpt-oss) — file più piccoli, ma dipendete dal backend (llama.cpp, vLLM, Ollama).
 
-**Stima memoria pesi** = parametri × bit per peso ÷ 8. Esempio verificabile: Llama 3.1 70B in Q4_K_M → circa 43,1 GB ([README quantize](https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md)). A quella cifra vanno sommati sistema operativo, runtime, **KV cache** (proporzionale a contesto e utenti in parallelo, [arXiv:2309.06180](https://arxiv.org/abs/2309.06180)) e, per modelli vision, le immagini nel prompt. Le cifre «Q4 stimato / Q8 stimato» nella tabella modelli sotto sono **stime**, non misure sul vostro carico.
+**Stima memoria pesi** = parametri × bit per peso ÷ 8. Con 4 bit esatti, 70 miliardi di parametri fanno 35 GB. Q4_K_M sta intorno ai 4,9 bit effettivi: Llama 3.1 70B in Q4_K_M pesa circa 43,1 GB ([README quantize](https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md)). A quella cifra vanno sommati sistema operativo, runtime, **KV cache** (proporzionale a contesto e utenti in parallelo, [arXiv:2309.06180](https://arxiv.org/abs/2309.06180)) e, per modelli vision, le immagini nel prompt. Le cifre «Q4 stimato / Q8 stimato» più sotto sono **stime**, non misure sul vostro carico.
 
 Benazir e Lin ([Profiling on Apple Silicon](https://arxiv.org/abs/2508.08531)) ricordano che abbassare i bit non accelera sempre: c'è costo di dequantizzazione. Su Apple Silicon la memoria unificata grande rende comunque attraente l'inferenza di modelli molto grandi; per il **training** resta un divario netto verso GPU NVIDIA ([Profiling Apple Silicon Performance for ML Training](https://arxiv.org/abs/2501.14925)).
 
 ## Prima il lavoro, poi la macchina
 
-Il computer segue i compiti, non il contrario. In manifattura, su documenti e agenti, il dossier di ricerca (13/11/2026) raggruppa così i casi — con modelli **aperti** e licenze lette su Hugging Face lo stesso giorno:
+Il computer segue i compiti, non il contrario. Per documenti e agenti in manifattura raggruppo i casi così, con modelli **aperti** e licenze lette su Hugging Face il 13/11/2026:
 
 ### Preventivi ed estrazione da documenti e disegni
 
@@ -90,7 +95,15 @@ Indice + chat: [Qwen3-Embedding-0.6B](https://huggingface.co/Qwen/Qwen3-Embeddin
 
 ### Fine-tuning su dati propri
 
-Richiede in pratica **NVIDIA** e tanta VRAM (QLoRA: [arXiv:2305.14314](https://arxiv.org/abs/2305.14314)). DGX Spark: NVIDIA dichiara fine-tuning fino a 70B; RTX PRO 6000 ha 96 GB. Avvertenza da [Iyer, 2026 su due DGX Spark in cluster](https://arxiv.org/abs/2608.07226): il fine-tuning migliora categorie di dominio ma **può peggiorare la conoscenza generale** — prima RAG e prompt, poi eventuale addestramento.
+Richiede in pratica **NVIDIA** e tanta VRAM (QLoRA: [arXiv:2305.14314](https://arxiv.org/abs/2305.14314)). DGX Spark: NVIDIA dichiara fine-tuning fino a 70B; RTX PRO 6000 ha 96 GB. [Iyer, 2026](https://arxiv.org/abs/2608.07226) allena un NanoChat da circa 897 milioni di parametri su 77 advisory CISA, con due DGX Spark: le categorie di dominio migliorano e la conoscenza generale cala. Quel paper non confronta il RAG. In officina il passo operativo è un altro: prima i documenti e il prompt, poi un eventuale addestramento.
+
+## Cosa comprare, in tre casi
+
+**Estrazione e vision fino a circa 30B.** Si prova sul computer già in ufficio o su un Mac mini. I MoE da 100 miliardi di parametri sono un altro acquisto.
+
+**Chat e RAG su un MoE intorno ai 120B** (gpt-oss-120b, circa 59 GiB in MXFP4). Servono 128 GB. Framework Desktop o GMKtec EVO-X2 se il vincolo è il prezzo; DGX Spark se serve CUDA e il fine-tuning che NVIDIA dichiara fino a 70B.
+
+**RTX 5090, solo scheda da 7.881 €.** Compra velocità sui modelli che stanno in 32 GB di VRAM: nella tabella Hardware Corner, Qwen3 30B-A3B Q4 fa 234 tok/s a contesto 4K. Un gpt-oss-120b da 59 GiB non ci sta.
 
 ---
 
@@ -100,19 +113,19 @@ Se state valutando dove collocare agenti e lettura documenti sulla vostra rete, 
 
 ### Fascia 0 — prova e modelli piccoli (8–12B)
 
-**Apple Mac mini M6** (sostituisce la generazione citata in molti benchmark come «M4» nelle discussioni 2025):
+**Apple Mac mini M6** base, da **1.079 €** ([specifiche Mac mini, Apple IT](https://www.apple.com/it/mac-mini/specs/), rilevato il 13/11/2026):
 
-- CPU 12-core, GPU 8–12 core, **16–32 GB** unificata, **153–170 GB/s**
-- Da **1.079 €**, rilevato il 13/11/2026 — [specifiche Mac mini, Apple IT](https://www.apple.com/it/mac-mini/specs/)
+- CPU 12-core, GPU 12-core, **16 GB** unificata, **153 GB/s**. A 24 o 32 GB la banda sale a **170 GB/s**
 - **Pro:** modo più economico per provare Ollama/llama.cpp; silenzioso; consumo contenuto
 - **Contro:** non regge modelli vision grandi né chat strategiche con MoE da 100B+
 - **Costo/beneficio:** ottimo per **classificazione, estrazione semplice, test** con Gemma 4 E4B o Qwen3-VL-8B
+- In #4167 i 35,7 tok/s di Llama 2 7B Q4 sono la config a 170 GB/s (8 core GPU in quella tabella). Per il base da 1.079 € la riga non è compilata
 
 **Apple Mac mini M5 Pro**:
 
 - CPU 15–18 core, GPU 16–20 core, **24–64 GB** (il prezzo con **64 GB non è verificato** — configuratore Apple), **307 GB/s**, max 155 W
 - Da **2.029 €** con 24 GB, stessa fonte Apple
-- Llama 2 7B Q4: **66,3 tok/s** nella tabella #4167
+- Llama 2 7B Q4 sulla GPU 20-core: **66,3 tok/s** in generazione e circa **1.621 tok/s** in lettura prompt (#4167). Il mini in listino parte dalla GPU 16-core
 - **Pro:** estrazione da DDT/disegni con modelli vision fino a ~27–30B se configurate abbastanza RAM
 - **Contro:** sopra ~48 GB il prezzo va ricontrollato; banda inferiore a Mac Studio
 
@@ -138,7 +151,7 @@ Benchmark lhl (metà 2025, software non ultimo):
 | Llama-3 70B Q4_K_M (denso) | **5,0** |
 
 **Pro:** **costo più basso per 128 GB**; gpt-oss-120b usabile; adatto a chat/RAG in sede
-**Contro:** 70B denso impraticabile; ecosistema AMD meno maturo di CUDA; fonti secondarie riportano gpt-oss-120b fino a ~55 tok/s con build più recenti ([localaiprices](https://localaiprices.com/p/framework-desktop-128/)) — citare come «fino a», con riserva
+**Contro:** 70B denso impraticabile; ecosistema AMD meno maturo di CUDA; fonti secondarie riportano gpt-oss-120b fino a ~55 tok/s con build più recenti ([localaiprices](https://localaiprices.com/p/framework-desktop-128/)). È un «fino a»: il banco lhl, più vecchio, sta a 33,7
 
 ### Fascia 2 — NVIDIA GB10 (DGX Spark e cloni ASUS)
 
@@ -169,7 +182,7 @@ Fonti: [Newsroom Apple 25/08/2026](https://www.apple.com/it/newsroom/2026/08/app
 **Mac Studio M5 Ultra**: CPU 30/36 core, GPU 64/80 core, **96 / 256 / 512 GB**, banda **1,2 TB/s**
 
 - Base 96 GB: **6.699 €**
-- **256 GB: da verificare sul configuratore** (il dossier segnala solo un calcolo interno non verificato)
+- **256 GB: da verificare sul configuratore.** Non ho un prezzo letto lì, e un calcolo interno non pubblicato non diventa un listino
 - **512 GB**, SSD 1 TB: **25.179 €**, rilevato 29/10/2026 — [Saggiamente](https://saggiamente.com/2026/10/mac-studio-m5-ultra-512gb-di-ram-da-25-179e-in-italia/)
 - 512 GB + 4 TB: 26.829 €, consegna 23/11 — fonte secondaria [pasqualepillitteri.it](https://pasqualepillitteri.it/news/27929/mac-studio-m5-ultra-512gb-4tb-consegna-23-novembre)
 
@@ -178,21 +191,21 @@ Benchmark MLX (Bohemian Silicon, 15/10/2026 — **nota:** noleggia Mac Studio; i
 **Mac Studio M3 Ultra** ricondizionato 96 GB: **5.269 €** — [Apple IT](https://www.apple.com/it/shop/product/fu973t/a/Mac-Studio-ricondizionato-con-chip-Apple-M3-Ultra-CPU-28%E2%80%91core-e-GPU-60%E2%80%91core). Nuovo 512 GB: listini terzi esauriti ([AJ Store](https://www.ajstore.it/mac-studio-cto/4443-mac-studio-chip-apple-m3-ultra-con-cpu-32-core-gpu-80-core-ne-32-core-ram-512gb-hd-ssd-2tb.html)).
 
 **Pro:** banda doppia o tripla rispetto a Spark/Strix a 128 GB; silenzioso in ufficio tecnico
-**Contro:** niente CUDA; training debole (P13); cluster Thunderbolt con esperienze negative in discussione community ([HN 50341396](https://news.ycombinator.com/item?id=50341396))
+**Contro:** niente CUDA; il training resta indietro rispetto alle GPU NVIDIA ([Profiling Apple Silicon Performance for ML Training](https://arxiv.org/abs/2501.14925)); cluster Thunderbolt con esperienze negative in discussione community ([HN 50341396](https://news.ycombinator.com/item?id=50341396))
 
 ### Fascia 4 — workstation NVIDIA dedicata
 
 **GeForce RTX 5090**: 32 GB GDDR7, **1.792 GB/s**, 575 W
 
-- **Solo scheda da 7.881,20 €** (Inno3D, idealo 13/11/2026 08:59) — [link](https://www.idealo.it/confronta-prezzi/205796379/inno3d-geforce-rtx-5090.html)
+- **Solo scheda da 7.881,20 €** (Inno3D, idealo 13/11/2026 08:59) — [Inno3D GeForce RTX 5090 su idealo](https://www.idealo.it/confronta-prezzi/205796379/inno3d-geforce-rtx-5090.html)
 - A fine 2025 circa 2.500 $ USA ([Hardware Corner](https://www.hardware-corner.net/rtx-5090-llm-benchmarks/)) — il rincaro europeo è visibile
 - **PC completo: non verificato** (CPU, RAM, alimentatore esclusi)
 
 **RTX PRO 6000 Blackwell Workstation Edition**: 96 GB GDDR7 ECC, **1.792 GB/s**, 600 W
 
-- **Solo scheda da 19.812,18 €** (idealo 13/11/2026) — [link](https://www.idealo.it/confronta-prezzi/206328547/nvidia-rtx-pro-6000-blackwell.html)
+- **Solo scheda da 19.812,18 €** (idealo 13/11/2026) — [NVIDIA RTX PRO 6000 Blackwell su idealo](https://www.idealo.it/confronta-prezzi/206328547/nvidia-rtx-pro-6000-blackwell.html)
 
-Token/s: usare **solo** la tabella Hardware Corner Qwen3 Q4 (non confondere con 120B in 32 GB):
+Queste velocità sono Qwen3 in Q4 su RTX 5090, a contesto 4K e 32K. Un modello da 120B in 32 GB di VRAM non c'entra:
 
 | Modello | tg a 4K | tg a 32K |
 | --- | --- | --- |
@@ -208,17 +221,17 @@ Token/s: usare **solo** la tabella Hardware Corner Qwen3 Q4 (non confondere con 
 
 ## Tabella comparativa
 
-«Modello massimo ragionevole» = **stima** (pesi Q4 + margine 20–30% per contesto e SO). Token/s solo se misurati nelle fonti citate. Prezzi IVA inclusa dove indicato, rilevato il 13/11/2026 salvo altra data in nota.
+«Modello massimo ragionevole» = **stima** (pesi Q4 + margine 20–30% per contesto e SO). La colonna velocità non è una classifica: ogni cifra è un modello, una quantizzazione e un contesto diversi. Non ordinate le righe per quel numero. Prezzi IVA inclusa dove indicato, rilevato il 13/11/2026 salvo altra data in nota.
 
 | Computer | Prezzo indicativo (fonte) | RAM/VRAM per modelli | Banda | Modello massimo ragionevole (stima) | Velocità misurata (esempi) | Attività adatte | Costo/beneficio |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Mac mini M6 | da 1.079 € (Apple IT) | 16–32 GB unificata | 153–170 GB/s | 8–12B Q4/Q8 | Llama 2 7B Q4: 35,7 tok/s (#4167) | Prove, classificazione, estrazione leggera | Il più economico per **iniziare** |
-| Mac mini M5 Pro | da 2.029 € (24 GB; 64 GB da configuratore) | 24–64 GB | 307 GB/s | ~27–30B Q4 con 48–64 GB | Llama 2 7B Q4: 66,3 tok/s | DDT, disegni con vision, chat leggera | Ottimo ufficio tecnico silenzioso |
-| PC + RTX 5090 | scheda da 7.881 € + PC non verificato | 32 GB VRAM | 1.792 GB/s | ~32B denso Q4; gpt-oss-20b | Qwen3 30B-A3B: 234 tok/s; 32B: 61 tok/s (HC) | Velocità, più utenti, CUDA | Top velocità, VRAM limitata, 575 W |
-| GMKtec EVO-X2 / Framework 395 | 3.449–3.999,96 € | 128 GB unificata | 256 GB/s (~215 misurati) | MoE ~120B; 70B denso lento | gpt-oss-120b: 33,7 tok/s (lhl); fino a ~55 (aggregatore) | Chat MoE, RAG, prove grandi | **128 GB al minor costo** |
-| DGX Spark / ASUS GX10 | 4.699 € (ASUS, da verificare) – 9.699 € | 128 GB unificata | 273 GB/s | MoE fino a ~200B (NVIDIA) | gpt-oss-120b: 58,7 tok/s (42,8 @32K) | Come Strix + CUDA, fine-tuning 70B | Più caro a pari banda, stack maturo |
-| Mac Studio M5 Max 128 GB | da 3.049 €; 128 GB da configuratore | fino a 128 GB | 614 GB/s | MoE ~120B più veloce | Llama 2 7B Q4: 119,9 tok/s | Strategia, RAG, vision | Banda alta a 128 GB |
-| Mac Studio M5 Ultra 256 GB | da verificare sul configuratore | 256 GB | 1,2 TB/s | MoE ~300B Q4 (es. DeepSeek V4 Flash ~174 GB) | gpt-oss-120b: 120 tok/s (Bohemian Silicon) | Modelli grandi, contesto lungo | «Oltre 10.000 €» con buon rapporto capacità/velocità |
+| Mac mini M6 | da 1.079 €, base 16 GB (Apple IT) | 16 GB a 153 GB/s; 24–32 GB a 170 GB/s | 153 GB/s base, 170 sopra | 8–12B Q4/Q8 | Llama 2 7B Q4: 35,7 tok/s solo a 170 GB/s (24/32 GB). Il base da 1.079 € non è misurato in #4167 | Prove, classificazione, estrazione leggera | Il più economico per **iniziare** |
+| Mac mini M5 Pro | da 2.029 € (24 GB; 64 GB da configuratore) | 24–64 GB | 307 GB/s | ~27–30B Q4 con 48–64 GB | Llama 2 7B Q4, GPU 20-core: 66,3 tok/s in generazione, circa 1.621 in lettura | DDT, disegni con vision, chat leggera | Ottimo ufficio tecnico silenzioso |
+| PC + RTX 5090 | scheda da 7.881 € + PC non verificato | 32 GB VRAM | 1.792 GB/s | ~32B denso Q4; gpt-oss-20b | Qwen3 30B-A3B Q4, contesto 4K: 234 tok/s; Qwen3 32B Q4, 4K: 61 tok/s | Velocità, più utenti, CUDA | Top velocità, VRAM limitata, 575 W |
+| GMKtec EVO-X2 / Framework 395 | 3.449–3.999,96 € | 128 GB unificata | 256 GB/s (~215 misurati) | MoE ~120B; 70B denso lento | gpt-oss-120b MXFP4: 33,7 tok/s (lhl, metà 2025); fonti più recenti fino a ~55, con riserva | Chat MoE, RAG, prove grandi | **128 GB al minor costo** |
+| DGX Spark / ASUS GX10 | da 6.149 € (GX10, idealo 09/11) a 9.699 €. 4.699 € ASUS da verificare, non è il minimo | 128 GB unificata | 273 GB/s | MoE fino a ~200B (NVIDIA) | gpt-oss-120b MXFP4: 58,7 tok/s a contesto vuoto, 42,8 a 32K | Come Strix + CUDA, fine-tuning 70B | Più caro a pari banda, stack maturo |
+| Mac Studio M5 Max 128 GB | 128 GB da configuratore (GPU 40-core). 3.049 € è il 36 GB, GPU 32-core, 460 GB/s | 128 GB solo sulla GPU 40-core | 614 GB/s sulla GPU 40-core | MoE ~120B più veloce | Llama 2 7B Q4, GPU 40-core: 119,9 tok/s in generazione. Non è la macchina da 3.049 € | Strategia, RAG, vision | Banda alta a 128 GB, prezzo della RAM da configuratore |
+| Mac Studio M5 Ultra 256 GB | da verificare sul configuratore | 256 GB | 1,2 TB/s | MoE ~300B Q4 (es. DeepSeek V4 Flash ~174 GB) | gpt-oss-120b MXFP4: 120 tok/s a contesto vuoto, 96 a 32K (Bohemian Silicon) | Modelli grandi, contesto lungo | «Oltre 10.000 €» con buon rapporto capacità/velocità |
 | Mac Studio M5 Ultra 512 GB | 25.179 € (1 TB, Saggiamente) | 512 GB | 1,2 TB/s | fascia DeepSeek V4.1 Flash | — | Laboratorio, frontiera aperta | Solo esigenza precisa; 256+256 vs un 512 |
 | Workstation RTX PRO 6000 | scheda da 19.812 € | 96 GB VRAM | 1.792 GB/s | ~120B MoE o 70B Q8 | — | vLLM, multi-utente, training serio | 96 GB a velocità 5090, 600 W |
 | DGX Station GB300 | da 94.930 $ | 252 GB HBM3e + 496 GB | — | centinaia di B | — | Centro calcolo | Fuori scala PMI |
@@ -236,17 +249,17 @@ Modelli **superati ma ancora citati**: Llama 3.3 70B denso lento su Strix (5 tok
 
 ## Quanto costa davvero e quando conviene
 
-**Studio PMI su GPU consumer** — Knoop & Holtmann, [arXiv:2601.09527](https://arxiv.org/abs/2601.09527) (gennaio 2026):
+**Preprint su GPU consumer** — Knoop & Holtmann, [arXiv:2601.09527](https://arxiv.org/abs/2601.09527) (gennaio 2026, GPU noleggiate, non il parco macchine di un'officina):
 
-- costo inferenza locale **0,001–0,04 $ per milione di token** (solo elettricità);
+- costo inferenza locale **0,001–0,04 $ per milione di token**, solo elettricità, senza il prezzo della scheda;
 - **40–200×** meno delle API cloud di fascia bassa nel loro scenario;
-- break-even **sotto quattro mesi** a 30 milioni di token/giorno su RTX 5060 Ti–5090 con modelli come Qwen3-8B, Gemma3-12B/27B, GPT-OSS-20B; throughput 5090 **3,5–4,6×** rispetto a 5060 Ti; NVFP4 **+1,6×** con −41% energia e 2–4% qualità in meno.
+- pareggio **sotto quattro mesi** a **30 milioni di token al giorno** su RTX 5060 Ti–5090 con modelli come Qwen3-8B, Gemma3-12B/27B, GPT-OSS-20B; throughput 5090 **3,5–4,6×** rispetto a 5060 Ti; NVFP4 **+1,6×** con −41% energia e 2–4% qualità in meno.
 
-**Avvertenza obbligatoria:** lo studio usa **prezzi GPU precedenti ai rincari** del 2026; oggi la RTX 5090 in Europa costa circa il triplo del listino USA di fine 2025 citato in Hardware Corner. **Rifate il conto** con listini attuali e con i volumi reali (documenti/giorno, utenti, contesto).
+30 milioni di token al giorno, a circa 10.000 token per documento, sono circa **3.000 documenti al giorno**. Il pareggio sotto quattro mesi vale quello scenario, e con prezzi GPU precedenti ai rincari del 2026. Un flusso di decine di DDT al giorno non lo eredita. La RTX 5090 in Europa, nel listino citato sopra, costa circa il triplo del listino USA di fine 2025 riportato da Hardware Corner: anche il pareggio dello studio si allunga.
 
-Controcanto qualitativo dalla community: anche con hardware costoso, per un singolo sviluppatore il locale può risultare «not remotely cost-effective compared to cloud models» ([commento HN 50342363](https://news.ycombinator.com/item?id=50342363)) — allineato al post Frasma su usi sporadici e cloud. Locale conviene per **volumi alti e ripetitivi** (documenti in entrata, estrazioni batch) o quando **i dati non possono uscire**, non per tre domande a settimana.
+Anche con hardware costoso, per un singolo sviluppatore il locale può non essere conveniente rispetto ai modelli cloud ([commento HN 50342363](https://news.ycombinator.com/item?id=50342363)). È lo stesso confine del post Frasma sugli usi sporadici. Il locale conviene per **volumi alti e ripetitivi** (documenti in entrata, estrazioni batch) o quando **i dati non possono uscire**, non per tre domande a settimana.
 
-**Energia:** RTX 5090 e PRO 6000 fino a 575–600 W; DGX Spark alimentatore 240 W; Mac mini max 155 W (specifiche Apple). Zähl et al. ([arXiv:2608.00008](https://arxiv.org/abs/2608.00008)) su RTX 4060 Ti: fino a **8,6×** energia per token tra modelli piccoli — anche la scelta del modello pesa.
+**Energia:** RTX 5090 e PRO 6000 fino a 575–600 W; DGX Spark alimentatore 240 W; Mac mini max 155 W (specifiche Apple). Zähl et al. ([arXiv:2608.00008](https://arxiv.org/abs/2608.00008)) su RTX 4060 Ti: un Mistral da 7B consuma fino a **8,6 volte** più energia per token del modello più efficiente della prova, da 0,5B. Il divario è fra un 7B e un modello piccolo. Anche la scelta del modello pesa.
 
 **Incentivi:** l'hardware può rientrare nell'[iperammortamento 2026](/blog/iperammortamento-2026) se ne avete i requisiti di interconnessione — senza ripetere qui gli importi del post dedicato.
 
@@ -254,7 +267,7 @@ Controcanto qualitativo dalla community: anche con hardware costoso, per un sing
 
 1. **Comprare 512 GB «per sicurezza»** senza un modello che li usa: Saggiamente nota che la differenza 256→512 GB può costare quanto un secondo Mac — sensato solo con esigenza misurata.
 2. **Cluster di Mac Studio** per shardare un modello: esperienza negativa in thread community ([HN 50341396](https://news.ycombinator.com/item?id=50341396)).
-3. **Fine-tuning come prima mossa** invece di RAG ([arXiv:2608.07226](https://arxiv.org/abs/2608.07226)).
+3. **Fine-tuning come prima mossa.** In officina prima si recuperano i documenti e si sistema il prompt. Iyer ([arXiv:2608.07226](https://arxiv.org/abs/2608.07226)) mostra un altro fenomeno, su un modello piccolo: un NanoChat da circa 897 milioni di parametri, addestrato su 77 advisory, migliora il dominio e perde conoscenza generale. Quel paper non confronta il RAG.
 4. **Benchmark solo con prompt corti** su modelli enormi: la lettura di documenti lunghi (`pp`) può richiedere minuti ([DeepSeek 671B su M3 Ultra](https://www.hardware-corner.net/mac-studio-m3-ultra-deepseek-llamacpp/)).
 5. **Credere che il computer sostituisca processo e ERP** — vedi [agenti AI](/blog/agenti-ai-per-aziende) e [officina intorno al modello](/blog/ai-manifattura-officina-intorno-al-modello).
 
@@ -286,7 +299,7 @@ Stack di partenza già allineato al lavoro Frasma su documenti: **Ollama** o **l
 14. [Private LLM Inference on Consumer Blackwell GPUs (PMI)](https://arxiv.org/abs/2601.09527) — Knoop & Holtmann, 2026 — *prezzi GPU pre-rincari 2026*  
 15. [Energy Efficiency of Local LLMs](https://arxiv.org/abs/2608.00008) — Zähl et al., 2026  
 16. [Native LLM/MLLM at Scale on Apple Silicon](https://arxiv.org/abs/2601.19139) — Barrios, 2026  
-17. [Dual-Node DGX Spark fine-tuning note](https://arxiv.org/abs/2608.07226) — Iyer, 2026  
+17. [Dual-node DGX Spark, NanoChat ~897M](https://arxiv.org/abs/2608.07226) — Iyer, 2026 — *dominio su, conoscenza generale giù; non è un confronto con il RAG*  
 
 ### Benchmark e community
 
