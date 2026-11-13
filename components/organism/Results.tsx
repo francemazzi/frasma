@@ -80,6 +80,10 @@ const CASES: Case[] = [
       { href: "/blog/lettura-automatica-ddt", key: "results.case2.guide" },
       { href: "/blog/agenti-ai-per-aziende", key: "results.case2.guideAgents" },
       {
+        href: "/blog/computer-per-intelligenza-artificiale-in-locale",
+        key: "results.case2.guideLocalHardware",
+      },
+      {
         href: "/blog/software-calcolo-costi-produzione-officina",
         key: "results.case2.guideCosting",
       },

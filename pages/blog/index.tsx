@@ -54,19 +54,19 @@ export default function Blog({ posts }: BlogIndexProps) {
           <p className="mb-12 max-w-2xl text-[17px] leading-[1.55] text-farm-secondary">
             L&apos;ultimo approfondimento è la guida{" "}
             <Link
+              href="/blog/computer-per-intelligenza-artificiale-in-locale"
+              className="text-accent underline-offset-2 hover:underline"
+            >
+              Quale computer scegliere per l&apos;intelligenza artificiale in
+              locale in azienda
+            </Link>
+            — memoria, banda, prezzi indicativi e modelli open per PMI
+            manifatturiere. Per preventivi da disegno resta utile anche{" "}
+            <Link
               href="/blog/software-preventivi-carpenteria-metallica"
               className="text-accent underline-offset-2 hover:underline"
             >
-              Software preventivi carpenteria metallica: peso, tagli, saldature
-              e ore dal disegno
-            </Link>
-            — preventivo da DWG o PDF con conferma umana prima dell&apos;invio.
-            Per il ciclo passivo resta utile anche{" "}
-            <Link
-              href="/blog/erp-ddt-cosa-fa-il-gestionale"
-              className="text-accent underline-offset-2 hover:underline"
-            >
-              ERP e DDT: cosa fa il gestionale e dove si perde tempo
+              Software preventivi carpenteria metallica
             </Link>
             .
           </p>

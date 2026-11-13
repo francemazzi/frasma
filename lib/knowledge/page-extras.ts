@@ -231,6 +231,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
     ),
     articles: [
       {
+        path: "/blog/computer-per-intelligenza-artificiale-in-locale",
+        title: text(
+          "Quale computer scegliere per l'intelligenza artificiale in locale in azienda",
+          "Which computer to choose for on-premise AI in your company",
+        ),
+      },
+      {
         path: "/blog/erp-ddt-cosa-fa-il-gestionale",
         title: text(
           "ERP e DDT: cosa fa il gestionale, cosa resta manuale e dove si perde tempo",

@@ -86,7 +86,7 @@ Nel paper la scala di autonomia per le PMI va, come bersaglio, dal motore di pro
 
 I permessi seguono il ruolo. L'automazione legge documenti e prepara righe. Non invia email al cliente, non cancella movimenti, non cambia anagrafiche. Le eccezioni restano assegnate a qualcuno, non in una conversazione.
 
-Se i disegni o i listini non possono uscire dall'azienda, il pezzo da valutare è [l'AI on-premise](/servizi/ai-on-premise): il modello gira in casa. Il vincolo è di confini, non di «più intelligenza».
+Se i disegni o i listini non possono uscire dall'azienda, il pezzo da valutare è [l'AI on-premise](/servizi/ai-on-premise): il modello gira in casa. Il vincolo è di confini, non di «più intelligenza». Per memoria, banda e listini hardware di partenza c'è la guida [quale computer scegliere per l'AI in locale](/blog/computer-per-intelligenza-artificiale-in-locale).
 
 ## Come si parte, questa settimana?
 
