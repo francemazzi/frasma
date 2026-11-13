@@ -496,6 +496,8 @@ export const it: Record<string, string> = {
   "results.case2.guideErpDdt": "Guida: ERP e DDT in entrata e in uscita",
   "results.case2.guide": "Guida: lettura automatica dei DDT",
   "results.case2.guideAgents": "Guida: agenti AI per aziende",
+  "results.case2.guideLocalHardware":
+    "Guida: computer per intelligenza artificiale in locale",
   "results.case2.guideIncoming": "Guida: registrazione dei DDT in entrata",
   "results.case2.guideCosting":
     "Guida: software calcolo costi produzione officina",
