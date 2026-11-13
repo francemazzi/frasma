@@ -88,6 +88,10 @@ const CASES: Case[] = [
         key: "results.case2.guideCosting",
       },
       {
+        href: "/blog/costi-nascosti-commessa-officina-metalmeccanica",
+        key: "results.case2.guideHiddenCosts",
+      },
+      {
         href: "/blog/software-preventivi-carpenteria-metallica",
         key: "results.case2.guideSteelQuotes",
       },
@@ -342,6 +346,14 @@ export default function Results() {
             className="underline-offset-2 hover:text-accent hover:underline"
           >
             {t("results.featuredGuideCosting")}
+          </Link>
+        </p>
+        <p className="mt-2 text-center text-[14px] text-ink-soft">
+          <Link
+            href="/blog/costi-nascosti-commessa-officina-metalmeccanica"
+            className="underline-offset-2 hover:text-accent hover:underline"
+          >
+            {t("results.featuredGuideHiddenCosts")}
           </Link>
         </p>
         <p className="mt-2 text-center text-[14px] text-ink-soft">

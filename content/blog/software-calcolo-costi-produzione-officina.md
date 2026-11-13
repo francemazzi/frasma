@@ -17,6 +17,8 @@ status: published
 
 Chi cerca un **software calcolo costi produzione officina** — o un **programma costi produzione officina meccanica** — non sta chiedendo un listino da mandare al cliente. Sta chiedendo quanto è costato *davvero* fare quel pezzo: ore macchina, materiale, setup, lavorazioni esterne. Oggi quel numero nasce su Excel, con una tariffa unica e tre voci che nessuno ha scritto.
 
+Se il sospetto è diverso — **margini che non tornano per commessa** e voci che non si agganciano al preventivo (terzisti, setup, scarti, scostamento tra tempi preventivati e reali) — il punto di partenza è [costi nascosti officina metalmeccanica per commessa](/blog/costi-nascosti-commessa-officina-metalmeccanica). Qui, invece, si costruisce il consuntivo riga per riga.
+
 Il gestionale, se c'è, registra ordine, magazzino e fattura. Il costo del pezzo, prima, è un lavoro di officina. Si ricostruisce. Una persona lo conferma. Poi, se serve, si importa.
 
 Non è «l'AI che sa il costo». Non è un secondo gestionale. E non è il [preventivo da disegno](/blog/software-preventivi-lavorazioni-meccaniche): lì si decide se prendere il lavoro e a che cifra. Qui il pezzo è già stato fatto, o sta per esserlo, e manca il costo reale.

@@ -499,6 +499,8 @@ export const en: Record<string, string> = {
   "results.case2.guideIncoming": "Guide: registering incoming delivery notes",
   "results.case2.guideCosting":
     "Guide: shop production costing software",
+  "results.case2.guideHiddenCosts":
+    "Guide: hidden costs per job in a machining shop",
   "results.case2.guideSteelQuotes":
     "Guide: steel fabrication quoting software",
   "results.featuredGuideProgrammaDdt":
@@ -509,6 +511,8 @@ export const en: Record<string, string> = {
     "Guide: registering incoming delivery notes — checks, order matching, quantity differences",
   "results.featuredGuideCosting":
     "Guide: production costing on the shop floor, beyond Excel",
+  "results.featuredGuideHiddenCosts":
+    "Guide: hidden costs per job — subcontractors, time, and margin",
   "results.featuredGuideSteelQuotes":
     "Guide: steel fabrication quotes from the drawing",
   "results.assessCta": "Assess a process",
