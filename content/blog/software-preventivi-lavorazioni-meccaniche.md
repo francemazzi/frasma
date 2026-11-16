@@ -48,6 +48,8 @@ Due errori si pagano dopo, non in chat.
 
 **Tempi lunghi.** Il cliente prende altrove. Il disegno era lo stesso; il prezzo no.
 
+Quando il prezzo è già partito e il dubbio è **dove si è mangiato il margine** sulla singola commessa — non come riscrivere l'offerta — il confronto preventivo/consuntivo è in [costi nascosti officina metalmeccanica per commessa](/blog/costi-nascosti-commessa-officina-metalmeccanica).
+
 Arıkan e colleghi, in un [lavoro aperto su arXiv](https://arxiv.org/abs/2508.12440), partono da lì. Il costo di lavorazione, in officina, è ancora tariffa oraria per il tempo macchina, più materiale e indiretti. Stimare quel tempo chiede un ciclo: tornitura, fresatura, foratura, parametri, piazzamenti. A mano, scrivono, squadre di specialisti possono metterci settimane su un disegno. Nel loro settore — componentistica automotive — il bersaglio industriale è un'offerta entro 48 ore; molte ne prendono più di una settimana.
 
 Non è un dato Frasma e non è la vostra officina. È il motivo per cui la query esiste: il disegno c'è, il preventivo no.
