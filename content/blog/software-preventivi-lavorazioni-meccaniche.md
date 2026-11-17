@@ -36,6 +36,8 @@ Non è [tolleranze, revisione e ciclo](/blog/ciclo-e-revisione-non-escono-dallo-
 
 Non è un modulo «intelligente» dentro l'ERP. Se oggi il prezzo nasce su Excel, un assistente nel gestionale non toglie quel foglio.
 
+Non è [software gestione produzione meccanica](/blog/software-gestione-produzione-meccanica). Lì l'ordine è già partito: manca il piano su commesse, carico macchine e avanzamento in reparto, non il prezzo da mandare.
+
 ## Il problema in officina: Excel, disegno e tempi inventati
 
 Il disegno arriva. Il tempo no.

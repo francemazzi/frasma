@@ -269,6 +269,9 @@ describe("markdownForPath", () => {
     expect(study).toContain(
       "https://www.frasma.org/blog/software-calcolo-costi-produzione-officina",
     );
+    expect(study).toContain(
+      "https://www.frasma.org/blog/software-gestione-produzione-meccanica",
+    );
   });
 
   it("links the shop production costing guide from on-premise AI", () => {
@@ -287,6 +290,9 @@ describe("markdownForPath", () => {
 
     expect(apps).toContain(
       "https://www.frasma.org/blog/gestionale-magazzino-excel",
+    );
+    expect(apps).toContain(
+      "https://www.frasma.org/blog/software-gestione-produzione-meccanica",
     );
   });
 
