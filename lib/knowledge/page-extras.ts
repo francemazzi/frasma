@@ -185,6 +185,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "Warehouse Excel vs management software: when the sheet is enough, and when to connect it",
         ),
       },
+      {
+        path: "/blog/software-gestione-produzione-meccanica",
+        title: text(
+          "Software gestione produzione meccanica: commesse, carico macchine e avanzamento",
+          "Machining production management software: jobs, machine load, and shop-floor progress",
+        ),
+      },
     ],
   },
   "company-wiki-brain": {
@@ -333,6 +340,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         title: text(
           "Software calcolo costi produzione officina: ore, materiale e setup, oltre Excel",
           "Shop production costing software: machine hours, material, and setup, beyond Excel",
+        ),
+      },
+      {
+        path: "/blog/software-gestione-produzione-meccanica",
+        title: text(
+          "Software gestione produzione meccanica: commesse, carico macchine e avanzamento",
+          "Machining production management software: jobs, machine load, and shop-floor progress",
         ),
       },
     ],
