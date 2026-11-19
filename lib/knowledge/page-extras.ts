@@ -54,6 +54,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         ),
       },
       {
+        path: "/blog/lavorazione-esterna-officina-su-commessa",
+        title: text(
+          "Lavorazione esterna officina su commessa: conto lavoro, DDT e stato pezzi al terzista",
+          "External machining per job: subcontracting, delivery notes, and parts at the vendor",
+        ),
+      },
+      {
         path: "/blog/non-collegare-agenti-ai-direttamente-erp",
         title: text(
           "Non collegare gli agenti AI direttamente all'ERP",
@@ -347,6 +354,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         title: text(
           "Software gestione produzione meccanica: commesse, carico macchine e avanzamento",
           "Machining production management software: jobs, machine load, and shop-floor progress",
+        ),
+      },
+      {
+        path: "/blog/lavorazione-esterna-officina-su-commessa",
+        title: text(
+          "Lavorazione esterna officina su commessa: conto lavoro, DDT e stato pezzi al terzista",
+          "External machining per job: subcontracting, delivery notes, and parts at the vendor",
         ),
       },
     ],

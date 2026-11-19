@@ -108,7 +108,7 @@ Documenti, memoria dei cicli, e una persona che ferma il numero incerto: è il b
 
 Prendi tre richieste di preventivo vere, meglio se una è andata via in ritardo e una è stata venduta sotto i minuti reali. Sul tavolo tieni il disegno, il foglio Excel (o il gestionale) da cui è uscito il prezzo, e i rapportini se il pezzo è già stato fatto. Segna da dove sono arrivati tempi e materiale. Se la cifra è nata a occhio, il problema non è «manca il software». Manca un flusso: proposta, dubbio, conferma, invio.
 
-Se i disegni, le schede e i preventivi si copiano ancora a mano tra email, PDF ed Excel, il racconto più vicino — documenti letti, persona che conferma, poi gestionale — è il caso [Documenti ERP e preventivi manifatturieri](/casi/documenti-erp-manifattura).
+Se i disegni, le schede e i preventivi si copiano ancora a mano tra email, PDF ed Excel, il racconto più vicino — documenti letti, persona che conferma, poi gestionale — è il caso [Documenti ERP e preventivi manifatturieri](/casi/documenti-erp-manifattura). Per le **fasi esterne** dopo l'ordine — DDT uscita/rientro e stato pezzi dal terzista — vedi [lavorazione esterna officina su commessa](/blog/lavorazione-esterna-officina-su-commessa).
 
 ## FAQ
 
