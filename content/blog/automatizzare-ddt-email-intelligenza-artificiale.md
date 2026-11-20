@@ -235,7 +235,8 @@ Quando il processo diventa stabile, lo stesso flusso può essere collegato diret
 - database interno;
 - procedura di controllo qualità;
 - dashboard per le eccezioni;
-- commesse, carico macchine e avanzamento in reparto (stesso schema: Excel o registro operativo, conferma umana, poi gestionale): vedi [software gestione produzione meccanica](/blog/software-gestione-produzione-meccanica).
+- commesse, carico macchine e avanzamento in reparto (stesso schema: Excel o registro operativo, conferma umana, poi gestionale): vedi [software gestione produzione meccanica](/blog/software-gestione-produzione-meccanica);
+- uscite e rientri da terzista (conto lavoro) agganciati alla commessa: vedi [lavorazione esterna officina su commessa](/blog/lavorazione-esterna-officina-su-commessa).
 
 L'obiettivo non è aggiungere intelligenza artificiale a ogni passaggio, ma eliminare il copia-incolla dove produce realmente un vantaggio misurabile.
 
