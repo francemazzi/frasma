@@ -175,4 +175,4 @@ Da un elenco piccolo di centri e delle voci che già pagate: si misura se la tar
 
 **Fonti:** Silva, Sousa, Pinto, Ferreira, Pereira, *Build-Up an Economical Tool for Machining Operations Cost Estimation*, Metals 12(7):1205, 2022, <https://www.mdpi.com/2075-4701/12/7/1205>. Il paper tratta la stima dei costi di lavorazione in PMI, con enfasi su tempi e componenti di costo macchina. Non sostituisce il vostro piano ammortamenti. In caso di differenza tra questo articolo e il testo originale, prevale il paper.
 
-**Autore:** Francesco Saverio Mazzi — Frasma
+**Autore:** Francesco Saverio Mazzi, Frasma
