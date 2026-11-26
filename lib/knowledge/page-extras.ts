@@ -200,6 +200,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         ),
       },
       {
+        path: "/blog/odoo-produzione-distinta-base",
+        title: text(
+          "Odoo produzione e distinta base: da CAD a MRP con controllo prima del carico",
+          "Odoo production and bills of materials: from CAD to MRP with review before load",
+        ),
+      },
+      {
         path: "/blog/costo-orario-macchina-officina",
         title: text(
           "Costo orario macchina officina: ammortamento, ore produttive e setup",
@@ -340,6 +347,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         title: text(
           "Distinta base da AutoCAD: DATAEXTRACTION, Excel e gestionale",
           "Bill of materials from AutoCAD: DATAEXTRACTION, Excel, and ERP",
+        ),
+      },
+      {
+        path: "/blog/odoo-produzione-distinta-base",
+        title: text(
+          "Odoo produzione e distinta base: da CAD a MRP con controllo prima del carico",
+          "Odoo production and bills of materials: from CAD to MRP with review before load",
         ),
       },
       {

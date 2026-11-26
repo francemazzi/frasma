@@ -39,7 +39,7 @@ Il collegamento utile sta *intorno* all'ERP, non dentro.
 1. **Si sceglie un processo.** Un flusso con volume, errori visibili e un arrivo chiaro: per molte officine è l'inserimento dei DDT.
 2. **L'AI legge i documenti.** Email, PDF, scansioni. Estrae campi. Segnala i dubbi. Non decide.
 3. **Una persona valida.** I campi incerti restano visibili. Non c'è carico cieco in magazzino o in contabilità.
-4. **Si importa nel gestionale già in uso.** File di import, API o tracciato verso Mago o TeamSystem, con lo stesso perimetro che usereste per un import manuale controllato.
+4. **Si importa nel gestionale già in uso.** File di import, API o tracciato verso Mago, TeamSystem, Odoo o un altro ERP, con lo stesso perimetro che usereste per un import manuale controllato. Sulle distinte verso Odoo Manufacturing, il flusso da CAD è in [Odoo produzione e distinta base](/blog/odoo-produzione-distinta-base).
 
 Excel può essere il primo registro di controllo — anche per il [magazzino sul foglio](/blog/gestionale-magazzino-excel). Non è l'arrivo. L'arrivo è l'ERP, dopo la conferma.
 

@@ -255,6 +255,9 @@ describe("markdownForPath", () => {
       "https://www.frasma.org/blog/distinta-base-autocad",
     );
     expect(study).toContain(
+      "https://www.frasma.org/blog/odoo-produzione-distinta-base",
+    );
+    expect(study).toContain(
       "https://www.frasma.org/blog/software-preventivi-lavorazioni-meccaniche",
     );
     expect(study).toContain(
@@ -296,6 +299,9 @@ describe("markdownForPath", () => {
     );
     expect(apps).toContain(
       "https://www.frasma.org/blog/software-gestione-produzione-meccanica",
+    );
+    expect(apps).toContain(
+      "https://www.frasma.org/blog/odoo-produzione-distinta-base",
     );
     expect(apps).toContain(
       "https://www.frasma.org/blog/costo-orario-macchina-officina",

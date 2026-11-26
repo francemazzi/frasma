@@ -509,6 +509,8 @@ export const it: Record<string, string> = {
     "Guida: costi nascosti per commessa in officina metalmeccanica",
   "results.case2.guideSteelQuotes":
     "Guida: software preventivi carpenteria metallica",
+  "results.case2.guideOdooBom":
+    "Guida: Odoo MRP e distinta base da CAD",
   "results.featuredGuideProgrammaDdt":
     "Guida: programma per DDT — come scegliere lo strumento giusto",
   "results.featuredGuide":

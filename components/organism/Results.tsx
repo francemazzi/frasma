@@ -103,6 +103,10 @@ const CASES: Case[] = [
         href: "/blog/software-preventivi-carpenteria-metallica",
         key: "results.case2.guideSteelQuotes",
       },
+      {
+        href: "/blog/odoo-produzione-distinta-base",
+        key: "results.case2.guideOdooBom",
+      },
     ],
   },
   {
