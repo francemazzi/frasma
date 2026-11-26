@@ -50,7 +50,7 @@ Se la revisione è diversa, o se i due STEP non si sovrappongono, il programma v
 
 Il gestionale riceve, dopo, codice, revisione e tempi già confermati. Non riceve il PDF. Non riceve il programma macchina. È lo stesso confine di [non collegare un agente in scrittura diretta sull'ERP](/blog/non-collegare-agenti-ai-direttamente-erp), un passo prima del magazzino.
 
-Quando invece il cliente manda solo l'assieme e i particolari non esistono ancora, il lavoro è un altro: scomporre e creare i codici. Sta in [la distinta da un disegno non è un carico](/blog/distinta-da-disegno-non-e-un-carico).
+Quando invece il cliente manda solo l'assieme e i particolari non esistono ancora, il lavoro è un altro: scomporre e creare i codici. Sta in [la distinta da un disegno non è un carico](/blog/distinta-da-disegno-non-e-un-carico). Quando la distinta è pronta e l'arrivo è Odoo Manufacturing, il carico BoM e operazioni è in [Odoo produzione e distinta base](/blog/odoo-produzione-distinta-base).
 
 ## Questa settimana
 

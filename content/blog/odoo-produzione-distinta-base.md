@@ -23,7 +23,7 @@ La tentazione è trattare l'export come un import. Si lancia un'estrazione, esce
 
 ## Cosa fa Odoo in Manufacturing, in sintesi
 
-La documentazione ufficiale Odoo descrive la **distinta base** (bill of materials, BoM) come l'elenco dei componenti e delle quantità servono per produrre o riparare un prodotto. In Odoo le BoM sono il «progetto» del prodotto finito: componenti, eventuali operazioni e istruzioni passo passo.
+La documentazione ufficiale Odoo descrive la **distinta base** (bill of materials, BoM) come l'elenco dei componenti e delle quantità che servono per produrre o riparare un prodotto. In Odoo le BoM sono il «progetto» del prodotto finito: componenti, eventuali operazioni e istruzioni passo passo.
 
 Per creare una BoM si va in **Manufacturing app → Products → Bills of Materials** e si apre **New**. Si sceglie il **Product**, opzionalmente la variante, la **Quantity** prodotta con quella BoM, un **Reference** se servono più BoM per lo stesso articolo (per esempio due configurazioni hardware), e il **BoM Type** *Manufacture this product*. Nel tab **Components** si aggiungono le righe componente; nel tab **Operations** si descrivono le fasi, se è attiva la funzione **Work Orders** in **Manufacturing → Configuration → Settings**.
 
@@ -139,4 +139,4 @@ Se in ufficio tecnico state già su Odoo Manufacturing ma la distinta arriva anc
 
 In caso di differenza tra questo articolo e la documentazione Odoo, prevalgono i testi originali su odoo.com/documentation.
 
-**Autore:** Francesco Saverio Mazzi — Frasma
+**Autore:** Francesco Saverio Mazzi - Frasma

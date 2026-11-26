@@ -22,7 +22,7 @@ In un ufficio tecnico di carpenteria il passaggio è questo. Il cliente manda l'
 
 Il collo di bottiglia è l'ufficio tecnico. Il gestionale arriva quando i codici esistono già.
 
-Se invece il DWG è già vostro, con blocchi e attributi compilati, il lavoro cambia: si estrae la lista, si controlla, poi si importa. Quel passaggio sta in [distinta base da AutoCAD](/blog/distinta-base-autocad).
+Se invece il DWG è già vostro, con blocchi e attributi compilati, il lavoro cambia: si estrae la lista, si controlla, poi si importa. Quel passaggio sta in [distinta base da AutoCAD](/blog/distinta-base-autocad). Se il gestionale è Odoo Manufacturing, l'arrivo dopo la conferma è descritto in [Odoo produzione e distinta base](/blog/odoo-produzione-distinta-base).
 
 ## Il complessivo è un disegno, la distinta è una tabella
 

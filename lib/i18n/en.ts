@@ -505,6 +505,8 @@ export const en: Record<string, string> = {
     "Guide: hidden costs per job in a machining shop",
   "results.case2.guideSteelQuotes":
     "Guide: steel fabrication quoting software",
+  "results.case2.guideOdooBom":
+    "Guide: Odoo MRP and bill of materials from CAD",
   "results.featuredGuideProgrammaDdt":
     "Guide: delivery-note software — how to choose the right tool",
   "results.featuredGuide":

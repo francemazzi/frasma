@@ -94,7 +94,7 @@ Il caso [Documenti ERP e preventivi manifatturieri](/casi/documenti-erp-manifatt
 
 ## Il gestionale riceve la lista già chiusa
 
-Solo dopo si prepara il tracciato verso Mago, TeamSystem o l'ERP già in uso. File di import, CSV, procedura che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce il gestionale.
+Solo dopo si prepara il tracciato verso Mago, TeamSystem, Odoo o l'ERP già in uso. Se l'arrivo è il modulo Produzione di Odoo, il perimetro BoM e componenti è in [Odoo produzione e distinta base](/blog/odoo-produzione-distinta-base). File di import, CSV, procedura che quel gestionale accetta. Non si apre una scrittura diretta e non si sostituisce il gestionale.
 
 Due strade, tenute separate.
 

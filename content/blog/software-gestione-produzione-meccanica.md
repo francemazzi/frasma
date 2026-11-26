@@ -185,7 +185,7 @@ Excel diventa stretto quando:
 - il gestionale ha l'ordine ma il reparto non lo apre mai per sapere «dove siamo»;
 - volete usare i rapportini per ripianare la settimana successiva, non solo per la busta paga.
 
-In quel passaggio non serve per forza un MRP da catalogo. Serve un **flusso**: commessa, fasi, macchina, stato, conferma, eventuale scrittura sull'ERP. È lo stesso principio del magazzino su foglio collegato al gestionale, descritto in [gestionale magazzino Excel](/blog/gestionale-magazzino-excel), applicato alla **coda di lavoro**.
+In quel passaggio non serve per forza un MRP da catalogo. Serve un **flusso**: commessa, fasi, macchina, stato, conferma, eventuale scrittura sull'ERP. Se l'ERP è Odoo, distinta e MO vivono in Manufacturing: vedi [Odoo produzione e distinta base](/blog/odoo-produzione-distinta-base). È lo stesso principio del magazzino su foglio collegato al gestionale, descritto in [gestionale magazzino Excel](/blog/gestionale-magazzino-excel), applicato alla **coda di lavoro**.
 
 ## Questa settimana
 
