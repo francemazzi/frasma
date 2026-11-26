@@ -139,7 +139,7 @@ Conviene pensarci quando:
 
 - i DDT arrivano soprattutto come PDF via email, da molti fornitori con layout diversi;
 - le righe per documento sono tante e la digitazione occupa una parte riconoscibile della giornata;
-- gli ordini fornitore sono già nel gestionale, con righe e quantità residue affidabili;
+- gli ordini fornitore sono già nel gestionale, con righe e quantità residue affidabili (su **Odoo**, nel ricevimento dalla purchase order: [Odoo magazzino e DDT](/blog/odoo-magazzino-ddt));
 - la registrazione si accumula e il gestionale resta sistematicamente indietro rispetto al magazzino.
 
 Conviene aspettare quando:

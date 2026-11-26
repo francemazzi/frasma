@@ -16,7 +16,7 @@ tags:
 status: published
 ---
 
-Chi cerca **ERP DDT**, **DDT ERP**, **gestionale DDT** o **software gestionale DDT** di solito non sta chiedendo un nuovo programma. Sta chiedendo se Mago, TeamSystem, Zucchetti, eSolver, FullWORK o il gestionale già in azienda «parla» con i Documenti di Trasporto — quelli che arrivano dai fornitori e quelli che mandate ai clienti.
+Chi cerca **ERP DDT**, **DDT ERP**, **gestionale DDT** o **software gestionale DDT** di solito non sta chiedendo un nuovo programma. Sta chiedendo se Mago, TeamSystem, Zucchetti, eSolver, FullWORK, Odoo o il gestionale già in azienda «parla» con i Documenti di Trasporto, quelli che arrivano dai fornitori e quelli che mandate ai clienti. Chi usa **Odoo Inventario** ha ricevimenti e consegne legati agli ordini: il ponte col DDT cartaceo sta in [Odoo magazzino e DDT](/blog/odoo-magazzino-ddt).
 
 La risposta breve: l'ERP **non sostituisce** la bolla. Registra **effetti** che il DDT descrive: merce entrata o uscita, ordine evaso o aperto, riferimento per la fattura. Tutto il resto — contare i colli, decidere su una differenza, mappare il codice del fornitore sul vostro — resta sul tavolo, spesso a mano.
 
