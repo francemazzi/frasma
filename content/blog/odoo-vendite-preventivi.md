@@ -125,6 +125,6 @@ Se le offerte nascono ancora tra email, disegni ed Excel e poi finiscono a mano 
 
 ---
 
-**Fonti:** Odoo S.A., documentazione ufficiale 18.0 — [Sales quotations](https://www.odoo.com/documentation/18.0/applications/sales/sales/sales_quotations.html), [Sales (overview)](https://www.odoo.com/documentation/18.0/applications/sales/sales.html). In caso di differenza tra questo articolo e la documentazione Odoo, prevalgono i testi su odoo.com/documentation.
+**Fonti:** Odoo S.A., documentazione ufficiale 18.0: [Sales quotations](https://www.odoo.com/documentation/18.0/applications/sales/sales/sales_quotations.html), [Sales (overview)](https://www.odoo.com/documentation/18.0/applications/sales/sales.html). In caso di differenza tra questo articolo e la documentazione Odoo, prevalgono i testi su odoo.com/documentation.
 
-**Autore:** Francesco Saverio Mazzi — Frasma
+**Autore:** Francesco Saverio Mazzi, Frasma
