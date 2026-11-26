@@ -270,6 +270,9 @@ describe("markdownForPath", () => {
       "https://www.frasma.org/blog/software-calcolo-costi-produzione-officina",
     );
     expect(study).toContain(
+      "https://www.frasma.org/blog/costo-orario-macchina-officina",
+    );
+    expect(study).toContain(
       "https://www.frasma.org/blog/software-gestione-produzione-meccanica",
     );
   });
@@ -293,6 +296,9 @@ describe("markdownForPath", () => {
     );
     expect(apps).toContain(
       "https://www.frasma.org/blog/software-gestione-produzione-meccanica",
+    );
+    expect(apps).toContain(
+      "https://www.frasma.org/blog/costo-orario-macchina-officina",
     );
   });
 

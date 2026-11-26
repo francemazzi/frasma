@@ -199,6 +199,20 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
           "Machining production management software: jobs, machine load, and shop-floor progress",
         ),
       },
+      {
+        path: "/blog/costo-orario-macchina-officina",
+        title: text(
+          "Costo orario macchina officina: ammortamento, ore produttive e setup",
+          "Shop machine hourly rate: depreciation, productive hours, and setup",
+        ),
+      },
+      {
+        path: "/blog/software-calcolo-costi-produzione-officina",
+        title: text(
+          "Software calcolo costi produzione officina: ore, materiale e setup, oltre Excel",
+          "Shop production costing software: machine hours, material, and setup, beyond Excel",
+        ),
+      },
     ],
   },
   "company-wiki-brain": {
@@ -347,6 +361,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
         title: text(
           "Software calcolo costi produzione officina: ore, materiale e setup, oltre Excel",
           "Shop production costing software: machine hours, material, and setup, beyond Excel",
+        ),
+      },
+      {
+        path: "/blog/costo-orario-macchina-officina",
+        title: text(
+          "Costo orario macchina officina: ammortamento, ore produttive e setup",
+          "Shop machine hourly rate: depreciation, productive hours, and setup",
         ),
       },
       {

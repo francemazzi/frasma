@@ -42,7 +42,7 @@ Non è [software gestione produzione meccanica](/blog/software-gestione-produzio
 
 Il disegno arriva. Il tempo no.
 
-Chi quota apre il PDF, legge quote e note, stima le operazioni. Se lo STEP c'è, guarda la forma. Il materiale spesso lo indica il cliente; la sezione della barra o del piatto la decide chi conosce il magazzino. Il prezzo è tariffa oraria per i minuti immaginati, più il grezzo, più un margine. Tutto su un foglio che tiene insieme formule di tre anni fa e eccezioni a voce.
+Chi quota apre il PDF, legge quote e note, stima le operazioni. Se lo STEP c'è, guarda la forma. Il materiale spesso lo indica il cliente; la sezione della barra o del piatto la decide chi conosce il magazzino. Il prezzo è tariffa oraria per i minuti immaginati, più il grezzo, più un margine. Se la tariffa è unica su tutta l'officina, i minuti sul CNC e sul trapano sembrano costare uguale: prima di moltiplicare i tempi, ha senso capire [come si calcola il costo orario macchina](/blog/costo-orario-macchina-officina). Tutto su un foglio che tiene insieme formule di tre anni fa e eccezioni a voce.
 
 Due errori si pagano dopo, non in chat.
 
