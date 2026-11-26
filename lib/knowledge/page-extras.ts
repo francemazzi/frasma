@@ -186,6 +186,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
     ),
     articles: [
       {
+        path: "/blog/odoo-vendite-preventivi",
+        title: text(
+          "Odoo preventivi in manifattura: dal disegno alla bozza, poi nel modulo Vendite",
+          "Odoo quotes in manufacturing: from drawing to draft, then into Sales",
+        ),
+      },
+      {
         path: "/blog/gestionale-magazzino-excel",
         title: text(
           "Gestionale magazzino Excel: quando il foglio basta, e quando va collegato",

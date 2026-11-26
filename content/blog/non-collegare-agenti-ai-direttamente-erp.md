@@ -77,7 +77,7 @@ Una persona del team. L'AI struttura e segnala. La conferma, le eccezioni e la r
 
 Quello che il gestionale già consente, sul processo scelto. Un file di import controllato è spesso sufficiente. Un agente nativo ha senso solo se rispetta ruoli e non scrive da solo. La scelta tecnica viene dopo la mappa del lavoro reale.
 
-Se i DDT, le bolle o i preventivi si copiano ancora a mano tra email, PDF, Excel ed ERP, si può partire da lì.
+Se i DDT, le bolle o i preventivi si copiano ancora a mano tra email, PDF, Excel ed ERP, si può partire da lì. Per preventivi da disegno verso Odoo Sales: [Odoo vendite e preventivi](/blog/odoo-vendite-preventivi).
 
 [Valuta il processo DDT verso ERP](/servizi/ddt-erp)
 
