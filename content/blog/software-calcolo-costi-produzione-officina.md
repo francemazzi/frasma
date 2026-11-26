@@ -76,7 +76,7 @@ Chi chiude il numero deve vedere da dove è nata ogni voce. Se vede solo una cel
 Quattro regole che uso.
 
 1. **Si tengono separate le voci.** Materiale, macchina, setup, esterno. Fonderli in un «totale pezzo» perde il pezzo che manca. Se manca il DDT del trattamento, lo stato resta «da verificare». Non si completa a sentimento.
-2. **Si usa la tariffa di questa macchina.** Lo stesso particolare su un centro a cinque assi e su un tornio non costa uguale. Una tariffa unica di officina è una media che non descrive nessun pezzo.
+2. **Si usa la tariffa di questa macchina.** Lo stesso particolare su un centro a cinque assi e su un tornio non costa uguale. Una tariffa unica di officina è una media che non descrive nessun pezzo. Come si costruisce quella tariffa oraria, voce per voce, è in [costo orario macchina officina](/blog/costo-orario-macchina-officina).
 3. **Si usa la memoria di questa officina.** Se il codice è già stato lavorato e la revisione torna, la proposta parte dai rapportini, non da un ciclo da catalogo. L'ho fatto così: i minuti tornano?
 4. **Una persona conferma.** Poi, se serve, il gestionale riceve il consuntivo. Il gestionale registra. Non inventa il costo.
 
