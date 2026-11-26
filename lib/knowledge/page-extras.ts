@@ -33,6 +33,13 @@ export const PAGE_EXTRAS: Record<string, PageExtras> = {
     ),
     articles: [
       {
+        path: "/blog/odoo-magazzino-ddt",
+        title: text(
+          "Odoo magazzino e DDT: ricevimenti, consegne e movimenti senza sostituire l'ERP",
+          "Odoo inventory and delivery notes: receipts, deliveries, and stock moves without replacing the ERP",
+        ),
+      },
+      {
         path: "/blog/programma-per-ddt-come-scegliere",
         title: text(
           "Programma per DDT: come scegliere tra stampa, gestionale e lettura automatica",

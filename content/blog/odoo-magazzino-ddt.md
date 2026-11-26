@@ -150,4 +150,4 @@ Non per forza. L'Excel può restare registro di lavoro finché una persona confe
 
 In caso di differenza tra questo articolo e la documentazione Odoo aggiornata, prevale la documentazione sul sito odoo.com.
 
-**Autore:** Francesco Saverio Mazzi — Frasma
+**Autore:** Francesco Saverio Mazzi, Frasma
