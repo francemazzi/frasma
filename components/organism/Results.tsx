@@ -88,6 +88,10 @@ const CASES: Case[] = [
         key: "results.case2.guideCosting",
       },
       {
+        href: "/blog/costo-orario-macchina-officina",
+        key: "results.case2.guideMachineRate",
+      },
+      {
         href: "/blog/software-gestione-produzione-meccanica",
         key: "results.case2.guideProductionPlanning",
       },
@@ -354,6 +358,14 @@ export default function Results() {
             className="underline-offset-2 hover:text-accent hover:underline"
           >
             {t("results.featuredGuideCosting")}
+          </Link>
+        </p>
+        <p className="mt-2 text-center text-[14px] text-ink-soft">
+          <Link
+            href="/blog/costo-orario-macchina-officina"
+            className="underline-offset-2 hover:text-accent hover:underline"
+          >
+            {t("results.featuredGuideMachineRate")}
           </Link>
         </p>
         <p className="mt-2 text-center text-[14px] text-ink-soft">

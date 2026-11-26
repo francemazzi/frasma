@@ -96,7 +96,7 @@ Misurare i costi nascosti non significa comprare un nuovo modulo. Significa **re
 
 **Una commessa sospetta alla volta.** Meglio tre commesse lette bene che cento righe incomplete.
 
-Quando avete bisogno del dettaglio su **come si costruisce il consuntivo** — tariffe per macchina, formula del setup, ripartizione lotto — andate alla guida dedicata: [software calcolo costi produzione officina](/blog/software-calcolo-costi-produzione-officina). Questo articolo vi dice **cosa confrontare** e **dove guardare** prima di aprire quel manuale.
+Quando avete bisogno del dettaglio su **come si costruisce il consuntivo**, tariffe per macchina, formula del setup, ripartizione lotto, andate alle guide dedicate: [costo orario macchina officina](/blog/costo-orario-macchina-officina) per la tariffa del centro, poi [software calcolo costi produzione officina](/blog/software-calcolo-costi-produzione-officina) per il pezzo. Questo articolo vi dice **cosa confrontare** e **dove guardare** prima di aprire quei manuali.
 
 Il passaggio tra documenti, rapportini e commessa è anche il contesto di [Frasma per la manifattura](/manifattura): proposta, eccezione visibile, conferma, poi gestionale.
 
