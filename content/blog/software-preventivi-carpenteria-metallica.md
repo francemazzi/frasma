@@ -97,7 +97,7 @@ Se il sistema mostra da dove ha preso il numero — la riga del DWG, la commessa
 
 L'uscita del flusso è un'offerta, non un movimento nel gestionale.
 
-Si scrive il preventivo. Si manda. Se il cliente accetta, allora sì: ordine, commessa, distinta se serve, tempi verso Mago, TeamSystem, Danea o quello che già usate. Il gestionale registra. Non inventa il prezzo.
+Si scrive il preventivo. Si manda. Se il cliente accetta, allora sì: ordine, commessa, distinta se serve, tempi verso Mago, TeamSystem, Odoo, Danea o quello che già usate. Con Odoo, vedi [preventivi da disegno verso il modulo Vendite](/blog/odoo-vendite-preventivi). Il gestionale registra. Non inventa il prezzo.
 
 I permessi seguono il ruolo. L'automazione legge disegni e commesse già chiuse, prepara la scheda, non spedisce email al cliente, non cambia listini, non crea l'ordine da sola. Le eccezioni restano assegnate a qualcuno, non in una conversazione.
 

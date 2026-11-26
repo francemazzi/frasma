@@ -96,7 +96,7 @@ Il passaggio tra disegno, commerciale e produzione è il contesto di [Frasma per
 
 L'uscita del flusso è un'offerta, non un movimento nel gestionale.
 
-Si scrive il preventivo. Si manda. Se il cliente accetta, allora sì: ordine, commessa, eventualmente distinta e tempi verso Mago, TeamSystem, Danea o quello che già usate. Il gestionale registra. Non inventa il prezzo.
+Si scrive il preventivo. Si manda. Se il cliente accetta, allora sì: ordine, commessa, eventualmente distinta e tempi verso Mago, TeamSystem, Odoo, Danea o quello che già usate. Se il gestionale è Odoo, il passaggio preventivo da disegno al modulo Vendite è in [Odoo vendite e preventivi](/blog/odoo-vendite-preventivi). Il gestionale registra. Non inventa il prezzo.
 
 I permessi seguono il ruolo. L'automazione legge disegni e cicli già chiusi, prepara la scheda, non spedisce email al cliente, non cambia listini, non crea l'ordine da sola. Le eccezioni restano assegnate a qualcuno, non in una conversazione.
 
